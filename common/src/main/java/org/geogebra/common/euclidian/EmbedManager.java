@@ -153,4 +153,6 @@ public interface EmbedManager {
 	void embeddedAction(EventType action, String id);
 
 	void setBase64(String label, String base64);
+
+	void sendCommand(GeoEmbed chart, String cmd);
 }
