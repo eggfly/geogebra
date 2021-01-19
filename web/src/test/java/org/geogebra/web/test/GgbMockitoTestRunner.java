@@ -19,6 +19,7 @@ import com.google.gwtmockito.impl.StubGenerator;
 import com.himamis.retex.renderer.web.graphics.GraphicsFactoryGWT;
 import com.himamis.retex.renderer.web.graphics.ImageW;
 import com.himamis.retex.renderer.web.graphics.JLMContext2d;
+import com.himamis.retex.renderer.web.graphics.JLMContextHelper;
 
 import elemental2.core.Uint8Array;
 import elemental2.dom.DomGlobal;
@@ -47,7 +48,7 @@ public class GgbMockitoTestRunner extends GwtMockitoTestRunner {
                 Void.class);
         StubGenerator.replaceMethodWithMock(Canvas.class, "createIfSupported",
                 Canvas.class);
-        StubGenerator.replaceMethodWithMock(JLMContext2d.class, "as",
+        StubGenerator.replaceMethodWithMock(JLMContextHelper.class, "as",
                 JLMContext2d.class);
         StubGenerator.replaceMethodWithMock(GraphicsFactoryGWT.class, "createImage",
                 ImageW.class);
