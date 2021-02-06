@@ -12,7 +12,6 @@ import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.web.full.css.MaterialDesignResources;
 import org.geogebra.web.full.gui.dialog.DialogManagerW;
 import org.geogebra.web.full.gui.images.AppResources;
-import org.geogebra.web.full.gui.images.StyleBarResources;
 import org.geogebra.web.full.gui.menubar.MainMenu;
 import org.geogebra.web.full.gui.menubar.RadioButtonMenuBarW;
 import org.geogebra.web.full.gui.properties.PropertiesViewW;
@@ -212,13 +211,8 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 	}
 
 	private void addShowAllObjAndStandView() {
-		String img;
-		if (app.isUnbundledOrWhiteboard()) {
-			img = MaterialDesignResources.INSTANCE.show_all_objects_black()
+		String img = MaterialDesignResources.INSTANCE.show_all_objects_black()
 					.getSafeUri().asString();
-		} else {
-			img = AppResources.INSTANCE.empty().getSafeUri().asString();
-		}
 		AriaMenuItem miShowAllObjectsView = new AriaMenuItem(
 				MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("ShowAllObjects")),
 				true,
@@ -230,12 +224,8 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 			        }
 
 		        });
-		String img2;
-		if (app.isUnbundledOrWhiteboard()) {
-			img2 = MaterialDesignResources.INSTANCE.home_black().getSafeUri().asString();
-		} else {
-			img2 = AppResources.INSTANCE.empty().getSafeUri().asString();
-		}
+
+		String img2 = MaterialDesignResources.INSTANCE.home_black().getSafeUri().asString();
 		AriaMenuItem miStandardView = new AriaMenuItem(
 				MainMenu.getMenuBarHtmlClassic(img2, loc.getMenu("StandardView")),
 				true,
@@ -356,13 +346,7 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 	 *            of option
 	 */
 	protected void addMiProperties(String name, final OptionType type) {
-		String img;
-		if (app.isUnbundledOrWhiteboard()) {
-			img = MaterialDesignResources.INSTANCE.gear().getSafeUri()
-					.asString();
-		} else {
-			img = AppResources.INSTANCE.view_properties16().getSafeUri().asString();
-		}
+		String img = MaterialDesignResources.INSTANCE.gear().getSafeUri().asString();
 
 		AriaMenuItem miProperties = new AriaMenuItem(
 				MainMenu.getMenuBarHtmlClassic(img,
@@ -460,13 +444,9 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 	protected void addZoomMenu() {
 		// zoom for both axes
 		AriaMenuBar zoomMenu = new AriaMenuBar();
-		String img;
-		if (app.isUnbundledOrWhiteboard()) {
-			img = MaterialDesignResources.INSTANCE.zoom_in_black().getSafeUri()
+		String img = MaterialDesignResources.INSTANCE.zoom_in_black().getSafeUri()
 					.asString();
-		} else {
-			img = AppResources.INSTANCE.zoom16().getSafeUri().asString();
-		}
+
 		AriaMenuItem zoomMenuItem = new AriaMenuItem(
 				MainMenu.getMenuBarHtmlClassic(img,
 				loc.getMenu("Zoom")), true, zoomMenu);
@@ -524,12 +504,8 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 		if (app.getGuiManager() == null) {
 			return;
 		}
-		String img;
-		if (app.isUnbundledOrWhiteboard()) {
-			img = AppResources.INSTANCE.axes20().getSafeUri().asString();
-		} else {
-			img = StyleBarResources.INSTANCE.axes().getSafeUri().asString();
-		}
+
+		String img = MaterialDesignResources.INSTANCE.axes_black().getSafeUri().asString();
 		String htmlString = MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("Axes"));
 		if (!app.isUnbundledOrWhiteboard()) {
 			GCheckBoxMenuItem cbMenuItem = new GCheckBoxMenuItem(htmlString,
@@ -550,12 +526,8 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 		        && (app.getActiveEuclidianView().getShowYaxis()));
 			wrappedPopup.addItem(checkmarkMenuItem.getMenuItem());
 		}
-		String img2;
-		if (app.isUnbundledOrWhiteboard()) {
-			img2 = AppResources.INSTANCE.grid20().getSafeUri().asString();
-		} else {
-			img2 = StyleBarResources.INSTANCE.grid().getSafeUri().asString();
-		}
+
+		String img2 = MaterialDesignResources.INSTANCE.grid_black().getSafeUri().asString();
 		htmlString = MainMenu.getMenuBarHtmlClassic(img2, loc.getMenu("Grid"));
 		if (!app.isUnbundledOrWhiteboard()) {
 			GCheckBoxMenuItem cbShowGrid = new GCheckBoxMenuItem(htmlString,

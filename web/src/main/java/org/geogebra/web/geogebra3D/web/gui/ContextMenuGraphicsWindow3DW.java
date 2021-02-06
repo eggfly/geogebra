@@ -7,15 +7,12 @@ import org.geogebra.common.main.settings.EuclidianSettings3D;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.full.css.MaterialDesignResources;
 import org.geogebra.web.full.gui.ContextMenuGraphicsWindowW;
-import org.geogebra.web.full.gui.images.AppResources;
-import org.geogebra.web.full.gui.images.StyleBarResources;
 import org.geogebra.web.full.gui.menubar.MainMenu;
 import org.geogebra.web.full.javax.swing.CheckMarkSubMenu;
 import org.geogebra.web.full.javax.swing.GCheckBoxMenuItem;
 import org.geogebra.web.full.javax.swing.GCheckmarkMenuItem;
 import org.geogebra.web.full.javax.swing.GCollapseMenuItem;
 import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianView3DW;
-import org.geogebra.web.geogebra3D.web.gui.images.StyleBar3DResources;
 import org.geogebra.web.html5.gui.util.AriaMenuItem;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.resources.SVGResource;
@@ -117,16 +114,8 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 	}
 
 	private void addStandardViewMenuItem() {
-		String img;
-		if (app.isWhiteboardActive()) {
-			img = AppResources.INSTANCE.standard_view20().getSafeUri()
+		String img = MaterialDesignResources.INSTANCE.home_black().getSafeUri()
 					.asString();
-		} else if (app.isUnbundled()) {
-			img = MaterialDesignResources.INSTANCE.home_black().getSafeUri()
-					.asString();
-		} else {
-			img = AppResources.INSTANCE.empty().getSafeUri().asString();
-		}
 		AriaMenuItem miStandardView = new AriaMenuItem(
 				MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("StandardView")),
 				true,
@@ -142,16 +131,8 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 	}
 
 	private void addShowAllObjectsViewMenuItem() {
-		String img;
-		if (app.isWhiteboardActive()) {
-			img = AppResources.INSTANCE.show_all_objects20().getSafeUri()
-					.asString();
-		} else if (app.isUnbundled()) {
-			img = MaterialDesignResources.INSTANCE.show_all_objects_black()
+		String img = MaterialDesignResources.INSTANCE.show_all_objects_black()
 					.getSafeUri().asString();
-		} else {
-			img = AppResources.INSTANCE.empty().getSafeUri().asString();
-		}
 		AriaMenuItem miShowAllObjectsView = new AriaMenuItem(
 				MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("ShowAllObjects")),
 				true,
@@ -169,12 +150,7 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 	@Override
 	protected void addAxesAndGridCheckBoxes() {
 		// AXES
-		String img;
-		if (app.isUnbundledOrWhiteboard()) {
-			img = AppResources.INSTANCE.axes20().getSafeUri().asString();
-		} else {
-			img = StyleBarResources.INSTANCE.axes().getSafeUri().asString();
-		}
+		String img = MaterialDesignResources.INSTANCE.axes_black().getSafeUri().asString();
 		String htmlString = MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("Axes"));
 		GCheckBoxMenuItem cbShowAxes = new GCheckBoxMenuItem(htmlString,
 				((GuiManager3DW) app.getGuiManager()).getShowAxes3DAction(),
@@ -184,12 +160,7 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 		getWrappedPopup().addItem(cbShowAxes);
 
 		// GRID
-		String img2;
-		if (app.isUnbundledOrWhiteboard()) {
-			img2 = AppResources.INSTANCE.grid20().getSafeUri().asString();
-		} else {
-			img2 = StyleBarResources.INSTANCE.grid().getSafeUri().asString();
-		}
+		String img2 = MaterialDesignResources.INSTANCE.grid_black().getSafeUri().asString();
 		htmlString = MainMenu.getMenuBarHtmlClassic(img2, loc.getMenu("Grid"));
 		GCheckBoxMenuItem cbShowGrid = new GCheckBoxMenuItem(htmlString,
 				((GuiManager3DW) app.getGuiManager()).getShowGrid3DAction(),
@@ -199,12 +170,7 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 		getWrappedPopup().addItem(cbShowGrid);
 
 		// PLANE
-		String img3;
-		if (app.isUnbundledOrWhiteboard()) {
-			img3 = AppResources.INSTANCE.plane20().getSafeUri().asString();
-		} else {
-			img3 = StyleBar3DResources.INSTANCE.plane().getSafeUri().asString();
-		}
+		String img3 = MaterialDesignResources.INSTANCE.plane_black().getSafeUri().asString();
 		htmlString = MainMenu.getMenuBarHtmlClassic(img3, loc.getMenu("Plane"));
 		GCheckBoxMenuItem cbShowPlane = new GCheckBoxMenuItem(htmlString,
 				((GuiManager3DW) app.getGuiManager()).getShowPlane3DAction(),
