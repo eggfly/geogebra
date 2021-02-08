@@ -5068,7 +5068,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	}
 
 	/**
-	 * @return true for boolean functions
+	 * @return true for boolean functions (including undefined that were saved as boolean in XML)
 	 */
 	public boolean isGeoFunctionBoolean() {
 		return false;
@@ -6218,14 +6218,6 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	 */
 	public boolean isPickable() {
 		return isPickable && isSelectionAllowed(null);
-	}
-
-	/**
-	 * @return true for intervals
-	 */
-	@Override
-	public boolean isGeoInterval() {
-		return false;
 	}
 
 	/**
