@@ -7,7 +7,7 @@ import org.geogebra.common.plugin.Operation;
 /**
  * Checker to determine ia an operation is supported by the interval arithmetic.
  */
-public class SupportedOperatorChecker implements Inspecting {
+public class UnsupportedOperatorChecker implements Inspecting {
 
 	@Override
 	public boolean check(ExpressionValue v) {
@@ -17,7 +17,6 @@ public class SupportedOperatorChecker implements Inspecting {
 		case MINUS:
 		case MULTIPLY:
 		case DIVIDE:
-		case POWER:
 		case NROOT:
 		case DIFF:
 		case SIN:
@@ -39,10 +38,16 @@ public class SupportedOperatorChecker implements Inspecting {
 		case ACOSH:
 		case LOG10:
 		case LOG2:
-//		case IF_ELSE:
-			return true;
-		default:
+		case NO_OPERATION:
 			return false;
+		case POWER:
+			return checkPower(v);
+		default:
+			return true;
 		}
+	}
+
+	private boolean checkPower(ExpressionValue v) {
+		return v.wrap().getRightTree().containsFunctionVariable();
 	}
 }
