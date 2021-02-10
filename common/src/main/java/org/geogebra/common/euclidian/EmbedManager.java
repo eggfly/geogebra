@@ -164,4 +164,6 @@ public interface EmbedManager {
 	 * @param callback callback
 	 */
 	void onLoaded(GeoEmbed geoEmbed, Runnable callback);
+
+	void setBase64(String label, String base64);
 }
