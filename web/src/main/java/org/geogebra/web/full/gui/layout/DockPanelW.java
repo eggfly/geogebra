@@ -527,7 +527,7 @@ public abstract class DockPanelW extends ResizeComposite
 		return 0;
 	}
 
-	/**
+	/***
 	 * @param context2d rendering context
 	 * @param callback to be called on both success and failure
 	 * @param left left offset in pixels
