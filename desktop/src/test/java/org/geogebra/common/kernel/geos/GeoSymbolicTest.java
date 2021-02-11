@@ -1418,4 +1418,15 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 		r = (GeoSymbolic) lookup("r");
 		assertThat(r.isEuclidianShowable(), is(true));
 	}
+
+	@Test
+	public void testRounding() {
+		kernel.setPrintFigures(20);
+		GeoSymbolic number = add("11.3 * 1.5");
+		AlgebraItem.toggleSymbolic(number);
+		String output = AlgebraItem.getOutputTextForGeoElement(number);
+		assertThat(output, equalTo("16.95"));
+		// Reset
+		kernel.setPrintDecimals(5);
+	}
 }
