@@ -136,7 +136,7 @@
 $collapse-trans: all 0.2s ease;
 
 	.expanded {
-		padding: 0px 16px 0px 64px;
+		padding: 0px 56px 0px 32px;
 		max-height: 32px;
 		height: 32px;
 		transition: $collapse-trans; 
@@ -147,7 +147,6 @@ $collapse-trans: all 0.2s ease;
 
 			.gwt-HTML {
 				position: relative;
-				left: -24px;
 			}
 		}
 	}
@@ -159,25 +158,24 @@ $collapse-trans: all 0.2s ease;
 	}
 
 	.collapsed {
-		padding: 0px 16px 0px 64px;
+		padding: 0px 16px 0px 32px;
 		max-height: 0px;
 		height: 0px;
 		overflow: hidden;
 		transition: $collapse-trans;
 
-			.checkMarkMenuItem {
+		.checkMarkMenuItem {
 			transition: $collapse-trans;
 			max-height: 0px;
 			.gwt-HTML {
 				position: relative;
-				left: -24px;
 			}
 			img  {
 				max-height: 0px;
+			}
 		}
 	}
 
-	}
 	.collapsed >*{
 		max-height: 0px;
 		transition: $collapse-trans;
