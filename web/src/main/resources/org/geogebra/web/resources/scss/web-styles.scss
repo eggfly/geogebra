@@ -719,10 +719,11 @@
 	}
 
 	.menuSeparator {
-		background-color: #dcdcdc;
-		height: 2px;
-		width: 100%;
+		background-color: #dedede;
+		height: 1px;
+		width: calc(100% - 56px);
 		list-style: none;
+		margin: 6px 0 6px auto;
 	}
 
 	.menuPanel .menuSeparator {
