@@ -7,7 +7,7 @@ $duration: 0.2s;
 
 .GeoGebraFrame {
 
-	.matMenu.gwt-PopupPanel {
+	.gwt-PopupPanel {
 
 		background-color: $white;
 		padding: 8px 0px 8px 0px;
@@ -30,7 +30,6 @@ $duration: 0.2s;
 			height: 32px;
 			min-width: 190px;
 			cursor: pointer;
-			padding: 0px 16px 0px 56px;
 
 			&.no-image {
 				padding-left: 16px;
@@ -38,20 +37,17 @@ $duration: 0.2s;
 			}
 
 			.checkMarkMenuItem, .collapseMenuItem {
+				height: 32px;
+
 				.gwt-HTML {
-					padding: 0 20px 0 6px;
+					display: inline-block;
 				}
 
-				.checkImg {
-					margin-right: 6px;
-					padding-bottom: 6px;
-					padding-top: 2px;
-					padding-right: 0px;
-				}
-
-				.expandImg, .collapseImg {
-					padding: 6px;
-					padding-top: 2px;
+				.checkImg, .expandImg, .collapseImg {
+					position: absolute;
+					right: 8px;
+					padding: 4px 6px;
+					margin: 0;
 				}
 			}
 
@@ -80,10 +76,9 @@ $duration: 0.2s;
 		}
 
 		img {
-			width: 24px !important;
-			height: 24px !important;
-			position: absolute;
-			margin-left: -40px;
+			margin: 0 16px;
+			width: 24px;
+			height: 24px;
 			opacity: 0.54;
 		}
 
