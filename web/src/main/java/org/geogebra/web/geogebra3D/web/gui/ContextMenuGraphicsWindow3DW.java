@@ -9,7 +9,6 @@ import org.geogebra.web.full.css.MaterialDesignResources;
 import org.geogebra.web.full.gui.ContextMenuGraphicsWindowW;
 import org.geogebra.web.full.gui.menubar.MainMenu;
 import org.geogebra.web.full.javax.swing.CheckMarkSubMenu;
-import org.geogebra.web.full.javax.swing.GCheckBoxMenuItem;
 import org.geogebra.web.full.javax.swing.GCheckmarkMenuItem;
 import org.geogebra.web.full.javax.swing.GCollapseMenuItem;
 import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianView3DW;
@@ -17,6 +16,7 @@ import org.geogebra.web.html5.gui.util.AriaMenuItem;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.resources.SVGResource;
 
+import com.google.gwt.resources.client.ResourcePrototype;
 import com.google.gwt.user.client.Command;
 
 /**
@@ -47,7 +47,9 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 			return;
 		}
 
-		addAxesAndGridCheckBoxes();
+		addAxesMenuItem();
+		addPlaneMenuItem();
+		addGridMenuItem();
 		addNavigationBar();
 		addZoomMenu();
 		addShowAllObjectsViewMenuItem();
@@ -56,7 +58,7 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 	}
 
 	private void buildGUI3DUnbundled() {
-		super.addAxesMenuItem();
+		addAxesMenuItem();
 		addPlaneMenuItem();
 		addGridMenuItem();
 		addProjectionMenuItem();
@@ -85,96 +87,45 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 	}
 
 	private void addPlaneMenuItem() {
-		String img = MaterialDesignResources.INSTANCE.plane_black().getSafeUri()
-				.asString();
+		ResourcePrototype img = MaterialDesignResources.INSTANCE.plane_black();
+
 		final GCheckmarkMenuItem showPlane = new GCheckmarkMenuItem(
-				MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("ShowPlane")),
-				((Kernel3D) app.getKernel()).getXOYPlane().isPlateVisible());
-		showPlane.setCommand(
-				((GuiManager3DW) app.getGuiManager()).getShowPlane3DAction());
-		showPlane.setChecked(
-				((Kernel3D) app.getKernel()).getXOYPlane()
-						.isPlateVisible());
+				MainMenu.getMenuBarHtml(img, loc.getMenu("ShowPlane")),
+				((Kernel3D) app.getKernel()).getXOYPlane().isPlateVisible(),
+				((GuiManager3DW) app.getGuiManager()).getShowPlane3DAction()
+		);
 		wrappedPopup.addItem(showPlane);
 	}
 
 	private void addGridMenuItem() {
-		String img = MaterialDesignResources.INSTANCE.grid_black().getSafeUri()
-				.asString();
+		ResourcePrototype img = MaterialDesignResources.INSTANCE.grid_black();
+
 		final GCheckmarkMenuItem showGrid = new GCheckmarkMenuItem(
-				MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("ShowGrid")),
-				((Kernel3D) app.getKernel()).getXOYPlane().isGridVisible());
-		showGrid.setCommand(
-				((GuiManager3DW) app.getGuiManager()).getShowGrid3DAction());
-		showGrid.setChecked(
-				((Kernel3D) app.getKernel()).getXOYPlane().isGridVisible());
+				MainMenu.getMenuBarHtml(img, loc.getMenu("ShowGrid")),
+				((Kernel3D) app.getKernel()).getXOYPlane().isGridVisible(),
+				((GuiManager3DW) app.getGuiManager()).getShowGrid3DAction()
+		);
 		wrappedPopup.addItem(showGrid);
 	}
 
 	private void addStandardViewMenuItem() {
-		String img = MaterialDesignResources.INSTANCE.home_black().getSafeUri()
-					.asString();
+		ResourcePrototype img = MaterialDesignResources.INSTANCE.home_black();
 		AriaMenuItem miStandardView = new AriaMenuItem(
-				MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("StandardView")),
+				MainMenu.getMenuBarHtml(img, loc.getMenu("StandardView")),
 				true,
-				new Command() {
-
-			        @Override
-					public void execute() {
-						((EuclidianView3DW) app.getEuclidianView3D())
-								.setStandardView(true);
-			        }
-		        });
+				() -> app.getEuclidianView3D().setStandardView(true)
+		);
 		wrappedPopup.addItem(miStandardView);
 	}
 
 	private void addShowAllObjectsViewMenuItem() {
-		String img = MaterialDesignResources.INSTANCE.show_all_objects_black()
-					.getSafeUri().asString();
+		ResourcePrototype img = MaterialDesignResources.INSTANCE.show_all_objects_black();
 		AriaMenuItem miShowAllObjectsView = new AriaMenuItem(
-				MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("ShowAllObjects")),
+				MainMenu.getMenuBarHtml(img, loc.getMenu("ShowAllObjects")),
 				true,
-				new Command() {
-
-			        @Override
-					public void execute() {
-						setViewShowAllObject();
-			        }
-
-		        });
+				this::setViewShowAllObject
+		);
 		wrappedPopup.addItem(miShowAllObjectsView);
-	}
-
-	protected void addAxesAndGridCheckBoxes() {
-		// AXES
-		String img = MaterialDesignResources.INSTANCE.axes_black().getSafeUri().asString();
-		String htmlString = MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("Axes"));
-		GCheckBoxMenuItem cbShowAxes = new GCheckBoxMenuItem(htmlString,
-				((GuiManager3DW) app.getGuiManager()).getShowAxes3DAction(),
-				true, app);
-		cbShowAxes.setSelected(((EuclidianView3DW) app.getEuclidianView3D())
-				.axesAreAllVisible(), wrappedPopup.getPopupMenu());
-		getWrappedPopup().addItem(cbShowAxes);
-
-		// GRID
-		String img2 = MaterialDesignResources.INSTANCE.grid_black().getSafeUri().asString();
-		htmlString = MainMenu.getMenuBarHtmlClassic(img2, loc.getMenu("Grid"));
-		GCheckBoxMenuItem cbShowGrid = new GCheckBoxMenuItem(htmlString,
-				((GuiManager3DW) app.getGuiManager()).getShowGrid3DAction(),
-				true, app);
-		cbShowGrid.setSelected(((Kernel3D) app.getKernel()).getXOYPlane()
-				.isGridVisible(), wrappedPopup.getPopupMenu());
-		getWrappedPopup().addItem(cbShowGrid);
-
-		// PLANE
-		String img3 = MaterialDesignResources.INSTANCE.plane_black().getSafeUri().asString();
-		htmlString = MainMenu.getMenuBarHtmlClassic(img3, loc.getMenu("Plane"));
-		GCheckBoxMenuItem cbShowPlane = new GCheckBoxMenuItem(htmlString,
-				((GuiManager3DW) app.getGuiManager()).getShowPlane3DAction(),
-				true, app);
-		cbShowPlane.setSelected(((Kernel3D) app.getKernel()).getXOYPlane()
-				.isPlateVisible(), wrappedPopup.getPopupMenu());
-		getWrappedPopup().addItem(cbShowPlane);
 	}
 
 	@Override

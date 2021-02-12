@@ -21,6 +21,7 @@ import org.geogebra.web.html5.gui.util.AriaMenuBar;
 import org.geogebra.web.html5.gui.util.AriaMenuItem;
 import org.geogebra.web.html5.main.AppW;
 
+import com.google.gwt.resources.client.ResourcePrototype;
 import com.google.gwt.user.client.Command;
 
 /**
@@ -210,31 +211,20 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 	}
 
 	private void addShowAllObjAndStandView() {
-		String img = MaterialDesignResources.INSTANCE.show_all_objects_black()
-					.getSafeUri().asString();
+		ResourcePrototype img = MaterialDesignResources.INSTANCE.show_all_objects_black();
 		AriaMenuItem miShowAllObjectsView = new AriaMenuItem(
-				MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("ShowAllObjects")),
+				MainMenu.getMenuBarHtml(img, loc.getMenu("ShowAllObjects")),
 				true,
-				new Command() {
+				this::setViewShowAllObject
+		);
 
-			        @Override
-					public void execute() {
-				        setViewShowAllObject();
-			        }
-
-		        });
-
-		String img2 = MaterialDesignResources.INSTANCE.home_black().getSafeUri().asString();
+		ResourcePrototype img2 = MaterialDesignResources.INSTANCE.home_black();
 		AriaMenuItem miStandardView = new AriaMenuItem(
-				MainMenu.getMenuBarHtmlClassic(img2, loc.getMenu("StandardView")),
+				MainMenu.getMenuBarHtml(img2, loc.getMenu("StandardView")),
 				true,
-				new Command() {
+				() -> app.setStandardView()
+		);
 
-			        @Override
-					public void execute() {
-				        setStandardView();
-			        }
-				});
 		if (!app.getActiveEuclidianView().isZoomable()) {
 			miShowAllObjectsView.setEnabled(false);
 			miStandardView.setEnabled(false);
@@ -356,13 +346,6 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 		if (app.getGuiManager() != null) {
 			app.getDialogManager().showPropertiesDialog(type, null);
 		}
-	}
-
-	/**
-	 * set standard view
-	 */
-	protected void setStandardView() {
-		app.setStandardView();
 	}
 
 	/**
