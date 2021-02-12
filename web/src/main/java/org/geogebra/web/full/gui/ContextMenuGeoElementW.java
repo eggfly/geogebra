@@ -374,7 +374,6 @@ public class ContextMenuGeoElementW extends ContextMenuGeoElement
 			if (app.isUnbundled()) {
 				final GCheckmarkMenuItem cmItem = new GCheckmarkMenuItem(
 						MainMenu.getMenuBarHtml(img, loc.getMenu("ShowTrace")),
-						MaterialDesignResources.INSTANCE.check_black(),
 						isTracing());
 				Command cmdTrace = () -> {
 					traceCmd();
@@ -500,7 +499,6 @@ public class ContextMenuGeoElementW extends ContextMenuGeoElement
 			final GCheckmarkMenuItem cmItem = new GCheckmarkMenuItem(
 					MainMenu.getMenuBarHtmlClassic(img,
 							loc.getMenu("PinToScreen")),
-					MaterialDesignResources.INSTANCE.check_black(),
 					pinned);
 
 			Command cmdPin = () -> {
@@ -535,7 +533,6 @@ public class ContextMenuGeoElementW extends ContextMenuGeoElement
 				.asString();
 		final GCheckmarkMenuItem cmItem = factory.newCheckmarkMenuItem(
 				MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("FixObject")),
-				MaterialDesignResources.INSTANCE.check_black(),
 				locked);
 		cmItem.setCommand(command::run);
 		cmItem.setChecked(locked);
@@ -871,10 +868,6 @@ public class ContextMenuGeoElementW extends ContextMenuGeoElement
 	 */
 	private AriaMenuItem addHtmlAction(Command action, String html) {
 		AriaMenuItem mi = factory.newAriaMenuItem(html, true, action);
-		if (!app.isUnbundledOrWhiteboard()) {
-			mi.addStyleName("mi_with_image");
-		}
-
 		wrappedPopup.addItem(mi);
 		return mi;
 	}
@@ -892,9 +885,6 @@ public class ContextMenuGeoElementW extends ContextMenuGeoElement
 		AriaMenuItem mi;
 		if (html != null) {
 			mi = factory.newAriaMenuItem(html, true, subMenu);
-			if (!app.isUnbundledOrWhiteboard()) {
-				mi.addStyleName("mi_with_image"); // TEMP
-			}
 		} else {
 			mi = factory.newAriaMenuItem(text, true, subMenu);
 		}

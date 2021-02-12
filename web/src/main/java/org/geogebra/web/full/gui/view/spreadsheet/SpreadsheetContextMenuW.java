@@ -76,7 +76,6 @@ public class SpreadsheetContextMenuW extends SpreadsheetContextMenu {
 
 		AriaMenuItem mi;
 		mi = new AriaMenuItem(html, true, getCommand(cmdString));
-		mi.addStyleName("mi_with_image");
 		mi.setEnabled(enabled);
 
 		popup.addItem(mi);
@@ -127,7 +126,6 @@ public class SpreadsheetContextMenuW extends SpreadsheetContextMenu {
 		String html = MainMenu.getMenuBarHtmlClassic(getIconUrl(cmdString), text);
 
 		AriaMenuItem mi = new AriaMenuItem(html, true, getCommand(cmdString));
-		mi.addStyleName("mi_with_image");
 		mi.setEnabled(enabled);
 
 		((AriaMenuItem) menu).getSubMenu().addItem(mi);
