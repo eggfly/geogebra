@@ -63,33 +63,6 @@
 		cursor: default;
 	}
 
-	// Used for SMART Menu
-	.gwt-MenuBar-vertical {
-		table {
-			border-collapse: collapse;
-		}
-
-		.subMenuIcon {
-			padding-right: 4px;
-		}
-
-		.subMenuIcon-selected {
-			background: #CCCCFF;
-		}
-
-		.gwt-MenuItemSeparator {
-			padding: 1px 0;
-
-			.menuSeparatorInner {
-				height: 0;
-				padding: 0;
-				border: 0;
-				border-top: 1px solid $tool-border;
-				overflow: hidden;
-			}
-		}
-	}
-
 	input[type="text"], input[type="number"], select {
 		min-height: 0;
 		min-width: 0;

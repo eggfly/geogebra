@@ -133,54 +133,6 @@
 		white-space: normal;
 	}
 
-$collapse-trans: all 0.2s ease;
-
-	.expanded {
-		padding: 0px 56px 0px 32px;
-		max-height: 32px;
-		height: 32px;
-		transition: $collapse-trans; 
-
-		.checkMarkMenuItem {
-			max-height: 32px;
-			transition: $collapse-trans;
-
-			.gwt-HTML {
-				position: relative;
-			}
-		}
-	}
-
-	.expanded >* {
-		max-height: 32px;
-		height: 32px;
-		transition: $collapse-trans; 
-	}
-
-	.collapsed {
-		padding: 0px 16px 0px 32px;
-		max-height: 0px;
-		height: 0px;
-		overflow: hidden;
-		transition: $collapse-trans;
-
-		.checkMarkMenuItem {
-			transition: $collapse-trans;
-			max-height: 0px;
-			.gwt-HTML {
-				position: relative;
-			}
-			img  {
-				max-height: 0px;
-			}
-		}
-	}
-
-	.collapsed >*{
-		max-height: 0px;
-		transition: $collapse-trans;
-	} 
-
 	.advanced-ListPopupPanel {
 		z-index: $z-dialog;
 		background: $white;

@@ -291,13 +291,6 @@
 		opacity: 0.26 !important;
 	}
 
-	.listMenuItem {
-		box-sizing: border-box;
-		list-style: none;
-		height: 32px;
-		line-height: 32px;
-	}
-
 	.selectedItem {
 		background: #eeeeee;
 	}
@@ -710,12 +703,7 @@
 
 	.gwt-MenuItem {
 		white-space: nowrap;
-	}
-
-	.submenuArrow {
-		position: absolute;
-		right: 0;
-		padding-right: 4px;
+		list-style: none;
 	}
 
 	.menuSeparator {
