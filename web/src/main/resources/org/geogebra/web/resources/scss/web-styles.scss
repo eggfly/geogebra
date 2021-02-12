@@ -734,47 +734,6 @@
 		left: 2px;
 	}
 
-	.mioMenu.gwt-PopupPanel {
-		padding: 8px 0 8px 0;
-		border-radius: 2px;
-		min-width: 182px;
-
-		.gwt-MenuItem {
-			height: 32px;
-			min-width: 182px;
-			cursor: pointer;
-			padding-left: 64px;
-		}
-
-		.gwt-MenuItem:hover {
-			background-color: #eeeeee;
-
-			img {
-				opacity: 0.87;
-			}
-
-			color: black;
-		}
-
-		.gwt-MenuItem-disabled,
-		.gwt-MenuItem-disabled:hover {
-			img {
-				opacity: 0.38;
-			}
-
-			color: black;
-			opacity: 0.38;
-		}
-
-		img {
-			width: 24px !important;
-			height: 24px !important;
-			position: absolute;
-			margin-left: -40px;
-			opacity: 0.54;
-		}
-	}
-
 	/*#####################################################################################
 	###       STYLEBAR
 	#####################################################################################*/

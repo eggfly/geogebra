@@ -110,9 +110,7 @@ public class ContextMenuGeoElementW extends ContextMenuGeoElement
 		this.setGeos(geos);
 		setGeo(geos.get(0));
 
-		if (app.isUnbundledOrWhiteboard()) {
-			wrappedPopup.getPopupPanel().addStyleName("matMenu");
-		} else {
+		if (!app.isUnbundledOrWhiteboard()) {
 			String title;
 			if (geos.size() == 1) {
 				title = getGeoTitle();
