@@ -75,6 +75,7 @@ import com.himamis.retex.renderer.share.platform.FactoryProvider;
 import com.himamis.retex.renderer.web.FactoryProviderGWT;
 import com.himamis.retex.renderer.web.JlmLib;
 import com.himamis.retex.renderer.web.graphics.ColorW;
+import com.himamis.retex.renderer.web.graphics.Graphics2DW;
 
 import elemental2.dom.ClipboardEvent;
 import elemental2.dom.DomGlobal;
@@ -134,13 +135,10 @@ public class MathFieldW implements MathField, IsWidget, MathFieldAsync, BlurHand
 	 *            drawing context
 	 * @param listener
 	 *            listener for special events
-	 * @param directFormulaBuilder
-	 *            whether to convert content into JLM atoms directly without
-	 *            reparsing
 	 */
 	public MathFieldW(SyntaxAdapter converter, Panel parent, Canvas canvas,
-					  MathFieldListener listener, boolean directFormulaBuilder) {
-		this(converter, parent, canvas, listener, directFormulaBuilder, sMetaModel);
+					  MathFieldListener listener) {
+		this(converter, parent, canvas, listener, sMetaModel);
 	}
 
 	/**
@@ -153,14 +151,11 @@ public class MathFieldW implements MathField, IsWidget, MathFieldAsync, BlurHand
 	 *            drawing context
 	 * @param listener
 	 *            listener for special events
-	 * @param directFormulaBuilder
-	 *            whether to convert content into JLM atoms directly without
-	 *            reparsing
 	 * @param metaModel
 	 *            model
 	 */
 	public MathFieldW(SyntaxAdapter converter, Panel parent, Canvas canvas,
-			MathFieldListener listener, boolean directFormulaBuilder, MetaModel metaModel) {
+			MathFieldListener listener, MetaModel metaModel) {
 
 		this.converter = converter;
 		this.metaModel = metaModel;
@@ -170,7 +165,7 @@ public class MathFieldW implements MathField, IsWidget, MathFieldAsync, BlurHand
 		html = canvas;
 		bottomOffset = 10;
 		this.parent = parent;
-		mathFieldInternal = new MathFieldInternal(this, directFormulaBuilder);
+		mathFieldInternal = new MathFieldInternal(this);
 		mathFieldInternal.getInputController().setFormatConverter(converter);
 		mathFieldInternal.setSyntaxAdapter(converter);
 		getHiddenTextArea();
@@ -601,7 +596,11 @@ public class MathFieldW implements MathField, IsWidget, MathFieldAsync, BlurHand
 		ctx.getCanvas().setHeight((int) Math.ceil(height * ratio));
 		ctx.getCanvas().setWidth((int) Math.ceil(width * ratio));
 		wasPaintedWithCursor = CursorBox.visible();
-		paint(ctx, getMargin(lastIcon));
+
+		int margin = getMargin(lastIcon);
+
+		paint(ctx, margin);
+		lastIcon.paintCursor(new Graphics2DW(ctx), margin);
 	}
 
 	private double computeWidth() {
