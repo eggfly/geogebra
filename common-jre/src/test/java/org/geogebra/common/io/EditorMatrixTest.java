@@ -5,6 +5,7 @@ import org.geogebra.common.jre.headless.AppCommon;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.himamis.retex.editor.share.event.KeyEvent;
 import com.himamis.retex.editor.share.util.JavaKeyCodes;
 
 public class EditorMatrixTest {
@@ -61,5 +62,13 @@ public class EditorMatrixTest {
 	@Test
 	public void testCaretShouldStayInsideOnDownArrow() {
 		checker.matrixFromParser(matix3x3).repeatKey(JavaKeyCodes.VK_DOWN, 20).checkPath(0, 6, 0);
+	}
+
+	@Test
+	public void testSelectionShouldDeleteOneFieldOnly() {
+		checker.matrixFromParser(matix3x3).setModifiers(KeyEvent.SHIFT_MASK)
+				.repeatKey(JavaKeyCodes.VK_RIGHT, 2)
+				.typeKey(JavaKeyCodes.VK_DELETE)
+				.checkAsciiMath("{{,2,3},{4,5,6},{7,8,9}}");
 	}
 }

@@ -1227,12 +1227,7 @@ public class InputController {
 				start = 0;
 				end = parent.size() - 1;
 			} else if (MathArray.isLocked(parent)) {
-				MathContainer grandParent = parent.getParent();
-				int idx = parent.indexOf(editorState.getSelectionStart());
-				parent.delArgument(idx);
-				editorState.setCurrentOffset(start);
-				editorState.setCurrentField((MathSequence) grandParent);
-				editorState.resetSelection();
+				deleteFieldOfMatrix(editorState, parent, start);
 				return true;
 			} else {
 				start = parent.indexOf(editorState.getSelectionStart());
@@ -1257,6 +1252,15 @@ public class InputController {
 		editorState.resetSelection();
 		return nonempty;
 
+	}
+
+	private static void deleteFieldOfMatrix(EditorState editorState, MathContainer parent, int start) {
+		int idx = parent.indexOf(editorState.getSelectionStart());
+		MathSequence sequence = (MathSequence) parent.getArgument(idx);
+		sequence.delArgument(idx);
+		editorState.setCurrentOffset(start);
+		editorState.setCurrentField(sequence);
+		editorState.resetSelection();
 	}
 
 	private static boolean isProtected(MathComponent component) {
