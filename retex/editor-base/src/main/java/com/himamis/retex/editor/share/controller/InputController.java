@@ -1227,7 +1227,7 @@ public class InputController {
 				start = 0;
 				end = parent.size() - 1;
 			} else if (MathArray.isLocked(parent)) {
-				deleteMatrixElementValue(editorState, parent, start);
+				deleteMatrixElementValue(editorState);
 				return true;
 			} else {
 				start = parent.indexOf(editorState.getSelectionStart());
@@ -1254,11 +1254,10 @@ public class InputController {
 
 	}
 
-	private static void deleteMatrixElementValue(EditorState editorState, MathContainer parent, int start) {
-		int index = parent.indexOf(editorState.getSelectionStart());
-		MathSequence matrixElement = (MathSequence) parent.getArgument(index);
+	private static void deleteMatrixElementValue(EditorState editorState) {
+		MathSequence matrixElement = (MathSequence) editorState.getSelectionAnchor().getParent();
 		matrixElement.delArgument(0);
-		editorState.setCurrentOffset(start);
+		editorState.setCurrentOffset(0);
 		editorState.setCurrentField(matrixElement);
 		editorState.resetSelection();
 	}
