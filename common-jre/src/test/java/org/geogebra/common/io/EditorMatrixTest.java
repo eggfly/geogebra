@@ -65,10 +65,41 @@ public class EditorMatrixTest {
 	}
 
 	@Test
-	public void testSelectionShouldDeleteOneFieldOnly() {
+	public void testSelectionShouldDelete00Only() {
 		checker.matrixFromParser(matix3x3).setModifiers(KeyEvent.SHIFT_MASK)
 				.repeatKey(JavaKeyCodes.VK_RIGHT, 2)
 				.typeKey(JavaKeyCodes.VK_DELETE)
 				.checkAsciiMath("{{,2,3},{4,5,6},{7,8,9}}");
+	}
+
+	@Test
+	public void testSelectionShouldDelete01Only() {
+		checker.matrixFromParser(matix3x3)
+				.repeatKey(JavaKeyCodes.VK_RIGHT, 1)
+				.setModifiers(KeyEvent.SHIFT_MASK)
+				.repeatKey(JavaKeyCodes.VK_RIGHT, 2)
+				.typeKey(JavaKeyCodes.VK_DELETE)
+				.checkAsciiMath("{{1,,3},{4,5,6},{7,8,9}}");
+	}
+
+	@Test
+	public void testSelectionShouldDelete11Only() {
+		checker.matrixFromParser(matix3x3)
+				.repeatKey(JavaKeyCodes.VK_RIGHT, 2)
+				.repeatKey(JavaKeyCodes.VK_DOWN, 1)
+				.setModifiers(KeyEvent.SHIFT_MASK)
+				.repeatKey(JavaKeyCodes.VK_RIGHT, 1)
+				.typeKey(JavaKeyCodes.VK_DELETE)
+				.checkAsciiMath("{{1,2,3},{4,,6},{7,8,9}}");
+	}
+
+	@Test
+	public void testSelectionShouldDelete02Only() {
+		checker.matrixFromParser(matix3x3)
+				.repeatKey(JavaKeyCodes.VK_RIGHT, 4)
+				.setModifiers(KeyEvent.SHIFT_MASK)
+				.repeatKey(JavaKeyCodes.VK_RIGHT, 1)
+				.typeKey(JavaKeyCodes.VK_DELETE)
+				.checkAsciiMath("{{1,2,},{4,5,6},{7,8,9}}");
 	}
 }
