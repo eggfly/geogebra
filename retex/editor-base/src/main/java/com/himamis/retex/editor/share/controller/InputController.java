@@ -1215,20 +1215,30 @@ public class InputController {
 		boolean nonempty = false;
 		if (editorState.getSelectionStart() != null) {
 			MathContainer parent = editorState.getSelectionStart().getParent();
-			int end, start;
-			if (editorState.getSelectionStart() instanceof MathContainer
-					&& ((MathContainer) editorState.getSelectionStart()).isProtected()) {
+
+			if (isProtected(editorState.getSelectionStart())) {
 				return true;
 			}
+
+			int end=0, start=0;
 			if (parent == null) {
 				// all the formula is selected
 				parent = editorState.getRootComponent();
 				start = 0;
 				end = parent.size() - 1;
+			} else if (MathArray.isLocked(parent)) {
+				MathContainer grandParent = parent.getParent();
+				int idx = parent.indexOf(editorState.getSelectionStart());
+				parent.delArgument(idx);
+				editorState.setCurrentOffset(start);
+				editorState.setCurrentField((MathSequence) grandParent);
+				editorState.resetSelection();
+				return true;
 			} else {
-				end = parent.indexOf(editorState.getSelectionEnd());
 				start = parent.indexOf(editorState.getSelectionStart());
+				end = parent.indexOf(editorState.getSelectionEnd());
 			}
+
 			if (end >= 0 && start >= 0) {
 				for (int i = end; i >= start; i--) {
 					parent.delArgument(i);
@@ -1247,6 +1257,13 @@ public class InputController {
 		editorState.resetSelection();
 		return nonempty;
 
+	}
+
+	private static boolean isProtected(MathComponent component) {
+		if (!(component instanceof MathContainer)) {
+			return false;
+		}
+		return ((MathContainer) component).isProtected();
 	}
 
 	/**
