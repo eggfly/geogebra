@@ -6,8 +6,6 @@ import static com.himamis.retex.editor.share.util.Unicode.PI_STRING;
 import static com.himamis.retex.editor.share.util.Unicode.theta_STRING;
 import static org.geogebra.test.TestStringUtil.unicode;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -1867,8 +1865,7 @@ public class CommandsTest {
 				"(1, -1)", "(1, 1)");
 		intersect("x", "x^4+y^4=2", false, "(-1, -1)", "(1, 1)");
 		t("Intersect[x=y,x^2+y^2=2, (-5, -3)]", "(-1, -1)");
-		intersect("x^2+y^2=25", "x y=12", true, "(3, 4)", "(-3, -4)",
-				"(-4, -3)", "(4, 3)");
+		tRound("{Intersect(x^2+y^2=25, x y=12)}", "{(-4, -3), (-3, -4), (3, 4), (4, 3)}");
 		tRound("Intersect[x^2+y^2=25,(x-6)^2+ y^2=25, 1]", "(3, 4)");
 		intersect("x=y", "sin(x)", false, "(0, 0)");
 		intersect("x=y", "(2,2)", false, "(2, 2)");
