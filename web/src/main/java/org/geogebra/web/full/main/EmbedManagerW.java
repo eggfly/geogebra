@@ -101,7 +101,7 @@ public class EmbedManagerW implements EmbedManager, EventRenderable, ActionExecu
 						.setContent(content.get(embedID));
 			}
 		} else {
-			addCalcEmbed(drawEmbed);
+			addEmbed(drawEmbed);
 		}
 	}
 
@@ -129,21 +129,20 @@ public class EmbedManagerW implements EmbedManager, EventRenderable, ActionExecu
 		}
 	}
 
-	private void addCalcEmbed(DrawEmbed drawEmbed) {
-		CalcEmbedElement element = getCalcEmbed(drawEmbed);
-		widgets.put(drawEmbed, element);
-	}
-
-	private CalcEmbedElement getCalcEmbed(DrawEmbed drawEmbed) {
-		CalcEmbedElement element;
-		if (cache.get(drawEmbed.getEmbedID()) instanceof CalcEmbedElement) {
-			element = (CalcEmbedElement) cache.get(drawEmbed.getEmbedID());
+	private void addEmbed(DrawEmbed drawEmbed) {
+		EmbedElement element;
+		if (cache.containsKey(drawEmbed.getEmbedID())) {
+			element = cache.get(drawEmbed.getEmbedID());
 			element.setVisible(true);
 		} else {
-			element = createCalcEmbed(drawEmbed);
+			if ("h5p".equals(drawEmbed.getGeoEmbed().getAppName())) {
+				element = createH5PEmbed(drawEmbed);
+			} else {
+				element = createCalcEmbed(drawEmbed);
+			}
 		}
+		widgets.put(drawEmbed, element);
 		cache.remove(drawEmbed.getEmbedID());
-		return element;
 	}
 
 	private CalcEmbedElement createCalcEmbed(DrawEmbed drawEmbed) {

@@ -151,19 +151,19 @@ public interface EmbedManager {
 	void setContent(int embedID, String content);
 
 	/**
+	 * Notify when H5P object was loaded
+	 * @param geoEmbed embed
+	 * @param callback callback
+	 */
+	void onLoaded(GeoEmbed geoEmbed, Runnable callback);
+
+	/**
 	 * @param action
 	 *            action to be executed
 	 * @param id
 	 *            embed ID
 	 */
 	void embeddedAction(EventType action, String id);
-
-	/**
-	 * Notify when H5P object was loaded
-	 * @param geoEmbed embed
-	 * @param callback callback
-	 */
-	void onLoaded(GeoEmbed geoEmbed, Runnable callback);
 
 	void setBase64(String label, String base64);
 }
