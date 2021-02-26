@@ -896,7 +896,7 @@ public class GeoList extends GeoElement
 			for (int i = 0; i < lastIndex; i++) {
 				final GeoElement geo = elements.get(i);
 				sbBuildValueString.append(geo.toOutputValueString(tpl));
-				sbBuildValueString.append(getLoc().getComma());
+				tpl.getComma(sbBuildValueString, getLoc());
 				tpl.appendOptionalSpace(sbBuildValueString);
 			}
 
@@ -3226,8 +3226,8 @@ public class GeoList extends GeoElement
 	}
 
 	@Override
-	public void addAuralName(Localization loc, ScreenReaderBuilder sb) {
-		sb.append(loc.getMenuDefault("Dropdown", "dropdown"));
+	public void addAuralName(ScreenReaderBuilder sb) {
+		sb.appendMenuDefault("Dropdown", "dropdown");
 		if (size() > MAX_ITEMS_FOR_SCREENREADER) {
 			addAuralLabelOrCaption(sb);
 		}
@@ -3269,7 +3269,7 @@ public class GeoList extends GeoElement
 	@Override
 	public String getAuralTextForSpace() {
 		Localization loc = kernel.getLocalization();
-		ScreenReaderBuilder sb = new ScreenReaderBuilder();
+		ScreenReaderBuilder sb = new ScreenReaderBuilder(loc);
 		sb.append(loc.getMenuDefault("Dropdown", "dropdown"));
 		addAuralLabelOrCaption(sb);
 		sb.appendSpace();
@@ -3311,16 +3311,16 @@ public class GeoList extends GeoElement
 	 *
 	 */
 	public String getAuralTextAsOpened() {
-		ScreenReaderBuilder sb = new ScreenReaderBuilder();
 		Localization loc = kernel.getLocalization();
+		ScreenReaderBuilder sb = new ScreenReaderBuilder(loc);
 		sb.append(loc.getPlainArray("DropDownOpened", "Drop down %0 opened",
 				new String[] { getLabel(StringTemplate.defaultTemplate) }));
 		sb.endSentence();
-		sb.append(loc.getMenuDefault("PressArrowsToGo",
-				"Press up arrow and down arrow to go to different options"));
+		sb.appendMenuDefault("PressArrowsToGo",
+				"Press up arrow and down arrow to go to different options");
 		sb.endSentence();
-		sb.append(loc.getMenuDefault("PressEnterToSelect",
-				"Press enter to select"));
+		sb.appendMenuDefault("PressEnterToSelect",
+				"Press enter to select");
 		return sb.toString();
 	}
 
