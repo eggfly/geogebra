@@ -41,6 +41,8 @@ import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.kernel.geos.GeoList;
 import org.geogebra.common.kernel.geos.GeoLocus;
 import org.geogebra.common.kernel.geos.GeoLocusStroke;
+import org.geogebra.common.kernel.geos.GeoMindMapNode;
+import org.geogebra.common.kernel.geos.GeoMindMapNode.NodeAlignment;
 import org.geogebra.common.kernel.geos.GeoNumberValue;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.kernel.geos.GeoPolyLine;
@@ -2223,6 +2225,9 @@ public class ConsElementXMLHandler {
 			case "outlyingIntersections":
 				handleOutlyingIntersections(attrs);
 				break;
+			case "parent":
+				handleParent(attrs);
+				break;
 			case "parentLabel":
 				handleParentLabel(attrs);
 				break;
@@ -2337,11 +2342,27 @@ public class ConsElementXMLHandler {
 		}
 	}
 
+	private void handleParent(LinkedHashMap<String, String> attrs) {
+		if (!(geo instanceof GeoMindMapNode)) {
+			Log.error("wrong element type for <parent>: " + geo.getClass());
+			return;
+		}
+
+		GeoElement parent = xmlHandler.kernel.lookupLabel(attrs.get("val"));
+		NodeAlignment alignment = NodeAlignment.valueOf(attrs.get("align"));
+
+		if (!(parent instanceof GeoMindMapNode)) {
+			Log.error("<parent> has incorrect type: " + parent.getClass());
+			return;
+		}
+
+		((GeoMindMapNode) geo).setParent((GeoMindMapNode) parent, alignment);
+	}
+
 	private void handleParentLabel(LinkedHashMap<String, String> attrs) {
 		if (geo instanceof GeoLocusStroke) {
 			((GeoLocusStroke) geo).setSplitParentLabel(attrs.get("val"));
 		}
-
 	}
 
 	protected void initDefault(LinkedHashMap<String, String> attrs) {

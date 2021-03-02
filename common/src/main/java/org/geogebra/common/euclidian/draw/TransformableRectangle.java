@@ -5,13 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.geogebra.common.awt.GAffineTransform;
+import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.euclidian.EuclidianBoundingBoxHandler;
 import org.geogebra.common.euclidian.EuclidianView;
 import org.geogebra.common.euclidian.MediaBoundingBox;
+import org.geogebra.common.euclidian.MindMapBoundingBox;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoInlineText;
+import org.geogebra.common.kernel.geos.GeoMindMapNode;
 import org.geogebra.common.kernel.geos.RectangleTransformable;
 import org.geogebra.common.util.debug.Log;
 
@@ -19,11 +22,11 @@ public class TransformableRectangle {
 
 	private final EuclidianView view;
 	private final RectangleTransformable geo;
+
 	private MediaBoundingBox boundingBox;
 	private GAffineTransform directTransform;
 	private GAffineTransform inverseTransform;
 	private boolean keepAspectRatio;
-
 	private GPoint2D corner0;
 	private GPoint2D corner1;
 	private GPoint2D corner2;
@@ -251,9 +254,15 @@ public class TransformableRectangle {
 	 */
 	public MediaBoundingBox getBoundingBox() {
 		if (boundingBox == null) {
-			boundingBox = new MediaBoundingBox();
+			boundingBox = geo instanceof GeoMindMapNode
+					? new MindMapBoundingBox()
+					: new MediaBoundingBox();
 			boundingBox.setRectangle(getBounds());
 			boundingBox.setColor(view.getApplication().getPrimaryColor());
+			boundingBox.setSecondaryColor(view.getApplication().isMebis()
+				? GColor.MOW_MIND_MAP_PLUS_ACTIVE
+				: GColor.MIND_MAP_PLUS_ACTIVE
+			);
 		}
 		boundingBox.updateFrom(geo.toGeoElement());
 		return boundingBox;

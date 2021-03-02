@@ -58,6 +58,7 @@ import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoFunction;
 import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.kernel.geos.GeoList;
+import org.geogebra.common.kernel.geos.GeoMindMapNode;
 import org.geogebra.common.kernel.geos.GeoNumberValue;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.kernel.geos.GeoPoint;
@@ -1964,7 +1965,10 @@ public abstract class EuclidianView implements EuclidianViewInterfaceCommon,
 	private static boolean needsSynchUpdate(GeoElement geo, boolean tracing) {
 		// Keep update of input boxes synchronous #4416
 		return (geo.isGeoText() && ((GeoText) geo).isNeedsUpdatedBoundingBox())
-				|| geo.isGeoInputBox() || (geo.getTrace() && !tracing) || geo.isMask();
+				|| geo.isGeoInputBox()
+				|| (geo.getTrace() && !tracing)
+				|| geo.isMask()
+				|| geo instanceof GeoMindMapNode;
 	}
 
 	/**
@@ -2251,9 +2255,15 @@ public abstract class EuclidianView implements EuclidianViewInterfaceCommon,
 	 * @return hit drawable
 	 */
 	public Drawable getBoundingBoxHandlerHit(GPoint p, PointerEventType type) {
-		if (p == null || getEuclidianController().isMultiSelection()) {
+		if (p == null) {
 			return null;
 		}
+
+		if (getEuclidianController().isMultiSelection() && getBoundingBox() != null) {
+			hitHandler = getBoundingBox().getHitHandler(p.x, p.y, app.getCapturingThreshold(type));
+			return null;
+		}
+
 		for (Drawable d : allDrawableList) {
 			hitHandler = d.hitBoundingBoxHandler(p.x, p.y, app.getCapturingThreshold(type));
 			if (hitHandler != EuclidianBoundingBoxHandler.UNDEFINED) {
