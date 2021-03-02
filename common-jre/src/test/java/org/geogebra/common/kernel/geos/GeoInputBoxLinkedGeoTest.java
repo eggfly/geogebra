@@ -581,13 +581,4 @@ public class GeoInputBoxLinkedGeoTest extends BaseUnitTest {
 		GeoElement z_1 = add("z_1 = 3 + i");
 		assertFalse(z_1.hasSpecialEditor());
 	}
-
-	@Test
-	public void imaginaryUnitShouldBeDisplayedAsI() {
-		add("m1 = {{1}, {2}}");
-		GeoInputBox inputBox = add("InputBox(m1)");
-		inputBox.updateLinkedGeo("{{" + Unicode.IMAGINARY + "}, {3}}");
-		assertEquals("{{i},{3}}", inputBox.getTextForEditor());
-		assertEquals("{{i}, {3}}", inputBox.getText());
-	}
 }
