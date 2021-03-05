@@ -197,7 +197,7 @@ public class DrawParametricCurve extends Drawable {
 		if (gp == null) {
 			createGeneralPath();
 		}
-		gp.reset();
+		gp.resetWithThickness(geo.getLineThickness());
 
 		fillCurve = filling(curve);
 

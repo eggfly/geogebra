@@ -4373,6 +4373,7 @@ public abstract class EuclidianView implements EuclidianViewInterfaceCommon,
 	 */
 	public GeneralPathClipped getBoundingPath() {
 		GeneralPathClipped gs = new GeneralPathClipped(this);
+		gs.resetWithThickness(1);
 		gs.moveTo(getMinXScreen(), getMinYScreen());
 		gs.lineTo(getMaxXScreen(), getMinYScreen());
 		gs.lineTo(getMaxXScreen(), getMaxYScreen());
