@@ -2,6 +2,7 @@ package com.himamis.retex.editor.share.serializer;
 
 import java.util.HashMap;
 
+import com.himamis.retex.editor.share.editor.SyntaxAdapter;
 import com.himamis.retex.editor.share.meta.Tag;
 import com.himamis.retex.editor.share.model.MathArray;
 import com.himamis.retex.editor.share.model.MathCharacter;
@@ -9,6 +10,7 @@ import com.himamis.retex.editor.share.model.MathComponent;
 import com.himamis.retex.editor.share.model.MathContainer;
 import com.himamis.retex.editor.share.model.MathFunction;
 import com.himamis.retex.editor.share.model.MathSequence;
+import com.himamis.retex.editor.share.util.Unicode;
 import com.himamis.retex.renderer.share.ArrayOfAtoms;
 import com.himamis.retex.renderer.share.Atom;
 import com.himamis.retex.renderer.share.CharAtom;
@@ -19,6 +21,7 @@ import com.himamis.retex.renderer.share.FencedAtom;
 import com.himamis.retex.renderer.share.FractionAtom;
 import com.himamis.retex.renderer.share.NthRoot;
 import com.himamis.retex.renderer.share.PhantomAtom;
+import com.himamis.retex.renderer.share.RomanAtom;
 import com.himamis.retex.renderer.share.RowAtom;
 import com.himamis.retex.renderer.share.SMatrixAtom;
 import com.himamis.retex.renderer.share.ScaleAtom;
@@ -27,6 +30,8 @@ import com.himamis.retex.renderer.share.SymbolAtom;
 import com.himamis.retex.renderer.share.Symbols;
 import com.himamis.retex.renderer.share.TeXConstants;
 import com.himamis.retex.renderer.share.TeXParser;
+import com.himamis.retex.renderer.share.TextStyle;
+import com.himamis.retex.renderer.share.TextStyleAtom;
 import com.himamis.retex.renderer.share.UnderOverArrowAtom;
 import com.himamis.retex.renderer.share.commands.CommandOpName;
 import com.himamis.retex.renderer.share.platform.FactoryProvider;
@@ -48,7 +53,13 @@ public class TeXBuilder {
 
 	private MathSequence currentField;
 	private HashMap<Atom, MathComponent> atomToComponent;
-	private TeXParser parser;
+	private final TeXParser parser;
+	private final TeXSerializer teXSerializer;
+
+	public TeXBuilder() {
+		parser = new TeXParser("");
+		teXSerializer = new TeXSerializer();
+	}
 
 	private Atom buildSequence(MathSequence mathFormula) {
 		RowAtom ra = new RowAtom();
@@ -153,8 +164,8 @@ public class TeXBuilder {
 	}
 
 	private Atom newCharAtom(char unicode) {
-		if (parser == null) {
-			parser = new TeXParser("");
+		if (unicode == '*') {
+			return SymbolAtom.get("cdot");
 		}
 		Atom ret = parser.getAtomFromUnicode(unicode, true);
 		if (ret instanceof SymbolAtom) {
@@ -183,6 +194,11 @@ public class TeXBuilder {
 
 			final Atom mat = new SMatrixAtom(atoms, false);
 			return new FencedAtom(mat, op, cl);
+		} else if (array.getOpenKey() == '"') {
+			Atom argument = new RowAtom(newCharAtom(Unicode.OPEN_DOUBLE_QUOTE),
+					build(array.getArgument(0)), newCharAtom(Unicode.CLOSE_DOUBLE_QUOTE));
+
+			return new RomanAtom(new TextStyleAtom(argument, TextStyle.MATHNORMAL));
 		} else {
 			return buildFenced(array.getOpenKey(), array.getCloseKey(), array, 0);
 		}
@@ -311,9 +327,18 @@ public class TeXBuilder {
 		case VEC:
 			return new UnderOverArrowAtom(build(argument.getArgument(0)), false, true);
 		default:
+			StringBuilder functionName = new StringBuilder();
+			teXSerializer.serialize(argument.getArgument(0), functionName);
+			Atom function = build(argument.getArgument(0));
+
+			if (teXSerializer.isFunction(functionName.toString())) {
+				function = new RomanAtom(function);
+			}
+
 			return new RowAtom(
-				build(argument.getArgument(0)),
-				buildFenced('(', ')', argument, 1)
+				function,
+				buildFenced(argument.getOpeningBracket(), argument.getClosingBracket(),
+						argument, 1)
 			);
 		}
 	}
@@ -343,4 +368,7 @@ public class TeXBuilder {
 		return atomToComponent.get(atom);
 	}
 
+	public void setSyntaxAdapter(SyntaxAdapter syntaxAdapter) {
+		teXSerializer.setSyntaxAdapter(syntaxAdapter);
+	}
 }
