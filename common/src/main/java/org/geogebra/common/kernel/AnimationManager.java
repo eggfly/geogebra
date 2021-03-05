@@ -3,6 +3,7 @@ package org.geogebra.common.kernel;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
+import org.geogebra.common.factories.UtilFactory;
 import org.geogebra.common.kernel.algos.AlgoElement;
 import org.geogebra.common.kernel.geos.Animatable;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -175,7 +176,7 @@ public class AnimationManager implements GTimerListener {
 	 * @param compTime
 	 *            computation time
 	 */
-	private void adaptFrameRate(long compTime) {
+	private void adaptFrameRate(double compTime) {
 		// only allow to use 80% of CPU time for animation (800 millis out of 1
 		// sec)
 		double framesPossible = 800.0 / compTime;
@@ -241,7 +242,7 @@ public class AnimationManager implements GTimerListener {
 			// repaint views
 			kernel.notifyRepaint();
 			// check frame rate
-			long compTime = System.currentTimeMillis() - startTime;
+			double compTime = UtilFactory.getPrototype().getMillisecondTime() - startTime;
 			if (kernel.getApplication().getEuclidianView1() != null) {
 				compTime += kernel.getApplication().getEuclidianView1()
 						.getLastRepaintTime();
