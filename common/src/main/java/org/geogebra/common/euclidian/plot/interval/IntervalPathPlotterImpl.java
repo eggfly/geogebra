@@ -2,17 +2,24 @@ package org.geogebra.common.euclidian.plot.interval;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.kernel.geos.GeoElement;
 
 public class IntervalPathPlotterImpl implements IntervalPathPlotter {
+	private final GeoElement geo;
 	private GeneralPathClipped gp;
 
-	public IntervalPathPlotterImpl(GeneralPathClipped gp) {
+	/**
+	 * @param gp path
+	 * @param geo construction element
+	 */
+	public IntervalPathPlotterImpl(GeneralPathClipped gp, GeoElement geo) {
 		this.gp = gp;
+		this.geo = geo;
 	}
 
 	@Override
 	public void reset() {
-		gp.reset();
+		gp.resetWithThickness(geo.getLineThickness());
 	}
 
 	@Override
