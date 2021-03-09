@@ -1610,10 +1610,6 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 				dm.show(panel);
 				updateToolbarPanelVisibility((ToolbarDockPanelW) panel, panelData.isVisible());
 			}
-			if (panel != null && !PerspectiveDecoder.isAllowed(panel.getViewId(),
-					getConfig().getForcedPerspective())) {
-				dm.hide(panel);
-			}
 			if (panel != null && !isPortrait()) {
 				updateDividerLocation(dm, panelData);
 			}
