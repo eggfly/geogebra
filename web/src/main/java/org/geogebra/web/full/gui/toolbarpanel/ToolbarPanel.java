@@ -504,7 +504,8 @@ public class ToolbarPanel extends FlowPanel
 			return;
 		}
 		isOpen = false;
-		final Integer finalWidth = snap && !app.isPortrait() ? OPEN_START_WIDTH_LANDSCAPE
+		final Integer finalWidth = snap && !app.isPortrait()
+				? (Integer) OPEN_START_WIDTH_LANDSCAPE
 				: getPreferredWidth();
 		if (getToolbarDockPanel().isAlone()) {
 			showOppositeView();
@@ -1280,9 +1281,7 @@ public class ToolbarPanel extends FlowPanel
 	private void animateHeadingHeight(int from, int to) {
 		if (!app.isPortrait()) {
 			setHeadingHeight(from);
-			app.invokeLater(() -> {
-				setHeadingHeight(to);
-			});
+			app.invokeLater(() -> setHeadingHeight(to));
 		} else {
 			setHeadingHeight(to);
 		}
