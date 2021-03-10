@@ -1275,7 +1275,6 @@ public class ToolbarPanel extends FlowPanel
 
 	public void hideToolbar() {
 		navRail.onClosePressed(true);
-		setLastOpenWidth(OPEN_START_WIDTH_LANDSCAPE);
 	}
 
 	private void animateHeadingHeight(int from, int to) {
