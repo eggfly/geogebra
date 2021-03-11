@@ -65,8 +65,8 @@ public abstract class CommandProcessor {
 	@Weak
 	protected Construction cons;
 	@Weak
-	private AlgebraProcessor algProcessor;
-	private CommandErrorMessageBuilder commandErrorMessageBuilder;
+	private final AlgebraProcessor algProcessor;
+	private final CommandErrorMessageBuilder commandErrorMessageBuilder;
 
 	/**
 	 * Creates new command processor
