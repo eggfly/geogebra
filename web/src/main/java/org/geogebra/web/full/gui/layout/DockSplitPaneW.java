@@ -819,7 +819,9 @@ public class DockSplitPaneW extends ZoomSplitLayoutPanel
 			if (getDividerLocation() > 0.9 * getOffsetWidth()) {
 				hideView(leftComponent);
 			}
-			if (getDividerLocation() < 0.1 * getOffsetWidth()) {
+			// 72px is the width of navigation rail
+			int dividerPosition = getDividerLocation() - 72;
+			if (dividerPosition < 0.1 * getOffsetWidth()) {
 				hideToolbar(leftComponent);
 			}
 		}
@@ -827,7 +829,9 @@ public class DockSplitPaneW extends ZoomSplitLayoutPanel
 			if (getDividerLocation() < 0.1 * getOffsetHeight()) {
 				hideView(rightComponent);
 			}
-			if (getDividerLocation() > 0.9 * getOffsetHeight()) {
+			// 56 is the height of the navigation rail
+			int dividerPosition = getDividerLocation() + 56;
+			if (dividerPosition > 0.9 * getOffsetHeight()) {
 				hideToolbar(rightComponent);
 			}
 		}
