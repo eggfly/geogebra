@@ -3986,15 +3986,6 @@ public class CommandsTest {
 	}
 
 	@Test
-	public void cmdPieChart() {
-		t("p1=PieChart({1,2,3})", "PieChart[{1, 2, 3}, (0, 0)]");
-		t("p2=PieChart({1,2,3}, (1,1), 2)", "PieChart[{1, 2, 3}, (1, 1), 2]");
-		assertTrue(get("p2").isDefined());
-		t("p3=PieChart({1,2,-3})", "PieChart[{1, 2, -3}, (0, 0)]");
-		assertFalse(get("p3").isDefined());
-	}
-
-	@Test
 	public void cmdTurtle() {
 		// tested in the followings
 	}
