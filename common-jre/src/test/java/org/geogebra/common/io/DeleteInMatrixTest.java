@@ -2,12 +2,23 @@ package org.geogebra.common.io;
 
 import org.geogebra.common.AppCommonFactory;
 import org.geogebra.common.jre.headless.AppCommon;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.himamis.retex.renderer.share.platform.FactoryProvider;
 
 public class DeleteInMatrixTest {
 	private static final String MATRIX_1_TO_9 = "{{1,2,3},{4,5,6},{7,8,9}}";
+	private static final String ROW_MATRIX = "{{1,2,3}}";
 	public static final String MATRIX_MULIFIGURE = "{{123,456},{321,654}}";
 	private static final AppCommon app = AppCommonFactory.create();
+
+	@BeforeClass
+	public static void prepare() {
+		if (FactoryProvider.getInstance() == null) {
+			FactoryProvider.setInstance(new FactoryProviderCommon());
+		}
+	}
 
 	@Test
 	public void testSelectionShouldDelete1OnlyFromLeft() {
@@ -228,5 +239,63 @@ public class DeleteInMatrixTest {
 				.rightTimes(6)
 				.shiftOn().leftTimes(4)
 				.shouldDeleteOnly(654);
+	}
+
+	@Test
+	public void testRowSelectionShouldDelete1Only() {
+		MatrixChecker checker = new MatrixChecker(app, ROW_MATRIX);
+		checker.shiftOn()
+				.right()
+				.backspace(2)
+				.shouldDeleteOnly(1);
+	}
+
+	@Test
+	public void testRowSelectionShouldDelete2Only() {
+		MatrixChecker checker = new MatrixChecker(app, ROW_MATRIX);
+		checker.rightTimes(2)
+				.shiftOn()
+				.right()
+				.backspace(2)
+				.shouldDeleteOnly(2);
+	}
+
+	@Test
+	public void testRowSelectionShouldDelete2OnlyWith3Backspace() {
+		MatrixChecker checker = new MatrixChecker(app, ROW_MATRIX);
+		checker.rightTimes(2)
+				.shiftOn()
+				.right()
+				.shouldDeleteOnly(2);
+	}
+
+	@Test
+	public void testRowSelectionShouldDelete3Only() {
+		MatrixChecker checker = new MatrixChecker(app, ROW_MATRIX);
+		checker.rightTimes(4)
+				.shiftOn()
+				.right()
+				.backspace(1)
+				.backspace(1)
+				.shouldDeleteOnly(3);
+	}
+
+	@Test
+	public void testRowShouldDelete3Only() {
+		MatrixChecker checker = new MatrixChecker(app, ROW_MATRIX);
+		checker.rightTimes(3)
+				.backspace(2)
+				.shouldDeleteOnly(2);
+
+	}
+
+	@Test
+	public void testCanTypeAndDeleteBrackets() {
+		MatrixChecker checker = new MatrixChecker(app, ROW_MATRIX);
+		checker.rightTimes(3)
+				.type("(")
+				.backspace(1)
+				.shouldBeUnchanged();
+
 	}
 }

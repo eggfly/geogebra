@@ -42,6 +42,10 @@ class MatrixChecker extends EditorChecker {
 		return (MatrixChecker) repeatKey(JavaKeyCodes.VK_LEFT, times);
 	}
 
+	public MatrixChecker left() {
+		return (MatrixChecker) repeatKey(JavaKeyCodes.VK_LEFT, 1);
+	}
+
 	public MatrixChecker shiftRightTwice() {
 		return shiftOn().rightTimes(2);
 	}
@@ -51,8 +55,22 @@ class MatrixChecker extends EditorChecker {
 	}
 
 	public void shouldDeleteOnly(Integer number) {
+		setModifiers(0);
 		delete()
 		.checkAsciiMath(matrix.replace(number.toString(), ""));
 
+	}
+
+	public MatrixChecker backspace(int times) {
+		return (MatrixChecker) repeatKey(JavaKeyCodes.VK_BACK_SPACE, times);
+	}
+
+	@Override
+	public MatrixChecker type(String input) {
+		return (MatrixChecker) super.type(input);
+	}
+
+	public void shouldBeUnchanged() {
+		checkAsciiMath(matrix);
 	}
 }
