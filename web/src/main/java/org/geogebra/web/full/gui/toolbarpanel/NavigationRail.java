@@ -127,7 +127,7 @@ class NavigationRail extends FlowPanel {
 	 */
 	protected void onAlgebraPressed() {
 		if (isOpen() && toolbarPanel.getSelectedTabId() == TabIds.ALGEBRA) {
-			onClosePressed();
+			onClosePressed(false);
 			return;
 		}
 		toolbarPanel.openAlgebra(isOpen());
@@ -141,7 +141,7 @@ class NavigationRail extends FlowPanel {
 	 */
 	protected void onToolsPressed() {
 		if (isOpen() && toolbarPanel.getSelectedTabId() == TabIds.TOOLS) {
-			onClosePressed();
+			onClosePressed(false);
 			return;
 		}
 		app.setKeyboardNeeded(false);
@@ -155,7 +155,7 @@ class NavigationRail extends FlowPanel {
 	 */
 	protected void onTableViewPressed() {
 		if (isOpen() && toolbarPanel.getSelectedTabId() == TabIds.TABLE) {
-			onClosePressed();
+			onClosePressed(false);
 			return;
 		}
 		app.setKeyboardNeeded(false);
@@ -167,21 +167,18 @@ class NavigationRail extends FlowPanel {
 	/**
 	 * Handler for Close button.
 	 */
-	protected void onClosePressed() {
+	protected void onClosePressed(boolean snap) {
 		app.hideMenu();
-		onClose();
+		onClose(snap);
 		toolbarPanel.getFrame().showKeyBoard(false, null, true);
 	}
 
-	private void onClose() {
+	private void onClose(boolean snap) {
 		setAnimating(true);
 		updateIcons(null, app.isExamStarted());
 		addCloseOrientationStyles();
-		if (!app.isPortrait()) {
-			toolbarPanel.setLastOpenWidth(getOffsetWidth());
-		}
 		toolbarPanel.setMoveMode();
-		toolbarPanel.close();
+		toolbarPanel.close(snap);
 		app.getAccessibilityManager().focusAnchorOrMenu();
 	}
 

@@ -77,17 +77,17 @@ public class AlgebraTab extends ToolbarPanel.ToolbarTab {
 
 	@Override
 	public void close() {
-		toolbarPanel.close();
+		toolbarPanel.close(false);
 	}
 
 	@Override
 	public void onResize() {
 		super.onResize();
-		setWidth(this.toolbarPanel.getTabWidth() + "px");
+		int tabWidth = this.toolbarPanel.getTabWidth();
+		setWidth(tabWidth + "px");
 		if (aview != null) {
-			int w = this.toolbarPanel.getTabWidth();
-			aview.setUserWidth(w);
-			aview.resize(this.toolbarPanel.getTabWidth() - SCROLLBAR_WIDTH);
+			aview.setUserWidth(tabWidth);
+			aview.resize(tabWidth - SCROLLBAR_WIDTH);
 		}
 	}
 
