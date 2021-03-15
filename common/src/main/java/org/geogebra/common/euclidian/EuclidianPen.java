@@ -257,7 +257,6 @@ public class EuclidianPen implements GTimerListener {
 		if (!isErasingEvent(e)) {
 			timer.stop();
 
-			view.setCursor(EuclidianCursor.TRANSPARENT);
 			view.cacheGraphics();
 			addPointPenMode(e);
 		}
