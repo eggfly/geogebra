@@ -1,5 +1,9 @@
 package org.geogebra.common.euclidian.draw;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGeneralPath;
 import org.geogebra.common.awt.GGraphics2D;
@@ -10,6 +14,7 @@ import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoInline;
 import org.geogebra.common.kernel.geos.GeoMindMapNode;
 import org.geogebra.common.kernel.geos.GeoMindMapNode.NodeAlignment;
+import org.geogebra.common.util.debug.Log;
 
 public class DrawMindMap extends DrawInlineText {
 
@@ -69,14 +74,61 @@ public class DrawMindMap extends DrawInlineText {
 	}
 
 	public GeoMindMapNode addChildNode(EuclidianBoundingBoxHandler addHandler) {
-		GPoint2D newLocation = new GPoint2D(node.getLocation().x, node.getLocation().y);
+		NodeAlignment newAlignment = toAlignment(addHandler);
+
+		GPoint2D newLocation = computeNewLocation(newAlignment);
 		GeoMindMapNode child = new GeoMindMapNode(node.getConstruction(), newLocation);
 		child.setSize(GeoMindMapNode.MIN_WIDTH, GeoMindMapNode.CHILD_HEIGHT);
-		child.setParent(node, toAlignment(addHandler));
+		child.setParent(node, newAlignment);
 		child.setBackgroundColor(child.getKernel().getApplication().isMebis()
 				? GColor.MOW_MIND_MAP_CHILD_BG_COLOR : GColor.MIND_MAP_CHILD_BG_COLOR);
 		child.setBorderColor(child.getKernel().getApplication().isMebis()
 				? GColor.MOW_MIND_MAP_CHILD_BORDER_COLOR : GColor.MIND_MAP_CHILD_BORDER_COLOR);
 		return child;
+	}
+
+	private GPoint2D computeNewLocation(NodeAlignment newAlignment) {
+		Comparator<DrawMindMap> comparator;
+		if (newAlignment == NodeAlignment.TOP || newAlignment == NodeAlignment.BOTTOM) {
+			comparator = Comparator.comparing(mindMap -> mindMap.rectangle.getRight());
+		} else {
+			comparator = Comparator.comparing(mindMap -> mindMap.rectangle.getBottom());
+		}
+
+		List<DrawMindMap> children = node.getChildren().stream()
+				.filter(node -> node.getAlignment() == newAlignment)
+				.map(node -> (DrawMindMap) view.getDrawableFor(node))
+				.sorted(comparator)
+				.collect(Collectors.toList());
+
+		if (children.isEmpty()) {
+			double left = 0;
+			double top = 0;
+
+			Log.debug("NEW ALIGNMENT: " + newAlignment);
+
+			switch (newAlignment) {
+			case BOTTOM:
+				left = rectangle.getLeft() + rectangle.getWidth() / 2 - GeoMindMapNode.MIN_WIDTH / 2;
+				top = rectangle.getBottom() + 64;
+				break;
+			case LEFT:
+				left = rectangle.getLeft() - 64 - GeoMindMapNode.MIN_WIDTH;
+				top = rectangle.getTop() - rectangle.getHeight() / 2 + GeoMindMapNode.CHILD_HEIGHT / 2;
+				break;
+			case TOP:
+				left = rectangle.getLeft() + rectangle.getWidth() / 2 - GeoMindMapNode.MIN_WIDTH / 2;
+				top = rectangle.getTop() - 64 - GeoMindMapNode.CHILD_HEIGHT;
+				break;
+			case RIGHT:
+				left = rectangle.getRight() + 64;
+				top = rectangle.getTop() - rectangle.getHeight() / 2 + GeoMindMapNode.CHILD_HEIGHT / 2;
+				break;
+			}
+
+			return new GPoint2D(view.toRealWorldCoordX(left), view.toRealWorldCoordY(top));
+		}
+
+		return new GPoint2D(node.getLocation().x, node.getLocation().y);
 	}
 }
