@@ -3,6 +3,7 @@ package org.geogebra.common.euclidian.draw;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGeneralPath;
@@ -14,7 +15,6 @@ import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoInline;
 import org.geogebra.common.kernel.geos.GeoMindMapNode;
 import org.geogebra.common.kernel.geos.GeoMindMapNode.NodeAlignment;
-import org.geogebra.common.util.debug.Log;
 
 public class DrawMindMap extends DrawInlineText {
 
@@ -101,34 +101,92 @@ public class DrawMindMap extends DrawInlineText {
 				.sorted(comparator)
 				.collect(Collectors.toList());
 
+		double left = 0;
+		double top = 0;
 		if (children.isEmpty()) {
-			double left = 0;
-			double top = 0;
-
-			Log.debug("NEW ALIGNMENT: " + newAlignment);
+			left = rectangle.getLeft() + newAlignment.dx0 * rectangle.getWidth();
+			top = rectangle.getTop() + newAlignment.dy0 * rectangle.getHeight();
 
 			switch (newAlignment) {
 			case BOTTOM:
-				left = rectangle.getLeft() + rectangle.getWidth() / 2 - GeoMindMapNode.MIN_WIDTH / 2;
-				top = rectangle.getBottom() + 64;
+				left -= GeoMindMapNode.MIN_WIDTH / 2;
+				top += 64;
 				break;
 			case LEFT:
-				left = rectangle.getLeft() - 64 - GeoMindMapNode.MIN_WIDTH;
-				top = rectangle.getTop() - rectangle.getHeight() / 2 + GeoMindMapNode.CHILD_HEIGHT / 2;
+				left -= 64;
+				top -= GeoMindMapNode.CHILD_HEIGHT / 2;
 				break;
 			case TOP:
-				left = rectangle.getLeft() + rectangle.getWidth() / 2 - GeoMindMapNode.MIN_WIDTH / 2;
-				top = rectangle.getTop() - 64 - GeoMindMapNode.CHILD_HEIGHT;
+				left -= GeoMindMapNode.MIN_WIDTH / 2;
+				top -= 64;
 				break;
 			case RIGHT:
-				left = rectangle.getRight() + 64;
-				top = rectangle.getTop() - rectangle.getHeight() / 2 + GeoMindMapNode.CHILD_HEIGHT / 2;
+				left += 64;
+				top -= GeoMindMapNode.CHILD_HEIGHT / 2;
+				break;
+			}
+		} else {
+			Stream<DrawMindMap> stream = children.stream();
+			DrawMindMap last = children.get(children.size() - 1);
+
+			switch (newAlignment) {
+			case BOTTOM:
+				left = last.rectangle.getRight();
+				top = stream.mapToInt(mindMap -> mindMap.rectangle.getTop()).min().orElse(0);
+				break;
+			case LEFT:
+				left = stream.mapToInt(mindMap -> mindMap.rectangle.getRight()).min().orElse(0);
+				top = last.rectangle.getBottom();
+				break;
+			case TOP:
+				left = last.rectangle.getRight();
+				top = stream.mapToInt(mindMap -> mindMap.rectangle.getBottom()).max().orElse(0);
+				break;
+			case RIGHT:
+				left = stream.mapToInt(mindMap -> mindMap.rectangle.getLeft()).min().orElse(0);
+				top = last.rectangle.getBottom();
 				break;
 			}
 
-			return new GPoint2D(view.toRealWorldCoordX(left), view.toRealWorldCoordY(top));
+			left += marginLeft(newAlignment, children.size());
+			top += marginTop(newAlignment, children.size());
 		}
 
-		return new GPoint2D(node.getLocation().x, node.getLocation().y);
+		switch (newAlignment) {
+		case TOP:
+			top -= GeoMindMapNode.CHILD_HEIGHT;
+			break;
+		case LEFT:
+			left -= GeoMindMapNode.MIN_WIDTH;
+			break;
+		}
+
+		return new GPoint2D(view.toRealWorldCoordX(left), view.toRealWorldCoordY(top));
+	}
+
+	private int marginLeft(NodeAlignment newAlignment, int size) {
+		if (newAlignment == NodeAlignment.TOP || newAlignment == NodeAlignment.BOTTOM) {
+			if (size == 1) {
+				return 32;
+			} else {
+				return 16;
+			}
+		}
+
+		return 0;
+	}
+
+	private double marginTop(NodeAlignment newAlignment, int size) {
+		if (newAlignment == NodeAlignment.LEFT || newAlignment == NodeAlignment.RIGHT) {
+			if (size == 1) {
+				return 64;
+			} else if (size == 2) {
+				return 32;
+			} else {
+				return 16;
+			}
+		}
+
+		return 0;
 	}
 }
