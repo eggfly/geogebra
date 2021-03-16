@@ -101,6 +101,8 @@ public class DrawMindMap extends DrawInlineText {
 				.sorted(comparator)
 				.collect(Collectors.toList());
 
+		int spaceGained = decreaseDistanceBetweenChildren(newAlignment, children);
+
 		double left = 0;
 		double top = 0;
 		if (children.isEmpty()) {
@@ -162,6 +164,30 @@ public class DrawMindMap extends DrawInlineText {
 		}
 
 		return new GPoint2D(view.toRealWorldCoordX(left), view.toRealWorldCoordY(top));
+	}
+
+	private int decreaseDistanceBetweenChildren(NodeAlignment newAlignment,
+			List<DrawMindMap> children) {
+		if (children.size() == 1) {
+			return 0;
+		}
+
+		double totalSpace = 0;
+		if (newAlignment == NodeAlignment.TOP || newAlignment == NodeAlignment.BOTTOM) {
+			for (int i = 1; i < children.size(); i++) {
+				totalSpace += children.get(i).rectangle.getTop()
+						- children.get(i - 1).rectangle.getBottom();
+			}
+
+			double spaceGoal;
+			if (children.size() == 2) {
+				spaceGoal = Math.max(0, totalSpace - 16);
+			} else {
+				spaceGoal =
+			}
+		}
+
+		return (int) totalSpace;
 	}
 
 	private int marginLeft(NodeAlignment newAlignment, int size) {
