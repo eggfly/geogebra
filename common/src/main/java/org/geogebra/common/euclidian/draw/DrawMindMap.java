@@ -201,6 +201,16 @@ public class DrawMindMap extends DrawInlineText {
 
 			return true;
 		} else {
+			for (int i = 1; i < children.size(); i++) {
+				int bottomOfTop = children.get(i - 1).rectangle.getBottom();
+				int topOfBottom = children.get(i).rectangle.getTop();
+
+				int distance = topOfBottom - bottomOfTop;
+				if (Math.abs(distance - marginTop(newAlignment, children.size() - 1)) > 3) {
+					return false;
+				}
+			}
+
 			return true;
 		}
 	}
