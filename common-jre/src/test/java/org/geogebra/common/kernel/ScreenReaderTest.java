@@ -49,7 +49,7 @@ public class ScreenReaderTest {
 		tsc(funct,
 				"sin open parenthesis start fraction 2 times x over 3 end fraction "
 						+ "times open parenthesis 4 minus 5 close parenthesis close parenthesis "
-				+ "plus 0");
+						+ "plus 0");
 	}
 
 	@Test
