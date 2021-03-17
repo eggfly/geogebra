@@ -1,6 +1,6 @@
 package org.geogebra.common.euclidian.draw;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,6 +17,7 @@ import org.geogebra.common.kernel.geos.GeoInline;
 import org.geogebra.common.kernel.geos.GeoMindMapNode;
 import org.geogebra.common.kernel.geos.GeoMindMapNode.NodeAlignment;
 import org.geogebra.common.kernel.geos.MoveGeos;
+import org.geogebra.common.kernel.matrix.Coords;
 
 public class DrawMindMap extends DrawInlineText {
 
@@ -97,13 +98,30 @@ public class DrawMindMap extends DrawInlineText {
 			comparator = Comparator.comparing(mindMap -> mindMap.rectangle.getBottom());
 		}
 
-		List<DrawMindMap> children = node.getChildren().stream()
+		List<GeoMindMapNode> childGeos = node.getChildren().stream()
 				.filter(node -> node.getAlignment() == newAlignment)
+				.collect(Collectors.toList());
+
+		List<DrawMindMap> children = childGeos.stream()
 				.map(node -> (DrawMindMap) view.getDrawableFor(node))
 				.sorted(comparator)
 				.collect(Collectors.toList());
 
-		int spaceGained = decreaseDistanceBetweenChildren(newAlignment, children);
+		if (correctlyAligned(newAlignment, children)) {
+			int spaceGained = decreaseDistanceBetweenChildren(newAlignment, children);
+
+			if (newAlignment == NodeAlignment.TOP || newAlignment == NodeAlignment.BOTTOM) {
+				double toMove
+						= marginLeft(newAlignment, children.size()) + GeoMindMapNode.MIN_WIDTH - spaceGained;
+				MoveGeos.moveObjects(childGeos, new Coords(-view.getInvXscale() * toMove / 2, 0, 0),
+						null, null, view);
+			} else {
+				double toMove
+						= marginTop(newAlignment, children.size()) + GeoMindMapNode.CHILD_HEIGHT - spaceGained;
+				MoveGeos.moveObjects(childGeos, new Coords(0, view.getInvYscale() * toMove / 2,  0),
+						null, null, view);
+			}
+		}
 
 		double left = 0;
 		double top = 0;
@@ -168,25 +186,74 @@ public class DrawMindMap extends DrawInlineText {
 		return new GPoint2D(view.toRealWorldCoordX(left), view.toRealWorldCoordY(top));
 	}
 
+	private boolean correctlyAligned(NodeAlignment newAlignment,
+			List<DrawMindMap> children) {
+		if (newAlignment == NodeAlignment.TOP || newAlignment == NodeAlignment.BOTTOM) {
+			for (int i = 1; i < children.size(); i++) {
+				int rightOfLeft = children.get(i - 1).rectangle.getRight();
+				int leftOfRight = children.get(i).rectangle.getLeft();
+
+				int distance = leftOfRight - rightOfLeft;
+				if (Math.abs(distance - marginLeft(newAlignment, children.size() - 1)) > 3) {
+					return false;
+				}
+			}
+
+			return true;
+		} else {
+			return true;
+		}
+	}
+
 	private int decreaseDistanceBetweenChildren(NodeAlignment newAlignment,
 			List<DrawMindMap> children) {
 		if (children.size() == 1) {
 			return 0;
 		}
 
-		double totalSpace = 0;
-		if (newAlignment == NodeAlignment.TOP || newAlignment == NodeAlignment.BOTTOM
-				&& children.size() == 2) {
-			int bottomOfTop = children.get(0).rectangle.getBottom();
-			int topOfBottom = children.get(1).rectangle.getTop();
+		if (newAlignment == NodeAlignment.TOP || newAlignment == NodeAlignment.BOTTOM) {
+			if (children.size() == 2) {
+				int rightOfLeft = children.get(0).rectangle.getRight();
+				int leftOfRight = children.get(1).rectangle.getLeft();
 
-			if (Math.abs((bottomOfTop - topOfBottom) - 32) < 3) {
-				int toMove =
-				MoveGeos.moveObjects(Arrays.asList(topOfBottom.node), , null, null, view);
+				int error = (leftOfRight - rightOfLeft) - 32;
+				double toMove = -view.getInvXscale() * (16 + error);
+				MoveGeos.moveObjects(Collections.singletonList(children.get(1).node),
+						new Coords(toMove, 0, 0), null, null, view);
+				return 16 + error;
+			}
+		} else {
+			if (children.size() == 2) {
+				int bottomOfTop = children.get(0).rectangle.getBottom();
+				int topOfBottom = children.get(1).rectangle.getTop();
+
+				int error = (topOfBottom - bottomOfTop) - 64;
+				double toMove = view.getInvYscale() * (32 + error);
+				MoveGeos.moveObjects(Collections.singletonList(children.get(1).node),
+						new Coords(0, toMove, 0), null, null, view);
+				return 32 + error;
+			} else if (children.size() == 3) {
+				int bottomOfTop = children.get(0).rectangle.getBottom();
+				int topOfMiddle = children.get(1).rectangle.getTop();
+
+				int bottomOfMiddle = children.get(1).rectangle.getBottom();
+				int topOfBottom = children.get(2).rectangle.getTop();
+
+				int error1 = (topOfMiddle - bottomOfTop) - 32;
+				int error2 = (topOfBottom - bottomOfMiddle) - 32;
+
+				double toMove1 = view.getInvYscale() * (16 + error1);
+				double toMove2 = view.getInvYscale() * (32 + error1 + error2);
+
+				MoveGeos.moveObjects(Collections.singletonList(children.get(1).node),
+						new Coords(0, toMove1, 0), null, null, view);
+				MoveGeos.moveObjects(Collections.singletonList(children.get(2).node),
+						new Coords(0, toMove2, 0), null, null, view);
+				return 32 + error1 + error2;
 			}
 		}
 
-		return (int) totalSpace;
+		return 0;
 	}
 
 	private int marginLeft(NodeAlignment newAlignment, int size) {
