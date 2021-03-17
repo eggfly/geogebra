@@ -1,5 +1,6 @@
 package org.geogebra.common.euclidian.draw;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,7 @@ import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoInline;
 import org.geogebra.common.kernel.geos.GeoMindMapNode;
 import org.geogebra.common.kernel.geos.GeoMindMapNode.NodeAlignment;
+import org.geogebra.common.kernel.geos.MoveGeos;
 
 public class DrawMindMap extends DrawInlineText {
 
@@ -173,17 +175,14 @@ public class DrawMindMap extends DrawInlineText {
 		}
 
 		double totalSpace = 0;
-		if (newAlignment == NodeAlignment.TOP || newAlignment == NodeAlignment.BOTTOM) {
-			for (int i = 1; i < children.size(); i++) {
-				totalSpace += children.get(i).rectangle.getTop()
-						- children.get(i - 1).rectangle.getBottom();
-			}
+		if (newAlignment == NodeAlignment.TOP || newAlignment == NodeAlignment.BOTTOM
+				&& children.size() == 2) {
+			int bottomOfTop = children.get(0).rectangle.getBottom();
+			int topOfBottom = children.get(1).rectangle.getTop();
 
-			double spaceGoal;
-			if (children.size() == 2) {
-				spaceGoal = Math.max(0, totalSpace - 16);
-			} else {
-				spaceGoal =
+			if (Math.abs((bottomOfTop - topOfBottom) - 32) < 3) {
+				int toMove =
+				MoveGeos.moveObjects(Arrays.asList(topOfBottom.node), , null, null, view);
 			}
 		}
 
