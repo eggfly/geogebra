@@ -162,8 +162,8 @@ import com.google.gwt.user.client.ui.Widget;
 
 import elemental2.dom.DomGlobal;
 import elemental2.dom.File;
-import jsinterop.base.Js;
 import elemental2.dom.FileReader;
+import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
 
 public abstract class AppW extends App implements SetLabels, HasLanguage {
