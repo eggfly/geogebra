@@ -694,7 +694,6 @@ public class InputController {
 			if (currentOffset == currentField.size()
 					&& parent instanceof MathFunction
 					&& ch == ((MathFunction) parent).getClosingBracket()
-					.charAt(0)
 					&& parent.size() == currentField.getParentIndex() + 1) {
 
 				currentOffset = parent.getParentIndex() + 1;
@@ -704,7 +703,6 @@ public class InputController {
 				// after closing character
 			} else if (parent instanceof MathFunction
 					&& ch == ((MathFunction) parent).getClosingBracket()
-					.charAt(0)
 					&& parent.size() == currentField.getParentIndex() + 1) {
 				ArrayList<MathComponent> removed = cut(currentField,
 						currentOffset);
@@ -1080,7 +1078,7 @@ public class InputController {
 	private static void deleteMatrixElementValue(EditorState editorState) {
 		MathSequence matrixElement = (MathSequence) editorState.getSelectionAnchor().getParent();
 		matrixElement.clearArguments();
-		editorState.setCurrentOffset(1);
+		editorState.setCurrentOffset(0);
 		editorState.setCurrentField(matrixElement);
 		editorState.resetSelection();
 	}

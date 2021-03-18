@@ -80,6 +80,7 @@ public class CommandsTest {
 	protected static void testSyntax(String s, List<Matcher<String>> expected,
 			App app1,
 			AlgebraProcessor proc, StringTemplate tpl) {
+		app1.getEuclidianView1().getEuclidianController().clearZoomerAnimationListeners();
 		if (syntaxes == -1000) {
 			Throwable t = new Throwable();
 			String cmdName = t.getStackTrace()[2].getMethodName().substring(3);
@@ -729,6 +730,20 @@ public class CommandsTest {
 
 	private static String complex(String string) {
 		return string.replaceAll("i", Unicode.IMAGINARY + "");
+	}
+
+	private static void checkSize(String string, int cols, int rows) {
+		AlgoTableText parentAlgorithm = (AlgoTableText) get(string).getParentAlgorithm();
+		assertNotNull(parentAlgorithm);
+		GDimension d = parentAlgorithm.getSize();
+		if (parentAlgorithm
+				.getAlignment() == 'h') {
+			assertEquals(cols, d.getWidth());
+			assertEquals(rows, d.getHeight());
+		} else {
+			assertEquals(rows, d.getWidth());
+			assertEquals(cols, d.getHeight());
+		}
 	}
 
 	@Test
@@ -2700,6 +2715,15 @@ public class CommandsTest {
 	}
 
 	@Test
+	public void cmdPieChart() {
+		t("p1=PieChart({1,2,3})", "PieChart[{1, 2, 3}, (0, 0)]");
+		t("p2=PieChart({1,2,3}, (1,1), 2)", "PieChart[{1, 2, 3}, (1, 1), 2]");
+		assertTrue(get("p2").isDefined());
+		t("p3=PieChart({1,2,-3})", "PieChart[{1, 2, -3}, (0, 0)]");
+		assertFalse(get("p3").isDefined());
+	}
+
+	@Test
 	public void cmdPlane() {
 		t("Plane[ (0,0,1),(1,0,0),(0,1,0) ]", "x + y + z = 1");
 		t("Plane[ Polygon[(0,0,1),(2,0,0),(0,3,0)] ]", "3x + 2y + 6z = 6");
@@ -3962,28 +3986,6 @@ public class CommandsTest {
 	@Test
 	public void cmdTurningPoint() {
 		t("InflectionPoint[ x^3 ]", "(0, 0)");
-	}
-
-	@Test
-	public void cmdPieChart() {
-		t("p1=PieChart({1,2,3})", "PieChart[{1, 2, 3}, (0, 0)]");
-		t("p2=PieChart({1,2,3}, (1,1), 2)", "PieChart[{1, 2, 3}, (1, 1), 2]");
-		assertTrue(get("p2").isDefined());
-		t("p3=PieChart({1,2,-3})", "PieChart[{1, 2, -3}, (0, 0)]");
-		assertFalse(get("p3").isDefined());
-	}
-
-	private static void checkSize(String string, int cols, int rows) {
-		AlgoTableText parentAlgorithm = (AlgoTableText) get(string).getParentAlgorithm();
-		assertNotNull(parentAlgorithm);
-		GDimension d = parentAlgorithm.getSize();
-		if (parentAlgorithm.getAlignment() == 'h') {
-			assertEquals(cols, d.getWidth());
-			assertEquals(rows, d.getHeight());
-		} else {
-			assertEquals(rows, d.getWidth());
-			assertEquals(cols, d.getHeight());
-		}
 	}
 
 	@Test

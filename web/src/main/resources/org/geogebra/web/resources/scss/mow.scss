@@ -443,6 +443,7 @@
 	.mowWidget {
 		position: absolute;
 		border-style: none;
+		overflow: hidden;
 		z-index: $z-mow-video;
 		.gwt-Frame{
 			box-sizing: border-box;
@@ -517,5 +518,12 @@
 
 	.embedContainer .EuclidianPanel {
 		z-index: 0;
+	}
+
+	.h5pPreview {
+		width: 600px;
+		height: 300px;
+		box-sizing: border-box;
+		border: $mow_primary 2px solid;
 	}
 }

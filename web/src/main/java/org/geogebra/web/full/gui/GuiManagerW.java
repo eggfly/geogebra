@@ -24,6 +24,7 @@ import org.geogebra.common.gui.view.algebra.AlgebraView;
 import org.geogebra.common.gui.view.consprotocol.ConstructionProtocolNavigation;
 import org.geogebra.common.gui.view.consprotocol.ConstructionProtocolView;
 import org.geogebra.common.gui.view.properties.PropertiesView;
+import org.geogebra.common.gui.view.table.InvalidValuesException;
 import org.geogebra.common.io.layout.DockPanelData;
 import org.geogebra.common.javax.swing.GOptionPane;
 import org.geogebra.common.javax.swing.SwingConstants;
@@ -87,6 +88,7 @@ import org.geogebra.web.full.gui.menubar.FileMenuW;
 import org.geogebra.web.full.gui.properties.PropertiesViewW;
 import org.geogebra.web.full.gui.toolbar.ToolBarW;
 import org.geogebra.web.full.gui.toolbarpanel.MenuToggleButton;
+import org.geogebra.web.full.gui.toolbarpanel.ShowableTab;
 import org.geogebra.web.full.gui.toolbarpanel.ToolbarPanel;
 import org.geogebra.web.full.gui.util.PopupBlockAvoider;
 import org.geogebra.web.full.gui.util.ScriptArea;
@@ -471,23 +473,23 @@ public class GuiManagerW extends GuiManager
 	}
 
 	@Override
-	public void setShowView(final boolean flag, final int viewId) {
-		setShowView(flag, viewId, true);
+	public void setShowView(final boolean visible, final int viewId) {
+		setShowView(visible, viewId, true);
 	}
 
 	@Override
-	public void setShowView(final boolean flag, final int viewId, final boolean isPermanent) {
+	public void setShowView(final boolean visible, final int viewId, final boolean isPermanent) {
 		ToolbarPanel sidePanel = getUnbundledToolbar();
-		ToolbarPanel.ToolbarTab sidePanelTab = sidePanel != null ? sidePanel.getTab(viewId) : null;
+		ShowableTab sidePanelTab = sidePanel != null ? sidePanel.getTab(viewId) : null;
 		if (sidePanelTab != null) {
-			if (flag) {
+			if (visible) {
 				sidePanelTab.open();
 			} else {
 				sidePanelTab.close();
 			}
-			onToolbarVisibilityChanged(viewId, flag);
+			onToolbarVisibilityChanged(viewId, visible);
 		} else {
-			if (flag) {
+			if (visible) {
 				showViewWithId(viewId);
 			} else {
 				hideViewWith(viewId, isPermanent);
@@ -503,7 +505,8 @@ public class GuiManagerW extends GuiManager
 		}
 	}
 
-	private void onToolbarVisibilityChanged(int viewId, boolean isVisible) {
+	@Override
+	public void onToolbarVisibilityChanged(int viewId, boolean isVisible) {
 		DockPanel panel = layout.getDockManager().getPanel(viewId);
 		if (panel != null) {
 			panel.setVisible(isVisible);
@@ -2255,9 +2258,31 @@ public class GuiManagerW extends GuiManager
 	 *            function/lie to be added
 	 */
 	public void addGeoToTableValuesView(GeoElement geo) {
+		app.getEventDispatcher()
+				.dispatchEvent(EventType.ADD_TV, geo);
+		addGeoToTV(geo);
+		getUnbundledToolbar().openTableView((GeoEvaluatable) geo, true);
+	}
+
+	@Override
+	public void removeGeoFromTV(String label) {
+		GeoElement geo = app.getKernel().lookupLabel(label);
+		if (getTableValuesView() != null && geo instanceof GeoEvaluatable) {
+			getTableValuesView().hideColumn((GeoEvaluatable) geo);
+		}
+	}
+
+	@Override
+	public void setValues(double min, double max, double step) throws InvalidValuesException {
+		if (getTableValuesView() != null) {
+			getTableValuesView().setValues(min, max, step);
+		}
+	}
+
+	@Override
+	public void addGeoToTV(GeoElement geo) {
 		getTableValuesView().add(geo);
 		getTableValuesView().showColumn((GeoEvaluatable) geo);
-		getUnbundledToolbar().openTableView((GeoEvaluatable) geo, true);
 	}
 
 	@Override
@@ -2272,7 +2297,7 @@ public class GuiManagerW extends GuiManager
 	@Override
 	public void updateUnbundledToolbar() {
 		if (getUnbundledToolbar() != null) {
-			getUnbundledToolbar().updateTabs();
+			getUnbundledToolbar().resizeTabs();
 		}
 	}
 

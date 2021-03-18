@@ -333,12 +333,17 @@ public class AppConfigDefault extends AbstractAppConfig {
 	}
 
 	@Override
+	public boolean hasLabelForDescription() {
+		return true;
+	}
+
+	@Override
 	public boolean sendKeyboardEvents() {
 		return false;
 	}
 
 	@Override
-	public boolean hasLabelForDescription() {
+	public boolean hasEuclidianView() {
 		return true;
 	}
 }

@@ -344,4 +344,3 @@ public class PageListPanel
 				PagePreviewCard.computeTop(count) + "px");
 	}
 }
-

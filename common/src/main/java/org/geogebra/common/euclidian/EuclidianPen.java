@@ -79,6 +79,7 @@ public class EuclidianPen implements GTimerListener {
 
 	private int penLineStyle;
 	private GColor penColor = GColor.BLACK;
+
 	private final PenPreviewLine penPreviewLine;
 	protected final ArrayList<GPoint> previewPoints = new ArrayList<>();
 
@@ -415,7 +416,6 @@ public class EuclidianPen implements GTimerListener {
 
 		penPoints.clear();
 		previewPoints.clear();
-
 		String label = lastAlgo.getOutput(0).getLabelSimple();
 
 		if (oldXML == null) {

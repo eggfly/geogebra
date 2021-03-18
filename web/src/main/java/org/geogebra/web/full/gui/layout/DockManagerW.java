@@ -26,11 +26,11 @@ import org.geogebra.web.full.gui.laf.GLookAndFeel;
 import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelWAbstract;
 import org.geogebra.web.full.gui.layout.panels.ToolbarDockPanelW;
 import org.geogebra.web.full.gui.toolbarpanel.ToolbarPanel;
-import org.geogebra.web.full.gui.view.algebra.AlgebraViewW;
 import org.geogebra.web.full.main.AppWFull;
 import org.geogebra.web.html5.gui.GuiManagerInterfaceW;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.html5.util.StringConsumer;
+import org.geogebra.web.html5.util.keyboard.KeyboardManagerInterface;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.core.client.Scheduler;
@@ -215,16 +215,8 @@ public class DockManagerW extends DockManager {
 				}
 			}
 			// sort panels right to left: needed for fullscreen button
-			Arrays.sort(dpData, new Comparator<DockPanelData>() {
-
-				@Override
-				public int compare(DockPanelData o1, DockPanelData o2) {
-					// bottom to top sorting: need to replace 0 (top) with st
-					// bigger than 2 (bottom)
-					return o1.getEmbeddedDef().replace('0', '4')
-							.compareTo(o2.getEmbeddedDef().replace('0', '4'));
-				}
-			});
+			Arrays.sort(dpData, Comparator.comparing(o ->
+					o.getEmbeddedDef().replace('0', '4')));
 			// now insert the dock panels
 			for (DockPanelData dpItem : dpData) {
 				DockPanelW panel = getPanel(dpItem.getViewId());
@@ -238,11 +230,6 @@ public class DockManagerW extends DockManager {
 				// attach view to kernel (being attached multiple times is
 				// ignored)
 				app.getGuiManager().attachView(panel.getViewId());
-
-				// if(dpData[i].isOpenInFrame()) {
-				// show(panel);
-				// continue;
-				// }
 
 				DockSplitPaneW currentParent = rootPane;
 				String[] directions = dpItem.getEmbeddedDef().split(",");
@@ -799,7 +786,6 @@ public class DockManagerW extends DockManager {
 		}
 		panel.setVisible(true);
 		panel.setHidden(false);
-
 		// TODO causes any problems?
 		app.getGuiManager().attachView(panel.getViewId());
 
@@ -876,7 +862,6 @@ public class DockManagerW extends DockManager {
 
 		// the component opposite to the current component
 		int[] oppositeDim = new int[] { 0, 0 };
-
 		Widget opposite = prepareRootPaneForInsert(oppositeDim, currentPane,
 					newSplitPane, lastPos, secondLastPos);
 		// save divider locations to prevent not visible views
@@ -891,7 +876,6 @@ public class DockManagerW extends DockManager {
 			newSplitPane.setLeftComponent(opposite);
 			newSplitPane.setRightComponent(panel);
 		}
-
 		if (!app.isIniting()) {
 			app.updateCenterPanel();
 		}
@@ -1139,7 +1123,6 @@ public class DockManagerW extends DockManager {
 		} else {
 			size = parentOffsetWidth;
 		}
-
 		if (parent == rootPane) {
 			if (opposite instanceof DockSplitPaneW) {
 				rootPane = (DockSplitPaneW) opposite;
@@ -1372,14 +1355,11 @@ public class DockManagerW extends DockManager {
 	 * If just one panel is visible in the main frame, mark him as 'alone'.
 	 */
 	private void markAlonePanel() {
-		// determine if such a panel exists
-		DockPanelW singlePanel = null;
-
 		if (rootPane.getRightComponent() == null) {
 			Widget leftComponent = rootPane.getLeftComponent();
 
 			if (leftComponent instanceof DockPanel) {
-				singlePanel = (DockPanelW) leftComponent;
+				((DockPanelW) leftComponent).setAlone(true);
 			}
 		}
 
@@ -1387,13 +1367,8 @@ public class DockManagerW extends DockManager {
 			Widget rightComponent = rootPane.getRightComponent();
 
 			if (rightComponent instanceof DockPanel) {
-				singlePanel = (DockPanelW) rightComponent;
+				((DockPanelW) rightComponent).setAlone(true);
 			}
-		}
-
-		// mark the found panel as 'alone'
-		if (singlePanel != null) {
-			singlePanel.setAlone(true);
 		}
 	}
 
@@ -1596,9 +1571,8 @@ public class DockManagerW extends DockManager {
 		calculateKeyboardHeight();
 		ExtendedBoolean old = portrait;
 		portrait = ExtendedBoolean.newExtendedBoolean(app.isPortrait());
-		// ExtendedBoolean
-		// .newExtendedBoolean(app.getWidth() < app.getHeight());
-		if (force || old != portrait) {
+		boolean orientationChanged = old != portrait;
+		if (force || orientationChanged) {
 			// run only if oreintation has changed;
 			final double landscape = PerspectiveDecoder.landscapeRatio(app,
 					app.getWidth());
@@ -1607,7 +1581,7 @@ public class DockManagerW extends DockManager {
 
 				@Override
 				public void execute() {
-					adjustViews(landscape);
+					adjustViews(landscape, orientationChanged);
 				}
 			});
 		}
@@ -1617,7 +1591,7 @@ public class DockManagerW extends DockManager {
 	 * @param landscapeRatio
 	 *            preferred landscape ratio
 	 */
-	protected void adjustViews(double landscapeRatio) {
+	protected void adjustViews(double landscapeRatio, boolean orientationChanged) {
 		DockPanelW avPanel = getPanel(App.VIEW_ALGEBRA);
 		if (avPanel == null) {
 			return;
@@ -1630,19 +1604,42 @@ public class DockManagerW extends DockManager {
 
 		Widget opposite = split.getOpposite(avPanel);
 
-		if (!(opposite instanceof EuclidianDockPanelWAbstract)) {
-			return;
+		if (opposite instanceof EuclidianDockPanelWAbstract) {
+			adjustGraphicsAndAvPosition(landscapeRatio, orientationChanged, avPanel, split);
 		}
 
-		AlgebraViewW av = ((AlgebraViewW) app.getAlgebraView());
-		double avHeight = Math.max(av.getInputTreeItem().getOffsetHeight(),
-				120);
+		int newOrientation = app.isPortrait() ? SwingConstants.VERTICAL_SPLIT
+				: SwingConstants.HORIZONTAL_SPLIT;
+		if (newOrientation != split.getOrientation()) {
+			split.clear();
+			split.setOrientation(newOrientation);
+			if (app.isPortrait() && opposite != null) {
+				split.setRightComponent(avPanel);
+				split.setLeftComponent(opposite);
+			} else {
+				split.setLeftComponent(avPanel);
+				split.setRightComponent(opposite);
+			}
+			avPanel.tryBuildZoomPanel();
+			avPanel.setLayout(false);
+			if (opposite != null) {
+				((DockPanelW) opposite).tryBuildZoomPanel();
+				((DockPanelW) opposite).setLayout(false);
+			}
+
+			avPanel.onOrientationChange();
+		}
+	}
+
+	private void adjustGraphicsAndAvPosition(double landscapeRatio, boolean orientationChanged,
+			DockPanelW avPanel, DockSplitPaneW split) {
+		double avHeight = getMinHeight(avPanel, orientationChanged);
 		double appHeight = app.getHeight();
 		ToolbarPanel toolbar = null;
 		double visibleKB = kbHeight;
 		if (app.isUnbundled()) {
 			toolbar = ((ToolbarDockPanelW) avPanel).getToolbar();
-			avHeight = toolbar.isOpen() ? toolbar.getMinVHeight()
+			avHeight = toolbar.isOpen() ? avHeight
 					: ToolbarPanel.CLOSED_HEIGHT_PORTRAIT;
 			if (!app.getAppletFrame().isKeyboardShowing()) {
 				visibleKB = 0;
@@ -1660,41 +1657,30 @@ public class DockManagerW extends DockManager {
 			}
 		} else {
 			double ratio = landscapeRatio;
-
+			double closedWidth = getClosedAvWidth();
 			if (split.getLeftComponent() == avPanel
 					&& split
-					.getDividerLocation() <= ToolbarPanel.CLOSED_WIDTH_LANDSCAPE) {
-				toolbar.close();
+					.getDividerLocation() <= closedWidth) {
+				toolbar.close(false);
 			}
 			if (toolbar != null && !toolbar.isOpen()) {
-				ratio = ToolbarPanel.CLOSED_WIDTH_LANDSCAPE / app.getWidth();
+				ratio = closedWidth / app.getWidth();
 			}
 
 			setDividerLocationAbs(split, (int) (ratio * app.getWidth()));
 		}
+	}
 
-		int newOrientation = app.isPortrait() ? SwingConstants.VERTICAL_SPLIT
-				: SwingConstants.HORIZONTAL_SPLIT;
-		if (newOrientation != split.getOrientation()) {
-			split.clear();
-			split.setOrientation(newOrientation);
-			if (app.isPortrait()) {
-				split.setRightComponent(avPanel);
-				split.setLeftComponent(opposite);
-			} else {
-				split.setLeftComponent(avPanel);
-				split.setRightComponent(opposite);
-			}
-
-			avPanel.tryBuildZoomPanel();
-			avPanel.setLayout(false);
-			((DockPanelW) opposite).tryBuildZoomPanel();
-			((DockPanelW) opposite).setLayout(false);
-
-			if (toolbar != null) {
-				toolbar.onOrientationChange();
-			}
+	private double getMinHeight(DockPanelW toolbar, boolean orientationChanged) {
+		double minHeight = toolbar.getMinVHeight(app.getAppletFrame().isKeyboardShowing());
+		KeyboardManagerInterface keyboardManager = app.getKeyboardManager();
+		if (!orientationChanged || keyboardManager == null) {
+			return minHeight;
 		}
+		int draggerOffset = app.isUnbundled() ? 16 : 0;
+		return Math.max(minHeight,
+				toolbar.getOffsetHeight()
+						- keyboardManager.estimateHiddenKeyboardHeight() + draggerOffset);
 	}
 
 	/**
@@ -1705,6 +1691,14 @@ public class DockManagerW extends DockManager {
 		if (probPanel != null) {
 			probPanel.deferredOnResize();
 		}
+	}
+
+	private int getClosedAvWidth() {
+		DockPanelW avPanel = getPanel(App.VIEW_ALGEBRA);
+		if (avPanel instanceof ToolbarDockPanelW) {
+			return ((ToolbarDockPanelW) avPanel).getNavigationRailWidth();
+		}
+		return 0;
 	}
 
 	/**
@@ -1740,8 +1734,7 @@ public class DockManagerW extends DockManager {
 
 		double height = app.getAppletFrame().computeHeight();
 		setDividerLocationAbs(split,
-				(int) height - ToolbarPanel.CLOSED_HEIGHT_PORTRAIT
-						- ToolbarPanel.VSHADOW_OFFSET);
+				(int) height - ToolbarPanel.CLOSED_HEIGHT_PORTRAIT);
 	}
 
 	private void calculateKeyboardHeight() {

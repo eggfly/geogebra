@@ -306,7 +306,12 @@ public interface AppConfig {
 	boolean sendKeyboardEvents();
 
 	/**
-	 * @return true if label should be shown for description AV style
+	 * @return true if label should be shown in description AV mode
 	 */
 	boolean hasLabelForDescription();
+
+	/**
+	 * @return true if the app has at least one Euclidian View
+	 */
+	boolean hasEuclidianView();
 }

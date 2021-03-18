@@ -124,6 +124,12 @@ public interface EmbedManager {
 	 */
 	void openGraspableMTool();
 
+	/**
+	 * opens the H5P tool
+	 * @return embed element
+	 */
+	GeoEmbed openH5PTool();
+
 	void initAppEmbed(GeoEmbed ge);
 
 	/**
@@ -152,5 +158,5 @@ public interface EmbedManager {
 	 */
 	void embeddedAction(EventType action, String id);
 
-	void setBase64(String label, String base64);
+	void setContentSync(String label, String base64);
 }

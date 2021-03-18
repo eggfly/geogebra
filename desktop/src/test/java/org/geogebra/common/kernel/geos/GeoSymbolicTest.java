@@ -1171,12 +1171,6 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 	}
 
 	@Test
-	public void testPlotSolveIsEuclidianVisible() {
-		GeoSymbolic symbolic = add("PlotSolve(x^2-2)");
-		assertThat(symbolic.isEuclidianVisible(), is(true));
-	}
-
-	@Test
 	public void testSymbolicDiffersForSolve() {
 		GeoSymbolic solveX_1 = add("Solve(2x=5)");
 		GeoSymbolic solveX_2 = add("Solve(2x=6)");
@@ -1206,6 +1200,12 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 	}
 
 	@Test
+	public void testPlotSolveIsEuclidianVisible() {
+		GeoSymbolic symbolic = add("PlotSolve(x^2-2)");
+		assertThat(symbolic.isEuclidianVisible(), is(true));
+	}
+
+	@Test
 	public void testChangingSliderValue() {
 		add("Integral(x)");
 		lookup("c_1");
@@ -1228,6 +1228,23 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 		assertThat(
 				derivative.toValueString(StringTemplate.defaultTemplate),
 				equalTo("1 / 200 ℯ^(-1 / 40 x)"));
+	}
+
+	@Test
+	public void testSolveNotReturnUndefined() {
+		add("eq1: (x^2)(e^x)= 5");
+		GeoSymbolic function = add("Solve(eq1, x)");
+		assertNotEquals(function.getValue().toString(StringTemplate.defaultTemplate), "{?}");
+		assertThat(function.getValue().toString(StringTemplate.defaultTemplate),
+				equalTo("{x = 1.2168714889}"));
+	}
+
+	@Test
+	public void testSolveChangedToNSolve() {
+		add("eq1: (x^2)(e^x)= 5");
+		GeoSymbolic function = add("Solve(eq1, x)");
+		assertThat(function.getDefinition(StringTemplate.defaultTemplate),
+				equalTo("NSolve(eq1,x)"));
 	}
 
 	@Test
@@ -1254,23 +1271,6 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 		t("Max(2, 3, 1)", "3");
 		t("Max(1, 2, 4, -2)", "4");
 		t("Max(1/2 < x < " + pi + ")", pi + "");
-	}
-
-	@Test
-	public void testSolveNotReturnUndefined() {
-		add("eq1: (x^2)(e^x)= 5");
-		GeoSymbolic function = add("Solve(eq1, x)");
-		assertNotEquals(function.getValue().toString(StringTemplate.defaultTemplate), "{?}");
-		assertThat(function.getValue().toString(StringTemplate.defaultTemplate),
-				equalTo("{x = 1.2168714889}"));
-	}
-
-	@Test
-	public void testSolveChangedToNSolve() {
-		add("eq1: (x^2)(e^x)= 5");
-		GeoSymbolic function = add("Solve(eq1, x)");
-		assertThat(function.getDefinition(StringTemplate.defaultTemplate),
-				equalTo("NSolve(eq1,x)"));
 	}
 
 	@Test
@@ -1313,6 +1313,13 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 		t("Quartile3({2,2,3})", "3");
 		t("Quartile1({2,3,3})", "2");
 		t("Quartile3({2,3,3})", "3");
+	}
+
+	@Test
+	public void testExtremum() {
+		GeoSymbolic extremum = add("Extremum(x*ln(x^2))");
+		GeoList twin = (GeoList) extremum.getTwinGeo();
+		assertThat(twin.size(), equalTo(2));
 	}
 
 	@Test
@@ -1362,9 +1369,44 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 		assertThat(
 				asind.getValueForInputBar(),
 				equalTo("180° sin⁻¹(2 / 5) / π"));
+
+		asind.setSymbolicMode(false, false);
 		assertThat(
-				asind.getTwinGeo().toValueString(StringTemplate.defaultTemplate),
+				asind.getValueForInputBar(),
 				equalTo("23.5781784782°"));
+	}
+
+	@Test
+	public void testArcdFunctionsReturnDegrees() {
+		GeoSymbolic asind = add("asind(1/5)");
+		assertThat(
+				asind.getLaTeXDescriptionRHS(true, StringTemplate.numericLatex),
+				equalTo("180^{\\circ} \\cdot "
+						+ "\\frac{\\operatorname{sin⁻¹} \\left( \\frac{1}{5} \\right)}{\\pi }"));
+		asind.setSymbolicMode(false, false);
+		assertThat(
+				asind.getLaTeXDescriptionRHS(true, StringTemplate.numericLatex),
+				equalTo("11.5369590328°"));
+
+		GeoSymbolic acosd = add("acosd(1/5)");
+		assertThat(
+				acosd.getLaTeXDescriptionRHS(true, StringTemplate.numericLatex),
+				equalTo("180^{\\circ} \\cdot "
+						+ "\\frac{\\operatorname{cos⁻¹} \\left( \\frac{1}{5} \\right)}{\\pi }"));
+		acosd.setSymbolicMode(false, false);
+		assertThat(
+				acosd.getLaTeXDescriptionRHS(true, StringTemplate.numericLatex),
+				equalTo("78.4630409672°"));
+
+		GeoSymbolic atand = add("atand(1/5)");
+		assertThat(
+				atand.getLaTeXDescriptionRHS(true, StringTemplate.numericLatex),
+				equalTo("180^{\\circ} \\cdot "
+						+ "\\frac{\\operatorname{tan⁻¹} \\left( \\frac{1}{5} \\right)}{\\pi }"));
+		atand.setSymbolicMode(false, false);
+		assertThat(
+				atand.getLaTeXDescriptionRHS(true, StringTemplate.numericLatex),
+				equalTo("11.309932474°"));
 	}
 
 	@Test
@@ -1381,13 +1423,6 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 	}
 
 	@Test
-	public void testExtremum() {
-		GeoSymbolic extremum = add("Extremum(x*ln(x^2))");
-		GeoList twin = (GeoList) extremum.getTwinGeo();
-		assertThat(twin.size(), equalTo(2));
-	}
-
-	@Test
 	public void testVariableAfterUndo() {
 		UndoRedoTester undoRedo = new UndoRedoTester(app);
 		undoRedo.setupUndoRedo();
@@ -1399,5 +1434,37 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 		app.storeUndoInfo();
 		a = undoRedo.getAfterUndo("a");
 		assertThat(a.getDefinitionForInputBar(), is("a = 3"));
+	}
+
+	@Test
+	public void testRounding() {
+		kernel.setPrintFigures(20);
+		GeoSymbolic number = add("11.3 * 1.5");
+		AlgebraItem.toggleSymbolic(number);
+		String output = AlgebraItem.getOutputTextForGeoElement(number);
+		assertThat(output, equalTo("16.95"));
+		// Reset
+		kernel.setPrintDecimals(5);
+	}
+
+	@Test
+	public void testNestedFunction() {
+		app.setUndoActive(true);
+
+		add("f(x)=1+7*e^(-0.2x)");
+		app.storeUndoInfo();
+
+		GeoSymbolic r = add("r(s)=s*(f(s)-1)");
+		app.storeUndoInfo();
+		assertThat(r.getTwinGeo(), instanceOf(GeoFunction.class));
+		assertThat(r.isEuclidianShowable(), is(true));
+
+		undoRedo();
+		r = (GeoSymbolic) lookup("r");
+		assertThat(r.isEuclidianShowable(), is(true));
+
+		add("f(x) = x");
+		r = (GeoSymbolic) lookup("r");
+		assertThat(r.isEuclidianShowable(), is(true));
 	}
 }
