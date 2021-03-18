@@ -280,7 +280,7 @@ $floatingbtn-img-appear-transition: width 0.25s, height 0.25s, padding 0.25s;
 					height: 24px !important;
 					padding: 12px;
 					transition: $floatingbtn-img-appear-transition;
-                }
+				}
 			}
 
 			.hideMoveBtn {
@@ -289,16 +289,16 @@ $floatingbtn-img-appear-transition: width 0.25s, height 0.25s, padding 0.25s;
 				opacity: 1;
 				visibility: hidden;
 				transition: opacity 0.2s ease, $floatingbtn-appear-transition !important;
-                width: 0px !important;
-                height: 0px !important;
-                right: 36px;
+				width: 0px !important;
+				height: 0px !important;
+				right: 36px;
 
 				img {
 					opacity: 0;
 					width: 0px !important;
-                    height: 0px !important;
-                    padding: 0px;
-                    transition: $floatingbtn-img-appear-transition;
+					height: 0px !important;
+					padding: 0px;
+					transition: $floatingbtn-img-appear-transition;
 				}
 
 				&:hover, &:focus {
