@@ -702,16 +702,8 @@ public class ToolbarPanel extends FlowPanel
 	}
 
 	private void updateMoveButton(int mode) {
-		boolean moveSelected =
-				mode != EuclidianConstants.MODE_MOVE && getSelectedTabId() == TabIds.TOOLS;
-		setMoveFloatingButtonVisible(moveSelected);
-		if (moveSelected) {
-			moveBtn.removeStyleName("hideMoveBtnFullscreen");
-			moveBtn.addStyleName("showMoveBtnFullscreen");
-		} else {
-			moveBtn.removeStyleName("showMoveBtnFullscreen");
-			moveBtn.addStyleName("hideMoveBtnFullscreen");
-		}
+		setMoveFloatingButtonVisible(mode != EuclidianConstants.MODE_MOVE
+				&& getSelectedTabId() == TabIds.TOOLS);
 	}
 
 	/**
@@ -724,25 +716,16 @@ public class ToolbarPanel extends FlowPanel
 		Dom.toggleClass(moveBtn, "showMoveBtn", "hideMoveBtn", visible);
 	}
 
-	private void moveFullScreenButtonUp() {
-		ZoomPanel fullscreenBtn = app.getZoomPanel();
-		removeStyleNamesFromFullscreenBtn();
-		if (app.getMode() != EuclidianConstants.MODE_MOVE
-				&& getSelectedTabId() == TabIds.TOOLS) {
-			fullscreenBtn.addStyleName("zoomPanelForFullscreenAVMoveUp");
-		} else {
-			fullscreenBtn.addStyleName("zoomPanelForFullscreenAVMoveUpNoMoveBtn");
-		}
-	}
-
-	private void moveFullScreenButtonDown() {
-		ZoomPanel fullscreenBtn = app.getZoomPanel();
-		removeStyleNamesFromFullscreenBtn();
-		if (app.getMode() != EuclidianConstants.MODE_MOVE
-				&& getSelectedTabId() == TabIds.TOOLS) {
-			fullscreenBtn.addStyleName("zoomPanelForFullscreenAV");
-		} else {
-			fullscreenBtn.addStyleName("zoomPanelPosition");
+	private void moveFullScreenButtonUpOrDown(String withMoveBtn, String noMoveBtn) {
+		if (!app.isPortrait()) {
+			ZoomPanel fullscreenBtn = app.getZoomPanel();
+			removeStyleNamesFromFullscreenBtn();
+			if (app.getMode() != EuclidianConstants.MODE_MOVE
+					&& getSelectedTabId() == TabIds.TOOLS) {
+				fullscreenBtn.addStyleName(withMoveBtn);
+			} else {
+				fullscreenBtn.addStyleName(noMoveBtn);
+			}
 		}
 	}
 
@@ -774,7 +757,8 @@ public class ToolbarPanel extends FlowPanel
 					moveBtn.addStyleName("moveMoveBtnUpSmall");
 				} else {
 					if (heading.isVisible()) {
-						moveFullScreenButtonUp();
+						moveFullScreenButtonUpOrDown("zoomPanelForFullscreenAVMoveUp",
+								"zoomPanelForFullscreenAVMoveUpNoMoveBtn");
 					}
 					moveBtn.removeStyleName("moveMoveBtnDown");
 					moveBtn.addStyleName("moveMoveBtnUp");
@@ -798,7 +782,7 @@ public class ToolbarPanel extends FlowPanel
 				moveBtn.removeStyleName("moveMoveBtnUpSmall");
 			} else {
 				if (heading.isVisible()) {
-					moveFullScreenButtonDown();
+					moveFullScreenButtonUpOrDown("zoomPanelForFullscreenAV", "zoomPanelPosition");
 				}
 				moveBtn.addStyleName("moveMoveBtnDown");
 				moveBtn.removeStyleName("moveMoveBtnUp");
@@ -1320,7 +1304,8 @@ public class ToolbarPanel extends FlowPanel
 					dockParent.forceLayout();
 					if (app.getMode() != EuclidianConstants.MODE_MOVE
 							&& getSelectedTabId() == TabIds.TOOLS) {
-						moveFullScreenButtonDown();
+						moveFullScreenButtonUpOrDown("zoomPanelForFullscreenAV",
+								"zoomPanelPosition");
 					}
 				}
 
