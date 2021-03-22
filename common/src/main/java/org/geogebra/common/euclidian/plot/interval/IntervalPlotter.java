@@ -28,7 +28,7 @@ public class IntervalPlotter {
 	 */
 	public IntervalPlotter(EuclidianView view, GeneralPathClipped gp, GeoElement geo) {
 		this.view = view;
-		this.gp = new IntervalPathPlotterImpl(gp, geo);
+		this.gp = new IntervalPathPlotterImpl(gp);
 		this.enabled = false;
 		numberOfSamples = 0;
 	}

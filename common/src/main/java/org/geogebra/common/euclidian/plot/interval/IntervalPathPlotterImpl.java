@@ -5,21 +5,19 @@ import org.geogebra.common.euclidian.GeneralPathClipped;
 import org.geogebra.common.kernel.geos.GeoElement;
 
 public class IntervalPathPlotterImpl implements IntervalPathPlotter {
-	private final GeoElement geo;
-	private GeneralPathClipped gp;
+	private final GeneralPathClipped gp;
 
 	/**
 	 * @param gp path
 	 * @param geo construction element
 	 */
-	public IntervalPathPlotterImpl(GeneralPathClipped gp, GeoElement geo) {
+	public IntervalPathPlotterImpl(GeneralPathClipped gp) {
 		this.gp = gp;
-		this.geo = geo;
 	}
 
 	@Override
 	public void reset() {
-		gp.resetWithThickness(geo.getLineThickness());
+		gp.reset();
 	}
 
 	@Override
