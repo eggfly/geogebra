@@ -2,14 +2,12 @@ package org.geogebra.common.euclidian.plot.interval;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.euclidian.GeneralPathClipped;
-import org.geogebra.common.kernel.geos.GeoElement;
 
 public class IntervalPathPlotterImpl implements IntervalPathPlotter {
 	private final GeneralPathClipped gp;
 
 	/**
 	 * @param gp path
-	 * @param geo construction element
 	 */
 	public IntervalPathPlotterImpl(GeneralPathClipped gp) {
 		this.gp = gp;
