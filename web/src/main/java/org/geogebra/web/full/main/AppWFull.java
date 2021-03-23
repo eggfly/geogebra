@@ -2210,12 +2210,12 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 		activity = new SuiteActivity(subAppCode);
 		activity.start(this);
 
-		clearConstruction();
 		resetToolbarPanel();
 		Perspective perspective = PerspectiveDecoder.decode(getConfig().getForcedPerspective(),
 				kernel.getParser(), ToolBar.getAllToolsNoMacros(isHTML5Applet(), isExam(), this));
 		updateSymbolicFlag(subAppCode, perspective);
 		reinitSettings();
+		clearConstruction();
 		getTmpPerspectives().clear();
 		updatePerspective(perspective);
 		restoreMaterial(subAppCode);
