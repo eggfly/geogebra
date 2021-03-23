@@ -4,7 +4,6 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.euclidian.EuclidianView;
 import org.geogebra.common.euclidian.GeneralPathClipped;
-import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoFunction;
 import org.geogebra.common.kernel.interval.IntervalFunctionSampler;
 import org.geogebra.common.kernel.interval.IntervalTuple;
@@ -26,7 +25,7 @@ public class IntervalPlotter {
 	/**
 	 * Creates a disabled plotter
 	 */
-	public IntervalPlotter(EuclidianView view, GeneralPathClipped gp, GeoElement geo) {
+	public IntervalPlotter(EuclidianView view, GeneralPathClipped gp) {
 		this.view = view;
 		this.gp = new IntervalPathPlotterImpl(gp);
 		this.enabled = false;
