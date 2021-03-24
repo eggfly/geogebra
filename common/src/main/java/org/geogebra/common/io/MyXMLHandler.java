@@ -3722,4 +3722,8 @@ public class MyXMLHandler implements DocHandler {
 	public HashMap<EuclidianSettings, String> getYmax() {
 		return ymax;
 	}
+
+	public void setClearConstruction(boolean clearConstruction) {
+		geoHandler.setNeedsConstructionDefaults(!clearConstruction);
+	}
 }
