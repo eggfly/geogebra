@@ -229,23 +229,19 @@ public class InlineFormattingItems {
 
 		AriaMenuBar headingSubmenu = new AriaMenuBar();
 
-		SVGResource row = MaterialDesignResources.INSTANCE.table_heading_row();
-		AriaMenuItem rowItem = factory.newAriaMenuItem(
-				MainMenu.getMenuBarHtml(row, loc.getMenu("ContextMenu.Row")), true, () -> {
-			for (HasTextFormat formatter : inlines) {
-				((InlineTableController) formatter).setHeading(color, true);
-			}
-		});
-		headingSubmenu.addItem(rowItem);
+		addSubMenuItem(headingSubmenu, MaterialDesignResources.INSTANCE.table_heading_row(),
+				"ContextMenu.Row", () -> {
+					for (HasTextFormat formatter : inlines) {
+						((InlineTableController) formatter).setHeading(color, true);
+					}
+				});
 
-		SVGResource column = MaterialDesignResources.INSTANCE.table_heading_column();
-		AriaMenuItem columnItem = factory.newAriaMenuItem(
-				MainMenu.getMenuBarHtml(column, loc.getMenu("ContextMenu.Column")), true, () -> {
+		addSubMenuItem(headingSubmenu, MaterialDesignResources.INSTANCE.table_heading_column(),
+				"ContextMenu.Column", () -> {
 					for (HasTextFormat formatter : inlines) {
 						((InlineTableController) formatter).setHeading(color, false);
 					}
 				});
-		headingSubmenu.addItem(columnItem);
 
 		AriaMenuItem item = factory.newAriaMenuItem(loc.getMenu("ContextMenu.Heading"),
 				false, headingSubmenu);
