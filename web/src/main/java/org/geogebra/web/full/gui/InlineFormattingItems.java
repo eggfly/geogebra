@@ -99,9 +99,7 @@ public class InlineFormattingItems {
 		addTextWrappingItem();
 		addTextRotationItem();
 		addHeadingItem();
-		if (!isEditModeTable() || isSingleTableCellSelection()) {
-			menu.addSeparator();
-		}
+		menu.addSeparator();
 	}
 
 	private void addTextWrappingItem() {
@@ -192,7 +190,8 @@ public class InlineFormattingItems {
 	}
 
 	void addChartItem() {
-		if (!inlines.stream().allMatch(f -> f instanceof InlineTableController)) {
+		if (inlines.isEmpty()
+				|| !inlines.stream().allMatch(f -> f instanceof InlineTableController)) {
 			return;
 		}
 
@@ -217,7 +216,9 @@ public class InlineFormattingItems {
 		chartItem.addStyleName("no-image");
 
 		menu.addItem(chartItem);
-		menu.addSeparator();
+		if (!isEditModeTable() || isSingleTableCellSelection()) {
+			menu.addSeparator();
+		}
 	}
 
 	private void addHeadingItem() {
