@@ -184,6 +184,42 @@ public class InlineFormattingItems {
 		menu.addItem(item);
 	}
 
+	private void addSubMenuItem(AriaMenuBar submenu, SVGResource icon,
+			String transKey, Scheduler.ScheduledCommand cmd) {
+		AriaMenuItem submenuItem = factory.newAriaMenuItem(
+				MainMenu.getMenuBarHtml(icon, loc.getMenu(transKey)), true, cmd);
+		submenu.addItem(submenuItem);
+	}
+
+	void addChartItem() {
+		if (!inlines.stream().allMatch(f -> f instanceof InlineTableController)) {
+			return;
+		}
+
+		AriaMenuBar chartSubmenu = new AriaMenuBar();
+		addSubMenuItem(chartSubmenu, MaterialDesignResources.INSTANCE.table_line_chart(),
+				"ContextMenu.LineChart", () -> {
+					// create line chart
+				});
+
+		addSubMenuItem(chartSubmenu, MaterialDesignResources.INSTANCE.table_bar_chart(),
+				"ContextMenu.BarChart", () -> {
+					// create bar chart
+				});
+
+		addSubMenuItem(chartSubmenu, MaterialDesignResources.INSTANCE.table_pie_chart(),
+				"ContextMenu.PieChart", () -> {
+					// create pie chart
+				});
+
+		AriaMenuItem chartItem = factory.newAriaMenuItem(loc.getMenu("ContextMenu.CreateChart"),
+				false, chartSubmenu);
+		chartItem.addStyleName("no-image");
+
+		menu.addItem(chartItem);
+		menu.addSeparator();
+	}
+
 	private void addHeadingItem() {
 		if (!inlines.stream().allMatch(f -> f instanceof InlineTableController)) {
 			return;
