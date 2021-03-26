@@ -71,7 +71,7 @@ public class DrawMindMap extends DrawInlineText {
 	}
 
 	private void updateAlignment(DrawMindMap child) {
-		double distSq = Double.POSITIVE_INFINITY;
+		double angle = Double.POSITIVE_INFINITY;
 		boolean intersect = true;
 		for (NodeAlignment alignment: NodeAlignment.values()) {
 			if (node.getParent() != null && alignment.isOpposite(mAlignment)) {
@@ -81,16 +81,17 @@ public class DrawMindMap extends DrawInlineText {
 			double y0 = rectangle.getTop() + alignment.dy0 * rectangle.getHeight();
 			double x1 = child.rectangle.getLeft() + alignment.dx1 * child.rectangle.getWidth();
 			double y1 = child.rectangle.getTop() + alignment.dy1 * child.rectangle.getHeight();
-			double newDist = (x0 - x1) * (x0 - x1) + (y0 - y1) * (y0 - y1);
+			double newAngle = ((x0 - x1) * (alignment.dx0 - 0.5)
+					+ (y0 - y1) * (alignment.dy0 - 0.5)) / Math.hypot(x0 - x1, y0 - y1);
 			boolean newIntersect = isIntersecting(alignment, x0, x1, y0, y1);
-			if ((!newIntersect && intersect) || ((newIntersect == intersect) && newDist < distSq)) {
+			if ((!newIntersect && intersect) || ((newIntersect == intersect) && newAngle < angle)) {
 				child.mx0 = x0;
 				child.mx1 = x1;
 				child.my0 = y0;
 				child.my1 = y1;
 				child.mAlignment = alignment;
 				intersect = newIntersect;
-				distSq = newDist;
+				angle = newAngle;
 			}
 		}
 	}
