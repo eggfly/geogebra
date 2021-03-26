@@ -16,11 +16,11 @@ public class MoveGeosTest extends BaseUnitTest {
 		GPoint2D loc = new GPoint2D();
 		GeoMindMapNode root = new GeoMindMapNode(getConstruction(), loc);
 		GeoMindMapNode child1 = new GeoMindMapNode(getConstruction(), loc);
-		child1.setParent(root, GeoMindMapNode.NodeAlignment.LEFT);
+		child1.setParent(root);
 		GeoMindMapNode child2 = new GeoMindMapNode(getConstruction(), loc);
-		child2.setParent(child1, GeoMindMapNode.NodeAlignment.LEFT);
+		child2.setParent(child1);
 		GeoMindMapNode child3 = new GeoMindMapNode(getConstruction(), loc);
-		child3.setParent(child2, GeoMindMapNode.NodeAlignment.LEFT);
+		child3.setParent(child2);
 		GeoConic c1 = new GeoConic(getConstruction());
 		getConstruction().createGroup(new ArrayList<>(Arrays.asList(child1, c1)));
 		GeoConic c2 = new GeoConic(getConstruction());

@@ -3,6 +3,7 @@ package org.geogebra.common.euclidian;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GEllipse2DDouble;
 import org.geogebra.common.awt.GGraphics2D;
+import org.geogebra.common.euclidian.draw.DrawMindMap;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoMindMapNode;
 
@@ -38,13 +39,16 @@ public class MindMapBoundingBox extends MediaBoundingBox {
 	public void draw(GGraphics2D g2) {
 		drawRectangle(g2);
 		drawHandlers(g2);
+		DrawableND drawable = view.getDrawableFor(node);
+		GeoMindMapNode.NodeAlignment alignment = null;
+		if (drawable instanceof DrawMindMap) {
+			alignment = ((DrawMindMap) drawable).getAlignment();
+		}
 		for (int i = 0; i < ADD_HANDLERS.length; i++) {
-			if (node.getAlignment() != null && i == node.getAlignment().ordinal()) {
+			if (alignment != null && i == alignment.ordinal()) {
 				continue;
 			}
-
-			drawPlus(
-					g2,
+			drawPlus(g2,
 					view.getHitHandler() == ADD_HANDLERS[i],
 					corners[4 + i].x + ADD_HANDLERS[i].getDx() * PLUS_DISTANCE,
 					corners[4 + i].y + ADD_HANDLERS[i].getDy() * PLUS_DISTANCE

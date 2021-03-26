@@ -34,10 +34,13 @@ public class GeoMindMapNode extends GeoInline implements TextStyle, HasTextForma
 			this.dx1 = dx1;
 			this.dy1 = dy1;
 		}
+
+		public boolean isOpposite(NodeAlignment alignment) {
+			return alignment != null && Math.abs(ordinal() - alignment.ordinal()) == 2;
+		}
 	}
 
 	private GeoMindMapNode parent;
-	private NodeAlignment nodeAlignment;
 
 	private final ArrayList<GeoMindMapNode> children = new ArrayList<>();
 
@@ -152,7 +155,7 @@ public class GeoMindMapNode extends GeoInline implements TextStyle, HasTextForma
 	protected void getXMLtags(StringBuilder sb) {
 		super.getXMLtags(sb);
 		XMLBuilder.appendBorder(sb, this);
-		XMLBuilder.appendParent(sb, parent, nodeAlignment);
+		XMLBuilder.appendParent(sb, parent);
 		if (getLineThickness() != 0) {
 			getLineStyleXML(sb);
 		}
@@ -162,9 +165,8 @@ public class GeoMindMapNode extends GeoInline implements TextStyle, HasTextForma
 		return parent;
 	}
 
-	public void setParent(GeoMindMapNode parent, NodeAlignment nodeAlignment) {
+	public void setParent(GeoMindMapNode parent) {
 		this.parent = parent;
-		this.nodeAlignment = nodeAlignment;
 		parent.addChild(this);
 	}
 
@@ -176,7 +178,4 @@ public class GeoMindMapNode extends GeoInline implements TextStyle, HasTextForma
 		children.add(child);
 	}
 
-	public NodeAlignment getAlignment() {
-		return nodeAlignment;
-	}
 }

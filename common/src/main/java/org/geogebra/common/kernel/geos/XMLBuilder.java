@@ -445,13 +445,10 @@ public class XMLBuilder {
 		}
 	}
 
-	public static void appendParent(StringBuilder sb, GeoMindMapNode node,
-			GeoMindMapNode.NodeAlignment alignment) {
+	public static void appendParent(StringBuilder sb, GeoMindMapNode node) {
 		if (node != null) {
 			sb.append("\t<parent val=\"");
 			sb.append(node.getLabel(StringTemplate.xmlTemplate));
-			sb.append("\" align=\"");
-			sb.append(alignment.toString());
 			sb.append("\"/>\n");
 		}
 	}
