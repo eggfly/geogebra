@@ -12168,6 +12168,10 @@ public abstract class EuclidianController implements SpecialPointsListener {
 	 * @param info {@link CoordSystemInfo}
 	 */
 	public void notifyCoordSystemMoved(CoordSystemInfo info) {
+		if (!info.isInteractive()) {
+			notifyCoordSystemMoveStop();
+			return;
+		}
 		for (CoordSystemAnimationListener listener: zoomerAnimationListeners) {
 			listener.onMove(info);
 		}
