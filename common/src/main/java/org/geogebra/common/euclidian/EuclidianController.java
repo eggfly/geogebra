@@ -7593,7 +7593,7 @@ public abstract class EuclidianController implements SpecialPointsListener {
 					dontClearSelection = true;
 					hideDynamicStylebar();
 					for (GeoElement geo : selection.getSelectedGeos()) {
-						if (!geo.isGeoPoint()) {
+						if (!geo.isGeoPoint() && !isLockedForMultiuser(geo)) {
 							((PointRotateable) geo).rotate(angle,
 									rotationCenter);
 							geo.updateRepaint();
@@ -8223,9 +8223,7 @@ public abstract class EuclidianController implements SpecialPointsListener {
 			}
 		}
 
-		if ((geo != null) && ((!geo.isLocked() || geo.hasGroup()) || isMoveButtonExpected(geo)
-				|| isMoveTextFieldExpected(geo)) && !(geo instanceof GeoInline && ((GeoInline) geo)
-				.isLockedForMultiuser())) {
+		if (isMovePossible(geo)) {
 			moveModeSelectionHandled = true;
 		} else if (!wasBoundingBoxHit) {
 			// no geo clicked at
@@ -8237,6 +8235,11 @@ public abstract class EuclidianController implements SpecialPointsListener {
 		handleMovedElement(geo, selGeos.size() > 1, e.getType());
 
 		view.repaintView();
+	}
+
+	private boolean isMovePossible(GeoElement geo) {
+		return (geo != null) && ((!geo.isLocked() || geo.hasGroup()) || isMoveButtonExpected(geo)
+				|| isMoveTextFieldExpected(geo)) && !isLockedForMultiuser(geo);
 	}
 
 	/**
@@ -9855,8 +9858,7 @@ public abstract class EuclidianController implements SpecialPointsListener {
 		DrawInline drawInline = (DrawInline) drawable;
 		if (topHit == lastMowHit
 				&& view.getHitHandler() == EuclidianBoundingBoxHandler.UNDEFINED) {
-			if (drawable.getGeoElement() instanceof GeoInline && ((GeoInline) drawable
-					.getGeoElement()).isLockedForMultiuser()) {
+			if (isLockedForMultiuser(drawable.getGeoElement())) {
 				return;
 			}
 			drawInline.toForeground(mouseLoc.x, mouseLoc.y);
@@ -12368,5 +12370,9 @@ public abstract class EuclidianController implements SpecialPointsListener {
 		clearSelections(false, false);
 		selection.addSelectedGeoWithGroup(geoElement);
 		updateBoundingBoxFromSelection(false);
+	}
+
+	private boolean isLockedForMultiuser(GeoElement geo) {
+		return geo instanceof GeoInline && ((GeoInline) geo).isLockedForMultiuser();
 	}
 }
