@@ -31,6 +31,7 @@ import org.geogebra.common.io.layout.DockPanelData;
 import org.geogebra.common.io.layout.Perspective;
 import org.geogebra.common.io.layout.PerspectiveDecoder;
 import org.geogebra.common.javax.swing.SwingConstants;
+import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.arithmetic.SymbolicMode;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoFormula;
@@ -47,6 +48,7 @@ import org.geogebra.common.main.SaveController;
 import org.geogebra.common.main.ShareController;
 import org.geogebra.common.main.settings.config.AppConfigDefault;
 import org.geogebra.common.main.settings.updater.SettingsUpdaterBuilder;
+import org.geogebra.common.main.undo.StringAppState;
 import org.geogebra.common.move.events.BaseEvent;
 import org.geogebra.common.move.events.StayLoggedOutEvent;
 import org.geogebra.common.move.ggtapi.TubeAvailabilityCheckEvent;
@@ -130,6 +132,7 @@ import org.geogebra.web.html5.gui.util.CancelEventTimer;
 import org.geogebra.web.html5.gui.util.ClickStartHandler;
 import org.geogebra.web.html5.gui.util.MathKeyboardListener;
 import org.geogebra.web.html5.javax.swing.GImageIconW;
+import org.geogebra.web.html5.kernel.UndoManagerW;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.html5.main.LocalizationW;
 import org.geogebra.web.html5.main.ScriptManagerW;
@@ -214,8 +217,10 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	private MaskWidgetList maskWidgets;
 	private SuiteHeaderAppPicker suiteAppPickerButton;
 	private HashMap<String, Material> constructionJson = new HashMap<>();
+	private HashMap<String, StringAppState> subAppState = new HashMap<>();
 	private InputBoxType inputBoxType;
 	private String functionVars = "";
+	private Construction construction;
 
 	/**
 	 * @param geoGebraElement GeoGebra element
@@ -2199,6 +2204,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	 */
 	public void switchToSubapp(String subAppCode) {
 		storeCurrentMaterial();
+		storeCurrentUndoHistory();
 		activity = new SuiteActivity(subAppCode);
 		activity.start(this);
 
@@ -2210,6 +2216,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 		getTmpPerspectives().clear();
 		updatePerspective(perspective);
 		restoreMaterial(subAppCode);
+		restoreCurrentUndoHistory(subAppCode);
 	}
 
 	private void storeCurrentMaterial() {
@@ -2237,6 +2244,25 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 		}
 		resetUrl();
 		setTitle();
+	}
+
+	private void storeCurrentUndoHistory() {
+		construction = kernel.getConstruction();
+		String undoXML = construction.getCurrentUndoXML(true)
+				.toString();
+		Log.debug("[UNDO] store: " + undoXML);
+		subAppState.put(getConfig().getSubAppCode(), new StringAppState(undoXML));
+	}
+
+	private void restoreCurrentUndoHistory(String subAppCode) {
+		StringAppState state = subAppState.get(subAppCode);
+		Log.debug("[UNDO] restore: " + state.getXml());
+		try {
+			UndoManagerW undoManager = (UndoManagerW) kernel.getConstruction().getUndoManager();
+			undoManager.loadAppState(state);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void updateSymbolicFlag(String subAppCode, Perspective perspective) {
