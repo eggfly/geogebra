@@ -2255,9 +2255,13 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	}
 
 	private void restoreCurrentUndoHistory(String subAppCode) {
-		StringAppState state = subAppState.get(subAppCode);
-		Log.debug("[UNDO] restore: " + state.getXml());
+		if (!subAppState.containsKey(subAppCode)) {
+			return;
+		}
+
 		try {
+			StringAppState state = subAppState.get(subAppCode);
+			Log.debug("[UNDO] restore: " + state.getXml());
 			UndoManagerW undoManager = (UndoManagerW) kernel.getConstruction().getUndoManager();
 			undoManager.loadAppState(state);
 		} catch (Exception e) {
