@@ -1,6 +1,7 @@
 package org.geogebra.web.full.main;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -48,7 +49,8 @@ import org.geogebra.common.main.SaveController;
 import org.geogebra.common.main.ShareController;
 import org.geogebra.common.main.settings.config.AppConfigDefault;
 import org.geogebra.common.main.settings.updater.SettingsUpdaterBuilder;
-import org.geogebra.common.main.undo.StringAppState;
+import org.geogebra.common.main.undo.UndoCommand;
+import org.geogebra.common.main.undo.UndoManager;
 import org.geogebra.common.move.events.BaseEvent;
 import org.geogebra.common.move.events.StayLoggedOutEvent;
 import org.geogebra.common.move.ggtapi.TubeAvailabilityCheckEvent;
@@ -132,7 +134,6 @@ import org.geogebra.web.html5.gui.util.CancelEventTimer;
 import org.geogebra.web.html5.gui.util.ClickStartHandler;
 import org.geogebra.web.html5.gui.util.MathKeyboardListener;
 import org.geogebra.web.html5.javax.swing.GImageIconW;
-import org.geogebra.web.html5.kernel.UndoManagerW;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.html5.main.LocalizationW;
 import org.geogebra.web.html5.main.ScriptManagerW;
@@ -217,7 +218,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	private MaskWidgetList maskWidgets;
 	private SuiteHeaderAppPicker suiteAppPickerButton;
 	private HashMap<String, Material> constructionJson = new HashMap<>();
-	private HashMap<String, StringAppState> subAppState = new HashMap<>();
+	private HashMap<String, Collection<UndoCommand>> undoHistory = new HashMap<>();
 	private InputBoxType inputBoxType;
 	private String functionVars = "";
 	private Construction construction;
@@ -2247,26 +2248,13 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	}
 
 	private void storeCurrentUndoHistory() {
-		construction = kernel.getConstruction();
-		String undoXML = construction.getCurrentUndoXML(true)
-				.toString();
-		Log.debug("[UNDO] store: " + undoXML);
-		subAppState.put(getConfig().getSubAppCode(), new StringAppState(undoXML));
+		UndoManager undoManager = kernel.getConstruction().getUndoManager();
+		undoManager.undoHistoryTo(undoHistory);
 	}
 
 	private void restoreCurrentUndoHistory(String subAppCode) {
-		if (!subAppState.containsKey(subAppCode)) {
-			return;
-		}
-
-		try {
-			StringAppState state = subAppState.get(subAppCode);
-			Log.debug("[UNDO] restore: " + state.getXml());
-			UndoManagerW undoManager = (UndoManagerW) kernel.getConstruction().getUndoManager();
-			undoManager.loadAppState(state);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		UndoManager undoManager = kernel.getConstruction().getUndoManager();
+		undoManager.undoHistoryFrom(undoHistory);
 	}
 
 	private void updateSymbolicFlag(String subAppCode, Perspective perspective) {

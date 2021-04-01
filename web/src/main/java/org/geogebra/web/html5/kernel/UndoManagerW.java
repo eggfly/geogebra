@@ -1,5 +1,8 @@
 package org.geogebra.web.html5.kernel;
 
+import java.util.Collection;
+import java.util.HashMap;
+
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.OpenFileListener;
@@ -75,36 +78,6 @@ public class UndoManagerW extends DefaultUndoManager {
 		}
 	}
 
-	public void loadAppState(final AppState state) {
-		if (state == null) {
-			Log.warn("No undo info.");
-			return;
-		}
-		try {
-			// load from file
-			String tempXML = state.getXml();
-			if (tempXML == null) {
-				Log.error("Undo not supported.");
-			}
-			// make sure objects are displayed in the correct View
-			app.setActiveView(App.VIEW_EUCLIDIAN);
-
-			// load undo info
-			app.getScriptManager().disableListeners();
-			processXML(tempXML, false);
-			app.getScriptManager().enableListeners();
-
-			app.getActiveEuclidianView().invalidateDrawableList();
-
-			AppW appW = (AppW) app;
-			appW.updateViewSizes();
-			updateUndoActions();
-		} catch (Throwable t) {
-			Log.error("Undo error:" + t.getMessage());
-			Log.debug(t);
-		}
-	}
-
 	@Override
 	public void runAfterSlideLoaded(String slideID, Runnable run) {
 		OpenFileListener callback = () -> {
@@ -131,5 +104,14 @@ public class UndoManagerW extends DefaultUndoManager {
 	public void replayActions(final String slideID, final UndoCommand until) {
 		super.replayActions(slideID, until);
 		updatePreviewCard(slideID);
+	}
+
+	@Override
+	public void undoHistoryFrom(HashMap<String, Collection<UndoCommand>> undoHistory) {
+		app.getScriptManager().disableListeners();
+		super.undoHistoryFrom(undoHistory);
+		app.getScriptManager().enableListeners();
+		app.getActiveEuclidianView().invalidateDrawableList();
+
 	}
 }

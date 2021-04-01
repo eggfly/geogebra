@@ -1,6 +1,8 @@
 package org.geogebra.common.main.undo;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -553,5 +555,19 @@ public abstract class UndoManager {
 		app.getCompanion().recallViewCreators();
 		app.getSelectionManager().recallSelectedGeosNames(app.getKernel());
 		app.getActiveEuclidianView().restoreDynamicStylebar();
+	}
+
+	public void undoHistoryTo(HashMap<String, Collection<UndoCommand>> undoHistory) {
+		undoHistory.put(app.getConfig().getSubAppCode(), undoInfoList);
+	}
+
+	public void undoHistoryFrom(HashMap<String, Collection<UndoCommand>> undoHistory) {
+		String subAppCode = app.getConfig().getSubAppCode();
+		if (!undoHistory.containsKey(subAppCode)) {
+			return;
+		}
+		for (UndoCommand command: undoHistory.get(subAppCode)) {
+			storeUndoableAction(command.getAction(), command.getArgs());
+		}
 	}
 }
