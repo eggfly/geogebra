@@ -17,7 +17,8 @@ public class CmdTableToChart extends CommandProcessor {
 		if (command.getArgumentNumber() == 1) {
 			GeoElement[] args = resArgs(command);
 			AlgoTableToChart algoTableToChart =
-					new AlgoTableToChart(cons, (GeoInlineTable) args[0]);
+					new AlgoTableToChart(cons, (GeoInlineTable) args[0],
+							AlgoTableToChart.ChartType.PieChart, 0);
 			GeoElement chart = algoTableToChart.getOutput(0);
 			chart.setLabel(command.getLabel());
 			algoTableToChart.compute();
