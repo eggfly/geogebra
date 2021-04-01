@@ -8104,8 +8104,7 @@ public abstract class EuclidianController implements SpecialPointsListener {
 				}
 				setBoundingBoxCursor();
 				setResizedShape(d);
-			} else if (isMultiSelection() && !containsElementLockedForMultiuser()
-					&& wasBoundingBoxHit) {
+			} else if (isMultiSelection() && wasBoundingBoxHit) {
 				isMultiResize = true;
 			}
 		}
@@ -8243,15 +8242,7 @@ public abstract class EuclidianController implements SpecialPointsListener {
 
 	private boolean isMovePossible(GeoElement geo) {
 		return (geo != null) && ((!geo.isLocked() || geo.hasGroup()) || isMoveButtonExpected(geo)
-				|| isMoveTextFieldExpected(geo)) && !isLockedForMultiuser(geo)
-				&& !hasMultiselectionWithMultiuserLockedGeo(geo);
-	}
-
-	private boolean hasMultiselectionWithMultiuserLockedGeo(GeoElement geo) {
-		if (selection.getSelectedGeos().contains(geo)) {
-			return containsElementLockedForMultiuser();
-		}
-		return false;
+				|| isMoveTextFieldExpected(geo)) && !isLockedForMultiuser(geo);
 	}
 
 	/**
@@ -12306,7 +12297,7 @@ public abstract class EuclidianController implements SpecialPointsListener {
 			if (!(geo instanceof PointRotateable)) {
 				hasRotationHandler = false;
 			}
-			if (geo.isLocked()) {
+			if (geo.isLocked() || isLockedForMultiuser(geo)) {
 				fixed = true;
 			}
 		}
@@ -12386,15 +12377,5 @@ public abstract class EuclidianController implements SpecialPointsListener {
 
 	private boolean isLockedForMultiuser(GeoElement geo) {
 		return geo instanceof GeoInline && ((GeoInline) geo).isLockedForMultiuser();
-	}
-
-	private boolean containsElementLockedForMultiuser() {
-		ArrayList<GeoElement> geos = selection.getSelectedGeos();
-		for (GeoElement geo : geos) {
-			if (isLockedForMultiuser(geo)) {
-				return true;
-			}
-		}
-		return false;
 	}
 }
