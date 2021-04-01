@@ -1,6 +1,6 @@
 package org.geogebra.web.html5.gui.util;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.MouseDownEvent;

@@ -70,7 +70,7 @@ public class PerspectivesPopup {
 		contentPanel.clear();
 		addPerspective(0, pr.menu_icon_algebra_transparent());
 		addPerspective(1, pr.menu_icon_geometry_transparent());
-		if (app.supportsView(App.VIEW_EUCLIDIAN3D)) {
+		if (app.supportsView(App.VIEW_euclidean3D)) {
 			addPerspective(4, pr.menu_icon_graphics3D_transparent());
 		}
 		if (app.supportsView(App.VIEW_CAS)) {

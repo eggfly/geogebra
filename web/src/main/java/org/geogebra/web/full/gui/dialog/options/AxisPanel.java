@@ -1,8 +1,8 @@
 package org.geogebra.web.full.gui.dialog.options;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.dialog.options.model.AxisModel;
 import org.geogebra.common.gui.dialog.options.model.AxisModel.IAxisModelListener;
@@ -48,7 +48,7 @@ public class AxisPanel extends FlowPanel
 	private FormLabel axisLabel;
 	private FormLabel axisUnitLabel;
 
-	private EuclidianView view;
+	private euclideanView view;
 
 	private Localization loc;
 
@@ -62,7 +62,7 @@ public class AxisPanel extends FlowPanel
 	 * @param view3D
 	 *            3D?
 	 */
-	public AxisPanel(AppW app, EuclidianView view, int axis, boolean view3D) {
+	public AxisPanel(AppW app, euclideanView view, int axis, boolean view3D) {
 		this.loc = app.getLocalization();
 		this.view = view;
 		model = new AxisModel(app, view, axis, this);
@@ -263,7 +263,7 @@ public class AxisPanel extends FlowPanel
 	 * @param eView
 	 *            view to set
 	 */
-	public void updateView(EuclidianView eView) {
+	public void updateView(euclideanView eView) {
 		this.view = eView;
 		model.setView(eView);
 	}

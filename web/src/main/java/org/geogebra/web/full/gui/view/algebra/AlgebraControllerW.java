@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.view.algebra;
 
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.gui.view.algebra.AlgebraController;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.web.full.gui.GuiManagerW;

@@ -42,7 +42,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListDataListener;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.Macro;
 import org.geogebra.common.kernel.NameDescriptionComparator;
@@ -242,7 +242,7 @@ public class ToolCreationDialogD extends Dialog
 		// set macro mode
 		if (newTool.isShowInToolBar()) {
 			int mode = kernel.getMacroID(newTool)
-					+ EuclidianConstants.MACRO_MODE_ID_OFFSET;
+					+ euclideanConstants.MACRO_MODE_ID_OFFSET;
 			((GuiManagerD) appToSave.getGuiManager())
 					.addToToolbarDefinition(mode);
 			appToSave.updateToolBar();

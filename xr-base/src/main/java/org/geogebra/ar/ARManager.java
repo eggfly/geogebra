@@ -4,14 +4,14 @@ package org.geogebra.ar;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.xr.XRManagerInterface;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.xr.XRManagerInterface;
 import org.geogebra.common.kernel.matrix.CoordMatrix;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 import org.geogebra.xr.MouseTouchGestureQueueHelper;
 
 abstract public class ARManager<TouchEventType> implements XRManagerInterface<TouchEventType> {
@@ -62,7 +62,7 @@ abstract public class ARManager<TouchEventType> implements XRManagerInterface<To
 
     protected ARGestureManager arGestureManager;
 
-    protected EuclidianView3D view3D;
+    protected euclideanView3D view3D;
 
     private ARMotionEvent lastARMotionEvent;
 
@@ -165,7 +165,7 @@ abstract public class ARManager<TouchEventType> implements XRManagerInterface<To
     abstract public void setHittingOriginAndDirectionFromScreenCenter();
 
     private void wrapMouseMoved(int x, int y) {
-        view3D.getEuclidianController().wrapMouseMoved(view3D.getEuclidianController()
+        view3D.geteuclideanController().wrapMouseMoved(view3D.geteuclideanController()
                 .createTouchEvent(x,y));
     }
 
@@ -186,7 +186,7 @@ abstract public class ARManager<TouchEventType> implements XRManagerInterface<To
         if (isDrawing()) {
             renderer.getView().setXRDrawing(true);
             renderer.setView();
-            if (((EuclidianController3D) renderer.getView().getEuclidianController())
+            if (((euclideanController3D) renderer.getView().geteuclideanController())
                     .isCurrentModeForCreatingPoint()) {
                 if (arMotionEvent == null) {
                     if (mouseTouchGestureQueueHelper.isCurrentlyUp()) {
@@ -230,7 +230,7 @@ abstract public class ARManager<TouchEventType> implements XRManagerInterface<To
                     }
                 }
             }
-            renderer.getView().setEuclidianPanelOnTouchListener();
+            renderer.getView().seteuclideanPanelOnTouchListener();
             setMouseTouchGestureController();
             proceedARMotionEvent(arMotionEvent);
             renderer.drawScene();
@@ -514,7 +514,7 @@ abstract public class ARManager<TouchEventType> implements XRManagerInterface<To
     }
 
     private void updateSettingsScale(float factor) {
-        EuclidianSettings3D settings = view3D.getSettings();
+        euclideanSettings3D settings = view3D.getSettings();
         settings.setXYZscale(settings.getXscale() * factor,
                 settings.getYscale() * factor,
                 settings.getZscale() * factor);
@@ -525,7 +525,7 @@ abstract public class ARManager<TouchEventType> implements XRManagerInterface<To
     }
 
     public void resetScaleFromXR() {
-        EuclidianSettings3D s = view3D.getSettings();
+        euclideanSettings3D s = view3D.getSettings();
         s.setXYZscaleValues(s.getXscale() / arScaleFactor,
                 s.getYscale() / arScaleFactor,
                 s.getZscale() / arScaleFactor);

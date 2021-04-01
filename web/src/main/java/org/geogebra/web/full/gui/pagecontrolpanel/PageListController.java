@@ -3,7 +3,7 @@ package org.geogebra.web.full.gui.pagecontrolpanel;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
-import org.geogebra.common.euclidian.EmbedManager;
+import org.geogebra.common.euclidean.EmbedManager;
 import org.geogebra.common.main.App.ExportType;
 import org.geogebra.common.main.undo.AppState;
 import org.geogebra.common.main.undo.UndoCommand;
@@ -25,7 +25,7 @@ import org.geogebra.web.full.gui.pagecontrolpanel.DragController.Cards;
 import org.geogebra.web.full.main.AppWFull;
 import org.geogebra.web.html5.Browser;
 import org.geogebra.web.html5.awt.GGraphics2DW;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
 import org.geogebra.web.html5.gui.util.BrowserStorage;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.html5.main.GgbFile;
@@ -169,7 +169,7 @@ public class PageListController implements PageListControllerInterface,
 		// export scale
 		double scale = 1;
 
-		EuclidianViewW ev = app.getEuclidianView1();
+		euclideanViewW ev = app.geteuclideanView1();
 
 		// assume height/width same for all slides
 		int width = (int) Math.floor(ev.getExportWidth() * scale);
@@ -196,7 +196,7 @@ public class PageListController implements PageListControllerInterface,
 			try {
 				loadSlide(i);
 
-				ev = app.getEuclidianView1();
+				ev = app.geteuclideanView1();
 
 				if (i > 0) {
 					PDFEncoderW.addPagePDF(ctx);

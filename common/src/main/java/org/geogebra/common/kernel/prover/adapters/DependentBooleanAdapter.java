@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.geogebra.common.cas.GeoGebraCAS;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.Path;
@@ -103,11 +103,11 @@ public class DependentBooleanAdapter extends ProverAdapter {
 		if (root.getLeft().isGeoElement()
 				&& (!(root.getLeft() instanceof GeoNumeric)
 						|| ((GeoElement) root.getLeft()).getParentAlgorithm()
-								.getRelatedModeID() == EuclidianConstants.MODE_AREA)
+								.getRelatedModeID() == euclideanConstants.MODE_AREA)
 				&& root.getRight().isGeoElement()
 				&& (!(root.getRight() instanceof GeoNumeric)
 						|| ((GeoElement) root.getRight()).getParentAlgorithm()
-								.getRelatedModeID() == EuclidianConstants.MODE_AREA)) {
+								.getRelatedModeID() == euclideanConstants.MODE_AREA)) {
 
 			GeoElement left = (GeoElement) root.getLeft();
 			GeoElement right = (GeoElement) root.getRight();
@@ -128,10 +128,10 @@ public class DependentBooleanAdapter extends ProverAdapter {
 			if (root.getOperation().equals(Operation.EQUAL_BOOLEAN)) {
 				if (root.getLeft() instanceof GeoNumeric
 						&& ((GeoElement) root.getLeft()).getParentAlgorithm()
-								.getRelatedModeID() == EuclidianConstants.MODE_AREA
+								.getRelatedModeID() == euclideanConstants.MODE_AREA
 						&& root.getRight() instanceof GeoNumeric
 						&& ((GeoElement) root.getLeft()).getParentAlgorithm()
-								.getRelatedModeID() == EuclidianConstants.MODE_AREA) {
+								.getRelatedModeID() == euclideanConstants.MODE_AREA) {
 					AlgoAreEqual algo = new AlgoAreEqual(cons, left, right);
 					PPolynomial[][] ret = algo.getBotanaPolynomials();
 					cons.removeFromConstructionList(algo);

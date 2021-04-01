@@ -1,4 +1,4 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GDimension;

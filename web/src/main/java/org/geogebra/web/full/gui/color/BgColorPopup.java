@@ -2,8 +2,8 @@ package org.geogebra.web.full.gui.color;
 
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianStyleBarSelection;
-import org.geogebra.common.euclidian.EuclidianStyleBarStatic;
+import org.geogebra.common.euclidean.euclideanStyleBarSelection;
+import org.geogebra.common.euclidean.euclideanStyleBarStatic;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.Localization;
@@ -20,7 +20,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class BgColorPopup extends ColorPopupMenuButton implements SetLabels {
 	private FormLabel noColLbl;
 	private Localization localization;
-	private final EuclidianStyleBarSelection selection;
+	private final euclideanStyleBarSelection selection;
 
 	/**
 	 * @param app          {@link AppW}
@@ -29,7 +29,7 @@ public class BgColorPopup extends ColorPopupMenuButton implements SetLabels {
 	 * @param selection selected geos
 	 */
 	public BgColorPopup(AppW app, int colorSetType, boolean hasSlider,
-			EuclidianStyleBarSelection selection) {
+			euclideanStyleBarSelection selection) {
 		super(app, colorSetType, hasSlider);
 		localization = app.getLocalization();
 		this.selection = selection;
@@ -56,7 +56,7 @@ public class BgColorPopup extends ColorPopupMenuButton implements SetLabels {
 		noColBtn.add(noColLbl);
 		noColBtn.addDomHandler(event -> {
 			List<GeoElement> geos = selection.getGeos();
-			boolean needUndo = EuclidianStyleBarStatic.applyBgColor(geos, null, 1);
+			boolean needUndo = euclideanStyleBarStatic.applyBgColor(geos, null, 1);
 			if (needUndo) {
 				app.storeUndoInfo();
 			}
@@ -76,9 +76,9 @@ public class BgColorPopup extends ColorPopupMenuButton implements SetLabels {
 
 	/**
 	 * selected geos
-	 * @return euclidian selection
+	 * @return euclidean selection
 	 */
-	public EuclidianStyleBarSelection getSelection() {
+	public euclideanStyleBarSelection getSelection() {
 		return selection;
 	}
 }

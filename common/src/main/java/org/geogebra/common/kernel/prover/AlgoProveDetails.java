@@ -265,7 +265,7 @@ public class AlgoProveDetails extends AlgoElement implements UsesCAS {
 
 						ndgConditionText.setTextString(s.toString());
 						ndgConditionText.setLabelVisible(false);
-						ndgConditionText.setEuclidianVisible(false);
+						ndgConditionText.seteuclideanVisible(false);
 						sortedSet.add(ndgConditionText);
 					}
 					// For alphabetically ordering, we need a sorted set here:
@@ -281,7 +281,7 @@ public class AlgoProveDetails extends AlgoElement implements UsesCAS {
 					String cond = Unicode.ELLIPSIS + "";
 					ndgConditionText.setTextString(cond);
 					ndgConditionText.setLabelVisible(false);
-					ndgConditionText.setEuclidianVisible(false);
+					ndgConditionText.seteuclideanVisible(false);
 					sortedSet.add(ndgConditionText);
 					ndgConditionsList.add(ndgConditionText);
 				}
@@ -296,7 +296,7 @@ public class AlgoProveDetails extends AlgoElement implements UsesCAS {
 					String c = "c";
 					classification.setTextString(c);
 					classification.setLabelVisible(false);
-					classification.setEuclidianVisible(false);
+					classification.seteuclideanVisible(false);
 					list.add(classification);
 				}
 			}

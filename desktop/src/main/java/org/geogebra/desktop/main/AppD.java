@@ -116,11 +116,11 @@ import org.geogebra.common.GeoGebraConstants.Platform;
 import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianCursor;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanCursor;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.export.pstricks.GeoGebraExport;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.factories.CASFactory;
@@ -183,12 +183,12 @@ import org.geogebra.desktop.GeoGebra;
 import org.geogebra.desktop.awt.GBufferedImageD;
 import org.geogebra.desktop.awt.GDimensionD;
 import org.geogebra.desktop.awt.GFontD;
-import org.geogebra.desktop.euclidian.DrawEquationD;
-import org.geogebra.desktop.euclidian.EuclidianControllerD;
-import org.geogebra.desktop.euclidian.EuclidianViewD;
-import org.geogebra.desktop.euclidian.event.MouseEventD;
-import org.geogebra.desktop.euclidian.event.MouseEventND;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.desktop.euclidean.DrawEquationD;
+import org.geogebra.desktop.euclidean.euclideanControllerD;
+import org.geogebra.desktop.euclidean.euclideanViewD;
+import org.geogebra.desktop.euclidean.event.MouseEventD;
+import org.geogebra.desktop.euclidean.event.MouseEventND;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.export.GeoGebraTubeExportD;
 import org.geogebra.desktop.export.PrintPreviewD;
 import org.geogebra.desktop.export.pstricks.GeoGebraToAsymptoteD;
@@ -496,8 +496,8 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 		// init settings
 		initSettings();
 
-		// init euclidian view
-		initEuclidianViews();
+		// init euclidean view
+		initeuclideanViews();
 
 		// load file on startup and set fonts
 		// set flag to avoid multiple calls of setLabels() and
@@ -821,15 +821,15 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 	}
 
 	@Override
-	public EuclidianController newEuclidianController(Kernel kernel1) {
-		return new EuclidianControllerD(kernel1);
+	public euclideanController neweuclideanController(Kernel kernel1) {
+		return new euclideanControllerD(kernel1);
 	}
 
 	@Override
-	protected EuclidianView newEuclidianView(boolean[] showAxesFlags,
+	protected euclideanView neweuclideanView(boolean[] showAxesFlags,
 			boolean showGridFlags) {
-		return new EuclidianViewD(getEuclidianController(), showAxesFlags,
-				showGridFlags, getSettings().getEuclidian(1));
+		return new euclideanViewD(geteuclideanController(), showAxesFlags,
+				showGridFlags, getSettings().geteuclidean(1));
 	}
 
 	/**
@@ -842,7 +842,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 	}
 
 	/**
-	 * @return True if the whole GUI is available, false if just the euclidian
+	 * @return True if the whole GUI is available, false if just the euclidean
 	 *         view is displayed.
 	 */
 	@Override
@@ -913,17 +913,17 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 			boolean showAxesParam = args.getBooleanValue("showAxes", true);
 			this.showAxes[0] = showAxesParam;
 			this.showAxes[1] = showAxesParam;
-			this.getSettings().getEuclidian(1).setShowAxes(showAxesParam,
+			this.getSettings().geteuclidean(1).setShowAxes(showAxesParam,
 					showAxesParam);
-			this.getSettings().getEuclidian(2).setShowAxes(showAxesParam,
+			this.getSettings().geteuclidean(2).setShowAxes(showAxesParam,
 					showAxesParam);
 		}
 
 		if (args.containsArg("showGrid")) {
 			boolean showGridParam = args.getBooleanValue("showGrid", false);
 			this.showGrid = showGridParam;
-			this.getSettings().getEuclidian(1).showGrid(showGridParam);
-			this.getSettings().getEuclidian(2).showGrid(showGridParam);
+			this.getSettings().geteuclidean(1).showGrid(showGridParam);
+			this.getSettings().geteuclidean(2).showGrid(showGridParam);
 		}
 
 		if (args.containsArg("giacJSONtests")) {
@@ -1300,7 +1300,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 			return true;
 		}
 
-		return getGuiManager().getLayout().isOnlyVisible(App.VIEW_EUCLIDIAN);
+		return getGuiManager().getLayout().isOnlyVisible(App.VIEW_euclidean);
 	}
 
 	final static int MEMORY_CRITICAL = 100 * 1024;
@@ -1523,7 +1523,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 						// check if full GUI is necessary
 						if (success && !isMacroFile && !isUsingFullGui()) {
 							if (showConsProtNavigation()
-									|| !isJustEuclidianVisible()) {
+									|| !isJusteuclideanVisible()) {
 								useFullGui = true;
 							}
 						}
@@ -1536,7 +1536,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 
 						if (success && !isMacroFile && !isUsingFullGui()) {
 							if (showConsProtNavigation()
-									|| !isJustEuclidianVisible()) {
+									|| !isJusteuclideanVisible()) {
 								useFullGui = true;
 							}
 						}
@@ -1776,12 +1776,12 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 	}
 
 	/**
-	 * Check if just the euclidian view is visible in the document just loaded.
+	 * Check if just the euclidean view is visible in the document just loaded.
 	 * 
 	 * @return
 	 * @throws OperationNotSupportedException
 	 */
-	private boolean isJustEuclidianVisible()
+	private boolean isJusteuclideanVisible()
 			throws OperationNotSupportedException {
 		Perspective docPerspective = getTmpPerspective(null);
 
@@ -1789,29 +1789,29 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 			throw new OperationNotSupportedException();
 		}
 
-		boolean justEuclidianVisible = false;
+		boolean justeuclideanVisible = false;
 
 		for (DockPanelData panel : docPerspective.getDockPanelData()) {
-			if ((panel.getViewId() == App.VIEW_EUCLIDIAN)
+			if ((panel.getViewId() == App.VIEW_euclidean)
 					&& panel.isVisible()) {
-				justEuclidianVisible = true;
+				justeuclideanVisible = true;
 			} else if (panel.isVisible()) {
-				justEuclidianVisible = false;
+				justeuclideanVisible = false;
 				break;
 			}
 		}
 
-		return justEuclidianVisible;
+		return justeuclideanVisible;
 	}
 
 	@Override
-	public EuclidianView createEuclidianView() {
-		return this.euclidianView;
+	public euclideanView createeuclideanView() {
+		return this.euclideanView;
 	}
 
 	@Override
-	public EuclidianViewD getEuclidianView1() {
-		return (EuclidianViewD) euclidianView;
+	public euclideanViewD geteuclideanView1() {
+		return (euclideanViewD) euclideanView;
 	}
 
 	@Override
@@ -1823,37 +1823,37 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 	}
 
 	@Override
-	public EuclidianViewD getEuclidianView2(int idx) {
-		return (EuclidianViewD) getGuiManager().getEuclidianView2(idx);
+	public euclideanViewD geteuclideanView2(int idx) {
+		return (euclideanViewD) getGuiManager().geteuclideanView2(idx);
 	}
 
 	@Override
-	public boolean hasEuclidianView2EitherShowingOrNot(int idx) {
+	public boolean haseuclideanView2EitherShowingOrNot(int idx) {
 		return (guiManager != null)
-				&& getGuiManager().hasEuclidianView2EitherShowingOrNot(1);
+				&& getGuiManager().haseuclideanView2EitherShowingOrNot(1);
 	}
 
 	@Override
-	public boolean isShowingEuclidianView2(int idx) {
-		return (guiManager != null) && getGuiManager().hasEuclidianView2(idx)
-				&& getGuiManager().getEuclidianView2(idx).isShowing();
+	public boolean isShowingeuclideanView2(int idx) {
+		return (guiManager != null) && getGuiManager().haseuclideanView2(idx)
+				&& getGuiManager().geteuclideanView2(idx).isShowing();
 	}
 
 	@Override
-	public EuclidianView getActiveEuclidianView() {
+	public euclideanView getActiveeuclideanView() {
 		if (getGuiManager() == null) {
-			return getEuclidianView1();
+			return geteuclideanView1();
 		}
-		return getGuiManager().getActiveEuclidianView();
+		return getGuiManager().getActiveeuclideanView();
 	}
 
 	public void setShowAxesSelected(JCheckBoxMenuItem cb) {
-		cb.setSelected(getGuiManager().getActiveEuclidianView().getShowXaxis()
-				&& (getGuiManager().getActiveEuclidianView().getShowYaxis()));
+		cb.setSelected(getGuiManager().getActiveeuclideanView().getShowXaxis()
+				&& (getGuiManager().getActiveeuclideanView().getShowYaxis()));
 	}
 
 	public void setShowGridSelected(JCheckBoxMenuItem cb) {
-		cb.setSelected(getGuiManager().getActiveEuclidianView().getShowGrid());
+		cb.setSelected(getGuiManager().getActiveeuclideanView().getShowGrid());
 	}
 
 	// **************************************************************************
@@ -2091,8 +2091,8 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 		Color border = Color.lightGray;
 
 		// macro
-		if (mode >= EuclidianConstants.MACRO_MODE_ID_OFFSET) {
-			int macroID = mode - EuclidianConstants.MACRO_MODE_ID_OFFSET;
+		if (mode >= euclideanConstants.MACRO_MODE_ID_OFFSET) {
+			int macroID = mode - euclideanConstants.MACRO_MODE_ID_OFFSET;
 			try {
 				Macro macro = kernel.getMacro(macroID);
 				String iconName = macro.getIconFileName();
@@ -2113,7 +2113,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 			}
 		} else {
 			// standard case
-			String modeText = EuclidianConstants.getModeTextSimple(mode);
+			String modeText = euclideanConstants.getModeTextSimple(mode);
 			// bugfix for Turkish locale added Locale.US
 			icon = getToolBarImage(modeText, border);
 		}
@@ -2173,10 +2173,10 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 	@Override
 	public void copyGraphicsViewToClipboard() {
 
-		copyGraphicsViewToClipboard(getActiveEuclidianView());
+		copyGraphicsViewToClipboard(getActiveeuclideanView());
 	}
 
-	public void copyGraphicsViewToClipboard(final EuclidianView copyView) {
+	public void copyGraphicsViewToClipboard(final euclideanView copyView) {
 
 		getSelectionManager().clearSelectedGeos(true, false);
 		updateSelection(false);
@@ -2220,12 +2220,12 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 
 	}
 
-	static void simpleExportToClipboard(EuclidianView ev) {
+	static void simpleExportToClipboard(euclideanView ev) {
 		double scale = getMaxScaleForClipBoard(ev);
 
 		// copy drawing pad to the system clipboard
 		Image img = GBufferedImageD.getAwtBufferedImage(
-				((EuclidianViewD) ev).getExportImage(scale));
+				((euclideanViewD) ev).getExportImage(scale));
 		copyImageToClipboard(img);
 	}
 
@@ -2276,7 +2276,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 			throws OutOfMemoryError {
 
 		return new MyImageD(GBufferedImageD.getAwtBufferedImage(
-				getActiveEuclidianViewExportImage(maxX, maxY)));
+				getActiveeuclideanViewExportImage(maxX, maxY)));
 	}
 
 	// **************************************************************************
@@ -2378,9 +2378,9 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 		// load resource files
 		setLocale(locale);
 
-		// update right angle style in euclidian view (different for German)
-		// if (euclidianView != null)
-		// euclidianView.updateRightAngleStyle(locale);
+		// update right angle style in euclidean view (different for German)
+		// if (euclideanView != null)
+		// euclideanView.updateRightAngleStyle(locale);
 
 		// make sure digits are updated in all numbers
 		getKernel().updateConstructionLanguage();
@@ -2495,10 +2495,10 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 		fontManager.setFontSize(getGUIFontSize());
 
 		// update sizes
-		euclidianView.updateSize();
+		euclideanView.updateSize();
 
-		if (hasEuclidianView2(1)) {
-			getEuclidianView2(1).updateSize();
+		if (haseuclideanView2(1)) {
+			geteuclideanView2(1).updateSize();
 		}
 
 		// update layout
@@ -2509,7 +2509,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 		// reset mode and focus
 		setMoveMode();
 		if (mainComp.isShowing()) {
-			euclidianView.requestFocusInWindow();
+			euclideanView.requestFocusInWindow();
 		}
 	}
 
@@ -2667,7 +2667,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 
 		// Minimal applet case: return only the center panel with the EV
 		applicationPanel.add(
-				((EuclidianViewInterfaceD) euclidianView).getJPanel(),
+				((euclideanViewInterfaceD) euclideanView).getJPanel(),
 				BorderLayout.CENTER);
 		centerPanel.add(applicationPanel, BorderLayout.CENTER);
 		return applicationPanel;
@@ -2743,7 +2743,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 		if (isUsingFullGui()) {
 			centerPanel.add(getRootComponent(this), BorderLayout.CENTER);
 		} else {
-			centerPanel.add(getEuclidianView1().getJPanel(),
+			centerPanel.add(geteuclideanView1().getJPanel(),
 					BorderLayout.CENTER);
 		}
 
@@ -2790,12 +2790,12 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 			return;
 		}
 
-		if (getEuclidianView1().hasStyleBar()) {
-			getEuclidianView1().getStyleBar().updateStyleBar();
+		if (geteuclideanView1().hasStyleBar()) {
+			geteuclideanView1().getStyleBar().updateStyleBar();
 		}
 
-		if (hasEuclidianView2(1) && getEuclidianView2(1).hasStyleBar()) {
-			getEuclidianView2(1).getStyleBar().updateStyleBar();
+		if (haseuclideanView2(1) && geteuclideanView2(1).hasStyleBar()) {
+			geteuclideanView2(1).getStyleBar().updateStyleBar();
 		}
 	}
 
@@ -3042,8 +3042,8 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 		Cursor waitCursor = Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 		mainComp.setCursor(waitCursor);
 
-		if (euclidianView != null) {
-			((EuclidianViewInterfaceD) getActiveEuclidianView())
+		if (euclideanView != null) {
+			((euclideanViewInterfaceD) getActiveeuclideanView())
 					.setCursor(waitCursor);
 		}
 
@@ -3057,14 +3057,14 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 		mainComp.setCursor(Cursor.getDefaultCursor());
 
 		if (guiManager != null) {
-			for (int i = 0; i < guiManager.getEuclidianViewCount(); i++) {
-				if (guiManager.hasEuclidianView2EitherShowingOrNot(i)) {
-					guiManager.getEuclidianView2(i)
-									.setCursor(EuclidianCursor.DEFAULT);
+			for (int i = 0; i < guiManager.geteuclideanViewCount(); i++) {
+				if (guiManager.haseuclideanView2EitherShowingOrNot(i)) {
+					guiManager.geteuclideanView2(i)
+									.setCursor(euclideanCursor.DEFAULT);
 				}
 			}
-		} else if (euclidianView != null) {
-			getEuclidianView1().setCursor(Cursor.getDefaultCursor());
+		} else if (euclideanView != null) {
+			geteuclideanView1().setCursor(Cursor.getDefaultCursor());
 		}
 
 	}
@@ -3400,7 +3400,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 		try {
 
 			// make sure objects are displayed in the correct View
-			setActiveView(App.VIEW_EUCLIDIAN);
+			setActiveView(App.VIEW_euclidean);
 
 			getXMLio().processXMLString(xml, true, false);
 
@@ -4255,7 +4255,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 	@Override
 	public boolean showView(int view) {
 		if (getGuiManager() == null) {
-			return view == App.VIEW_EUCLIDIAN;
+			return view == App.VIEW_euclidean;
 		}
 		return getGuiManager().showView(view);
 	}
@@ -4483,12 +4483,12 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 	 * @param c
 	 *            component calling for repaint
 	 */
-	public void repaintEuclidianViews(Component c) {
+	public void repainteuclideanViews(Component c) {
 
 		ComponentEvent event = new ComponentEvent(c,
 				ComponentEvent.COMPONENT_RESIZED);
-		getEuclidianView1().dispatchEvent(event);
-		getEuclidianView2(1).dispatchEvent(event);
+		geteuclideanView1().dispatchEvent(event);
+		geteuclideanView2(1).dispatchEvent(event);
 
 	}
 
@@ -4679,7 +4679,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 	// ConstructionProtocol
 	// **************************************************************************
 
-	public void exportAnimatedGIF(EuclidianView ev, FrameCollector gifEncoder,
+	public void exportAnimatedGIF(euclideanView ev, FrameCollector gifEncoder,
 			AnimationExportSlider num, int n, double initVal, double min,
 			double max, double stepSize) {
 		double val = initVal;
@@ -4693,7 +4693,7 @@ public class AppD extends App implements KeyEventDispatcher, AppDI {
 			num.updateRepaint();
 
 			Image img = GBufferedImageD.getAwtBufferedImage(
-					((EuclidianViewD) ev).getExportImage(1));
+					((euclideanViewD) ev).getExportImage(1));
 			if (img == null) {
 				Log.error("image null");
 			} else {

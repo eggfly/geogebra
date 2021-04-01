@@ -419,7 +419,7 @@ public class GeoCurveCartesian extends GeoCurveCartesianND
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return isDefined();
 	}
 

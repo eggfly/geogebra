@@ -6,7 +6,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import org.geogebra.common.cas.CASparser;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.CASFactory;
 import org.geogebra.common.gui.view.algebra.AlgebraItem;
 import org.geogebra.common.kernel.CASGenericInterface;
@@ -75,7 +75,7 @@ public class CommandsUsingCASTest extends AlgebraTest {
 		CommandsTest.resetSyntaxCounter();
 		app.getKernel().clearConstruction(true);
 		app.getKernel().setPrintDecimals(2);
-		app.setActiveView(App.VIEW_EUCLIDIAN);
+		app.setActiveView(App.VIEW_euclidean);
 		app.getKernel().setPrintDecimals(2);
 	}
 
@@ -317,8 +317,8 @@ public class CommandsUsingCASTest extends AlgebraTest {
 	public void cmdSolve() {
 		runSolveTests();
 		app.getKernel().clearConstruction(true);
-		app.setActiveView(App.VIEW_EUCLIDIAN3D);
-		app.getEuclidianView3D();
+		app.setActiveView(App.VIEW_euclidean3D);
+		app.geteuclideanView3D();
 		t("eq: x^2=6", unicode("x^2 + 0z^2 = 6"));
 		t("Solve[ eq ]", "{x = (-sqrt(6)), x = sqrt(6)}");
 		t("Solve({84.36=x*y^3,126.56=x*y^4})",
@@ -347,7 +347,7 @@ public class CommandsUsingCASTest extends AlgebraTest {
 		tRound("Corner(picT,2)", "(10, 0)");
 		tRound("Corner(picT,3)", "(10, 10)");
 		tRound("Corner(picT,4)", "(0, 10)");
-		EuclidianView view = app.getActiveEuclidianView();
+		euclideanView view = app.getActiveeuclideanView();
 		view.setCoordSystem(view.getXZero(), view.getYZero(), view.getXscale(),
 				view.getYscale() * 2);
 		tRound("Corner(picT,1)", "(0, 0)");
@@ -401,7 +401,7 @@ public class CommandsUsingCASTest extends AlgebraTest {
 	public void cmdPlotSolve() {
 		t("PlotSolve(x^2-2)", "{(-1.4142135623730951, 0), (1.4142135623730951, 0)}");
 		GeoElement element = get("l1");
-		assertThat(element.isEuclidianVisible(), is(true));
+		assertThat(element.iseuclideanVisible(), is(true));
 	}
 
 	@Test

@@ -2,7 +2,7 @@ package org.geogebra.desktop.gui.layout.panels;
 
 import javax.swing.JComponent;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.main.App;
 import org.geogebra.desktop.gui.GuiManagerD;
 import org.geogebra.desktop.gui.layout.DockPanelD;
@@ -48,13 +48,13 @@ public class DataAnalysisViewDockPanel extends DockPanelD {
 	private static String getDefaultToolbar() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(EuclidianConstants.MODE_MOVE);
+		sb.append(euclideanConstants.MODE_MOVE);
 		sb.append(" || ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_ONEVARSTATS);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_ONEVARSTATS);
 		sb.append(" || ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_TWOVARSTATS);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_TWOVARSTATS);
 		sb.append(" || ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_MULTIVARSTATS);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_MULTIVARSTATS);
 
 		return sb.toString();
 	}

@@ -1,11 +1,11 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.draw.DrawButton;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.draw.DrawButton;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.geos.GeoButton;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoElement.HitType;
@@ -19,10 +19,10 @@ public class HitDetector {
 	private ArrayList<GeoElement> hitFilling;
 	private ArrayList<GeoElement> hitLabel;
 	@Weak
-	private final EuclidianView view;
+	private final euclideanView view;
 	private Hits hits;
 
-	public HitDetector(EuclidianView view) {
+	public HitDetector(euclideanView view) {
 		this.view = view;
 	}
 
@@ -43,7 +43,7 @@ public class HitDetector {
 		boolean hitMask = false;
 
 		for (Drawable d : view.getAllDrawableList()) {
-			if (d.isEuclidianVisible()) {
+			if (d.iseuclideanVisible()) {
 				if (d.hit(p.x, p.y, hitThreshold)) {
 					GeoElement geo = d.getGeoElement();
 					hitMask = hitMask || geo.isMask();
@@ -172,7 +172,7 @@ public class HitDetector {
 
 		for (Drawable d : view.getAllDrawableList()) {
 			GeoElement geo = d.getGeoElement();
-			if (geo.isEuclidianVisible() && geo.isSelectionAllowed(view)
+			if (geo.iseuclideanVisible() && geo.isSelectionAllowed(view)
 					&& filter.check(geo) && !hits.contains(geo)
 					&& d.intersectsRectangle(rect)) {
 				d.setPartialHitClip(rect);
@@ -203,7 +203,7 @@ public class HitDetector {
 
 		for (Drawable d : view.getAllDrawableList()) {
 			GeoElement geo = d.getGeoElement();
-			if (geo.isEuclidianVisible() && d.isInside(rect)) {
+			if (geo.iseuclideanVisible() && d.isInside(rect)) {
 				hits.add(geo);
 			}
 		}
@@ -230,7 +230,7 @@ public class HitDetector {
 	 */
 	public void setHits(GPoint p, PointerEventType type) {
 		if (view.getBoundingBoxHandlerHit(p, type) != null) {
-			setOnlyHit(view.getEuclidianController().getResizedShape());
+			setOnlyHit(view.geteuclideanController().getResizedShape());
 		} else {
 			int capturingThreshold = view.getApplication().getCapturingThreshold(type);
 			setHits(p, capturingThreshold);

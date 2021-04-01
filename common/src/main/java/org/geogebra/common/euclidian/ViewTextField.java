@@ -1,8 +1,8 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
 import org.geogebra.common.gui.inputfield.AutoCompleteTextField;
 import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.util.debug.Log;

@@ -1,6 +1,6 @@
 package org.geogebra.common.geogebra3D.kernel3D.geos;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoJoinPoints3D;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.MyPoint;
@@ -145,13 +145,13 @@ public class GeoSegment3D extends GeoCoordSys1D implements GeoSegmentND {
 	}
 
 	/**
-	 * TODO say if this is to be shown in (3D) euclidian view
+	 * TODO say if this is to be shown in (3D) euclidean view
 	 * 
-	 * @return if this is to be shown in (3D) euclidian view
+	 * @return if this is to be shown in (3D) euclidean view
 	 * 
 	 */
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 
 		return isDefined();
 	}
@@ -602,7 +602,7 @@ public class GeoSegment3D extends GeoCoordSys1D implements GeoSegmentND {
 	}
 
 	@Override
-	public boolean isWhollyIn2DView(EuclidianView ev) {
+	public boolean isWhollyIn2DView(euclideanView ev) {
 		return DoubleUtil.isZero(getStartPoint().getInhomCoords().getZ())
 				&& DoubleUtil.isZero(getEndPoint().getInhomCoords().getZ());
 	}

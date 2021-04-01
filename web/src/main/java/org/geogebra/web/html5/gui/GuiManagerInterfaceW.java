@@ -3,9 +3,9 @@ package org.geogebra.web.html5.gui;
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.SymbolicEditor;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.SymbolicEditor;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.layout.DockPanel;
 import org.geogebra.common.gui.view.algebra.AlgebraView;
@@ -13,7 +13,7 @@ import org.geogebra.common.gui.view.spreadsheet.SpreadsheetViewInterface;
 import org.geogebra.common.gui.view.table.InvalidValuesException;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.GuiManagerInterface;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
 import org.geogebra.web.html5.gui.util.MathKeyboardListener;
 import org.geogebra.web.html5.gui.view.browser.BrowseViewI;
 import org.geogebra.web.html5.javax.swing.GOptionPaneW;
@@ -78,12 +78,12 @@ public interface GuiManagerInterfaceW extends GuiManagerInterface {
 
 	void showAlgebraInput(boolean show);
 
-	EuclidianStyleBar newEuclidianStylebar(EuclidianView ev, int viewID);
+	euclideanStyleBar neweuclideanStylebar(euclideanView ev, int viewID);
 
-	EuclidianStyleBar newDynamicStylebar(EuclidianView ev);
+	euclideanStyleBar newDynamicStylebar(euclideanView ev);
 
-	void addStylebar(EuclidianView ev,
-			EuclidianStyleBar dynamicStylebar);
+	void addStylebar(euclideanView ev,
+			euclideanStyleBar dynamicStylebar);
 
 	void recalculateEnvironments();
 
@@ -116,7 +116,7 @@ public interface GuiManagerInterfaceW extends GuiManagerInterface {
 	MathKeyboardListener getKeyboardListener(DockPanel panel);
 
 	/**
-	 * There are some drawables which not drawn on the canvas of euclidian view,
+	 * There are some drawables which not drawn on the canvas of euclidean view,
 	 * but added for an AbsolutePanel which hides the canvas. (e.g. inputbox)
 	 * When we remove all drawable, we must to clear this AbsolutePanel too.
 	 */
@@ -175,7 +175,7 @@ public interface GuiManagerInterfaceW extends GuiManagerInterface {
 	 *
 	 * @return the editor
 	 */
-	SymbolicEditor createSymbolicEditor(EuclidianViewW view);
+	SymbolicEditor createSymbolicEditor(euclideanViewW view);
 
 	/**
 	 *

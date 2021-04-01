@@ -181,13 +181,13 @@ public class GeoAngle extends GeoNumeric implements AngleProperties {
 		// http://benpryor.com/blog/2008/01/02/dont-call-subclass-methods-from-a-superclass-constructor/
 		setConstructionDefaults(); // init visual settings
 
-		// setEuclidianVisible(false);
+		// seteuclideanVisible(false);
 	}
 
 	@Override
-	public void setAllVisualPropertiesExceptEuclidianVisible(GeoElement geo,
+	public void setAllVisualPropertiesExcepteuclideanVisible(GeoElement geo,
 			boolean keepAdvanced, boolean setAuxiliaryProperty) {
-		super.setAllVisualPropertiesExceptEuclidianVisible(geo, keepAdvanced, setAuxiliaryProperty);
+		super.setAllVisualPropertiesExcepteuclideanVisible(geo, keepAdvanced, setAuxiliaryProperty);
 
 		if (geo.isGeoAngle()) {
 			setAngleStyle(((GeoAngle) geo).getAngleStyle());
@@ -469,7 +469,7 @@ public class GeoAngle extends GeoNumeric implements AngleProperties {
 
 	@Override
 	final public String toValueString(StringTemplate tpl) {
-		if (isEuclidianVisible()) {
+		if (iseuclideanVisible()) {
 			return kernel.formatAngle(value, 1 / getAnimationStep(), tpl,
 					angleStyle == AngleStyle.UNBOUNDED, keepDegrees).toString();
 		}
@@ -527,7 +527,7 @@ public class GeoAngle extends GeoNumeric implements AngleProperties {
 		// if angle is drawable then we need to save visual options too
 		if (isDrawable() || isSliderable()) {
 			// save slider info before show to have min and max set
-			// before setEuclidianVisible(true) is called
+			// before seteuclideanVisible(true) is called
 			getXMLsliderTag(sb);
 
 			getXMLvisualTags(sb);

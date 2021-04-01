@@ -1,13 +1,13 @@
-package org.geogebra.euclidian;
+package org.geogebra.euclidean;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.commands.AlgebraTest;
 import org.geogebra.common.kernel.geos.GeoPoint;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.desktop.export.GraphicExportDialog;
 import org.geogebra.desktop.headless.AppDNoGui;
 import org.junit.Assert;
@@ -38,12 +38,12 @@ public class GridTest {
 	 */
 	@Test
 	public void thereShouldBeGridInSVGExport() {
-		EuclidianSettings settings = app.getActiveEuclidianView().getSettings();
-		app.getActiveEuclidianView().centerView(
+		euclideanSettings settings = app.getActiveeuclideanView().getSettings();
+		app.getActiveeuclideanView().centerView(
 				new GeoPoint(app.getKernel().getConstruction(), 0, 0, 1));
 		settings.setGridColor(GColor.BLUE);
 		settings.showGrid(true);
-		app.getActiveEuclidianView().updateBackground();
+		app.getActiveeuclideanView().updateBackground();
 		hasBlueLines(143, 30);
 		settings.setPositiveAxis(0, true);
 		hasBlueLines(102, 21);
@@ -53,7 +53,7 @@ public class GridTest {
 		hasBlueLines(113, 24);
 		settings.setPositiveAxis(1, false);
 
-		settings.setGridType(EuclidianView.GRID_CARTESIAN);
+		settings.setGridType(euclideanView.GRID_CARTESIAN);
 		hasBlueLines(30, 30);
 		settings.setPositiveAxis(0, true);
 		hasBlueLines(21, 21);
@@ -66,7 +66,7 @@ public class GridTest {
 	private static void hasBlueLines(int expectMinor, int expectMajor) {
 		ByteArrayOutputStream ss = new ByteArrayOutputStream();
 		String svg = "";
-		GraphicExportDialog.exportSVG(app, app.getActiveEuclidianView(), ss,
+		GraphicExportDialog.exportSVG(app, app.getActiveeuclideanView(), ss,
 				false, 800, 600, 8, 6, 1, false);
 		try {
 			svg = new String(ss.toByteArray(), "utf-8");

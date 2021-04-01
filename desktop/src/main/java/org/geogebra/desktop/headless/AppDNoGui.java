@@ -6,17 +6,17 @@ import java.util.Locale;
 
 import org.geogebra.common.awt.GBufferedImage;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.DrawEquation;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean.DrawEquation;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.factories.UtilFactory;
 import org.geogebra.common.io.MyXMLio;
 import org.geogebra.common.jre.gui.MyImageJre;
 import org.geogebra.common.jre.headless.App3DCompanionHeadless;
 import org.geogebra.common.jre.headless.AppCommon;
 import org.geogebra.common.jre.headless.AppDI;
-import org.geogebra.common.jre.headless.EuclidianController3DNoGui;
-import org.geogebra.common.jre.headless.EuclidianView3DNoGui;
+import org.geogebra.common.jre.headless.euclideanController3DNoGui;
+import org.geogebra.common.jre.headless.euclideanView3DNoGui;
 import org.geogebra.common.jre.kernel.commands.CommandDispatcher3DJre;
 import org.geogebra.common.jre.plugin.GgbAPIJre;
 import org.geogebra.common.kernel.Construction;
@@ -35,7 +35,7 @@ import org.geogebra.common.util.ImageManager;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GBufferedImageD;
-import org.geogebra.desktop.euclidian.DrawEquationD;
+import org.geogebra.desktop.euclidean.DrawEquationD;
 import org.geogebra.desktop.factories.AwtFactoryD;
 import org.geogebra.desktop.factories.LoggingCASFactoryD;
 import org.geogebra.desktop.factories.UtilFactoryD;
@@ -62,7 +62,7 @@ public class AppDNoGui extends AppCommon implements AppDI {
 	private GgbAPIJre ggbapi;
 	private SoundManager soundManager;
 	private boolean is3Dactive;
-	private EuclidianView3DNoGui ev3d;
+	private euclideanView3DNoGui ev3d;
 
 	/**
 	 * @param loc
@@ -233,19 +233,19 @@ public class AppDNoGui extends AppCommon implements AppDI {
 
 	@Override
 	public void setActiveView(int evID) {
-		this.is3Dactive = evID == App.VIEW_EUCLIDIAN3D;
+		this.is3Dactive = evID == App.VIEW_euclidean3D;
 	}
 
 	@Override
-	public EuclidianView getActiveEuclidianView() {
-		return is3Dactive && ev3d != null ? ev3d : euclidianView;
+	public euclideanView getActiveeuclideanView() {
+		return is3Dactive && ev3d != null ? ev3d : euclideanView;
 	}
 
 	@Override
-	public EuclidianView3DInterface getEuclidianView3D() {
-		return ev3d = new EuclidianView3DNoGui(
-				new EuclidianController3DNoGui(this, kernel),
-				this.getSettings().getEuclidian(3));
+	public euclideanView3DInterface geteuclideanView3D() {
+		return ev3d = new euclideanView3DNoGui(
+				new euclideanController3DNoGui(this, kernel),
+				this.getSettings().geteuclidean(3));
 	}
 
 	@Override
@@ -322,21 +322,21 @@ public class AppDNoGui extends AppCommon implements AppDI {
 
 		@Override
 		protected void exportPNGClipboard(boolean transparent, int DPI,
-				double exportScale, EuclidianView ev) {
+				double exportScale, euclideanView ev) {
 			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		protected void exportPNGClipboardDPIisNaN(boolean transparent,
-				double exportScale, EuclidianView ev) {
+				double exportScale, euclideanView ev) {
 			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		protected String base64encodePNG(boolean transparent,
-				double DPI, double exportScale, EuclidianView ev) {
+				double DPI, double exportScale, euclideanView ev) {
 			ev.updateBackground();
 			GBufferedImage img = ev
 					.getExportImage(exportScale, transparent,

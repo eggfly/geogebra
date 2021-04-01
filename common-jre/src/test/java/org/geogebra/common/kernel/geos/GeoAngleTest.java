@@ -17,12 +17,12 @@ public class GeoAngleTest extends BaseUnitTest {
 	}
 
 	@Test
-	public void testSetAllVisualPropertiesExceptEuclidianVisible() {
+	public void testSetAllVisualPropertiesExcepteuclideanVisible() {
 		GeoAngle hidden = addAvInput("90°");
 		hidden.setDrawable(false, false);
 		GeoAngle visible = addAvInput("90°");
 		visible.setDrawable(true, false);
-		visible.setAllVisualPropertiesExceptEuclidianVisible(
+		visible.setAllVisualPropertiesExcepteuclideanVisible(
 				hidden, false, true);
 		assertThat(visible.isDrawable, is(true));
 	}

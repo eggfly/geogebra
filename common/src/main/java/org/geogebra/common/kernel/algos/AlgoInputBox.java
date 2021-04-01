@@ -14,7 +14,7 @@ package org.geogebra.common.kernel.algos;
 
 import javax.annotation.CheckForNull;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.commands.Commands;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -53,7 +53,7 @@ public class AlgoInputBox extends AlgoElement {
 		compute();
 		inputBox.setLabel(label);
 		inputBox.setLabelVisible(true);
-		inputBox.setEuclidianVisible(true);
+		inputBox.seteuclideanVisible(true);
 		inputBox.update();
 	}
 
@@ -92,7 +92,7 @@ public class AlgoInputBox extends AlgoElement {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_TEXTFIELD_ACTION;
+		return euclideanConstants.MODE_TEXTFIELD_ACTION;
 	}
 
 }

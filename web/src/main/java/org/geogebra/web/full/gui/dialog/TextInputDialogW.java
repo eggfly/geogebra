@@ -1,7 +1,7 @@
 package org.geogebra.web.full.gui.dialog;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.dialog.TextInputDialog;
@@ -140,7 +140,7 @@ public class TextInputDialogW extends ComponentInputDialog implements TextInputD
 
 	protected void resetMode() {
 		if (isTextMode) {
-			app.setMode(EuclidianConstants.MODE_TEXT);
+			app.setMode(euclideanConstants.MODE_TEXT);
 		}
 	}
 
@@ -271,7 +271,7 @@ public class TextInputDialogW extends ComponentInputDialog implements TextInputD
 			return ret -> {
 				if (ret != null && ret[0] instanceof GeoText) {
 					GeoText t = (GeoText) ret[0];
-					t.setEuclidianVisible(true);
+					t.seteuclideanVisible(true);
 					positionText(t);
 
 					app.storeUndoInfo();
@@ -287,8 +287,8 @@ public class TextInputDialogW extends ComponentInputDialog implements TextInputD
 		protected void positionText(GeoText t) {
 			updateTextStyle(t);
 
-			EuclidianViewInterfaceCommon activeView = kernel.getApplication()
-					.getActiveEuclidianView();
+			euclideanViewInterfaceCommon activeView = kernel.getApplication()
+					.getActiveeuclideanView();
 
 			if (startPoint.isLabelSet()) {
 				t.checkVisibleIn3DViewNeeded();
@@ -318,17 +318,17 @@ public class TextInputDialogW extends ComponentInputDialog implements TextInputD
 				// when not a point clicked, show text only in
 				// active
 				// view
-				if (activeView.isEuclidianView3D()) {
+				if (activeView.iseuclideanView3D()) {
 					// we need to add it to 3D view since by default
 					// it may not
 					kernel.getApplication().addToViews3D(t);
-					app.removeFromEuclidianView(t);
+					app.removeFromeuclideanView(t);
 					t.setVisibleInViewForPlane(false);
 					kernel.getApplication()
 							.removeFromViewsForPlane(t);
 				} else if (activeView.isDefault2D()) {
 					if (kernel.getApplication()
-							.isEuclidianView3Dinited()) {
+							.iseuclideanView3Dinited()) {
 						kernel.getApplication()
 								.removeFromViews3D(t);
 					} else {
@@ -338,9 +338,9 @@ public class TextInputDialogW extends ComponentInputDialog implements TextInputD
 					kernel.getApplication()
 							.removeFromViewsForPlane(t);
 				} else { // view for plane
-					app.removeFromEuclidianView(t);
+					app.removeFromeuclideanView(t);
 					if (kernel.getApplication()
-							.isEuclidianView3Dinited()) {
+							.iseuclideanView3Dinited()) {
 						kernel.getApplication()
 								.removeFromViews3D(t);
 					} else {
@@ -352,7 +352,7 @@ public class TextInputDialogW extends ComponentInputDialog implements TextInputD
 			}
 			// make sure (only) the output of the text tool is
 			// selected
-			activeView.getEuclidianController()
+			activeView.geteuclideanController()
 					.memorizeJustCreatedGeos(t.asArray());
 			t.updateRepaint();
 		}
@@ -385,7 +385,7 @@ public class TextInputDialogW extends ComponentInputDialog implements TextInputD
 		if (editor == null) {
 			createTextGUI(true);
 		}
-		isTextMode = app.getMode() == EuclidianConstants.MODE_TEXT;
+		isTextMode = app.getMode() == euclideanConstants.MODE_TEXT;
 		this.startPoint = startPoint2;
 		this.rw = rw1;
 		setGeoText(text);

@@ -1,13 +1,13 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.TreeMap;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawPoint3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawPoint3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D;
 import org.geogebra.common.kernel.discrete.PolygonTriangulation.TriangleFan;
 import org.geogebra.common.kernel.matrix.Coords;
 
@@ -95,7 +95,7 @@ public class ManagerShaders extends Manager {
 	 * @param view3D
 	 *            3D view
 	 */
-	public ManagerShaders(Renderer renderer, EuclidianView3D view3D) {
+	public ManagerShaders(Renderer renderer, euclideanView3D view3D) {
 		super(renderer, view3D);
 
 		indicesDone = false;

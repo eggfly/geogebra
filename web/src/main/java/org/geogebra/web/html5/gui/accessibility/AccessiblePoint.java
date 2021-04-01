@@ -55,8 +55,8 @@ public class AccessiblePoint implements AccessibleWidget, HasSliders {
 		String[] labels = { "x coordinate of ", "y coordinate of ", "z coordinate of " };
 		AriaHelper.setLabel(range, labels[index] + point.getNameDescription());
 		App app = kernel.getApplication();
-		range.setMinimum(Math.floor(app.getActiveEuclidianView().getXmin()));
-		range.setMaximum(Math.ceil(app.getActiveEuclidianView().getXmax()));
+		range.setMinimum(Math.floor(app.getActiveeuclideanView().getXmin()));
+		range.setMaximum(Math.ceil(app.getActiveeuclideanView().getXmax()));
 		range.setStep(point.getAnimationStep());
 		double coord = point.getInhomCoords().get(index + 1);
 		double[] coords = point.getInhomCoords().get();

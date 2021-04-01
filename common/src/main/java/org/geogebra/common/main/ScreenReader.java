@@ -1,6 +1,6 @@
 package org.geogebra.common.main;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.arithmetic.Command;
 import org.geogebra.common.kernel.arithmetic.ExpressionValue;
@@ -39,7 +39,7 @@ public class ScreenReader {
 			GeoElement geo0 = app.getSelectionManager().getSelectedGeos().get(0);
 			// do not steal focus from input box
 			if (geo0.isGeoInputBox()
-					|| app.getMode() == EuclidianConstants.MODE_PEN) {
+					|| app.getMode() == euclideanConstants.MODE_PEN) {
 				return;
 			}
 			readText(geo0);
@@ -60,10 +60,10 @@ public class ScreenReader {
 		// focus to EV
 		if (text != null && (app.getGuiManager() == null || app.getGuiManager()
 				.getLayout().getDockManager().getFocusedViewId() == app
-						.getActiveEuclidianView().getViewID())) {
+						.getActiveeuclideanView().getViewID())) {
 
 			// dot on end to help screen readers
-			app.getActiveEuclidianView().getScreenReader()
+			app.getActiveeuclideanView().getScreenReader()
 					.readText(text.trim());
 		}
 	}

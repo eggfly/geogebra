@@ -1,8 +1,8 @@
 package org.geogebra.web.full.gui.view.data;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.gui.view.data.DataAnalysisModel;
 import org.geogebra.common.gui.view.data.DataAnalysisModel.Regression;
 import org.geogebra.common.kernel.StringTemplate;

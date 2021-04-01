@@ -1,4 +1,4 @@
-package org.geogebra.desktop.euclidian.event;
+package org.geogebra.desktop.euclidean.event;
 
 /**
  * interface to merge MouseEventD and Mouse3DEvent

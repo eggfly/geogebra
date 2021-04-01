@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Path;
 import org.geogebra.common.kernel.PathMover;
@@ -110,7 +110,7 @@ public class AlgoLocusList extends AlgoElement {
 
 		updateScreenBorders();
 		setInputOutput(); // for AlgoElement
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 		compute();
 
 		// we may have created a starting point for the path now
@@ -190,7 +190,7 @@ public class AlgoLocusList extends AlgoElement {
 					}
 					cons.removeFromAlgorithmList(actal);
 					// cons.removeFromConstructionList(actal);
-					// cons.unregisterEuclidianViewCE(actal);
+					// cons.unregistereuclideanViewCE(actal);
 					cons.removeFromConstructionList(pathp);
 					P.setPath(path);
 					if (i < arrLocusSize) {
@@ -218,7 +218,7 @@ public class AlgoLocusList extends AlgoElement {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_LOCUS;
+		return euclideanConstants.MODE_LOCUS;
 	}
 
 	/**
@@ -353,7 +353,7 @@ public class AlgoLocusList extends AlgoElement {
 	}
 
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 		updateScreenBorders();
 		update();
 		return false;

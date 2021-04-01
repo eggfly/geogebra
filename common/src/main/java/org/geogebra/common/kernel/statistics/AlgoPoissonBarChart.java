@@ -39,7 +39,7 @@ public class AlgoPoissonBarChart extends AlgoBarChart {
 			GeoNumberValue mean) {
 		super(cons, label, mean, null, null, null,
 				AlgoBarChart.TYPE_BARCHART_POISSON);
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class AlgoPoissonBarChart extends AlgoBarChart {
 			GeoNumberValue mean, GeoBoolean isCumulative) {
 		super(cons, label, mean, null, null, isCumulative,
 				AlgoBarChart.TYPE_BARCHART_POISSON);
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 	}
 
 	private AlgoPoissonBarChart(GeoNumberValue mean, GeoBoolean isCumulative,

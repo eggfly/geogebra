@@ -47,11 +47,11 @@ import javax.swing.text.JTextComponent;
 import org.geogebra.common.GeoGebraConstants;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.export.pstricks.GeoGebraToPstricks;
 import org.geogebra.common.gui.GuiManager;
 import org.geogebra.common.gui.Layout;
@@ -84,10 +84,10 @@ import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.CommandLineArguments;
 import org.geogebra.desktop.awt.GColorD;
 import org.geogebra.desktop.cas.view.CASViewD;
-import org.geogebra.desktop.euclidian.EuclidianControllerD;
-import org.geogebra.desktop.euclidian.EuclidianViewD;
-import org.geogebra.desktop.euclidian.event.MouseEventND;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.desktop.euclidean.euclideanControllerD;
+import org.geogebra.desktop.euclidean.euclideanViewD;
+import org.geogebra.desktop.euclidean.event.MouseEventND;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.export.GraphicExportDialog;
 import org.geogebra.desktop.export.WorksheetExportDialog;
 import org.geogebra.desktop.export.pstricks.GeoGebraToPstricksD;
@@ -107,9 +107,9 @@ import org.geogebra.desktop.gui.layout.panels.AlgebraDockPanel;
 import org.geogebra.desktop.gui.layout.panels.CasDockPanel;
 import org.geogebra.desktop.gui.layout.panels.ConstructionProtocolDockPanel;
 import org.geogebra.desktop.gui.layout.panels.DataAnalysisViewDockPanel;
-import org.geogebra.desktop.gui.layout.panels.Euclidian2DockPanel;
-import org.geogebra.desktop.gui.layout.panels.EuclidianDockPanel;
-import org.geogebra.desktop.gui.layout.panels.EuclidianDockPanelAbstract;
+import org.geogebra.desktop.gui.layout.panels.euclidean2DockPanel;
+import org.geogebra.desktop.gui.layout.panels.euclideanDockPanel;
+import org.geogebra.desktop.gui.layout.panels.euclideanDockPanelAbstract;
 import org.geogebra.desktop.gui.layout.panels.ProbabilityCalculatorDockPanel;
 import org.geogebra.desktop.gui.layout.panels.PropertiesDockPanel;
 import org.geogebra.desktop.gui.layout.panels.SpreadsheetDockPanel;
@@ -161,7 +161,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	private AlgebraViewD algebraView;
 	private CASViewD casView;
 	private SpreadsheetViewD spreadsheetView;
-	private ArrayList<EuclidianViewD> euclidianView2 = new ArrayList<>();
+	private ArrayList<euclideanViewD> euclideanView2 = new ArrayList<>();
 	private ConstructionProtocolViewD constructionProtocolView;
 	private GeoGebraMenuBar menuBar;
 	private String strCustomToolbarDefinition;
@@ -216,7 +216,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	 */
 	@Override
 	public void initialize() {
-		initAlgebraController(); // needed for keyboard input in EuclidianView
+		initAlgebraController(); // needed for keyboard input in euclideanView
 
 		// init layout related stuff
 		layout.initialize(getApp());
@@ -259,8 +259,8 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	 * Register panels for the layout manager.
 	 */
 	protected void initLayoutPanels() {
-		// register euclidian view
-		layout.registerPanel(newEuclidianDockPanel());
+		// register euclidean view
+		layout.registerPanel(neweuclideanDockPanel());
 
 		// register spreadsheet view
 		layout.registerPanel(new SpreadsheetDockPanel(getApp()));
@@ -273,8 +273,8 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 			layout.registerPanel(new CasDockPanel(getApp()));
 		}
 
-		// register EuclidianView2
-		layout.registerPanel(newEuclidian2DockPanel(1));
+		// register euclideanView2
+		layout.registerPanel(neweuclidean2DockPanel(1));
 
 		// register ConstructionProtocol view
 		layout.registerPanel(new ConstructionProtocolDockPanel(getApp()));
@@ -307,14 +307,14 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	}
 
 	/**
-	 * @return new euclidian view
+	 * @return new euclidean view
 	 */
-	protected EuclidianDockPanel newEuclidianDockPanel() {
-		return new EuclidianDockPanel(getApp(), null);
+	protected euclideanDockPanel neweuclideanDockPanel() {
+		return new euclideanDockPanel(getApp(), null);
 	}
 
-	protected Euclidian2DockPanel newEuclidian2DockPanel(int idx) {
-		return new Euclidian2DockPanel(getApp(), null, idx);
+	protected euclidean2DockPanel neweuclidean2DockPanel(int idx) {
+		return new euclidean2DockPanel(getApp(), null, idx);
 	}
 
 	public void clearPreferences() {
@@ -552,67 +552,67 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	// End XML
 
 	@Override
-	public EuclidianViewD getEuclidianView2(int idx) {
-		for (int i = euclidianView2.size(); i <= idx; i++) {
-			euclidianView2.add(null);
+	public euclideanViewD geteuclideanView2(int idx) {
+		for (int i = euclideanView2.size(); i <= idx; i++) {
+			euclideanView2.add(null);
 		}
-		if (euclidianView2.get(idx) == null) {
+		if (euclideanView2.get(idx) == null) {
 			boolean[] showAxis = { true, true };
 			boolean showGrid = false;
-			Log.debug("Creating 2nd Euclidian View");
-			EuclidianViewD ev = newEuclidianView(showAxis, showGrid, 2);
-			// euclidianView2.setEuclidianViewNo(2);
+			Log.debug("Creating 2nd euclidean View");
+			euclideanViewD ev = neweuclideanView(showAxis, showGrid, 2);
+			// euclideanView2.seteuclideanViewNo(2);
 			ev.updateFonts();
-			euclidianView2.set(idx, ev);
+			euclideanView2.set(idx, ev);
 		}
-		return euclidianView2.get(idx);
+		return euclideanView2.get(idx);
 	}
 
-	protected EuclidianViewD newEuclidianView(boolean[] showAxis,
+	protected euclideanViewD neweuclideanView(boolean[] showAxis,
 			boolean showGrid, int id) {
-		return new EuclidianViewD(new EuclidianControllerD(kernel), showAxis,
-				showGrid, id, getApp().getSettings().getEuclidian(id));
+		return new euclideanViewD(new euclideanControllerD(kernel), showAxis,
+				showGrid, id, getApp().getSettings().geteuclidean(id));
 	}
 
 	@Override
-	public boolean hasEuclidianView2(int idx) {
-		if (euclidianView2.size() <= idx || euclidianView2.get(idx) == null) {
+	public boolean haseuclideanView2(int idx) {
+		if (euclideanView2.size() <= idx || euclideanView2.get(idx) == null) {
 			return false;
 		}
-		if (!euclidianView2.get(idx).isShowing()) {
+		if (!euclideanView2.get(idx).isShowing()) {
 			return false;
 		}
 		return true;
 	}
 
 	@Override
-	public boolean hasEuclidianView2EitherShowingOrNot(int idx) {
-		if (euclidianView2.size() <= idx || euclidianView2.get(idx) == null) {
+	public boolean haseuclideanView2EitherShowingOrNot(int idx) {
+		if (euclideanView2.size() <= idx || euclideanView2.get(idx) == null) {
 			return false;
 		}
 		return true;
 	}
 
 	/**
-	 * TODO: Do not just use the default euclidian view if no EV has focus, but
+	 * TODO: Do not just use the default euclidean view if no EV has focus, but
 	 *       determine if maybe just one EV is visible etc.
 	 * 
-	 * @return The euclidian view to which new geo elements should be added by
+	 * @return The euclidean view to which new geo elements should be added by
 	 *         default (if the user uses this mode). This is the focused
-	 *         euclidian view or the first euclidian view at the moment.
+	 *         euclidean view or the first euclidean view at the moment.
 	 */
 	@Override
-	public EuclidianView getActiveEuclidianView() {
+	public euclideanView getActiveeuclideanView() {
 
 		if (layout != null && layout.getDockManager() != null) {
-			EuclidianDockPanelAbstract focusedEuclidianPanel = layout
-					.getDockManager().getFocusedEuclidianPanel();
+			euclideanDockPanelAbstract focusedeuclideanPanel = layout
+					.getDockManager().getFocusedeuclideanPanel();
 
-			if (focusedEuclidianPanel != null) {
-				return focusedEuclidianPanel.getEuclidianView();
+			if (focusedeuclideanPanel != null) {
+				return focusedeuclideanPanel.geteuclideanView();
 			}
 		}
-		return getApp().getEuclidianView1();
+		return getApp().geteuclideanView1();
 	}
 
 	@Override
@@ -793,7 +793,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 			}
 
 			if (viewId == App.VIEW_SPREADSHEET) {
-				(getApp()).getActiveEuclidianView().requestFocus();
+				(getApp()).getActiveeuclideanView().requestFocus();
 			}
 		}
 
@@ -832,7 +832,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	 * Displays the construction protocol dialog
 	 */
 	public void showConstructionProtocol() {
-		getApp().getActiveEuclidianView().resetMode();
+		getApp().getActiveeuclideanView().resetMode();
 		getConstructionProtocolView();
 		constructionProtocolView.setVisible(true);
 	}
@@ -842,7 +842,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	 */
 	/*
 	 * public void hideConstructionProtocol() { if (constructionProtocolView ==
-	 * null) return; app.getEuclidianView().resetMode();
+	 * null) return; app.geteuclideanView().resetMode();
 	 * constructionProtocolView.setVisible(false); }
 	 */
 
@@ -1074,11 +1074,11 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 
 	/**
 	 * Displays the Graphics View menu at the position p in the coordinate space
-	 * of euclidianView
+	 * of euclideanView
 	 */
 	public void showDrawingPadPopup(Component invoker, GPoint p) {
 		// clear highlighting and selections in views
-		getApp().getActiveEuclidianView().resetMode();
+		getApp().getActiveeuclideanView().resetMode();
 
 		// menu for drawing pane context menu
 		drawingPadpopupMenu = new ContextMenuGraphicsWindowD(getApp(), p.x,
@@ -1088,7 +1088,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 
 	/**
 	 * Toggles the Graphics View menu at the position p in the coordinate space
-	 * of euclidianView
+	 * of euclideanView
 	 */
 	public void toggleDrawingPadPopup(Component invoker, Point p) {
 		GPoint loc1 = new GPoint(p.x, p.y);
@@ -1117,7 +1117,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 			showDrawingPadPopup(invoker, p);
 		} else {
 			// clear highlighting and selections in views
-			getApp().getActiveEuclidianView().resetMode();
+			getApp().getActiveeuclideanView().resetMode();
 
 			Point screenPos = (invoker == null) ? new Point(0, 0)
 					: invoker.getLocationOnScreen();
@@ -1134,19 +1134,19 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	 * of the component invoker
 	 */
 	public void showPopupChooseGeo(ArrayList<GeoElement> selectedGeos,
-			ArrayList<GeoElement> geos, EuclidianView view, GPoint p) {
+			ArrayList<GeoElement> geos, euclideanView view, GPoint p) {
 
 		if (geos == null || !getApp().letShowPopupMenu()) {
 			return;
 		}
 
-		Component invoker = ((EuclidianViewInterfaceD) view).getJPanel();
+		Component invoker = ((euclideanViewInterfaceD) view).getJPanel();
 
 		if (!geos.isEmpty() && getApp().getKernel().isAxis(geos.get(0))) {
 			showDrawingPadPopup(invoker, p);
 		} else {
 			// clear highlighting and selections in views
-			getApp().getActiveEuclidianView().resetMode();
+			getApp().getActiveeuclideanView().resetMode();
 
 			Point screenPos = (invoker == null) ? new Point(0, 0)
 					: invoker.getLocationOnScreen();
@@ -1203,10 +1203,10 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 			ret = false;
 		} else {
 
-			EuclidianView ev = getApp().getActiveEuclidianView();
+			euclideanView ev = getApp().getActiveeuclideanView();
 			Construction cons = ev.getApplication().getKernel()
 					.getConstruction();
-			// Point mousePos = ((EuclidianViewInterfaceDesktop) ev)
+			// Point mousePos = ((euclideanViewInterfaceDesktop) ev)
 			// .getMousePosition();
 
 			// create GeoImage object(s) for this fileName
@@ -1242,9 +1242,9 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 			}
 			// make sure only the last image will be selected
 			GeoElement[] geos = { geoImage, loc1, loc2 };
-			getApp().getActiveEuclidianView().getEuclidianController()
+			getApp().getActiveeuclideanView().geteuclideanController()
 					.clearSelections();
-			getApp().getActiveEuclidianView().getEuclidianController()
+			getApp().getActiveeuclideanView().geteuclideanController()
 					.memorizeJustCreatedGeos(geos);
 			ret = true;
 		}
@@ -1723,9 +1723,9 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	@Override
 	public boolean saveCurrentFile() {
 
-		getApp().getEuclidianView1().reset();
-		if (getApp().hasEuclidianView2(1)) {
-			getApp().getEuclidianView2(1).reset();
+		getApp().geteuclideanView1().reset();
+		if (getApp().haseuclideanView2(1)) {
+			getApp().geteuclideanView2(1).reset();
 		}
 		// use null component for iconified frame
 		Component comp = getApp().getMainComponent();
@@ -2516,10 +2516,10 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 			kernel.getAnimatonManager().startAnimation();
 			kernel.setWantAnimationStarted(false);
 		}
-		if (getApp().isEuclidianView3Dinited()) {
-			EuclidianView ev = (EuclidianView) getApp().getEuclidianView3D();
+		if (getApp().iseuclideanView3Dinited()) {
+			euclideanView ev = (euclideanView) getApp().geteuclideanView3D();
 			ev.updateFonts();
-			((EuclidianView3DInterface) ev).updateAllDrawables();
+			((euclideanView3DInterface) ev).updateAllDrawables();
 		}
 		// force JavaScript ggbOnInit(); to be called
 		if (!getApp().isApplet()) {
@@ -2661,9 +2661,9 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 
 	@Override
 	public void addToToolbarDefinition(int mode) {
-		if (this.getActiveEuclidianView().getDimension() > 2) {
+		if (this.getActiveeuclideanView().getDimension() > 2) {
 			DockPanelD panel = this.getLayout().getDockManager()
-					.getPanel(this.getActiveEuclidianView().getViewID());
+					.getPanel(this.getActiveeuclideanView().getViewID());
 			panel.addToToolbar(mode);
 			panel.updateToolbar();
 			return;
@@ -2978,8 +2978,8 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	public void setFocusedPanel(MouseEventND event,
 			boolean updatePropertiesView) {
 		// determine parent panel to change focus
-		EuclidianDockPanelAbstract panel = (EuclidianDockPanelAbstract) SwingUtilities
-				.getAncestorOfClass(EuclidianDockPanelAbstract.class,
+		euclideanDockPanelAbstract panel = (euclideanDockPanelAbstract) SwingUtilities
+				.getAncestorOfClass(euclideanDockPanelAbstract.class,
 						event.getComponent());
 
 		setFocusedPanel(panel, updatePropertiesView);
@@ -3047,18 +3047,18 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 
 	@Override
 	public void showPopupMenu(ArrayList<GeoElement> selectedGeos,
-			EuclidianViewInterfaceCommon view, GPoint mouseLoc) {
+			euclideanViewInterfaceCommon view, GPoint mouseLoc) {
 		showPopupMenu(selectedGeos,
-				((EuclidianViewInterfaceD) view).getJPanel(), mouseLoc);
+				((euclideanViewInterfaceD) view).getJPanel(), mouseLoc);
 
 	}
 
 	@Override
 	public void showPopupChooseGeo(ArrayList<GeoElement> selectedGeos,
-			ArrayList<GeoElement> geos, EuclidianViewInterfaceCommon view,
+			ArrayList<GeoElement> geos, euclideanViewInterfaceCommon view,
 			GPoint p) {
 
-		showPopupChooseGeo(selectedGeos, geos, (EuclidianView) view, p);
+		showPopupChooseGeo(selectedGeos, geos, (euclideanView) view, p);
 	}
 
 	@Override
@@ -3070,7 +3070,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	@Override
 	public void loadImage(GeoPoint corner, Object transfer,
 			boolean fromClipboard,
-			EuclidianView ev) {
+			euclideanView ev) {
 		loadImage(corner, fromClipboard, (Transferable) transfer, ev);
 
 	}
@@ -3084,7 +3084,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	 * @return whether a new image was created or not
 	 */
 	public boolean loadImage(GeoPoint corner, boolean fromClipboard,
-			Transferable transfer, EuclidianView ev) {
+			Transferable transfer, euclideanView ev) {
 		getApp().setWaitCursor();
 
 		String[] fileName = null;
@@ -3153,9 +3153,9 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 			}
 			// make sure only the last image will be selected
 			GeoElement[] geos = { geoImage };
-			getApp().getActiveEuclidianView().getEuclidianController()
+			getApp().getActiveeuclideanView().geteuclideanController()
 					.clearSelections();
-			getApp().getActiveEuclidianView().getEuclidianController()
+			getApp().getActiveeuclideanView().geteuclideanController()
 					.memorizeJustCreatedGeos(geos);
 			ret = true;
 		}
@@ -3165,11 +3165,11 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	}
 
 	@Override
-	public void showDrawingPadPopup(EuclidianViewInterfaceCommon view,
+	public void showDrawingPadPopup(euclideanViewInterfaceCommon view,
 			GPoint mouseLoc) {
-		if (view instanceof EuclidianViewD) {
+		if (view instanceof euclideanViewD) {
 			// 2D
-			showDrawingPadPopup(((EuclidianViewD) view).getJPanel(), mouseLoc);
+			showDrawingPadPopup(((euclideanViewD) view).getJPanel(), mouseLoc);
 		} else {
 			// 3D
 			showDrawingPadPopup3D(view, mouseLoc);
@@ -3177,7 +3177,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	}
 
 	@Override
-	public void showDrawingPadPopup3D(EuclidianViewInterfaceCommon view,
+	public void showDrawingPadPopup3D(euclideanViewInterfaceCommon view,
 			GPoint mouseLoc) {
 		// 3D stuff
 	}
@@ -3263,7 +3263,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 				loc.getMenu("CreateSliders"), JOptionPane.DEFAULT_OPTION,
 				JOptionPane.WARNING_MESSAGE,
 
-				getApp().getModeIcon(EuclidianConstants.MODE_SLIDER),
+				getApp().getModeIcon(euclideanConstants.MODE_SLIDER),
 				options, options[0]);
 		if (callback != null) {
 			Log.debug("callback" + returnVal);
@@ -3300,8 +3300,8 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	}
 
 	@Override
-	public int getEuclidianViewCount() {
-		return euclidianView2.size();
+	public int geteuclideanViewCount() {
+		return euclideanView2.size();
 	}
 
 	@Override
@@ -3315,7 +3315,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	public void getToolImageURL(int mode, GeoImage gi,
 			AsyncOperation<String> callback) {
 		String modeStr = StringUtil
-				.toLowerCaseUS(EuclidianConstants.getModeTextSimple(mode));
+				.toLowerCaseUS(euclideanConstants.getModeTextSimple(mode));
 		callback.callback(getApp().getImageManager().createImage(
 				getApp()
 						.getImageManager().getToolImageResource(modeStr),
@@ -3323,7 +3323,7 @@ public class GuiManagerD extends GuiManager implements GuiManagerInterfaceD {
 	}
 
 	@Override
-	public EuclidianViewInterfaceCommon getPlotPanelEuclidanView() {
+	public euclideanViewInterfaceCommon getPlotPanelEuclidanView() {
 		return null;
 	}
 

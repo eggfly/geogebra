@@ -1,8 +1,8 @@
 package org.geogebra.web.geogebra3D.web.input3D;
 
 import org.geogebra.common.util.debug.Log;
-import org.geogebra.web.geogebra3D.web.euclidian3D.openGL.RendererImplShadersW;
-import org.geogebra.web.geogebra3D.web.euclidian3D.openGL.RendererWithImplW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.openGL.RendererImplShadersW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.openGL.RendererWithImplW;
 import org.geogebra.web.html5.js.ResourcesInjector;
 import org.geogebra.web.html5.util.ScriptLoadCallback;
 
@@ -28,7 +28,7 @@ public class RendererWithImplZSpaceW extends RendererWithImplW {
 	 * @param view
 	 *            3D view
 	 */
-	public RendererWithImplZSpaceW(final EuclidianViewInput3DW view) {
+	public RendererWithImplZSpaceW(final euclideanViewInput3DW view) {
 		super(view, Canvas.createIfSupported());
 
 		ScriptElement matrixScript = Document.get().createScriptElement();
@@ -85,7 +85,7 @@ public class RendererWithImplZSpaceW extends RendererWithImplW {
 	 * @param view
 	 *            3D view
 	 */
-	protected void initZspace(EuclidianViewInput3DW view) {
+	protected void initZspace(euclideanViewInput3DW view) {
 		zSpace = new ZSpaceGwt(glContext, webGLCanvas.getElement());
 		((InputZSpace3DW) view.getInput3D()).setZSpace(zSpace);
 	}
@@ -132,7 +132,7 @@ public class RendererWithImplZSpaceW extends RendererWithImplW {
 
 		// give canvas position to zSpace -- don't set it since zSpace beta 5
 //		DockPanelW panel = (DockPanelW) view3D.getApplication().getGuiManager()
-//				.getLayout().getDockManager().getPanel(App.VIEW_EUCLIDIAN3D);
+//				.getLayout().getDockManager().getPanel(App.VIEW_euclidean3D);
 //		zSpace.setCanvasOffset(panel.getAbsoluteLeft(), panel.getAbsoluteTop());
 
 		// update zSpace

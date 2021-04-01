@@ -21,17 +21,17 @@ public class Views {
 		/**
 		 * Graphics
 		 */
-		GRAPHICS(App.VIEW_EUCLIDIAN, "DrawingPad", SvgPerspectiveResources.INSTANCE
+		GRAPHICS(App.VIEW_euclidean, "DrawingPad", SvgPerspectiveResources.INSTANCE
 						.menu_icon_geometry_transparent()),
 		/**
 		 * Graphics 2
 		 */
-		GRAPHICS_2(App.VIEW_EUCLIDIAN2, "DrawingPad2", SvgPerspectiveResources.INSTANCE
+		GRAPHICS_2(App.VIEW_euclidean2, "DrawingPad2", SvgPerspectiveResources.INSTANCE
 				.menu_icon_graphics2_transparent()),
 		/**
 		 * 3D Graphics
 		 */
-		GRAPHICS_3D(App.VIEW_EUCLIDIAN3D, "GraphicsView3D",
+		GRAPHICS_3D(App.VIEW_euclidean3D, "GraphicsView3D",
 				SvgPerspectiveResources.INSTANCE.menu_icon_graphics3D_transparent()),
 		/**
 		 * Spreadsheet

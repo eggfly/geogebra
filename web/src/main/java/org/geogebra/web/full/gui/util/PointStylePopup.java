@@ -3,8 +3,8 @@ package org.geogebra.web.full.gui.util;
 import java.util.HashMap;
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.dialog.options.model.IComboListener;
 import org.geogebra.common.gui.dialog.options.model.PointStyleModel;
@@ -21,7 +21,7 @@ public class PointStylePopup extends PopupMenuButtonW
 	static HashMap<Integer, Integer> pointStyleMap;
 	int mode;
 	private PointStyleModel model;
-	private boolean euclidian3D;
+	private boolean euclidean3D;
 
 	/**
 	 * @param app
@@ -38,15 +38,15 @@ public class PointStylePopup extends PopupMenuButtonW
 			PointStyleModel model) {
 		
 		pointStyleMap = new HashMap<>();
-		for (int i = 0; i < EuclidianView.getPointStyleLength(); i++) {
-			pointStyleMap.put(EuclidianView.getPointStyle(i), i);
+		for (int i = 0; i < euclideanView.getPointStyleLength(); i++) {
+			pointStyleMap.put(euclideanView.getPointStyle(i), i);
 		}
 
-		ImageOrText[] pointStyleIcons = new ImageOrText[EuclidianView
+		ImageOrText[] pointStyleIcons = new ImageOrText[euclideanView
 				.getPointStyleLength()];
-		for (int i = 0; i < EuclidianView.getPointStyleLength(); i++) {
+		for (int i = 0; i < euclideanView.getPointStyleLength(); i++) {
 			pointStyleIcons[i] = GeoGebraIconW
-					.createPointStyleIcon(EuclidianView.getPointStyle(i));
+					.createPointStyleIcon(euclideanView.getPointStyle(i));
 		}
 
 		PointStylePopup popup = new PointStylePopup(app, pointStyleIcons, 2,
@@ -93,7 +93,7 @@ public class PointStylePopup extends PopupMenuButtonW
 		super(app, data, rows, -1, tableMode, hasTable, hasSlider, null);
 		getMyPopup().addStyleName("pointSizeSlider");
 		this.model = model;
-		euclidian3D = false;
+		euclidean3D = false;
 	}
 
 	public void setModel(PointStyleModel model) {
@@ -119,7 +119,7 @@ public class PointStylePopup extends PopupMenuButtonW
 		this.setVisible(geosOK);
 
 		if (geosOK) {
-			getMyTable().setVisible(!euclidian3D);
+			getMyTable().setVisible(!euclidean3D);
 
 			model.updateProperties();
 
@@ -128,10 +128,10 @@ public class PointStylePopup extends PopupMenuButtonW
 				setSliderValue(geo0.getPointSize());
 			}
 
-			setSelectedIndex(pointStyleMap.get(euclidian3D ? 0 : geo0
+			setSelectedIndex(pointStyleMap.get(euclidean3D ? 0 : geo0
 			        .getPointStyle()));
 
-			this.setKeepVisible(EuclidianConstants.isMoveOrSelectionMode(mode));
+			this.setKeepVisible(euclideanConstants.isMoveOrSelectionMode(mode));
 		}
 		return this;
 	}
@@ -146,7 +146,7 @@ public class PointStylePopup extends PopupMenuButtonW
 	public ImageOrText getButtonIcon() {
 		if (getSelectedIndex() > -1) {
 			return GeoGebraIconW
-					.createPointStyleIcon(EuclidianView
+					.createPointStyleIcon(euclideanView
 							.getPointStyle(this.getSelectedIndex()));
 		}
 		return new ImageOrText();
@@ -168,12 +168,12 @@ public class PointStylePopup extends PopupMenuButtonW
 	    // TODO Auto-generated method stub
 	}
 
-	public boolean isEuclidian3D() {
-		return euclidian3D;
+	public boolean iseuclidean3D() {
+		return euclidean3D;
 	}
 
-	public void setEuclidian3D(boolean euclidian3d) {
-		euclidian3D = euclidian3d;
+	public void seteuclidean3D(boolean euclidean3d) {
+		euclidean3D = euclidean3d;
 	}
 
 	@Override

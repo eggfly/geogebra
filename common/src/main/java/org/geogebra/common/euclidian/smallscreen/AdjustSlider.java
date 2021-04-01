@@ -1,6 +1,6 @@
-package org.geogebra.common.euclidian.smallscreen;
+package org.geogebra.common.euclidean.smallscreen;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.debug.Log;
@@ -27,7 +27,7 @@ public class AdjustSlider extends AdjustWidget {
 	 * @param view
 	 *            view
 	 */
-	public AdjustSlider(GeoNumeric num, EuclidianView view) {
+	public AdjustSlider(GeoNumeric num, euclideanView view) {
 		super(view);
 
 		this.number = num;
@@ -147,7 +147,7 @@ public class AdjustSlider extends AdjustWidget {
 	 * @param view
 	 *            The view to adjust the slider on.
 	 */
-	public static void ensureOnScreen(GeoNumeric num, EuclidianView view) {
+	public static void ensureOnScreen(GeoNumeric num, euclideanView view) {
 		AdjustSlider adjust = new AdjustSlider(num, view);
 		adjust.setDefaultRatio();
 		adjust.apply();

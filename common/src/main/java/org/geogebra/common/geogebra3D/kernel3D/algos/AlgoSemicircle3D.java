@@ -12,7 +12,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.geogebra3D.kernel3D.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoConic3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoConicPart3D;
 import org.geogebra.common.kernel.Construction;
@@ -120,7 +120,7 @@ public class AlgoSemicircle3D extends AlgoElement {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_SEMICIRCLE;
+		return euclideanConstants.MODE_SEMICIRCLE;
 	}
 
 	// for AlgoElement

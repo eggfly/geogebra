@@ -51,7 +51,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.UpdateFonts;
 import org.geogebra.common.gui.dialog.options.model.AbsoluteScreenLocationModel;
@@ -122,7 +122,7 @@ import org.geogebra.common.kernel.geos.GeoSegment;
 import org.geogebra.common.kernel.kernelND.GeoPlaneND;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GColorD;
@@ -1308,7 +1308,7 @@ public class PropertiesPanelD extends JPanel implements SetLabels, UpdateFonts,
 		public void drawListAsComboBox(GeoList geo, boolean value) {
 
 			if (geo.getViewSet() == null) {
-				app.getEuclidianView1().drawListAsComboBox(geo, value);
+				app.geteuclideanView1().drawListAsComboBox(geo, value);
 				return;
 			}
 			Iterator<Integer> it = geo.getViewSet().iterator();
@@ -1316,11 +1316,11 @@ public class PropertiesPanelD extends JPanel implements SetLabels, UpdateFonts,
 			// #3929
 			while (it.hasNext()) {
 				Integer view = it.next();
-				if (view.intValue() == App.VIEW_EUCLIDIAN) {
-					app.getEuclidianView1().drawListAsComboBox(geo, value);
-				} else if (view.intValue() == App.VIEW_EUCLIDIAN2
-						&& app.hasEuclidianView2(1)) {
-					app.getEuclidianView2(1).drawListAsComboBox(geo, value);
+				if (view.intValue() == App.VIEW_euclidean) {
+					app.geteuclideanView1().drawListAsComboBox(geo, value);
+				} else if (view.intValue() == App.VIEW_euclidean2
+						&& app.haseuclideanView2(1)) {
+					app.geteuclideanView2(1).drawListAsComboBox(geo, value);
 				}
 
 			}
@@ -2014,7 +2014,7 @@ public class PropertiesPanelD extends JPanel implements SetLabels, UpdateFonts,
 			model = new PointSizeModel(app);
 			model.setListener(this);
 
-			slider = new JSlider(1, EuclidianStyleConstants.MAX_POINT_SIZE);
+			slider = new JSlider(1, euclideanStyleConstants.MAX_POINT_SIZE);
 			slider.setMajorTickSpacing(2);
 			slider.setMinorTickSpacing(1);
 			slider.setPaintTicks(true);
@@ -2132,10 +2132,10 @@ public class PropertiesPanelD extends JPanel implements SetLabels, UpdateFonts,
 
 			PointStyleListRenderer renderer = new PointStyleListRenderer();
 			renderer.setPreferredSize(new Dimension(18, 18));
-			cbStyle = new JComboBox(EuclidianView.getPointStyles());
+			cbStyle = new JComboBox(euclideanView.getPointStyles());
 			cbStyle.setRenderer(renderer);
 			cbStyle.setMaximumRowCount(
-					EuclidianStyleConstants.MAX_POINT_STYLE + 1);
+					euclideanStyleConstants.MAX_POINT_STYLE + 1);
 			cbStyle.setBackground(getBackground());
 			cbStyle.addActionListener(this);
 			add(cbStyle);
@@ -2542,7 +2542,7 @@ public class PropertiesPanelD extends JPanel implements SetLabels, UpdateFonts,
 			DashListRenderer renderer = new DashListRenderer();
 			renderer.setPreferredSize(
 					new Dimension(130, app.getGUIFontSize() + 6));
-			dashCB = new JComboBox(EuclidianView.getLineTypes());
+			dashCB = new JComboBox(euclideanView.getLineTypes());
 			dashCB.setRenderer(renderer);
 			dashCB.addActionListener(this);
 
@@ -2770,19 +2770,19 @@ public class PropertiesPanelD extends JPanel implements SetLabels, UpdateFonts,
 
 			buttons = new JRadioButton[3];
 
-			buttons[EuclidianStyleConstants.LINE_TYPE_HIDDEN_NONE] = new JRadioButton(
+			buttons[euclideanStyleConstants.LINE_TYPE_HIDDEN_NONE] = new JRadioButton(
 					loc.getMenu("Hidden.Invisible"));
-			buttons[EuclidianStyleConstants.LINE_TYPE_HIDDEN_NONE]
+			buttons[euclideanStyleConstants.LINE_TYPE_HIDDEN_NONE]
 					.setActionCommand("none");
 
-			buttons[EuclidianStyleConstants.LINE_TYPE_HIDDEN_DASHED] = new JRadioButton(
+			buttons[euclideanStyleConstants.LINE_TYPE_HIDDEN_DASHED] = new JRadioButton(
 					loc.getMenu("Hidden.Dashed"));
-			buttons[EuclidianStyleConstants.LINE_TYPE_HIDDEN_DASHED]
+			buttons[euclideanStyleConstants.LINE_TYPE_HIDDEN_DASHED]
 					.setActionCommand("dashed");
 
-			buttons[EuclidianStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN] = new JRadioButton(
+			buttons[euclideanStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN] = new JRadioButton(
 					loc.getMenu("Hidden.Unchanged"));
-			buttons[EuclidianStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN]
+			buttons[euclideanStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN]
 					.setActionCommand("asNotHidden");
 
 			ButtonGroup buttonGroup = new ButtonGroup();
@@ -2818,7 +2818,7 @@ public class PropertiesPanelD extends JPanel implements SetLabels, UpdateFonts,
 		public JPanel update() {
 
 			// check if we use 3D view
-			if (!app.isEuclidianView3Dinited()) {
+			if (!app.iseuclideanView3Dinited()) {
 				return null;
 			}
 
@@ -2851,12 +2851,12 @@ public class PropertiesPanelD extends JPanel implements SetLabels, UpdateFonts,
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			int type = EuclidianStyleConstants.LINE_TYPE_HIDDEN_NONE;
+			int type = euclideanStyleConstants.LINE_TYPE_HIDDEN_NONE;
 
 			if ("dashed".equals(e.getActionCommand())) {
-				type = EuclidianStyleConstants.LINE_TYPE_HIDDEN_DASHED;
+				type = euclideanStyleConstants.LINE_TYPE_HIDDEN_DASHED;
 			} else if ("asNotHidden".equals(e.getActionCommand())) {
-				type = EuclidianStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN;
+				type = euclideanStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN;
 			}
 
 			GeoElement geo;
@@ -4060,13 +4060,13 @@ class GraphicsViewLocationPanel extends JPanel
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == cbGraphicsView) {
-			model.applyToEuclidianView1(cbGraphicsView.isSelected());
+			model.applyToeuclideanView1(cbGraphicsView.isSelected());
 		} else if (e.getSource() == cbGraphicsView2) {
-			model.applyToEuclidianView2(cbGraphicsView2.isSelected());
+			model.applyToeuclideanView2(cbGraphicsView2.isSelected());
 		} else if (e.getSource() == cbGraphicsView3D) {
-			model.applyToEuclidianView3D(cbGraphicsView3D.isSelected());
+			model.applyToeuclideanView3D(cbGraphicsView3D.isSelected());
 		} else if (e.getSource() == cbGraphicsViewForPlane) {
-			model.applyToEuclidianViewForPlane(
+			model.applyToeuclideanViewForPlane(
 					cbGraphicsViewForPlane.isSelected());
 		}
 

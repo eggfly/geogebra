@@ -3,10 +3,10 @@ package org.geogebra.common.kernel.geos;
 import javax.annotation.Nonnull;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.VarString;
@@ -369,7 +369,7 @@ public class GeoInputBox extends GeoButton implements HasSymbolicMode, HasAlignm
 	}
 
 	@Override
-	public int getTotalWidth(EuclidianViewInterfaceCommon ev) {
+	public int getTotalWidth(euclideanViewInterfaceCommon ev) {
 		DrawableND draw = ev.getDrawableFor(this);
 		if (draw instanceof DrawInputBox) {
 			return ((DrawInputBox) draw).getTotalSize().getWidth();
@@ -378,7 +378,7 @@ public class GeoInputBox extends GeoButton implements HasSymbolicMode, HasAlignm
 	}
 
 	@Override
-	public int getTotalHeight(EuclidianViewInterfaceCommon ev) {
+	public int getTotalHeight(euclideanViewInterfaceCommon ev) {
 		DrawableND draw = ev.getDrawableFor(this);
 		if (draw instanceof DrawInputBox) {
 			return ((DrawInputBox) draw).getTotalSize().getHeight();
@@ -470,7 +470,7 @@ public class GeoInputBox extends GeoButton implements HasSymbolicMode, HasAlignm
 	 * @return whether the alpha button should be shown
 	 */
 	public boolean needsSymbolButton() {
-		return getLength() >= EuclidianConstants.SHOW_SYMBOLBUTTON_MINLENGTH
+		return getLength() >= euclideanConstants.SHOW_SYMBOLBUTTON_MINLENGTH
 				&& !(linkedGeo instanceof GeoText && linkedGeo.isLabelSet());
 	}
 

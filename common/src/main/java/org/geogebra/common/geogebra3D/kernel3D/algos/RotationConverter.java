@@ -1,6 +1,6 @@
 package org.geogebra.common.geogebra3D.kernel3D.algos;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.ChangeableParent;
 import org.geogebra.common.kernel.geos.CoordConverter;
@@ -27,7 +27,7 @@ public class RotationConverter implements CoordConverter {
 
 	@Override
 	public double translationToValue(Coords direction, Coords rwTransVec,
-			double startValue, EuclidianView view) {
+			double startValue, euclideanView view) {
 		vCurrent.setAdd3(vStart, rwTransVec);
 		double sin = direction.dotCrossProduct(vStart, vCurrent);
 		double cos = vStart.dotproduct3(vCurrent);
@@ -36,7 +36,7 @@ public class RotationConverter implements CoordConverter {
 	}
 
 	@Override
-	public double snap(double val, EuclidianView view) {
+	public double snap(double val, euclideanView view) {
 		double roundedVal = Math.round(val / Kernel.PI_HALF) * Kernel.PI_HALF;
 		if (DoubleUtil.isEqual(val, roundedVal, SNAP_PRECISION)) {
 			return roundedVal;

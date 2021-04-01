@@ -12,7 +12,7 @@ the Free Software Foundation.
 
 package org.geogebra.web.full.gui.view.algebra;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.web.full.gui.layout.panels.AlgebraPanelInterface;
@@ -88,7 +88,7 @@ public class SliderTreeItemRetex extends RadioTreeItem {
 
 	private void createSliderGUI() {
 		content.addStyleName("noPadding");
-		if (!num.isEuclidianVisible()) {
+		if (!num.iseuclideanVisible()) {
 			num.initAlgebraSlider();
 		}
 

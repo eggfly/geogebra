@@ -1,4 +1,4 @@
-package org.geogebra.desktop.geogebra3D.euclidian3D.opengl;
+package org.geogebra.desktop.geogebra3D.euclidean3D.opengl;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2ES1;
@@ -8,15 +8,15 @@ import javax.media.opengl.fixedfunc.GLLightingFunc;
 import javax.media.opengl.fixedfunc.GLMatrixFunc;
 import javax.media.opengl.glu.GLU;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3DListsForView;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBuffer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBufferIndices;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager.Type;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.RendererImpl;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Textures;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3DListsForView;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBuffer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBufferIndices;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager.Type;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.RendererImpl;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Textures;
 import org.geogebra.common.kernel.kernelND.GeoQuadricNDConstants;
 import org.geogebra.common.kernel.matrix.CoordMatrix;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
@@ -72,7 +72,7 @@ public class RendererImplGL2 extends RendererImpl
 	 * @param jogl
 	 *            java openGL implementation
 	 */
-	public RendererImplGL2(Renderer renderer, EuclidianView3D view,
+	public RendererImplGL2(Renderer renderer, euclideanView3D view,
 			RendererJogl jogl) {
 		super(renderer, view);
 		Log.debug(
@@ -256,7 +256,7 @@ public class RendererImplGL2 extends RendererImpl
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.geogebra.desktop.geogebra3D.euclidian3D.opengl.RendererImpl#
+	 * @see org.geogebra.desktop.geogebra3D.euclidean3D.opengl.RendererImpl#
 	 * updateOrthoValues()
 	 */
 	@Override

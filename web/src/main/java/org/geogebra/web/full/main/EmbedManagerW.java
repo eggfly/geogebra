@@ -7,12 +7,12 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EmbedManager;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.draw.DrawEmbed;
-import org.geogebra.common.euclidian.draw.DrawVideo;
-import org.geogebra.common.euclidian.draw.DrawWidget;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.EmbedManager;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.draw.DrawEmbed;
+import org.geogebra.common.euclidean.draw.DrawVideo;
+import org.geogebra.common.euclidean.draw.DrawWidget;
 import org.geogebra.common.io.file.ZipFile;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -31,12 +31,12 @@ import org.geogebra.web.full.css.ToolbarSvgResourcesSync;
 import org.geogebra.web.full.gui.applet.GeoGebraFrameFull;
 import org.geogebra.web.full.gui.images.SvgPerspectiveResources;
 import org.geogebra.web.full.gui.layout.DockPanelW;
-import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelW;
+import org.geogebra.web.full.gui.layout.panels.euclideanDockPanelW;
 import org.geogebra.web.full.html5.Sandbox;
 import org.geogebra.web.full.main.embed.CalcEmbedElement;
 import org.geogebra.web.full.main.embed.EmbedElement;
 import org.geogebra.web.full.main.embed.GraspableEmbedElement;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 import org.geogebra.web.html5.main.GgbFile;
 import org.geogebra.web.html5.main.MyImageW;
 import org.geogebra.web.html5.main.ScriptManagerW;
@@ -186,7 +186,7 @@ public class EmbedManagerW implements EmbedManager, EventRenderable, ActionExecu
 	}
 
 	private void addDragHandler(elemental2.dom.Element element) {
-		Style evPanelStyle = ((EuclidianViewWInterface) app.getActiveEuclidianView())
+		Style evPanelStyle = ((euclideanViewWInterface) app.getActiveeuclideanView())
 				.getCanvasElement().getParentElement().getStyle();
 
 		element.addEventListener("dragstart", (event) -> {
@@ -213,8 +213,8 @@ public class EmbedManagerW implements EmbedManager, EventRenderable, ActionExecu
 		container.getElement().addClassName("embedContainer");
 		container.getElement().addClassName("mowWidget");
 		DockPanelW panel = app.getGuiManager().getLayout().getDockManager()
-				.getPanel(App.VIEW_EUCLIDIAN);
-		((EuclidianDockPanelW) panel).getEuclidianPanel().add(container);
+				.getPanel(App.VIEW_euclidean);
+		((euclideanDockPanelW) panel).geteuclideanPanel().add(container);
 	}
 
 	private void addExtension(DrawEmbed drawEmbed) {
@@ -331,7 +331,7 @@ public class EmbedManagerW implements EmbedManager, EventRenderable, ActionExecu
 		List<Integer> entries = new ArrayList<>();
 		for (Entry<Integer, EmbedElement> entry : cache.entrySet()) {
 			GeoElement geoEmbed = findById(entry.getKey());
-			DrawEmbed drawEmbed = (DrawEmbed) app.getActiveEuclidianView()
+			DrawEmbed drawEmbed = (DrawEmbed) app.getActiveeuclideanView()
 					.getDrawableFor(geoEmbed);
 			if (drawEmbed != null) {
 				EmbedElement frame = entry.getValue();
@@ -432,7 +432,7 @@ public class EmbedManagerW implements EmbedManager, EventRenderable, ActionExecu
 
 	@Override
 	public void play(GeoEmbed lastVideo) {
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 		DrawableND de = ev.getDrawableFor(lastVideo);
 		if (de instanceof DrawEmbed) {
 			lastVideo.setBackground(false);
@@ -454,7 +454,7 @@ public class EmbedManagerW implements EmbedManager, EventRenderable, ActionExecu
 		ge.attr("allowStyleBar", material.getAllowStylebar());
 		ge.attr("showAlgebraInput", material.getShowInputbar());
 		ge.setEmbedId(id);
-		ge.initPosition(app.getActiveEuclidianView());
+		ge.initPosition(app.getActiveeuclideanView());
 		showAndSelect(ge);
 		app.dispatchEvent(new Event(EventType.EMBEDDED_CONTENT_CHANGED, ge, material.getBase64()));
 	}
@@ -462,7 +462,7 @@ public class EmbedManagerW implements EmbedManager, EventRenderable, ActionExecu
 	private void showAndSelect(final GeoEmbed ge) {
 		ge.setLabel(null);
 		app.storeUndoInfo();
-		app.invokeLater(() -> app.getActiveEuclidianView().getEuclidianController()
+		app.invokeLater(() -> app.getActiveeuclideanView().geteuclideanController()
 				.selectAndShowSelectionUI(ge));
 	}
 
@@ -519,7 +519,7 @@ public class EmbedManagerW implements EmbedManager, EventRenderable, ActionExecu
 		ge.setUrl("https://graspablemath.com");
 		ge.setAppName("extension");
 		ge.setEmbedId(nextID());
-		ge.initDefaultPosition(app.getActiveEuclidianView());
+		ge.initDefaultPosition(app.getActiveeuclideanView());
 		showAndSelect(ge);
 	}
 
@@ -611,7 +611,7 @@ public class EmbedManagerW implements EmbedManager, EventRenderable, ActionExecu
 	public void setBase64(String label, String contentBase64) {
 		GeoElement el = app.getKernel().lookupLabel(label);
 		if (el instanceof GeoEmbed) {
-			DrawableND de = app.getActiveEuclidianView().getDrawableFor(el);
+			DrawableND de = app.getActiveeuclideanView().getDrawableFor(el);
 			int embedID = ((GeoEmbed) el).getEmbedID();
 			counter = Math.max(counter, embedID + 1);
 			if (de instanceof DrawWidget && widgets.get(de) != null) {

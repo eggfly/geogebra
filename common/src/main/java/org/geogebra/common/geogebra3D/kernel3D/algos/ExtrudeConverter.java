@@ -1,12 +1,12 @@
 package org.geogebra.common.geogebra3D.kernel3D.algos;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.ChangeableParent;
 import org.geogebra.common.kernel.geos.CoordConverter;
 import org.geogebra.common.kernel.matrix.CoordMatrixUtil;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 public class ExtrudeConverter implements CoordConverter {
 
@@ -17,16 +17,16 @@ public class ExtrudeConverter implements CoordConverter {
 
 	@Override
 	public double translationToValue(Coords direction, Coords rwTransVec,
-			double startValue, EuclidianView view) {
+			double startValue, euclideanView view) {
 		return snap(direction.dotproduct3(rwTransVec) + startValue, view);
 	}
 
 	@Override
-	public double snap(double val, EuclidianView view) {
+	public double snap(double val, euclideanView view) {
 		double g = view.getGridDistances(0);
 		double valRound = Kernel.roundToScale(val, g);
-		if (view.getPointCapturingMode() == EuclidianStyleConstants.POINT_CAPTURING_ON_GRID
-				|| (Math.abs(valRound - val) < g * view.getEuclidianController()
+		if (view.getPointCapturingMode() == euclideanStyleConstants.POINT_CAPTURING_ON_GRID
+				|| (Math.abs(valRound - val) < g * view.geteuclideanController()
 						.getPointCapturingPercentage())) {
 			return valRound;
 		}

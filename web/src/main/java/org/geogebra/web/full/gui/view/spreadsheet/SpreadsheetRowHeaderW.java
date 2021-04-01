@@ -2,7 +2,7 @@ package org.geogebra.web.full.gui.view.spreadsheet;
 
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.view.spreadsheet.MyTableInterface;
 import org.geogebra.web.full.gui.GuiManagerW;
 import org.geogebra.web.full.gui.util.AdvancedFocusPanel;

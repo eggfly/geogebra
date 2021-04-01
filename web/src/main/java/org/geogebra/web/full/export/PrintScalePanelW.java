@@ -2,7 +2,7 @@ package org.geogebra.web.full.export;
 
 import java.util.HashMap;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.main.Localization;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.debug.Log;
@@ -25,7 +25,7 @@ public class PrintScalePanelW extends FlowPanel {
 	private TextBox tfScale2;
 	private TextBox tfScaleFixed;
 
-	private EuclidianView ev;
+	private euclideanView ev;
 	// private NumberFormat nf;
 
 	private ListBox exportMode;
@@ -55,9 +55,9 @@ public class PrintScalePanelW extends FlowPanel {
 	 * @param app
 	 *            application
 	 * @param eview
-	 *            euclidian view
+	 *            euclidean view
 	 */
-	PrintScalePanelW(AppW app, EuclidianView eview) {
+	PrintScalePanelW(AppW app, euclideanView eview) {
 		ev = eview;
 		Localization loc = app.getLocalization();
 		// nf = NumberFormat.getInstance(Locale.ENGLISH);

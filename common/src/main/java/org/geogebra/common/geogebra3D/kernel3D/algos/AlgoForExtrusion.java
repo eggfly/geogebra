@@ -53,7 +53,7 @@ public interface AlgoForExtrusion {
 	 * @param b
 	 *            flag
 	 */
-	public void setOutputPointsEuclidianVisible(boolean b);
+	public void setOutputPointseuclideanVisible(boolean b);
 
 	/**
 	 * notify kernel update of output points
@@ -72,7 +72,7 @@ public interface AlgoForExtrusion {
 	 * @param b
 	 *            flag
 	 */
-	public void setOutputOtherEuclidianVisible(boolean b);
+	public void setOutputOthereuclideanVisible(boolean b);
 
 	/**
 	 * notify kernel update of output other than points

@@ -1,13 +1,13 @@
-package org.geogebra.common.euclidian.plot;
+package org.geogebra.common.euclidean.plot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.math3.util.Cloner;
 import org.geogebra.common.awt.GPoint2D;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
-import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
+import org.geogebra.common.euclidean.GeneralPathClipped;
 import org.geogebra.common.kernel.MyPoint;
 import org.geogebra.common.kernel.SegmentType;
 import org.geogebra.common.kernel.matrix.CoordSys;
@@ -35,9 +35,9 @@ public class GeneralPathClippedForCurvePlotter extends GeneralPathClipped
 	 * constructor
 	 *
 	 * @param view
-	 *            Euclidian view
+	 *            euclidean view
 	 */
-	public GeneralPathClippedForCurvePlotter(EuclidianViewInterfaceSlim view) {
+	public GeneralPathClippedForCurvePlotter(euclideanViewInterfaceSlim view) {
 		this(view, new ArrayList<MyPoint>());
 	}
 
@@ -45,11 +45,11 @@ public class GeneralPathClippedForCurvePlotter extends GeneralPathClipped
 	 * constructor
 	 *
 	 * @param view
-	 *            Euclidian view
+	 *            euclidean view
 	 * @param cache
 	 * 			  Point cache
 	 */
-	public GeneralPathClippedForCurvePlotter(EuclidianViewInterfaceSlim view, List<MyPoint> cache) {
+	public GeneralPathClippedForCurvePlotter(euclideanViewInterfaceSlim view, List<MyPoint> cache) {
 		super(view);
 		this.cache = cache;
 	}
@@ -67,7 +67,7 @@ public class GeneralPathClippedForCurvePlotter extends GeneralPathClipped
 	@Override
 	public void drawTo(double[] pos, SegmentType segmentType) {
 		double[] p = Cloner.clone(pos);
-		((EuclidianView) view).toScreenCoords(p);
+		((euclideanView) view).toScreenCoords(p);
 		drawTo(p[0], p[1], segmentType);
 		MyPoint myPoint = new MyPoint(p[0], p[1], segmentType);
 
@@ -140,7 +140,7 @@ public class GeneralPathClippedForCurvePlotter extends GeneralPathClipped
 	@Override
 	public void corner(double[] pos) {
 		double[] p = Cloner.clone(pos);
-		((EuclidianView) view).toScreenCoords(p);
+		((euclideanView) view).toScreenCoords(p);
 		corner(p[0], p[1]);
 	}
 
@@ -179,7 +179,7 @@ public class GeneralPathClippedForCurvePlotter extends GeneralPathClipped
 	@Override
 	public void firstPoint(double[] pos, Gap moveToAllowed) {
 		double[] p = Cloner.clone(pos);
-		((EuclidianView) view).toScreenCoords(p);
+		((euclideanView) view).toScreenCoords(p);
 		final double x0 = p[0];
 		final double y0 = p[1];
 
@@ -240,7 +240,7 @@ public class GeneralPathClippedForCurvePlotter extends GeneralPathClipped
 			transformSys.getPointFromOriginVectors(coords, tmpCoords);
 			coords.set(tmpCoords);
 		}
-		Coords projection = ((EuclidianView) view).getCoordsForView(coords);
+		Coords projection = ((euclideanView) view).getCoordsForView(coords);
 
 		ret[0] = projection.getX();
 		ret[1] = projection.getY();

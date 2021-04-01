@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -9,8 +9,8 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GLine2D;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.algos.ChartStyle;
@@ -34,7 +34,7 @@ public class DrawPieChart extends Drawable {
 	 * @param ev view
 	 * @param geo chart
 	 */
-	public DrawPieChart(EuclidianView ev, GeoPieChart geo) {
+	public DrawPieChart(euclideanView ev, GeoPieChart geo) {
 		super(ev, geo);
 		this.chartFilling = new ChartFilling(view.getApplication());
 		this.chart = geo;
@@ -87,7 +87,7 @@ public class DrawPieChart extends Drawable {
 
 	@Override
 	public void draw(GGraphics2D g2) {
-		if (isEuclidianVisible()) {
+		if (iseuclideanVisible()) {
 			ChartStyle style = ((AlgoPieChart) geo.getParentAlgorithm()).getStyle();
 			if (isHighlighted()) {
 				g2.setPaint(GColor.LIGHT_GRAY);

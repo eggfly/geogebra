@@ -10,17 +10,17 @@
 
  */
 
-package org.geogebra.desktop.geogebra3D.euclidianForPlane;
+package org.geogebra.desktop.geogebra3D.euclideanForPlane;
 
-import org.geogebra.common.euclidian.EuclidianControllerCompanion;
-import org.geogebra.common.geogebra3D.euclidianForPlane.EuclidianControllerForPlaneCompanion;
+import org.geogebra.common.euclidean.euclideanControllerCompanion;
+import org.geogebra.common.geogebra3D.euclideanForPlane.euclideanControllerForPlaneCompanion;
 import org.geogebra.common.kernel.Kernel;
-import org.geogebra.desktop.euclidian.EuclidianControllerD;
+import org.geogebra.desktop.euclidean.euclideanControllerD;
 
 /**
  * controller for view for plane
  */
-public class EuclidianControllerForPlaneD extends EuclidianControllerD {
+public class euclideanControllerForPlaneD extends euclideanControllerD {
 
 	/**
 	 * constructor
@@ -28,12 +28,12 @@ public class EuclidianControllerForPlaneD extends EuclidianControllerD {
 	 * @param kernel
 	 *            kernel
 	 */
-	public EuclidianControllerForPlaneD(Kernel kernel) {
+	public euclideanControllerForPlaneD(Kernel kernel) {
 		super(kernel);
 	}
 
 	@Override
-	protected EuclidianControllerCompanion newCompanion() {
-		return new EuclidianControllerForPlaneCompanion(this);
+	protected euclideanControllerCompanion newCompanion() {
+		return new euclideanControllerForPlaneCompanion(this);
 	}
 }

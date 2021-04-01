@@ -1,9 +1,9 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
 import org.geogebra.common.kernel.geos.GeoElement;
 
 /**
@@ -22,7 +22,7 @@ public abstract class Drawable3DSurfaces extends Drawable3D {
 	 * @param a_geo
 	 *            surface
 	 */
-	public Drawable3DSurfaces(EuclidianView3D a_view3d, GeoElement a_geo) {
+	public Drawable3DSurfaces(euclideanView3D a_view3d, GeoElement a_geo) {
 		super(a_view3d);
 		init(a_geo);
 
@@ -40,7 +40,7 @@ public abstract class Drawable3DSurfaces extends Drawable3D {
 	 * @param a_view3d
 	 *            view
 	 */
-	public Drawable3DSurfaces(EuclidianView3D a_view3d) {
+	public Drawable3DSurfaces(euclideanView3D a_view3d) {
 		super(a_view3d);
 		setPickingType(PickingType.SURFACE);
 
@@ -119,7 +119,7 @@ public abstract class Drawable3DSurfaces extends Drawable3D {
 
 	@Override
 	public boolean isTransparent() {
-		return getAlpha() <= EuclidianController.MAX_TRANSPARENT_ALPHA_VALUE_INT;
+		return getAlpha() <= euclideanController.MAX_TRANSPARENT_ALPHA_VALUE_INT;
 	}
 
 	@Override

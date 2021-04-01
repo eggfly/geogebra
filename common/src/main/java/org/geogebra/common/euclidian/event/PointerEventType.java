@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.event;
+package org.geogebra.common.euclidean.event;
 
 public enum PointerEventType {
 	MOUSE, TOUCH, PEN

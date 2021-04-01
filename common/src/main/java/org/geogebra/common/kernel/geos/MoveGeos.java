@@ -3,8 +3,8 @@ package org.geogebra.common.kernel.geos;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.algos.AlgoDynamicCoordinatesInterface;
 import org.geogebra.common.kernel.algos.AlgoElement;
 import org.geogebra.common.kernel.algos.AlgoTranslate;
@@ -31,12 +31,12 @@ public class MoveGeos {
 	 * @param viewDirection
 	 *            direction of view
 	 * @param view
-	 *            euclidian view
+	 *            euclidean view
 	 * @return true if something was moved
 	 */
 	public static boolean moveObjects(List<GeoElement> geosToMove,
 			final Coords rwTransVec, final Coords endPosition,
-			final Coords viewDirection, EuclidianView view) {
+			final Coords viewDirection, euclideanView view) {
 		if (moveObjectsUpdateList == null) {
 			moveObjectsUpdateList = new ArrayList<>();
 		}
@@ -97,7 +97,7 @@ public class MoveGeos {
 	 */
 	private static boolean moveObject(GeoElement geo1, final Coords rwTransVec,
 			final Coords endPosition, final Coords viewDirection,
-			final ArrayList<GeoElement> updateGeos, EuclidianView view,
+			final ArrayList<GeoElement> updateGeos, euclideanView view,
 			boolean moveParentPoints) {
 		boolean movedGeo = false;
 		GeoElement geo = geo1;
@@ -230,7 +230,7 @@ public class MoveGeos {
 				// G_8
 				// needs updating
 				// handled for mouse drag in
-				// EuclidianController.addMovedGeoElementFreeInputPointsToTranslateableGeos
+				// euclideanController.addMovedGeoElementFreeInputPointsToTranslateableGeos
 				// needed here for moving with arrow keys
 				if (moveParentPoints && freeInputPoints != null
 						&& freeInputPoints.size() > 0) {

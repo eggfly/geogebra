@@ -275,11 +275,11 @@ public class RedefineTest extends BaseUnitTest {
 
 	@Test
 	public void anonymousLineShouldStayLine() {
-		app.getEuclidianView3D();
-		app.setActiveView(App.VIEW_EUCLIDIAN3D);
+		app.geteuclideanView3D();
+		app.setActiveView(App.VIEW_euclidean3D);
 		t("c=Circle((0,0,0),1,x=0)", "X = (0, 0, 0) + (0, - cos(t), sin(t))",
 				StringTemplate.editTemplate);
-		app.setActiveView(App.VIEW_EUCLIDIAN);
+		app.setActiveView(App.VIEW_euclidean);
 		t("d=Circle((0,0,0),1,x=0)", "X = (0, 0, 0) + (0, - cos(t), sin(t))",
 				StringTemplate.editTemplate);
 

@@ -1,7 +1,7 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 /**
- * Listener for zooming Euclidian view
+ * Listener for zooming euclidean view
  * 
  * @author laszlo
  *

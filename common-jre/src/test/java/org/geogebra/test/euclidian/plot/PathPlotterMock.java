@@ -1,10 +1,10 @@
-package org.geogebra.test.euclidian.plot;
+package org.geogebra.test.euclidean.plot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.plot.Gap;
-import org.geogebra.common.euclidian.plot.PathPlotter;
+import org.geogebra.common.euclidean.plot.Gap;
+import org.geogebra.common.euclidean.plot.PathPlotter;
 import org.geogebra.common.kernel.MyPoint;
 import org.geogebra.common.kernel.SegmentType;
 import org.geogebra.common.kernel.matrix.CoordSys;

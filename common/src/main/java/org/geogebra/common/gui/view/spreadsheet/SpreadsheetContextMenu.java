@@ -238,7 +238,7 @@ public class SpreadsheetContextMenu {
 		if (!isEmptySelection()) {
 			final GeoElement geo = geos.get(0);
 
-			boolean doObjectMenu = geo.isEuclidianShowable()
+			boolean doObjectMenu = geo.iseuclideanShowable()
 					&& geo.getShowObjectCondition() == null
 					&& (!geo.isGeoBoolean() || geo.isIndependent());
 
@@ -319,7 +319,7 @@ public class SpreadsheetContextMenu {
 	protected void addShowObject(GeoElement geo) {
 		String cmdString = MenuCommand.ShowObject.toString();
 		addCheckBoxMenuItem(cmdString, loc.getMenu(cmdString),
-				geo.isSetEuclidianVisible());
+				geo.isSeteuclideanVisible());
 	}
 
 	private String getTitleString() {
@@ -548,7 +548,7 @@ public class SpreadsheetContextMenu {
 	public void cmdShowObject() {
 		for (int i = geos.size() - 1; i >= 0; i--) {
 			GeoElement geo1 = geos.get(i);
-			geo1.setEuclidianVisible(!geo1.isSetEuclidianVisible());
+			geo1.seteuclideanVisible(!geo1.isSeteuclideanVisible());
 			geo1.updateRepaint();
 
 		}

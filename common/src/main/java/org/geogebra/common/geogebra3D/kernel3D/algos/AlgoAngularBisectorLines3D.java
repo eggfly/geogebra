@@ -18,7 +18,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.geogebra3D.kernel3D.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoLine3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
 import org.geogebra.common.kernel.Construction;
@@ -74,7 +74,7 @@ public class AlgoAngularBisectorLines3D extends AlgoElement {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_ANGULAR_BISECTOR;
+		return euclideanConstants.MODE_ANGULAR_BISECTOR;
 	}
 
 	/**

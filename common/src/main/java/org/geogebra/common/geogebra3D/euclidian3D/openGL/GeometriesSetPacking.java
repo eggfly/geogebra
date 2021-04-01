@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager.Type;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.ManagerShaders.TypeElement;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager.Type;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.ManagerShaders.TypeElement;
 
 /**
  * Set of geometries, that are packed

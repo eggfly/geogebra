@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import static org.junit.Assert.assertEquals;
 

@@ -18,7 +18,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.geogebra3D.kernel3D.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
@@ -110,7 +110,7 @@ public class AlgoIntersectConics3D extends AlgoIntersect3D {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_INTERSECT;
+		return euclideanConstants.MODE_INTERSECT;
 	}
 
 	/**

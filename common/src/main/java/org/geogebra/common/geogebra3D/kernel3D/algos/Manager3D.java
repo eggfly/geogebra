@@ -176,7 +176,7 @@ public class Manager3D implements Manager3DInterface {
 			GeoPointND Q) {
 		AlgoVector3D algo = new AlgoVector3D(cons, P, Q);
 		GeoVector3D v = (GeoVector3D) algo.getVector();
-		v.setEuclidianVisible(true);
+		v.seteuclideanVisible(true);
 		v.setLabel(label);
 		kernel.notifyUpdate(v);
 		return v;

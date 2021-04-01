@@ -1,6 +1,6 @@
 package org.geogebra.common.geogebra3D.main;
 
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 
 /**
  * Class providing vertex shader

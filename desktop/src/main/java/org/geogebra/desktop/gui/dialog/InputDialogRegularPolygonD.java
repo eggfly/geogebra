@@ -3,7 +3,7 @@ package org.geogebra.desktop.gui.dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.kernel.kernelND.GeoCoordSys2D;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
@@ -15,9 +15,9 @@ import org.geogebra.desktop.main.AppD;
 public class InputDialogRegularPolygonD extends InputDialogD {
 	private GeoPointND geoPoint1, geoPoint2;
 	private GeoCoordSys2D direction;
-	private EuclidianController ec;
+	private euclideanController ec;
 
-	public InputDialogRegularPolygonD(AppD app, EuclidianController ec,
+	public InputDialogRegularPolygonD(AppD app, euclideanController ec,
 			String title, InputHandler handler, GeoPointND point1,
 			GeoPointND point2, GeoCoordSys2D direction) {
 		super(app, app.getLocalization().getMenu("Points"), title, "4", false,

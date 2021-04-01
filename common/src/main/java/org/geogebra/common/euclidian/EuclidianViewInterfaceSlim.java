@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,13 +11,13 @@ import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.CoordSys;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 
 /**
- * Minimal interface for Euclidian view
+ * Minimal interface for euclidean view
  *
  */
-public interface EuclidianViewInterfaceSlim extends LayerView {
+public interface euclideanViewInterfaceSlim extends LayerView {
 
 	/**
 	 * @return true if this is Graphics or Graphics 2
@@ -27,7 +27,7 @@ public interface EuclidianViewInterfaceSlim extends LayerView {
 	/**
 	 * @return true if this is Graphics 3D
 	 */
-	public boolean isEuclidianView3D();
+	public boolean iseuclideanView3D();
 
 	/**
 	 * @param algo
@@ -95,9 +95,9 @@ public interface EuclidianViewInterfaceSlim extends LayerView {
 	void replaceBoundObject(GeoNumeric oldBound, GeoNumeric newBound);
 
 	/**
-	 * @return euclidian controller
+	 * @return euclidean controller
 	 */
-	EuclidianController getEuclidianController();
+	euclideanController geteuclideanController();
 
 	/**
 	 * @return grid distance: {x-distance,y-distance}
@@ -220,7 +220,7 @@ public interface EuclidianViewInterfaceSlim extends LayerView {
 	/**
 	 * @return settings
 	 */
-	public EuclidianSettings getSettings();
+	public euclideanSettings getSettings();
 
 	/**
 	 * @return y-offset of first combobox

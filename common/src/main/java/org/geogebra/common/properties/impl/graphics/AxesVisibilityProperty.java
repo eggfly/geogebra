@@ -1,7 +1,7 @@
 package org.geogebra.common.properties.impl.graphics;
 
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.properties.BooleanProperty;
 import org.geogebra.common.properties.impl.AbstractProperty;
 
@@ -11,27 +11,27 @@ import org.geogebra.common.properties.impl.AbstractProperty;
 public class AxesVisibilityProperty extends AbstractProperty
 		implements BooleanProperty {
 
-	private EuclidianSettings euclidianSettings;
+	private euclideanSettings euclideanSettings;
 
 	/**
 	 * Constructs an AxesVisibility property.
 	 *
 	 * @param localization
 	 *            localization for the name
-	 * @param euclidianSettings
-	 *            euclidian settings
+	 * @param euclideanSettings
+	 *            euclidean settings
 	 */
 	public AxesVisibilityProperty(Localization localization,
-			EuclidianSettings euclidianSettings) {
+			euclideanSettings euclideanSettings) {
 		super(localization, "ShowAxes");
-		this.euclidianSettings = euclidianSettings;
+		this.euclideanSettings = euclideanSettings;
 	}
 
 	@Override
 	public boolean getValue() {
-		boolean[] showAxes = euclidianSettings.getShowAxes();
+		boolean[] showAxes = euclideanSettings.getShowAxes();
 		boolean value = false;
-		for (int i = 0; i < euclidianSettings.getDimension(); i++) {
+		for (int i = 0; i < euclideanSettings.getDimension(); i++) {
 			value |= showAxes[i];
 		}
 
@@ -40,6 +40,6 @@ public class AxesVisibilityProperty extends AbstractProperty
 
 	@Override
 	public void setValue(boolean value) {
-		euclidianSettings.setShowAxes(value);
+		euclideanSettings.setShowAxes(value);
 	}
 }

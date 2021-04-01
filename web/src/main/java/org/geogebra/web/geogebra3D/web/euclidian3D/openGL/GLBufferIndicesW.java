@@ -1,6 +1,6 @@
-package org.geogebra.web.geogebra3D.web.euclidian3D.openGL;
+package org.geogebra.web.geogebra3D.web.euclidean3D.openGL;
 
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBufferIndices;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBufferIndices;
 
 import elemental2.core.Int16Array;
 

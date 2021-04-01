@@ -47,7 +47,7 @@ import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.GeoGebraColorConstants;
 import org.geogebra.common.main.settings.updater.LabelSettingsUpdater;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.GeoClass;
 
 import com.google.j2objc.annotations.Weak;
@@ -292,10 +292,10 @@ public class ConstructionDefaults {
 	/** defaultGeoElement list */
 	protected HashMap<Integer, GeoElement> defaultGeoElements;
 
-	private int lineThickness = EuclidianStyleConstants.DEFAULT_LINE_THICKNESS;
-	private int pointSize = EuclidianStyleConstants.DEFAULT_POINT_SIZE;
+	private int lineThickness = euclideanStyleConstants.DEFAULT_LINE_THICKNESS;
+	private int pointSize = euclideanStyleConstants.DEFAULT_POINT_SIZE;
 	private int dependentPointSize;
-	private int angleSize = EuclidianStyleConstants.DEFAULT_ANGLE_SIZE;
+	private int angleSize = euclideanStyleConstants.DEFAULT_ANGLE_SIZE;
 	private float filling = DEFAULT_POLYGON_ALPHA;
 
 	private boolean blackWhiteMode = false;
@@ -344,8 +344,8 @@ public class ConstructionDefaults {
 
 	private int getDependentPointSize() {
 		return (cons.getApplication().isUnbundledGraphing())
-						? EuclidianStyleConstants.DEFAULT_POINT_SIZE_DEPENDENT_GRAPHING
-						: EuclidianStyleConstants.DEFAULT_POINT_SIZE_DEPENDENT;
+						? euclideanStyleConstants.DEFAULT_POINT_SIZE_DEPENDENT_GRAPHING
+						: euclideanStyleConstants.DEFAULT_POINT_SIZE_DEPENDENT;
 	}
 
 	/**
@@ -361,17 +361,17 @@ public class ConstructionDefaults {
 		if (geo instanceof GeoAngle
 				&& cons.getApplication().isUnbundledGeometry()) {
 			geo.setLineThickness(
-					EuclidianStyleConstants.OBJSTYLE_DEFAULT_LINE_THICKNESS_ANGLE_GEOMETRY);
+					euclideanStyleConstants.OBJSTYLE_DEFAULT_LINE_THICKNESS_ANGLE_GEOMETRY);
 		} else {
 			geo.setLineThickness(
-					EuclidianStyleConstants.OBJSTYLE_DEFAULT_LINE_THICKNESS);
+					euclideanStyleConstants.OBJSTYLE_DEFAULT_LINE_THICKNESS);
 		}
 		if (geo.hasLineOpacity()) {
 			if (cons.getApplication().isUnbundledOrWhiteboard()) {
 				setLineOpacity(geo);
 			} else {
 				geo.setLineOpacity(
-						EuclidianStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY);
+						euclideanStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY);
 			}
 		}
 	}
@@ -379,31 +379,31 @@ public class ConstructionDefaults {
 	private void setLineOpacity(GeoElement geo) {
 		if (geo instanceof GeoAngle) {
 			geo.setLineOpacity(
-					EuclidianStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_ANGLE);
+					euclideanStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_ANGLE);
 		} else if (geo instanceof GeoPolygon) {
 			geo.setLineOpacity(
-					EuclidianStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_POLYGON);
+					euclideanStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_POLYGON);
 		} else if (geo instanceof GeoConicPart) {
 			geo.setLineOpacity(
-					EuclidianStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_SECTOR);
+					euclideanStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_SECTOR);
 		} else if (cons.getApplication().isUnbundledGeometry()
 				&& (geo instanceof GeoLine || geo instanceof GeoSegment
 						|| geo instanceof GeoRay || geo instanceof GeoVector
 						|| geo instanceof GeoPolyLine
 						|| geo instanceof GeoConic)) {
 			geo.setLineOpacity(
-					EuclidianStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_GEOMETRY);
+					euclideanStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_GEOMETRY);
 		} else if (cons.getApplication().isUnbundledGraphing()
 				&& (geo instanceof GeoFunction)) {
 			geo.setLineOpacity(
-					EuclidianStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_FUNCTION_GEOMETRY);
+					euclideanStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_FUNCTION_GEOMETRY);
 		} else if (cons.getApplication().isUnbundledGraphing()
 				&& (geo instanceof GeoCurveCartesian)) {
 			geo.setLineOpacity(
-					EuclidianStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_CURVE_GEOMETRY);
+					euclideanStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_CURVE_GEOMETRY);
 		} else {
 			geo.setLineOpacity(
-					EuclidianStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY);
+					euclideanStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY);
 		}
 
 	}
@@ -417,7 +417,7 @@ public class ConstructionDefaults {
 		// free point
 		GeoPoint freePoint = new GeoPoint(cons);
 		// freePoint.setLocalVariableLabel(app.getPlain("Point") + strFree);
-		freePoint.setPointStyle(EuclidianStyleConstants.POINT_STYLE_DOT);
+		freePoint.setPointStyle(euclideanStyleConstants.POINT_STYLE_DOT);
 		freePoint.setLocalVariableLabel("Point" + strFree);
 		freePoint.setObjColor(getPointColor());
 		freePoint.setPointSize(pointSize);
@@ -427,7 +427,7 @@ public class ConstructionDefaults {
 		// dependent point
 		GeoPoint depPoint = new GeoPoint(cons);
 		// depPoint.setLocalVariableLabel(app.getPlain("Point") + strDependent);
-		depPoint.setPointStyle(EuclidianStyleConstants.POINT_STYLE_DOT);
+		depPoint.setPointStyle(euclideanStyleConstants.POINT_STYLE_DOT);
 		depPoint.setLocalVariableLabel("Point" + strDependent);
 		depPoint.setObjColor(
 				cons.getApplication().isUnbundledOrWhiteboard()
@@ -438,7 +438,7 @@ public class ConstructionDefaults {
 
 		// preview point
 		GeoPoint previewPoint = new GeoPoint(cons);
-		previewPoint.setPointStyle(EuclidianStyleConstants.POINT_STYLE_NO_OUTLINE);
+		previewPoint.setPointStyle(euclideanStyleConstants.POINT_STYLE_NO_OUTLINE);
 		previewPoint.setLocalVariableLabel("Point" + strDependent);
 		previewPoint.setObjColor(
 				cons.getApplication().isUnbundledOrWhiteboard()
@@ -450,7 +450,7 @@ public class ConstructionDefaults {
 		// point on path
 		GeoPoint pathPoint = new GeoPoint(cons);
 		// pathPoint.setLocalVariableLabel(app.getPlain("PointOn"));
-		pathPoint.setPointStyle(EuclidianStyleConstants.POINT_STYLE_DOT);
+		pathPoint.setPointStyle(euclideanStyleConstants.POINT_STYLE_DOT);
 		pathPoint.setLocalVariableLabel("PointOn");
 		pathPoint.setObjColor(
 				cons.getApplication().isUnbundledOrWhiteboard()
@@ -462,7 +462,7 @@ public class ConstructionDefaults {
 		// point in region
 		GeoPoint regionPoint = new GeoPoint(cons);
 		// regionPoint.setLocalVariableLabel(app.getPlain("PointOn"));
-		regionPoint.setPointStyle(EuclidianStyleConstants.POINT_STYLE_DOT);
+		regionPoint.setPointStyle(euclideanStyleConstants.POINT_STYLE_DOT);
 		regionPoint.setLocalVariableLabel("PointInRegion");
 		regionPoint.setObjColor(
 				cons.getApplication().isUnbundledOrWhiteboard()
@@ -473,7 +473,7 @@ public class ConstructionDefaults {
 
 		// complex number (handled like a point)
 		GeoPoint complexPoint = new GeoPoint(cons);
-		complexPoint.setPointStyle(EuclidianStyleConstants.POINT_STYLE_DOT);
+		complexPoint.setPointStyle(euclideanStyleConstants.POINT_STYLE_DOT);
 		complexPoint.setLocalVariableLabel("PointOn");
 		complexPoint.setObjColor(
 				cons.getApplication().isUnbundledOrWhiteboard()
@@ -639,7 +639,7 @@ public class ConstructionDefaults {
 		// angle.setLineThickness(GeoNumeric.DEFAULT_THICKNESS);
 		angle.setSliderWidth(GeoNumeric.DEFAULT_SLIDER_WIDTH_PIXEL_ANGLE, true);
 		angle.setLineTypeHidden(
-				EuclidianStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN);
+				euclideanStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN);
 		if (cons.getApplication().isUnbundledGeometry()) {
 			angle.labelMode = GeoElementND.LABEL_VALUE;
 			angle.setAngleStyle(AngleStyle.NOTREFLEX);
@@ -704,7 +704,7 @@ public class ConstructionDefaults {
 								// see GeoList.setAlphaValue() and
 								// getAlphaValue()
 		list.setDefaultGeoType(DEFAULT_LIST);
-		list.setPointStyle(EuclidianStyleConstants.POINT_STYLE_DOT);
+		list.setPointStyle(euclideanStyleConstants.POINT_STYLE_DOT);
 		defaultGeoElements.put(DEFAULT_LIST, list);
 	}
 
@@ -726,7 +726,7 @@ public class ConstructionDefaults {
 
 	/**
 	 * Adds a key/value pair to defaultGeoElements. (used by
-	 * Euclidian.EuclidianStyleBar to restore a default geo to previous state)
+	 * euclidean.euclideanStyleBar to restore a default geo to previous state)
 	 * 
 	 * @param defaultType
 	 *            default type
@@ -895,7 +895,7 @@ public class ConstructionDefaults {
 	 */
 	private static void setMaxLayerUsed(GeoElement geo, App app) {
 		if (app != null) {
-			int layer = Math.min(EuclidianStyleConstants.MAX_LAYERS - 1,
+			int layer = Math.min(euclideanStyleConstants.MAX_LAYERS - 1,
 					app.getMaxLayerUsed());
 
 			geo.setLayer(layer);
@@ -923,13 +923,13 @@ public class ConstructionDefaults {
 	 *            The element which needs new default visual styles
 	 * @param isReset
 	 *            If the visual styles should be reset
-	 * @param setEuclidianVisible
+	 * @param seteuclideanVisible
 	 *            If eucldianVisible should be set
 	 * @param setAuxiliaryProperty
 	 *            if auxiliary property should be set
 	 */
 	final public void setDefaultVisualStyles(GeoElement geo, boolean isReset,
-			boolean setEuclidianVisible, boolean setAuxiliaryProperty) {
+			boolean seteuclideanVisible, boolean setAuxiliaryProperty) {
 		// all object types that are not specifically supported
 		// should get the default values of a line
 		// int type = DEFAULT_LINE;
@@ -942,11 +942,11 @@ public class ConstructionDefaults {
 		boolean defaultLabelMode = true;
 
 		if (defaultGeo != null) {
-			if (!setEuclidianVisible || geo.isGeoNumeric()) { // don't affect
-																// euclidianVisible
+			if (!seteuclideanVisible || geo.isGeoNumeric()) { // don't affect
+																// euclideanVisible
 																// for
 																// slider/angle
-				geo.setAllVisualPropertiesExceptEuclidianVisible(defaultGeo,
+				geo.setAllVisualPropertiesExcepteuclideanVisible(defaultGeo,
 						isReset, setAuxiliaryProperty);
 			} else {
 				geo.setAllVisualProperties(defaultGeo, isReset,
@@ -1029,10 +1029,10 @@ public class ConstructionDefaults {
 	 * Reset construction defaults
 	 */
 	public void resetDefaults() {
-		lineThickness = EuclidianStyleConstants.DEFAULT_LINE_THICKNESS;
-		pointSize = EuclidianStyleConstants.DEFAULT_POINT_SIZE;
+		lineThickness = euclideanStyleConstants.DEFAULT_LINE_THICKNESS;
+		pointSize = euclideanStyleConstants.DEFAULT_POINT_SIZE;
 		dependentPointSize = getDependentPointSize();
-		angleSize = EuclidianStyleConstants.DEFAULT_ANGLE_SIZE;
+		angleSize = euclideanStyleConstants.DEFAULT_ANGLE_SIZE;
 		filling = DEFAULT_POLYGON_ALPHA;
 
 		setDefaultLineThickness(lineThickness);

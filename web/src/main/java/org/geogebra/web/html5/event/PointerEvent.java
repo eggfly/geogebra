@@ -3,8 +3,8 @@ package org.geogebra.web.html5.event;
 import java.util.LinkedList;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.PointerEventType;
 
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.Element;
@@ -281,7 +281,7 @@ public class PointerEvent extends AbstractEvent {
 	}
 
 	/**
-	 * @return The euclidian view id if the event was fired on it, else 0.
+	 * @return The euclidean view id if the event was fired on it, else 0.
 	 */
 	public int getEvID() {
 		return this.evID;

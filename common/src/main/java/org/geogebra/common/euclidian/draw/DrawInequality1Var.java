@@ -1,13 +1,13 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GArea;
 import org.geogebra.common.awt.GEllipse2DDouble;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GLine2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.euclidean.GeneralPathClipped;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.arithmetic.ExpressionNode;
 import org.geogebra.common.kernel.arithmetic.ExpressionValue;
@@ -17,8 +17,8 @@ import org.geogebra.common.kernel.arithmetic.NumberValue;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoFunction;
 import org.geogebra.common.kernel.geos.GeoPoint;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
 import org.geogebra.common.plugin.Operation;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 
 /**
@@ -50,7 +50,7 @@ public class DrawInequality1Var extends SetDrawable {
 	 * @param varIsY
 	 *            true if this is inequality in Y
 	 */
-	public DrawInequality1Var(Inequality ineq, EuclidianView view,
+	public DrawInequality1Var(Inequality ineq, euclideanView view,
 			GeoElement geo, boolean varIsY) {
 		super();
 		this.ineq = ineq;
@@ -190,7 +190,7 @@ public class DrawInequality1Var extends SetDrawable {
 			if (geo.getLineThickness() > 0) {
 				g2.setPaint(getObjectColor());
 				g2.setStroke(
-						EuclidianStatic.getStroke(geo.getLineThickness() / 2.0f,
+						euclideanStatic.getStroke(geo.getLineThickness() / 2.0f,
 								((GeoElement) ineq.getFunBorder()).lineType));
 				g2.draw(lines[i]);
 			}
@@ -211,8 +211,8 @@ public class DrawInequality1Var extends SetDrawable {
 			if (geo.getLineThickness() > 0) {
 				g2.setPaint(getObjectColor());
 				g2.setStroke(
-						EuclidianStatic.getStroke(geo.getLineThickness() / 2.0f,
-								EuclidianStyleConstants.LINE_TYPE_FULL));
+						euclideanStatic.getStroke(geo.getLineThickness() / 2.0f,
+								euclideanStyleConstants.LINE_TYPE_FULL));
 				g2.draw(circle[i]);
 				if (!ineq.isStrict()) {
 					g2.fill(circle[i]);

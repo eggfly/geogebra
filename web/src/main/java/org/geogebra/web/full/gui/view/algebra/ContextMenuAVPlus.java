@@ -2,7 +2,7 @@ package org.geogebra.web.full.gui.view.algebra;
 
 import java.util.Vector;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.toolbar.ToolBar;
 import org.geogebra.common.gui.toolbar.ToolbarItem;
@@ -62,7 +62,7 @@ public class ContextMenuAVPlus implements SetLabels {
 	private void buildGUI() {
 		wrappedPopup.clearItems();
 		addExpressionItem();
-		if (app.getActiveEuclidianView().getViewID() != App.VIEW_EUCLIDIAN3D) {
+		if (app.getActiveeuclideanView().getViewID() != App.VIEW_euclidean3D) {
 			addTextItem();
 
 			if (app.showToolBar() && toolbarHasImageMode()) {
@@ -79,11 +79,11 @@ public class ContextMenuAVPlus implements SetLabels {
 
 			for (ToolbarItem toolbarItem : toolbarItems) {
 				if (toolbarItem.getMode() == null) {
-					if (toolbarItem.getMenu().contains(EuclidianConstants.MODE_IMAGE)) {
+					if (toolbarItem.getMenu().contains(euclideanConstants.MODE_IMAGE)) {
 						return true;
 					}
 				} else {
-					if (toolbarItem.getMode() == EuclidianConstants.MODE_IMAGE) {
+					if (toolbarItem.getMode() == euclideanConstants.MODE_IMAGE) {
 						return true;
 					}
 				}
@@ -91,7 +91,7 @@ public class ContextMenuAVPlus implements SetLabels {
 		} else {
 			ToolCollection toolCollection =
 					app.createToolCollectionFactory().createToolCollection();
-			return toolCollection.contains(EuclidianConstants.MODE_IMAGE);
+			return toolCollection.contains(euclideanConstants.MODE_IMAGE);
 		}
 
 		return false;
@@ -143,7 +143,7 @@ public class ContextMenuAVPlus implements SetLabels {
 						app.getImageManager().setPreventAuxImage(true);
 						
 						app.getGuiManager().loadImage(null,
-								null, false, app.getActiveEuclidianView());
+								null, false, app.getActiveeuclideanView());
 					}
 				});
 		wrappedPopup.addItem(mi);

@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Macro;
 import org.geogebra.common.main.GuiManagerInterface.Help;
 import org.geogebra.common.main.Localization;
@@ -33,10 +33,10 @@ public class HelpDialog {
 		ImageIcon icon;
 		String modeTextInternal = null;
 
-		if (mode >= EuclidianConstants.MACRO_MODE_ID_OFFSET) {
+		if (mode >= euclideanConstants.MACRO_MODE_ID_OFFSET) {
 
 			Macro macro = app.getKernel()
-					.getMacro(mode - EuclidianConstants.MACRO_MODE_ID_OFFSET);
+					.getMacro(mode - euclideanConstants.MACRO_MODE_ID_OFFSET);
 
 			String iconName = macro.getIconFileName();
 			MyImageD img = app.getExternalImage(iconName);
@@ -53,7 +53,7 @@ public class HelpDialog {
 
 		} else {
 
-			modeTextInternal = EuclidianConstants.getModeTextSimple(mode);
+			modeTextInternal = euclideanConstants.getModeTextSimple(mode);
 			icon = app.getToolBarImage(modeTextInternal, Color.BLACK);
 		}
 		Localization loc = app.getLocalization();

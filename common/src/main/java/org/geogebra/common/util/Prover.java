@@ -24,7 +24,7 @@ import org.geogebra.common.kernel.prover.AbstractProverReciosMethod;
 import org.geogebra.common.kernel.prover.ProverBotanasMethod;
 import org.geogebra.common.kernel.prover.ProverPureSymbolicMethod;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.debug.Log;
 
 /**
@@ -280,8 +280,8 @@ public abstract class Prover {
 			cons.setSuppressLabelCreation(false);
 			AlgoJoinPoints ajp = new AlgoJoinPoints(cons, null, P1, P2);
 			GeoLine line = ajp.getLine();
-			line.setEuclidianVisible(true);
-			line.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_LONG);
+			line.seteuclideanVisible(true);
+			line.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_LONG);
 			line.setLabelVisible(true);
 			line.updateVisualStyle(GProperty.COMBINED); // visibility and style
 			cons.setSuppressLabelCreation(oldMacroMode);
@@ -314,8 +314,8 @@ public abstract class Prover {
 			AlgoJoinPointsSegment ajp = new AlgoJoinPointsSegment(cons,
 					P1, P2);
 			GeoSegment segment = ajp.getSegment();
-			segment.setEuclidianVisible(true);
-			segment.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_LONG);
+			segment.seteuclideanVisible(true);
+			segment.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_LONG);
 			segment.setLabelVisible(true);
 			segment.setLabel(null);
 			cons.setSuppressLabelCreation(oldMacroMode);

@@ -1,11 +1,11 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.arithmetic.NumberValue;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoFunction;
@@ -17,15 +17,15 @@ import org.geogebra.common.kernel.kernelND.GeoLineND;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.main.App;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.main.settings.SettingListener;
 
 /**
- * Interface for n-dimensional Euclidian view
+ * Interface for n-dimensional euclidean view
  *
  */
-public interface EuclidianViewInterfaceCommon
-		extends EuclidianViewInterfaceSlim, SettingListener {
+public interface euclideanViewInterfaceCommon
+		extends euclideanViewInterfaceSlim, SettingListener {
 
 	/** reference to x axis */
 	public static final int AXIS_X = 0;
@@ -539,7 +539,7 @@ public interface EuclidianViewInterfaceCommon
 
 	/**
 	 * @param type
-	 *            grid type (see EuclidianStyleConstants)
+	 *            grid type (see euclideanStyleConstants)
 	 */
 	public void setGridType(int type);
 
@@ -671,7 +671,7 @@ public interface EuclidianViewInterfaceCommon
 	 * @param cursor
 	 *            cursor
 	 */
-	public void setCursor(EuclidianCursor cursor);
+	public void setCursor(euclideanCursor cursor);
 
 	/**
 	 * Try to focus this view
@@ -683,12 +683,12 @@ public interface EuclidianViewInterfaceCommon
 	/**
 	 * @return style bar
 	 */
-	public EuclidianStyleBar getStyleBar();
+	public euclideanStyleBar getStyleBar();
 
 	/**
 	 * @return dynamic style bar
 	 */
-	public EuclidianStyleBar getDynamicStyleBar();
+	public euclideanStyleBar getDynamicStyleBar();
 
 	/**
 	 * Updates highlighting of animation buttons.
@@ -772,9 +772,9 @@ public interface EuclidianViewInterfaceCommon
 	public void updatePreviewableForProcessMode();
 
 	/**
-	 * @return number of euclidian view
+	 * @return number of euclidean view
 	 */
-	public int getEuclidianViewNo();
+	public int geteuclideanViewNo();
 
 	/**
 	 * @param rwX
@@ -882,7 +882,7 @@ public interface EuclidianViewInterfaceCommon
 
 	/**
 	 * @param type
-	 *            line type (see EuclidianStyleConstants)
+	 *            line type (see euclideanStyleConstants)
 	 */
 	public void setGridLineStyle(int type);
 
@@ -994,7 +994,7 @@ public interface EuclidianViewInterfaceCommon
 			boolean storeUndo);
 
 	@Override
-	public EuclidianSettings getSettings();
+	public euclideanSettings getSettings();
 
 	/**
 	 * @return view direction

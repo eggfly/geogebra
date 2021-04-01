@@ -13,7 +13,7 @@ describe('Text tool test', () => {
         // text tool selected as first on media panel
         selectors.mediaPanelButton.click(); 
         // use mouse down+up to avoid "scroll to view" behavior of cy.click
-        selectors.euclidianView.get()
+        selectors.euclideanView.get()
             .mouseEvent('down', 100, 100)
             .mouseEvent('up', 100, 100);
         cy.window().then((win) => {
@@ -30,7 +30,7 @@ describe('Text tool test', () => {
             // text tool selected as first on media panel
             selectors.mediaPanelButton.click();
             // use mouse down+up to avoid "scroll to view" behavior of cy.click
-            selectors.euclidianView.get()
+            selectors.euclideanView.get()
                 .mouseEvent('down', 100, 300)
                 .mouseEvent('up', 100, 300);
             cy.get(".murokTextArea textarea").type("GeoGebra Rocks");
@@ -48,7 +48,7 @@ describe('Text tool test', () => {
            // text tool selected as first on media panel
            selectors.mediaPanelButton.click();
            // use mouse down+up to avoid "scroll to view" behavior of cy.click
-           selectors.euclidianView.get()
+           selectors.euclideanView.get()
                 .mouseEvent('down', 100, 300)
                 .mouseEvent('up', 100, 300);
            cy.get(".murokTextArea textarea").type("Text element example");

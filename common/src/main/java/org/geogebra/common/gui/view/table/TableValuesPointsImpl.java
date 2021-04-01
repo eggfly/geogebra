@@ -8,7 +8,7 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.geos.GeoPoint;
 import org.geogebra.common.kernel.kernelND.GeoEvaluatable;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 /**
  * Implementation of TableValuesPoints
@@ -104,9 +104,9 @@ public class TableValuesPointsImpl implements TableValuesPoints {
 		for (int row = 0; row < model.getRowCount(); row++) {
 			double value = model.getValueAt(row, column);
 			GeoPoint point = new GeoPoint(construction, values[row], value, 1.0);
-			point.setPointStyle(EuclidianStyleConstants.POINT_STYLE_NO_OUTLINE);
+			point.setPointStyle(euclideanStyleConstants.POINT_STYLE_NO_OUTLINE);
 			point.setAlgebraVisible(false);
-			point.setEuclidianVisible(true);
+			point.seteuclideanVisible(true);
 			point.setLabelVisible(false);
 			point.setHasPreviewPopup(true);
 			point.setFixed(true);

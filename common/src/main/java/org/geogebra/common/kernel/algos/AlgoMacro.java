@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.FixedPathRegionAlgo;
 import org.geogebra.common.kernel.Locateable;
@@ -105,9 +105,9 @@ public class AlgoMacro extends AlgoElement
 		setInputOutput();
 		compute();
 
-		// check if macro construction has euclidianAlgos
-		if (macro.getMacroConstruction().hasEuclidianViewCE()) {
-			cons.registerEuclidianViewCE(this);
+		// check if macro construction has euclideanAlgos
+		if (macro.getMacroConstruction().haseuclideanViewCE()) {
+			cons.registereuclideanViewCE(this);
 		}
 
 		if (add) {
@@ -116,8 +116,8 @@ public class AlgoMacro extends AlgoElement
 			// we want to do this only with 4.0 macros
 			if (macro.isCopyCaptionsAndVisibility()) {
 				for (int i = 0; i < macroOutput.length; i++) {
-					if (!macroOutput[i].isSetEuclidianVisible()) {
-						getOutput(i).setEuclidianVisible(false);
+					if (!macroOutput[i].isSeteuclideanVisible()) {
+						getOutput(i).seteuclideanVisible(false);
 						getOutput(i).update();
 					}
 				}
@@ -125,7 +125,7 @@ public class AlgoMacro extends AlgoElement
 				// for <=3.2 macros hide all angles
 				for (int i = 0; i < macroOutput.length; i++) {
 					if (macroOutput[i] instanceof GeoAngle) {
-						getOutput(i).setEuclidianVisible(false);
+						getOutput(i).seteuclideanVisible(false);
 						getOutput(i).update();
 					}
 				}
@@ -261,7 +261,7 @@ public class AlgoMacro extends AlgoElement
 				if (macro.isCopyCaptionsAndVisibility()) {
 					algoGeo.setAdvancedVisualStyleCopy(macroGeo);
 				}
-				boolean oldVisible = algoGeo.isSetEuclidianVisible();
+				boolean oldVisible = algoGeo.isSeteuclideanVisible();
 				if (drawAlgo instanceof DrawInformationAlgo) {
 					((GeoNumeric) algoGeo).setDrawable(true, oldVisible);
 					algoGeo.setDrawAlgorithm(
@@ -658,7 +658,7 @@ public class AlgoMacro extends AlgoElement
 	@Override
 	public int getRelatedModeID() {
 		return kernel.getMacroID(macro)
-				+ EuclidianConstants.MACRO_MODE_ID_OFFSET;
+				+ euclideanConstants.MACRO_MODE_ID_OFFSET;
 	}
 
 }

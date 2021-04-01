@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.gui.dialog.handler.NumberInputHandler;
 import org.geogebra.common.kernel.Kernel;
@@ -18,7 +18,7 @@ public class InputDialogDilateW extends ComponentInputDialog {
 	private GeoPointND[] points;
 	private GeoElement[] selGeos;
 	private Kernel kernel;
-	private EuclidianController ec;
+	private euclideanController ec;
 
 	/**
 	 * @param app
@@ -34,10 +34,10 @@ public class InputDialogDilateW extends ComponentInputDialog {
 	 * @param kernel
 	 *            kernel
 	 * @param ec
-	 *            euclidian controller
+	 *            euclidean controller
 	 */
 	public InputDialogDilateW(AppW app, DialogData data, InputHandler handler,
-			GeoPointND[] points, GeoElement[] selGeos, Kernel kernel, EuclidianController ec) {
+			GeoPointND[] points, GeoElement[] selGeos, Kernel kernel, euclideanController ec) {
 		super(app, data, false, false, handler,
 				app.getLocalization().getMenu("Dilate.Factor"), "",
 				1, -1, false);

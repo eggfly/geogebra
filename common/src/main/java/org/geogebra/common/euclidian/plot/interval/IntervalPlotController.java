@@ -1,8 +1,8 @@
-package org.geogebra.common.euclidian.plot.interval;
+package org.geogebra.common.euclidean.plot.interval;
 
-import org.geogebra.common.euclidian.CoordSystemAnimationListener;
-import org.geogebra.common.euclidian.CoordSystemInfo;
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.CoordSystemAnimationListener;
+import org.geogebra.common.euclidean.CoordSystemInfo;
+import org.geogebra.common.euclidean.euclideanController;
 
 /**
  * Controller for Interval Plotter to handle zoom and moving the view.
@@ -12,7 +12,7 @@ import org.geogebra.common.euclidian.EuclidianController;
 public class IntervalPlotController implements CoordSystemAnimationListener {
 
 	private final IntervalPlotModel model;
-	private EuclidianController euclidianController;
+	private euclideanController euclideanController;
 
 	/**
 	 * Constructor.
@@ -23,11 +23,11 @@ public class IntervalPlotController implements CoordSystemAnimationListener {
 	}
 
 	/**
-	 * @param controller {@link EuclidianController}
+	 * @param controller {@link euclideanController}
 	 */
-	public void attachEuclidianController(EuclidianController controller) {
-		euclidianController = controller;
-		euclidianController.addZoomerAnimationListener(this);
+	public void attacheuclideanController(euclideanController controller) {
+		euclideanController = controller;
+		euclideanController.addZoomerAnimationListener(this);
 	}
 
 	@Override
@@ -53,6 +53,6 @@ public class IntervalPlotController implements CoordSystemAnimationListener {
 	 * Remove controller as zoomer animation listener.
 	 */
 	public void detach() {
-		euclidianController.removeZoomerAnimationListener(this);
+		euclideanController.removeZoomerAnimationListener(this);
 	}
 }

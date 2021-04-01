@@ -3,7 +3,7 @@ package org.geogebra.web.full.gui.toolbarpanel;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.toolbar.ToolBar;
 import org.geogebra.common.gui.toolcategorization.ToolCategory;
@@ -60,7 +60,7 @@ public class Tools extends FlowPanel implements SetLabels {
 	 * this.
 	 */
 	public void setMoveMode() {
-		app.setMode(EuclidianConstants.MODE_MOVE);
+		app.setMode(euclideanConstants.MODE_MOVE);
 		clearSelectionStyle();
 		if (moveButton != null) {
 			moveButton.getElement().setAttribute("selected", "true");
@@ -74,7 +74,7 @@ public class Tools extends FlowPanel implements SetLabels {
 	 *            the mode will be selected
 	 */
 	public void setMode(int mode) {
-		if (mode == EuclidianConstants.MODE_SELECTION_LISTENER) {
+		if (mode == euclideanConstants.MODE_SELECTION_LISTENER) {
 			return;
 		}
 		for (int i = 0; i < getWidgetCount(); i++) {
@@ -185,7 +185,7 @@ public class Tools extends FlowPanel implements SetLabels {
 			ToolButton btn = getToolButton(mode);
 			toolButtonList.add(btn);
 			toolsPanel.add(btn);
-			if (mode == EuclidianConstants.MODE_MOVE) {
+			if (mode == euclideanConstants.MODE_MOVE) {
 				setMoveButton(btn);
 			}
 		}

@@ -6,12 +6,12 @@ import java.util.Iterator;
 import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.cas.view.CASView;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.SymbolicEditor;
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.SymbolicEditor;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.gui.Editing;
 import org.geogebra.common.gui.GuiManager;
@@ -55,9 +55,9 @@ import org.geogebra.web.full.cas.view.CASTableW;
 import org.geogebra.web.full.cas.view.CASViewW;
 import org.geogebra.web.full.cas.view.RowHeaderPopupMenuW;
 import org.geogebra.web.full.css.ToolbarSvgResourcesSync;
-import org.geogebra.web.full.euclidian.DynamicStyleBar;
-import org.geogebra.web.full.euclidian.EuclidianStyleBarW;
-import org.geogebra.web.full.euclidian.SymbolicEditorW;
+import org.geogebra.web.full.euclidean.DynamicStyleBar;
+import org.geogebra.web.full.euclidean.euclideanStyleBarW;
+import org.geogebra.web.full.euclidean.SymbolicEditorW;
 import org.geogebra.web.full.gui.app.GGWMenuBar;
 import org.geogebra.web.full.gui.app.GGWToolBar;
 import org.geogebra.web.full.gui.applet.GeoGebraFrameFull;
@@ -75,9 +75,9 @@ import org.geogebra.web.full.gui.layout.panels.AnimatingPanel;
 import org.geogebra.web.full.gui.layout.panels.CASDockPanelW;
 import org.geogebra.web.full.gui.layout.panels.ConstructionProtocolDockPanelW;
 import org.geogebra.web.full.gui.layout.panels.DataAnalysisViewDockPanelW;
-import org.geogebra.web.full.gui.layout.panels.Euclidian2DockPanelW;
-import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelW;
-import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelWAbstract;
+import org.geogebra.web.full.gui.layout.panels.euclidean2DockPanelW;
+import org.geogebra.web.full.gui.layout.panels.euclideanDockPanelW;
+import org.geogebra.web.full.gui.layout.panels.euclideanDockPanelWAbstract;
 import org.geogebra.web.full.gui.layout.panels.FunctionInspectorDockPanelW;
 import org.geogebra.web.full.gui.layout.panels.ProbabilityCalculatorDockPanelW;
 import org.geogebra.web.full.gui.layout.panels.PropertiesDockPanelW;
@@ -108,8 +108,8 @@ import org.geogebra.web.full.util.keyboard.AutocompleteProcessing;
 import org.geogebra.web.full.util.keyboard.GTextBoxProcessing;
 import org.geogebra.web.full.util.keyboard.ScriptAreaProcessing;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 import org.geogebra.web.html5.event.PointerEvent;
 import org.geogebra.web.html5.gui.AlgebraInput;
 import org.geogebra.web.html5.gui.GuiManagerInterfaceW;
@@ -151,17 +151,17 @@ public class GuiManagerW extends GuiManager
 	private AlgebraControllerW algebraController;
 	private AlgebraViewW algebraView;
 	private SpreadsheetViewW spreadsheetView;
-	private final ArrayList<EuclidianViewW> euclidianView2 = new ArrayList<>();
+	private final ArrayList<euclideanViewW> euclideanView2 = new ArrayList<>();
 	protected BrowseViewI browseGUI;
 	protected LayoutW layout;
 	protected boolean uploadWaiting;
 	private CASViewW casView;
-	private Euclidian2DockPanelW euclidianView2DockPanel;
+	private euclidean2DockPanelW euclideanView2DockPanel;
 	private String strCustomToolbarDefinition;
 	private boolean draggingViews;
 	/** device: tablet / browser */
 	protected final GDevice device;
-	private int toolbarID = App.VIEW_EUCLIDIAN;
+	private int toolbarID = App.VIEW_euclidean;
 	private ConstructionProtocolView constructionProtocolView;
 	private boolean oldDraggingViews;
 	private String generalToolbarDefinition;
@@ -236,9 +236,9 @@ public class GuiManagerW extends GuiManager
 
 	@Override
 	public void showPopupMenu(final ArrayList<GeoElement> selectedGeos,
-			final EuclidianViewInterfaceCommon view, final GPoint mouseLoc) {
+			final euclideanViewInterfaceCommon view, final GPoint mouseLoc) {
 		showPopupMenu(selectedGeos,
-				((EuclidianViewWInterface) view).getG2P().getElement(),
+				((euclideanViewWInterface) view).getG2P().getElement(),
 				mouseLoc);
 	}
 
@@ -251,7 +251,7 @@ public class GuiManagerW extends GuiManager
 			showDrawingPadPopup(invoker, p);
 		} else {
 			// clear highlighting and selections in views
-			getApp().getActiveEuclidianView().resetMode();
+			getApp().getActiveeuclideanView().resetMode();
 			getPopupMenu(geos).showScaled(invoker, p.x, p.y);
 		}
 	}
@@ -260,7 +260,7 @@ public class GuiManagerW extends GuiManager
 	public void showPopupMenu(final ArrayList<GeoElement> geos,
 			final AlgebraView invoker, final GPoint p) {
 		// clear highlighting and selections in views
-		getApp().getActiveEuclidianView().resetMode();
+		getApp().getActiveeuclideanView().resetMode();
 		getPopupMenu(geos).show(p);
 	}
 
@@ -305,12 +305,12 @@ public class GuiManagerW extends GuiManager
 	@Override
 	public void showPopupChooseGeo(final ArrayList<GeoElement> selectedGeos,
 			final ArrayList<GeoElement> geos,
-			final EuclidianViewInterfaceCommon view, final GPoint p) {
-		showPopupChooseGeo(selectedGeos, geos, (EuclidianView) view, p);
+			final euclideanViewInterfaceCommon view, final GPoint p) {
+		showPopupChooseGeo(selectedGeos, geos, (euclideanView) view, p);
 	}
 
 	private void showPopupChooseGeo(final ArrayList<GeoElement> selectedGeos,
-			final ArrayList<GeoElement> geos, final EuclidianView view,
+			final ArrayList<GeoElement> geos, final euclideanView view,
 			final GPoint p) {
 
 		if (geos == null || !getApp().letShowPopupMenu()) {
@@ -321,10 +321,10 @@ public class GuiManagerW extends GuiManager
 			showDrawingPadPopup(view, p);
 		} else {
 
-			final Element invoker = ((EuclidianViewWInterface) view)
+			final Element invoker = ((euclideanViewWInterface) view)
 					.getCanvasElement();
 			// clear highlighting and selections in views
-			getApp().getActiveEuclidianView().resetMode();
+			getApp().getActiveeuclideanView().resetMode();
 			ContextMenuGeoElementW menu = getPopupMenu(view, selectedGeos,
 					geos, p);
 			menu.showScaled(invoker, p.x, p.y);
@@ -332,7 +332,7 @@ public class GuiManagerW extends GuiManager
 	}
 
 	private ContextMenuGeoElementW getPopupMenu(
-			final EuclidianView view, final ArrayList<GeoElement> selectedGeos,
+			final euclideanView view, final ArrayList<GeoElement> selectedGeos,
 			final ArrayList<GeoElement> geos, final GPoint p) {
 		currentPopup = new ContextMenuChooseGeoW(getApp(), view,
 				selectedGeos, geos, p, new ContextMenuFactory());
@@ -353,25 +353,25 @@ public class GuiManagerW extends GuiManager
 	public void setFocusedPanel(final int evID,
 			final boolean updatePropertiesView) {
 
-		if (!(getApp().getEuclidianViewpanel() instanceof DockPanel)) {
+		if (!(getApp().geteuclideanViewpanel() instanceof DockPanel)) {
 			Log.debug("This part of the code should not have run!");
 			return;
 		}
 
 		switch (evID) {
-		case App.VIEW_EUCLIDIAN:
-			setFocusedPanel((DockPanel) getApp().getEuclidianViewpanel(),
+		case App.VIEW_euclidean:
+			setFocusedPanel((DockPanel) getApp().geteuclideanViewpanel(),
 					updatePropertiesView);
 			break;
-		case App.VIEW_EUCLIDIAN2:
-			setFocusedPanel(getEuclidianView2DockPanel(1), updatePropertiesView);
+		case App.VIEW_euclidean2:
+			setFocusedPanel(geteuclideanView2DockPanel(1), updatePropertiesView);
 			break;
-		case App.VIEW_EUCLIDIAN3D:
-			setFocusedPanel(getEuclidian3DPanel(), updatePropertiesView);
+		case App.VIEW_euclidean3D:
+			setFocusedPanel(geteuclidean3DPanel(), updatePropertiesView);
 			break;
 		default:
-			if (evID >= App.VIEW_EUCLIDIAN_FOR_PLANE_START
-			&& evID <= App.VIEW_EUCLIDIAN_FOR_PLANE_END) {
+			if (evID >= App.VIEW_euclidean_FOR_PLANE_START
+			&& evID <= App.VIEW_euclidean_FOR_PLANE_END) {
 				setFocusedPanel(getLayout().getDockManager().getPanel(evID),
 						updatePropertiesView);
 			}
@@ -402,7 +402,7 @@ public class GuiManagerW extends GuiManager
 
 	@Override
 	public void loadImage(final GeoPoint imageLoc, final Object object,
-			final boolean altDown, EuclidianView ev) {
+			final boolean altDown, euclideanView ev) {
 		if (getApp().getToolbar() != null) {
 			getApp().getToolbar().closeAllSubmenu();
 		}
@@ -436,21 +436,21 @@ public class GuiManagerW extends GuiManager
 	}
 
 	@Override
-	public void showDrawingPadPopup(final EuclidianViewInterfaceCommon view,
+	public void showDrawingPadPopup(final euclideanViewInterfaceCommon view,
 			final GPoint mouseLoc) {
-		showDrawingPadPopup(((EuclidianViewW) view).getG2P().getElement(),
+		showDrawingPadPopup(((euclideanViewW) view).getG2P().getElement(),
 				mouseLoc);
 	}
 
 	@Override
-	public void showDrawingPadPopup3D(final EuclidianViewInterfaceCommon view,
+	public void showDrawingPadPopup3D(final euclideanViewInterfaceCommon view,
 			GPoint mouseLoc) {
 		// 3D stuff
 	}
 
 	private void showDrawingPadPopup(final Element invoker, final GPoint p) {
 		// clear highlighting and selections in views
-		getApp().getActiveEuclidianView().resetMode();
+		getApp().getActiveeuclideanView().resetMode();
 		getDrawingPadpopupMenu(p.x, p.y).showScaled(invoker, p.x, p.y);
 	}
 
@@ -530,7 +530,7 @@ public class GuiManagerW extends GuiManager
 		}
 
 		if (viewId == App.VIEW_SPREADSHEET) {
-			(getApp()).getActiveEuclidianView().requestFocus();
+			(getApp()).getActiveeuclideanView().requestFocus();
 		}
 	}
 
@@ -600,7 +600,7 @@ public class GuiManagerW extends GuiManager
 		return probCalculator != null;
 	}
 
-	public boolean hasPlotPanelEuclidianView() {
+	public boolean hasPlotPaneleuclideanView() {
 		return hasProbabilityCalculator();
 	}
 
@@ -627,10 +627,10 @@ public class GuiManagerW extends GuiManager
 		} else {
 			geogebraFrame.getStyle().setHeight(height, Style.Unit.PX);
 			geogebraFrame.getStyle().setWidth(width, Style.Unit.PX);
-			getApp().getEuclidianViewpanel().setPixelSize(width, height);
+			getApp().geteuclideanViewpanel().setPixelSize(width, height);
 
 			// maybe onResize is OK too
-			getApp().getEuclidianViewpanel().deferredOnResize();
+			getApp().geteuclideanViewpanel().deferredOnResize();
 		}
 		if (this.algebraInput != null) {
 			this.algebraInput.setWidth((width - borderThickness) + "px");
@@ -713,11 +713,11 @@ public class GuiManagerW extends GuiManager
 			strCustomToolbarDefinition = strCustomToolbarDefinition.replaceAll(
 					Integer.toString(mode), "");
 
-			if (mode >= EuclidianConstants.MACRO_MODE_ID_OFFSET) {
+			if (mode >= euclideanConstants.MACRO_MODE_ID_OFFSET) {
 				// if a macro mode is removed all higher macros get a new id
 				// (i.e. id-1)
 				final int lastID = kernel.getMacroNumber()
-						+ EuclidianConstants.MACRO_MODE_ID_OFFSET - 1;
+						+ euclideanConstants.MACRO_MODE_ID_OFFSET - 1;
 				for (int id = mode + 1; id <= lastID; id++) {
 					strCustomToolbarDefinition = strCustomToolbarDefinition
 							.replaceAll(Integer.toString(id),
@@ -731,9 +731,9 @@ public class GuiManagerW extends GuiManager
 
 	@Override
 	public void addToToolbarDefinition(final int mode) {
-		if (this.getActiveEuclidianView().getDimension() > 2) {
+		if (this.getActiveeuclideanView().getDimension() > 2) {
 			DockPanelW panel = this.getLayout().getDockManager()
-					.getPanel(this.getActiveEuclidianView().getViewID());
+					.getPanel(this.getActiveeuclideanView().getViewID());
 			panel.addToToolbar(mode);
 			panel.updateToolbar();
 
@@ -757,7 +757,7 @@ public class GuiManagerW extends GuiManager
 	 */
 	@Override
 	public void initialize() {
-		initAlgebraController(); // ? needed for keyboard input in EuclidianView
+		initAlgebraController(); // ? needed for keyboard input in euclideanView
 		// in Desktop
 		layout.initialize(getApp());
 		initLayoutPanels();
@@ -770,11 +770,11 @@ public class GuiManagerW extends GuiManager
 	 */
 	protected boolean initLayoutPanels() {
 
-		// register euclidian view
+		// register euclidean view
 		// this is done earlier
-		if (getApp().getEuclidianViewpanel() instanceof DockPanelW) {
+		if (getApp().geteuclideanViewpanel() instanceof DockPanelW) {
 			layout.registerPanel((DockPanelW) getApp()
-					.getEuclidianViewpanel());
+					.geteuclideanViewpanel());
 		} else {
 			Log.debug("This part of the code should not have been called!");
 			return false;
@@ -788,8 +788,8 @@ public class GuiManagerW extends GuiManager
 		// register CAS view
 		layout.registerPanel(new CASDockPanelW(getApp()));
 
-		// register EuclidianView2
-		layout.registerPanel(getEuclidianView2DockPanel(1));
+		// register euclideanView2
+		layout.registerPanel(geteuclideanView2DockPanel(1));
 
 		// register ConstructionProtocol view
 		layout.registerPanel(new ConstructionProtocolDockPanelW(getApp()));
@@ -951,7 +951,7 @@ public class GuiManagerW extends GuiManager
 		if (propertiesView == null) {
 			// initPropertiesDialog();
 			propertiesView = newPropertiesViewW(getApp(),
-					OptionType.EUCLIDIAN);
+					OptionType.euclidean);
 		}
 
 		return propertiesView;
@@ -1072,9 +1072,9 @@ public class GuiManagerW extends GuiManager
 		}
 
 		// #5320
-		getApp().getEuclidianView1().updateFonts();
-		if (hasEuclidianView2(1)) {
-			getEuclidianView2(1).updateFonts();
+		getApp().geteuclideanView1().updateFonts();
+		if (haseuclideanView2(1)) {
+			geteuclideanView2(1).updateFonts();
 		}
 
 		// force JavaScript ggbOnInit(); to be called
@@ -1160,32 +1160,32 @@ public class GuiManagerW extends GuiManager
 	}
 
 	@Override
-	public EuclidianView getActiveEuclidianView() {
+	public euclideanView getActiveeuclideanView() {
 		if (layout == null) {
-			return getApp().getEuclidianView1();
+			return getApp().geteuclideanView1();
 		}
 
-		final EuclidianDockPanelWAbstract focusedEuclidianPanel = layout
-				.getDockManager().getFocusedEuclidianPanel();
+		final euclideanDockPanelWAbstract focusedeuclideanPanel = layout
+				.getDockManager().getFocusedeuclideanPanel();
 
-		if (focusedEuclidianPanel != null) {
-			return focusedEuclidianPanel.getEuclidianView();
+		if (focusedeuclideanPanel != null) {
+			return focusedeuclideanPanel.geteuclideanView();
 		}
-		if (layout.getDockManager().getPanel(App.VIEW_EUCLIDIAN).isVisible()) {
-			return getApp().getEuclidianView1();
+		if (layout.getDockManager().getPanel(App.VIEW_euclidean).isVisible()) {
+			return getApp().geteuclideanView1();
 		}
-		if (layout.getDockManager().getPanel(App.VIEW_EUCLIDIAN2).isVisible()
-				&& getApp().hasEuclidianView2EitherShowingOrNot(1)) {
-			return getApp().getEuclidianView2(1);
+		if (layout.getDockManager().getPanel(App.VIEW_euclidean2).isVisible()
+				&& getApp().haseuclideanView2EitherShowingOrNot(1)) {
+			return getApp().geteuclideanView2(1);
 		}
-		if (layout.getDockManager().getPanel(App.VIEW_EUCLIDIAN3D) != null
-				&& layout.getDockManager().getPanel(App.VIEW_EUCLIDIAN3D)
+		if (layout.getDockManager().getPanel(App.VIEW_euclidean3D) != null
+				&& layout.getDockManager().getPanel(App.VIEW_euclidean3D)
 				.isVisible()
-				&& getApp().isEuclidianView3Dinited()) {
-			return (EuclidianView) getApp().getEuclidianView3D();
+				&& getApp().iseuclideanView3Dinited()) {
+			return (euclideanView) getApp().geteuclideanView3D();
 		}
-		return (getApp()).getEuclidianView1();
-		// return app.getEuclidianView1();
+		return (getApp()).geteuclideanView1();
+		// return app.geteuclideanView1();
 	}
 
 	@Override
@@ -1306,14 +1306,14 @@ public class GuiManagerW extends GuiManager
 	}
 
 	@Override
-	public boolean hasEuclidianView2(final int idx) {
-		if (!this.hasEuclidianView2EitherShowingOrNot(idx)) {
+	public boolean haseuclideanView2(final int idx) {
+		if (!this.haseuclideanView2EitherShowingOrNot(idx)) {
 			return false;
 		}
 		if (idx == 1) {
-			return showView(App.VIEW_EUCLIDIAN2);
+			return showView(App.VIEW_euclidean2);
 		}
-		return euclidianView2.get(idx).isShowing();
+		return euclideanView2.get(idx).isShowing();
 	}
 
 	@Override
@@ -1387,18 +1387,18 @@ public class GuiManagerW extends GuiManager
 	}
 
 	@Override
-	public EuclidianView getEuclidianView2(final int idx) {
-		for (int i = euclidianView2.size(); i <= idx; i++) {
-			euclidianView2.add(null);
+	public euclideanView geteuclideanView2(final int idx) {
+		for (int i = euclideanView2.size(); i <= idx; i++) {
+			euclideanView2.add(null);
 		}
-		if (euclidianView2.get(idx) == null) {
+		if (euclideanView2.get(idx) == null) {
 			final boolean[] showAxis = { true, true };
 			final boolean showGrid = false;
-			final EuclidianViewW ev = newEuclidianView(showAxis, showGrid, 2);
-			euclidianView2.set(idx, ev);
+			final euclideanViewW ev = neweuclideanView(showAxis, showGrid, 2);
+			euclideanView2.set(idx, ev);
 			ev.updateFonts();
 		}
-		return euclidianView2.get(idx);
+		return euclideanView2.get(idx);
 	}
 
 	/**
@@ -1408,34 +1408,34 @@ public class GuiManagerW extends GuiManager
 	 *            EV2 index
 	 * @return EV2 panel
 	 */
-	public Euclidian2DockPanelW getEuclidianView2DockPanel(final int idx) {
-		if (euclidianView2DockPanel == null) {
-			euclidianView2DockPanel = new Euclidian2DockPanelW(
+	public euclidean2DockPanelW geteuclideanView2DockPanel(final int idx) {
+		if (euclideanView2DockPanel == null) {
+			euclideanView2DockPanel = new euclidean2DockPanelW(
 					getApp().allowStylebar(), idx);
 		}
-		return euclidianView2DockPanel;
+		return euclideanView2DockPanel;
 	}
 
-	public DockPanelW getEuclidian3DPanel() {
+	public DockPanelW geteuclidean3DPanel() {
 		return null;
 	}
 
-	protected EuclidianViewW newEuclidianView(final boolean[] showAxis,
+	protected euclideanViewW neweuclideanView(final boolean[] showAxis,
 			final boolean showGrid, final int id) {
 		if (id == 2) {
-			return getApp().newEuclidianView(getEuclidianView2DockPanel(1),
-					getApp().newEuclidianController(kernel), showAxis, showGrid, id,
-					getApp().getSettings().getEuclidian(id));
+			return getApp().neweuclideanView(geteuclideanView2DockPanel(1),
+					getApp().neweuclideanController(kernel), showAxis, showGrid, id,
+					getApp().getSettings().geteuclidean(id));
 		}
-		return getApp().newEuclidianView(getApp()
-				.getEuclidianViewpanel(), getApp().newEuclidianController(kernel),
-				showAxis, showGrid, id, getApp().getSettings().getEuclidian(id));
+		return getApp().neweuclideanView(getApp()
+				.geteuclideanViewpanel(), getApp().neweuclideanController(kernel),
+				showAxis, showGrid, id, getApp().getSettings().geteuclidean(id));
 	}
 
 	@Override
-	public boolean hasEuclidianView2EitherShowingOrNot(final int idx) {
-		return euclidianView2 != null && euclidianView2.size() > idx
-				&& euclidianView2.get(idx) != null;
+	public boolean haseuclideanView2EitherShowingOrNot(final int idx) {
+		return euclideanView2 != null && euclideanView2.size() > idx
+				&& euclideanView2.get(idx) != null;
 	}
 
 	@Override
@@ -1515,8 +1515,8 @@ public class GuiManagerW extends GuiManager
 		if (changed) {
 			getToolbarPanel().setActiveToolbar(toolbarID);
 			refreshCustomToolsInToolBar();
-			if (toolbarID == App.VIEW_EUCLIDIAN
-					|| toolbarID == App.VIEW_EUCLIDIAN2) {
+			if (toolbarID == App.VIEW_euclidean
+					|| toolbarID == App.VIEW_euclidean2) {
 				if (strCustomToolbarDefinition != null) {
 					setToolBarDefinition(strCustomToolbarDefinition);
 				}
@@ -1580,17 +1580,17 @@ public class GuiManagerW extends GuiManager
 
 	@Override
 	public void clearAbsolutePanels() {
-		clearAbsolutePanel(App.VIEW_EUCLIDIAN);
-		clearAbsolutePanel(App.VIEW_EUCLIDIAN2);
+		clearAbsolutePanel(App.VIEW_euclidean);
+		clearAbsolutePanel(App.VIEW_euclidean2);
 	}
 
 	private void clearAbsolutePanel(final int viewid) {
 		AbsolutePanel ep;
-		if (viewid == App.VIEW_EUCLIDIAN) {
-			ep = ((EuclidianDockPanelW) getLayout().getDockManager().getPanel(
+		if (viewid == App.VIEW_euclidean) {
+			ep = ((euclideanDockPanelW) getLayout().getDockManager().getPanel(
 					viewid)).getAbsolutePanel();
-		} else if (viewid == App.VIEW_EUCLIDIAN2) {
-			ep = ((Euclidian2DockPanelW) getLayout().getDockManager().getPanel(
+		} else if (viewid == App.VIEW_euclidean2) {
+			ep = ((euclidean2DockPanelW) getLayout().getDockManager().getPanel(
 					viewid)).getAbsolutePanel();
 		} else {
 			return;
@@ -1729,8 +1729,8 @@ public class GuiManagerW extends GuiManager
 
 			// close dynamic stylebar at changing mode
 
-			if (this.getActiveEuclidianView().hasDynamicStyleBar()) {
-				this.getActiveEuclidianView().getDynamicStyleBar()
+			if (this.getActiveeuclideanView().hasDynamicStyleBar()) {
+				this.getActiveeuclideanView().getDynamicStyleBar()
 				.setVisible(false);
 			}
 
@@ -1785,8 +1785,8 @@ public class GuiManagerW extends GuiManager
 	}
 
 	@Override
-	public EuclidianViewW getPlotPanelEuclidanView() {
-		return (EuclidianViewW) probCalculator.getPlotPanel();
+	public euclideanViewW getPlotPanelEuclidanView() {
+		return (euclideanViewW) probCalculator.getPlotPanel();
 	}
 
 	public boolean isConsProtNavigationPlayButtonVisible() {
@@ -1834,15 +1834,15 @@ public class GuiManagerW extends GuiManager
 	}
 
 	@Override
-	public int getEuclidianViewCount() {
-		return euclidianView2 == null ? 0 : euclidianView2.size();
+	public int geteuclideanViewCount() {
+		return euclideanView2 == null ? 0 : euclideanView2.size();
 	}
 
 	@Override
 	public void updateCheckBoxesForShowConstructinProtocolNavigation(int id) {
 		getLayout().getDockManager().getPanel(id)
 		.updateNavigationBar();
-		// ((AppW) app).getEuclidianViewpanel().updateNavigationBar();
+		// ((AppW) app).geteuclideanViewpanel().updateNavigationBar();
 	}
 
 	public DockSplitPaneW getRootComponent() {
@@ -1850,21 +1850,21 @@ public class GuiManagerW extends GuiManager
 	}
 
 	@Override
-	public EuclidianStyleBar newEuclidianStylebar(final EuclidianView ev,
+	public euclideanStyleBar neweuclideanStylebar(final euclideanView ev,
 			int viewID) {
-		return new EuclidianStyleBarW(ev, viewID);
+		return new euclideanStyleBarW(ev, viewID);
 	}
 
 	@Override
-	public EuclidianStyleBar newDynamicStylebar(final EuclidianView ev) {
+	public euclideanStyleBar newDynamicStylebar(final euclideanView ev) {
 		return new DynamicStyleBar(ev);
 	}
 
 	@Override
-	public void addStylebar(EuclidianView ev,
-			EuclidianStyleBar dynamicStylebar) {
+	public void addStylebar(euclideanView ev,
+			euclideanStyleBar dynamicStylebar) {
 		DockPanelW dp = getLayout().getDockManager().getPanel(ev.getViewID());
-		AbsolutePanel absolutePanel = ((EuclidianDockPanelWAbstract) dp).getAbsolutePanel();
+		AbsolutePanel absolutePanel = ((euclideanDockPanelWAbstract) dp).getAbsolutePanel();
 		if (absolutePanel != null) {
 			absolutePanel.add((DynamicStyleBar) dynamicStylebar);
 		}
@@ -1872,15 +1872,15 @@ public class GuiManagerW extends GuiManager
 
 	@Override
 	public void recalculateEnvironments() {
-		for (int i = 0; i < getEuclidianViewCount(); i++) {
-			if (hasEuclidianView2(i)) {
-				getEuclidianView2(i).getEuclidianController()
+		for (int i = 0; i < geteuclideanViewCount(); i++) {
+			if (haseuclideanView2(i)) {
+				geteuclideanView2(i).geteuclideanController()
 				.calculateEnvironment();
 			}
 		}
 		if (hasProbabilityCalculator()) {
 			((ProbabilityCalculatorViewW) getProbabilityCalculator()).getPlotPanel()
-			.getEuclidianController().calculateEnvironment();
+			.geteuclideanController().calculateEnvironment();
 		}
 	}
 
@@ -2087,12 +2087,12 @@ public class GuiManagerW extends GuiManager
 
 	@Override
 	public String getTooltipURL(int mode) {
-		if (mode >= EuclidianConstants.MACRO_MODE_ID_OFFSET) {
+		if (mode >= euclideanConstants.MACRO_MODE_ID_OFFSET) {
 			return getHelpURL(Help.GENERIC, "Custom_Tools");
 		}
 
 		return getHelpURL(Help.TOOL,
-				EuclidianConstants.getModeTextSimple(mode));
+				euclideanConstants.getModeTextSimple(mode));
 	}
 
 	@Override
@@ -2328,7 +2328,7 @@ public class GuiManagerW extends GuiManager
 	}
 
 	@Override
-	public SymbolicEditor createSymbolicEditor(EuclidianViewW view) {
+	public SymbolicEditor createSymbolicEditor(euclideanViewW view) {
 		return new SymbolicEditorW(app, view);
 	}
 

@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.clipping;
+package org.geogebra.common.euclidean.clipping;
 
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.util.DoubleUtil;

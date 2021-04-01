@@ -40,7 +40,7 @@ public class AppConfigGraphing3D extends AppConfigGraphing {
 	public void adjust(DockPanelData dp) {
 		if (dp.getViewId() == App.VIEW_ALGEBRA) {
 			dp.setLocation("3");
-		} else if (dp.getViewId() == App.VIEW_EUCLIDIAN3D) {
+		} else if (dp.getViewId() == App.VIEW_euclidean3D) {
 			dp.makeVisible();
 			dp.setLocation("1");
 		}
@@ -77,7 +77,7 @@ public class AppConfigGraphing3D extends AppConfigGraphing {
 	}
 
 	@Override
-	public boolean hasSingleEuclidianViewWhichIs3D() {
+	public boolean hasSingleeuclideanViewWhichIs3D() {
 		return true;
 	}
 

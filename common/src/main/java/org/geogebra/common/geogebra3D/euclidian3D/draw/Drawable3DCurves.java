@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
 import org.geogebra.common.kernel.geos.GProperty;
 import org.geogebra.common.kernel.geos.GeoElement;
 
@@ -23,7 +23,7 @@ public abstract class Drawable3DCurves extends Drawable3D {
 	 * @param a_geo
 	 *            curve
 	 */
-	public Drawable3DCurves(EuclidianView3D a_view3d, GeoElement a_geo) {
+	public Drawable3DCurves(euclideanView3D a_view3d, GeoElement a_geo) {
 		super(a_view3d, a_geo);
 		setPickingType(PickingType.POINT_OR_CURVE);
 	}
@@ -34,7 +34,7 @@ public abstract class Drawable3DCurves extends Drawable3D {
 	 * @param a_view3d
 	 *            3D view
 	 */
-	public Drawable3DCurves(EuclidianView3D a_view3d) {
+	public Drawable3DCurves(euclideanView3D a_view3d) {
 		super(a_view3d);
 		setPickingType(PickingType.POINT_OR_CURVE);
 	}

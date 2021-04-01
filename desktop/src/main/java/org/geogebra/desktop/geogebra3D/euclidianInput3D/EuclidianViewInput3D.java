@@ -1,22 +1,22 @@
-package org.geogebra.desktop.geogebra3D.euclidianInput3D;
+package org.geogebra.desktop.geogebra3D.euclideanInput3D;
 
-import org.geogebra.common.euclidian.EuclidianViewCompanion;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.input3D.EuclidianViewInput3DCompanion;
+import org.geogebra.common.euclidean.euclideanViewCompanion;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.input3D.euclideanViewInput3DCompanion;
 import org.geogebra.common.geogebra3D.input3D.Input3D;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.desktop.geogebra3D.euclidian3D.EuclidianView3DD;
-import org.geogebra.desktop.geogebra3D.euclidian3D.opengl.RendererCheckGLVersionD;
-import org.geogebra.desktop.geogebra3D.euclidian3D.opengl.RendererJogl;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.desktop.geogebra3D.euclidean3D.euclideanView3DD;
+import org.geogebra.desktop.geogebra3D.euclidean3D.opengl.RendererCheckGLVersionD;
+import org.geogebra.desktop.geogebra3D.euclidean3D.opengl.RendererJogl;
 
 /**
- * EuclidianView3D with controller using 3D input
+ * euclideanView3D with controller using 3D input
  * 
  * @author mathieu
  * 
  */
-public class EuclidianViewInput3D extends EuclidianView3DD {
+public class euclideanViewInput3D extends euclideanView3DD {
 
 	private Input3D input3D;
 
@@ -24,32 +24,32 @@ public class EuclidianViewInput3D extends EuclidianView3DD {
 	 * constructor
 	 * 
 	 * @param ec
-	 *            euclidian controller
+	 *            euclidean controller
 	 * @param settings
 	 *            settings
 	 */
-	public EuclidianViewInput3D(EuclidianController3D ec,
-			EuclidianSettings settings) {
+	public euclideanViewInput3D(euclideanController3D ec,
+			euclideanSettings settings) {
 		super(ec, settings);
 
 	}
 
-	private EuclidianViewInput3DCompanion companionInput3D;
+	private euclideanViewInput3DCompanion companionInput3D;
 
 	@Override
-	protected EuclidianViewCompanion newEuclidianViewCompanion() {
-		companionInput3D = new EuclidianViewInput3DCompanion(this);
+	protected euclideanViewCompanion neweuclideanViewCompanion() {
+		companionInput3D = new euclideanViewInput3DCompanion(this);
 		return companionInput3D;
 	}
 
 	@Override
-	public EuclidianViewInput3DCompanion getCompanion() {
+	public euclideanViewInput3DCompanion getCompanion() {
 		return companionInput3D;
 	}
 
 	@Override
 	protected void start() {
-		input3D = ((EuclidianControllerInput3D) euclidianController).input3D;
+		input3D = ((euclideanControllerInput3D) euclideanController).input3D;
 		input3D.init(this);
 		getCompanion().setInput3D(input3D);
 		super.start();

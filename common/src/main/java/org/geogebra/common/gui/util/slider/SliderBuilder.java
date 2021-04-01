@@ -153,7 +153,7 @@ public class SliderBuilder {
 		slider.setSliderLocation(location.getX(), location.getY(), true);
 
 		slider.setAutoStep(false);
-		slider.setEuclidianVisible(true);
+		slider.seteuclideanVisible(true);
 		slider.setLabelMode(GeoElement.LABEL_NAME_VALUE);
 		slider.setLabelVisible(true);
 		slider.update();

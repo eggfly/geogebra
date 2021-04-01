@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import org.geogebra.common.awt.GBufferedImage;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle2D;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.CircularDefinitionException;
 import org.geogebra.common.kernel.Construction;
@@ -128,7 +128,7 @@ public class GeoImage extends GeoElement implements Locateable,
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_IMAGE;
+		return euclideanConstants.MODE_IMAGE;
 	}
 
 	private void initTempPoints() {
@@ -487,7 +487,7 @@ public class GeoImage extends GeoElement implements Locateable,
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return getGraphicsAdapter().getImageOnly() != null && isDefined();
 	}
 
@@ -497,7 +497,7 @@ public class GeoImage extends GeoElement implements Locateable,
 	}
 
 	/**
-	 * Returns whether this image can be moved in Euclidian View.
+	 * Returns whether this image can be moved in euclidean View.
 	 */
 	@Override
 	final public boolean isMoveable() {
@@ -506,7 +506,7 @@ public class GeoImage extends GeoElement implements Locateable,
 	}
 
 	/**
-	 * Returns whether this image can be rotated in Euclidian View.
+	 * Returns whether this image can be rotated in euclidean View.
 	 */
 	@Override
 	final public boolean isRotateMoveable() {
@@ -1070,7 +1070,7 @@ public class GeoImage extends GeoElement implements Locateable,
 	}
 
 	@Override
-	public boolean hasMoveableInputPoints(EuclidianViewInterfaceSlim view) {
+	public boolean hasMoveableInputPoints(euclideanViewInterfaceSlim view) {
 
 		if (hasAbsoluteLocation()) {
 			return false;
@@ -1089,7 +1089,7 @@ public class GeoImage extends GeoElement implements Locateable,
 	 */
 	@Override
 	public ArrayList<GeoPointND> getFreeInputPoints(
-			EuclidianViewInterfaceSlim view) {
+			euclideanViewInterfaceSlim view) {
 		if (hasAbsoluteLocation()) {
 			return null;
 		}
@@ -1172,7 +1172,7 @@ public class GeoImage extends GeoElement implements Locateable,
 	}
 
 	@Override
-	public int getTotalWidth(EuclidianViewInterfaceCommon ev) {
+	public int getTotalWidth(euclideanViewInterfaceCommon ev) {
 		return pixelWidth;
 	}
 
@@ -1182,7 +1182,7 @@ public class GeoImage extends GeoElement implements Locateable,
 	}
 
 	@Override
-	public int getTotalHeight(EuclidianViewInterfaceCommon ev) {
+	public int getTotalHeight(euclideanViewInterfaceCommon ev) {
 		return pixelHeight;
 	}
 
@@ -1315,7 +1315,7 @@ public class GeoImage extends GeoElement implements Locateable,
 	private double getHeightUncropped() {
 		if (getStartPoints()[2] != null && getStartPoint() != null) {
 			return getStartPoint().distance(getStartPoints()[2]) * kernel.getApplication()
-					.getActiveEuclidianView().getXscale();
+					.getActiveeuclideanView().getXscale();
 		}
 		return (pixelHeight * getWidthUncropped()) / pixelWidth;
 	}
@@ -1331,7 +1331,7 @@ public class GeoImage extends GeoElement implements Locateable,
 	private double getWidthUncropped() {
 		if (getStartPoints()[1] != null && getStartPoint() != null) {
 			return getStartPoint().distance(getStartPoints()[1])
-					* kernel.getApplication().getActiveEuclidianView().getXscale();
+					* kernel.getApplication().getActiveeuclideanView().getXscale();
 		}
 		return pixelWidth;
 	}
@@ -1363,8 +1363,8 @@ public class GeoImage extends GeoElement implements Locateable,
 	@Override
 	public void setSize(double width, double height) {
 		ensureCorner();
-		double rwWidth = width / app.getActiveEuclidianView().getScale(0);
-		double rwHeight = height / app.getActiveEuclidianView().getScale(1);
+		double rwWidth = width / app.getActiveeuclideanView().getScale(0);
+		double rwHeight = height / app.getActiveeuclideanView().getScale(1);
 		ensureCropBox();
 		if (cropBox != null) {
 			rwWidth /= cropBox.getWidth() / pixelWidth;
@@ -1399,9 +1399,9 @@ public class GeoImage extends GeoElement implements Locateable,
 		if (cropBox != null) {
 			double angle = getAngle();
 			double cropTop = cropBox.getY() / pixelHeight * getHeightUncropped()
-					/ app.getActiveEuclidianView().getScale(0);
+					/ app.getActiveeuclideanView().getScale(0);
 			double cropLeft = cropBox.getX() / pixelWidth * getWidthUncropped()
-					/ app.getActiveEuclidianView().getScale(0);
+					/ app.getActiveeuclideanView().getScale(0);
 			left += cropLeft * Math.cos(angle) - cropTop * Math.sin(angle);
 			top += -cropLeft * Math.sin(angle) - cropTop * Math.cos(angle);
 		}

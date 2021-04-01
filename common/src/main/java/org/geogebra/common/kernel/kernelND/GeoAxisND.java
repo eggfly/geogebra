@@ -1,7 +1,7 @@
 package org.geogebra.common.kernel.kernelND;
 
 /**
- * Axis in euclidian view (or euclidian view 3D)
+ * Axis in euclidean view (or euclidean view 3D)
  *
  */
 public interface GeoAxisND extends GeoLineND {

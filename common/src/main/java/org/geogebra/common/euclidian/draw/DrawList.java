@@ -16,13 +16,13 @@ the Free Software Foundation.
  * Created on 11. Oktober 2001, 23:59
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.RemoveNeeded;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.RemoveNeeded;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.arithmetic.FunctionalNVar;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -48,7 +48,7 @@ public final class DrawList extends Drawable implements RemoveNeeded {
 	 * @param geoList
 	 *            list
 	 */
-	public DrawList(EuclidianView view, GeoList geoList) {
+	public DrawList(euclideanView view, GeoList geoList) {
 		this.view = view;
 		this.geoList = geoList;
 		geo = geoList;
@@ -69,7 +69,7 @@ public final class DrawList extends Drawable implements RemoveNeeded {
 	@Override
 	public void update() {
 
-		isVisible = geoList.isEuclidianVisible();
+		isVisible = geoList.iseuclideanVisible();
 		if (!isVisible) {
 			return;
 		}
@@ -224,7 +224,7 @@ public final class DrawList extends Drawable implements RemoveNeeded {
 	 */
 	@Override
 	public GRectangle getBounds() {
-		if (!geo.isEuclidianVisible()) {
+		if (!geo.iseuclideanVisible()) {
 			return null;
 		}
 

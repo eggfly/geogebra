@@ -16,7 +16,7 @@ the Free Software Foundation.
  * Created on 11. Oktober 2001, 23:59
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GAlphaComposite;
@@ -29,8 +29,8 @@ import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GRectangle2D;
 import org.geogebra.common.awt.GShape;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.GeoImage;
@@ -73,7 +73,7 @@ public class DrawImage extends Drawable {
 	 * @param geoImage
 	 *            image
 	 */
-	public DrawImage(EuclidianView view, GeoImage geoImage) {
+	public DrawImage(euclideanView view, GeoImage geoImage) {
 		this.view = view;
 		this.geoImage = geoImage;
 
@@ -88,7 +88,7 @@ public class DrawImage extends Drawable {
 	
 	@Override
 	public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 
 		if (isVisible) {
 			updateAssumingVisible();
@@ -421,7 +421,7 @@ public class DrawImage extends Drawable {
 	 */
 	@Override
 	public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible()) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible()) {
 			return null;
 		}
 		return classicBoundingBox.getBounds();

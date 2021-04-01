@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 import org.geogebra.common.properties.Property;
 import org.geogebra.common.properties.impl.general.LanguageProperty;
 import org.geogebra.common.properties.impl.graphics.ARRatioPropertyCollection;
@@ -40,28 +40,28 @@ public class G3DPropertiesFactory implements PropertiesFactory {
 
     @Override
     public PropertiesArray createGraphicsProperties(App app, Localization localization) {
-        EuclidianSettings euclidianSettings = app.getActiveEuclidianView().getSettings();
+        euclideanSettings euclideanSettings = app.getActiveeuclideanView().getSettings();
         ArrayList<Property> propertyList = new ArrayList<>();
 
         propertyList.add(new GraphicsPositionProperty(app));
-        if (app.getActiveEuclidianView().isXREnabled()) {
+        if (app.getActiveeuclideanView().isXREnabled()) {
             propertyList.add(new ARRatioPropertyCollection(app, localization));
             propertyList.add(new BackgroundProperty(app, localization));
         }
-        propertyList.add(new AxesVisibilityProperty(localization, euclidianSettings));
+        propertyList.add(new AxesVisibilityProperty(localization, euclideanSettings));
         propertyList.add(
-                new PlaneVisibilityProperty(localization, (EuclidianSettings3D) euclidianSettings));
-        propertyList.add(new GridVisibilityProperty(localization, euclidianSettings));
+                new PlaneVisibilityProperty(localization, (euclideanSettings3D) euclideanSettings));
+        propertyList.add(new GridVisibilityProperty(localization, euclideanSettings));
         propertyList.add(
                 new ProjectionsProperty(
                         localization,
-                        app.getActiveEuclidianView(),
-                        (EuclidianSettings3D) euclidianSettings));
+                        app.getActiveeuclideanView(),
+                        (euclideanSettings3D) euclideanSettings));
         propertyList.add(new PointCapturingProperty(app, localization));
-        propertyList.add(new DistancePropertyCollection(app, localization, euclidianSettings));
-        propertyList.add(new LabelsPropertyCollection(localization, euclidianSettings));
+        propertyList.add(new DistancePropertyCollection(app, localization, euclideanSettings));
+        propertyList.add(new LabelsPropertyCollection(localization, euclideanSettings));
         propertyList.add(
-                new AxesColoredProperty(localization, (EuclidianSettings3D) euclidianSettings));
+                new AxesColoredProperty(localization, (euclideanSettings3D) euclideanSettings));
 
         return new PropertiesArray(
                 localization.getMenu("DrawingPad"), propertyList.toArray(new Property[0]));

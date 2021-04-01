@@ -123,9 +123,9 @@ public class GlobalKeyDispatcherW extends GlobalKeyDispatcher
 	private void handleCtrlAltX() {
 		app.hideMenu();
 		app.closePopups();
-		if (app.getActiveEuclidianView() != null) {
-			app.getActiveEuclidianView()
-					.getEuclidianController()
+		if (app.getActiveeuclideanView() != null) {
+			app.getActiveeuclideanView()
+					.geteuclideanController()
 					.hideDynamicStylebar();
 		}
 		app.getSelectionManager().clearSelectedGeos();
@@ -224,7 +224,7 @@ public class GlobalKeyDispatcherW extends GlobalKeyDispatcher
 	public boolean handleTab(boolean isShiftDown) {
 		AccessibilityManagerInterface am = app.getAccessibilityManager();
 
-		app.getActiveEuclidianView().closeDropdowns();
+		app.getActiveeuclideanView().closeDropdowns();
 
 		if (isShiftDown) {
 			return am.focusPrevious();

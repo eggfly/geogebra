@@ -1,20 +1,20 @@
 package org.geogebra.common.properties.impl.graphics;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.main.Localization;
 import org.geogebra.common.properties.BooleanProperty;
 import org.geogebra.common.properties.impl.AbstractProperty;
 
 public class ARRatioProperty extends AbstractProperty implements BooleanProperty {
 
-	private final EuclidianView3D view3D;
+	private final euclideanView3D view3D;
 
 	/**
 	 * Constructs an AR Ratio property.
 	 * @param localization localization for the title
-	 * @param view3D EuclidianView3D
+	 * @param view3D euclideanView3D
 	 */
-	ARRatioProperty(Localization localization, EuclidianView3D view3D) {
+	ARRatioProperty(Localization localization, euclideanView3D view3D) {
 		super(localization, "Show");
 		this.view3D = view3D;
 	}

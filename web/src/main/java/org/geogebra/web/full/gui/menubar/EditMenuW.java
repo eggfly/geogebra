@@ -44,8 +44,8 @@ public class EditMenuW extends Submenu {
 		 * selected
 		 */
 		int layer = selection.getSelectedLayer();
-		boolean justCreated = !(getApp().getActiveEuclidianView()
-		        .getEuclidianController().getJustCreatedGeos().isEmpty());
+		boolean justCreated = !(getApp().getActiveeuclideanView()
+		        .geteuclideanController().getJustCreatedGeos().isEmpty());
 		boolean haveSelection = !selection.getSelectedGeos().isEmpty();
 		clearItems();
 		if (getApp().isUndoRedoEnabled()) {

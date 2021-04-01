@@ -50,7 +50,7 @@ public class CmdSelectObjects extends CmdScripting {
 			return arg;
 
 		}
-		app.getActiveEuclidianView().getEuclidianController().cancelDrag();
+		app.getActiveeuclideanView().geteuclideanController().cancelDrag();
 
 		kernel.notifyRepaint();
 		app.updateSelection(false);
@@ -59,7 +59,7 @@ public class CmdSelectObjects extends CmdScripting {
 
 	/**
 	 * Keeps focus in an input box using repeated focus calls. TODO replace this
-	 * by callback in EuclidianController
+	 * by callback in euclideanController
 	 * 
 	 * @param geo
 	 *            input box
@@ -73,12 +73,12 @@ public class CmdSelectObjects extends CmdScripting {
 			@Override
 			public void run() {
 				if (System.currentTimeMillis() < expiration) {
-					app1.getActiveEuclidianView().focusAndShowTextField(geo);
+					app1.getActiveeuclideanView().focusAndShowTextField(geo);
 				}
 			}
 		};
 		callback.run();
-		app1.getActiveEuclidianView().getEuclidianController()
+		app1.getActiveeuclideanView().geteuclideanController()
 				.addPointerUpCallback(callback);
 
 	}

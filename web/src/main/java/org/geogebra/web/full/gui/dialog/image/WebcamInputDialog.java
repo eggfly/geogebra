@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog.image;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.web.html5.Browser;
 import org.geogebra.web.html5.main.AppW;
@@ -55,7 +55,7 @@ public class WebcamInputDialog extends ComponentDialog
 			this.webcamInputPanel.stopVideo();
 		}
 		((AppW) app).getImageManager().setPreventAuxImage(false);
-		((AppW) app).getGuiManager().setMode(EuclidianConstants.MODE_SELECT_MOW,
+		((AppW) app).getGuiManager().setMode(euclideanConstants.MODE_SELECT_MOW,
 				ModeSetter.TOOLBAR);
 		super.hide();
 	}
@@ -63,7 +63,7 @@ public class WebcamInputDialog extends ComponentDialog
 	@Override
 	public void hide(boolean autoClosed, boolean setFocus) {
 		super.hide(autoClosed, setFocus);
-		app.getGuiManager().setMode(EuclidianConstants.MODE_SELECT_MOW,
+		app.getGuiManager().setMode(euclideanConstants.MODE_SELECT_MOW,
 				ModeSetter.TOOLBAR);
 	}
 

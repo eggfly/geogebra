@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.commands;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.arithmetic.Command;
@@ -192,17 +192,17 @@ public class CmdExportImage extends CmdScripting {
 		switch (view) {
 		default:
 		case 1:
-			app.setActiveView(App.VIEW_EUCLIDIAN);
+			app.setActiveView(App.VIEW_euclidean);
 			break;
 		case 2:
-			app.setActiveView(App.VIEW_EUCLIDIAN2);
+			app.setActiveView(App.VIEW_euclidean2);
 			break;
 		case -1:
-			app.setActiveView(App.VIEW_EUCLIDIAN3D);
+			app.setActiveView(App.VIEW_euclidean3D);
 			break;
 		}
 
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 		double viewWidth = ev.getExportWidth();
 		double xScale = ev.getXscale();
 		double widthRW = viewWidth / xScale;

@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.scripting;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.CircularDefinitionException;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
@@ -70,7 +70,7 @@ public class CmdToolImage extends CmdScripting {
 				}
 
 				String modeStr = StringUtil
-						.toLowerCaseUS(EuclidianConstants.getModeText(mode));
+						.toLowerCaseUS(euclideanConstants.getModeText(mode));
 
 				if ("".equals(modeStr)) {
 					throw argErr(c, arg[0]);

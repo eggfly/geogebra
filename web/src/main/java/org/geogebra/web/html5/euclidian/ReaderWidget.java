@@ -1,6 +1,6 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
-import org.geogebra.common.euclidian.ScreenReaderAdapter;
+import org.geogebra.common.euclidean.ScreenReaderAdapter;
 import org.geogebra.common.main.ScreenReader;
 import org.geogebra.web.html5.Browser;
 import org.gwtproject.timer.client.Timer;

@@ -1,15 +1,15 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.TreeMap;
 
-import org.geogebra.common.euclidian.DrawAxis;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hits3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush.Ticks;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Geometry3DGetterManager;
+import org.geogebra.common.euclidean.DrawAxis;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hits3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush.Ticks;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Geometry3DGetterManager;
 import org.geogebra.common.kernel.kernelND.GeoAxisND;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.plugin.Geometry3DGetter.GeometryType;
@@ -40,7 +40,7 @@ public class DrawAxis3D extends DrawLine3D {
 	 * @param axis3D
 	 *            axis
 	 */
-	public DrawAxis3D(EuclidianView3D view3D, GeoAxisND axis3D) {
+	public DrawAxis3D(euclideanView3D view3D, GeoAxisND axis3D) {
 
 		super(view3D, axis3D);
 
@@ -58,7 +58,7 @@ public class DrawAxis3D extends DrawLine3D {
 		// Application.debug(getGeoElement()+":
 		// "+getGeoElement().isLabelVisible());
 
-		if (!getGeoElement().isEuclidianVisible()) {
+		if (!getGeoElement().iseuclideanVisible()) {
 			return;
 		}
 

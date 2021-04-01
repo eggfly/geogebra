@@ -50,8 +50,8 @@ import org.freehep.graphicsio.svg.SVGGraphics2D;
 import org.freehep.util.UserProperties;
 import org.geogebra.common.GeoGebraConstants;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.App.ExportType;
 import org.geogebra.common.main.MyError.Errors;
@@ -60,8 +60,8 @@ import org.geogebra.common.util.FileExtensions;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GGraphics2DD;
-import org.geogebra.desktop.euclidian.EuclidianViewD;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.desktop.euclidean.euclideanViewD;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.export.epsgraphics.ColorMode;
 import org.geogebra.desktop.export.epsgraphics.EpsGraphics;
 import org.geogebra.desktop.export.epsgraphics.EpsGraphicsD;
@@ -117,7 +117,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 		PNG, PDF, EPS, SVG, EMF
 	}
 
-	private EuclidianViewD specifiedEuclidianView;
+	private euclideanViewD specifiedeuclideanView;
 
 	/** print scale or pixel size settings */
 	PrintScalePanel psp;
@@ -125,7 +125,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	private LocalizationD loc;
 
 	/**
-	 * Creates a dialog for exporting an image of the active EuclidianView
+	 * Creates a dialog for exporting an image of the active euclideanView
 	 * 
 	 * @param app
 	 *            application
@@ -136,20 +136,20 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	}
 
 	/**
-	 * Creates a dialog for exporting an image of the EuclidianView given as a
+	 * Creates a dialog for exporting an image of the euclideanView given as a
 	 * parameter.
 	 * 
 	 * @param app
 	 *            application
-	 * @param specifiedEuclidianView
+	 * @param specifiedeuclideanView
 	 *            EV
 	 */
 	public GraphicExportDialog(AppD app,
-			EuclidianViewD specifiedEuclidianView) {
+			euclideanViewD specifiedeuclideanView) {
 		super(app.getFrame(), false);
 		this.app = app;
 		this.loc = app.getLocalization();
-		this.specifiedEuclidianView = specifiedEuclidianView;
+		this.specifiedeuclideanView = specifiedeuclideanView;
 
 		sizeLabelFormat = NumberFormat.getInstance(Locale.ENGLISH);
 		sizeLabelFormat.setGroupingUsed(false);
@@ -195,11 +195,11 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 
 	}
 
-	private EuclidianViewInterfaceD getEuclidianView() {
-		if (specifiedEuclidianView != null) {
-			return specifiedEuclidianView;
+	private euclideanViewInterfaceD geteuclideanView() {
+		if (specifiedeuclideanView != null) {
+			return specifiedeuclideanView;
 		}
-		return (EuclidianViewInterfaceD) app.getActiveEuclidianView();
+		return (euclideanViewInterfaceD) app.getActiveeuclideanView();
 	}
 
 	@Override
@@ -225,7 +225,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 		JPanel formatPanel = new JPanel(new FlowLayout(5));
 		String[] formats;
 
-		if (((EuclidianView) getEuclidianView()).isEuclidianView3D()) {
+		if (((euclideanView) geteuclideanView()).iseuclideanView3D()) {
 			formats = new String[] {
 					loc.getMenu("png") + " (" + FileExtensions.PNG + ")" };
 		} else {
@@ -249,7 +249,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 
 		// scale
-		EuclidianView ev = (EuclidianView) getEuclidianView();
+		euclideanView ev = (euclideanView) geteuclideanView();
 
 		psp = new PrintScalePanel(app, ev);
 		psp.addActionListener(new ActionListener() {
@@ -442,7 +442,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 		 * supported on Mac.
 		 * Toolkit.getDefaultToolkit().getSystemClipboard().setContents
 		 * (geogebra.gui.util.ImageSelection, null) would be OK (via
-		 * AppD.simpleExportToClipboard(EuclidianView)), but this code here
+		 * AppD.simpleExportToClipboard(euclideanView)), but this code here
 		 * wants to use
 		 * Toolkit.getDefaultToolkit().getSystemClipboard().setContents
 		 * (FileTransferable, null) via sendToClipboard(File). So we simply not
@@ -485,18 +485,18 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 					fm.updateDefaultFonts(fontSize, brailleFont.getFontName(),
 							brailleFont.getFontName());
 
-					getEuclidianView().updateFonts();
+					geteuclideanView().updateFonts();
 				}
 
 				exportPNGSilent(pngDestination, toClipboard, transparent,
-						getDPI(), exportScale, app, getEuclidianView(),
+						getDPI(), exportScale, app, geteuclideanView(),
 						braille ? ExportType.PNG_BRAILLE : ExportType.PNG);
 
 				if (braille) {
 					// GGB-766
 					fm.updateDefaultFonts(fontSize, "SansSerif", "Serif");
 
-					getEuclidianView().updateFonts();
+					geteuclideanView().updateFonts();
 				}
 			}
 			break;
@@ -569,7 +569,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 			 * // scale in cm double scale =
 			 * Double.parseDouble(GeoGebraPreferences.loadPreference(
 			 * GeoGebraPreferences.EXPORT_PIC_SCALE, "1"));
-			 * app.getEuclidianView().setPrintingScale(scale);
+			 * app.geteuclideanView().setPrintingScale(scale);
 			 */
 
 			updateSizeLabel();
@@ -603,7 +603,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 		 * // scale in cm
 		 * GeoGebraPreferences.savePreference(GeoGebraPreferences.
 		 * EXPORT_PIC_SCALE,
-		 * Double.toString(app.getEuclidianView().getPrintingScale()));
+		 * Double.toString(app.geteuclideanView().getPrintingScale()));
 		 */
 	}
 
@@ -611,7 +611,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	 * Update the pixel size
 	 */
 	void updateSizeLabel() {
-		EuclidianView ev = (EuclidianView) getEuclidianView();
+		euclideanView ev = (euclideanView) geteuclideanView();
 		double printingScale = ev.getPrintingScale();
 		// takes dpi into account (note: eps has 72dpi)
 
@@ -706,10 +706,10 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	 */
 	final private boolean exportEPS(final boolean exportToClipboard) {
 
-		final EuclidianView ev = (EuclidianView) getEuclidianView();
+		final euclideanView ev = (euclideanView) geteuclideanView();
 
 		StringBuilder epsOutput = new StringBuilder();
-		exportEPS(app, (EuclidianViewD) ev, epsOutput, textAsShapes, pixelWidth,
+		exportEPS(app, (euclideanViewD) ev, epsOutput, textAsShapes, pixelWidth,
 				pixelHeight, exportScale);
 
 		File file;
@@ -761,7 +761,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 			return false;
 		}
 		try {
-			exportEMF(app, (EuclidianViewD) getEuclidianView(), file,
+			exportEMF(app, (euclideanViewD) geteuclideanView(), file,
 					useEMFplus, pixelWidth, pixelHeight, exportScale);
 
 			if (exportToClipboard) {
@@ -801,7 +801,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 		}
 		try {
 
-			exportPDF(app, (EuclidianViewD) getEuclidianView(), file,
+			exportPDF(app, (euclideanViewD) geteuclideanView(), file,
 					textAsShapes, pixelWidth, pixelHeight, exportScale);
 
 			if (exportToClipboard) {
@@ -827,7 +827,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	 */
 	final private boolean exportSVG(boolean exportToClipboard) {
 
-		EuclidianView ev = (EuclidianView) getEuclidianView();
+		euclideanView ev = (euclideanView) geteuclideanView();
 
 		File file;
 		String tempDir = UtilD.getTempDir();
@@ -868,7 +868,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	 */
 	final public static boolean exportPNGClipboard(boolean transparent0,
 			int dpi, double exportScale0, AppD app,
-			EuclidianViewInterfaceD ev) {
+			euclideanViewInterfaceD ev) {
 		File file = getTmpPNG();
 
 		return exportPNGSilent(file, true, transparent0, dpi, exportScale0, app,
@@ -888,14 +888,14 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 
 	private static boolean exportPNGSilent(File file, boolean exportToClipboard,
 			boolean transparent0, int dpi, double exportScale0, AppD app,
-			EuclidianViewInterfaceD ev, ExportType exportType) {
+			euclideanViewInterfaceD ev, ExportType exportType) {
 		if (file == null) {
 			return false;
 		}
 
 		try {
 			// draw graphics view into image
-			// EuclidianViewInterfaceD ev = getEuclidianView();
+			// euclideanViewInterfaceD ev = geteuclideanView();
 
 			exportPNG(ev, file, transparent0, dpi, exportScale0,
 					exportToClipboard, exportType);
@@ -958,7 +958,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	 * @param transparent0
 	 *            transparent?
 	 */
-	public static void exportSVG(App app, EuclidianView ev, File file,
+	public static void exportSVG(App app, euclideanView ev, File file,
 			boolean textAsShapes, int pixelWidth, int pixelHeight,
 			double cmWidth, double cmHeight, double exportScale,
 			boolean transparent0) {
@@ -994,7 +994,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	 * @param transparent0
 	 *            transparent?
 	 */
-	public static void exportSVG(App app, EuclidianView ev, OutputStream file,
+	public static void exportSVG(App app, euclideanView ev, OutputStream file,
 			boolean textAsShapes, int pixelWidth, int pixelHeight,
 			double cmWidth, double cmHeight, double exportScale,
 			boolean transparent0) {
@@ -1070,7 +1070,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	 * @param exportScale
 	 *            scale units / cm
 	 */
-	public static void exportEMF(AppD app, EuclidianViewD ev, File file,
+	public static void exportEMF(AppD app, euclideanViewD ev, File file,
 			boolean useEMFplus, int pixelWidth, int pixelHeight,
 			double exportScale) {
 
@@ -1119,7 +1119,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	 * @param exportScale
 	 *            scale units / cm
 	 */
-	public static void exportPDF(App app2, EuclidianView view, File file,
+	public static void exportPDF(App app2, euclideanView view, File file,
 			boolean textAsShapes, int pixelWidth, int pixelHeight,
 			double exportScale) {
 
@@ -1168,7 +1168,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 			((PDFGraphics2D) g).setPageSize(size);
 
 			g.startExport();
-			((EuclidianViewD)view).exportPaint(g, printingScale / factor, textAsShapes
+			((euclideanViewD)view).exportPaint(g, printingScale / factor, textAsShapes
 					? ExportType.PDF_TEXTASSHAPES : ExportType.PDF_EMBEDFONTS);
 			g.endExport();
 		} catch (FileNotFoundException e) {
@@ -1191,7 +1191,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	 * @param exportScale
 	 *            scale units / cm
 	 */
-	public static void exportEPS(AppD app, EuclidianViewD ev,
+	public static void exportEPS(AppD app, euclideanViewD ev,
 			StringBuilder epsOutput, boolean textAsShapes, int pixelWidth,
 			int pixelHeight, double exportScale) {
 
@@ -1224,7 +1224,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 	 *            says if exports to clipboard
 	 * 
 	 */
-	public static void exportPNG(EuclidianViewInterfaceD ev, File file,
+	public static void exportPNG(euclideanViewInterfaceD ev, File file,
 			boolean transparent, int dpi, double exportScale,
 			boolean exportToClipboard, ExportType exportType) {
 
@@ -1233,7 +1233,7 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 
 	}
 
-	public static void export(String extension, EuclidianViewInterfaceD ev,
+	public static void export(String extension, euclideanViewInterfaceD ev,
 			File file, boolean transparent, int dpi, double exportScale,
 			boolean textAsShapes, boolean useEMFplus, int pixelWidth,
 			int pixelHeight, AppD app) {
@@ -1246,21 +1246,21 @@ public class GraphicExportDialog extends Dialog implements KeyListener {
 
 			StringBuilder sb = new StringBuilder();
 
-			GraphicExportDialog.exportEPS(app, (EuclidianViewD) ev, sb,
+			GraphicExportDialog.exportEPS(app, (euclideanViewD) ev, sb,
 					textAsShapes, pixelWidth, pixelHeight, exportScale);
 
 			UtilD.writeStringToFile(sb.toString(), file);
 
 		} else if ("pdf".equals(extension)) {
-			GraphicExportDialog.exportPDF(app, (EuclidianViewD) ev, file,
+			GraphicExportDialog.exportPDF(app, (euclideanViewD) ev, file,
 					textAsShapes, pixelWidth, pixelHeight, exportScale);
 
 		} else if ("emf".equals(extension)) {
-			GraphicExportDialog.exportEMF(app, (EuclidianViewD) ev, file,
+			GraphicExportDialog.exportEMF(app, (euclideanViewD) ev, file,
 					useEMFplus, pixelWidth, pixelHeight, exportScale);
 
 		} else if ("svg".equals(extension)) {
-			GraphicExportDialog.exportSVG(app, (EuclidianViewD) ev, file,
+			GraphicExportDialog.exportSVG(app, (euclideanViewD) ev, file,
 					textAsShapes, pixelWidth, pixelHeight, -1, -1, exportScale,
 					transparent);
 

@@ -1,6 +1,6 @@
 package org.geogebra.common.gui.view.data;
 
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 public class PlotSettings {
 
@@ -16,7 +16,7 @@ public class PlotSettings {
 	public double[] gridInterval = { 1, 1 };
 	public boolean gridIntervalAuto = true;
 
-	public int pointCaptureStyle = EuclidianStyleConstants.POINT_CAPTURING_OFF;
+	public int pointCaptureStyle = euclideanStyleConstants.POINT_CAPTURING_OFF;
 
 	public boolean showYAxis = false;
 	public boolean showXAxis = true;

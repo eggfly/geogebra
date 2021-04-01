@@ -14,7 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.SwingConstants;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.menubar.MenuFactory;
 import org.geogebra.common.gui.menubar.MenuInterface;
 import org.geogebra.common.gui.menubar.MyActionListener;
@@ -237,11 +237,11 @@ public class OptionsMenuD extends BaseMenu
 				public void actionPerformed(ActionEvent e) {
 
 					// set checkbox size to new default
-					app.getEuclidianView1().setBooleanSize(
-							EuclidianConstants.DEFAULT_CHECKBOX_SIZE);
-					if (app.hasEuclidianView2(1)) {
-						app.getEuclidianView2(1).setBooleanSize(
-								EuclidianConstants.DEFAULT_CHECKBOX_SIZE);
+					app.geteuclideanView1().setBooleanSize(
+							euclideanConstants.DEFAULT_CHECKBOX_SIZE);
+					if (app.haseuclideanView2(1)) {
+						app.geteuclideanView2(1).setBooleanSize(
+								euclideanConstants.DEFAULT_CHECKBOX_SIZE);
 					}
 
 					// set sliders to new styling
@@ -269,9 +269,9 @@ public class OptionsMenuD extends BaseMenu
 					}
 
 					GeoGebraPreferencesD.getPref().clearPreferences(app);
-					boolean oldAxisX = app.getSettings().getEuclidian(1)
+					boolean oldAxisX = app.getSettings().geteuclidean(1)
 							.getShowAxis(0);
-					boolean oldAxisY = app.getSettings().getEuclidian(1)
+					boolean oldAxisY = app.getSettings().geteuclidean(1)
 							.getShowAxis(1);
 					// reset defaults for GUI, views etc
 					// this has to be called before load XML preferences,
@@ -281,7 +281,7 @@ public class OptionsMenuD extends BaseMenu
 					// for geoelement defaults, this will do nothing, so it is
 					// OK here
 					GeoGebraPreferencesD.getPref().loadXMLPreferences(app);
-					app.getSettings().getEuclidian(1).setShowAxes(oldAxisX,
+					app.getSettings().geteuclidean(1).setShowAxes(oldAxisX,
 							oldAxisY);
 					// reset default line thickness etc
 					app.getKernel().getConstruction().getConstructionDefaults()
@@ -294,13 +294,13 @@ public class OptionsMenuD extends BaseMenu
 							.createDefaultGeoElements();
 					app.setInputPosition(InputPosition.algebraView, false);
 					// reset the stylebar defaultGeo
-					if (app.getEuclidianView1().hasStyleBar()) {
-						app.getEuclidianView1().getStyleBar()
+					if (app.geteuclideanView1().hasStyleBar()) {
+						app.geteuclideanView1().getStyleBar()
 								.restoreDefaultGeo();
 					}
-					if (app.hasEuclidianView2EitherShowingOrNot(1)) {
-						if (app.getEuclidianView2(1).hasStyleBar()) {
-							app.getEuclidianView2(1).getStyleBar()
+					if (app.haseuclideanView2EitherShowingOrNot(1)) {
+						if (app.geteuclideanView2(1).hasStyleBar()) {
+							app.geteuclideanView2(1).getStyleBar()
 									.restoreDefaultGeo();
 						}
 					}

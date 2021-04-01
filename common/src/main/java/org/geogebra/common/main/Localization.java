@@ -78,7 +78,7 @@ public abstract class Localization {
 
 	/**
 	 * @param dimension
-	 *            dimension of Euclidian space (2 or 3)
+	 *            dimension of euclidean space (2 or 3)
 	 * @param maxFigures
 	 *            rounding
 	 */
@@ -1068,8 +1068,8 @@ public abstract class Localization {
 		app.getKernel().updateConstruction(false);
 		app.setUnsaved();
 
-		if (app.getEuclidianView1() != null) {
-			app.getEuclidianView1().updateBackground();
+		if (app.geteuclideanView1() != null) {
+			app.geteuclideanView1().updateBackground();
 		}
 	}
 

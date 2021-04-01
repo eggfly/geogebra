@@ -1,12 +1,12 @@
 package org.geogebra.common.properties.factory;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.view.algebra.AlgebraView;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Feature;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.properties.impl.algebra.AlgebraDescriptionProperty;
 import org.geogebra.common.properties.impl.algebra.ShowAuxiliaryProperty;
 import org.geogebra.common.properties.impl.algebra.SortByProperty;
@@ -86,17 +86,17 @@ public class BasePropertiesFactory implements PropertiesFactory {
      */
 	@Override
     public PropertiesArray createGraphicsProperties(App app, Localization localization) {
-        EuclidianView activeView = app.getActiveEuclidianView();
-        EuclidianSettings euclidianSettings = activeView.getSettings();
+        euclideanView activeView = app.getActiveeuclideanView();
+        euclideanSettings euclideanSettings = activeView.getSettings();
         return new PropertiesArray(
                 localization.getMenu("DrawingPad"),
                 new GraphicsPositionProperty(app),
-                new AxesVisibilityProperty(localization, euclidianSettings),
-                new GridVisibilityProperty(localization, euclidianSettings),
-                new GridStyleProperty(localization, euclidianSettings),
+                new AxesVisibilityProperty(localization, euclideanSettings),
+                new GridVisibilityProperty(localization, euclideanSettings),
+                new GridStyleProperty(localization, euclideanSettings),
                 new PointCapturingProperty(app, localization),
-                new DistancePropertyCollection(app, localization, euclidianSettings),
-                new LabelsPropertyCollection(localization, euclidianSettings)
+                new DistancePropertyCollection(app, localization, euclideanSettings),
+                new LabelsPropertyCollection(localization, euclideanSettings)
         );
     }
 }

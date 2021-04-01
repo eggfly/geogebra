@@ -1,20 +1,20 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hits3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Geometry3DGetterManager;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hits3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Geometry3DGetterManager;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.matrix.Coords;
 
 /**
- * Class to list the 3D drawables for EuclidianView3D
+ * Class to list the 3D drawables for euclideanView3D
  * 
  * @author ggb3D
  * 
@@ -22,7 +22,7 @@ import org.geogebra.common.kernel.matrix.Coords;
 public class Drawable3DLists {
 
 	/** 3D view */
-	protected EuclidianView3D view3D;
+	protected euclideanView3D view3D;
 
 	/** lists of Drawable3D */
 	protected Drawable3DList[] lists;
@@ -54,7 +54,7 @@ public class Drawable3DLists {
 	 * @param view3D
 	 *            view
 	 */
-	public Drawable3DLists(EuclidianView3D view3D) {
+	public Drawable3DLists(euclideanView3D view3D) {
 		this.view3D = view3D;
 		lists = new Drawable3DList[Drawable3D.DRAW_TYPE_MAX];
 		for (int i = 0; i < Drawable3D.DRAW_TYPE_MAX; i++) {

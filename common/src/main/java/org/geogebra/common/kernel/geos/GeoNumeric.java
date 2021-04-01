@@ -24,9 +24,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.kernel.AnimationManager;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.ConstructionDefaults;
@@ -137,7 +137,7 @@ public class GeoNumeric extends GeoElement
 	private Double origSliderWidth = null;
 	private Double origSliderX = null;
 	private Double origSliderY = null;
-	private ArrayList<EuclidianViewInterfaceSlim> evListeners = null;
+	private ArrayList<euclideanViewInterfaceSlim> evListeners = null;
 
 	private boolean showExtendedAV = true;
 	private static volatile Comparator<GeoNumberValue> comparator;
@@ -170,14 +170,14 @@ public class GeoNumeric extends GeoElement
 			setConstructionDefaults(); // init visual settings
 		}
 
-		setEuclidianVisible(false);
+		seteuclideanVisible(false);
 		// setAlphaValue(ConstructionDefaults.DEFAULT_POLYGON_ALPHA);
 		// setAnimationStep(DEFAULT_SLIDER_INCREMENT);
 	}
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_SLIDER;
+		return euclideanConstants.MODE_SLIDER;
 	}
 
 	@Override
@@ -246,13 +246,13 @@ public class GeoNumeric extends GeoElement
 		isDrawable = flag;
 		if (visible && isDrawable && kernel.isNotifyViewsActive()
 				&& kernel.isAllowVisibilitySideEffects()) {
-			setEuclidianVisible(true);
+			seteuclideanVisible(true);
 		}
 	}
 
 	@Override
-	public void setEuclidianVisible(boolean visible) {
-		if (visible == isSetEuclidianVisible() || kernel.isMacroKernel()) {
+	public void seteuclideanVisible(boolean visible) {
+		if (visible == isSeteuclideanVisible() || kernel.isMacroKernel()) {
 			return;
 		}
 
@@ -303,7 +303,7 @@ public class GeoNumeric extends GeoElement
 			 */
 		}
 
-		super.setEuclidianVisible(visible);
+		super.seteuclideanVisible(visible);
 	}
 
 	private void setMaxFrom(GeoNumeric num) {
@@ -342,8 +342,8 @@ public class GeoNumeric extends GeoElement
 		sliderPos = new SliderPosition();
 		if (isAbsoluteScreenLocActive()) {
 			sliderPos.x = 30;
-			EuclidianViewInterfaceSlim ev = kernel.getApplication()
-					.getActiveEuclidianView();
+			euclideanViewInterfaceSlim ev = kernel.getApplication()
+					.getActiveeuclideanView();
 			if (ev != null) {
 				sliderPos.y = ev.getSliderOffsetY() + 40 * count;
 			} else {
@@ -383,11 +383,11 @@ public class GeoNumeric extends GeoElement
 	 * @return true if displayed as slider
 	 */
 	public boolean isSlider() {
-		return isIndependent() && isEuclidianVisible();
+		return isIndependent() && iseuclideanVisible();
 	}
 
 	@Override
-	public boolean showInEuclidianView() {
+	public boolean showIneuclideanView() {
 		return isDrawable && isDefined() && !Double.isInfinite(value);
 	}
 
@@ -691,9 +691,9 @@ public class GeoNumeric extends GeoElement
 	}
 
 	@Override
-	public void setAllVisualPropertiesExceptEuclidianVisible(GeoElement geo,
+	public void setAllVisualPropertiesExcepteuclideanVisible(GeoElement geo,
 			boolean keepAdvanced, boolean setAuxiliaryProperty) {
-		super.setAllVisualPropertiesExceptEuclidianVisible(geo, keepAdvanced,
+		super.setAllVisualPropertiesExcepteuclideanVisible(geo, keepAdvanced,
 				setAuxiliaryProperty);
 
 		if (geo.isGeoNumeric() && !geo.isGeoAngle()) {
@@ -732,7 +732,7 @@ public class GeoNumeric extends GeoElement
 		// if number is drawable then we need to save visual options too
 		if (isDrawable || isSliderable()) {
 			// save slider info before show to have min and max set
-			// before setEuclidianVisible(true) is called
+			// before seteuclideanVisible(true) is called
 			getXMLsliderTag(sb);
 
 			// line thickness and type
@@ -770,7 +770,7 @@ public class GeoNumeric extends GeoElement
 	@Override
 	public boolean isFixable() {
 		// visible slider should not be fixable if whiteboard doesn't active
-		return !isSetEuclidianVisible() && !isDefaultGeo();
+		return !isSeteuclideanVisible() && !isDefaultGeo();
 	}
 
 	@Override
@@ -1300,7 +1300,7 @@ public class GeoNumeric extends GeoElement
 		}
 
 		if (evListeners != null) {
-			for (EuclidianViewInterfaceSlim ev : evListeners) {
+			for (euclideanViewInterfaceSlim ev : evListeners) {
 				ev.updateBounds(true, true);
 			}
 		}
@@ -1575,9 +1575,9 @@ public class GeoNumeric extends GeoElement
 
 	/**
 	 * @param ev
-	 *            euclidian view which listens to this numeric
+	 *            euclidean view which listens to this numeric
 	 */
-	public void addEVSizeListener(EuclidianViewInterfaceSlim ev) {
+	public void addEVSizeListener(euclideanViewInterfaceSlim ev) {
 		if (evListeners == null) {
 			evListeners = new ArrayList<>();
 		}
@@ -1589,9 +1589,9 @@ public class GeoNumeric extends GeoElement
 
 	/**
 	 * @param ev
-	 *            euclidian view which listens to this numeric
+	 *            euclidean view which listens to this numeric
 	 */
-	public void removeEVSizeListener(EuclidianViewInterfaceSlim ev) {
+	public void removeEVSizeListener(euclideanViewInterfaceSlim ev) {
 		if (evListeners != null) {
 			evListeners.remove(ev);
 		}
@@ -1606,7 +1606,7 @@ public class GeoNumeric extends GeoElement
 		if (num.evListeners != null) {
 
 			evListeners = num.evListeners;
-			for (EuclidianViewInterfaceSlim ev : num.evListeners) {
+			for (euclideanViewInterfaceSlim ev : num.evListeners) {
 				ev.replaceBoundObject(num, this);
 			}
 
@@ -1683,7 +1683,7 @@ public class GeoNumeric extends GeoElement
 		GeoNumeric defaultAngleOrNum = num.getKernel().getAlgoDispatcher()
 				.getDefaultNumber(isAngle);
 		num.setSliderFixed(defaultNum.isLockedPosition());
-		num.setEuclidianVisible(visible);
+		num.seteuclideanVisible(visible);
 		num.setIntervalMin(defaultAngleOrNum.getIntervalMinObject());
 		num.setIntervalMax(defaultAngleOrNum.getIntervalMaxObject());
 		num.setAnimationStep(defaultAngleOrNum.getAnimationStep());
@@ -1827,8 +1827,8 @@ public class GeoNumeric extends GeoElement
 			return;
 		}
 		SliderPosition old = sliderPos;
-		setEuclidianVisible(true);
-		setEuclidianVisible(false);
+		seteuclideanVisible(true);
+		seteuclideanVisible(false);
 		sliderPos = old;
 
 	}
@@ -1942,7 +1942,7 @@ public class GeoNumeric extends GeoElement
 	}
 
 	@Override
-	public int getTotalWidth(EuclidianViewInterfaceCommon ev) {
+	public int getTotalWidth(euclideanViewInterfaceCommon ev) {
 		return 0;
 	}
 
@@ -1952,7 +1952,7 @@ public class GeoNumeric extends GeoElement
 	}
 
 	@Override
-	public int getTotalHeight(EuclidianViewInterfaceCommon ev) {
+	public int getTotalHeight(euclideanViewInterfaceCommon ev) {
 		return 0;
 	}
 
@@ -2081,6 +2081,6 @@ public class GeoNumeric extends GeoElement
 		setShowExtendedAV(false);
 		intervalMax = null;
 		intervalMin = null;
-		setEuclidianVisible(false);
+		seteuclideanVisible(false);
 	}
 }

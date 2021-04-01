@@ -238,7 +238,7 @@ public class CmdAngle3D extends CmdAngle {
 			GeoNumberValue a) {
 
 		GeoDirectionND direction = kernel.getApplication()
-				.getActiveEuclidianView().getDirection();
+				.getActiveeuclideanView().getDirection();
 
 		if (direction == kernel.getSpace()) { // TODO: should create point on
 												// circle

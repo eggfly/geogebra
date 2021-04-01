@@ -29,7 +29,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.text.JTextComponent;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.CircularDefinitionException;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.GeoBoolean;
@@ -91,7 +91,7 @@ public class CheckboxCreationDialog extends Dialog implements
 		comboModel.addElement(null);
 		while (it.hasNext()) {
 			GeoElement geo = it.next();
-			if (geo.isEuclidianShowable()) {
+			if (geo.iseuclideanShowable()) {
 				comboModel.addElement(geo);
 			}
 		}
@@ -109,7 +109,7 @@ public class CheckboxCreationDialog extends Dialog implements
 
 				if (ob instanceof GeoElement) {
 					GeoElement geo = (GeoElement) ob;
-					if (geo.isEuclidianShowable()) {
+					if (geo.iseuclideanShowable()) {
 						super.addElement(geo);
 						comboModel.removeElement(geo);
 					}
@@ -218,7 +218,7 @@ public class CheckboxCreationDialog extends Dialog implements
 
 		// update boolean (updates visibility of geos from list too)
 		geoBoolean.setValue(true);
-		geoBoolean.setEuclidianVisible(true);
+		geoBoolean.seteuclideanVisible(true);
 		geoBoolean.setLabelVisible(true);
 		geoBoolean.updateRepaint();
 
@@ -228,7 +228,7 @@ public class CheckboxCreationDialog extends Dialog implements
 	@Override
 	public void windowGainedFocus(WindowEvent arg0) {
 		// make sure this dialog is the current selection listener
-		if (app.getMode() != EuclidianConstants.MODE_SELECTION_LISTENER
+		if (app.getMode() != euclideanConstants.MODE_SELECTION_LISTENER
 				|| app.getCurrentSelectionListener() != this) {
 			app.setSelectionListenerMode(this);
 		}
@@ -247,7 +247,7 @@ public class CheckboxCreationDialog extends Dialog implements
 			} else {
 				removeWindowFocusListener(this);
 				app.setSelectionListenerMode(null);
-				app.setMode(EuclidianConstants.MODE_SHOW_HIDE_CHECKBOX);
+				app.setMode(euclideanConstants.MODE_SHOW_HIDE_CHECKBOX);
 			}
 		}
 		super.setVisible(flag);

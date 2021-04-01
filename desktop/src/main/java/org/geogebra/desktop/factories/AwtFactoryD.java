@@ -31,7 +31,7 @@ import org.geogebra.common.awt.GRectangle2D;
 import org.geogebra.common.awt.GShape;
 import org.geogebra.common.awt.MyImage;
 import org.geogebra.common.awt.font.GTextLayout;
-import org.geogebra.common.euclidian.EuclidianStatic;
+import org.geogebra.common.euclidean.euclideanStatic;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GAffineTransformD;
@@ -267,7 +267,7 @@ public class AwtFactoryD extends AwtFactory {
 
 	static public BasicStroke getDefaultStrokeAwt() {
 		return AwtFactoryD
-				.getAwtStroke(EuclidianStatic.getDefaultStroke());
+				.getAwtStroke(euclideanStatic.getDefaultStroke());
 	}
 
 }

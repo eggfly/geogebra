@@ -1,15 +1,15 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterSurface;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D.Type;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterSurface;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D.Type;
 import org.geogebra.common.kernel.PathParameter;
 import org.geogebra.common.kernel.arithmetic.Functional2Var;
 import org.geogebra.common.kernel.geos.FromMeta;
@@ -61,7 +61,7 @@ public class DrawConic3D extends Drawable3DCurves
 	 * @param conic
 	 *            the conic to draw
 	 */
-	public DrawConic3D(EuclidianView3D view3d, GeoConicND conic) {
+	public DrawConic3D(euclideanView3D view3d, GeoConicND conic) {
 		super(view3d, conic);
 		setPickingType(PickingType.POINT_OR_CURVE);
 
@@ -720,7 +720,7 @@ public class DrawConic3D extends Drawable3DCurves
 	@Override
 	public boolean isTransparent() {
 		if (getPickingType() == PickingType.SURFACE) {
-			return getAlpha() <= EuclidianController.MAX_TRANSPARENT_ALPHA_VALUE_INT;
+			return getAlpha() <= euclideanController.MAX_TRANSPARENT_ALPHA_VALUE_INT;
 		}
 
 		return false;
@@ -976,7 +976,7 @@ public class DrawConic3D extends Drawable3DCurves
 
 			// try conic surface
 			if (getGeoElement()
-					.getAlphaValue() > EuclidianController.MIN_VISIBLE_ALPHA_VALUE
+					.getAlphaValue() > euclideanController.MIN_VISIBLE_ALPHA_VALUE
 					&& hitting.isInsideClipping(globalCoords)
 					&& conic.isInRegion(inPlaneCoords.getX(),
 							inPlaneCoords.getY())) {

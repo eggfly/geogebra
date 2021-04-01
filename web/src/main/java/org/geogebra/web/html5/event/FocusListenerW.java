@@ -2,7 +2,7 @@ package org.geogebra.web.html5.event;
 
 import javax.annotation.Nonnull;
 
-import org.geogebra.common.euclidian.event.FocusListenerDelegate;
+import org.geogebra.common.euclidean.event.FocusListenerDelegate;
 import org.geogebra.common.main.ScreenReader;
 import org.geogebra.web.html5.gui.view.autocompletion.ScrollableSuggestBox;
 

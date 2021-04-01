@@ -215,7 +215,7 @@ final public class Geo3DVec extends ValidExpression
 	}
 
 	/**
-	 * Calculates the euclidian length sqrt(a^2 + b^2).
+	 * Calculates the euclidean length sqrt(a^2 + b^2).
 	 */
 	private static double length(double a, double b, double c) {
 		return Math.sqrt(a * a + b * b + c * c);

@@ -1,11 +1,11 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
 import org.geogebra.common.kernel.geos.GProperty;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.matrix.Coords;
@@ -33,7 +33,7 @@ public abstract class DrawComposite3D extends Drawable3D {
 	 * @param geo
 	 *            list
 	 */
-	public DrawComposite3D(EuclidianView3D view3D, GeoElement geo) {
+	public DrawComposite3D(euclideanView3D view3D, GeoElement geo) {
 		super(view3D, geo);
 		drawables = new DrawList3DArray(view3D, this);
 		drawable3DLists = new Drawable3DListsForDrawList3D(view3D);
@@ -46,7 +46,7 @@ public abstract class DrawComposite3D extends Drawable3D {
 
 		// Log.debug("LIST -- "+getGeoElement());
 
-		isVisible = getGeoElement().isEuclidianVisible();
+		isVisible = getGeoElement().iseuclideanVisible();
 		if (!isVisible) {
 			return true;
 		}

@@ -1,8 +1,8 @@
 package org.geogebra.test;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.PointerEventType;
 
 public class TestEvent extends AbstractEvent {
 

@@ -1,14 +1,14 @@
-package org.geogebra.common.geogebra3D.euclidian3D.animator;
+package org.geogebra.common.geogebra3D.euclidean3D.animator;
 
 import org.geogebra.common.factories.UtilFactory;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.animator.EuclidianView3DAnimator.AnimationType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.animator.euclideanView3DAnimator.AnimationType;
 
 /**
  * class for 3D view animations
  *
  */
-public abstract class EuclidianView3DAnimation {
+public abstract class euclideanView3DAnimation {
 
 	/**
 	 * it will take about 1/2s to achieve
@@ -18,11 +18,11 @@ public abstract class EuclidianView3DAnimation {
 	/**
 	 * 3D view
 	 */
-	protected EuclidianView3D view3D;
+	protected euclideanView3D view3D;
 	/**
 	 * 3D view animator
 	 */
-	protected EuclidianView3DAnimator animator;
+	protected euclideanView3DAnimator animator;
 
 	private boolean storeUndo;
 
@@ -34,7 +34,7 @@ public abstract class EuclidianView3DAnimation {
 	 * @param animator
 	 *            3D view animator
 	 */
-	EuclidianView3DAnimation(EuclidianView3D view3D, EuclidianView3DAnimator animator) {
+	euclideanView3DAnimation(euclideanView3D view3D, euclideanView3DAnimator animator) {
 		this(view3D, animator, false);
 	}
 
@@ -48,7 +48,7 @@ public abstract class EuclidianView3DAnimation {
 	 * @param storeUndo
 	 *            if undo point will be stored at the end
 	 */
-	EuclidianView3DAnimation(EuclidianView3D view3D, EuclidianView3DAnimator animator,
+	euclideanView3DAnimation(euclideanView3D view3D, euclideanView3DAnimator animator,
 			boolean storeUndo) {
 		this.view3D = view3D;
 		this.animator = animator;

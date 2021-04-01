@@ -1,21 +1,21 @@
-package org.geogebra.common.geogebra3D.euclidianForPlane;
+package org.geogebra.common.geogebra3D.euclideanForPlane;
 
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.draw.DrawAngle;
-import org.geogebra.common.euclidian.draw.DrawParametricCurve;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
-import org.geogebra.common.euclidianForPlane.EuclidianViewForPlaneCompanionInterface;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidianFor3D.CurveEvaluableForPlane;
-import org.geogebra.common.geogebra3D.euclidianFor3D.DrawAngleFor3D;
-import org.geogebra.common.geogebra3D.euclidianFor3D.EuclidianViewFor3DCompanion;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.draw.DrawAngle;
+import org.geogebra.common.euclidean.draw.DrawParametricCurve;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
+import org.geogebra.common.euclideanForPlane.euclideanViewForPlaneCompanionInterface;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclideanFor3D.CurveEvaluableForPlane;
+import org.geogebra.common.geogebra3D.euclideanFor3D.DrawAngleFor3D;
+import org.geogebra.common.geogebra3D.euclideanFor3D.euclideanViewFor3DCompanion;
 import org.geogebra.common.geogebra3D.main.App3DCompanion;
-import org.geogebra.common.geogebra3D.main.settings.EuclidianSettingsForPlane;
+import org.geogebra.common.geogebra3D.main.settings.euclideanSettingsForPlane;
 import org.geogebra.common.gui.layout.DockPanel;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.algos.AlgoElement;
@@ -33,7 +33,7 @@ import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.kernel.matrix.CoordSys;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.main.settings.AbstractSettings;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.util.debug.Log;
 
 /**
@@ -42,8 +42,8 @@ import org.geogebra.common.util.debug.Log;
  * @author mathieu
  *
  */
-public class EuclidianViewForPlaneCompanion extends EuclidianViewFor3DCompanion
-		implements EuclidianViewForPlaneCompanionInterface {
+public class euclideanViewForPlaneCompanion extends euclideanViewFor3DCompanion
+		implements euclideanViewForPlaneCompanionInterface {
 
 	private ViewCreator plane;
 	private CoordMatrix4x4 transform;
@@ -68,7 +68,7 @@ public class EuclidianViewForPlaneCompanion extends EuclidianViewFor3DCompanion
 	 * @param view
 	 *            view attached
 	 */
-	public EuclidianViewForPlaneCompanion(EuclidianView view) {
+	public euclideanViewForPlaneCompanion(euclideanView view) {
 		super(view);
 	}
 
@@ -116,7 +116,7 @@ public class EuclidianViewForPlaneCompanion extends EuclidianViewFor3DCompanion
 	 */
 	public void updateScaleRegardingView() {
 
-		double newScale = view.getApplication().getEuclidianView3D()
+		double newScale = view.getApplication().geteuclideanView3D()
 				.getXscale();
 		double w = view.getWidth() / 2.0;
 		double h = view.getHeight() / 2.0;
@@ -154,8 +154,8 @@ public class EuclidianViewForPlaneCompanion extends EuclidianViewFor3DCompanion
 		setTransformRegardingView();
 		updateMatrix();
 
-		EuclidianView3DInterface view3D = view.getApplication()
-				.getEuclidianView3D();
+		euclideanView3DInterface view3D = view.getApplication()
+				.geteuclideanView3D();
 
 		// coords of the bounding box center in the 3D view
 		Coords c = new Coords(-view3D.getXZero(), -view3D.getYZero(),
@@ -233,10 +233,10 @@ public class EuclidianViewForPlaneCompanion extends EuclidianViewFor3DCompanion
 	@Override
 	public void setTransformRegardingView() {
 		// TODO allow this even when 3d not inited
-		Coords directionView3D = ((EuclidianView3D) view.getApplication()
-				.getEuclidianView3D()).getViewDirection();
-		CoordMatrix toScreenMatrix = ((EuclidianView3D) view.getApplication()
-				.getEuclidianView3D()).getToScreenMatrix();
+		Coords directionView3D = ((euclideanView3D) view.getApplication()
+				.geteuclideanView3D()).getViewDirection();
+		CoordMatrix toScreenMatrix = ((euclideanView3D) view.getApplication()
+				.geteuclideanView3D()).getToScreenMatrix();
 
 		// front or back view
 		double p = plane.getCoordSys().getNormal().dotproduct(directionView3D);
@@ -329,7 +329,7 @@ public class EuclidianViewForPlaneCompanion extends EuclidianViewFor3DCompanion
 
 		super.settingsChanged(settings);
 
-		EuclidianSettingsForPlane evs = (EuclidianSettingsForPlane) settings;
+		euclideanSettingsForPlane evs = (euclideanSettingsForPlane) settings;
 
 		// transform
 		transformMirror = 1;
@@ -547,8 +547,8 @@ public class EuclidianViewForPlaneCompanion extends EuclidianViewFor3DCompanion
 
 	@Override
 	public boolean showGrid(boolean show) {
-		EuclidianSettings settings = view.getApplication().getSettings()
-				.getEuclidianForPlane(getFromPlaneString());
+		euclideanSettings settings = view.getApplication().getSettings()
+				.geteuclideanForPlane(getFromPlaneString());
 		if (settings != null) {
 			settings.setShowGridSetting(show);
 		}
@@ -586,7 +586,7 @@ public class EuclidianViewForPlaneCompanion extends EuclidianViewFor3DCompanion
 	public void doRemove() {
 		removeFromGuiAndKernel();
 		((App3DCompanion) view.getApplication().getCompanion())
-				.removeEuclidianViewForPlaneFromList(this);
+				.removeeuclideanViewForPlaneFromList(this);
 
 	}
 

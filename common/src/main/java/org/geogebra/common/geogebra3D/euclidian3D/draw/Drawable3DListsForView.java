@@ -1,9 +1,9 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.List;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.kernel.matrix.Coords;
 
 /**
@@ -23,7 +23,7 @@ public class Drawable3DListsForView extends Drawable3DLists {
 	 * @param view3D
 	 *            3D view
 	 */
-	public Drawable3DListsForView(EuclidianView3D view3D) {
+	public Drawable3DListsForView(euclideanView3D view3D) {
 		super(view3D);
 	}
 

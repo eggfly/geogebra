@@ -18,8 +18,8 @@ the Free Software Foundation.
 
 package org.geogebra.common.geogebra3D.kernel3D.geos;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D;
 import org.geogebra.common.geogebra3D.kernel3D.Kernel3D;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -87,7 +87,7 @@ import org.geogebra.common.util.debug.Log;
         return true;
     }
    <br>
-    protected boolean showInEuclidianView() {
+    protected boolean showIneuclideanView() {
        return true;
     }
    <br>
@@ -114,8 +114,8 @@ import org.geogebra.common.util.debug.Log;
  * <li>{@link Drawable3D} to create a drawable linked to this new element.</li>
  * <li>{@link Kernel3D} to add a method to create this new element</li>
  * <li>
- * {@link TestGeo} Kernel3D, geogebra.euclidian.EuclidianView,
- * geogebra3D.euclidian3D.EuclidianView3D, geogebra3D.Application3D)} to test it
+ * {@link TestGeo} Kernel3D, geogebra.euclidean.euclideanView,
+ * geogebra3D.euclidean3D.euclideanView3D, geogebra3D.Application3D)} to test it
  * </li>
  * </ul>
  * 
@@ -199,7 +199,7 @@ public abstract class GeoElement3D extends GeoElement {
 	}
 
 	@Override
-	public boolean isWhollyIn2DView(EuclidianView ev) {
+	public boolean isWhollyIn2DView(euclideanView ev) {
 		Log.debug("isWhollyIn2DView unimplemented for " + this.getClass() + " "
 				+ this.getGeoClassType());
 		return false;

@@ -1,9 +1,9 @@
 package org.geogebra.web.full.gui.layout.panels;
 
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.main.App;
-import org.geogebra.web.html5.euclidian.EuclidianPanelWAbstract;
+import org.geogebra.web.html5.euclidean.euclideanPanelWAbstract;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.html5.util.TestHarness;
 
@@ -11,11 +11,11 @@ import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.resources.client.ResourcePrototype;
 import com.google.gwt.user.client.ui.Widget;
 
-public class EuclidianDockPanelW extends EuclidianDockPanelWAbstract
-		implements EuclidianPanelWAbstract {
+public class euclideanDockPanelW extends euclideanDockPanelWAbstract
+		implements euclideanPanelWAbstract {
 
-	EuclidianStyleBar espanel;
-	EuclidianPanel euclidianpanel;
+	euclideanStyleBar espanel;
+	euclideanPanel euclideanpanel;
 
 	Canvas eview1 = null; // static foreground
 
@@ -26,9 +26,9 @@ public class EuclidianDockPanelW extends EuclidianDockPanelWAbstract
 	 * @param stylebar
 	 *            (is there stylebar?)
 	 */
-	public EuclidianDockPanelW(boolean stylebar) {
+	public euclideanDockPanelW(boolean stylebar) {
 		super(
-				App.VIEW_EUCLIDIAN,	// view id 
+				App.VIEW_euclidean,	// view id
 				"DrawingPad", 				// view title
 				null,
 				stylebar, // style bar?
@@ -53,7 +53,7 @@ public class EuclidianDockPanelW extends EuclidianDockPanelWAbstract
 	 * @param stylebar
 	 *            whether to use stylebar
 	 */
-	public EuclidianDockPanelW(AppW application, boolean stylebar) {
+	public euclideanDockPanelW(AppW application, boolean stylebar) {
 		this(stylebar);
 		attachApp(application);
 	}
@@ -68,32 +68,32 @@ public class EuclidianDockPanelW extends EuclidianDockPanelWAbstract
 		// GuiManager can be null at the startup of the application,
 		// but then the addNavigationBar method will be called explicitly.
 		if (app.getGuiManager() != null
-				&& app.showConsProtNavigation(App.VIEW_EUCLIDIAN)) {
+				&& app.showConsProtNavigation(App.VIEW_euclidean)) {
 			addNavigationBar();
 		}
 	}
 
 	@Override
 	protected Widget loadComponent() {
-		if (euclidianpanel == null) {
-			euclidianpanel = new EuclidianPanel(this);
+		if (euclideanpanel == null) {
+			euclideanpanel = new euclideanPanel(this);
 			eview1 = Canvas.createIfSupported();
-			TestHarness.setAttr(eview1, "euclidianView");
+			TestHarness.setAttr(eview1, "euclideanView");
 			addCanvas(eview1);
 		}
-		return euclidianpanel;
+		return euclideanpanel;
 	}
 
 	private void addCanvas(Canvas c) {
 		if (c != null) {
-			euclidianpanel.getAbsolutePanel().add(c);
+			euclideanpanel.getAbsolutePanel().add(c);
 		}
 	}
 
 	@Override
 	protected Widget loadStyleBar() {
 		if (espanel == null) {
-			espanel = app.getEuclidianView1().getStyleBar();
+			espanel = app.geteuclideanView1().getStyleBar();
 		}
 		return (Widget) espanel;
 	}
@@ -104,8 +104,8 @@ public class EuclidianDockPanelW extends EuclidianDockPanelWAbstract
 	}
 
 	@Override
-	public EuclidianPanel getEuclidianPanel() {
-		return euclidianpanel;
+	public euclideanPanel geteuclideanPanel() {
+		return euclideanpanel;
 	}
 
 	/**
@@ -113,13 +113,13 @@ public class EuclidianDockPanelW extends EuclidianDockPanelWAbstract
 	 *            widget to be removed
 	 */
 	public void remove(Widget w) {
-		euclidianpanel.remove(w);
+		euclideanpanel.remove(w);
 	}
 
 	@Override
-	public EuclidianView getEuclidianView() {
+	public euclideanView geteuclideanView() {
 		if (app != null) {
-			return app.getEuclidianView1();
+			return app.geteuclideanView1();
 		}
 		return null;
 	}
@@ -131,7 +131,7 @@ public class EuclidianDockPanelW extends EuclidianDockPanelWAbstract
 
 	@Override
 	public void calculateEnvironment() {
-		app.getEuclidianView1().getEuclidianController().calculateEnvironment();
+		app.geteuclideanView1().geteuclideanController().calculateEnvironment();
 	}
 
 	@Override

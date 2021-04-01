@@ -3,13 +3,13 @@ package org.geogebra.web.full.gui.util;
 import java.util.HashMap;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.draw.DrawPoint;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.draw.DrawPoint;
 import org.geogebra.common.gui.dialog.options.model.PointStyleModel;
 import org.geogebra.common.gui.util.SelectionTable;
 import org.geogebra.common.kernel.geos.GeoPoint;
 import org.geogebra.web.html5.awt.GGraphics2DW;
-import org.geogebra.web.html5.euclidian.GGraphics2DWI;
+import org.geogebra.web.html5.euclidean.GGraphics2DWI;
 import org.geogebra.web.html5.gui.util.ImageOrText;
 import org.geogebra.web.html5.main.AppW;
 
@@ -64,8 +64,8 @@ public class MOWPointStyleButton extends PointStylePopup {
 		g2 = new GGraphics2DW(canvas);
 		p = new GeoPoint(app.getKernel().getConstruction(),
 				0, 0, 0);
-		drawPoint = new DrawPoint(app.getActiveEuclidianView(), p);
-		p.setEuclidianVisible(true);
+		drawPoint = new DrawPoint(app.getActiveeuclideanView(), p);
+		p.seteuclideanVisible(true);
 	}
 
 	/**
@@ -77,15 +77,15 @@ public class MOWPointStyleButton extends PointStylePopup {
 	public static MOWPointStyleButton create(AppW app) {
 
 		pointStyleMap = new HashMap<>();
-		for (int i = 0; i < EuclidianView.getPointStyleLength(); i++) {
-			pointStyleMap.put(EuclidianView.getPointStyle(i), i);
+		for (int i = 0; i < euclideanView.getPointStyleLength(); i++) {
+			pointStyleMap.put(euclideanView.getPointStyle(i), i);
 		}
 
-		ImageOrText[] pointStyleIcons = new ImageOrText[EuclidianView
+		ImageOrText[] pointStyleIcons = new ImageOrText[euclideanView
 				.getPointStyleLength()];
-		for (int i = 0; i < EuclidianView.getPointStyleLength(); i++) {
+		for (int i = 0; i < euclideanView.getPointStyleLength(); i++) {
 			pointStyleIcons[i] = GeoGebraIconW
-					.createPointStyleIcon(EuclidianView.getPointStyle(i));
+					.createPointStyleIcon(euclideanView.getPointStyle(i));
 		}
 
 		MOWPointStyleButton btn = new MOWPointStyleButton(app, pointStyleIcons);

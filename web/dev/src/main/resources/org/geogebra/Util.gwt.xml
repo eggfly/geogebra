@@ -7,7 +7,7 @@
   <source path='common/util/lang' />
   <source path='common/util/debug' />
   <source path='common/awt' />
-  <source path='common/euclidian/event' />
+  <source path='common/euclidean/event' />
 
   <inherits name="elemental2.dom.Dom"/>
   <inherits name="elemental2.core.Core"/>

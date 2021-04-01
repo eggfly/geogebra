@@ -2,7 +2,7 @@ package org.geogebra.common.kernel.algos;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.Kernel;
@@ -483,7 +483,7 @@ public class AlgoDispatcher {
 	final public GeoVector vector(String label, GeoPoint P, GeoPoint Q) {
 		AlgoVector algo = new AlgoVector(cons, P, Q);
 		GeoVector v = (GeoVector) algo.getVector();
-		v.setEuclidianVisible(true);
+		v.seteuclideanVisible(true);
 		v.setLabel(label);
 		// notifyUpdate(v);
 		return v;
@@ -501,7 +501,7 @@ public class AlgoDispatcher {
 	 */
 	final public GeoVectorND vector(String label, GeoPointND P) {
 		GeoVectorND v = createVector(label, P);
-		v.setEuclidianVisible(true);
+		v.seteuclideanVisible(true);
 		v.update();
 		// notifyUpdate(v);
 		return v;
@@ -3081,7 +3081,7 @@ public class AlgoDispatcher {
 	 * @return redefined point
 	 */
 	public GeoPointND attach(GeoPointND point, Path path,
-			EuclidianViewInterfaceCommon view, Coords locRW) {
+			euclideanViewInterfaceCommon view, Coords locRW) {
 
 		try {
 			boolean oldLabelCreationFlag = cons.isSuppressLabelsActive();
@@ -3134,7 +3134,7 @@ public class AlgoDispatcher {
 	 * @return redefined point
 	 */
 	public GeoPointND attach(GeoPointND point, Region region,
-			EuclidianViewInterfaceCommon view, Coords locRW) {
+			euclideanViewInterfaceCommon view, Coords locRW) {
 
 		try {
 			boolean oldLabelCreationFlag = cons.isSuppressLabelsActive();
@@ -3181,7 +3181,7 @@ public class AlgoDispatcher {
 	 *            view
 	 * @return redefined point
 	 */
-	public GeoPointND detach(GeoPointND p, EuclidianViewInterfaceCommon view) {
+	public GeoPointND detach(GeoPointND p, euclideanViewInterfaceCommon view) {
 		try {
 			boolean oldLabelCreationFlag = cons.isSuppressLabelsActive();
 			cons.setSuppressLabelCreation(true);
@@ -3223,9 +3223,9 @@ public class AlgoDispatcher {
 	}
 
 	protected GeoPointND copyFreePoint(GeoPointND point,
-			EuclidianViewInterfaceCommon view) {
+			euclideanViewInterfaceCommon view) {
 		double xOffset = 0, yOffset = 0;
-		if (!view.isEuclidianView3D()) {
+		if (!view.iseuclideanView3D()) {
 			xOffset = DETACH_OFFSET * view.getInvXscale();
 			yOffset = DETACH_OFFSET * view.getInvYscale();
 		}

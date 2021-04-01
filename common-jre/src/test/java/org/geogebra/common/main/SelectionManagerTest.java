@@ -34,7 +34,7 @@ public class SelectionManagerTest extends BaseUnitTest {
 		add("firstVisible:(1,1)");
 		add("lastVisible:(2,1)");
 		GeoElement hidden = add("hidden:(3,1)");
-		hidden.setEuclidianVisible(false);
+		hidden.seteuclideanVisible(false);
 		GeoElement notSelectable = add("notSelectable:(4,1)");
 		notSelectable.setSelectionAllowed(false);
 	}

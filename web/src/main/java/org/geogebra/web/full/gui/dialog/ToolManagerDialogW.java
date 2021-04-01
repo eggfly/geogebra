@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.dialog.ToolManagerDialogModel;
 import org.geogebra.common.gui.dialog.ToolManagerDialogModel.ToolManagerDialogListener;
 import org.geogebra.common.javax.swing.GOptionPane;
@@ -487,7 +487,7 @@ public class ToolManagerDialogW extends DialogBoxW implements ClickHandler,
 			appw.getGuiManager().refreshCustomToolsInToolBar();
 		} else {
 			int macroID = m.getKernel().getMacroID(m)
-					+ EuclidianConstants.MACRO_MODE_ID_OFFSET;
+					+ euclideanConstants.MACRO_MODE_ID_OFFSET;
 			appw.getGuiManager().removeFromToolbarDefinition(macroID);
 		}
 		GuiManagerW gm = ((GuiManagerW) appw.getGuiManager());

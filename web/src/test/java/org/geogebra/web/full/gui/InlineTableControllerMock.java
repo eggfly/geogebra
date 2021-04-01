@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui;
 
-import org.geogebra.common.euclidian.inline.InlineTableController;
+import org.geogebra.common.euclidean.inline.InlineTableController;
 import org.mockito.Mockito;
 
 public final class InlineTableControllerMock {

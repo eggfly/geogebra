@@ -3,7 +3,7 @@ package org.geogebra.web.html5.sound;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.geos.GeoAudio;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoFunction;
@@ -21,7 +21,7 @@ import elemental2.dom.HTMLAudioElement;
  */
 public class SoundManagerW implements SoundManager {
 	private final AppW app;
-	private final EuclidianView view;
+	private final euclideanView view;
 	private boolean mp3active = true;
 	private final Map<GeoAudio, HTMLAudioElement> geoAudioElements;
 	private AsyncOperation<Boolean> urlCallback = null;
@@ -33,7 +33,7 @@ public class SoundManagerW implements SoundManager {
 	public SoundManagerW(AppW app) {
 		this.app = app;
 		geoAudioElements = new HashMap<>();
-		view = app.getActiveEuclidianView();
+		view = app.getActiveeuclideanView();
 	}
 
 	@Override

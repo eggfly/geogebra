@@ -17,9 +17,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.arithmetic.BooleanValue;
@@ -56,7 +56,7 @@ public class GeoBoolean extends GeoElement implements BooleanValue,
 	public GeoBoolean(Construction c) {
 		super(c);
 		checkboxFixed = true;
-		setEuclidianVisible(false);
+		seteuclideanVisible(false);
 		conditionals = new ArrayList<>();
 	}
 
@@ -75,7 +75,7 @@ public class GeoBoolean extends GeoElement implements BooleanValue,
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_SHOW_HIDE_CHECKBOX;
+		return euclideanConstants.MODE_SHOW_HIDE_CHECKBOX;
 	}
 
 	@Override
@@ -165,14 +165,14 @@ public class GeoBoolean extends GeoElement implements BooleanValue,
 	}
 
 	@Override
-	public boolean showInEuclidianView() {
+	public boolean showIneuclideanView() {
 		return isIndependent() && isSimple();
 	}
 
 	@Override
 	public boolean isFixable() {
 		// visible checkbox should not be fixable
-		return isIndependent() && !isSetEuclidianVisible()
+		return isIndependent() && !isSeteuclideanVisible()
 				&& this.condShowObject == null && !isDefaultGeo();
 	}
 
@@ -407,19 +407,19 @@ public class GeoBoolean extends GeoElement implements BooleanValue,
 	}
 
 	@Override
-	public void setEuclidianVisible(boolean visible) {
+	public void seteuclideanVisible(boolean visible) {
 		if (visible && labelOffsetX == 0 && labelOffsetY == 0
 				&& isIndependent()) {
 			initScreenLocation();
 		}
-		super.setEuclidianVisible(visible);
+		super.seteuclideanVisible(visible);
 	}
 
 	private void initScreenLocation() {
 		int count = countCheckboxes();
 		labelOffsetX = 5;
-		EuclidianViewInterfaceSlim ev = kernel.getApplication()
-				.getActiveEuclidianView();
+		euclideanViewInterfaceSlim ev = kernel.getApplication()
+				.getActiveeuclideanView();
 		if (ev != null) {
 			labelOffsetY = ev.getSliderOffsetY() - 45 + 30 * count;
 		} else {
@@ -439,7 +439,7 @@ public class GeoBoolean extends GeoElement implements BooleanValue,
 			Iterator<GeoElement> it = bools.iterator();
 			while (it.hasNext()) {
 				GeoBoolean num = (GeoBoolean) it.next();
-				if (num.isIndependent() && num.isEuclidianVisible()) {
+				if (num.isIndependent() && num.iseuclideanVisible()) {
 					count++;
 				}
 			}
@@ -475,7 +475,7 @@ public class GeoBoolean extends GeoElement implements BooleanValue,
 	}
 
 	@Override
-	public int getTotalWidth(EuclidianViewInterfaceCommon ev) {
+	public int getTotalWidth(euclideanViewInterfaceCommon ev) {
 		return (int) (32 + StringUtil.getPrototype().estimateLength(
 				getCaption(StringTemplate.defaultTemplate),
 				ev.getApplication().getFontCanDisplay(label)));
@@ -487,7 +487,7 @@ public class GeoBoolean extends GeoElement implements BooleanValue,
 	}
 
 	@Override
-	public int getTotalHeight(EuclidianViewInterfaceCommon ev) {
+	public int getTotalHeight(euclideanViewInterfaceCommon ev) {
 		return 32;
 	}
 

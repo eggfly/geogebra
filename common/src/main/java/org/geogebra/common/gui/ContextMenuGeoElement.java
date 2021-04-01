@@ -3,15 +3,15 @@ package org.geogebra.common.gui;
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianStyleBarStatic;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.Hits;
-import org.geogebra.common.euclidian.draw.DrawInlineTable;
-import org.geogebra.common.euclidian.draw.DrawInlineText;
-import org.geogebra.common.euclidian.draw.HasTextFormat;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanStyleBarStatic;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.Hits;
+import org.geogebra.common.euclidean.draw.DrawInlineTable;
+import org.geogebra.common.euclidean.draw.DrawInlineText;
+import org.geogebra.common.euclidean.draw.HasTextFormat;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.Equation;
 import org.geogebra.common.kernel.arithmetic.EquationValue;
@@ -461,10 +461,10 @@ public abstract class ContextMenuGeoElement {
 	public void showObjectCmd() {
 		ArrayList<GeoElement> geos2 = checkOneGeo();
 
-		boolean newVisibility = !geos2.get(0).isSetEuclidianVisible();
+		boolean newVisibility = !geos2.get(0).isSeteuclideanVisible();
 		for (int i = geos2.size() - 1; i >= 0; i--) {
 			GeoElement geo1 = geos2.get(i);
-			geo1.setEuclidianVisible(newVisibility);
+			geo1.seteuclideanVisible(newVisibility);
 			geo1.updateRepaint();
 		}
 		app.storeUndoInfo();
@@ -511,7 +511,7 @@ public abstract class ContextMenuGeoElement {
 	 * Toggle tracing
 	 */
 	public void traceCmd() {
-		getActiveEuclidianController().splitSelectedStrokes(true);
+		getActiveeuclideanController().splitSelectedStrokes(true);
 		ArrayList<GeoElement> geos2 = checkOneGeo();
 		// if there is at least 1 geo, which has no trace, all geo will have
 		// trace, otherwise, if all geo has trace, tracing will be set to false
@@ -559,7 +559,7 @@ public abstract class ContextMenuGeoElement {
 
 		}
 		app.storeUndoInfo();
-		app.getActiveEuclidianView().repaint();
+		app.getActiveeuclideanView().repaint();
 
 		// automatically start animation when animating was turned on
 		if (getGeo().isAnimating()) {
@@ -583,17 +583,17 @@ public abstract class ContextMenuGeoElement {
 				boolean flag = !geoText.isAbsoluteScreenLocActive();
 				if (flag) {
 					// convert real world to screen coords
-					int x = app.getActiveEuclidianView()
+					int x = app.getActiveeuclideanView()
 							.toScreenCoordX(geoText.getRealWorldLocX());
-					int y = app.getActiveEuclidianView()
+					int y = app.getActiveeuclideanView()
 							.toScreenCoordY(geoText.getRealWorldLocY());
 					geoText.setAbsoluteScreenLoc(x, y);
 				} else {
 					// convert screen coords to real world
-					double x = app.getActiveEuclidianView()
+					double x = app.getActiveeuclideanView()
 							.toRealWorldCoordX(
 									geoText.getAbsoluteScreenLocX());
-					double y = app.getActiveEuclidianView()
+					double y = app.getActiveeuclideanView()
 							.toRealWorldCoordY(
 									geoText.getAbsoluteScreenLocY());
 					geoText.setRealWorldLoc(x, y);
@@ -601,8 +601,8 @@ public abstract class ContextMenuGeoElement {
 				geoText.setAbsoluteScreenLocActive(flag);
 				geoText.updateRepaint();
 			} else if (getGeo().isPinnable()) {
-				EuclidianStyleBarStatic.applyFixPosition(geos2, isSelected,
-						app.getActiveEuclidianView());
+				euclideanStyleBarStatic.applyFixPosition(geos2, isSelected,
+						app.getActiveeuclideanView());
 			}
 		}
 
@@ -626,8 +626,8 @@ public abstract class ContextMenuGeoElement {
 	 *            location
 	 */
 	public void geoActionCmd(GeoElement cmdGeo, ArrayList<GeoElement> sGeos,
-			ArrayList<GeoElement> gs, EuclidianView v, GPoint l) {
-		if (EuclidianConstants.isMoveOrSelectionMode(v.getMode())) { // change selection
+			ArrayList<GeoElement> gs, euclideanView v, GPoint l) {
+		if (euclideanConstants.isMoveOrSelectionMode(v.getMode())) { // change selection
 															// to geo clicked
 			// AbstractApplication.debug(geo.getLabelSimple());
 			app.getSelectionManager().clearSelectedGeos(false); // repaint done
@@ -645,7 +645,7 @@ public abstract class ContextMenuGeoElement {
 		} else { // use geo clicked to process mode
 			Hits hits = new Hits();
 			hits.add(cmdGeo);
-			v.getEuclidianController().processMode(hits, false);
+			v.geteuclideanController().processMode(hits, false);
 		}
 	}
 
@@ -726,7 +726,7 @@ public abstract class ContextMenuGeoElement {
 			return;
 		}
 		CopyPaste.handleCutCopy(app, true);
-		app.getActiveEuclidianView().resetBoundingBoxes();
+		app.getActiveeuclideanView().resetBoundingBoxes();
 	}
 
 	/**
@@ -734,9 +734,9 @@ public abstract class ContextMenuGeoElement {
 	 */
 	public void duplicateCmd() {
 		ensureGeoInSelection();
-		getActiveEuclidianController().splitSelectedStrokes(false);
+		getActiveeuclideanController().splitSelectedStrokes(false);
 		app.getCopyPaste().duplicate(app, app.getSelectionManager().getSelectedGeos());
-		getActiveEuclidianController().removeSplitParts();
+		getActiveeuclideanController().removeSplitParts();
 	}
 
 	/**
@@ -754,7 +754,7 @@ public abstract class ContextMenuGeoElement {
 	protected HasTextFormat getSelectedTextController() {
 		SelectionManager selection = app.getSelectionManager();
 		if (selection.getSelectedGeos().size() == 1) {
-			DrawableND drawable = app.getActiveEuclidianView()
+			DrawableND drawable = app.getActiveeuclideanView()
 					.getDrawableFor(selection.getSelectedGeos().get(0));
 			if (drawable instanceof DrawInlineText) {
 				return ((DrawInlineText) drawable).getTextController();
@@ -766,8 +766,8 @@ public abstract class ContextMenuGeoElement {
 		return null;
 	}
 
-	protected EuclidianController getActiveEuclidianController() {
-		return app.getActiveEuclidianView().getEuclidianController();
+	protected euclideanController getActiveeuclideanController() {
+		return app.getActiveeuclideanView().geteuclideanController();
 	}
 
 	/**

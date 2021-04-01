@@ -1,15 +1,15 @@
-package org.geogebra.web.geogebra3D.web.euclidian3D.openGL;
+package org.geogebra.web.geogebra3D.web.euclidean3D.openGL;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawLabel3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBuffer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBufferIndices;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager.Type;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.RendererImplShaders;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawLabel3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBuffer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBufferIndices;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager.Type;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.RendererImplShaders;
 import org.geogebra.common.geogebra3D.main.FragmentShader;
 import org.geogebra.common.geogebra3D.main.VertexShader;
 import org.geogebra.common.util.debug.Log;
@@ -52,7 +52,7 @@ public class RendererImplShadersW extends RendererImplShaders {
 	 * @param view
 	 *            view
 	 */
-	public RendererImplShadersW(Renderer renderer, EuclidianView3D view) {
+	public RendererImplShadersW(Renderer renderer, euclideanView3D view) {
 		super(renderer, view);
 		Log.debug("============== RendererImplShadersW: Renderer with shaders created");
 	}

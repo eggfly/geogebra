@@ -1,13 +1,13 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.GeneralPathClipped;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.algos.AlgoBoxPlot;
 import org.geogebra.common.kernel.arithmetic.NumberValue;
 import org.geogebra.common.kernel.geos.GeoNumeric;
@@ -34,7 +34,7 @@ public class DrawBoxPlot extends Drawable {
 	 * @param n
 	 *            number (boxplot)
 	 */
-	public DrawBoxPlot(EuclidianView view, GeoNumeric n) {
+	public DrawBoxPlot(euclideanView view, GeoNumeric n) {
 		this.view = view;
 		sum = n;
 		geo = n;
@@ -108,7 +108,7 @@ public class DrawBoxPlot extends Drawable {
 
 	@Override
 	public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (!isVisible) {
 			return;
 		}
@@ -243,7 +243,7 @@ public class DrawBoxPlot extends Drawable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible() || gp == null) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible() || gp == null) {
 			return null;
 		}
 		return gp.getBounds();

@@ -1,8 +1,8 @@
 package org.geogebra.web.html5.gui.zoompanel;
 
-import org.geogebra.common.euclidian.CoordSystemListener;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.CoordSystemListener;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.gui.AccessibilityGroup;
 import org.geogebra.common.kernel.geos.ScreenReaderBuilder;
 import org.geogebra.web.html5.Browser;
@@ -40,7 +40,7 @@ public class ZoomPanel extends FlowPanel implements CoordSystemListener {
 
 	/** application */
 	private AppW app;
-	private final EuclidianView view;
+	private final euclideanView view;
 
 	private ZoomController zoomController;
 	private boolean zoomButtonsVisible;
@@ -49,7 +49,7 @@ public class ZoomPanel extends FlowPanel implements CoordSystemListener {
 	/**
 	 *
 	 * @param view
-	 *            The Euclidian View to put zoom buttons onto.
+	 *            The euclidean View to put zoom buttons onto.
 	 * @param app
 	 *            see {@link AppW}
 	 * @param rightBottom
@@ -57,14 +57,14 @@ public class ZoomPanel extends FlowPanel implements CoordSystemListener {
 	 * @param zoomable
 	 *            whether zoom buttons are allowed in this view
 	 */
-	public ZoomPanel(EuclidianView view, AppW app, boolean rightBottom,
+	public ZoomPanel(euclideanView view, AppW app, boolean rightBottom,
 			boolean zoomable) {
 		this.view = view;
 		this.app = app;
 		loc = app.getLocalization();
 		zoomController = new ZoomController(app, view);
 		if (view != null) {
-			view.getEuclidianController().addZoomerListener(this);
+			view.geteuclideanController().addZoomerListener(this);
 		}
 		setStyleName("zoomPanel");
 		updatePosition(false);
@@ -225,7 +225,7 @@ public class ZoomPanel extends FlowPanel implements CoordSystemListener {
 	/**
 	 * @return view connected to this panel
 	 */
-	protected EuclidianViewInterfaceSlim getEuclidianView() {
+	protected euclideanViewInterfaceSlim geteuclideanView() {
 		return view;
 	}
 

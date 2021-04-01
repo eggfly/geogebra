@@ -375,7 +375,7 @@ final public class GeoVector extends GeoVec3D implements Path, VectorValue,
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return isDefined() && !isInfinite();
 	}
 

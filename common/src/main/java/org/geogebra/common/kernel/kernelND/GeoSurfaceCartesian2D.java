@@ -40,7 +40,7 @@ public class GeoSurfaceCartesian2D extends GeoSurfaceCartesianND {
 	public GeoSurfaceCartesian2D(Construction cons, ExpressionNode point,
 			FunctionNVar[] fun) {
 		super(cons, point, fun);
-		setEuclidianVisible(false);
+		seteuclideanVisible(false);
 	}
 
 	@Override
@@ -80,12 +80,12 @@ public class GeoSurfaceCartesian2D extends GeoSurfaceCartesianND {
 	public GeoElement copy() {
 		GeoSurfaceCartesian2D ret = new GeoSurfaceCartesian2D(cons);
 		ret.set(this);
-		ret.setEuclidianVisible(isSetEuclidianVisible());
+		ret.seteuclideanVisible(isSeteuclideanVisible());
 		return ret;
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return true;
 	}
 

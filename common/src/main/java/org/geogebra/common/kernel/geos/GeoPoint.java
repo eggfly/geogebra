@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.AnimationManager;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.FixedPathRegionAlgo;
@@ -74,7 +74,7 @@ import org.geogebra.common.kernel.prover.NoSymbolicParametersException;
 import org.geogebra.common.kernel.prover.polynomial.PPolynomial;
 import org.geogebra.common.kernel.prover.polynomial.PVariable;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.GeoClass;
 import org.geogebra.common.plugin.Operation;
 import org.geogebra.common.util.DoubleUtil;
@@ -96,7 +96,7 @@ public class GeoPoint extends GeoVec3D implements VectorValue, PathOrPoint,
 	// don't set point size here as this would overwrite
 	// setConstructionDefaults()
 	// in GeoElement constructor
-	// public int pointSize = EuclidianStyleConstants.DEFAULT_POINT_SIZE;
+	// public int pointSize = euclideanStyleConstants.DEFAULT_POINT_SIZE;
 	private int pointSize;
 	private int pointStyle;
 
@@ -300,8 +300,8 @@ public class GeoPoint extends GeoVec3D implements VectorValue, PathOrPoint,
 	@Override
 	public int getRelatedModeID() {
 		return getToStringMode() == Kernel.COORD_COMPLEX
-				? EuclidianConstants.MODE_COMPLEX_NUMBER
-				: EuclidianConstants.MODE_POINT;
+				? euclideanConstants.MODE_COMPLEX_NUMBER
+				: euclideanConstants.MODE_POINT;
 	}
 
 	@Override
@@ -418,7 +418,7 @@ public class GeoPoint extends GeoVec3D implements VectorValue, PathOrPoint,
 	@Override
 	public void setPointStyle(int style) {
 
-		if (style > -1 && style <= EuclidianStyleConstants.MAX_POINT_STYLE) {
+		if (style > -1 && style <= euclideanStyleConstants.MAX_POINT_STYLE) {
 			pointStyle = style;
 		} else {
 			pointStyle = -1;
@@ -800,7 +800,7 @@ public class GeoPoint extends GeoVec3D implements VectorValue, PathOrPoint,
 	}
 
 	@Override
-	final public boolean showInEuclidianView() {
+	final public boolean showIneuclideanView() {
 		return isDefined && !isInfinite;
 	}
 
@@ -1125,7 +1125,7 @@ public class GeoPoint extends GeoVec3D implements VectorValue, PathOrPoint,
 		return getInhomCoordsInD3().distance(P.getInhomCoordsInD3());
 	}
 
-	// euclidian distance between this GeoPoint and P
+	// euclidean distance between this GeoPoint and P
 	@Override
 	final public double distance(GeoPoint P) {
 		return MyMath.length(P.inhomX - inhomX, P.inhomY - inhomY);

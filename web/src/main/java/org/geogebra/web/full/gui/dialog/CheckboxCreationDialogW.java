@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.TreeSet;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.CircularDefinitionException;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.GeoBoolean;
@@ -130,7 +130,7 @@ public class CheckboxCreationDialogW extends ComponentDialog implements
 				return;
 			}
 			
-			if (geo.isEuclidianVisible()) {
+			if (geo.iseuclideanVisible()) {
 				super.add(geo);
 				combo.remove(geo);
 			}
@@ -165,7 +165,7 @@ public class CheckboxCreationDialogW extends ComponentDialog implements
 		gbObjects.add(null);
 		while (it.hasNext()) {
 			GeoElement geo = it.next();
-			if (geo.isEuclidianShowable()) {
+			if (geo.iseuclideanShowable()) {
 				gbObjects.add(geo);
 			}
 		}
@@ -268,7 +268,7 @@ public class CheckboxCreationDialogW extends ComponentDialog implements
 
 		// update boolean (updates visibility of geos from list too)
 		geoBoolean.setValue(true);
-		geoBoolean.setEuclidianVisible(true);
+		geoBoolean.seteuclideanVisible(true);
 		geoBoolean.setLabelVisible(true);
 		geoBoolean.updateRepaint();
 
@@ -283,7 +283,7 @@ public class CheckboxCreationDialogW extends ComponentDialog implements
 			} else {
 				app.getSelectionManager().removeSelectionListener(this);
 				app.setSelectionListenerMode(null);
-				app.setMode(EuclidianConstants.MODE_SHOW_HIDE_CHECKBOX);
+				app.setMode(euclideanConstants.MODE_SHOW_HIDE_CHECKBOX);
 			}
 		}
 		super.setVisible(flag);

@@ -1,14 +1,14 @@
 package org.geogebra.web.geogebra3D.web.gui;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.main.OptionType;
 import org.geogebra.web.full.gui.ContextMenuGeoElementW;
 import org.geogebra.web.full.gui.GuiManagerW;
 import org.geogebra.web.full.gui.layout.DockPanelW;
 import org.geogebra.web.full.gui.properties.PropertiesViewW;
 import org.geogebra.web.full.main.GDevice;
-import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianView3DW;
-import org.geogebra.web.geogebra3D.web.gui.layout.panels.EuclidianDockPanel3DW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.euclideanView3DW;
+import org.geogebra.web.geogebra3D.web.gui.layout.panels.euclideanDockPanel3DW;
 import org.geogebra.web.geogebra3D.web.gui.view.properties.PropertiesView3DW;
 import org.geogebra.web.html5.main.AppW;
 
@@ -22,7 +22,7 @@ import com.google.gwt.user.client.Command;
  */
 public class GuiManager3DW extends GuiManagerW {
 
-	private DockPanelW euclidian3Dpanel;
+	private DockPanelW euclidean3Dpanel;
 
 	/**
 	 * constructor
@@ -40,8 +40,8 @@ public class GuiManager3DW extends GuiManagerW {
 	protected boolean initLayoutPanels() {
 
 		if (super.initLayoutPanels()) {
-			this.euclidian3Dpanel = new EuclidianDockPanel3DW(getApp());
-			layout.registerPanel(this.euclidian3Dpanel);
+			this.euclidean3Dpanel = new euclideanDockPanel3DW(getApp());
+			layout.registerPanel(this.euclidean3Dpanel);
 			return true;
 		}
 
@@ -50,18 +50,18 @@ public class GuiManager3DW extends GuiManagerW {
 	}
 
 	@Override
-	public DockPanelW getEuclidian3DPanel() {
-		return this.euclidian3Dpanel;
+	public DockPanelW geteuclidean3DPanel() {
+		return this.euclidean3Dpanel;
 	}
 
 	@Override
-	public void showDrawingPadPopup3D(EuclidianViewInterfaceCommon view,
+	public void showDrawingPadPopup3D(euclideanViewInterfaceCommon view,
 	        org.geogebra.common.awt.GPoint p) {
 
 		// clear highlighting and selections in views
-		getApp().getActiveEuclidianView().resetMode();
+		getApp().getActiveeuclideanView().resetMode();
 		getDrawingPadpopupMenu3D(p.x, p.y).showScaled(
-				((EuclidianView3DW) view).getG2P().getElement(), p.x, p.y);
+				((euclideanView3DW) view).getG2P().getElement(), p.x, p.y);
 	}
 
 	private ContextMenuGeoElementW getDrawingPadpopupMenu3D(int x, int y) {
@@ -79,8 +79,8 @@ public class GuiManager3DW extends GuiManagerW {
 			@Override
 			public void execute() {
 				// toggle axes
-				((EuclidianView3DW) getApp().getEuclidianView3D()).toggleAxis();
-				// getApp().getEuclidianView().repaint();
+				((euclideanView3DW) getApp().geteuclideanView3D()).toggleAxis();
+				// getApp().geteuclideanView().repaint();
 				getApp().storeUndoInfo();
 				getApp().updateMenubar();
 			}
@@ -97,8 +97,8 @@ public class GuiManager3DW extends GuiManagerW {
 			@Override
 			public void execute() {
 				// toggle grid
-				((EuclidianView3DW) getApp().getEuclidianView3D()).toggleGrid();
-				// getApp().getEuclidianView().repaint();
+				((euclideanView3DW) getApp().geteuclideanView3D()).toggleGrid();
+				// getApp().geteuclideanView().repaint();
 				getApp().storeUndoInfo();
 				getApp().updateMenubar();
 			}
@@ -115,9 +115,9 @@ public class GuiManager3DW extends GuiManagerW {
 			@Override
 			public void execute() {
 				// toggle plane
-				((EuclidianView3DW) getApp().getEuclidianView3D())
+				((euclideanView3DW) getApp().geteuclideanView3D())
 				        .getSettings().togglePlane();
-				// getApp().getEuclidianView().repaint();
+				// getApp().geteuclideanView().repaint();
 				getApp().storeUndoInfo();
 				getApp().updateMenubar();
 			}

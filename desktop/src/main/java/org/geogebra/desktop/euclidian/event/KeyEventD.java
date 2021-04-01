@@ -1,11 +1,11 @@
-package org.geogebra.desktop.euclidian.event;
+package org.geogebra.desktop.euclidean.event;
 
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
 import org.geogebra.desktop.main.AppD;
 
-public class KeyEventD extends org.geogebra.common.euclidian.event.KeyEvent {
+public class KeyEventD extends org.geogebra.common.euclidean.event.KeyEvent {
 
 	private static final LinkedList<KeyEventD> pool = new LinkedList<>();
 	private KeyEvent event;

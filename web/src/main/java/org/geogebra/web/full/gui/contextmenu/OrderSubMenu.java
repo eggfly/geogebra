@@ -3,8 +3,8 @@ package org.geogebra.web.full.gui.contextmenu;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.LayerManager;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.LayerManager;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.App;
 import org.geogebra.common.plugin.Event;
@@ -48,9 +48,9 @@ public class OrderSubMenu extends AriaMenuBar {
 
 	private ScheduledCommand wrap(final JsConsumer<List<GeoElement>> command) {
 		return () -> {
-			EuclidianView ev = app.getActiveEuclidianView();
-			ev.getEuclidianController().splitSelectedStrokes(true);
-			ev.getEuclidianController().widgetsToBackground();
+			euclideanView ev = app.getActiveeuclideanView();
+			ev.geteuclideanController().splitSelectedStrokes(true);
+			ev.geteuclideanController().widgetsToBackground();
 			command.accept(geos);
 			ev.invalidateDrawableList();
 			app.dispatchEvent(new Event(EventType.ORDERING_CHANGE, null,

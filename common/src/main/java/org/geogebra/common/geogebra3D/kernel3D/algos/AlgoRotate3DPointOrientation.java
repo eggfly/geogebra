@@ -80,7 +80,7 @@ public class AlgoRotate3DPointOrientation extends AlgoRotate3D {
 
 	/*
 	 * @Override public int getRelatedModeID() { return
-	 * EuclidianConstants.MODE_ROTATE_BY_ANGLE; }
+	 * euclideanConstants.MODE_ROTATE_BY_ANGLE; }
 	 */
 
 	// for AlgoElement

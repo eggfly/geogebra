@@ -1,8 +1,8 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.draw.DrawEmbed;
-import org.geogebra.common.euclidian.draw.DrawWidget;
+import org.geogebra.common.euclidean.draw.DrawEmbed;
+import org.geogebra.common.euclidean.draw.DrawWidget;
 import org.geogebra.common.io.file.ZipFile;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.geos.GeoEmbed;

@@ -1,7 +1,7 @@
 package org.geogebra.common.cas.view;
 
 import org.geogebra.common.cas.GeoGebraCAS;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.Editing;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.kernel.Kernel;
@@ -147,27 +147,27 @@ public abstract class CASView implements Editing, SetLabels {
 			return;
 		}
 		boolean focus = m == ModeSetter.TOOLBAR;
-		String command = EuclidianConstants.getModeTextSimple(mode); // e.g.
+		String command = euclideanConstants.getModeTextSimple(mode); // e.g.
 		// "Derivative"
 		boolean backToEvaluate = true;
 		switch (mode) {
-		case EuclidianConstants.MODE_CAS_EVALUATE:
-		case EuclidianConstants.MODE_CAS_NUMERIC:
-		case EuclidianConstants.MODE_CAS_KEEP_INPUT:
+		case euclideanConstants.MODE_CAS_EVALUATE:
+		case euclideanConstants.MODE_CAS_NUMERIC:
+		case euclideanConstants.MODE_CAS_KEEP_INPUT:
 			// no parameters, keep mode
 			backToEvaluate = false;
 			processInput(command, focus);
 			break;
-		case EuclidianConstants.MODE_CAS_EXPAND:
-		case EuclidianConstants.MODE_CAS_FACTOR:
-		case EuclidianConstants.MODE_CAS_SUBSTITUTE:
-		case EuclidianConstants.MODE_CAS_NUMERICAL_SOLVE:
-		case EuclidianConstants.MODE_CAS_SOLVE:
+		case euclideanConstants.MODE_CAS_EXPAND:
+		case euclideanConstants.MODE_CAS_FACTOR:
+		case euclideanConstants.MODE_CAS_SUBSTITUTE:
+		case euclideanConstants.MODE_CAS_NUMERICAL_SOLVE:
+		case euclideanConstants.MODE_CAS_SOLVE:
 
 			// no parameters
 			processInput(command, focus);
 			break;
-		case EuclidianConstants.MODE_DELETE:
+		case euclideanConstants.MODE_DELETE:
 			// make sure we don't switch to evaluate if delete tool is used in
 			// EV
 			if (getApp().getGuiManager() != null && getApp().getGuiManager()
@@ -179,7 +179,7 @@ public abstract class CASView implements Editing, SetLabels {
 				getConsoleTable().getApplication().storeUndoInfo();
 			}
 			break;
-		case EuclidianConstants.MODE_FUNCTION_INSPECTOR:
+		case euclideanConstants.MODE_FUNCTION_INSPECTOR:
 			// make sure we don't switch to evaluate if delete tool is used in
 			// EV
 			if (getApp().getGuiManager() != null && getApp().getGuiManager()
@@ -196,8 +196,8 @@ public abstract class CASView implements Editing, SetLabels {
 			}
 			break;
 
-		case EuclidianConstants.MODE_CAS_DERIVATIVE:
-		case EuclidianConstants.MODE_CAS_INTEGRAL:
+		case euclideanConstants.MODE_CAS_DERIVATIVE:
+		case euclideanConstants.MODE_CAS_INTEGRAL:
 			processInput(command, focus);
 			break;
 		default:
@@ -205,7 +205,7 @@ public abstract class CASView implements Editing, SetLabels {
 			// ignore other modes
 		}
 		if (backToEvaluate) {
-			getApp().setMode(EuclidianConstants.MODE_CAS_EVALUATE,
+			getApp().setMode(euclideanConstants.MODE_CAS_EVALUATE,
 					ModeSetter.CAS_VIEW);
 			getApp().closePopups();
 		}

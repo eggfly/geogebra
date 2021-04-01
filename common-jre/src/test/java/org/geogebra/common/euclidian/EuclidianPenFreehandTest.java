@@ -1,16 +1,16 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.plugin.GeoClass;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class EuclidianPenFreehandTest extends BaseControllerTest {
+public class euclideanPenFreehandTest extends BaseControllerTest {
 
 	@Test
 	public void freehandPenShouldRecognizeSegment() {
-		EuclidianPenFreehand freehandPen
-				= new EuclidianPenFreehand(getApp(), getApp().getActiveEuclidianView());
+		euclideanPenFreehand freehandPen
+				= new euclideanPenFreehand(getApp(), getApp().getActiveeuclideanView());
 
 		freehandPen.addPointPenMode(new GPoint(10, 10));
 		freehandPen.addPointPenMode(new GPoint(15, 15));
@@ -22,10 +22,10 @@ public class EuclidianPenFreehandTest extends BaseControllerTest {
 
 	@Test
 	public void restrictedFreehandPenShouldRecognizeFunction() {
-		EuclidianPenFreehand freehandPen
-				= new EuclidianPenFreehand(getApp(), getApp().getActiveEuclidianView());
+		euclideanPenFreehand freehandPen
+				= new euclideanPenFreehand(getApp(), getApp().getActiveeuclideanView());
 
-		freehandPen.setExpected(EuclidianPenFreehand.ShapeType.function);
+		freehandPen.setExpected(euclideanPenFreehand.ShapeType.function);
 
 		freehandPen.addPointPenMode(new GPoint(10, 10));
 		freehandPen.addPointPenMode(new GPoint(15, 15));
@@ -37,8 +37,8 @@ public class EuclidianPenFreehandTest extends BaseControllerTest {
 
 	@Test
 	public void freehandPenShouldRecognizeConic() {
-		EuclidianPenFreehand freehandPen
-				= new EuclidianPenFreehand(getApp(), getApp().getActiveEuclidianView());
+		euclideanPenFreehand freehandPen
+				= new euclideanPenFreehand(getApp(), getApp().getActiveeuclideanView());
 
 		freehandPen.addPointPenMode(new GPoint(0, 10));
 		freehandPen.addPointPenMode(new GPoint(7, 7));
@@ -55,10 +55,10 @@ public class EuclidianPenFreehandTest extends BaseControllerTest {
 
 	@Test
 	public void restrictedFreehandPenShouldFailRecognizingConic() {
-		EuclidianPenFreehand freehandPen
-				= new EuclidianPenFreehand(getApp(), getApp().getActiveEuclidianView());
+		euclideanPenFreehand freehandPen
+				= new euclideanPenFreehand(getApp(), getApp().getActiveeuclideanView());
 
-		freehandPen.setExpected(EuclidianPenFreehand.ShapeType.function);
+		freehandPen.setExpected(euclideanPenFreehand.ShapeType.function);
 
 		freehandPen.addPointPenMode(new GPoint(0, 10));
 		freehandPen.addPointPenMode(new GPoint(7, 7));

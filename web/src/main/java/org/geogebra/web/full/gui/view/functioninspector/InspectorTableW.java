@@ -2,8 +2,8 @@ package org.geogebra.web.full.gui.view.functioninspector;
 
 import java.util.List;
 
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.main.App;
 import org.geogebra.web.full.gui.view.algebra.InputPanelW;
 import org.geogebra.web.full.gui.view.functioninspector.GridModel.DataCell;

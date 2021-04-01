@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.kernel.geos.GeoElement;
 
 /**
@@ -17,7 +17,7 @@ public class DrawListArray extends ArrayList<DrawableND> {
 	private static final long serialVersionUID = 1L;
 
 	/** view */
-	protected transient EuclidianViewInterfaceSlim view;
+	protected transient euclideanViewInterfaceSlim view;
 
 	/**
 	 * common constructor
@@ -25,7 +25,7 @@ public class DrawListArray extends ArrayList<DrawableND> {
 	 * @param view
 	 *            view
 	 */
-	public DrawListArray(EuclidianViewInterfaceSlim view) {
+	public DrawListArray(euclideanViewInterfaceSlim view) {
 
 		this.view = view;
 		// drawables = new ArrayList<DrawableND>();

@@ -1,14 +1,14 @@
-package org.geogebra.common.geogebra3D.euclidian3D.animator;
+package org.geogebra.common.geogebra3D.euclidean3D.animator;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.animator.EuclidianView3DAnimator.AnimationType;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.animator.euclideanView3DAnimator.AnimationType;
 
 /**
  * animation for axis scale
  *
  */
-public class EuclidianView3DAnimationAxisScale extends EuclidianView3DAnimation {
+public class euclideanView3DAnimationAxisScale extends euclideanView3DAnimation {
 
 	private double axisScaleFactor;
 	private double axisScaleOld;
@@ -22,7 +22,7 @@ public class EuclidianView3DAnimationAxisScale extends EuclidianView3DAnimation 
 	 * @param view3D 3D view
 	 * @param animator animator
 	 */
-	EuclidianView3DAnimationAxisScale(EuclidianView3D view3D, EuclidianView3DAnimator animator) {
+	euclideanView3DAnimationAxisScale(euclideanView3D view3D, euclideanView3DAnimator animator) {
 		super(view3D, animator);
 	}
 
@@ -63,15 +63,15 @@ public class EuclidianView3DAnimationAxisScale extends EuclidianView3DAnimation 
 	@Override
 	public void animate() {
 		switch (axisScaleMode) {
-			case EuclidianController.MOVE_X_AXIS:
+			case euclideanController.MOVE_X_AXIS:
 				view3D.setXZero(xZeroOld / axisScaleFactor);
 				view3D.getSettings().setXscaleValue(axisScaleFactor * axisScaleOld);
 				break;
-			case EuclidianController.MOVE_Y_AXIS:
+			case euclideanController.MOVE_Y_AXIS:
 				view3D.setYZero(yZeroOld / axisScaleFactor);
 				view3D.getSettings().setYscaleValue(axisScaleFactor * axisScaleOld);
 				break;
-			case EuclidianController.MOVE_Z_AXIS:
+			case euclideanController.MOVE_Z_AXIS:
 				view3D.setZZero(zZeroOld / axisScaleFactor);
 				view3D.getSettings().setZscaleValue(axisScaleFactor * axisScaleOld);
 				break;

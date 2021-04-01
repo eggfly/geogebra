@@ -1,6 +1,6 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
-import org.geogebra.common.euclidian.Drawable;
+import org.geogebra.common.euclidean.Drawable;
 import org.geogebra.common.kernel.geos.GeoElement;
 
 /**

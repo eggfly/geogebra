@@ -12,7 +12,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.kernel.cas;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.algos.AlgoElement;
@@ -131,7 +131,7 @@ public class AlgoTangentFunctionPoint extends AlgoElement
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_TANGENTS;
+		return euclideanConstants.MODE_TANGENTS;
 	}
 
 	// for AlgoElement

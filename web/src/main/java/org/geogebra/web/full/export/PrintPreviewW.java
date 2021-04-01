@@ -99,12 +99,12 @@ public class PrintPreviewW extends DialogBoxW implements ClickHandler,
 		cbView = new ListBox();
 
 		// We can print EVs yet
-		if (app.getGuiManager().showView(App.VIEW_EUCLIDIAN)) {
-			cbView.addItem(loc.getMenu("DrawingPad"), App.VIEW_EUCLIDIAN
+		if (app.getGuiManager().showView(App.VIEW_euclidean)) {
+			cbView.addItem(loc.getMenu("DrawingPad"), App.VIEW_euclidean
 					+ "");
 		}
-		if (app.getGuiManager().showView(App.VIEW_EUCLIDIAN2)) {
-			cbView.addItem(loc.getMenu("DrawingPad2"), App.VIEW_EUCLIDIAN2
+		if (app.getGuiManager().showView(App.VIEW_euclidean2)) {
+			cbView.addItem(loc.getMenu("DrawingPad2"), App.VIEW_euclidean2
 					+ "");
 		}
 
@@ -176,9 +176,9 @@ public class PrintPreviewW extends DialogBoxW implements ClickHandler,
 			hide();
 			if (event.getSource() == btPrint) {
 				if ((cbView.getSelectedValue()
-						.equals(App.VIEW_EUCLIDIAN + ""))
+						.equals(App.VIEW_euclidean + ""))
 						|| (cbView.getSelectedValue()
-						.equals(App.VIEW_EUCLIDIAN2 + ""))) {
+						.equals(App.VIEW_euclidean2 + ""))) {
 					Log.debug("print EV");
 					createPreview(cbView.getSelectedValue());
 				} else {
@@ -196,15 +196,15 @@ public class PrintPreviewW extends DialogBoxW implements ClickHandler,
 
 	private void addScalePanelOrCreatePreview() {
 		AppW appw = (AppW) app;
-		if ((App.VIEW_EUCLIDIAN + "").equals(cbView.getSelectedValue())) {
+		if ((App.VIEW_euclidean + "").equals(cbView.getSelectedValue())) {
 			scalePanelHolder.add(new PrintScalePanelW(appw, app
-					.getEuclidianView1()));
+					.geteuclideanView1()));
 			btPrint.setEnabled(true);
-		} else if ((App.VIEW_EUCLIDIAN2 + "").equals(cbView
+		} else if ((App.VIEW_euclidean2 + "").equals(cbView
 				.getSelectedValue())) {
 			scalePanelHolder
 					.add(new PrintScalePanelW(appw, app
-							.getEuclidianView2(1)));
+							.geteuclideanView2(1)));
 			btPrint.setEnabled(true);
 		} else {
 			createPreview(cbView.getSelectedValue());
@@ -235,14 +235,14 @@ public class PrintPreviewW extends DialogBoxW implements ClickHandler,
 					.getConstructionProtocolView();
 		} else if (viewID == App.VIEW_SPREADSHEET) {
 			view = gui.getSpreadsheetView();
-		} else if (viewID == App.VIEW_EUCLIDIAN2) {
-			view = app.getEuclidianView2(1);
+		} else if (viewID == App.VIEW_euclidean2) {
+			view = app.geteuclideanView2(1);
 		} else if (viewID == App.VIEW_ALGEBRA) {
 			view = gui.getAlgebraView();
 		} else if (viewID == App.VIEW_DATA_ANALYSIS) {
 			view = (PrintableW) gui.getDataAnalysisView();
 		} else {
-			view = app.getEuclidianView1();
+			view = app.geteuclideanView1();
 		}
 
 		view.getPrintable(pPanel, bPrint);

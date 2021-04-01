@@ -1,39 +1,39 @@
-package org.geogebra.web.geogebra3D.web.euclidianFor3D;
+package org.geogebra.web.geogebra3D.web.euclideanFor3D;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianViewCompanion;
-import org.geogebra.common.geogebra3D.euclidianFor3D.EuclidianViewFor3DCompanion;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.web.html5.euclidian.EuclidianPanelWAbstract;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanViewCompanion;
+import org.geogebra.common.geogebra3D.euclideanFor3D.euclideanViewFor3DCompanion;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.web.html5.euclidean.euclideanPanelWAbstract;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
 
 /**
- * Simple extension of EuclidianView to implement handling of 3D objects
+ * Simple extension of euclideanView to implement handling of 3D objects
  * 
  * @author mathieu
  * 
  */
-public class EuclidianViewFor3DW extends EuclidianViewW {
+public class euclideanViewFor3DW extends euclideanViewW {
 
 	/**
-	 * @param euclidianViewPanel
+	 * @param euclideanViewPanel
 	 *            parent panel
-	 * @param euclidiancontroller
+	 * @param euclideancontroller
 	 *            controller
 	 * @param evNo
 	 *            view number
 	 * @param settings
 	 *            settings
 	 */
-	public EuclidianViewFor3DW(EuclidianPanelWAbstract euclidianViewPanel,
-			EuclidianController euclidiancontroller, int evNo,
-			EuclidianSettings settings) {
-		super(euclidianViewPanel, euclidiancontroller, evNo, settings);
+	public euclideanViewFor3DW(euclideanPanelWAbstract euclideanViewPanel,
+			euclideanController euclideancontroller, int evNo,
+			euclideanSettings settings) {
+		super(euclideanViewPanel, euclideancontroller, evNo, settings);
 	}
 
 	@Override
-	protected EuclidianViewCompanion newEuclidianViewCompanion() {
-		return new EuclidianViewFor3DCompanion(this);
+	protected euclideanViewCompanion neweuclideanViewCompanion() {
+		return new euclideanViewFor3DCompanion(this);
 	}
 
 }

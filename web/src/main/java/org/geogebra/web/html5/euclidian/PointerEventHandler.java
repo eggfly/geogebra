@@ -1,12 +1,12 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
 import java.util.Locale;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.util.ExternalAccess;
 import org.geogebra.web.html5.event.HasOffsets;
 import org.geogebra.web.html5.event.PointerEvent;
@@ -14,14 +14,14 @@ import org.geogebra.web.html5.event.PointerEvent;
 import com.google.gwt.dom.client.Element;
 
 /**
- * Handles pointer events in Euclidian view
+ * Handles pointer events in euclidean view
  * 
  * @author Zbynek
  *
  */
 public class PointerEventHandler {
 
-	private final IsEuclidianController tc;
+	private final IseuclideanController tc;
 	private static Element pointerCapture;
 	private HasOffsets off;
 
@@ -46,11 +46,11 @@ public class PointerEventHandler {
 
 	/**
 	 * @param tc
-	 *            euclidian controller
+	 *            euclidean controller
 	 * @param off
 	 *            offset provider
 	 */
-	public PointerEventHandler(IsEuclidianController tc, @Nonnull HasOffsets off) {
+	public PointerEventHandler(IseuclideanController tc, @Nonnull HasOffsets off) {
 		this.tc = tc;
 		this.off = off;
 	}
@@ -106,7 +106,7 @@ public class PointerEventHandler {
 	}
 
 	private void startLongTouch(PointerState touchState) {
-		if (tc.getMode() == EuclidianConstants.MODE_MOVE) {
+		if (tc.getMode() == euclideanConstants.MODE_MOVE) {
 			tc.getLongTouchManager().scheduleTimer(tc, touchEventX(touchState),
 					touchEventY(touchState));
 		}
@@ -237,27 +237,27 @@ public class PointerEventHandler {
 	public static native void attachToNative(Element element,
 			PointerEventHandler zoomer) /*-{
 		element.addEventListener("pointermove", function(e) {
-				zoomer.@org.geogebra.web.html5.euclidian.PointerEventHandler::onPointerMove(*)(e);
+				zoomer.@org.geogebra.web.html5.euclidean.PointerEventHandler::onPointerMove(*)(e);
 		});
 
 		element.addEventListener("pointerdown", function(e) {
-				zoomer.@org.geogebra.web.html5.euclidian.PointerEventHandler::onPointerDown(*)(e, element);
+				zoomer.@org.geogebra.web.html5.euclidean.PointerEventHandler::onPointerDown(*)(e, element);
 		});
 
 		element.addEventListener("pointerout", function(e) {
-            zoomer.@org.geogebra.web.html5.euclidian.PointerEventHandler::onPointerOut(*)(e);
+            zoomer.@org.geogebra.web.html5.euclidean.PointerEventHandler::onPointerOut(*)(e);
         });
 
         element.addEventListener("pointercanel", function(e) {
-            zoomer.@org.geogebra.web.html5.euclidian.PointerEventHandler::onPointerOut(*)(e);
+            zoomer.@org.geogebra.web.html5.euclidean.PointerEventHandler::onPointerOut(*)(e);
         });
 
 		$wnd.addEventListener("pointerup", function(e) {
-            zoomer.@org.geogebra.web.html5.euclidian.PointerEventHandler::onPointerUp(*)(e, element);
+            zoomer.@org.geogebra.web.html5.euclidean.PointerEventHandler::onPointerUp(*)(e, element);
         });
 	}-*/;
 
-	public static void startCapture(EuclidianViewW view) {
+	public static void startCapture(euclideanViewW view) {
 		setCapture(view.getAbsolutePanel().getElement());
 	}
 

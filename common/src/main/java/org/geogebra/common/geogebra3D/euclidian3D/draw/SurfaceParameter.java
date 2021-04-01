@@ -1,6 +1,6 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoFunction;
 import org.geogebra.common.kernel.kernelND.GeoSurfaceCartesianND;
@@ -96,7 +96,7 @@ public class SurfaceParameter {
 	 * @param index
 	 *            parameter index
 	 */
-	public void initBorder(SurfaceEvaluable surfaceGeo, EuclidianView3D view3d,
+	public void initBorder(SurfaceEvaluable surfaceGeo, euclideanView3D view3d,
 			int index) {
 		borderMin = surfaceGeo.getMinParameter(index);
 		borderMax = surfaceGeo.getMaxParameter(index);

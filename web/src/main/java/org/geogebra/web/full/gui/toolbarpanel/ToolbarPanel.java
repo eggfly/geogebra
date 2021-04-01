@@ -2,9 +2,9 @@ package org.geogebra.web.full.gui.toolbarpanel;
 
 import javax.annotation.Nullable;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.MyModeChangedListener;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.MyModeChangedListener;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.io.layout.DockPanelData.TabIds;
 import org.geogebra.common.io.layout.PerspectiveDecoder;
 import org.geogebra.common.javax.swing.SwingConstants;
@@ -187,7 +187,7 @@ public class ToolbarPanel extends FlowPanel
 	public ToolbarPanel(AppW app) {
 		this.app = app;
 		eventDispatcher = app.getEventDispatcher();
-		app.getActiveEuclidianView().getEuclidianController()
+		app.getActiveeuclideanView().geteuclideanController()
 				.setModeChangeListener(this);
 		initGUI();
 		initClickStartHandler();
@@ -233,7 +233,7 @@ public class ToolbarPanel extends FlowPanel
 			@Override
 			public void onClickStart(final int x, final int y,
 					PointerEventType type) {
-				getApp().getActiveEuclidianView().getEuclidianController()
+				getApp().getActiveeuclideanView().geteuclideanController()
 						.closePopups(x, y, type);
 			}
 		});
@@ -309,8 +309,8 @@ public class ToolbarPanel extends FlowPanel
 				MaterialDesignResources.INSTANCE.mode_move(), null, 24);
 		AriaHelper.hide(moveBtn);
 		String altText = app.getLocalization().getMenu(
-				EuclidianConstants.getModeText(EuclidianConstants.MODE_MOVE))
-				+ ". " + app.getToolHelp(EuclidianConstants.MODE_MOVE);
+				euclideanConstants.getModeText(euclideanConstants.MODE_MOVE))
+				+ ". " + app.getToolHelp(euclideanConstants.MODE_MOVE);
 		moveBtn.setTitle(altText);
 		moveBtn.setAltText(altText);
 		moveBtn.setStyleName("moveFloatingBtn");
@@ -331,7 +331,7 @@ public class ToolbarPanel extends FlowPanel
 	 */
 	protected void moveBtnClicked() {
 		setMoveMode();
-		tabTools.showTooltip(EuclidianConstants.MODE_MOVE);
+		tabTools.showTooltip(euclideanConstants.MODE_MOVE);
 	}
 
 	private void hideDragger() {
@@ -542,7 +542,7 @@ public class ToolbarPanel extends FlowPanel
 	}
 
 	private void updateMoveButton(int mode) {
-		if (mode == EuclidianConstants.MODE_MOVE) {
+		if (mode == euclideanConstants.MODE_MOVE) {
 			hideMoveFloatingButton();
 		} else {
 			showMoveFloatingButton();
@@ -974,9 +974,9 @@ public class ToolbarPanel extends FlowPanel
 		}
 		if (moveBtn != null) {
 			String altText = app.getLocalization()
-					.getMenu(EuclidianConstants
-							.getModeText(EuclidianConstants.MODE_MOVE))
-					+ ". " + app.getToolHelp(EuclidianConstants.MODE_MOVE);
+					.getMenu(euclideanConstants
+							.getModeText(euclideanConstants.MODE_MOVE))
+					+ ". " + app.getToolHelp(euclideanConstants.MODE_MOVE);
 			moveBtn.setTitle(altText);
 			moveBtn.setAltText(altText);
 		}

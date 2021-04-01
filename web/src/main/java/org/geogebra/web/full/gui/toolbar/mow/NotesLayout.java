@@ -1,11 +1,11 @@
 package org.geogebra.web.full.gui.toolbar.mow;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.gui.AccessibilityGroup;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.main.App;
 import org.geogebra.web.full.css.MaterialDesignResources;
-import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelW;
+import org.geogebra.web.full.gui.layout.panels.euclideanDockPanelW;
 import org.geogebra.web.full.gui.pagecontrolpanel.PageListPanel;
 import org.geogebra.web.full.main.AppWFull;
 import org.geogebra.web.html5.gui.view.button.StandardButton;
@@ -84,17 +84,17 @@ public class NotesLayout implements SetLabels {
 	}
 
 	private void moveZoomPanelAboveToolbar() {
-		EuclidianDockPanelW dockPanel = getDockPanel();
+		euclideanDockPanelW dockPanel = getDockPanel();
 		dockPanel.moveZoomPanelAboveToolbar();
 		dockPanel.moveZoomPanelUpOrDown(toolbar.isOpen());
 	}
 
-	private EuclidianDockPanelW getDockPanel() {
-		return (EuclidianDockPanelW) appW
+	private euclideanDockPanelW getDockPanel() {
+		return (euclideanDockPanelW) appW
 				.getGuiManager()
 				.getLayout()
 				.getDockManager()
-				.getPanel(App.VIEW_EUCLIDIAN);
+				.getPanel(App.VIEW_euclidean);
 	}
 
 	private boolean isEnoughSpaceForFloatingButtonBesideToolbar() {
@@ -141,7 +141,7 @@ public class NotesLayout implements SetLabels {
 	 */
 	public void openPagePanel(Widget trigger) {
 		appW.hideMenu();
-		EuclidianController ec = appW.getActiveEuclidianView().getEuclidianController();
+		euclideanController ec = appW.getActiveeuclideanView().geteuclideanController();
 		ec.widgetsToBackground();
 
 		if (pageControlPanel == null) {

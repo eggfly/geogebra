@@ -1,15 +1,15 @@
-package org.geogebra.common.euclidian.modes;
+package org.geogebra.common.euclidean.modes;
 
 import java.util.Iterator;
 
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GRectangle2D;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianCursor;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.Hits;
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanCursor;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.Hits;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoImage;
@@ -20,8 +20,8 @@ import org.geogebra.common.kernel.geos.GeoLocusStroke;
  */
 public class ModeDeleteLocus {
 
-	private EuclidianView view;
-	private EuclidianController ec;
+	private euclideanView view;
+	private euclideanController ec;
 	private boolean objDeleteMode = false;
 	private boolean penDeleteMode = false;
 	private GRectangle rect = AwtFactory.getPrototype().newRectangle(0, 0, 100,
@@ -31,8 +31,8 @@ public class ModeDeleteLocus {
 	 * @param view
 	 *            EV
 	 */
-	public ModeDeleteLocus(EuclidianView view) {
-		this.ec = view.getEuclidianController();
+	public ModeDeleteLocus(euclideanView view) {
+		this.ec = view.geteuclideanController();
 		this.view = view;
 	}
 
@@ -62,7 +62,7 @@ public class ModeDeleteLocus {
 		boolean onlyStrokes = forceOnlyStrokes || this.penDeleteMode;
 
 		// hide cursor, the new "cursor" is the deletion rectangle
-		view.setCursor(EuclidianCursor.TRANSPARENT);
+		view.setCursor(euclideanCursor.TRANSPARENT);
 
 		Iterator<GeoElement> it = hits.iterator();
 		while (it.hasNext()) {
@@ -71,7 +71,7 @@ public class ModeDeleteLocus {
 			// at whiteboard
 			// see MOW-97
 			if (view.getApplication().isWhiteboardActive()
-					&& ec.getMode() == EuclidianConstants.MODE_DELETE) {
+					&& ec.getMode() == euclideanConstants.MODE_DELETE) {
 				removeOrSetUndefinedIfHasFixedDescendent(geo);
 			} else if (geo instanceof GeoLocusStroke) {
 				boolean hasVisiblePart = deletePartOfPenStroke((GeoLocusStroke) geo);
@@ -118,7 +118,7 @@ public class ModeDeleteLocus {
 			// delete only parts of GeoLocusStroke, not the whole object
 			// when eraser tool is used
 			if (geos[0] instanceof GeoLocusStroke
-					&& ec.getMode() == EuclidianConstants.MODE_ERASER) {
+					&& ec.getMode() == euclideanConstants.MODE_ERASER) {
 				updatePenDeleteMode(hits);
 				if (ec.getMouseLoc() == null) {
 					return false;

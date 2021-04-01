@@ -20,12 +20,12 @@ public class ShowObjectProperty extends AbstractProperty implements BooleanPrope
 
 	@Override
 	public boolean getValue() {
-		return element.isEuclidianVisible();
+		return element.iseuclideanVisible();
 	}
 
 	@Override
 	public void setValue(boolean show) {
-		element.setEuclidianVisible(show);
+		element.seteuclideanVisible(show);
 		element.updateRepaint();
 	}
 }

@@ -1,4 +1,4 @@
-package org.geogebra.web.html5.euclidian.profiler.coords;
+package org.geogebra.web.html5.euclidean.profiler.coords;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;

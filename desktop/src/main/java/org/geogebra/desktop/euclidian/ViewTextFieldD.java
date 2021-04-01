@@ -1,32 +1,32 @@
-package org.geogebra.desktop.euclidian;
+package org.geogebra.desktop.euclidean;
 
 import javax.swing.Box;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.ViewTextField;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.ViewTextField;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
 import org.geogebra.common.gui.inputfield.AutoCompleteTextField;
 import org.geogebra.desktop.awt.GGraphics2DD;
 import org.geogebra.desktop.awt.GRectangleD;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.gui.inputfield.AutoCompleteTextFieldD;
 
 public class ViewTextFieldD extends ViewTextField {
 
 	private Box box;
 	private AutoCompleteTextFieldD textField;
-	private final EuclidianViewInterfaceD euclidianView;
+	private final euclideanViewInterfaceD euclideanView;
 
-	public ViewTextFieldD(EuclidianViewInterfaceD euclidianView) {
-		this.euclidianView = euclidianView;
+	public ViewTextFieldD(euclideanViewInterfaceD euclideanView) {
+		this.euclideanView = euclideanView;
 	}
 
 	private AutoCompleteTextFieldD newAutoCompleteTextField(int length,
 			Drawable drawTextField) {
 		return new AutoCompleteTextFieldD(length,
-				euclidianView.getApplication(), drawTextField);
+				euclideanView.getApplication(), drawTextField);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class ViewTextFieldD extends ViewTextField {
 			textField.setFocusTraversalKeysEnabled(false);
 			createBox();
 			box.add(textField);
-			this.euclidianView.add(box);
+			this.euclideanView.add(box);
 		} else {
 			textField.setDrawTextField(drawInputBox);
 		}

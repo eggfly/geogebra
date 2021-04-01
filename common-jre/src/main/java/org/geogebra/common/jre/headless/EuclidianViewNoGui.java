@@ -4,18 +4,18 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.CoordSystemAnimation;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianCursor;
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewCompanion;
+import org.geogebra.common.euclidean.CoordSystemAnimation;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanCursor;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewCompanion;
 import org.geogebra.common.factories.AwtFactory;
-import org.geogebra.common.geogebra3D.euclidianFor3D.EuclidianViewFor3DCompanion;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.geogebra3D.euclideanFor3D.euclideanViewFor3DCompanion;
+import org.geogebra.common.main.settings.euclideanSettings;
 
 /** no GUI implementation of EV */
-public class EuclidianViewNoGui extends EuclidianView {
+public class euclideanViewNoGui extends euclideanView {
 
 	private GColor backgroundColor = GColor.WHITE;
 	private GDimension dim;
@@ -34,8 +34,8 @@ public class EuclidianViewNoGui extends EuclidianView {
 	 * @param g2
 	 *            graphics
 	 */
-	public EuclidianViewNoGui(EuclidianController ec, int viewNo,
-			EuclidianSettings settings, GGraphics2D g2) {
+	public euclideanViewNoGui(euclideanController ec, int viewNo,
+			euclideanSettings settings, GGraphics2D g2) {
 		super(ec, viewNo, settings);
 		setAxesColor(GColor.BLACK);
 		setGridColor(GColor.GRAY);
@@ -76,7 +76,7 @@ public class EuclidianViewNoGui extends EuclidianView {
 	}
 
 	@Override
-	public void setCursor(EuclidianCursor cursor) {
+	public void setCursor(euclideanCursor cursor) {
 		// TODO Auto-generated method stub
 
 	}
@@ -116,8 +116,8 @@ public class EuclidianViewNoGui extends EuclidianView {
 	}
 
 	@Override
-	public EuclidianController getEuclidianController() {
-		return euclidianController;
+	public euclideanController geteuclideanController() {
+		return euclideanController;
 	}
 
 	@Override
@@ -218,7 +218,7 @@ public class EuclidianViewNoGui extends EuclidianView {
 	}
 
 	@Override
-	protected EuclidianStyleBar newEuclidianStyleBar() {
+	protected euclideanStyleBar neweuclideanStyleBar() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -229,19 +229,19 @@ public class EuclidianViewNoGui extends EuclidianView {
 	}
 
 	@Override
-	protected EuclidianStyleBar newDynamicStyleBar() {
+	protected euclideanStyleBar newDynamicStyleBar() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected void addDynamicStylebarToEV(EuclidianStyleBar dynamicStylebar) {
+	protected void addDynamicStylebarToEV(euclideanStyleBar dynamicStylebar) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	protected EuclidianViewCompanion newEuclidianViewCompanion() {
-		return new EuclidianViewFor3DCompanion(this);
+	protected euclideanViewCompanion neweuclideanViewCompanion() {
+		return new euclideanViewFor3DCompanion(this);
 	}
 }

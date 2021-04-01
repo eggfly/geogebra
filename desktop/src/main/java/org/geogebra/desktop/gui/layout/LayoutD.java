@@ -9,7 +9,7 @@ import javax.swing.JComponent;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.Layout;
 import org.geogebra.common.io.layout.DockPanelData;
 import org.geogebra.common.io.layout.Perspective;
@@ -154,7 +154,7 @@ public class LayoutD extends Layout implements SettingListener {
 		// return the default perspective in case we're creating new preferences
 		// of
 		// a virgin application.
-		EuclidianView ev = app.getEuclidianView1();
+		euclideanView ev = app.geteuclideanView1();
 		Perspective perspective = new Perspective(id);
 
 		// get the information about the split panes

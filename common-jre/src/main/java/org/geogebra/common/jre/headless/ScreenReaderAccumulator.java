@@ -1,6 +1,6 @@
 package org.geogebra.common.jre.headless;
 
-import org.geogebra.common.euclidian.ScreenReaderAdapter;
+import org.geogebra.common.euclidean.ScreenReaderAdapter;
 
 public class ScreenReaderAccumulator implements ScreenReaderAdapter {
 

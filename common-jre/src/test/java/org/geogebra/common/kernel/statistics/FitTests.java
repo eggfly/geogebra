@@ -7,9 +7,9 @@ import static org.junit.Assert.fail;
 
 import org.geogebra.common.BaseUnitTest;
 import org.geogebra.common.GeoElementFactory;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.dialog.options.model.LineEqnModel;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.DescriptionMode;
@@ -214,8 +214,8 @@ public class FitTests extends BaseUnitTest {
 
     @Test
     public void testFitLineRectangleSelectionForTwoPoints() {
-        EuclidianView view =  getApp().getActiveEuclidianView();
-        EuclidianController controller = view.getEuclidianController();
+        euclideanView view =  getApp().getActiveeuclideanView();
+        euclideanController controller = view.geteuclideanController();
 
         addAvInput("A = (1,1)");
         addAvInput("B = (2,1)");
@@ -223,7 +223,7 @@ public class FitTests extends BaseUnitTest {
         Rectangle rectangle = new Rectangle();
         rectangle.setRect(0, 0, view.getWidth(), view.getHeight());
 
-        controller.setMode(EuclidianConstants.MODE_FITLINE, null);
+        controller.setMode(euclideanConstants.MODE_FITLINE, null);
         view.setSelectionRectangle(rectangle);
         controller.processSelectionRectangle(false, false, false);
 

@@ -38,7 +38,7 @@ public class PerspectiveDecoder {
 	static {
 		viewCodes
 				.put("G",
-						new DockPanelData(App.VIEW_EUCLIDIAN, null, true,
+						new DockPanelData(App.VIEW_euclidean, null, true,
 								false, false, AwtFactory.getPrototype()
 										.newRectangle(100, 100, 600, 400),
 								"1", 500));
@@ -100,13 +100,13 @@ public class PerspectiveDecoder {
 								"1,1", 400));
 		viewCodes
 				.put("D",
-						new DockPanelData(App.VIEW_EUCLIDIAN2, null, false,
+						new DockPanelData(App.VIEW_euclidean2, null, false,
 								false, true, AwtFactory.getPrototype()
 										.newRectangle(100, 100, 700, 550),
 								"1,1", 400));
 		viewCodes
 				.put("T",
-						new DockPanelData(App.VIEW_EUCLIDIAN3D, null, false,
+						new DockPanelData(App.VIEW_euclidean3D, null, false,
 								false, true, AwtFactory.getPrototype()
 										.newRectangle(100, 100, 700, 550),
 								"1,1", 400));
@@ -312,8 +312,8 @@ public class PerspectiveDecoder {
 			return true;
 		}
 		if (String.valueOf(Perspective.GRAPHER_3D).equals(forcedPerspective)) {
-			return viewId == App.VIEW_ALGEBRA || viewId == App.VIEW_EUCLIDIAN3D;
+			return viewId == App.VIEW_ALGEBRA || viewId == App.VIEW_euclidean3D;
 		}
-		return viewId == App.VIEW_ALGEBRA || viewId == App.VIEW_EUCLIDIAN;
+		return viewId == App.VIEW_ALGEBRA || viewId == App.VIEW_euclidean;
 	}
 }

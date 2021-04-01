@@ -12,7 +12,7 @@ public class ShowInAVPropertyTest extends BaseUnitTest {
 	@Test
 	public void testIsEnabledWhenHiddenInGraphics() {
 		GeoElement element = getElementFactory().createGeoLine();
-		element.setEuclidianVisible(false);
+		element.seteuclideanVisible(false);
 
 		ShowInAVProperty property = new ShowInAVProperty(getLocalization(), element);
 		assertThat(property.isEnabled(), is(true));

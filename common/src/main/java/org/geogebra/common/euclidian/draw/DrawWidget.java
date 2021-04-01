@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +7,11 @@ import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.BoundingBox;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianBoundingBoxHandler;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.MediaBoundingBox;
+import org.geogebra.common.euclidean.BoundingBox;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanBoundingBoxHandler;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.MediaBoundingBox;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoWidget;
 import org.geogebra.common.kernel.geos.RectangleTransformable;
@@ -24,7 +24,7 @@ public abstract class DrawWidget extends Drawable implements HasTransformation {
 	 * @param view view
 	 * @param geo construction element
 	 */
-	public DrawWidget(EuclidianView view, GeoElement geo, boolean fixedRatio) {
+	public DrawWidget(euclideanView view, GeoElement geo, boolean fixedRatio) {
 		super(view, geo);
 		this.rectangle = new TransformableRectangle(view, (RectangleTransformable) geo,
 				fixedRatio);
@@ -99,7 +99,7 @@ public abstract class DrawWidget extends Drawable implements HasTransformation {
 
 	@Override
 	public void updateByBoundingBoxResize(GPoint2D point,
-			EuclidianBoundingBoxHandler handler) {
+			euclideanBoundingBoxHandler handler) {
 		rectangle.updateByBoundingBoxResize(point, handler);
 	}
 

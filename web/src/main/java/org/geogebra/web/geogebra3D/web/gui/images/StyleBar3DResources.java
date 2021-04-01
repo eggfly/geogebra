@@ -8,7 +8,7 @@ import com.google.gwt.resources.client.ImageResource;
 public interface StyleBar3DResources extends ClientBundle {
 	StyleBar3DResources INSTANCE = GWT.create(StyleBar3DResources.class);
 
-	// EUCLIDIAN 3D STYLEBAR:
+	// euclidean 3D STYLEBAR:
 
 	@Source("org/geogebra/common/icons/png/stylebar3d/stylingbar_graphics3D_plane.gif")
 	ImageResource plane();

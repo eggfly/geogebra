@@ -1,4 +1,4 @@
-package org.geogebra.desktop.euclidian;
+package org.geogebra.desktop.euclidean;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,19 +9,19 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewJPanel;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewJPanel;
 import org.geogebra.desktop.awt.GGraphics2DD;
 import org.geogebra.desktop.awt.GRectangleD;
 
-public class EuclidianViewJPanelD extends JPanel
-		implements EuclidianViewJPanel {
+public class euclideanViewJPanelD extends JPanel
+		implements euclideanViewJPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	EuclidianView view;
+	euclideanView view;
 
-	public EuclidianViewJPanelD(EuclidianView view, boolean addListeners) {
+	public euclideanViewJPanelD(euclideanView view, boolean addListeners) {
 		this.view = view;
 
 		// algebra controller will take care of our key events
@@ -32,15 +32,15 @@ public class EuclidianViewJPanelD extends JPanel
 
 		// register Listener
 		if (addListeners) {
-			((EuclidianControllerListeners) view.getEuclidianController())
+			((euclideanControllerListeners) view.geteuclideanController())
 					.addListenersTo(this);
 		}
 
 		// enable drop transfers
-		setTransferHandler(new EuclidianViewTransferHandler(view));
+		setTransferHandler(new euclideanViewTransferHandler(view));
 	}
 
-	public EuclidianViewJPanelD(EuclidianView view) {
+	public euclideanViewJPanelD(euclideanView view) {
 
 		this(view, true);
 

@@ -15,7 +15,7 @@ package org.geogebra.common.kernel.algos;
 import java.util.Arrays;
 
 import org.apache.commons.math3.analysis.UnivariateFunction;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -251,8 +251,8 @@ public abstract class AlgoGeoPointsFunction extends AlgoElement {
 	}
 
 	protected void updateInterval() {
-		EuclidianViewInterfaceCommon ev = this.kernel.getApplication()
-				.getActiveEuclidianView();
+		euclideanViewInterfaceCommon ev = this.kernel.getApplication()
+				.getActiveeuclideanView();
 
 		left = ev.getXminObject();
 		right = ev.getXmaxObject();
@@ -288,7 +288,7 @@ public abstract class AlgoGeoPointsFunction extends AlgoElement {
 		// pixels_in_visible_interval=...
 		// n=pixels_in_visible_interval/PIXELS_BETWEEN_SAMPLES;
 
-		// EuclidianView ev = app.getEuclidianView();
+		// euclideanView ev = app.geteuclideanView();
 		double visiblemax = kernel.getViewsXMax(points[0]);
 		double visiblemin = kernel.getViewsXMin(points[0]);
 		double visiblepixs = kernel.getApplication().countPixels(visiblemin,

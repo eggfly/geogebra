@@ -1,16 +1,16 @@
 package org.geogebra.web.full.gui.dialog.options;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.background.BackgroundType;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.background.BackgroundType;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.dialog.handler.ColorChangeHandler;
-import org.geogebra.common.gui.dialog.options.OptionsEuclidian;
-import org.geogebra.common.gui.dialog.options.model.EuclidianOptionsModel;
-import org.geogebra.common.gui.dialog.options.model.EuclidianOptionsModel.IEuclidianOptionsListener;
+import org.geogebra.common.gui.dialog.options.Optionseuclidean;
+import org.geogebra.common.gui.dialog.options.model.euclideanOptionsModel;
+import org.geogebra.common.gui.dialog.options.model.euclideanOptionsModel.IeuclideanOptionsListener;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.full.gui.components.dropdown.grid.GridDropdown;
@@ -47,13 +47,13 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.himamis.retex.editor.share.util.Unicode;
 
-public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
-	IEuclidianOptionsListener {
+public class OptionseuclideanW extends Optionseuclidean implements OptionPanelW,
+	IeuclideanOptionsListener {
 
 	protected AppW app;
 	protected MultiRowsTabPanel tabPanel;
-	protected EuclidianView view;
-	public EuclidianOptionsModel model;
+	protected euclideanView view;
+	public euclideanOptionsModel model;
 	protected BasicTab basicTab;
 	AxisTab xAxisTab;
 	AxisTab yAxisTab;
@@ -61,10 +61,10 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 	private boolean isIniting;
 	public Localization loc;
 
-	protected static abstract class EuclidianTab extends FlowPanel
+	protected static abstract class euclideanTab extends FlowPanel
 			implements SetLabels {
 		
-		protected EuclidianTab() {
+		protected euclideanTab() {
 			setStyleName("propertiesTab");
 		}
 		
@@ -74,7 +74,7 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 		}
 	}
 
-	protected class AxisTab extends EuclidianTab {
+	protected class AxisTab extends euclideanTab {
 		private AxisPanel axisPanel;
 			
 		public AxisTab(int axis, boolean view3D) {
@@ -83,7 +83,7 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 			add(axisPanel);
 		}
 		
-		public void updateView(EuclidianView view1) {
+		public void updateView(euclideanView view1) {
 			axisPanel.updateView(view1);
 		}
 
@@ -97,7 +97,7 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 		}
 	}
 		
-	protected class GridTab extends EuclidianTab {
+	protected class GridTab extends euclideanTab {
 		CheckBox cbShowGrid;
 		private FormLabel lbPointCapturing;
 		private ListBox pointCapturingStyleList;
@@ -186,15 +186,15 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 		public int getPointCapturingModeList(int index) {
 			switch (index) {
 			case 0:
-				return EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC;
+				return euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC;
 			case 1:
-				return EuclidianStyleConstants.POINT_CAPTURING_ON;
+				return euclideanStyleConstants.POINT_CAPTURING_ON;
 			case 2:
-				return EuclidianStyleConstants.POINT_CAPTURING_ON_GRID;
+				return euclideanStyleConstants.POINT_CAPTURING_ON_GRID;
 			case 3:
-				return EuclidianStyleConstants.POINT_CAPTURING_OFF;
+				return euclideanStyleConstants.POINT_CAPTURING_OFF;
 			default:
-				return EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC;
+				return euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC;
 			}
 		}
 
@@ -224,13 +224,13 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 		private int getPointCapturingModeEV() {
 			int mode = view.getPointCapturingMode();
 			switch (mode) {
-			case EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC:
+			case euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC:
 				return 0;
-			case EuclidianStyleConstants.POINT_CAPTURING_ON:
+			case euclideanStyleConstants.POINT_CAPTURING_ON:
 				return 1;
-			case EuclidianStyleConstants.POINT_CAPTURING_ON_GRID:
+			case euclideanStyleConstants.POINT_CAPTURING_ON_GRID:
 				return 2;
-			case EuclidianStyleConstants.POINT_CAPTURING_OFF:
+			case euclideanStyleConstants.POINT_CAPTURING_OFF:
 				return 3;
 			default:
 				return 0;
@@ -395,7 +395,7 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 
 				@Override
 				public void fireActionPerformed(PopupMenuButtonW actionButton) {
-					int style = EuclidianView.getLineType(btnGridStyle.getSelectedIndex());
+					int style = euclideanView.getLineType(btnGridStyle.getSelectedIndex());
 					if (gridOptions) {
 						model.applyGridStyle(style);
 					} else {
@@ -571,7 +571,7 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 				return;
 			}
 
-			if (gridType != EuclidianView.GRID_POLAR) {
+			if (gridType != euclideanView.GRID_POLAR) {
 
 				ncbGridTickY.setVisible(true);
 				gridLabel2.setVisible(true);
@@ -699,16 +699,16 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 	/**
 	 * @param app
 	 *            application
-	 * @param activeEuclidianView
+	 * @param activeeuclideanView
 	 *            view
 	 */
-	public OptionsEuclidianW(AppW app,
-			EuclidianViewInterfaceCommon activeEuclidianView) {
+	public OptionseuclideanW(AppW app,
+			euclideanViewInterfaceCommon activeeuclideanView) {
 		isIniting = true;
 		this.app = app;
 		this.loc = app.getLocalization();
-		this.view = (EuclidianView) activeEuclidianView;
-		model = new EuclidianOptionsModel(app, view, this);
+		this.view = (euclideanView) activeeuclideanView;
+		model = new euclideanOptionsModel(app, view, this);
 		initGUI();
 		view.setOptionPanel(this);
 		isIniting = false;
@@ -717,15 +717,15 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 	/**
 	 * update the view (also for model)
 	 * 
-	 * @param euclidianView
+	 * @param euclideanView
 	 *            view
 	 */
-	public void updateView(EuclidianView euclidianView) {
-		setView(euclidianView);
-		euclidianView.setOptionPanel(this);
-		model.setView(euclidianView);
-		xAxisTab.updateView(euclidianView);
-		yAxisTab.updateView(euclidianView);
+	public void updateView(euclideanView euclideanView) {
+		setView(euclideanView);
+		euclideanView.setOptionPanel(this);
+		model.setView(euclideanView);
+		xAxisTab.updateView(euclideanView);
+		yAxisTab.updateView(euclideanView);
 	}
 
 	private void initGUI() {
@@ -770,12 +770,12 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 	}
 	
 	private void addXAxisTab() {
-		xAxisTab = newAxisTab(EuclidianOptionsModel.X_AXIS);
+		xAxisTab = newAxisTab(euclideanOptionsModel.X_AXIS);
 		tabPanel.add(xAxisTab, "x");
 	}
 	
 	private void addYAxisTab() {
-		yAxisTab = newAxisTab(EuclidianOptionsModel.Y_AXIS);
+		yAxisTab = newAxisTab(euclideanOptionsModel.Y_AXIS);
 		tabPanel.add(yAxisTab, "y");
 	}
 	
@@ -828,11 +828,11 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 	/**
 	 * Set & update UI
 	 * 
-	 * @param euclidianView1
+	 * @param euclideanView1
 	 *            graphics view
 	 */
-	public void setView(EuclidianView euclidianView1) {
-		this.view = euclidianView1;
+	public void setView(euclideanView euclideanView1) {
+		this.view = euclideanView1;
 		if (!isIniting) {
 			updateGUI();
 		}
@@ -863,8 +863,8 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 	}
 	
 	@Override
-	public GColor getEuclidianBackground(int viewNumber) {
-		return app.getSettings().getEuclidian(viewNumber).getBackground();
+	public GColor geteuclideanBackground(int viewNumber) {
+		return app.getSettings().geteuclidean(viewNumber).getBackground();
 	}
 
 	/**
@@ -966,7 +966,7 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 	@Override
 	public void onResize(int height, int width) {
 		for (int i = 0; i < tabPanel.getWidgetCount(); i++) {
-			EuclidianTab tab = (EuclidianTab) tabPanel.getWidget(i);
+			euclideanTab tab = (euclideanTab) tabPanel.getWidget(i);
 			if (tab != null) {
 				tab.onResize(height, width);
 			}
@@ -981,7 +981,7 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 	 */
 	public void setSelectedTab(int index) {
 		// tabbedPane.setSelectedIndex(index);
-		Log.warn("======== OptionsEuclidianW.setSelectedTab() : TODO");
+		Log.warn("======== OptionseuclideanW.setSelectedTab() : TODO");
 	}
 
 	@Override
@@ -1019,7 +1019,7 @@ public class OptionsEuclidianW extends OptionsEuclidian implements OptionPanelW,
 		gridTab.updateRuler(typeIdx, color, lineStyle, bold);
 	}
 
-	public EuclidianView getView() {
+	public euclideanView getView() {
 		return view;
 	}
 }

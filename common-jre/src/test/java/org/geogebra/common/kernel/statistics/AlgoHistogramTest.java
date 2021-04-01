@@ -10,9 +10,9 @@ import org.junit.Test;
 public class AlgoHistogramTest extends BaseUnitTest {
 
 	@Test
-	public void showInEuclidianView() {
+	public void showIneuclideanView() {
 		GeoNumeric histogram =
 				addAvInput("Histogram({0, 1, 2, 3, 4, 5}, {2, 6, 8, 3, 1})");
-		assertThat(histogram.showInEuclidianView(), is(true));
+		assertThat(histogram.showIneuclideanView(), is(true));
 	}
 }

@@ -138,7 +138,7 @@ public class ViewMenuW extends Submenu {
 				if (consProtNav.isSelected()) {
 					app.setShowConstructionProtocolNavigation(false);
 				} else {
-					int id = app.getActiveEuclidianView().getViewID();
+					int id = app.getActiveeuclideanView().getViewID();
 					app.setShowConstructionProtocolNavigation(true, id);
 					app.getGuiManager()
 							.updateCheckBoxesForShowConstructinProtocolNavigation(

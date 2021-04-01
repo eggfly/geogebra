@@ -1,4 +1,4 @@
-package org.geogebra.desktop.geogebra3D.euclidian3D;
+package org.geogebra.desktop.geogebra3D.euclidean3D;
 
 import java.awt.AWTEvent;
 import java.awt.BorderLayout;
@@ -28,29 +28,29 @@ import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPointWithZ;
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.euclidian3D.Mouse3DEvent;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.RendererType;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.euclidean3D.Mouse3DEvent;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.RendererType;
 import org.geogebra.common.main.App.ExportType;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GBufferedImageD;
 import org.geogebra.desktop.awt.GColorD;
 import org.geogebra.desktop.awt.GDimensionD;
 import org.geogebra.desktop.awt.GFontD;
 import org.geogebra.desktop.awt.GGraphics2DD;
-import org.geogebra.desktop.euclidian.EuclidianControllerListeners;
-import org.geogebra.desktop.euclidian.EuclidianViewJPanelD;
-import org.geogebra.desktop.euclidian.MyZoomerD;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.desktop.euclidean.euclideanControllerListeners;
+import org.geogebra.desktop.euclidean.euclideanViewJPanelD;
+import org.geogebra.desktop.euclidean.MyZoomerD;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.export.GraphicExportDialog;
 import org.geogebra.desktop.geogebra3D.App3D;
-import org.geogebra.desktop.geogebra3D.euclidian3D.opengl.RendererCheckGLVersionD;
-import org.geogebra.desktop.geogebra3D.euclidianInput3D.Mouse3DEventD;
+import org.geogebra.desktop.geogebra3D.euclidean3D.opengl.RendererCheckGLVersionD;
+import org.geogebra.desktop.geogebra3D.euclideanInput3D.Mouse3DEventD;
 import org.geogebra.desktop.io.MyImageIO;
 import org.geogebra.desktop.main.AppD;
 
@@ -60,11 +60,11 @@ import org.geogebra.desktop.main.AppD;
  * @author mathieu
  * 
  */
-public class EuclidianView3DD extends EuclidianView3D
-		implements EuclidianViewInterfaceD {
+public class euclideanView3DD extends euclideanView3D
+		implements euclideanViewInterfaceD {
 
 	/** Java component for this view */
-	protected EuclidianViewJPanelD evjpanel;
+	protected euclideanViewJPanelD evjpanel;
 
 	/**
 	 * constructor
@@ -74,18 +74,18 @@ public class EuclidianView3DD extends EuclidianView3D
 	 * @param settings
 	 *            settings
 	 */
-	public EuclidianView3DD(EuclidianController3D ec,
-			EuclidianSettings settings) {
+	public euclideanView3DD(euclideanController3D ec,
+			euclideanSettings settings) {
 
 		super(ec, settings);
 
 		initView(false);
 
-		EuclidianSettings es = null;
+		euclideanSettings es = null;
 		if (settings != null) {
 			es = settings;
 		} else {
-			es = getApplication().getSettings().getEuclidian(3);
+			es = getApplication().getSettings().geteuclidean(3);
 		}
 
 		if (es != null) {
@@ -99,14 +99,14 @@ public class EuclidianView3DD extends EuclidianView3D
 
 	@Override
 	protected void createPanel() {
-		evjpanel = new EuclidianViewJPanelD(this);
+		evjpanel = new euclideanViewJPanelD(this);
 
 		canvas = (Component) renderer.getCanvas();
 		getJPanel().setLayout(new BorderLayout());
 		getJPanel().add(BorderLayout.CENTER, canvas);
 
 		// register Listener
-		((EuclidianControllerListeners) getEuclidianController())
+		((euclideanControllerListeners) geteuclideanController())
 				.addListenersTo(canvas);
 		canvas.setFocusable(true);
 
@@ -369,7 +369,7 @@ public class EuclidianView3DD extends EuclidianView3D
 	}
 
 	/**
-	 * @see EuclidianViewJPanelD#processMouseEventImpl(MouseEvent)
+	 * @see euclideanViewJPanelD#processMouseEventImpl(MouseEvent)
 	 * @param e
 	 *            mouse event
 	 */
@@ -391,8 +391,8 @@ public class EuclidianView3DD extends EuclidianView3D
 	// @Override
 	@Override
 	public void setToolTipText(String plain) {
-		if ((tooltipsInThisView == EuclidianStyleConstants.TOOLTIPS_ON)
-				|| (tooltipsInThisView == EuclidianStyleConstants.TOOLTIPS_AUTOMATIC)) {
+		if ((tooltipsInThisView == euclideanStyleConstants.TOOLTIPS_ON)
+				|| (tooltipsInThisView == euclideanStyleConstants.TOOLTIPS_AUTOMATIC)) {
 			evjpanel.setToolTipText(plain);
 		}
 	}
@@ -511,8 +511,8 @@ public class EuclidianView3DD extends EuclidianView3D
 	}
 
 	@Override
-	protected EuclidianStyleBar newEuclidianStyleBar() {
-		return new EuclidianStyleBar3D(this);
+	protected euclideanStyleBar neweuclideanStyleBar() {
+		return new euclideanStyleBar3D(this);
 	}
 
 	@Override
@@ -544,13 +544,13 @@ public class EuclidianView3DD extends EuclidianView3D
 	}
 
 	@Override
-	protected EuclidianStyleBar newDynamicStyleBar() {
+	protected euclideanStyleBar newDynamicStyleBar() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected void addDynamicStylebarToEV(EuclidianStyleBar dynamicStylebar) {
+	protected void addDynamicStylebarToEV(euclideanStyleBar dynamicStylebar) {
 		// TODO Auto-generated method stub
 
 	}

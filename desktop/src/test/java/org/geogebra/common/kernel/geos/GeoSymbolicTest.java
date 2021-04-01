@@ -24,7 +24,7 @@ import org.geogebra.common.kernel.arithmetic.SymbolicMode;
 import org.geogebra.common.kernel.commands.Commands;
 import org.geogebra.common.kernel.commands.EvalInfo;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.scientific.LabelController;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.test.TestErrorHandler;
@@ -764,16 +764,16 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 		t("f: x = y", "x = y");
 
 		GeoSymbolic f = getSymbolic("f");
-		f.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT);
+		f.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT);
 		f.setLineThickness(8);
 		f.updateRepaint();
 
 		assertEquals(8, f.getLineThickness());
 		assertEquals(8, f.getTwinGeo().getLineThickness());
 
-		assertEquals(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT,
+		assertEquals(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT,
 				f.getLineType());
-		assertEquals(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT,
+		assertEquals(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT,
 				f.getLineType());
 	}
 
@@ -798,13 +798,13 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 		t("f: x = y", "x = y");
 
 		GeoSymbolic f = getSymbolic("f");
-		f.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT);
+		f.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT);
 		f.setLineThickness(8);
 		f.setLineOpacity(42);
 		app.setXML(app.getXML(), true);
 
 		GeoSymbolic fReloaded = getSymbolic("f");
-		assertEquals(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT,
+		assertEquals(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT,
 				fReloaded.getLineType());
 		assertEquals(8, fReloaded.getLineThickness());
 		assertEquals(42, fReloaded.getLineOpacity());
@@ -1007,14 +1007,14 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 	@Test
 	public void testUndoRedoKeepsShowingIntegralArea() {
 		GeoSymbolic integralArea = add("a(x)=Integral(xx,2,3)");
-		Assert.assertTrue(integralArea.isEuclidianVisible());
-		Assert.assertTrue(integralArea.getTwinGeo().isEuclidianVisible());
+		Assert.assertTrue(integralArea.iseuclideanVisible());
+		Assert.assertTrue(integralArea.getTwinGeo().iseuclideanVisible());
 
 		app.setXML(app.getXML(), true);
 		integralArea = (GeoSymbolic) app.getKernel().lookupLabel("a");
 
-		Assert.assertTrue(integralArea.isEuclidianVisible());
-		Assert.assertTrue(integralArea.getTwinGeo().isEuclidianVisible());
+		Assert.assertTrue(integralArea.iseuclideanVisible());
+		Assert.assertTrue(integralArea.getTwinGeo().iseuclideanVisible());
 	}
 
 	private int numberOfSpecialPoints() {
@@ -1084,11 +1084,11 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 	}
 
 	@Test
-	public void testSolveEuclidianHidden() {
+	public void testSolveeuclideanHidden() {
 		add("eq1: x + y = 2");
 		add("eq2: x - y = 3");
 		GeoSymbolic element = add("Solve({eq1, eq2}, {x, y})");
-		assertThat(element.showInEuclidianView(), is(false));
+		assertThat(element.showIneuclideanView(), is(false));
 	}
 
 	@Test
@@ -1171,9 +1171,9 @@ public class GeoSymbolicTest extends BaseSymbolicTest {
 	}
 
 	@Test
-	public void testPlotSolveIsEuclidianVisible() {
+	public void testPlotSolveIseuclideanVisible() {
 		GeoSymbolic symbolic = add("PlotSolve(x^2-2)");
-		assertThat(symbolic.isEuclidianVisible(), is(true));
+		assertThat(symbolic.iseuclideanVisible(), is(true));
 	}
 
 	@Test

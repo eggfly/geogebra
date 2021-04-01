@@ -335,7 +335,7 @@ public class AlgoSequence extends AlgoElement {
 						.replaceChildrenByValues(var);
 			}
 			listElement.setDrawAlgorithm(algoCopy);
-			listElement.setEuclidianVisible(true);
+			listElement.seteuclideanVisible(true);
 		}
 
 	}

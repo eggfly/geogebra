@@ -3,7 +3,7 @@ package org.geogebra.web.full.cas.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Feature;
 import org.geogebra.common.util.StringUtil;

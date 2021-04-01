@@ -1,8 +1,8 @@
-package org.geogebra.common.euclidian3D;
+package org.geogebra.common.euclidean3D;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.PointerEventType;
 
 /**
  * 3D mouse event

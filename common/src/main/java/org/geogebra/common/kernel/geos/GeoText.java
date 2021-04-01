@@ -20,8 +20,8 @@ import javax.annotation.CheckForNull;
 
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GRectangle2D;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.CircularDefinitionException;
 import org.geogebra.common.kernel.Construction;
@@ -43,7 +43,7 @@ import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
 import org.geogebra.common.main.MyError;
 import org.geogebra.common.main.ScreenReader;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.GeoClass;
 import org.geogebra.common.util.ExtendedBoolean;
 import org.geogebra.common.util.IndexHTMLBuilder;
@@ -492,13 +492,13 @@ public class GeoText extends GeoElement
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return isDefined();
 	}
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_TEXT;
+		return euclideanConstants.MODE_TEXT;
 	}
 
 	@Override
@@ -710,9 +710,9 @@ public class GeoText extends GeoElement
 	}
 
 	@Override
-	public void setAllVisualPropertiesExceptEuclidianVisible(GeoElement geo,
+	public void setAllVisualPropertiesExcepteuclideanVisible(GeoElement geo,
 			boolean keepAdvanced, boolean setAuxiliaryProperty) {
-		super.setAllVisualPropertiesExceptEuclidianVisible(geo, keepAdvanced,
+		super.setAllVisualPropertiesExcepteuclideanVisible(geo, keepAdvanced,
 				setAuxiliaryProperty);
 
 		// start point of text
@@ -938,9 +938,9 @@ public class GeoText extends GeoElement
 		// needed for eg \sqrt in latex
 		if ((fontStyle & GFont.BOLD) != 0) {
 			setLineThickness(
-					EuclidianStyleConstants.DEFAULT_LINE_THICKNESS * 2);
+					euclideanStyleConstants.DEFAULT_LINE_THICKNESS * 2);
 		} else {
-			setLineThickness(EuclidianStyleConstants.DEFAULT_LINE_THICKNESS);
+			setLineThickness(euclideanStyleConstants.DEFAULT_LINE_THICKNESS);
 		}
 	}
 
@@ -1361,17 +1361,17 @@ public class GeoText extends GeoElement
 
 	@Override
 	protected boolean isVisibleInView3DNotSet() {
-		if (isVisibleInView(App.VIEW_EUCLIDIAN) && !hasAbsoluteLocation()) {
+		if (isVisibleInView(App.VIEW_euclidean) && !hasAbsoluteLocation()) {
 			// visible: we set it
 			visibleInView3D = ExtendedBoolean.TRUE;
 			return true;
 		}
 
-		if (kernel.getApplication().getActiveEuclidianView()
-				.isEuclidianView3D() && hasAbsoluteLocation()) {
+		if (kernel.getApplication().getActiveeuclideanView()
+				.iseuclideanView3D() && hasAbsoluteLocation()) {
 			// visible only in 3D view
 			try {
-				kernel.getApplication().removeFromEuclidianView(this);
+				kernel.getApplication().removeFromeuclideanView(this);
 			} catch (Exception e) {
 				// in case EV is null
 			}
@@ -1388,12 +1388,12 @@ public class GeoText extends GeoElement
 	 * may need to be added to 3D view after creation
 	 */
 	public void checkVisibleIn3DViewNeeded() {
-		if (isVisibleInView(App.VIEW_EUCLIDIAN)) {
+		if (isVisibleInView(App.VIEW_euclidean)) {
 			// we need to force visibility in 3D view and views
 			// for plane
 			addViews3D();
-			if (kernel.getApplication().isEuclidianView3Dinited()) {
-				kernel.getApplication().getEuclidianView3D().add(this);
+			if (kernel.getApplication().iseuclideanView3Dinited()) {
+				kernel.getApplication().geteuclideanView3D().add(this);
 			}
 			setVisibleInViewForPlane(true);
 			kernel.getApplication().addToViewsForPlane(this);
@@ -1453,7 +1453,7 @@ public class GeoText extends GeoElement
 	}
 
 	@Override
-	public int getTotalWidth(EuclidianViewInterfaceCommon ev) {
+	public int getTotalWidth(euclideanViewInterfaceCommon ev) {
 		return totalWidth;
 	}
 
@@ -1463,7 +1463,7 @@ public class GeoText extends GeoElement
 	}
 
 	@Override
-	public int getTotalHeight(EuclidianViewInterfaceCommon ev) {
+	public int getTotalHeight(euclideanViewInterfaceCommon ev) {
 		return totalHeight;
 	}
 

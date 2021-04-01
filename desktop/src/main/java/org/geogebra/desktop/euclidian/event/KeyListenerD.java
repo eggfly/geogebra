@@ -1,9 +1,9 @@
-package org.geogebra.desktop.euclidian.event;
+package org.geogebra.desktop.euclidean.event;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.event.KeyHandler;
 
 public class KeyListenerD implements KeyListener {
 

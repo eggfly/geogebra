@@ -5,7 +5,7 @@ import org.geogebra.common.main.Localization;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.web.full.gui.CardInfoPanel;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.html5.main.GgbFile;
 
@@ -13,7 +13,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.FlowPanel;
 
 /**
- * Page Preview Card showing preview of EuclidianView
+ * Page Preview Card showing preview of euclideanView
  * 
  * @author Alicia Hofstaetter
  *
@@ -131,7 +131,7 @@ public class PagePreviewCard extends FlowPanel
 	 */
 	public void updatePreviewImage() {
 		imagePanel.clear();
-		setPreviewImage(((EuclidianViewWInterface) app.getActiveEuclidianView())
+		setPreviewImage(((euclideanViewWInterface) app.getActiveeuclideanView())
 				.getExportImageDataUrl(0.5, false, false));
 	}
 

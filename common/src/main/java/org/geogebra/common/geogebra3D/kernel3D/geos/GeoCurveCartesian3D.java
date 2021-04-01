@@ -212,7 +212,7 @@ public class GeoCurveCartesian3D extends GeoCurveCartesianND implements
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		// TODO Auto-generated method stub
 		return true;
 	}

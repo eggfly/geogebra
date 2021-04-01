@@ -16,7 +16,7 @@ the Free Software Foundation.
  * Created on 13. Oktober 2001, 17:40
  */
 
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,7 +44,7 @@ import org.geogebra.common.kernel.geos.GeoText;
 import org.geogebra.common.kernel.geos.properties.FillType;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
 import org.geogebra.common.main.App;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.StringUtil;
 
 import com.google.j2objc.annotations.Weak;
@@ -60,16 +60,16 @@ public abstract class Drawable extends DrawableND {
 	/**
 	 * Default stroke for this drawable
 	 */
-	protected GBasicStroke objStroke = EuclidianStatic.getDefaultStroke();
+	protected GBasicStroke objStroke = euclideanStatic.getDefaultStroke();
 	/**
 	 * Stroke for this drawable in case referenced geo is selected
 	 */
-	protected GBasicStroke selStroke = EuclidianStatic
+	protected GBasicStroke selStroke = euclideanStatic
 			.getDefaultSelectionStroke();
 	/**
 	 * Stroke for decorations; always full
 	 */
-	protected GBasicStroke decoStroke = EuclidianStatic.getDefaultStroke();
+	protected GBasicStroke decoStroke = euclideanStatic.getDefaultStroke();
 
 	private int lineThickness = -1;
 	private int lineType = -1;
@@ -78,7 +78,7 @@ public abstract class Drawable extends DrawableND {
 	 * View in which this is drawn
 	 */
 	@Weak
-	protected EuclidianView view;
+	protected euclideanView view;
 
 	/**
 	 * Referenced GeoElement
@@ -136,7 +136,7 @@ public abstract class Drawable extends DrawableND {
 	 * @param view euclidean view
 	 * @param geo geo element
 	 */
-	public Drawable(EuclidianView view, GeoElement geo) {
+	public Drawable(euclideanView view, GeoElement geo) {
 		this.view = view;
 		this.geo = geo;
 	}
@@ -307,7 +307,7 @@ public abstract class Drawable extends DrawableND {
 					// do the slower index drawing routine and check for indices
 			oldLabelDesc = labelDesc;
 
-			GPoint p = EuclidianStatic.drawIndexedString(view.getApplication(),
+			GPoint p = euclideanStatic.drawIndexedString(view.getApplication(),
 					g2, label, xLabel, yLabel, isSerif(), view,
 					geo.getObjectColor());
 			labelHasIndex = p.y > 0;
@@ -396,7 +396,7 @@ public abstract class Drawable extends DrawableND {
 	public final void drawMultilineLaTeX(GGraphics2D g2, GFont font,
 			GColor fgColor, GColor bgColor) {
 		if (labelDesc != null) {
-			EuclidianStatic.drawMultilineLaTeX(view.getApplication(),
+			euclideanStatic.drawMultilineLaTeX(view.getApplication(),
 					view.getTempGraphics2D(font), geo, g2, font, fgColor,
 					bgColor, labelDesc, xLabel, yLabel, isSerif(),
 					view.getCallBack(geo, firstCall),
@@ -428,7 +428,7 @@ public abstract class Drawable extends DrawableND {
 		if (labelDesc.equals(oldLabelDesc) && !labelHasIndex) {
 
 			// sets labelRectangle
-			EuclidianStatic.drawMultiLineText(
+			euclideanStatic.drawMultiLineText(
 					view.getApplication(), labelDesc, xLabel, yLabel, g2,
 					isSerif(), textFont, labelRectangle, geo);
 		} else {
@@ -436,7 +436,7 @@ public abstract class Drawable extends DrawableND {
 			// label description has changed, search for possible indices
 			oldLabelDesc = labelDesc;
 
-			labelHasIndex = EuclidianStatic
+			labelHasIndex = euclideanStatic
 					.drawIndexedMultilineString(view.getApplication(),
 							labelDesc, g2, labelRectangle, textFont, isSerif(),
 							xLabel, yLabel);
@@ -528,12 +528,12 @@ public abstract class Drawable extends DrawableND {
 	 *            - threshold
 	 * @return bounding box handler
 	 */
-	public EuclidianBoundingBoxHandler hitBoundingBoxHandler(int x, int y, int hitThreshold) {
+	public euclideanBoundingBoxHandler hitBoundingBoxHandler(int x, int y, int hitThreshold) {
 		if (getBoundingBox() != null && getBoundingBox() == view.getBoundingBox()) {
 			return getBoundingBox().getHitHandler(x, y, hitThreshold);
 		}
 
-		return EuclidianBoundingBoxHandler.UNDEFINED;
+		return euclideanBoundingBoxHandler.UNDEFINED;
 	}
 
 	/**
@@ -577,21 +577,21 @@ public abstract class Drawable extends DrawableND {
 			}
 
 			double width = lineThickness / 2.0;
-			objStroke = EuclidianStatic.getStroke(width, lineType);
-			decoStroke = EuclidianStatic.getStroke(width,
-					EuclidianStyleConstants.LINE_TYPE_FULL);
+			objStroke = euclideanStatic.getStroke(width, lineType);
+			decoStroke = euclideanStatic.getStroke(width,
+					euclideanStyleConstants.LINE_TYPE_FULL);
 
-			selStroke = EuclidianStatic.getStroke(
+			selStroke = euclideanStatic.getStroke(
 					!fromGeo.isShape() ? 2 * Math.max(width, 1) + 2
-									: width + EuclidianStyleConstants.SELECTION_ADD,
-					EuclidianStyleConstants.LINE_TYPE_FULL);
+									: width + euclideanStyleConstants.SELECTION_ADD,
+					euclideanStyleConstants.LINE_TYPE_FULL);
 		} else if (lineType != fromGeo.getLineType()) {
 			if (!forcedLineType) {
 				lineType = fromGeo.getLineType();
 			}
 
 			double width = lineThickness / 2.0;
-			objStroke = EuclidianStatic.getStroke(width, lineType);
+			objStroke = euclideanStatic.getStroke(width, lineType);
 		}
 	}
 
@@ -726,15 +726,15 @@ public abstract class Drawable extends DrawableND {
 	/**
 	 * @return view in which this is drawn
 	 */
-	public EuclidianView getView() {
+	public euclideanView getView() {
 		return view;
 	}
 
 	/**
-	 * @return whether geo is visible in euclidian views
+	 * @return whether geo is visible in euclidean views
 	 */
-	public final boolean isEuclidianVisible() {
-		return geo.isEuclidianVisible();
+	public final boolean iseuclideanVisible() {
+		return geo.iseuclideanVisible();
 	}
 
 	/**
@@ -766,7 +766,7 @@ public abstract class Drawable extends DrawableND {
 	 *            - which corner was dragged
 	 */
 	public void updateByBoundingBoxResize(GPoint2D point,
-			EuclidianBoundingBoxHandler handler) {
+			euclideanBoundingBoxHandler handler) {
 		// do nothing here
 	}
 
@@ -852,11 +852,11 @@ public abstract class Drawable extends DrawableND {
 	 * @return true if 'handler' is a corner handler.
 	 */
 	protected static boolean isCornerHandler(
-			EuclidianBoundingBoxHandler handler) {
-		return handler == EuclidianBoundingBoxHandler.BOTTOM_LEFT
-				|| handler == EuclidianBoundingBoxHandler.BOTTOM_RIGHT
-				|| handler == EuclidianBoundingBoxHandler.TOP_LEFT
-				|| handler == EuclidianBoundingBoxHandler.TOP_RIGHT;
+			euclideanBoundingBoxHandler handler) {
+		return handler == euclideanBoundingBoxHandler.BOTTOM_LEFT
+				|| handler == euclideanBoundingBoxHandler.BOTTOM_RIGHT
+				|| handler == euclideanBoundingBoxHandler.TOP_LEFT
+				|| handler == euclideanBoundingBoxHandler.TOP_RIGHT;
 	}
 
 	@Override

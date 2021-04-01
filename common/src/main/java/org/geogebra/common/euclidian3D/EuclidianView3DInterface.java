@@ -1,8 +1,8 @@
-package org.geogebra.common.euclidian3D;
+package org.geogebra.common.euclidean3D;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Format;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Format;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.kernel.matrix.Coords;
@@ -13,7 +13,7 @@ import org.geogebra.common.kernel.matrix.Coords;
  *
  *         Interface for 3D view
  */
-public interface EuclidianView3DInterface extends EuclidianViewInterfaceCommon {
+public interface euclideanView3DInterface extends euclideanViewInterfaceCommon {
 	/** default scene x-coord of origin */
 	public static final double XZERO_SCENE_STANDARD = 0;
 	/** default scene y-coord of origin */

@@ -27,7 +27,7 @@ public class SettingsUpdaterBuilder {
 		if (prototype == null) {
 			prototype = new SettingsUpdater();
 		}
-		prototype.setEuclidianHost(app);
+		prototype.seteuclideanHost(app);
 		prototype.setSettings(app.getSettings());
 		prototype.setAppConfig(app.getConfig());
 		prototype.setKernel(app.getKernel());

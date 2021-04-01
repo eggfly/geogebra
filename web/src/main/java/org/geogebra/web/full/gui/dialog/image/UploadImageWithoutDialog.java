@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog.image;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.web.html5.main.AppW;
 
 /**
@@ -40,8 +40,8 @@ public class UploadImageWithoutDialog {
 	 * sets move mode after image mode was cancelled
 	 */
 	public void setSelectMode() {
-		if (app.getMode() == EuclidianConstants.MODE_IMAGE) {
-			app.setMode(EuclidianConstants.MODE_SELECT_MOW);
+		if (app.getMode() == euclideanConstants.MODE_IMAGE) {
+			app.setMode(euclideanConstants.MODE_SELECT_MOW);
 		}
 	}
 }

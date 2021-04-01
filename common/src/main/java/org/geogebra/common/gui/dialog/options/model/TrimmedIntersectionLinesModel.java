@@ -25,8 +25,8 @@ public class TrimmedIntersectionLinesModel extends BooleanOptionModel {
 	public void apply(int index, boolean value) {
 		GeoElement geo = getGeoAt(index);
 		geo.setShowTrimmedIntersectionLines(value);
-		geo.getParentAlgorithm().getInput()[0].setEuclidianVisible(!value);
-		geo.getParentAlgorithm().getInput()[1].setEuclidianVisible(!value);
+		geo.getParentAlgorithm().getInput()[0].seteuclideanVisible(!value);
+		geo.getParentAlgorithm().getInput()[1].seteuclideanVisible(!value);
 		geo.getParentAlgorithm().getInput()[0].updateRepaint();
 		geo.getParentAlgorithm().getInput()[1].updateRepaint();
 		geo.updateRepaint();

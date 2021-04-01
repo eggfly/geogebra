@@ -1,10 +1,10 @@
-package org.geogebra.common.geogebra3D.euclidianFor3D;
+package org.geogebra.common.geogebra3D.euclideanFor3D;
 
 import org.geogebra.common.awt.GAffineTransform;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewCompanion;
-import org.geogebra.common.euclidian.draw.DrawParametricCurve;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewCompanion;
+import org.geogebra.common.euclidean.draw.DrawParametricCurve;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoCurveCartesian3D;
 import org.geogebra.common.kernel.geos.GeoAngle;
@@ -21,7 +21,7 @@ import org.geogebra.common.plugin.GeoClass;
  * @author mathieu
  *
  */
-public class EuclidianViewFor3DCompanion extends EuclidianViewCompanion {
+public class euclideanViewFor3DCompanion extends euclideanViewCompanion {
 
 	private GAffineTransform transform = AwtFactory.getPrototype()
 			.newAffineTransform();
@@ -32,7 +32,7 @@ public class EuclidianViewFor3DCompanion extends EuclidianViewCompanion {
 	 * @param view
 	 *            view attached
 	 */
-	public EuclidianViewFor3DCompanion(EuclidianView view) {
+	public euclideanViewFor3DCompanion(euclideanView view) {
 		super(view);
 	}
 

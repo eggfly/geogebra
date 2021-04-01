@@ -32,9 +32,9 @@ public class PropertiesStyleBar3DW extends PropertiesStyleBarW {
 		SvgPerspectiveResources pr = SvgPerspectiveResources.INSTANCE;
 
 		switch (type) {
-		case EUCLIDIAN3D:
+		case euclidean3D:
 			return pr.menu_icon_graphics3D_transparent().getSafeUri().asString();
-		case EUCLIDIAN_FOR_PLANE:
+		case euclidean_FOR_PLANE:
 			return pr.menu_icon_graphics_extra().getSafeUri().asString();
 		default:
 			return super.getTypeIcon(type);
@@ -46,11 +46,11 @@ public class PropertiesStyleBar3DW extends PropertiesStyleBarW {
 
 		super.updateGUI();
 
-		setButtonVisible(OptionType.EUCLIDIAN3D,
-		        app.getGuiManager().showView(App.VIEW_EUCLIDIAN3D));
+		setButtonVisible(OptionType.euclidean3D,
+		        app.getGuiManager().showView(App.VIEW_euclidean3D));
 
-		setButtonVisible(OptionType.EUCLIDIAN_FOR_PLANE,
-				app.hasEuclidianViewForPlaneVisible());
+		setButtonVisible(OptionType.euclidean_FOR_PLANE,
+				app.haseuclideanViewForPlaneVisible());
 
 	}
 

@@ -402,7 +402,7 @@ public class AlgebraViewW extends Tree implements LayerView, AlgebraView,
 		return App.VIEW_ALGEBRA;
 	}
 
-	// TODO EuclidianView#setHighlighted() doesn't exist
+	// TODO euclideanView#setHighlighted() doesn't exist
 	/**
 	 * updates node of GeoElement geo (needed for highlighting)
 	 *
@@ -440,7 +440,7 @@ public class AlgebraViewW extends Tree implements LayerView, AlgebraView,
 	}
 
 	private void updateItemFor(GeoElement element) {
-		if (element instanceof GeoNumeric && !element.isSetEuclidianVisible()) {
+		if (element instanceof GeoNumeric && !element.isSeteuclideanVisible()) {
 			((GeoNumeric) element).initAlgebraSlider();
 		}
 	}

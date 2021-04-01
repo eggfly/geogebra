@@ -1,11 +1,11 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.TreeMap;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.ManagerShaders.TypeElement;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.ManagerShaders.TypeElement;
 
 /**
  * manager for packing buffers

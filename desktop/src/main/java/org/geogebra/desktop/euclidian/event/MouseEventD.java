@@ -1,12 +1,12 @@
-package org.geogebra.desktop.euclidian.event;
+package org.geogebra.desktop.euclidean.event;
 
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.util.debug.Log;
 
 public class MouseEventD extends AbstractEvent implements MouseEventND {

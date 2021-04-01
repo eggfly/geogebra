@@ -10,7 +10,7 @@
  
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -21,9 +21,9 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GLine2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.Previewable;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
@@ -35,7 +35,7 @@ import org.geogebra.common.kernel.geos.GeoPoint;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.debug.Log;
 
@@ -83,11 +83,11 @@ public class DrawAngle extends Drawable implements Previewable {
 
 	/**
 	 * @param view
-	 *            Euclidian view
+	 *            euclidean view
 	 * @param angle
 	 *            Angle to be drawn
 	 */
-	public DrawAngle(EuclidianView view, GeoAngle angle) {
+	public DrawAngle(euclideanView view, GeoAngle angle) {
 		this.view = view;
 		this.angle = angle;
 		geo = angle;
@@ -107,7 +107,7 @@ public class DrawAngle extends Drawable implements Previewable {
 	 * @param points
 	 *            list of points
 	 */
-	public DrawAngle(EuclidianView view, ArrayList<GeoPointND> points) {
+	public DrawAngle(euclideanView view, ArrayList<GeoPointND> points) {
 		this.view = view;
 		prevPoints = points;
 
@@ -186,7 +186,7 @@ public class DrawAngle extends Drawable implements Previewable {
 
 		isVisible = true;
 
-		if (!geo.isEuclidianVisible() || DoubleUtil.isZero(angle.getValue())) {
+		if (!geo.iseuclideanVisible() || DoubleUtil.isZero(angle.getValue())) {
 			setNotVisible();
 			// we may return here; the object is not offscreen, but invisible.
 			return;
@@ -248,7 +248,7 @@ public class DrawAngle extends Drawable implements Previewable {
 		// check whether we need to take care for a special 90 degree angle
 		// appearance
 		show90degrees = view
-				.getRightAngleStyle() != EuclidianStyleConstants.RIGHT_ANGLE_STYLE_NONE
+				.getRightAngleStyle() != euclideanStyleConstants.RIGHT_ANGLE_STYLE_NONE
 				&& angle.isEmphasizeRightAngle()
 				&& DoubleUtil.isEqual(angExt, Kernel.PI_HALF);
 
@@ -264,7 +264,7 @@ public class DrawAngle extends Drawable implements Previewable {
 		if (show90degrees) {
 			switch (view.getRightAngleStyle()) {
 			default:
-			case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_SQUARE:
+			case euclideanStyleConstants.RIGHT_ANGLE_STYLE_SQUARE:
 				// set 90 degrees square
 				if (square == null) {
 					square = AwtFactory.getPrototype().newGeneralPath();
@@ -292,7 +292,7 @@ public class DrawAngle extends Drawable implements Previewable {
 				shape = square;
 				break;
 
-			case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_L:
+			case euclideanStyleConstants.RIGHT_ANGLE_STYLE_L:
 				// Belgian offset |_
 				if (square == null) {
 					square = AwtFactory.getPrototype().newGeneralPath();
@@ -329,7 +329,7 @@ public class DrawAngle extends Drawable implements Previewable {
 
 				break;
 
-			case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_DOT:
+			case euclideanStyleConstants.RIGHT_ANGLE_STYLE_DOT:
 				// set 90 degrees dot
 				drawDot = true;
 
@@ -518,7 +518,7 @@ public class DrawAngle extends Drawable implements Previewable {
 
 		if (isVisible) {
 			if (!show90degrees || view
-					.getRightAngleStyle() != EuclidianStyleConstants.RIGHT_ANGLE_STYLE_L) {
+					.getRightAngleStyle() != euclideanStyleConstants.RIGHT_ANGLE_STYLE_L) {
 				fill(g2, shape); // fill using default/hatching/image as
 									// appropriate
 			}
@@ -538,13 +538,13 @@ public class DrawAngle extends Drawable implements Previewable {
 			// special handling of 90 degree dot
 			if (show90degrees) {
 				switch (view.getRightAngleStyle()) {
-				case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_DOT:
+				case euclideanStyleConstants.RIGHT_ANGLE_STYLE_DOT:
 					g2.fill(dot90degree);
 					break;
 
 				default:
 					// nothing to do as square for
-					// EuclidianView.RIGHT_ANGLE_STYLE_SQUARE
+					// euclideanView.RIGHT_ANGLE_STYLE_SQUARE
 					// was already drawn as shape
 				}
 			} else {
@@ -638,7 +638,7 @@ public class DrawAngle extends Drawable implements Previewable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (!geo.isDefined() || shape == null || !geo.isEuclidianVisible()) {
+		if (!geo.isDefined() || shape == null || !geo.iseuclideanVisible()) {
 			return null;
 		}
 
@@ -657,7 +657,7 @@ public class DrawAngle extends Drawable implements Previewable {
 
 		geo = algoPreview.getAngle();
 		angle = (GeoAngle) geo;
-		geo.setEuclidianVisible(true);
+		geo.seteuclideanVisible(true);
 		init();
 		// initConic(algo.getCircle());
 	}

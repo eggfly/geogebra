@@ -1,9 +1,9 @@
 package org.geogebra.common.geogebra3D.kernel3D.commands;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidianForPlane.EuclidianViewForPlaneInterface;
-import org.geogebra.common.geogebra3D.euclidianForPlane.EuclidianViewForPlaneCompanion;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclideanForPlane.euclideanViewForPlaneInterface;
+import org.geogebra.common.geogebra3D.euclideanForPlane.euclideanViewForPlaneCompanion;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.kernelND.GeoDirectionND;
 import org.geogebra.common.main.App;
@@ -29,7 +29,7 @@ public class CommandProcessor3D {
 	static final public GeoDirectionND getCurrentViewOrientation(Kernel kernelA,
 			App app) {
 
-		EuclidianViewInterfaceCommon view = app.getActiveEuclidianView();
+		euclideanViewInterfaceCommon view = app.getActiveeuclideanView();
 
 		// first check if it's an input line call, with 2D/3D view active
 		if (!kernelA.isMacroKernel() && !kernelA.getLoadingMode()
@@ -39,9 +39,9 @@ public class CommandProcessor3D {
 				return kernelA.getXOYPlane();
 			}
 
-			if (view instanceof EuclidianViewForPlaneInterface) {
+			if (view instanceof euclideanViewForPlaneInterface) {
 				// plane view is active
-				return ((EuclidianViewForPlaneCompanion) ((EuclidianView) view)
+				return ((euclideanViewForPlaneCompanion) ((euclideanView) view)
 						.getCompanion()).getPlane();
 			}
 

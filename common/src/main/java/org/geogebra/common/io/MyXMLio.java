@@ -133,8 +133,8 @@ public abstract class MyXMLio {
 		addXMLHeader(sb);
 		addGeoGebraHeader(sb, consApp);
 
-		// save euclidianView settings
-		consApp.getCompanion().getEuclidianViewXML(sb, false);
+		// save euclideanView settings
+		consApp.getCompanion().geteuclideanViewXML(sb, false);
 
 		// save kernel settings
 		c.getKernel().getKernelXML(sb, false);

@@ -4,8 +4,8 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.main.App.ExportType;
 import org.geogebra.web.html5.awt.GGraphics2DW;
 import org.geogebra.web.html5.css.GuiResourcesSimple;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 import org.geogebra.web.html5.export.ExportLoader;
 import org.geogebra.web.resources.JavaScriptInjector;
 
@@ -19,7 +19,7 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class PDFEncoderW implements Encoder {
 
-	private EuclidianViewW ev;
+	private euclideanViewW ev;
 
 	private Context2d ctx;
 
@@ -31,9 +31,9 @@ public class PDFEncoderW implements Encoder {
 	 * @param view
 	 *            EV to export
 	 */
-	public PDFEncoderW(EuclidianViewWInterface view) {
+	public PDFEncoderW(euclideanViewWInterface view) {
 
-		this.ev = (EuclidianViewW) view;
+		this.ev = (euclideanViewW) view;
 
 		initialize();
 	}

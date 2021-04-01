@@ -1569,7 +1569,7 @@ public abstract class GeoConicND extends GeoQuadricND
 	}
 
 	@Override
-	final protected boolean showInEuclidianView() {
+	final protected boolean showIneuclideanView() {
 		return isDefined() && (type != CONIC_EMPTY || isInverseFill());
 	}
 
@@ -3993,7 +3993,7 @@ public abstract class GeoConicND extends GeoQuadricND
 	}
 
 	/**
-	 * Calculates the euclidian distance between this GeoConic and GeoPoint P.
+	 * Calculates the euclidean distance between this GeoConic and GeoPoint P.
 	 * used for compound paths
 	 */
 	@Override

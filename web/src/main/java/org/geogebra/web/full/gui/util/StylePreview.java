@@ -1,7 +1,7 @@
 package org.geogebra.web.full.gui.util;
 
 import org.geogebra.web.html5.awt.GGraphics2DW;
-import org.geogebra.web.html5.euclidian.GGraphics2DWI;
+import org.geogebra.web.html5.euclidean.GGraphics2DWI;
 import org.geogebra.web.html5.main.AppW;
 
 import com.google.gwt.canvas.client.Canvas;

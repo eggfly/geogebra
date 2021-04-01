@@ -1,12 +1,12 @@
-package org.geogebra.common.geogebra3D.euclidian3D.animator;
+package org.geogebra.common.geogebra3D.euclidean3D.animator;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 
 /**
  * animation for scale and translate
  *
  */
-public class EuclidianView3DAnimationScaleTranslate extends EuclidianView3DAnimationScaleAbstract {
+public class euclideanView3DAnimationScaleTranslate extends euclideanView3DAnimationScaleAbstract {
 
 	private static final double STEPS_TO_TIME_FACTOR = 0.0003;
 
@@ -20,7 +20,7 @@ public class EuclidianView3DAnimationScaleTranslate extends EuclidianView3DAnima
 	 * @param newScale new scale
 	 * @param steps steps for animation
 	 */
-	EuclidianView3DAnimationScaleTranslate(EuclidianView3D view3D, EuclidianView3DAnimator animator,
+	euclideanView3DAnimationScaleTranslate(euclideanView3D view3D, euclideanView3DAnimator animator,
 			double x, double y, double z, double newScale, int steps) {
 		super(view3D, animator);
 		animatedScaleEndX = x;

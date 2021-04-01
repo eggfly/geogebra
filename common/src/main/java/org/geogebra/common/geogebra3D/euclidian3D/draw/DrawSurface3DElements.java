@@ -1,11 +1,11 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterSurface;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterSurfaceElements;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Geometry3DGetterManager;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterSurface;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterSurfaceElements;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Geometry3DGetterManager;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.kernelND.SurfaceEvaluable;
 import org.geogebra.common.kernel.matrix.Coords3;
@@ -28,7 +28,7 @@ public class DrawSurface3DElements extends DrawSurface3D {
 	 * @param surface
 	 *            surface
 	 */
-	public DrawSurface3DElements(EuclidianView3D a_view3d,
+	public DrawSurface3DElements(euclideanView3D a_view3d,
 			SurfaceEvaluable surface) {
 		super(a_view3d, surface);
 	}

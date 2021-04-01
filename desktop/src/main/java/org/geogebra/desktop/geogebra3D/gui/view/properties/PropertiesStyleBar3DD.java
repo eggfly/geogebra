@@ -47,11 +47,11 @@ public class PropertiesStyleBar3DD extends PropertiesStyleBarD {
 
 		super.updateGUI();
 
-		buttonMap.get(OptionType.EUCLIDIAN3D)
-				.setVisible(app.getGuiManager().showView(App.VIEW_EUCLIDIAN3D));
+		buttonMap.get(OptionType.euclidean3D)
+				.setVisible(app.getGuiManager().showView(App.VIEW_euclidean3D));
 
-		buttonMap.get(OptionType.EUCLIDIAN_FOR_PLANE)
-				.setVisible(app.hasEuclidianViewForPlaneVisible());
+		buttonMap.get(OptionType.euclidean_FOR_PLANE)
+				.setVisible(app.haseuclideanViewForPlaneVisible());
 
 	}
 

@@ -4,9 +4,9 @@ import org.geogebra.common.GeoGebraConstants.Platform;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.DrawEquation;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.DrawEquation;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.factories.CASFactory;
 import org.geogebra.common.factories.CASFactoryDummy;
@@ -88,7 +88,7 @@ public class AppCommon extends App {
         initLocalization();
 		getLocalization().initTranslateCommand();
 		initSettings();
-		initEuclidianViews();
+		initeuclideanViews();
 		Layout.initializeDefaultPerspectives(this, 0.2);
 		Log.setLogger(new Log() {
 
@@ -130,11 +130,11 @@ public class AppCommon extends App {
     }
 
     @Override
-    protected EuclidianView newEuclidianView(boolean[] showAxes1, boolean showGrid1) {
-		getSettings().getEuclidian(1).setPreferredSize(
+    protected euclideanView neweuclideanView(boolean[] showAxes1, boolean showGrid1) {
+		getSettings().geteuclidean(1).setPreferredSize(
 				AwtFactory.getPrototype().newDimension(800, 600));
-		return new EuclidianViewNoGui(getEuclidianController(), 1,
-				getSettings().getEuclidian(1),
+		return new euclideanViewNoGui(geteuclideanController(), 1,
+				getSettings().geteuclidean(1),
 				createGraphics());
     }
 
@@ -266,17 +266,17 @@ public class AppCommon extends App {
     }
 
     @Override
-    public EuclidianView getActiveEuclidianView() {
-		return getEuclidianView1();
+    public euclideanView getActiveeuclideanView() {
+		return geteuclideanView1();
     }
 
     @Override
-    public boolean hasEuclidianView2EitherShowingOrNot(int idx) {
+    public boolean haseuclideanView2EitherShowingOrNot(int idx) {
         return false;
     }
 
     @Override
-    public boolean isShowingEuclidianView2(int idx) {
+    public boolean isShowingeuclideanView2(int idx) {
         return false;
     }
 
@@ -417,21 +417,21 @@ public class AppCommon extends App {
 
 			@Override
 			protected void exportPNGClipboard(boolean transparent, int DPI,
-					double exportScale, EuclidianView ev) {
+					double exportScale, euclideanView ev) {
 				// stub
 
 			}
 
 			@Override
 			protected void exportPNGClipboardDPIisNaN(boolean transparent,
-					double exportScale, EuclidianView ev) {
+					double exportScale, euclideanView ev) {
 				// stub
 
 			}
 
 			@Override
 			protected String base64encodePNG(boolean transparent, double DPI,
-					double exportScale, EuclidianView ev) {
+					double exportScale, euclideanView ev) {
 				// stub
 				return "";
 			}
@@ -609,7 +609,7 @@ public class AppCommon extends App {
     }
 
     @Override
-    public EuclidianView createEuclidianView() {
+    public euclideanView createeuclideanView() {
         return null;
     }
 
@@ -649,8 +649,8 @@ public class AppCommon extends App {
     }
 
     @Override
-    public EuclidianController newEuclidianController(Kernel kernel1) {
-		return new EuclidianControllerNoGui(this, kernel1);
+    public euclideanController neweuclideanController(Kernel kernel1) {
+		return new euclideanControllerNoGui(this, kernel1);
     }
 
     @Override

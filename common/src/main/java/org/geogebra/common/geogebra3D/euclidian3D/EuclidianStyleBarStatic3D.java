@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D;
+package org.geogebra.common.geogebra3D.euclidean3D;
 
 import java.util.HashMap;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.geogebra3D.kernel3D.ConstructionDefaults3D;
 import org.geogebra.common.kernel.ConstructionDefaults;
 
@@ -12,7 +12,7 @@ import org.geogebra.common.kernel.ConstructionDefaults;
  * @author mathieu
  *
  */
-public class EuclidianStyleBarStatic3D {
+public class euclideanStyleBarStatic3D {
 
 	/**
 	 * fill map for 3D
@@ -24,57 +24,57 @@ public class EuclidianStyleBarStatic3D {
 			HashMap<Integer, Integer> defaultGeoMap) {
 
 		// lines
-		defaultGeoMap.put(EuclidianConstants.MODE_ORTHOGONAL_THREE_D,
+		defaultGeoMap.put(euclideanConstants.MODE_ORTHOGONAL_THREE_D,
 				ConstructionDefaults.DEFAULT_LINE);
 
 		// conics
-		defaultGeoMap.put(EuclidianConstants.MODE_CIRCLE_AXIS_POINT,
+		defaultGeoMap.put(euclideanConstants.MODE_CIRCLE_AXIS_POINT,
 				ConstructionDefaults.DEFAULT_CONIC);
-		defaultGeoMap.put(EuclidianConstants.MODE_CIRCLE_POINT_RADIUS_DIRECTION,
+		defaultGeoMap.put(euclideanConstants.MODE_CIRCLE_POINT_RADIUS_DIRECTION,
 				ConstructionDefaults.DEFAULT_CONIC);
 
 		// intersection curve
-		defaultGeoMap.put(EuclidianConstants.MODE_INTERSECTION_CURVE,
+		defaultGeoMap.put(euclideanConstants.MODE_INTERSECTION_CURVE,
 				ConstructionDefaults3D.DEFAULT_INTERSECTION_CURVE);
 
 		// planes
-		defaultGeoMap.put(EuclidianConstants.MODE_PLANE_THREE_POINTS,
+		defaultGeoMap.put(euclideanConstants.MODE_PLANE_THREE_POINTS,
 				ConstructionDefaults3D.DEFAULT_PLANE3D);
-		defaultGeoMap.put(EuclidianConstants.MODE_PLANE,
+		defaultGeoMap.put(euclideanConstants.MODE_PLANE,
 				ConstructionDefaults3D.DEFAULT_PLANE3D);
-		defaultGeoMap.put(EuclidianConstants.MODE_ORTHOGONAL_PLANE,
+		defaultGeoMap.put(euclideanConstants.MODE_ORTHOGONAL_PLANE,
 				ConstructionDefaults3D.DEFAULT_PLANE3D);
-		defaultGeoMap.put(EuclidianConstants.MODE_PARALLEL_PLANE,
+		defaultGeoMap.put(euclideanConstants.MODE_PARALLEL_PLANE,
 				ConstructionDefaults3D.DEFAULT_PLANE3D);
 
 		// spheres
-		defaultGeoMap.put(EuclidianConstants.MODE_SPHERE_POINT_RADIUS,
+		defaultGeoMap.put(euclideanConstants.MODE_SPHERE_POINT_RADIUS,
 				ConstructionDefaults3D.DEFAULT_QUADRIC);
-		defaultGeoMap.put(EuclidianConstants.MODE_SPHERE_TWO_POINTS,
+		defaultGeoMap.put(euclideanConstants.MODE_SPHERE_TWO_POINTS,
 				ConstructionDefaults3D.DEFAULT_QUADRIC);
 
 		// cylinders, cones
-		defaultGeoMap.put(EuclidianConstants.MODE_CONE_TWO_POINTS_RADIUS,
+		defaultGeoMap.put(euclideanConstants.MODE_CONE_TWO_POINTS_RADIUS,
 				ConstructionDefaults.DEFAULT_PYRAMID_AND_CONE);
-		defaultGeoMap.put(EuclidianConstants.MODE_CYLINDER_TWO_POINTS_RADIUS,
+		defaultGeoMap.put(euclideanConstants.MODE_CYLINDER_TWO_POINTS_RADIUS,
 				ConstructionDefaults.DEFAULT_PRISM_AND_CYLINDER);
-		defaultGeoMap.put(EuclidianConstants.MODE_EXTRUSION,
+		defaultGeoMap.put(euclideanConstants.MODE_EXTRUSION,
 				ConstructionDefaults.DEFAULT_PRISM_AND_CYLINDER);
-		defaultGeoMap.put(EuclidianConstants.MODE_CONIFY,
+		defaultGeoMap.put(euclideanConstants.MODE_CONIFY,
 				ConstructionDefaults.DEFAULT_PYRAMID_AND_CONE);
 
 		// polyhedrons
-		defaultGeoMap.put(EuclidianConstants.MODE_PYRAMID,
+		defaultGeoMap.put(euclideanConstants.MODE_PYRAMID,
 				ConstructionDefaults.DEFAULT_PYRAMID_AND_CONE);
-		defaultGeoMap.put(EuclidianConstants.MODE_PRISM,
+		defaultGeoMap.put(euclideanConstants.MODE_PRISM,
 				ConstructionDefaults.DEFAULT_PRISM_AND_CYLINDER);
-		defaultGeoMap.put(EuclidianConstants.MODE_TETRAHEDRON,
+		defaultGeoMap.put(euclideanConstants.MODE_TETRAHEDRON,
 				ConstructionDefaults.DEFAULT_PYRAMID_AND_CONE);
-		defaultGeoMap.put(EuclidianConstants.MODE_CUBE,
+		defaultGeoMap.put(euclideanConstants.MODE_CUBE,
 				ConstructionDefaults.DEFAULT_POLYHEDRON);
 
 		// net
-		defaultGeoMap.put(EuclidianConstants.MODE_NET,
+		defaultGeoMap.put(euclideanConstants.MODE_NET,
 				ConstructionDefaults3D.DEFAULT_NET);
 
 	}

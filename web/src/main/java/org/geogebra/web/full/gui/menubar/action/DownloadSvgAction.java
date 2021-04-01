@@ -3,7 +3,7 @@ package org.geogebra.web.full.gui.menubar.action;
 import org.geogebra.web.full.gui.menubar.DefaultMenuAction;
 import org.geogebra.web.full.main.AppWFull;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 
 /**
  * Exports SVG.
@@ -27,7 +27,7 @@ public class DownloadSvgAction extends DefaultMenuAction<Void> {
 	}
 
 	private String getUrl() {
-		EuclidianViewWInterface ev = (EuclidianViewWInterface) app.getActiveEuclidianView();
+		euclideanViewWInterface ev = (euclideanViewWInterface) app.getActiveeuclideanView();
 		return Browser.encodeSVG(ev.getExportSVG(1, false));
 	}
 }

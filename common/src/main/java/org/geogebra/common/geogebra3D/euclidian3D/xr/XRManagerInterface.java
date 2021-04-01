@@ -1,6 +1,6 @@
-package org.geogebra.common.geogebra3D.euclidian3D.xr;
+package org.geogebra.common.geogebra3D.euclidean3D.xr;
 
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.kernel.matrix.Coords;
 

@@ -1,6 +1,6 @@
 package org.geogebra.common.main;
 
-import org.geogebra.common.euclidian.DrawEquation;
+import org.geogebra.common.euclidean.DrawEquation;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.jre.headless.App3DCompanionHeadless;
 import org.geogebra.common.jre.headless.AppCommon;

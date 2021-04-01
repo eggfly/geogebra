@@ -1,9 +1,9 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D;
 
 /**
  * Manager to create GLLists using GL elements methods
@@ -34,7 +34,7 @@ public class ManagerElementForGLList extends Manager {
 	 * @param managerOriginal
 	 *            wrapped manager
 	 */
-	public ManagerElementForGLList(Renderer renderer, EuclidianView3D view3d,
+	public ManagerElementForGLList(Renderer renderer, euclideanView3D view3d,
 			Manager managerOriginal) {
 		super(view3d);
 		setRenderer(renderer);

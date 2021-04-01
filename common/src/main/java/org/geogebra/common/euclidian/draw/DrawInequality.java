@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,9 +8,9 @@ import java.util.TreeSet;
 import org.geogebra.common.awt.GArea;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.GeneralPathClipped;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.arithmetic.FunctionNVar;
@@ -62,7 +62,7 @@ public class DrawInequality extends Drawable {
 	 * @param function
 	 *            boolean 2-var function
 	 */
-	public DrawInequality(EuclidianView view, FunctionalNVar function) {
+	public DrawInequality(euclideanView view, FunctionalNVar function) {
 		this.view = view;
 		geo = (GeoElement) function;
 		this.function = function;
@@ -389,7 +389,7 @@ public class DrawInequality extends Drawable {
 
 	}
 
-	private DrawInequality(IneqTree tree, EuclidianView view, GeoElement geo) {
+	private DrawInequality(IneqTree tree, euclideanView view, GeoElement geo) {
 		this.view = view;
 		this.geo = geo;
 		setForceNoFill(true);
@@ -399,7 +399,7 @@ public class DrawInequality extends Drawable {
 	@Override
 	final public void update() {
 		// take line g here, not geo this object may be used for conics too
-		isVisible = geo.isEuclidianVisible() && function.isBooleanFunction()
+		isVisible = geo.iseuclideanVisible() && function.isBooleanFunction()
 				&& function.getFunctionVariables().length < 3;
 		if (!isVisible) {
 			return;
@@ -671,7 +671,7 @@ public class DrawInequality extends Drawable {
 
 	@Override
 	public boolean hit(int x, int y, int hitThreshold) {
-		if (!geo.isEuclidianVisible()) {
+		if (!geo.iseuclideanVisible()) {
 			return false;
 		}
 		if (geo instanceof GeoFunction && ((GeoFunction) geo).showOnAxis()

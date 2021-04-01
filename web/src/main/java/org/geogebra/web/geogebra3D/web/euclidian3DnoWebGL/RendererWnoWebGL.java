@@ -1,10 +1,10 @@
-package org.geogebra.web.geogebra3D.web.euclidian3DnoWebGL;
+package org.geogebra.web.geogebra3D.web.euclidean3DnoWebGL;
 
 import org.geogebra.common.awt.GBufferedImage;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawLabel3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawLabel3D;
 import org.geogebra.common.util.debug.Log;
-import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianView3DW;
-import org.geogebra.web.geogebra3D.web.euclidian3D.openGL.RendererWithImplW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.euclideanView3DW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.openGL.RendererWithImplW;
 
 import com.google.gwt.canvas.client.Canvas;
 
@@ -22,7 +22,7 @@ public class RendererWnoWebGL extends RendererWithImplW {
 	 * @param view
 	 *            3D view
 	 */
-	public RendererWnoWebGL(EuclidianView3DW view) {
+	public RendererWnoWebGL(euclideanView3DW view) {
 		super();
 		this.view3D = view;
 		webGLCanvas = Canvas.createIfSupported();

@@ -6,13 +6,13 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.draw.DrawAngle;
-import org.geogebra.common.euclidian.draw.DrawInequality;
-import org.geogebra.common.euclidian.draw.DrawLine;
-import org.geogebra.common.euclidian.draw.DrawPoint;
-import org.geogebra.common.euclidian.plot.CurveSegmentPlotter;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.draw.DrawAngle;
+import org.geogebra.common.euclidean.draw.DrawInequality;
+import org.geogebra.common.euclidean.draw.DrawLine;
+import org.geogebra.common.euclidean.draw.DrawPoint;
+import org.geogebra.common.euclidean.plot.CurveSegmentPlotter;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
@@ -84,7 +84,7 @@ public abstract class GeoGebraExport {
 	private App app;
 	protected Kernel kernel;
 	protected Construction construction;
-	protected EuclidianView euclidianView;
+	protected euclideanView euclideanView;
 	protected ExportSettings frame;
 	protected HashMap<GColor, String> customColor;
 	protected double xunit;
@@ -107,7 +107,7 @@ public abstract class GeoGebraExport {
 		this.app = app;
 		this.kernel = app.getKernel();
 		this.construction = kernel.getConstruction();
-		this.euclidianView = app.getActiveEuclidianView();
+		this.euclideanView = app.getActiveeuclideanView();
 		this.tpl = StringTemplate.printFigures(StringType.PSTRICKS, 12, false);
 		initBounds();
 	}
@@ -126,11 +126,11 @@ public abstract class GeoGebraExport {
 
 	// Functions added to access and modify xmin, xmax, ymin and ymax
 	// When xmin,xmax,ymin or ymax are changed
-	// the selected area is reported accodingly on the euclidianView.
+	// the selected area is reported accodingly on the euclideanView.
 	// This is not visible, on the view, but one may expect that when
 	// the selection rectangle is changed it is displayed on the view.
-	// This may be implemented by changing the class EuclidianView.
-	// Furthermore the definition of a class EuclidianView listerner
+	// This may be implemented by changing the class euclideanView.
+	// Furthermore the definition of a class euclideanView listerner
 	// which this class would implement would be desirable so that
 	// when the selection is modified by the mouse, this is reported
 	// to the values xmin, xmax, ymin and ymax of instances of this class.
@@ -139,15 +139,15 @@ public abstract class GeoGebraExport {
 	 * Change selection rectanlge to fit user input.
 	 */
 	public void refreshSelectionRectangle() {
-		int x1 = euclidianView.toScreenCoordX(xmin);
-		int x2 = euclidianView.toScreenCoordX(xmax);
-		int y1 = euclidianView.toScreenCoordY(ymin);
-		int y2 = euclidianView.toScreenCoordY(ymax);
+		int x1 = euclideanView.toScreenCoordX(xmin);
+		int x2 = euclideanView.toScreenCoordX(xmax);
+		int y1 = euclideanView.toScreenCoordY(ymin);
+		int y2 = euclideanView.toScreenCoordY(ymax);
 		GRectangle rec = AwtFactory.getPrototype().newRectangle(x1, y2, x2 - x1,
 				y1 - y2);
 		// Application.debug(x1+" "+x2+" "+y1+" "+y2);
-		euclidianView.setSelectionRectangle(rec);
-		euclidianView.repaint();
+		euclideanView.setSelectionRectangle(rec);
+		euclideanView.repaint();
 	}
 
 	/**
@@ -223,17 +223,17 @@ public abstract class GeoGebraExport {
 		// Changes to make xmin,xmax,ymin,ymax be defined by the selection
 		// rectangle
 		// when this one is defined.
-		GRectangle rect = this.euclidianView.getSelectionRectangle();
+		GRectangle rect = this.euclideanView.getSelectionRectangle();
 		if (rect != null) {
-			xmin = euclidianView.toRealWorldCoordX(rect.getMinX());
-			xmax = euclidianView.toRealWorldCoordX(rect.getMaxX());
-			ymin = euclidianView.toRealWorldCoordY(rect.getMaxY());
-			ymax = euclidianView.toRealWorldCoordY(rect.getMinY());
+			xmin = euclideanView.toRealWorldCoordX(rect.getMinX());
+			xmax = euclideanView.toRealWorldCoordX(rect.getMaxX());
+			ymin = euclideanView.toRealWorldCoordY(rect.getMaxY());
+			ymax = euclideanView.toRealWorldCoordY(rect.getMinY());
 		} else {
-			xmin = euclidianView.getXmin();
-			xmax = euclidianView.getXmax();
-			ymin = euclidianView.getYmin();
-			ymax = euclidianView.getYmax();
+			xmin = euclideanView.getXmin();
+			xmax = euclideanView.getXmax();
+			ymin = euclideanView.getYmin();
+			ymax = euclideanView.getYmax();
 		}
 	}
 
@@ -333,8 +333,8 @@ public abstract class GeoGebraExport {
 			for (int i = 0; i < geo.size(); i++) {
 				drawGeoElement(geo.get(i), true, false);
 			}
-		} else if (g.isWhollyIn2DView(app.getEuclidianView1())
-				&& (g.isEuclidianVisible() || trimmedInter)) {
+		} else if (g.isWhollyIn2DView(app.geteuclideanView1())
+				&& (g.iseuclideanVisible() || trimmedInter)) {
 			if (g instanceof GeoPointND) {
 				drawGeoPoint((GeoPointND) g);
 				drawLabel(g, null);
@@ -360,7 +360,7 @@ public abstract class GeoGebraExport {
 					drawAngle((GeoAngle) g);
 					// String
 					// label="$"+Util.toLaTeXString(g.getLabelDescription(),true)+"$";
-					drawLabel(g, euclidianView.getDrawableFor(g));
+					drawLabel(g, euclideanView.getDrawableFor(g));
 				}
 			} else if (g instanceof GeoImplicit) {
 				drawImplicitPoly((GeoImplicit) g);
@@ -429,7 +429,7 @@ public abstract class GeoGebraExport {
 					point.setObjColor(geo.getObjectColor());
 					point.setPointSize(geo.getLineThickness());
 					point.setLabelOffset(geo.labelOffsetX, geo.labelOffsetY);
-					DrawPoint drawPoint = new DrawPoint(euclidianView, point);
+					DrawPoint drawPoint = new DrawPoint(euclideanView, point);
 					drawPoint.setGeoElement(geo);
 					drawGeoPoint(point);
 					drawLabel(point, drawPoint);
@@ -443,8 +443,8 @@ public abstract class GeoGebraExport {
 						lines[i].setLineThickness(geo.getLineThickness());
 						lines[i].lineType = geo.lineType;
 					}
-					drawLines[0] = new DrawLine(euclidianView, lines[0]);
-					drawLines[1] = new DrawLine(euclidianView, lines[1]);
+					drawLines[0] = new DrawLine(euclideanView, lines[0]);
+					drawLines[1] = new DrawLine(euclideanView, lines[1]);
 					drawLines[0].setGeoElement(geo);
 					drawLines[1].setGeoElement(geo);
 					drawGeoLine(lines[0]);
@@ -528,7 +528,7 @@ public abstract class GeoGebraExport {
 	}
 
 	protected int resizePt(int size) {
-		double height_geogebra = euclidianView.getHeight() / 30.0;
+		double height_geogebra = euclideanView.getHeight() / 30.0;
 		double height_latex = frame.getLatexHeight();
 		double ratio = height_latex / height_geogebra;
 		int tmp = (int) Math.round(ratio * size);
@@ -709,7 +709,7 @@ public abstract class GeoGebraExport {
 			boolean trasparency);
 
 	/**
-	 * Export as PSTricks or PGF/TikZ Text on euclidian view
+	 * Export as PSTricks or PGF/TikZ Text on euclidean view
 	 * 
 	 * @param geo
 	 *            The text to export
@@ -844,7 +844,7 @@ public abstract class GeoGebraExport {
 		} else {
 			ef = geo;
 		}
-		DrawInequality drawable = new DrawInequality(euclidianView, ef);
+		DrawInequality drawable = new DrawInequality(euclideanView, ef);
 		GGraphics2D g = null;
 		IneqTree tree = ef.getFunction().getIneqs();
 
@@ -980,8 +980,8 @@ public abstract class GeoGebraExport {
 
 	protected void mark(double[] A, double[] B, int deco, GeoElementND geo) {
 		// calc midpoint (midX, midY) and perpendicular vector (nx, ny)
-		euclidianView.toScreenCoords(A);
-		euclidianView.toScreenCoords(B);
+		euclideanView.toScreenCoords(A);
+		euclideanView.toScreenCoords(B);
 		double midX = (A[0] + B[0]) / 2.0;
 		double midY = (A[1] + B[1]) / 2.0;
 		double nx = A[1] - B[1];
@@ -1000,10 +1000,10 @@ public abstract class GeoGebraExport {
 			factor = tickLength / nLength;
 			nx *= factor / xunit;
 			ny *= factor / yunit;
-			x1 = euclidianView.toRealWorldCoordX(midX - nx);
-			y1 = euclidianView.toRealWorldCoordY(midY - ny);
-			x2 = euclidianView.toRealWorldCoordX(midX + nx);
-			y2 = euclidianView.toRealWorldCoordY(midY + ny);
+			x1 = euclideanView.toRealWorldCoordX(midX - nx);
+			y1 = euclideanView.toRealWorldCoordY(midY - ny);
+			x2 = euclideanView.toRealWorldCoordX(midX + nx);
+			y2 = euclideanView.toRealWorldCoordY(midY + ny);
 			drawLine(x1, y1, x2, y2, geo);
 			break;
 		case GeoElementND.DECORATION_SEGMENT_TWO_TICKS:
@@ -1015,15 +1015,15 @@ public abstract class GeoGebraExport {
 			factor = tickLength / nLength;
 			nx *= factor;
 			ny *= factor;
-			x1 = euclidianView.toRealWorldCoordX(midX + vx - nx);
-			x2 = euclidianView.toRealWorldCoordX(midX + vx + nx);
-			y1 = euclidianView.toRealWorldCoordY(midY + vy - ny);
-			y2 = euclidianView.toRealWorldCoordY(midY + vy + ny);
+			x1 = euclideanView.toRealWorldCoordX(midX + vx - nx);
+			x2 = euclideanView.toRealWorldCoordX(midX + vx + nx);
+			y1 = euclideanView.toRealWorldCoordY(midY + vy - ny);
+			y2 = euclideanView.toRealWorldCoordY(midY + vy + ny);
 			drawLine(x1, y1, x2, y2, geo);
-			x1 = euclidianView.toRealWorldCoordX(midX - vx - nx);
-			x2 = euclidianView.toRealWorldCoordX(midX - vx + nx);
-			y1 = euclidianView.toRealWorldCoordY(midY - vy - ny);
-			y2 = euclidianView.toRealWorldCoordY(midY - vy + ny);
+			x1 = euclideanView.toRealWorldCoordX(midX - vx - nx);
+			x2 = euclideanView.toRealWorldCoordX(midX - vx + nx);
+			y1 = euclideanView.toRealWorldCoordY(midY - vy - ny);
+			y2 = euclideanView.toRealWorldCoordY(midY - vy + ny);
 			drawLine(x1, y1, x2, y2, geo);
 			break;
 		case GeoElementND.DECORATION_SEGMENT_THREE_TICKS:
@@ -1035,20 +1035,20 @@ public abstract class GeoGebraExport {
 			factor = tickLength / nLength;
 			nx *= factor;
 			ny *= factor;
-			x1 = euclidianView.toRealWorldCoordX(midX + vx - nx);
-			x2 = euclidianView.toRealWorldCoordX(midX + vx + nx);
-			y1 = euclidianView.toRealWorldCoordY(midY + vy - ny);
-			y2 = euclidianView.toRealWorldCoordY(midY + vy + ny);
+			x1 = euclideanView.toRealWorldCoordX(midX + vx - nx);
+			x2 = euclideanView.toRealWorldCoordX(midX + vx + nx);
+			y1 = euclideanView.toRealWorldCoordY(midY + vy - ny);
+			y2 = euclideanView.toRealWorldCoordY(midY + vy + ny);
 			drawLine(x1, y1, x2, y2, geo);
-			x1 = euclidianView.toRealWorldCoordX(midX - nx);
-			x2 = euclidianView.toRealWorldCoordX(midX + nx);
-			y1 = euclidianView.toRealWorldCoordY(midY - ny);
-			y2 = euclidianView.toRealWorldCoordY(midY + ny);
+			x1 = euclideanView.toRealWorldCoordX(midX - nx);
+			x2 = euclideanView.toRealWorldCoordX(midX + nx);
+			y1 = euclideanView.toRealWorldCoordY(midY - ny);
+			y2 = euclideanView.toRealWorldCoordY(midY + ny);
 			drawLine(x1, y1, x2, y2, geo);
-			x1 = euclidianView.toRealWorldCoordX(midX - vx - nx);
-			x2 = euclidianView.toRealWorldCoordX(midX - vx + nx);
-			y1 = euclidianView.toRealWorldCoordY(midY - vy - ny);
-			y2 = euclidianView.toRealWorldCoordY(midY - vy + ny);
+			x1 = euclideanView.toRealWorldCoordX(midX - vx - nx);
+			x2 = euclideanView.toRealWorldCoordX(midX - vx + nx);
+			y1 = euclideanView.toRealWorldCoordY(midY - vy - ny);
+			y2 = euclideanView.toRealWorldCoordY(midY - vy + ny);
 			drawLine(x1, y1, x2, y2, geo);
 			break;
 		case GeoElementND.DECORATION_SEGMENT_ONE_ARROW:
@@ -1060,18 +1060,18 @@ public abstract class GeoGebraExport {
 			factor = tickLength / nLength;
 			nx *= factor;
 			ny *= factor;
-			x1 = euclidianView.toRealWorldCoordX(midX - arrowlength * vx);
-			y1 = euclidianView.toRealWorldCoordY(midY - arrowlength * vy);
-			x2 = euclidianView.toRealWorldCoordX(
+			x1 = euclideanView.toRealWorldCoordX(midX - arrowlength * vx);
+			y1 = euclideanView.toRealWorldCoordY(midY - arrowlength * vy);
+			x2 = euclideanView.toRealWorldCoordX(
 					midX - arrowlength * vx + arrowlength * (nx + vx));
-			y2 = euclidianView.toRealWorldCoordY(
+			y2 = euclideanView.toRealWorldCoordY(
 					midY - arrowlength * vy + arrowlength * (ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
-			x1 = euclidianView.toRealWorldCoordX(midX - arrowlength * vx);
-			y1 = euclidianView.toRealWorldCoordY(midY - arrowlength * vy);
-			x2 = euclidianView.toRealWorldCoordX(
+			x1 = euclideanView.toRealWorldCoordX(midX - arrowlength * vx);
+			y1 = euclideanView.toRealWorldCoordY(midY - arrowlength * vy);
+			x2 = euclideanView.toRealWorldCoordX(
 					midX - arrowlength * vx + arrowlength * (-nx + vx));
-			y2 = euclidianView.toRealWorldCoordY(
+			y2 = euclideanView.toRealWorldCoordY(
 					midY - arrowlength * vy + arrowlength * (-ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
 			break;
@@ -1084,33 +1084,33 @@ public abstract class GeoGebraExport {
 			factor = tickLength / nLength;
 			nx *= factor;
 			ny *= factor;
-			x1 = euclidianView.toRealWorldCoordX(midX - 2 * arrowlength * vx);
-			y1 = euclidianView.toRealWorldCoordY(midY - 2 * arrowlength * vy);
-			x2 = euclidianView.toRealWorldCoordX(
+			x1 = euclideanView.toRealWorldCoordX(midX - 2 * arrowlength * vx);
+			y1 = euclideanView.toRealWorldCoordY(midY - 2 * arrowlength * vy);
+			x2 = euclideanView.toRealWorldCoordX(
 					midX - 2 * arrowlength * vx + arrowlength * (nx + vx));
-			y2 = euclidianView.toRealWorldCoordY(
+			y2 = euclideanView.toRealWorldCoordY(
 					midY - 2 * arrowlength * vy + arrowlength * (ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
-			x1 = euclidianView.toRealWorldCoordX(midX - 2 * arrowlength * vx);
-			y1 = euclidianView.toRealWorldCoordY(midY - 2 * arrowlength * vy);
-			x2 = euclidianView.toRealWorldCoordX(
+			x1 = euclideanView.toRealWorldCoordX(midX - 2 * arrowlength * vx);
+			y1 = euclideanView.toRealWorldCoordY(midY - 2 * arrowlength * vy);
+			x2 = euclideanView.toRealWorldCoordX(
 					midX - 2 * arrowlength * vx + arrowlength * (-nx + vx));
-			y2 = euclidianView.toRealWorldCoordY(
+			y2 = euclideanView.toRealWorldCoordY(
 					midY - 2 * arrowlength * vy + arrowlength * (-ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
 
-			x1 = euclidianView.toRealWorldCoordX(midX);
-			y1 = euclidianView.toRealWorldCoordY(midY);
-			x2 = euclidianView
+			x1 = euclideanView.toRealWorldCoordX(midX);
+			y1 = euclideanView.toRealWorldCoordY(midY);
+			x2 = euclideanView
 					.toRealWorldCoordX(midX + arrowlength * (nx + vx));
-			y2 = euclidianView
+			y2 = euclideanView
 					.toRealWorldCoordY(midY + arrowlength * (ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
-			x1 = euclidianView.toRealWorldCoordX(midX);
-			y1 = euclidianView.toRealWorldCoordY(midY);
-			x2 = euclidianView
+			x1 = euclideanView.toRealWorldCoordX(midX);
+			y1 = euclideanView.toRealWorldCoordY(midY);
+			x2 = euclideanView
 					.toRealWorldCoordX(midX + arrowlength * (-nx + vx));
-			y2 = euclidianView
+			y2 = euclideanView
 					.toRealWorldCoordY(midY + arrowlength * (-ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
 			break;
@@ -1123,48 +1123,48 @@ public abstract class GeoGebraExport {
 			factor = tickLength / nLength;
 			nx *= factor;
 			ny *= factor;
-			x1 = euclidianView.toRealWorldCoordX(midX - arrowlength * vx);
-			y1 = euclidianView.toRealWorldCoordY(midY - arrowlength * vy);
-			x2 = euclidianView.toRealWorldCoordX(
+			x1 = euclideanView.toRealWorldCoordX(midX - arrowlength * vx);
+			y1 = euclideanView.toRealWorldCoordY(midY - arrowlength * vy);
+			x2 = euclideanView.toRealWorldCoordX(
 					midX - arrowlength * vx + arrowlength * (nx + vx));
-			y2 = euclidianView.toRealWorldCoordY(
+			y2 = euclideanView.toRealWorldCoordY(
 					midY - arrowlength * vy + arrowlength * (ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
-			x1 = euclidianView.toRealWorldCoordX(midX - arrowlength * vx);
-			y1 = euclidianView.toRealWorldCoordY(midY - arrowlength * vy);
-			x2 = euclidianView.toRealWorldCoordX(
+			x1 = euclideanView.toRealWorldCoordX(midX - arrowlength * vx);
+			y1 = euclideanView.toRealWorldCoordY(midY - arrowlength * vy);
+			x2 = euclideanView.toRealWorldCoordX(
 					midX - arrowlength * vx + arrowlength * (-nx + vx));
-			y2 = euclidianView.toRealWorldCoordY(
+			y2 = euclideanView.toRealWorldCoordY(
 					midY - arrowlength * vy + arrowlength * (-ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
 
-			x1 = euclidianView.toRealWorldCoordX(midX + arrowlength * vx);
-			y1 = euclidianView.toRealWorldCoordY(midY + arrowlength * vy);
-			x2 = euclidianView.toRealWorldCoordX(
+			x1 = euclideanView.toRealWorldCoordX(midX + arrowlength * vx);
+			y1 = euclideanView.toRealWorldCoordY(midY + arrowlength * vy);
+			x2 = euclideanView.toRealWorldCoordX(
 					midX + arrowlength * vx + arrowlength * (nx + vx));
-			y2 = euclidianView.toRealWorldCoordY(
+			y2 = euclideanView.toRealWorldCoordY(
 					midY + arrowlength * vy + arrowlength * (ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
-			x1 = euclidianView.toRealWorldCoordX(midX + arrowlength * vx);
-			y1 = euclidianView.toRealWorldCoordY(midY + arrowlength * vy);
-			x2 = euclidianView.toRealWorldCoordX(
+			x1 = euclideanView.toRealWorldCoordX(midX + arrowlength * vx);
+			y1 = euclideanView.toRealWorldCoordY(midY + arrowlength * vy);
+			x2 = euclideanView.toRealWorldCoordX(
 					midX + arrowlength * vx + arrowlength * (-nx + vx));
-			y2 = euclidianView.toRealWorldCoordY(
+			y2 = euclideanView.toRealWorldCoordY(
 					midY + arrowlength * vy + arrowlength * (-ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
 
-			x1 = euclidianView.toRealWorldCoordX(midX - 3 * arrowlength * vx);
-			y1 = euclidianView.toRealWorldCoordY(midY - 3 * arrowlength * vy);
-			x2 = euclidianView.toRealWorldCoordX(
+			x1 = euclideanView.toRealWorldCoordX(midX - 3 * arrowlength * vx);
+			y1 = euclideanView.toRealWorldCoordY(midY - 3 * arrowlength * vy);
+			x2 = euclideanView.toRealWorldCoordX(
 					midX - 3 * arrowlength * vx + arrowlength * (nx + vx));
-			y2 = euclidianView.toRealWorldCoordY(
+			y2 = euclideanView.toRealWorldCoordY(
 					midY - 3 * arrowlength * vy + arrowlength * (ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
-			x1 = euclidianView.toRealWorldCoordX(midX - 3 * arrowlength * vx);
-			y1 = euclidianView.toRealWorldCoordY(midY - 3 * arrowlength * vy);
-			x2 = euclidianView.toRealWorldCoordX(
+			x1 = euclideanView.toRealWorldCoordX(midX - 3 * arrowlength * vx);
+			y1 = euclideanView.toRealWorldCoordY(midY - 3 * arrowlength * vy);
+			x2 = euclideanView.toRealWorldCoordX(
 					midX - 3 * arrowlength * vx + arrowlength * (-nx + vx));
-			y2 = euclidianView.toRealWorldCoordY(
+			y2 = euclideanView.toRealWorldCoordY(
 					midY - 3 * arrowlength * vy + arrowlength * (-ny + vy));
 			drawLine(x1, y1, x2, y2, geo);
 			break;
@@ -1196,26 +1196,26 @@ public abstract class GeoGebraExport {
 		case GeoElementND.DECORATION_ANGLE_TWO_ARCS:
 			rdiff = 4 + geo.getLineThickness() / 2d;
 			drawArc(geo, vertex, angSt, angEnd, r);
-			r -= rdiff / euclidianView.getXscale();
+			r -= rdiff / euclideanView.getXscale();
 			drawArc(geo, vertex, angSt, angEnd, r);
 			break;
 		case GeoElementND.DECORATION_ANGLE_THREE_ARCS:
 			rdiff = 4 + geo.getLineThickness() / 2d;
 			drawArc(geo, vertex, angSt, angEnd, r);
-			r -= rdiff / euclidianView.getXscale();
+			r -= rdiff / euclideanView.getXscale();
 			drawArc(geo, vertex, angSt, angEnd, r);
-			r -= rdiff / euclidianView.getXscale();
+			r -= rdiff / euclideanView.getXscale();
 			drawArc(geo, vertex, angSt, angEnd, r);
 			break;
 		case GeoElementND.DECORATION_ANGLE_ONE_TICK:
 			drawArc(geo, vertex, angSt, angEnd, r);
-			euclidianView.toScreenCoords(vertex);
+			euclideanView.toScreenCoords(vertex);
 			drawTick(geo, vertex, (angSt + angEnd) / 2);
 
 			break;
 		case GeoElementND.DECORATION_ANGLE_TWO_TICKS:
 			drawArc(geo, vertex, angSt, angEnd, r);
-			euclidianView.toScreenCoords(vertex);
+			euclideanView.toScreenCoords(vertex);
 			double[] angleTick = new double[2];
 			angleTick[0] = (2 * angSt + 3 * angEnd) / 5;
 			angleTick[1] = (3 * angSt + 2 * angEnd) / 5;
@@ -1232,7 +1232,7 @@ public abstract class GeoGebraExport {
 			break;
 		case GeoElementND.DECORATION_ANGLE_THREE_TICKS:
 			drawArc(geo, vertex, angSt, angEnd, r);
-			euclidianView.toScreenCoords(vertex);
+			euclideanView.toScreenCoords(vertex);
 			angleTick = new double[2];
 			angleTick[0] = (5 * angSt + 3 * angEnd) / 8;
 			angleTick[1] = (3 * angSt + 5 * angEnd) / 8;
@@ -1257,9 +1257,9 @@ public abstract class GeoGebraExport {
 	}
 
 	protected void drawAllElements() {
-		boolean increment = (euclidianView.getShowGrid()
-				|| euclidianView.getShowXaxis()
-				|| euclidianView.getShowYaxis());
+		boolean increment = (euclideanView.getShowGrid()
+				|| euclideanView.getShowXaxis()
+				|| euclideanView.getShowYaxis());
 		for (int step = 0; step < construction.steps(); step++) {
 			if (increment) {
 				beamerSlideNumber = step + 2;
@@ -1278,9 +1278,9 @@ public abstract class GeoGebraExport {
 
 	// added by Hoszu Henrietta
 	protected void drawAllInDependentElements() {
-		boolean increment = (euclidianView.getShowGrid()
-				|| euclidianView.getShowXaxis()
-				|| euclidianView.getShowYaxis());
+		boolean increment = (euclideanView.getShowGrid()
+				|| euclideanView.getShowXaxis()
+				|| euclideanView.getShowYaxis());
 		for (int step = 0; step < construction.steps(); step++) {
 			if (increment) {
 				beamerSlideNumber = step + 2;
@@ -1315,7 +1315,7 @@ public abstract class GeoGebraExport {
 
 		// Number of units that represents the font size:
 		int ggbSize = app.getGUIFontSize();
-		double ggbYUnit = euclidianView.getYscale();
+		double ggbYUnit = euclideanView.getYscale();
 		double fontUnits = ggbSize / ggbYUnit;
 		// Now, on the output, calculate the size in centimeter
 		double yunit1 = frame.getYUnit();
@@ -1727,7 +1727,7 @@ public abstract class GeoGebraExport {
 	protected boolean drawAngleAs(GeoAngle geo, int rightAngleStyleDot) {
 		return DoubleUtil.isEqual(geo.getValue(), Kernel.PI_HALF)
 				&& geo.isEmphasizeRightAngle()
-				&& euclidianView.getRightAngleStyle() == rightAngleStyleDot;
+				&& euclideanView.getRightAngleStyle() == rightAngleStyleDot;
 	}
 
 }

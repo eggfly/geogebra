@@ -22,7 +22,7 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.StringTemplate;
@@ -86,7 +86,7 @@ public class AlgoIntersectLines extends AlgoIntersectAbstract
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_INTERSECT;
+		return euclideanConstants.MODE_INTERSECT;
 	}
 
 	// for AlgoElement

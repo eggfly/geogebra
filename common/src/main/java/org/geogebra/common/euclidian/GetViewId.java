@@ -10,7 +10,7 @@
 
  */
 
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 /**
  * Interface for view containers (DockPanels) implementing getViewId method

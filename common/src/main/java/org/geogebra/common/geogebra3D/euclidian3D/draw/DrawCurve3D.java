@@ -1,14 +1,14 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.euclidian.plot.CurvePlotter;
-import org.geogebra.common.euclidian.plot.Gap;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D.Type;
+import org.geogebra.common.euclidean.plot.CurvePlotter;
+import org.geogebra.common.euclidean.plot.Gap;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D.Type;
 import org.geogebra.common.kernel.Path;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoFunction;
@@ -36,7 +36,7 @@ public class DrawCurve3D extends Drawable3DCurves implements HasZPick {
 	 * @param curve
 	 *            the 3D curve to draw
 	 */
-	public DrawCurve3D(EuclidianView3D a_view3d, CurveEvaluable curve) {
+	public DrawCurve3D(euclideanView3D a_view3d, CurveEvaluable curve) {
 		super(a_view3d, (GeoElement) curve);
 		this.curve = curve;
 
@@ -52,7 +52,7 @@ public class DrawCurve3D extends Drawable3DCurves implements HasZPick {
 	@Override
 	protected boolean updateForItSelf() {
 
-		EuclidianView3D view = getView3D();
+		euclideanView3D view = getView3D();
 
 		Renderer renderer = view.getRenderer();
 

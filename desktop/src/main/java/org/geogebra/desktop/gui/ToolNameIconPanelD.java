@@ -31,7 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Macro;
 import org.geogebra.common.main.Localization;
 import org.geogebra.common.util.Util;
@@ -212,7 +212,7 @@ public class ToolNameIconPanelD extends JPanel {
 
 				if (editHappens) {
 					int macroId = (macro.getKernel().getMacroID(macro)
-							+ EuclidianConstants.MACRO_MODE_ID_OFFSET);
+							+ euclideanConstants.MACRO_MODE_ID_OFFSET);
 					if (active) {
 						((GuiManagerD) app.getGuiManager())
 								.refreshCustomToolsInToolBar();

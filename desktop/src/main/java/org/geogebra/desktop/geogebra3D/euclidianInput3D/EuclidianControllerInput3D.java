@@ -1,4 +1,4 @@
-package org.geogebra.desktop.geogebra3D.euclidianInput3D;
+package org.geogebra.desktop.geogebra3D.euclideanInput3D;
 
 import java.awt.AWTException;
 import java.awt.Dimension;
@@ -10,14 +10,14 @@ import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianControllerCompanion;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.geogebra3D.input3D.EuclidianControllerInput3DCompanion;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanControllerCompanion;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.geogebra3D.input3D.euclideanControllerInput3DCompanion;
 import org.geogebra.common.geogebra3D.input3D.Input3D;
 import org.geogebra.common.kernel.Kernel;
-import org.geogebra.desktop.geogebra3D.euclidian3D.EuclidianController3DD;
-import org.geogebra.desktop.geogebra3D.euclidian3D.EuclidianView3DD;
+import org.geogebra.desktop.geogebra3D.euclidean3D.euclideanController3DD;
+import org.geogebra.desktop.geogebra3D.euclidean3D.euclideanView3DD;
 
 /**
  * controller with specific methods from leonar3do input system
@@ -25,7 +25,7 @@ import org.geogebra.desktop.geogebra3D.euclidian3D.EuclidianView3DD;
  * @author mathieu
  * 
  */
-public class EuclidianControllerInput3D extends EuclidianController3DD {
+public class euclideanControllerInput3D extends euclideanController3DD {
 
 	protected Input3D input3D;
 
@@ -40,12 +40,12 @@ public class EuclidianControllerInput3D extends EuclidianController3DD {
 	 * @param input3d
 	 *            input3d
 	 */
-	public EuclidianControllerInput3D(Kernel kernel, Input3D input3d) {
+	public euclideanControllerInput3D(Kernel kernel, Input3D input3d) {
 		super(kernel);
 
 		this.input3D = input3d;
 
-		((EuclidianControllerInput3DCompanion) companion).setInput3D(input3d);
+		((euclideanControllerInput3DCompanion) companion).setInput3D(input3d);
 
 		// screen dimensions
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment()
@@ -67,8 +67,8 @@ public class EuclidianControllerInput3D extends EuclidianController3DD {
 	}
 
 	@Override
-	protected EuclidianControllerCompanion newCompanion() {
-		return new EuclidianControllerInput3DCompanion(this);
+	protected euclideanControllerCompanion newCompanion() {
+		return new euclideanControllerInput3DCompanion(this);
 	}
 
 	private boolean isNotMovingObjectOrView() {
@@ -79,9 +79,9 @@ public class EuclidianControllerInput3D extends EuclidianController3DD {
 	public void updateInput3D() {
 
 		// update panel values
-		Dimension panelDimension = ((EuclidianView3DD) view3D).getJPanel()
+		Dimension panelDimension = ((euclideanView3DD) view3D).getJPanel()
 				.getSize();
-		Point panelPosition = ((EuclidianView3DD) view3D).getJPanel()
+		Point panelPosition = ((euclideanView3DD) view3D).getJPanel()
 				.getLocationOnScreen();
 
 		input3D.setPanel(panelDimension.width, panelDimension.height,
@@ -207,7 +207,7 @@ public class EuclidianControllerInput3D extends EuclidianController3DD {
 
 	@Override
 	public boolean cursor3DVisibleForCurrentMode(int cursorType) {
-		if (EuclidianConstants.isMoveOrSelectionMode(mode) && !input3D.hasMouseDirection()
+		if (euclideanConstants.isMoveOrSelectionMode(mode) && !input3D.hasMouseDirection()
 				&& !input3D.currentlyUseMouse2D()) {
 			return false;
 		}
@@ -233,7 +233,7 @@ public class EuclidianControllerInput3D extends EuclidianController3DD {
 			return super.getModeForShallMoveView(event);
 		}
 
-		return EuclidianConstants.MODE_MOVE;
+		return euclideanConstants.MODE_MOVE;
 	}
 
 	@Override
@@ -252,9 +252,9 @@ public class EuclidianControllerInput3D extends EuclidianController3DD {
 	 * release hand grabbing
 	 */
 	protected void releaseGrabbing() {
-		((EuclidianViewInput3D) view3D).getCompanion().getStationaryCoords()
+		((euclideanViewInput3D) view3D).getCompanion().getStationaryCoords()
 				.consumeLongDelay();
-		((EuclidianControllerInput3DCompanion) getCompanion())
+		((euclideanControllerInput3DCompanion) getCompanion())
 				.releaseGrabbing();
 	}
 

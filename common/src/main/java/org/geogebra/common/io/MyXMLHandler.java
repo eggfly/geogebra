@@ -75,11 +75,11 @@ import org.geogebra.common.main.MyError.Errors;
 import org.geogebra.common.main.error.ErrorHandler;
 import org.geogebra.common.main.settings.ConstructionProtocolSettings;
 import org.geogebra.common.main.settings.DataAnalysisSettings;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.main.settings.ProbabilityCalculatorSettings.Dist;
 import org.geogebra.common.main.settings.SpreadsheetSettings;
 import org.geogebra.common.main.settings.TableSettings;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.AsyncOperation;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.StringUtil;
@@ -103,9 +103,9 @@ public class MyXMLHandler implements DocHandler {
 	private static final int MODE_INVALID = -1;
 	private static final int MODE_GEOGEBRA = 1;
 	private static final int MODE_MACRO = 50;
-	private static final int MODE_EUCLIDIAN_VIEW = 100;
-	/** currently parsing tags for Euclidian3D view */
-	protected static final int MODE_EUCLIDIAN_VIEW3D = 101; // only for 3D
+	private static final int MODE_euclidean_VIEW = 100;
+	/** currently parsing tags for euclidean3D view */
+	protected static final int MODE_euclidean_VIEW3D = 101; // only for 3D
 	private static final int MODE_SPREADSHEET_VIEW = 150;
 	private static final int MODE_ALGEBRA_VIEW = 151;
 	// private static final int MODE_CAS_VIEW = 160;
@@ -201,21 +201,21 @@ public class MyXMLHandler implements DocHandler {
 	 * and EV2)
 	 */
 	protected boolean resetEVsettingsNeeded = false;
-	/** Euclidian settings */
-	protected EuclidianSettings evSet = null;
+	/** euclidean settings */
+	protected euclideanSettings evSet = null;
 	private static boolean isPreferencesXML = false;
 
 	TreeMap<String, String> casMap;
 
 	private int casMapParent;
 
-	private HashMap<EuclidianSettings, String> xmin = new HashMap<>();
-	private HashMap<EuclidianSettings, String> xmax = new HashMap<>();
-	private HashMap<EuclidianSettings, String> ymin = new HashMap<>();
-	private HashMap<EuclidianSettings, String> xtick = new HashMap<>();
-	private HashMap<EuclidianSettings, String> ytick = new HashMap<>();
-	private HashMap<EuclidianSettings, String> ztick = new HashMap<>();
-	private HashMap<EuclidianSettings, String> ymax = new HashMap<>();
+	private HashMap<euclideanSettings, String> xmin = new HashMap<>();
+	private HashMap<euclideanSettings, String> xmax = new HashMap<>();
+	private HashMap<euclideanSettings, String> ymin = new HashMap<>();
+	private HashMap<euclideanSettings, String> xtick = new HashMap<>();
+	private HashMap<euclideanSettings, String> ytick = new HashMap<>();
+	private HashMap<euclideanSettings, String> ztick = new HashMap<>();
+	private HashMap<euclideanSettings, String> ymax = new HashMap<>();
 	private ArrayList<String> entries;
 	private String subAppCode;
 
@@ -336,12 +336,12 @@ public class MyXMLHandler implements DocHandler {
 			startGeoGebraElement(eName, attrs);
 			break;
 
-		case MODE_EUCLIDIAN_VIEW:
-			startEuclidianViewElement(eName, attrs);
+		case MODE_euclidean_VIEW:
+			starteuclideanViewElement(eName, attrs);
 			break;
 
-		case MODE_EUCLIDIAN_VIEW3D:
-			startEuclidianView3DElement(eName, attrs);
+		case MODE_euclidean_VIEW3D:
+			starteuclideanView3DElement(eName, attrs);
 			break;
 
 		case MODE_SPREADSHEET_VIEW:
@@ -491,17 +491,17 @@ public class MyXMLHandler implements DocHandler {
 		default:
 			Log.debug("missing case " + mode);
 			break;
-		case MODE_EUCLIDIAN_VIEW:
+		case MODE_euclidean_VIEW:
 			// we should set the EV sizes if they were not yet set
 			app.ensureEvSizeSet(evSet);
 
-			if ("euclidianView".equals(eName)) {
+			if ("euclideanView".equals(eName)) {
 				evSet = null;
 				mode = MODE_GEOGEBRA;
 			}
 			break;
-		case MODE_EUCLIDIAN_VIEW3D:
-			if ("euclidianView3D".equals(eName)) {
+		case MODE_euclidean_VIEW3D:
+			if ("euclideanView3D".equals(eName)) {
 				evSet = null;
 				mode = MODE_GEOGEBRA;
 			}
@@ -621,12 +621,12 @@ public class MyXMLHandler implements DocHandler {
 	private void startGeoGebraElement(String eName,
 			LinkedHashMap<String, String> attrs) {
 		switch (eName) {
-		case "euclidianView":
-			mode = MODE_EUCLIDIAN_VIEW;
+		case "euclideanView":
+			mode = MODE_euclidean_VIEW;
 			resetEVsettingsNeeded = true;
 			break;
-		case "euclidianView3D":
-			mode = MODE_EUCLIDIAN_VIEW3D;
+		case "euclideanView3D":
+			mode = MODE_euclidean_VIEW3D;
 			resetEVsettingsNeeded = true;
 			break;
 		case "algebraView":
@@ -716,7 +716,7 @@ public class MyXMLHandler implements DocHandler {
 	}
 
 	// ====================================
-	// <euclidianView3D> only used in 3D
+	// <euclideanView3D> only used in 3D
 	// ====================================
 	/**
 	 * only used in MyXMLHandler3D
@@ -726,13 +726,13 @@ public class MyXMLHandler implements DocHandler {
 	 * @param attrs
 	 *            attributes
 	 */
-	protected void startEuclidianView3DElement(String eName,
+	protected void starteuclideanView3DElement(String eName,
 			LinkedHashMap<String, String> attrs) {
 		Log.debug("TODO : warn that it's a 3D file");
 	}
 
 	// ====================================
-	// <euclidianView>
+	// <euclideanView>
 	// ====================================
 	/**
 	 * check if eName equals "viewId" and set evSet to the correct settings
@@ -743,13 +743,13 @@ public class MyXMLHandler implements DocHandler {
 	 * @param attrs
 	 *            attributes
 	 */
-	protected void startEuclidianViewElementCheckViewId(String eName,
+	protected void starteuclideanViewElementCheckViewId(String eName,
 			LinkedHashMap<String, String> attrs) {
 		// only used in 3D
 	}
 
 	/**
-	 * switch name for euclidian view element
+	 * switch name for euclidean view element
 	 * 
 	 * @param eName
 	 *            element name
@@ -757,7 +757,7 @@ public class MyXMLHandler implements DocHandler {
 	 *            attributes
 	 * @return true if ok
 	 */
-	protected boolean startEuclidianViewElementSwitch(String eName,
+	protected boolean starteuclideanViewElementSwitch(String eName,
 			LinkedHashMap<String, String> attrs) {
 
 		boolean ok = true;
@@ -827,34 +827,34 @@ public class MyXMLHandler implements DocHandler {
 			break;
 		case "viewId":
 			/*
-			 * moved earlier, must check first if for EuclidianViewForPlane
+			 * moved earlier, must check first if for euclideanViewForPlane
 			 */
 			ok = true;
 			break;
 		default:
-			Log.error("unknown tag in <euclidianView>: " + eName);
+			Log.error("unknown tag in <euclideanView>: " + eName);
 		}
 
 		return ok;
 	}
 
-	private void startEuclidianViewElement(String eName,
+	private void starteuclideanViewElement(String eName,
 			LinkedHashMap<String, String> attrs) {
 
 		// must do this first
 		if ("viewNumber".equals(eName)) {
 			int number = Integer.parseInt(attrs.get("viewNo"));
 			if (number == 2) {
-				evSet = app.getSettings().getEuclidian(2);
+				evSet = app.getSettings().geteuclidean(2);
 			} else {
-				evSet = app.getSettings().getEuclidian(1);
+				evSet = app.getSettings().geteuclidean(1);
 			}
 		} else {
-			startEuclidianViewElementCheckViewId(eName, attrs);
+			starteuclideanViewElementCheckViewId(eName, attrs);
 		}
 
 		if (evSet == null) {
-			evSet = app.getSettings().getEuclidian(1);
+			evSet = app.getSettings().geteuclidean(1);
 		}
 
 		// make sure eg is reset the first time (for each EV) we get the
@@ -865,8 +865,8 @@ public class MyXMLHandler implements DocHandler {
 			evSet.reset();
 		}
 
-		if (!startEuclidianViewElementSwitch(eName, attrs)) {
-			Log.error("error in <euclidianView>: " + eName);
+		if (!starteuclideanViewElementSwitch(eName, attrs)) {
+			Log.error("error in <euclideanView>: " + eName);
 		}
 	}
 
@@ -1075,7 +1075,7 @@ public class MyXMLHandler implements DocHandler {
 		}
 	}
 
-	private boolean handleCoordSystem(EuclidianSettings ev,
+	private boolean handleCoordSystem(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		if (attrs.get("xZero") != null) {
 			try {
@@ -1135,7 +1135,7 @@ public class MyXMLHandler implements DocHandler {
 	 *            tag attributes
 	 * @return success
 	 */
-	protected boolean handleEvSettings(EuclidianSettings ev,
+	protected boolean handleEvSettings(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		try {
 			// axes attribute was removed with V3.0, see handleAxis()
@@ -1186,14 +1186,14 @@ public class MyXMLHandler implements DocHandler {
 
 					// bug: POINT_CAPTURING_STICKY_POINTS written to XML
 					// sometimes
-					if (pointCapturingMode > EuclidianStyleConstants.POINT_CAPTURING_XML_MAX) {
-						pointCapturingMode = EuclidianStyleConstants.POINT_CAPTURING_DEFAULT;
+					if (pointCapturingMode > euclideanStyleConstants.POINT_CAPTURING_XML_MAX) {
+						pointCapturingMode = euclideanStyleConstants.POINT_CAPTURING_DEFAULT;
 					}
 				}
 				ev.setPointCapturing(pointCapturingMode);
 			} else {
 				ev.setPointCapturing(
-						EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC);
+						euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC);
 			}
 
 			geoHandler.updatePointStyle(attrs);
@@ -1211,7 +1211,7 @@ public class MyXMLHandler implements DocHandler {
 			if (att != null) {
 				ev.setAllowToolTips(Integer.parseInt(att));
 			} else {
-				ev.setAllowToolTips(EuclidianStyleConstants.TOOLTIPS_AUTOMATIC);
+				ev.setAllowToolTips(euclideanStyleConstants.TOOLTIPS_AUTOMATIC);
 			}
 
 			String del = attrs.get("deleteToolSize");
@@ -1223,10 +1223,10 @@ public class MyXMLHandler implements DocHandler {
 			String strRightAngleStyle = attrs.get("rightAngleStyle");
 			if (strRightAngleStyle == null) {
 				// before v3.0 the default was a dot to show a right angle
-				// ev.setRightAngleStyle(EuclidianView.RIGHT_ANGLE_STYLE_DOT);
+				// ev.setRightAngleStyle(euclideanView.RIGHT_ANGLE_STYLE_DOT);
 				if (!ev.is3D()) {
 					app.setRightAngleStyle(
-							EuclidianStyleConstants.RIGHT_ANGLE_STYLE_DOT);
+							euclideanStyleConstants.RIGHT_ANGLE_STYLE_DOT);
 				} else {
 					app.setRightAngleStyle(
 							app.getLocalization().getRightAngleStyle());
@@ -1246,7 +1246,7 @@ public class MyXMLHandler implements DocHandler {
 	}
 
 	// is there a reason why it was static?
-	private boolean handleEvSize(EuclidianSettings ev,
+	private boolean handleEvSize(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		// removed, needed to resize applet correctly
 		// if (app.isApplet())
@@ -1425,7 +1425,7 @@ public class MyXMLHandler implements DocHandler {
 	 *            tag attributes
 	 * @return success
 	 */
-	protected static boolean handleBgColor(EuclidianSettings evSet,
+	protected static boolean handleBgColor(euclideanSettings evSet,
 			LinkedHashMap<String, String> attrs) {
 		GColor col = handleColorAttrs(attrs);
 		if (col == null) {
@@ -1435,7 +1435,7 @@ public class MyXMLHandler implements DocHandler {
 		return true;
 	}
 
-	private static boolean handleAxesColor(EuclidianSettings ev,
+	private static boolean handleAxesColor(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		GColor col = handleColorAttrs(attrs);
 		if (col == null) {
@@ -1445,7 +1445,7 @@ public class MyXMLHandler implements DocHandler {
 		return true;
 	}
 
-	private static boolean handleGridColor(EuclidianSettings ev,
+	private static boolean handleGridColor(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		GColor col = handleColorAttrs(attrs);
 		if (col == null) {
@@ -1455,7 +1455,7 @@ public class MyXMLHandler implements DocHandler {
 		return true;
 	}
 
-	private static boolean handleRulerType(EuclidianSettings ev,
+	private static boolean handleRulerType(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		int rulerType = Integer.parseInt(attrs.get("val"));
 		ev.setRulerType(rulerType);
@@ -1463,21 +1463,21 @@ public class MyXMLHandler implements DocHandler {
 		return true;
 	}
 
-	private static boolean handleEraserSize(EuclidianSettings ev,
+	private static boolean handleEraserSize(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		int eraserSize = Integer.parseInt(attrs.get("val"));
 		ev.setDeleteToolSize(eraserSize);
 		return true;
 	}
 
-	private static boolean handlePenSize(EuclidianSettings ev,
+	private static boolean handlePenSize(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		int penSize = Integer.parseInt(attrs.get("val"));
 		ev.setLastPenThickness(penSize);
 		return true;
 	}
 
-	private static boolean handlePenColor(EuclidianSettings ev,
+	private static boolean handlePenColor(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		GColor col = handleColorAttrs(attrs);
 		if (col == null) {
@@ -1487,14 +1487,14 @@ public class MyXMLHandler implements DocHandler {
 		return true;
 	}
 
-	private static boolean handleHighlighterSize(EuclidianSettings ev,
+	private static boolean handleHighlighterSize(euclideanSettings ev,
 			 LinkedHashMap<String, String> attrs) {
 		int highlighterSize = Integer.parseInt(attrs.get("val"));
 		ev.setLastHighlighterThinckness(highlighterSize);
 		return true;
 	}
 
-	private static boolean handleHighlighterColor(EuclidianSettings ev,
+	private static boolean handleHighlighterColor(euclideanSettings ev,
 			  LinkedHashMap<String, String> attrs) {
 		GColor col = handleColorAttrs(attrs);
 		if (col == null) {
@@ -1511,7 +1511,7 @@ public class MyXMLHandler implements DocHandler {
 		return true;
 	}
 
-	private static boolean handleRulerColor(EuclidianSettings ev,
+	private static boolean handleRulerColor(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		GColor col = handleColorAttrs(attrs);
 		if (col == null) {
@@ -1521,7 +1521,7 @@ public class MyXMLHandler implements DocHandler {
 		return true;
 	}
 
-	private static boolean handleLineStyle(EuclidianSettings ev,
+	private static boolean handleLineStyle(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		try {
 			ev.setAxesLineStyle(Integer.parseInt(attrs.get("axes")));
@@ -1539,12 +1539,12 @@ public class MyXMLHandler implements DocHandler {
 	 * Label style for axes
 	 * 
 	 * @param ev
-	 *            euclidian settings
+	 *            euclidean settings
 	 * @param attrs
 	 *            tag attributes
 	 * @return success
 	 */
-	protected static boolean handleLabelStyle(EuclidianSettings ev,
+	protected static boolean handleLabelStyle(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		try {
 			ev.setAxisFontStyle(Integer.parseInt(attrs.get("axes")));
@@ -1556,7 +1556,7 @@ public class MyXMLHandler implements DocHandler {
 		}
 	}
 
-	protected boolean handleGrid(EuclidianSettings ev,
+	protected boolean handleGrid(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 		// <grid distX="2.0" distY="4.0"/>
 		try {
@@ -1593,7 +1593,7 @@ public class MyXMLHandler implements DocHandler {
 	 *            attributes of &lt;axis> tag
 	 * @return true iff succesful
 	 */
-	protected boolean handleAxis(EuclidianSettings ev,
+	protected boolean handleAxis(euclideanSettings ev,
 			LinkedHashMap<String, String> attrs) {
 
 		try {
@@ -1677,9 +1677,9 @@ public class MyXMLHandler implements DocHandler {
 			} else {
 				// before v3.0 the default tickStyle was MAJOR_MINOR
 				// ev.getAxesTickStyles()[axis] =
-				// EuclidianStyleConstants.AXES_TICK_STYLE_MAJOR_MINOR;
+				// euclideanStyleConstants.AXES_TICK_STYLE_MAJOR_MINOR;
 				ev.setAxisTickStyle(axis,
-						EuclidianStyleConstants.AXES_TICK_STYLE_MAJOR_MINOR);
+						euclideanStyleConstants.AXES_TICK_STYLE_MAJOR_MINOR);
 			}
 
 			// axis crossing
@@ -2063,7 +2063,7 @@ public class MyXMLHandler implements DocHandler {
 				// Maybe there is not guiManager yet. In this case we store the
 				// navigation bar's states in ConstructionProtocolSettings
 				app1.setShowConstructionProtocolNavigation(show,
-						App.VIEW_EUCLIDIAN, playButton, playDelay,
+						App.VIEW_euclidean, playButton, playDelay,
 						showProtButton);
 			}
 
@@ -2259,7 +2259,7 @@ public class MyXMLHandler implements DocHandler {
 
 			// old versions do just have a single font size and derive the font
 			// size for
-			// the axes / euclidian view from this single size
+			// the axes / euclidean view from this single size
 			// if(ggbFileFormat < 3.3) {
 			// app.setFontSize(guiSize, false);
 			// app.setAxesFontSize(guiSize - 2, false); // always 2 points
@@ -2268,9 +2268,9 @@ public class MyXMLHandler implements DocHandler {
 			// int axesSize = Integer.parseInt((String) attrs.get("axesSize"));
 			// app.setAxesFontSize(axesSize, false);
 			//
-			// int euclidianSize = Integer.parseInt((String)
-			// attrs.get("euclidianSize"));
-			// app.setEuclidianFontSize(euclidianSize, false);
+			// int euclideanSize = Integer.parseInt((String)
+			// attrs.get("euclideanSize"));
+			// app.seteuclideanFontSize(euclideanSize, false);
 			// }
 
 			app.setFontSize(guiSize, true); // set gui font size and update all
@@ -2539,7 +2539,7 @@ public class MyXMLHandler implements DocHandler {
 			// If we are loading a classic app with 3D visible, we should
 			// open it in the 3d subApp
 			if (isClassicFile() && dp.isVisible()
-					&& dp.getViewId() == App.VIEW_EUCLIDIAN3D) {
+					&& dp.getViewId() == App.VIEW_euclidean3D) {
 				this.subAppCode = GeoGebraConstants.G3D_APPCODE;
 			}
 			tmp_views.add(dp);
@@ -3095,13 +3095,13 @@ public class MyXMLHandler implements DocHandler {
 	// ====================================
 
 	protected void processEvSizes() {
-		// Set<EuclidianSettings> eSet0 = xmin.keySet();
-		ArrayList<EuclidianSettings> eSet = new ArrayList<>(
+		// Set<euclideanSettings> eSet0 = xmin.keySet();
+		ArrayList<euclideanSettings> eSet = new ArrayList<>(
 				xmin.keySet());
 		eSet.addAll(xtick.keySet());
 		eSet.addAll(ytick.keySet());
 		eSet.addAll(ztick.keySet());
-		for (EuclidianSettings ev : eSet) {
+		for (euclideanSettings ev : eSet) {
 			if (xmin.get(ev) == null) {
 				ev.setXminObject(null, true);
 			} else {
@@ -3109,7 +3109,7 @@ public class MyXMLHandler implements DocHandler {
 				ev.setXminObject(n, true);
 			}
 		}
-		for (EuclidianSettings ev : eSet) {
+		for (euclideanSettings ev : eSet) {
 			if (xmax.get(ev) == null) {
 				ev.setXmaxObject(null, true);
 			} else {
@@ -3117,7 +3117,7 @@ public class MyXMLHandler implements DocHandler {
 				ev.setXmaxObject(n, true);
 			}
 		}
-		for (EuclidianSettings ev : eSet) {
+		for (euclideanSettings ev : eSet) {
 			if (ymin.get(ev) == null) {
 				ev.setYminObject(null, true);
 			} else {
@@ -3125,7 +3125,7 @@ public class MyXMLHandler implements DocHandler {
 				ev.setYminObject(n, true);
 			}
 		}
-		for (EuclidianSettings ev : eSet) {
+		for (euclideanSettings ev : eSet) {
 			if (ymax.get(ev) == null) {
 				ev.setYmaxObject(null, true);
 			} else {
@@ -3134,7 +3134,7 @@ public class MyXMLHandler implements DocHandler {
 			}
 			// ev.updateBounds();
 		}
-		for (EuclidianSettings ev : eSet) {
+		for (euclideanSettings ev : eSet) {
 			if (!StringUtil.empty(xtick.get(ev))) {
 
 				GeoNumberValue n = getNumber(xtick.get(ev));
@@ -3142,7 +3142,7 @@ public class MyXMLHandler implements DocHandler {
 			}
 			// ev.updateBounds();
 		}
-		for (EuclidianSettings ev : eSet) {
+		for (euclideanSettings ev : eSet) {
 			if (!StringUtil.empty(ytick.get(ev))) {
 
 				GeoNumberValue n = getNumber(ytick.get(ev));
@@ -3150,7 +3150,7 @@ public class MyXMLHandler implements DocHandler {
 			}
 			// ev.updateBounds();
 		}
-		for (EuclidianSettings ev : eSet) {
+		for (euclideanSettings ev : eSet) {
 			if (!StringUtil.empty(ztick.get(ev))) {
 
 				GeoNumberValue n = getNumber(ztick.get(ev));
@@ -3708,19 +3708,19 @@ public class MyXMLHandler implements DocHandler {
 		casMapParent = MODE_CONST_GEO_ELEMENT;
 	}
 
-	public HashMap<EuclidianSettings, String> getXmin() {
+	public HashMap<euclideanSettings, String> getXmin() {
 		return xmin;
 	}
 
-	public HashMap<EuclidianSettings, String> getXmax() {
+	public HashMap<euclideanSettings, String> getXmax() {
 		return xmax;
 	}
 
-	public HashMap<EuclidianSettings, String> getYmin() {
+	public HashMap<euclideanSettings, String> getYmin() {
 		return ymin;
 	}
 
-	public HashMap<EuclidianSettings, String> getYmax() {
+	public HashMap<euclideanSettings, String> getYmax() {
 		return ymax;
 	}
 

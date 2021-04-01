@@ -4,7 +4,7 @@ import org.geogebra.common.kernel.geos.GProperty;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.main.App;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 public class LineStyleModel extends OptionsModel {
 	private boolean lineTypeEnabled;
@@ -49,14 +49,14 @@ public class LineStyleModel extends OptionsModel {
 
 	private static final Integer[] getLineTypes() {
 		Integer[] ret = {
-				Integer.valueOf(EuclidianStyleConstants.LINE_TYPE_FULL),
-				Integer.valueOf(EuclidianStyleConstants.LINE_TYPE_DASHED_LONG),
-				Integer.valueOf(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT),
-				Integer.valueOf(EuclidianStyleConstants.LINE_TYPE_DOTTED),
+				Integer.valueOf(euclideanStyleConstants.LINE_TYPE_FULL),
+				Integer.valueOf(euclideanStyleConstants.LINE_TYPE_DASHED_LONG),
+				Integer.valueOf(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT),
+				Integer.valueOf(euclideanStyleConstants.LINE_TYPE_DOTTED),
 				Integer.valueOf(
-						EuclidianStyleConstants.LINE_TYPE_DASHED_DOTTED)
+						euclideanStyleConstants.LINE_TYPE_DASHED_DOTTED)
 				/*
-				 * Integer.valueOf(EuclidianStyleConstants.LINE_TYPE_POINTWISE)
+				 * Integer.valueOf(euclideanStyleConstants.LINE_TYPE_POINTWISE)
 				 */ };
 		return ret;
 	}
@@ -209,7 +209,7 @@ public class LineStyleModel extends OptionsModel {
 			GeoElement geo = getGeoAt(i);
 			if (i == 0) {
 				lineStyleHiddenEnabled = geo.getKernel().getApplication()
-						.isEuclidianView3Dinited();
+						.iseuclideanView3Dinited();
 			}
 			if ((geo instanceof GeoNumeric) && ((GeoNumeric) geo).isSlider()) {
 				lineTypeEnabled = false;

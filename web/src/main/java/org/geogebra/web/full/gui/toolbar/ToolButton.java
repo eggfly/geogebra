@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.toolbar;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.web.full.css.ToolbarSvgResources;
 import org.geogebra.web.full.gui.app.GGWToolBar;
 import org.geogebra.web.full.gui.images.AppResources;
@@ -42,7 +42,7 @@ public class ToolButton extends StandardButton {
 	 */
 	public ToolButton(int mode, AppW app) {
 		super(AppResources.INSTANCE.empty(), app.getLocalization()
-				.getMenu(EuclidianConstants.getModeText(mode)), 24);
+				.getMenu(euclideanConstants.getModeText(mode)), 24);
 		this.mode = mode;
 		this.appW = app;
 		this.selectedColor = app.getVendorSettings().getPrimaryColor().toString();
@@ -53,7 +53,7 @@ public class ToolButton extends StandardButton {
 
 	private void setAccessible() {
 		String altText = appW.getLocalization()
-				.getMenu(EuclidianConstants.getModeText(mode)) + ". "
+				.getMenu(euclideanConstants.getModeText(mode)) + ". "
 				+ appW.getToolHelp(mode);
 		setAltText(altText);
 		getElement().setAttribute("mode", mode + "");
@@ -91,9 +91,9 @@ public class ToolButton extends StandardButton {
 	 */
 	public void setLabel() {
 		setLabel(appW.getLocalization().getMenu(
-				EuclidianConstants.getModeText(mode)));
+				euclideanConstants.getModeText(mode)));
 		setAltText(appW.getLocalization().getMenu(
-				EuclidianConstants.getModeText(mode))
+				euclideanConstants.getModeText(mode))
 				+ ". " + appW.getToolHelp(mode));
 	}
 }

@@ -26,7 +26,7 @@ describe('Pan tool test', () => {
             let before;
 
             before = win.ggbApplet.getPNGBase64(1);
-            selectors.euclidianView.get()
+            selectors.euclideanView.get()
                 .mouseEvent('down', 300, 300)
                 .mouseEvent('move', 310, 300)
                 .mouseEvent('up')
@@ -36,7 +36,7 @@ describe('Pan tool test', () => {
             selectors.panViewTool.get().should('have.class', 'selected');
 
             before = win.ggbApplet.getPNGBase64(1);
-            selectors.euclidianView.get()
+            selectors.euclideanView.get()
                 .mouseEvent('down', 300, 300)
                 .mouseEvent('up')
                 .then(() => expect(before).to.not.equal(win.ggbApplet.getPNGBase64(1)))

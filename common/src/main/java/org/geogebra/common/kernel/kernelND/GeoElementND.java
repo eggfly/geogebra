@@ -19,7 +19,7 @@ import java.util.TreeSet;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPaint;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.kernel.AutoColor;
 import org.geogebra.common.kernel.CircularDefinitionException;
 import org.geogebra.common.kernel.Construction;
@@ -170,15 +170,15 @@ public interface GeoElementND extends ExpressionValue, GeoElementConvertable {
 	 * @param visible
 	 *            true to allow drawing this in EV
 	 */
-	void setEuclidianVisible(boolean visible);
+	void seteuclideanVisible(boolean visible);
 
 	/**
-	 * @return whether object should be drawn in euclidian view
+	 * @return whether object should be drawn in euclidean view
 	 */
-	boolean isEuclidianVisible();
+	boolean iseuclideanVisible();
 
 	/**
-	 * Returns whether the label should be shown in Euclidian view.
+	 * Returns whether the label should be shown in euclidean view.
 	 * 
 	 * @return true if label should be shown
 	 */
@@ -313,7 +313,7 @@ public interface GeoElementND extends ExpressionValue, GeoElementConvertable {
 	public int getLineOpacity();
 
 	/**
-	 * sets whether the object's label should be drawn in an EuclidianView
+	 * sets whether the object's label should be drawn in an euclideanView
 	 * 
 	 * @param visible
 	 *            true to make label visible
@@ -408,7 +408,7 @@ public interface GeoElementND extends ExpressionValue, GeoElementConvertable {
 	public boolean isGeoText();
 
 	/**
-	 * Returns how should label look like in Euclidian view
+	 * Returns how should label look like in euclidean view
 	 * 
 	 * @return label mode (name, value, name + value, caption) may be
 	 *         GeoElement.LABEL_NAME, LABEL_VALUE etc
@@ -448,7 +448,7 @@ public interface GeoElementND extends ExpressionValue, GeoElementConvertable {
 	 * @param visible
 	 *            whether it should be visible
 	 */
-	public void setEuclidianVisibleIfNoConditionToShowObject(boolean visible);
+	public void seteuclideanVisibleIfNoConditionToShowObject(boolean visible);
 
 	/**
 	 * @return whether this is a point (ND)
@@ -690,7 +690,7 @@ public interface GeoElementND extends ExpressionValue, GeoElementConvertable {
 
 	/**
 	 * Returns the label and/or value of this object for showing in
-	 * EuclidianView. This depends on the current setting of labelMode:
+	 * euclideanView. This depends on the current setting of labelMode:
 	 * LABEL_NAME : only label LABEL_NAME_VALUE : label and value
 	 * 
 	 * @return label, value, label+value or caption
@@ -863,7 +863,7 @@ public interface GeoElementND extends ExpressionValue, GeoElementConvertable {
 	/**
 	 * @return true if this is allowed to be drawn in EV
 	 */
-	boolean isSetEuclidianVisible();
+	boolean isSeteuclideanVisible();
 
 	/**
 	 * Copy advanced properties -- cond. visibility, dynamic colors, TODO
@@ -881,7 +881,7 @@ public interface GeoElementND extends ExpressionValue, GeoElementConvertable {
 	void setDrawAlgorithm(DrawInformationAlgo algorithm);
 
 	/**
-	 * Returns whether this GeoElement can be moved in Euclidian View. Note:
+	 * Returns whether this GeoElement can be moved in euclidean View. Note:
 	 * this is needed for texts and points on path
 	 * 
 	 * @return true for moveable objects
@@ -1337,7 +1337,7 @@ public interface GeoElementND extends ExpressionValue, GeoElementConvertable {
 	 * @return all free parent points of this GeoElement.
 	 */
 	public ArrayList<GeoPointND> getFreeInputPoints(
-			final EuclidianViewInterfaceSlim view);
+			final euclideanViewInterfaceSlim view);
 
 	/**
 	 * Returns whether this object's class implements the interface
@@ -1353,7 +1353,7 @@ public interface GeoElementND extends ExpressionValue, GeoElementConvertable {
 	 *            view
 	 * @return true if moveable in the view
 	 */
-	boolean isMoveable(EuclidianViewInterfaceSlim view);
+	boolean isMoveable(euclideanViewInterfaceSlim view);
 
 	/**
 	 * @return true for textfields (=Input Boxes)
@@ -1362,13 +1362,13 @@ public interface GeoElementND extends ExpressionValue, GeoElementConvertable {
 
 	/**
 	 * Returns whether this (dependent) GeoElement has input points that can be
-	 * moved in Euclidian View.
+	 * moved in euclidean View.
 	 * 
 	 * @param view
 	 *            view
 	 * @return whether this geo has only moveable input points
 	 */
-	boolean hasMoveableInputPoints(EuclidianViewInterfaceSlim view);
+	boolean hasMoveableInputPoints(euclideanViewInterfaceSlim view);
 
 	/**
 	 * Returns whether this GeoElement can be changed directly. Note: for points
@@ -1578,7 +1578,7 @@ public interface GeoElementND extends ExpressionValue, GeoElementConvertable {
 	/**
 	 * @return true if showable in EV
 	 */
-	boolean isEuclidianShowable();
+	boolean iseuclideanShowable();
 
 	/**
 	 * @return the unwrapped geo

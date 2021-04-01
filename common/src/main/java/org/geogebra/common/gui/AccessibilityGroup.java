@@ -22,9 +22,9 @@ public enum AccessibilityGroup {
 	 */
 	public static AccessibilityGroup getViewGroup(int viewId) {
 		switch (viewId) {
-			case App.VIEW_EUCLIDIAN3D:
+			case App.VIEW_euclidean3D:
 				return  AccessibilityGroup.EV3D_CONTROLS;
-			case App.VIEW_EUCLIDIAN2:
+			case App.VIEW_euclidean2:
 				return  AccessibilityGroup.EV2_CONTROLS;
 			default:
 				return  AccessibilityGroup.EV_CONTROLS;

@@ -1,4 +1,4 @@
-package org.geogebra.web.html5.euclidian.profiler.drawer;
+package org.geogebra.web.html5.euclidean.profiler.drawer;
 
 /**
  * Records the drawing into a json string.

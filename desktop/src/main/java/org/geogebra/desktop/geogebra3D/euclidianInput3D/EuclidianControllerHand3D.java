@@ -1,4 +1,4 @@
-package org.geogebra.desktop.geogebra3D.euclidianInput3D;
+package org.geogebra.desktop.geogebra3D.euclideanInput3D;
 
 import org.geogebra.common.geogebra3D.input3D.Input3D;
 import org.geogebra.common.kernel.Kernel;
@@ -9,7 +9,7 @@ import org.geogebra.common.kernel.Kernel;
  * @author mathieu
  *
  */
-public class EuclidianControllerHand3D extends EuclidianControllerInput3D {
+public class euclideanControllerHand3D extends euclideanControllerInput3D {
 
 	/*
 	 * private float inputPosition2DX, inputPosition2DY, inputPotition2DFactor,
@@ -24,7 +24,7 @@ public class EuclidianControllerHand3D extends EuclidianControllerInput3D {
 	 * @param input3d
 	 *            3D input
 	 */
-	public EuclidianControllerHand3D(Kernel kernel, Input3D input3d) {
+	public euclideanControllerHand3D(Kernel kernel, Input3D input3d) {
 		super(kernel, input3d);
 
 		// inputPosition2DOldX = Float.NaN;
@@ -36,8 +36,8 @@ public class EuclidianControllerHand3D extends EuclidianControllerInput3D {
 	 * 
 	 * // //////////////////// // set values
 	 * 
-	 * // update panel values panelDimension = ((EuclidianView3DD)
-	 * view3D).getJPanel().getSize(); panelPosition = ((EuclidianView3DD)
+	 * // update panel values panelDimension = ((euclideanView3DD)
+	 * view3D).getJPanel().getSize(); panelPosition = ((euclideanView3DD)
 	 * view3D).getJPanel() .getLocationOnScreen();
 	 * 
 	 * 

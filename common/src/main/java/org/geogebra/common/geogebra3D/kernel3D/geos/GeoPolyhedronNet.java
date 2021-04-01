@@ -130,12 +130,12 @@ public class GeoPolyhedronNet extends GeoPolyhedron {
 	}
 
 	@Override
-	public void setEuclidianVisible(boolean visible) {
+	public void seteuclideanVisible(boolean visible) {
 
-		super.setEuclidianVisible(visible);
+		super.seteuclideanVisible(visible);
 
 		for (GeoPoint3D point : pointsCreated) {
-			point.setEuclidianVisible(visible);
+			point.seteuclideanVisible(visible);
 		}
 	}
 

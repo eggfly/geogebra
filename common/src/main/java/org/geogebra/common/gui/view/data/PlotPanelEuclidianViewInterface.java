@@ -1,14 +1,14 @@
 package org.geogebra.common.gui.view.data;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Kernel;
 
 /**
- * @author gabor common interface for plotpaneleuclidianviews
+ * @author gabor common interface for plotpaneleuclideanviews
  *
  */
-public interface PlotPanelEuclidianViewInterface
-		extends EuclidianViewInterfaceCommon {
+public interface PlotPaneleuclideanViewInterface
+		extends euclideanViewInterfaceCommon {
 
 	/**
 	 * @param kernel

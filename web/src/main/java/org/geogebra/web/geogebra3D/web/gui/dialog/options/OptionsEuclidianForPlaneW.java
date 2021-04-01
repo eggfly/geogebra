@@ -1,16 +1,16 @@
 package org.geogebra.web.geogebra3D.web.gui.dialog.options;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.web.full.gui.dialog.options.OptionsEuclidianW;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.web.full.gui.dialog.options.OptionseuclideanW;
 import org.geogebra.web.html5.main.AppW;
 
 /**
- * option panel for euclidian for plane
+ * option panel for euclidean for plane
  * 
  * @author mathieu
  *
  */
-public class OptionsEuclidianForPlaneW extends OptionsEuclidianW {
+public class OptionseuclideanForPlaneW extends OptionseuclideanW {
 
 	/**
 	 * constructor
@@ -20,7 +20,7 @@ public class OptionsEuclidianForPlaneW extends OptionsEuclidianW {
 	 * @param view
 	 *            view
 	 */
-	public OptionsEuclidianForPlaneW(AppW app, EuclidianViewInterfaceCommon view) {
+	public OptionseuclideanForPlaneW(AppW app, euclideanViewInterfaceCommon view) {
 		super(app, view);
 	}
 

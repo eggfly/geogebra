@@ -1,9 +1,9 @@
 package org.geogebra.web.full.gui.layout.panels;
 
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.main.App;
-import org.geogebra.web.html5.euclidian.EuclidianPanelWAbstract;
+import org.geogebra.web.html5.euclidean.euclideanPanelWAbstract;
 import org.geogebra.web.resources.SVGResource;
 
 import com.google.gwt.canvas.client.Canvas;
@@ -12,18 +12,18 @@ import com.google.gwt.resources.client.ResourcePrototype;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
- * This class may be redundant since EuclidianDockPanelW, but GeoGebra Desktop
+ * This class may be redundant since euclideanDockPanelW, but GeoGebra Desktop
  * also uses two different classes for similar purposes, so its behaviour was
  * imitated here.
  * 
  * @author arpad
  */
 
-public class Euclidian2DockPanelW extends EuclidianDockPanelWAbstract
-		implements EuclidianPanelWAbstract {
+public class euclidean2DockPanelW extends euclideanDockPanelWAbstract
+		implements euclideanPanelWAbstract {
 
-	EuclidianStyleBar espanel;
-	EuclidianPanel euclidianpanel;
+	euclideanStyleBar espanel;
+	euclideanPanel euclideanpanel;
 
 	Canvas eview1 = null; // static foreground
 	private int idx;
@@ -32,10 +32,10 @@ public class Euclidian2DockPanelW extends EuclidianDockPanelWAbstract
 	 * @param stylebar
 	 *            allow stylebar?
 	 * @param idx
-	 *            index for app.getEuclidianView2(idx)
+	 *            index for app.geteuclideanView2(idx)
 	 */
-	public Euclidian2DockPanelW(boolean stylebar, int idx) {
-		super(App.VIEW_EUCLIDIAN2, // view id
+	public euclidean2DockPanelW(boolean stylebar, int idx) {
+		super(App.VIEW_euclidean2, // view id
 				"DrawingPad2", // view title
 				// ToolBar.getAllToolsNoMacros(true), // toolbar string... TODO:
 				// ToolBarW.getAllTools(app);
@@ -57,22 +57,22 @@ public class Euclidian2DockPanelW extends EuclidianDockPanelWAbstract
 
 	@Override
 	protected Widget loadComponent() {
-		if (euclidianpanel == null) {
-			euclidianpanel = new EuclidianPanel(this);
+		if (euclideanpanel == null) {
+			euclideanpanel = new euclideanPanel(this);
 			eview1 = Canvas.createIfSupported();
 			eview1.getElement().getStyle().setPosition(Style.Position.RELATIVE);
 			eview1.getElement().getStyle().setZIndex(0);
-			euclidianpanel.getAbsolutePanel().add(eview1);
+			euclideanpanel.getAbsolutePanel().add(eview1);
 		}
 
-		// Euclidian2DockPanelW.loadComponent will be called lazy,
-		// so it is this place where EuclidianView 2 should be inited
-		// in EuclidianDockPanelW, EuclidianView is created automatically
+		// euclidean2DockPanelW.loadComponent will be called lazy,
+		// so it is this place where euclideanView 2 should be inited
+		// in euclideanDockPanelW, euclideanView is created automatically
 		if (app != null) {
-			app.getEuclidianView2(1);
+			app.geteuclideanView2(1);
 		}
 
-		return euclidianpanel;
+		return euclideanpanel;
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class Euclidian2DockPanelW extends EuclidianDockPanelWAbstract
 	@Override
 	protected Widget loadStyleBar() {
 		if (espanel == null) {
-			espanel = app.getEuclidianView2(idx).getStyleBar();
+			espanel = app.geteuclideanView2(idx).getStyleBar();
 		}
 
 		return (Widget) espanel;
@@ -95,22 +95,22 @@ public class Euclidian2DockPanelW extends EuclidianDockPanelWAbstract
 	}
 
 	public void remove(Widget w) {
-		euclidianpanel.remove(w);
+		euclideanpanel.remove(w);
 	}
 
-	public Euclidian2DockPanelW getEuclidianView2Wrapper() {
+	public euclidean2DockPanelW geteuclideanView2Wrapper() {
 		return this;
 	}
 
 	@Override
-	public EuclidianPanel getEuclidianPanel() {
-		return euclidianpanel;
+	public euclideanPanel geteuclideanPanel() {
+		return euclideanpanel;
 	}
 
 	@Override
-	public EuclidianView getEuclidianView() {
-		if (app != null && app.hasEuclidianView2(idx)) {
-			return app.getEuclidianView2(idx);
+	public euclideanView geteuclideanView() {
+		if (app != null && app.haseuclideanView2(idx)) {
+			return app.geteuclideanView2(idx);
 		}
 		return null;
 	}
@@ -122,8 +122,8 @@ public class Euclidian2DockPanelW extends EuclidianDockPanelWAbstract
 
 	@Override
 	public void calculateEnvironment() {
-		if (app.hasEuclidianView2EitherShowingOrNot(1)) {
-			app.getEuclidianView2(1).getEuclidianController()
+		if (app.haseuclideanView2EitherShowingOrNot(1)) {
+			app.geteuclideanView2(1).geteuclideanController()
 					.calculateEnvironment();
 		}
 	}

@@ -16,14 +16,14 @@ the Free Software Foundation.
  * Created on 16. November 2001, 09:26
  */
 
-package org.geogebra.desktop.euclidian;
+package org.geogebra.desktop.euclidean;
 
 import java.awt.geom.GeneralPath;
 import java.util.Iterator;
 import java.util.List;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.draw.DrawConic;
+import org.geogebra.common.euclidean.draw.DrawConic;
 
 /**
  * adapted from polyline

@@ -1,9 +1,9 @@
-package org.geogebra.common.geogebra3D.euclidian3D.animator;
+package org.geogebra.common.geogebra3D.euclidean3D.animator;
 
 import java.util.LinkedList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.util.debug.Log;
 
@@ -11,7 +11,7 @@ import org.geogebra.common.util.debug.Log;
  * Animator for 3D view
  *
  */
-public class EuclidianView3DAnimator {
+public class euclideanView3DAnimator {
 
 	@SuppressWarnings("javadoc")
 	public enum AnimationType {
@@ -23,26 +23,26 @@ public class EuclidianView3DAnimator {
 	static final private double ROTATION_CONTINUE_MAX_DELAY = 200;
 	static final private double ROTATION_CONTINUE_MIN_ROT_SPEED = 0.01;
 
-	private EuclidianView3D view3D;
-	private LinkedList<EuclidianView3DAnimation> animationList;
-	private EuclidianView3DAnimation animation;
-	private EuclidianView3DAnimationMouseMove animationMouse;
-	private EuclidianView3DAnimationAxisScale animationAxis;
-	private EuclidianView3DAnimationScreenScale animationScreenScale;
-	private EuclidianView3DAnimationScale animationScale;
+	private euclideanView3D view3D;
+	private LinkedList<euclideanView3DAnimation> animationList;
+	private euclideanView3DAnimation animation;
+	private euclideanView3DAnimationMouseMove animationMouse;
+	private euclideanView3DAnimationAxisScale animationAxis;
+	private euclideanView3DAnimationScreenScale animationScreenScale;
+	private euclideanView3DAnimationScale animationScale;
 
 	/**
 	 * 
 	 * @param view3D
 	 *            3D view
 	 */
-	public EuclidianView3DAnimator(EuclidianView3D view3D) {
+	public euclideanView3DAnimator(euclideanView3D view3D) {
 		this.view3D = view3D;
 		animationList = new LinkedList<>();
-		animationMouse = new EuclidianView3DAnimationMouseMove(view3D, this);
-		animationAxis = new EuclidianView3DAnimationAxisScale(view3D, this);
-		animationScreenScale = new EuclidianView3DAnimationScreenScale(view3D, this);
-		animationScale = new EuclidianView3DAnimationScale(view3D, this);
+		animationMouse = new euclideanView3DAnimationMouseMove(view3D, this);
+		animationAxis = new euclideanView3DAnimationAxisScale(view3D, this);
+		animationScreenScale = new euclideanView3DAnimationScreenScale(view3D, this);
+		animationScale = new euclideanView3DAnimationScale(view3D, this);
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class EuclidianView3DAnimator {
 	 */
 	public void setAnimatedCoordSystem(double x, double y, double z, double newScale, int steps) {
 		addAnimation(
-				new EuclidianView3DAnimationScaleTranslate(view3D, this, x, y, z, newScale, steps));
+				new euclideanView3DAnimationScaleTranslate(view3D, this, x, y, z, newScale, steps));
 	}
 
 	/**
@@ -102,14 +102,14 @@ public class EuclidianView3DAnimator {
 		// if speed is too small, no animation
 		if (Math.abs(rotSpeed) < ROTATION_CONTINUE_MIN_ROT_SPEED * view3D
 				.getApplication()
-				.getFactorFor(((EuclidianController3D) view3D
-						.getEuclidianController()).getRotationSpeedHandler()
+				.getFactorFor(((euclideanController3D) view3D
+						.geteuclideanController()).getRotationSpeedHandler()
 								.getPointerEventType())) {
 			stopAnimation();
 			return;
 		}
 
-		addAnimation(new EuclidianView3DAnimationContinueRotation(view3D, this,
+		addAnimation(new euclideanView3DAnimationContinueRotation(view3D, this,
 				delay, rotSpeed));
 	}
 
@@ -165,10 +165,10 @@ public class EuclidianView3DAnimator {
 		}
 
 		if (animated) {
-			addAnimation(new EuclidianView3DAnimationRotation(view3D, this, aN, bN, checkSameValues,
+			addAnimation(new euclideanView3DAnimationRotation(view3D, this, aN, bN, checkSameValues,
 					storeUndo));
 		} else {
-			addAnimation(new EuclidianView3DAnimationRotationOneStep(view3D, this, aN, bN,
+			addAnimation(new euclideanView3DAnimationRotationOneStep(view3D, this, aN, bN,
 					checkSameValues, storeUndo));
 		}
 
@@ -181,7 +181,7 @@ public class EuclidianView3DAnimator {
 	 *            zoom factor
 	 */
 	public void zoom(double zoomFactor) {
-		addAnimation(new EuclidianView3DAnimationZoom(view3D, this, zoomFactor));
+		addAnimation(new euclideanView3DAnimationZoom(view3D, this, zoomFactor));
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class EuclidianView3DAnimator {
 	 * @param zoomFactorZ zoom factor (z over x)
 	 */
 	public void zoomAxesRatio(double zoomFactorY, double zoomFactorZ) {
-		addAnimation(new EuclidianView3DAnimationAxesRatio(view3D, this, zoomFactorY, zoomFactorZ));
+		addAnimation(new euclideanView3DAnimationAxesRatio(view3D, this, zoomFactorY, zoomFactorZ));
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class EuclidianView3DAnimator {
 	 *            point to center the view about
 	 */
 	public void centerView(GeoPointND point) {
-		addAnimation(new EuclidianView3DAnimationCenter(view3D, this, point.getInhomCoordsInD3()));
+		addAnimation(new euclideanView3DAnimationCenter(view3D, this, point.getInhomCoordsInD3()));
 	}
 
 	/**
@@ -239,7 +239,7 @@ public class EuclidianView3DAnimator {
 	 */
 	synchronized public void stopAnimation() {
 		if (getAnimationType() != AnimationType.OFF) {
-			view3D.getEuclidianController().onCoordSystemChanged();
+			view3D.geteuclideanController().onCoordSystemChanged();
 		}
 		animation = null;
 		animationList.clear();
@@ -249,7 +249,7 @@ public class EuclidianView3DAnimator {
 	 * ends the current animation
 	 */
 	synchronized void endAnimation() {
-		view3D.getEuclidianController().onCoordSystemChanged();
+		view3D.geteuclideanController().onCoordSystemChanged();
 		animation = animationList.poll();
 		if (animation != null) {
 			animation.setupForStart();
@@ -267,7 +267,7 @@ public class EuclidianView3DAnimator {
 		return AnimationType.OFF;
 	}
 
-	synchronized private void addAnimation(EuclidianView3DAnimation anim) {
+	synchronized private void addAnimation(euclideanView3DAnimation anim) {
 		if (animation == null || animation.getType() == AnimationType.CONTINUE_ROTATION) {
 			animation = anim;
 			animation.setupForStart();

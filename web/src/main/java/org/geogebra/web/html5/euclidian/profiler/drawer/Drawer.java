@@ -1,9 +1,9 @@
-package org.geogebra.web.html5.euclidian.profiler.drawer;
+package org.geogebra.web.html5.euclidean.profiler.drawer;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.util.profiler.FpsProfiler;
-import org.geogebra.web.html5.euclidian.MouseTouchGestureControllerW;
-import org.geogebra.web.html5.euclidian.profiler.coords.Coordinate;
+import org.geogebra.web.html5.euclidean.MouseTouchGestureControllerW;
+import org.geogebra.web.html5.euclidean.profiler.coords.Coordinate;
 import org.geogebra.web.html5.event.PointerEvent;
 import org.gwtproject.timer.client.Timer;
 

@@ -1,14 +1,14 @@
-package org.geogebra.common.euclidian.plot.interval;
+package org.geogebra.common.euclidean.plot.interval;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.plot.LabelPositionCalculator;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.plot.LabelPositionCalculator;
 import org.geogebra.common.kernel.interval.Interval;
 import org.geogebra.common.kernel.interval.IntervalTuple;
 
 public class IntervalPath {
 	private final IntervalPathPlotter gp;
-	private final EuclidianView view;
+	private final euclideanView view;
 	private final IntervalPlotModel model;
 	private final LabelPositionCalculator labelPositionCalculator;
 	private boolean moveTo;
@@ -17,10 +17,10 @@ public class IntervalPath {
 	/**
 	 * Constructor.
 	 * @param gp {@link IntervalPathPlotter}
-	 * @param view {@link EuclidianView}
+	 * @param view {@link euclideanView}
 	 * @param model {@link IntervalPlotModel}
 	 */
-	public IntervalPath(IntervalPathPlotter gp, EuclidianView view, IntervalPlotModel model) {
+	public IntervalPath(IntervalPathPlotter gp, euclideanView view, IntervalPlotModel model) {
 		this.gp = gp;
 		this.view = view;
 		this.model = model;

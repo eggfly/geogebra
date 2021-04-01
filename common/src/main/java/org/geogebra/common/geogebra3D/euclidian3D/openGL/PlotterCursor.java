@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 /**
  * Class that describes the geometry of the 3D cursor
@@ -96,7 +96,7 @@ public class PlotterCursor {
 
 	static private float TARGET_DOT_ALPHA = 0.87f;
 
-	static private float TARGET_CIRCLE_THICKNESS = EuclidianStyleConstants.DEFAULT_LINE_THICKNESS
+	static private float TARGET_CIRCLE_THICKNESS = euclideanStyleConstants.DEFAULT_LINE_THICKNESS
 			* PlotterBrush.LINE3D_THICKNESS / 2f;
 	static private float TARGET_CIRCLE_RADIUS = 50f;
 	static private float TARGET_CIRCLE_ALPHA = 0.38f;

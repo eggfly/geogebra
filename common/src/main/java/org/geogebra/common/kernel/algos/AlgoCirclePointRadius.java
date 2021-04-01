@@ -18,7 +18,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.kernel.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.commands.Commands;
@@ -75,9 +75,9 @@ public class AlgoCirclePointRadius extends AlgoSphereNDPointRadius implements
 	public int getRelatedModeID() {
 		switch (super.getType()) {
 		case AlgoSphereNDPointRadius.TYPE_RADIUS:
-			return EuclidianConstants.MODE_CIRCLE_POINT_RADIUS;
+			return euclideanConstants.MODE_CIRCLE_POINT_RADIUS;
 		default:
-			return EuclidianConstants.MODE_COMPASSES;
+			return euclideanConstants.MODE_COMPASSES;
 		}
 	}
 

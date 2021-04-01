@@ -1,9 +1,9 @@
-package org.geogebra.web.geogebra3D.web.euclidian3D;
+package org.geogebra.web.geogebra3D.web.euclidean3D;
 
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.util.SelectionTable;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.web.full.gui.util.PopupMenuButtonW;
@@ -16,23 +16,23 @@ import com.google.gwt.resources.client.ImageResource;
  */
 class RotateViewPopup extends PopupMenuButtonW {
 
-	private final EuclidianStyleBar3DW euclidianStyleBar3DW;
+	private final euclideanStyleBar3DW euclideanStyleBar3DW;
 	private ImageOrText pauseIcon;
 	private ImageOrText playIcon;
 
 	/**
-	 * @param euclidianStyleBar3DW
+	 * @param euclideanStyleBar3DW
 	 *            stylebar
 	 * @param playIcon
 	 *            play icon
 	 * @param pauseIcon
 	 *            pause icon
 	 */
-	public RotateViewPopup(EuclidianStyleBar3DW euclidianStyleBar3DW,
+	public RotateViewPopup(euclideanStyleBar3DW euclideanStyleBar3DW,
 			ImageResource playIcon, ImageResource pauseIcon) {
-		super(euclidianStyleBar3DW.app, null, -1, -1, SelectionTable.MODE_ICON,
+		super(euclideanStyleBar3DW.app, null, -1, -1, SelectionTable.MODE_ICON,
 				false, true, null);
-		this.euclidianStyleBar3DW = euclidianStyleBar3DW;
+		this.euclideanStyleBar3DW = euclideanStyleBar3DW;
 
 		this.playIcon = new ImageOrText(playIcon);
 		this.pauseIcon = new ImageOrText(pauseIcon);
@@ -48,7 +48,7 @@ class RotateViewPopup extends PopupMenuButtonW {
 	@Override
 	protected void fireActionPerformed() {
 
-		this.euclidianStyleBar3DW.getView().setRotContinueAnimation(0, getSliderValue() * 0.01);
+		this.euclideanStyleBar3DW.getView().setRotContinueAnimation(0, getSliderValue() * 0.01);
 		if (getSliderValue() == 0) {
 			setIcon(playIcon);
 		} else {
@@ -58,11 +58,11 @@ class RotateViewPopup extends PopupMenuButtonW {
 
 	@Override
 	protected void onClickAction() {
-		if (this.euclidianStyleBar3DW.getView().isRotAnimatedContinue()) {
-			this.euclidianStyleBar3DW.getView().stopAnimation();
+		if (this.euclideanStyleBar3DW.getView().isRotAnimatedContinue()) {
+			this.euclideanStyleBar3DW.getView().stopAnimation();
 			setIcon(playIcon);
 		} else {
-			this.euclidianStyleBar3DW.getView().setRotContinueAnimation(0, getSliderValue() * 0.01);
+			this.euclideanStyleBar3DW.getView().setRotContinueAnimation(0, getSliderValue() * 0.01);
 			setIcon(pauseIcon);
 		}
 	}
@@ -70,7 +70,7 @@ class RotateViewPopup extends PopupMenuButtonW {
 	@Override
 	public void update(List<GeoElement> geos) {
 		this.setVisible(
-				geos.size() == 0 && !EuclidianView.isPenMode(app.getMode())
-						&& app.getMode() != EuclidianConstants.MODE_DELETE);
+				geos.size() == 0 && !euclideanView.isPenMode(app.getMode())
+						&& app.getMode() != euclideanConstants.MODE_DELETE);
 	}
 }

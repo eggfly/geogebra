@@ -34,7 +34,7 @@ public abstract class GeoInline extends GeoElement implements Translateable, Poi
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return true;
 	}
 

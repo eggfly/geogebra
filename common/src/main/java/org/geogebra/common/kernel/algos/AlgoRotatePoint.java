@@ -18,7 +18,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.kernel.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.commands.Commands;
@@ -78,7 +78,7 @@ public class AlgoRotatePoint extends AlgoTransformation
 		setInputOutput();
 		compute();
 		if (inGeo.isGeoFunction()) {
-			cons.registerEuclidianViewCE(this);
+			cons.registereuclideanViewCE(this);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class AlgoRotatePoint extends AlgoTransformation
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_ROTATE_BY_ANGLE;
+		return euclideanConstants.MODE_ROTATE_BY_ANGLE;
 	}
 
 	// for AlgoElement

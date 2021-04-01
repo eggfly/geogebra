@@ -813,7 +813,7 @@ public interface JavaScriptAPI {
 	String getObjectType(String objName);
 
 	/**
-	 * Sets the mode of the geometry window (EuclidianView).
+	 * Sets the mode of the geometry window (euclideanView).
 	 * 
 	 * @param mode
 	 *            app mode

@@ -22,7 +22,7 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.commands.Commands;
@@ -78,7 +78,7 @@ public class AlgoMidpointSegment extends AlgoElement
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_MIDPOINT;
+		return euclideanConstants.MODE_MIDPOINT;
 	}
 
 	// for AlgoElement

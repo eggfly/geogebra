@@ -12,7 +12,7 @@ the Free Software Foundation.
 
 package org.geogebra.web.full.gui.dialog;
 
-import org.geogebra.common.euclidian.smallscreen.AdjustSlider;
+import org.geogebra.common.euclidean.smallscreen.AdjustSlider;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.geos.GeoAngle;
 import org.geogebra.common.kernel.geos.GeoAngle.AngleStyle;
@@ -214,10 +214,10 @@ public class SliderDialogW extends ComponentDialog implements
 		geoResult.update();
 		if (!rbAngle.getValue()) {
 			AdjustSlider.ensureOnScreen((GeoNumeric) geoResult,
-					app.getActiveEuclidianView());
+					app.getActiveeuclideanView());
 		}
 
-		app.getActiveEuclidianView().requestFocusInWindow();
+		app.getActiveeuclideanView().requestFocusInWindow();
 
 		app.storeUndoInfo();
 		app.getKernel().notifyRepaint();

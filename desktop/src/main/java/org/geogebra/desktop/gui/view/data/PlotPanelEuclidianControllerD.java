@@ -2,11 +2,11 @@ package org.geogebra.desktop.gui.view.data;
 
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.kernel.Kernel;
-import org.geogebra.desktop.euclidian.EuclidianControllerD;
+import org.geogebra.desktop.euclidean.euclideanControllerD;
 
-public class PlotPanelEuclidianControllerD extends EuclidianControllerD {
+public class PlotPaneleuclideanControllerD extends euclideanControllerD {
 
-	public PlotPanelEuclidianControllerD(Kernel kernel) {
+	public PlotPaneleuclideanControllerD(Kernel kernel) {
 		super(kernel);
 	}
 

@@ -3,7 +3,7 @@ package org.geogebra.web.html5.main;
 import static org.junit.Assert.assertEquals;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.web.full.main.AppWFull;
 import org.geogebra.web.html5.util.AppletParameters;
 import org.geogebra.web.test.AppMocker;
@@ -21,7 +21,7 @@ import com.himamis.retex.renderer.web.graphics.JLMContext2d;
 @WithClassesToStub({JLMContext2d.class, RootPanel.class})
 public class TemplateLoadTest {
 	private static AppWFull app;
-	private static EuclidianSettings settings;
+	private static euclideanSettings settings;
 
 	@Before
 	public void init() {
@@ -33,7 +33,7 @@ public class TemplateLoadTest {
 				"xsi:noNamespaceSchemaLocation=\"http://www.geogebra.org/ggb.xsd\" xmlns=\"\" " +
 				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" >\n<gui>\n\t<window " +
 				"width=\"953\" height=\"787\" />\n\t<labelingStyle  val=\"0\"/>\n\t<font  " +
-				"size=\"16\"/>\n</gui>\n<euclidianView>\n\t<viewNumber viewNo=\"1\"/>\n\t<size  " +
+				"size=\"16\"/>\n</gui>\n<euclideanView>\n\t<viewNumber viewNo=\"1\"/>\n\t<size  " +
 				"width=\"953\" height=\"787\"/>\n\t<coordSystem xZero=\"476.4999999999999\" " +
 				"yZero=\"393.5\" scale=\"49.99999999999999\" yscale=\"50\"/>\n\t" +
 				"<evSettings axes=\"false\" grid=\"false\" gridIsBold=\"false\"" +
@@ -44,7 +44,7 @@ public class TemplateLoadTest {
 				"<rulerColor r=\"128\" g=\"0\" b=\"128\"/>\n\t<penSize val=\"30\"/>" +
 				"\n\t<penColor r=\"204\" g=\"0\" b=\"153\"/>\n\t<highlighterSize val=\"1\"/>" +
 				"\n\t<highlighterColor r=\"219\" g=\"97\" b=\"20\"/>\n\t<eraserSize val=\"61\"/>" +
-				"\n\t<language val=\"hu\"/>\n</euclidianView>\n<kernel>\n\t" +
+				"\n\t<language val=\"hu\"/>\n</euclideanView>\n<kernel>\n\t" +
 				"<continuous val=\"false\"/>\n\t<usePathAndRegionParameters val=\"true\"/>\n\t" +
 				"<decimals val=\"2\"/>\n\t<angleUnit val=\"degree\"/>\n\t" +
 				"<algebraStyle val=\"0\" spreadsheet=\"0\"/>\n\t<coordStyle val=\"0\"/>\n</kernel>" +
@@ -52,7 +52,7 @@ public class TemplateLoadTest {
 				"<scripting blocked=\"false\" disabled=\"false\"/>\n" +
 				"<construction title=\"templateTest\" author=\"\" date=\"\">\n</construction>\n" +
 				"</geogebra>",false);
-		settings = app.getActiveEuclidianView().getSettings();
+		settings = app.getActiveeuclideanView().getSettings();
 	}
 
 	@Test

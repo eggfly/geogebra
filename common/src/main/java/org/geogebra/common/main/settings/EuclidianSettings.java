@@ -3,9 +3,9 @@ package org.geogebra.common.main.settings;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GFont;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.background.BackgroundType;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.background.BackgroundType;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.Kernel;
@@ -14,7 +14,7 @@ import org.geogebra.common.kernel.arithmetic.NumberValue;
 import org.geogebra.common.kernel.geos.GeoNumberValue;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.main.App;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.ExtendedBoolean;
 import org.geogebra.common.util.StringUtil;
@@ -23,16 +23,16 @@ import com.google.j2objc.annotations.Weak;
 import com.himamis.retex.editor.share.util.Unicode;
 
 /**
- * Settings for an euclidian view. To which view these settings are associated
+ * Settings for an euclidean view. To which view these settings are associated
  * is determined in {@link Settings}.
  */
-public class EuclidianSettings extends AbstractSettings {
+public class euclideanSettings extends AbstractSettings {
 
 	private static final String[] DEFAULT_AXIS_LABELS = { "x", "y", "z" };
 	public static final int[] DELETE_SIZES = { 20, 40, 80 };
 
 	/**
-	 * Color of the euclidian view's background.
+	 * Color of the euclidean view's background.
 	 */
 	protected GColor backgroundColor;
 
@@ -49,17 +49,17 @@ public class EuclidianSettings extends AbstractSettings {
 	/**
 	 * Line style of axes.
 	 */
-	private int axesLineStyle = EuclidianStyleConstants.AXES_LINE_TYPE_ARROW;
+	private int axesLineStyle = euclideanStyleConstants.AXES_LINE_TYPE_ARROW;
 
 	/**
 	 * Line style of grid.
 	 */
-	private int gridLineStyle = EuclidianStyleConstants.LINE_TYPE_FULL;
+	private int gridLineStyle = euclideanStyleConstants.LINE_TYPE_FULL;
 
 	/**
 	 * Line style of ruler.
 	 */
-	private int rulerLineStyle = EuclidianStyleConstants.LINE_TYPE_FULL;
+	private int rulerLineStyle = euclideanStyleConstants.LINE_TYPE_FULL;
 
 	/**
 	 * Various distances between lines of the grid.
@@ -75,7 +75,7 @@ public class EuclidianSettings extends AbstractSettings {
 	private NumberValue yminObject;
 	private NumberValue ymaxObject;
 
-	private int tooltipsInThisView = EuclidianStyleConstants.TOOLTIPS_AUTOMATIC;
+	private int tooltipsInThisView = euclideanStyleConstants.TOOLTIPS_AUTOMATIC;
 
 	private GDimension sizeFromFile;
 	private GDimension size;
@@ -91,9 +91,9 @@ public class EuclidianSettings extends AbstractSettings {
 	protected boolean[] piAxisUnit = { false, false, false };
 
 	protected int[] axesTickStyles = {
-			EuclidianStyleConstants.AXES_TICK_STYLE_MAJOR,
-			EuclidianStyleConstants.AXES_TICK_STYLE_MAJOR,
-			EuclidianStyleConstants.AXES_TICK_STYLE_MAJOR };
+			euclideanStyleConstants.AXES_TICK_STYLE_MAJOR,
+			euclideanStyleConstants.AXES_TICK_STYLE_MAJOR,
+			euclideanStyleConstants.AXES_TICK_STYLE_MAJOR };
 
 	// for axes labeling with numbers
 	protected boolean[] automaticAxesNumberingDistances = { true, true, true };
@@ -108,9 +108,9 @@ public class EuclidianSettings extends AbstractSettings {
 
 	protected double yZero;
 
-	protected double xscale = EuclidianView.SCALE_STANDARD;
+	protected double xscale = euclideanView.SCALE_STANDARD;
 
-	protected double yscale = EuclidianView.SCALE_STANDARD;
+	protected double yscale = euclideanView.SCALE_STANDARD;
 
 	private GDimension preferredSize;
 
@@ -120,9 +120,9 @@ public class EuclidianSettings extends AbstractSettings {
 
 	private boolean rulerBold = false;
 
-	private int gridType = EuclidianView.GRID_CARTESIAN;
+	private int gridType = euclideanView.GRID_CARTESIAN;
 
-	private int pointCapturingMode = EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC;
+	private int pointCapturingMode = euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC;
 
 	// set to false because it was set to false in Desktop anyway
 	// (due to a bug in MyXMLHandler?), and it does some speedup in Web
@@ -130,7 +130,7 @@ public class EuclidianSettings extends AbstractSettings {
 
 	private double lockedAxesRatio = -1;
 
-	private int deleteToolSize = EuclidianConstants.DEFAULT_ERASER_SIZE;
+	private int deleteToolSize = euclideanConstants.DEFAULT_ERASER_SIZE;
 
 	private int axisFontStyle = GFont.PLAIN;
 
@@ -157,17 +157,17 @@ public class EuclidianSettings extends AbstractSettings {
 
 	private GColor lastSelectedPenColor = GColor.BLACK;
 	private GColor lastSelectedHighlighterColor = GColor.MOW_GREEN;
-	private int lastPenThickness = EuclidianConstants.DEFAULT_PEN_SIZE;
-	private int lastHighlighterThinckness = EuclidianConstants.DEFAULT_HIGHLIGHTER_SIZE;
+	private int lastPenThickness = euclideanConstants.DEFAULT_PEN_SIZE;
+	private int lastHighlighterThinckness = euclideanConstants.DEFAULT_HIGHLIGHTER_SIZE;
 
 	/**
 	 * @param app
 	 *            application
 	 */
-	public EuclidianSettings(App app) {
-		// this.euclidianSettings1 = euclidianSettings1;
-		xZero = EuclidianView.XZERO_STANDARD; // needs to be positive
-		yZero = EuclidianView.YZERO_STANDARD; // needs to be positive
+	public euclideanSettings(App app) {
+		// this.euclideanSettings1 = euclideanSettings1;
+		xZero = euclideanView.XZERO_STANDARD; // needs to be positive
+		yZero = euclideanView.YZERO_STANDARD; // needs to be positive
 		preferredSize = AwtFactory.getPrototype().newDimension(0, 0);
 		this.app = app;
 		dimension = 2;
@@ -177,7 +177,7 @@ public class EuclidianSettings extends AbstractSettings {
 	/**
 	 * some settings are not stored in XML, eg eg automaticGridDistance so we
 	 * need to clear these parameters to make sure the others are set OK see
-	 * EuclidianView.settingsChanged()
+	 * euclideanView.settingsChanged()
 	 */
 	public void reset() {
 		resetNoFire();
@@ -199,16 +199,16 @@ public class EuclidianSettings extends AbstractSettings {
 		yminObject = null;
 		ymaxObject = null;
 
-		gridLineStyle = EuclidianStyleConstants.LINE_TYPE_FULL;
-		axesLineStyle = EuclidianStyleConstants.AXES_LINE_TYPE_ARROW;
+		gridLineStyle = euclideanStyleConstants.LINE_TYPE_FULL;
+		axesLineStyle = euclideanStyleConstants.AXES_LINE_TYPE_ARROW;
 		axesColor = GColor.BLACK;
 		gridColor = GColor.LIGHT_GRAY;
 		backgroundColor = GColor.WHITE;
 		backgroundType = BackgroundType.NONE;
 		setBgRulerColorNoFire(GColor.MOW_RULER);
-		gridType = EuclidianView.GRID_CARTESIAN_WITH_SUBGRID;
+		gridType = euclideanView.GRID_CARTESIAN_WITH_SUBGRID;
 
-		pointCapturingMode = EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC;
+		pointCapturingMode = euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC;
 
 		// length might be 2 or 3
 		for (int i = 0; i < showAxesNumbers.length; i++) {
@@ -232,7 +232,7 @@ public class EuclidianSettings extends AbstractSettings {
 
 		// length might be 2 or 3
 		for (int i = 0; i < axesTickStyles.length; i++) {
-			axesTickStyles[i] = EuclidianStyleConstants.AXES_TICK_STYLE_MAJOR;
+			axesTickStyles[i] = euclideanStyleConstants.AXES_TICK_STYLE_MAJOR;
 		}
 
 		// for axes labeling with numbers
@@ -687,7 +687,7 @@ public class EuclidianSettings extends AbstractSettings {
 	 * @param axis
 	 *            axis
 	 * @param tickStyle
-	 *            EuclidianStyleConstants.AXES_TICK_STYLE_* constant
+	 *            euclideanStyleConstants.AXES_TICK_STYLE_* constant
 	 */
 	public void setAxisTickStyle(int axis, int tickStyle) {
 
@@ -1045,14 +1045,14 @@ public class EuclidianSettings extends AbstractSettings {
 	 * Set grid type: cartesian, polar, isometric, ....
 	 * 
 	 * @param type
-	 *            one fof EuclidianView.GRID_* constants
+	 *            one fof euclideanView.GRID_* constants
 	 */
 	public void setGridType(int type) {
 		if (gridType == type) {
 			return;
 		}
 		// make sure the grid flag is also changed, for point capturing
-		if (type == EuclidianView.GRID_NOT_SHOWN) {
+		if (type == euclideanView.GRID_NOT_SHOWN) {
 			this.showGrid = false;
 		}
 		gridType = type;
@@ -1062,7 +1062,7 @@ public class EuclidianSettings extends AbstractSettings {
 	/**
 	 * Returns point capturing mode.
 	 * 
-	 * @return EuclidianStyleConstants.POINT_CAPTURING_*
+	 * @return euclideanStyleConstants.POINT_CAPTURING_*
 	 */
 	final public int getPointCapturingMode() {
 		return pointCapturingMode;
@@ -1072,7 +1072,7 @@ public class EuclidianSettings extends AbstractSettings {
 	 * Set capturing of points to the grid.
 	 * 
 	 * @param mode
-	 *            EuclidianStyleConstants.POINT_CAPTURING_*
+	 *            euclideanStyleConstants.POINT_CAPTURING_*
 	 * 
 	 * @return true if setting changed
 	 */
@@ -1149,7 +1149,7 @@ public class EuclidianSettings extends AbstractSettings {
 	 */
 	public void setBoldAxes(boolean bold) {
 		int oldAxesLineStyle = axesLineStyle;
-		axesLineStyle = EuclidianView.getBoldAxes(bold, axesLineStyle);
+		axesLineStyle = euclideanView.getBoldAxes(bold, axesLineStyle);
 
 		if (oldAxesLineStyle != axesLineStyle) {
 			settingChanged();

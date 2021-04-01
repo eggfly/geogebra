@@ -1,4 +1,4 @@
-package org.geogebra.web.full.euclidian;
+package org.geogebra.web.full.euclidean;
 
 import org.geogebra.common.gui.util.SelectionTable;
 import org.geogebra.web.full.gui.util.PopupMenuButtonW;

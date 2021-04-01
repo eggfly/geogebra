@@ -1,12 +1,12 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawPoint3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.ManagerShaders.TypeElement;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawPoint3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.ManagerShaders.TypeElement;
 import org.geogebra.common.kernel.discrete.PolygonTriangulation.TriangleFan;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.kernel.matrix.Coords3;
@@ -41,7 +41,7 @@ abstract public class Manager {
 	private PlotterCompletingCursor completingCursor;
 
 	// geogebra stuff
-	private EuclidianView3D view3D;
+	private euclideanView3D view3D;
 	private Coords normalToScaleTmp = new Coords(3);
 
 	/**
@@ -67,7 +67,7 @@ abstract public class Manager {
 	 * @param view3D
 	 *            3D view
 	 */
-	public Manager(Renderer renderer, EuclidianView3D view3D) {
+	public Manager(Renderer renderer, euclideanView3D view3D) {
 		init(renderer, view3D);
 	}
 
@@ -75,7 +75,7 @@ abstract public class Manager {
 		// empty constructor
 	}
 
-	final protected void init(Renderer renderer, EuclidianView3D newView3D) {
+	final protected void init(Renderer renderer, euclideanView3D newView3D) {
 
 		// geogebra
 		this.view3D = newView3D;
@@ -107,7 +107,7 @@ abstract public class Manager {
 	 * @param view3D
 	 *            3D view
 	 */
-	public Manager(EuclidianView3D view3D) {
+	public Manager(euclideanView3D view3D) {
 		this.view3D = view3D;
 	}
 
@@ -183,7 +183,7 @@ abstract public class Manager {
 	 * 
 	 * @return the 3D view
 	 */
-	public EuclidianView3D getView3D() {
+	public euclideanView3D getView3D() {
 		return view3D;
 	}
 

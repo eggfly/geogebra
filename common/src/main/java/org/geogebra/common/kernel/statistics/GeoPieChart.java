@@ -78,7 +78,7 @@ public class GeoPieChart extends GeoElement {
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return isDefined();
 	}
 

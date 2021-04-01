@@ -1,13 +1,13 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterSurface;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D.Type;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterSurface;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D.Type;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoAnglePlanes;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.algos.AlgoAngle;
@@ -15,7 +15,7 @@ import org.geogebra.common.kernel.algos.AlgoAnglePointsND;
 import org.geogebra.common.kernel.algos.AlgoElement;
 import org.geogebra.common.kernel.geos.GeoAngle;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 
 /**
@@ -50,7 +50,7 @@ public class DrawAngle3D extends Drawable3DCurves {
 	 * @param geo
 	 *            the angle to draw
 	 */
-	public DrawAngle3D(EuclidianView3D view3d, GeoAngle geo) {
+	public DrawAngle3D(euclideanView3D view3d, GeoAngle geo) {
 		super(view3d, geo);
 	}
 
@@ -184,7 +184,7 @@ public class DrawAngle3D extends Drawable3DCurves {
 
 			// 90degrees
 			show90degrees = getView3D()
-					.getRightAngleStyle() != EuclidianStyleConstants.RIGHT_ANGLE_STYLE_NONE
+					.getRightAngleStyle() != euclideanStyleConstants.RIGHT_ANGLE_STYLE_NONE
 					&& angle.isEmphasizeRightAngle()
 					&& DoubleUtil.isEqual(angleValue, Kernel.PI_HALF);
 
@@ -195,7 +195,7 @@ public class DrawAngle3D extends Drawable3DCurves {
 			if (show90degrees) {
 				switch (getView3D().getRightAngleStyle()) {
 				default:
-				case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_SQUARE:
+				case euclideanStyleConstants.RIGHT_ANGLE_STYLE_SQUARE:
 					startBrush(brush);
 					size *= 0.7071067811865;
 					offset = 0;
@@ -215,7 +215,7 @@ public class DrawAngle3D extends Drawable3DCurves {
 					setGeometryIndex(brush.end());
 					break;
 
-				case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_DOT:
+				case euclideanStyleConstants.RIGHT_ANGLE_STYLE_DOT:
 					// create point template if needed
 					float pointSize = getGeoElement().getLineThickness()
                             * PlotterBrush.LINE3D_THICKNESS;
@@ -241,7 +241,7 @@ public class DrawAngle3D extends Drawable3DCurves {
 					setGeometryIndex(brush.end());
 					break;
 
-				case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_L:
+				case euclideanStyleConstants.RIGHT_ANGLE_STYLE_L:
 					startBrush(brush);
 					size *= 0.7071067811865;
 					offset = size * 0.4;
@@ -280,18 +280,18 @@ public class DrawAngle3D extends Drawable3DCurves {
 			if (show90degrees) {
 				switch (getView3D().getRightAngleStyle()) {
 				default:
-				case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_SQUARE:
+				case euclideanStyleConstants.RIGHT_ANGLE_STYLE_SQUARE:
 					surface.start(getReusableSurfaceIndex());
 					surface.parallelogram(this, center, v1, v2, size, size);
 					setSurfaceIndex(surface.end());
 					break;
-				case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_DOT:
+				case euclideanStyleConstants.RIGHT_ANGLE_STYLE_DOT:
 					surface.start(getReusableSurfaceIndex());
 					surface.ellipsePart(this, center, v1, v2, size, size, 0,
 							angleValue);
 					setSurfaceIndex(surface.end());
 					break;
-				case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_L:
+				case euclideanStyleConstants.RIGHT_ANGLE_STYLE_L:
 					setSurfaceIndex(-1);
 					break;
 				}
@@ -450,8 +450,8 @@ public class DrawAngle3D extends Drawable3DCurves {
 
 		if (show90degrees) {
 			switch (getView3D().getRightAngleStyle()) {
-			case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_SQUARE:
-			case EuclidianStyleConstants.RIGHT_ANGLE_STYLE_L:
+			case euclideanStyleConstants.RIGHT_ANGLE_STYLE_SQUARE:
+			case euclideanStyleConstants.RIGHT_ANGLE_STYLE_L:
 				if (x < offset || x > size + offset || y < offset
 						|| y > size + offset) {
 					return false;

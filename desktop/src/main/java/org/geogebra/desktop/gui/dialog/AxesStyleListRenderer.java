@@ -13,7 +13,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.desktop.awt.GGraphics2DD;
 import org.geogebra.desktop.factories.AwtFactoryD;
 
@@ -54,7 +54,7 @@ public class AxesStyleListRenderer extends JPanel implements ListCellRenderer {
 			int index, boolean isSelected, boolean cellHasFocus) {
 
 		// get the selected point style
-		style = value == null ? EuclidianStyleConstants.AXES_LINE_TYPE_FULL
+		style = value == null ? euclideanStyleConstants.AXES_LINE_TYPE_FULL
 				: ((Integer) value).intValue();
 
 		if (isSelected) {
@@ -89,26 +89,26 @@ public class AxesStyleListRenderer extends JPanel implements ListCellRenderer {
 		g2.draw(tempLine);
 
 		switch (style) {
-		case EuclidianStyleConstants.AXES_LINE_TYPE_TWO_ARROWS:
+		case euclideanStyleConstants.AXES_LINE_TYPE_TWO_ARROWS:
 
 			leftArrow(g2);
 			rightArrow(g2);
 			break;
 		default:
-		case EuclidianStyleConstants.AXES_LINE_TYPE_ARROW:
+		case euclideanStyleConstants.AXES_LINE_TYPE_ARROW:
 			rightArrow(g2);
 			break;
 
-		case EuclidianStyleConstants.AXES_LINE_TYPE_FULL:
+		case euclideanStyleConstants.AXES_LINE_TYPE_FULL:
 			// just a line
 			// do nothing
 			break;
 
-		case EuclidianStyleConstants.AXES_LINE_TYPE_TWO_ARROWS_FILLED:
+		case euclideanStyleConstants.AXES_LINE_TYPE_TWO_ARROWS_FILLED:
 			filledLeftArrow(g2);
 			filledRightArrow(g2);
 			break;
-		case EuclidianStyleConstants.AXES_LINE_TYPE_ARROW_FILLED:
+		case euclideanStyleConstants.AXES_LINE_TYPE_ARROW_FILLED:
 
 			filledRightArrow(g2);
 

@@ -1,11 +1,11 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.util.debug.Log;
 
 /**
  * Mode numbers
  */
-public final class EuclidianConstants {
+public final class euclideanConstants {
 
 	/** Move */
 	public static final int MODE_MOVE = 0;
@@ -496,436 +496,436 @@ public final class EuclidianConstants {
 		switch (mode) {
 
 		// 3D Modes
-		case EuclidianConstants.MODE_VIEW_IN_FRONT_OF:
+		case euclideanConstants.MODE_VIEW_IN_FRONT_OF:
 			return "ViewInFrontOf";
 
-		case EuclidianConstants.MODE_PLANE_THREE_POINTS:
+		case euclideanConstants.MODE_PLANE_THREE_POINTS:
 			return "PlaneThreePoint";
 
-		case EuclidianConstants.MODE_PLANE:
+		case euclideanConstants.MODE_PLANE:
 			return "Plane.Tool";
 
-		case EuclidianConstants.MODE_ORTHOGONAL_PLANE:
+		case euclideanConstants.MODE_ORTHOGONAL_PLANE:
 			return "OrthogonalPlane";
 
-		case EuclidianConstants.MODE_PARALLEL_PLANE:
+		case euclideanConstants.MODE_PARALLEL_PLANE:
 			return "ParallelPlane";
 
-		case EuclidianConstants.MODE_CUBE:
+		case euclideanConstants.MODE_CUBE:
 			return "Cube.Tool";
 
-		case EuclidianConstants.MODE_TETRAHEDRON:
+		case euclideanConstants.MODE_TETRAHEDRON:
 			return "Tetrahedron";
 
-		case EuclidianConstants.MODE_PRISM:
+		case euclideanConstants.MODE_PRISM:
 			return "Prism";
 
-		case EuclidianConstants.MODE_EXTRUSION:
+		case euclideanConstants.MODE_EXTRUSION:
 			return "Extrusion";
 
-		case EuclidianConstants.MODE_SURFACE_OF_REVOLUTION:
+		case euclideanConstants.MODE_SURFACE_OF_REVOLUTION:
 			return "SurfaceOfRevolution";
 
-		case EuclidianConstants.MODE_CONIFY:
+		case euclideanConstants.MODE_CONIFY:
 			return "Conify";
 
-		case EuclidianConstants.MODE_PYRAMID:
+		case euclideanConstants.MODE_PYRAMID:
 			return "Pyramid.Tool";
 
-		case EuclidianConstants.MODE_NET:
+		case euclideanConstants.MODE_NET:
 			return "Net.Tool";
 
-		case EuclidianConstants.MODE_SPHERE_POINT_RADIUS:
+		case euclideanConstants.MODE_SPHERE_POINT_RADIUS:
 			return "SpherePointRadius";
 
-		case EuclidianConstants.MODE_SPHERE_TWO_POINTS:
+		case euclideanConstants.MODE_SPHERE_TWO_POINTS:
 			return "Sphere2";
 
-		case EuclidianConstants.MODE_CONE_TWO_POINTS_RADIUS:
+		case euclideanConstants.MODE_CONE_TWO_POINTS_RADIUS:
 			return "Cone.Tool";
 
-		case EuclidianConstants.MODE_CYLINDER_TWO_POINTS_RADIUS:
+		case euclideanConstants.MODE_CYLINDER_TWO_POINTS_RADIUS:
 			return "Cylinder.Tool";
 
-		case EuclidianConstants.MODE_ROTATEVIEW:
+		case euclideanConstants.MODE_ROTATEVIEW:
 			return "RotateView";
 
-		case EuclidianConstants.MODE_CIRCLE_POINT_RADIUS_DIRECTION:
+		case euclideanConstants.MODE_CIRCLE_POINT_RADIUS_DIRECTION:
 			return "CirclePointRadiusDirection";
 
-		case EuclidianConstants.MODE_CIRCLE_AXIS_POINT:
+		case euclideanConstants.MODE_CIRCLE_AXIS_POINT:
 			return "CircleAxisPoint";
 
-		case EuclidianConstants.MODE_VOLUME:
+		case euclideanConstants.MODE_VOLUME:
 			return "Volume";
 
-		case EuclidianConstants.MODE_MIRROR_AT_PLANE:
+		case euclideanConstants.MODE_MIRROR_AT_PLANE:
 			return "MirrorAtPlane";
 
-		case EuclidianConstants.MODE_ROTATE_AROUND_LINE:
+		case euclideanConstants.MODE_ROTATE_AROUND_LINE:
 			return "RotateAroundLine";
 
-		case EuclidianConstants.MODE_ORTHOGONAL_THREE_D:
+		case euclideanConstants.MODE_ORTHOGONAL_THREE_D:
 			return "OrthogonalThreeD";
 
-		case EuclidianConstants.MODE_SELECTION_LISTENER:
+		case euclideanConstants.MODE_SELECTION_LISTENER:
 			return "Select";
 
-		case EuclidianConstants.MODE_MOVE:
+		case euclideanConstants.MODE_MOVE:
 			return "Move";
 
-		case EuclidianConstants.MODE_POINT:
+		case euclideanConstants.MODE_POINT:
 			return "Point.Tool";
 
-		case EuclidianConstants.MODE_COMPLEX_NUMBER:
+		case euclideanConstants.MODE_COMPLEX_NUMBER:
 			return "ComplexNumber.Tool";
 
-		case EuclidianConstants.MODE_POINT_ON_OBJECT:
+		case euclideanConstants.MODE_POINT_ON_OBJECT:
 			return "PointOnObject";
 
-		case EuclidianConstants.MODE_JOIN:
+		case euclideanConstants.MODE_JOIN:
 			return "Join";
 
-		case EuclidianConstants.MODE_SEGMENT:
+		case euclideanConstants.MODE_SEGMENT:
 			return "Segment.Tool";
 
-		case EuclidianConstants.MODE_SEGMENT_FIXED:
+		case euclideanConstants.MODE_SEGMENT_FIXED:
 			return "SegmentFixed";
 
-		case EuclidianConstants.MODE_RAY:
+		case euclideanConstants.MODE_RAY:
 			return "Ray.Tool";
 
-		case EuclidianConstants.MODE_POLYGON:
+		case euclideanConstants.MODE_POLYGON:
 			return "Polygon.Tool";
 
-		case EuclidianConstants.MODE_POLYLINE:
+		case euclideanConstants.MODE_POLYLINE:
 			return "PolyLine.Tool";
 
-		case EuclidianConstants.MODE_RIGID_POLYGON:
+		case euclideanConstants.MODE_RIGID_POLYGON:
 			return "RigidPolygon";
 
-		case EuclidianConstants.MODE_VECTOR_POLYGON:
+		case euclideanConstants.MODE_VECTOR_POLYGON:
 			return "VectorPolygon";
 
-		case EuclidianConstants.MODE_PARALLEL:
+		case euclideanConstants.MODE_PARALLEL:
 			return "Parallel";
 
-		case EuclidianConstants.MODE_ORTHOGONAL:
+		case euclideanConstants.MODE_ORTHOGONAL:
 			return "Orthogonal";
 
-		case EuclidianConstants.MODE_INTERSECT:
+		case euclideanConstants.MODE_INTERSECT:
 			return "Intersect";
 
-		case EuclidianConstants.MODE_INTERSECTION_CURVE:
+		case euclideanConstants.MODE_INTERSECTION_CURVE:
 			return "IntersectionCurve";
 
-		case EuclidianConstants.MODE_LINE_BISECTOR:
+		case euclideanConstants.MODE_LINE_BISECTOR:
 			return "LineBisector";
 
-		case EuclidianConstants.MODE_ANGULAR_BISECTOR:
+		case euclideanConstants.MODE_ANGULAR_BISECTOR:
 			return "AngularBisector";
 
-		case EuclidianConstants.MODE_TANGENTS:
+		case euclideanConstants.MODE_TANGENTS:
 			return "Tangent";
 
-		case EuclidianConstants.MODE_POLAR_DIAMETER:
+		case euclideanConstants.MODE_POLAR_DIAMETER:
 			return "PolarDiameter";
 
-		case EuclidianConstants.MODE_CIRCLE_TWO_POINTS:
+		case euclideanConstants.MODE_CIRCLE_TWO_POINTS:
 			return "Circle2";
 
-		case EuclidianConstants.MODE_CIRCLE_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_THREE_POINTS:
 			return "Circle3";
 
-		case EuclidianConstants.MODE_ELLIPSE_THREE_POINTS:
+		case euclideanConstants.MODE_ELLIPSE_THREE_POINTS:
 			return "Ellipse3";
 
-		case EuclidianConstants.MODE_PARABOLA:
+		case euclideanConstants.MODE_PARABOLA:
 			return "Parabola.Tool";
 
-		case EuclidianConstants.MODE_HYPERBOLA_THREE_POINTS:
+		case euclideanConstants.MODE_HYPERBOLA_THREE_POINTS:
 			return "Hyperbola3";
 
 		// Michael Borcherds 2008-03-13
-		case EuclidianConstants.MODE_COMPASSES:
+		case euclideanConstants.MODE_COMPASSES:
 			return "Compasses";
 
-		case EuclidianConstants.MODE_CONIC_FIVE_POINTS:
+		case euclideanConstants.MODE_CONIC_FIVE_POINTS:
 			return "Conic5";
 
-		case EuclidianConstants.MODE_RELATION:
+		case euclideanConstants.MODE_RELATION:
 			return "Relation";
 
-		case EuclidianConstants.MODE_TRANSLATEVIEW:
+		case euclideanConstants.MODE_TRANSLATEVIEW:
 			return "TranslateView";
 
-		case EuclidianConstants.MODE_SHOW_HIDE_OBJECT:
+		case euclideanConstants.MODE_SHOW_HIDE_OBJECT:
 			return "ShowHideObject";
 
-		case EuclidianConstants.MODE_SHOW_HIDE_LABEL:
+		case euclideanConstants.MODE_SHOW_HIDE_LABEL:
 			return "ShowHideLabel";
 
-		case EuclidianConstants.MODE_COPY_VISUAL_STYLE:
+		case euclideanConstants.MODE_COPY_VISUAL_STYLE:
 			return "CopyVisualStyle";
 
-		case EuclidianConstants.MODE_DELETE:
+		case euclideanConstants.MODE_DELETE:
 			return "Delete";
 
-		case EuclidianConstants.MODE_VECTOR:
+		case euclideanConstants.MODE_VECTOR:
 			return "Vector.Tool";
 
-		case EuclidianConstants.MODE_TEXT:
-		case EuclidianConstants.MODE_MEDIA_TEXT:
+		case euclideanConstants.MODE_TEXT:
+		case euclideanConstants.MODE_MEDIA_TEXT:
 			return "Text.Tool";
 
-		case EuclidianConstants.MODE_IMAGE:
+		case euclideanConstants.MODE_IMAGE:
 			return "Image.Tool";
 
-		case EuclidianConstants.MODE_MIDPOINT:
+		case euclideanConstants.MODE_MIDPOINT:
 			return "Midpoint.Tool";
 
-		case EuclidianConstants.MODE_SEMICIRCLE:
+		case euclideanConstants.MODE_SEMICIRCLE:
 			return "Semicircle.Tool";
 
-		case EuclidianConstants.MODE_CIRCLE_ARC_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_ARC_THREE_POINTS:
 			return "CircleArc3";
 
-		case EuclidianConstants.MODE_CIRCLE_SECTOR_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_SECTOR_THREE_POINTS:
 			return "CircleSector3";
 
-		case EuclidianConstants.MODE_CIRCUMCIRCLE_ARC_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCUMCIRCLE_ARC_THREE_POINTS:
 			return "CircumcircleArc3";
 
-		case EuclidianConstants.MODE_CIRCUMCIRCLE_SECTOR_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCUMCIRCLE_SECTOR_THREE_POINTS:
 			return "CircumcircleSector3";
 
-		case EuclidianConstants.MODE_SLIDER:
+		case euclideanConstants.MODE_SLIDER:
 			return "Slider.Tool";
 
-		case EuclidianConstants.MODE_MIRROR_AT_POINT:
+		case euclideanConstants.MODE_MIRROR_AT_POINT:
 			return "MirrorAtPoint";
 
-		case EuclidianConstants.MODE_MIRROR_AT_LINE:
+		case euclideanConstants.MODE_MIRROR_AT_LINE:
 			return "MirrorAtLine";
 
-		case EuclidianConstants.MODE_MIRROR_AT_CIRCLE:
+		case euclideanConstants.MODE_MIRROR_AT_CIRCLE:
 			return "MirrorAtCircle";
 
-		case EuclidianConstants.MODE_TRANSLATE_BY_VECTOR:
+		case euclideanConstants.MODE_TRANSLATE_BY_VECTOR:
 			return "TranslateByVector";
 
-		case EuclidianConstants.MODE_ROTATE_BY_ANGLE:
+		case euclideanConstants.MODE_ROTATE_BY_ANGLE:
 			return "RotateByAngle";
 
-		case EuclidianConstants.MODE_DILATE_FROM_POINT:
+		case euclideanConstants.MODE_DILATE_FROM_POINT:
 			return "DilateFromPoint";
 
-		case EuclidianConstants.MODE_CIRCLE_POINT_RADIUS:
+		case euclideanConstants.MODE_CIRCLE_POINT_RADIUS:
 			return "CirclePointRadius";
 
-		case EuclidianConstants.MODE_ANGLE:
+		case euclideanConstants.MODE_ANGLE:
 			return "Angle.Tool";
 
-		case EuclidianConstants.MODE_ANGLE_FIXED:
+		case euclideanConstants.MODE_ANGLE_FIXED:
 			return "AngleFixed";
 
-		case EuclidianConstants.MODE_VECTOR_FROM_POINT:
+		case euclideanConstants.MODE_VECTOR_FROM_POINT:
 			return "VectorFromPoint";
 
-		case EuclidianConstants.MODE_DISTANCE:
+		case euclideanConstants.MODE_DISTANCE:
 			return "Distance";
 
-		case EuclidianConstants.MODE_MOVE_ROTATE:
+		case euclideanConstants.MODE_MOVE_ROTATE:
 			return "MoveRotate";
 
-		case EuclidianConstants.MODE_ZOOM_IN:
+		case euclideanConstants.MODE_ZOOM_IN:
 			return "ZoomIn.Tool";
 
-		case EuclidianConstants.MODE_ZOOM_OUT:
+		case euclideanConstants.MODE_ZOOM_OUT:
 			return "ZoomOut.Tool";
 
-		case EuclidianConstants.MODE_LOCUS:
+		case euclideanConstants.MODE_LOCUS:
 			return "Locus.Tool";
 
-		case EuclidianConstants.MODE_AREA:
+		case euclideanConstants.MODE_AREA:
 			return "Area";
 
-		case EuclidianConstants.MODE_SLOPE:
+		case euclideanConstants.MODE_SLOPE:
 			return "Slope";
 
-		case EuclidianConstants.MODE_REGULAR_POLYGON:
+		case euclideanConstants.MODE_REGULAR_POLYGON:
 			return "RegularPolygon";
 
-		case EuclidianConstants.MODE_SHOW_HIDE_CHECKBOX:
+		case euclideanConstants.MODE_SHOW_HIDE_CHECKBOX:
 			return "ShowCheckBox";
 
-		case EuclidianConstants.MODE_BUTTON_ACTION:
+		case euclideanConstants.MODE_BUTTON_ACTION:
 			return "ButtonAction";
 
-		case EuclidianConstants.MODE_TEXTFIELD_ACTION:
+		case euclideanConstants.MODE_TEXTFIELD_ACTION:
 			return "TextFieldAction";
 
-		case EuclidianConstants.MODE_PEN:
+		case euclideanConstants.MODE_PEN:
 			return "Pen";
 
-		// case EuclidianConstants.MODE_PENCIL:
+		// case euclideanConstants.MODE_PENCIL:
 		// return "Pencil";
 
-		case EuclidianConstants.MODE_FREEHAND_SHAPE:
+		case euclideanConstants.MODE_FREEHAND_SHAPE:
 			return "FreehandShape";
 
-		case EuclidianConstants.MODE_FREEHAND_FUNCTION:
+		case euclideanConstants.MODE_FREEHAND_FUNCTION:
 			return "FreehandFunction";
 
-		// case EuclidianConstants.MODE_VISUAL_STYLE:
+		// case euclideanConstants.MODE_VISUAL_STYLE:
 		// return "VisualStyle";
 
-		case EuclidianConstants.MODE_FITLINE:
+		case euclideanConstants.MODE_FITLINE:
 			return "FitLine";
 
-		case EuclidianConstants.MODE_CREATE_LIST:
+		case euclideanConstants.MODE_CREATE_LIST:
 			return "CreateList";
 
-		case EuclidianConstants.MODE_PROBABILITY_CALCULATOR:
+		case euclideanConstants.MODE_PROBABILITY_CALCULATOR:
 			return "ProbabilityCalculator";
 
-		case EuclidianConstants.MODE_FUNCTION_INSPECTOR:
+		case euclideanConstants.MODE_FUNCTION_INSPECTOR:
 			return "FunctionInspector";
 
 		// CAS
-		case EuclidianConstants.MODE_CAS_EVALUATE:
+		case euclideanConstants.MODE_CAS_EVALUATE:
 			return "Evaluate";
 
-		case EuclidianConstants.MODE_CAS_NUMERIC:
+		case euclideanConstants.MODE_CAS_NUMERIC:
 			return "Numeric.Tool";
 
-		case EuclidianConstants.MODE_CAS_KEEP_INPUT:
+		case euclideanConstants.MODE_CAS_KEEP_INPUT:
 			return "KeepInput";
 
-		case EuclidianConstants.MODE_CAS_EXPAND:
+		case euclideanConstants.MODE_CAS_EXPAND:
 			return "Expand";
 
-		case EuclidianConstants.MODE_CAS_FACTOR:
+		case euclideanConstants.MODE_CAS_FACTOR:
 			return "Factor";
 
-		case EuclidianConstants.MODE_CAS_SUBSTITUTE:
+		case euclideanConstants.MODE_CAS_SUBSTITUTE:
 			return "Substitute.Tool";
 
-		case EuclidianConstants.MODE_CAS_SOLVE:
+		case euclideanConstants.MODE_CAS_SOLVE:
 			return "Solve";
 
-		case EuclidianConstants.MODE_CAS_NUMERICAL_SOLVE:
+		case euclideanConstants.MODE_CAS_NUMERICAL_SOLVE:
 			return "NSolve";
-		case EuclidianConstants.MODE_CAS_DERIVATIVE:
+		case euclideanConstants.MODE_CAS_DERIVATIVE:
 			return "Derivative";
 
-		case EuclidianConstants.MODE_CAS_INTEGRAL:
+		case euclideanConstants.MODE_CAS_INTEGRAL:
 			return "Integral";
 
-		case EuclidianConstants.MODE_ATTACH_DETACH:
+		case euclideanConstants.MODE_ATTACH_DETACH:
 			return "AttachDetachPoint";
 
 		// Spreadsheet
-		case EuclidianConstants.MODE_SPREADSHEET_ONEVARSTATS:
+		case euclideanConstants.MODE_SPREADSHEET_ONEVARSTATS:
 			return "OneVarStats";
 
-		case EuclidianConstants.MODE_SPREADSHEET_TWOVARSTATS:
+		case euclideanConstants.MODE_SPREADSHEET_TWOVARSTATS:
 			return "TwoVarStats";
 
-		case EuclidianConstants.MODE_SPREADSHEET_MULTIVARSTATS:
+		case euclideanConstants.MODE_SPREADSHEET_MULTIVARSTATS:
 			return "MultiVarStats";
 
-		case EuclidianConstants.MODE_SPREADSHEET_CREATE_LIST:
+		case euclideanConstants.MODE_SPREADSHEET_CREATE_LIST:
 			return "CreateList";
 
-		case EuclidianConstants.MODE_SPREADSHEET_CREATE_LISTOFPOINTS:
+		case euclideanConstants.MODE_SPREADSHEET_CREATE_LISTOFPOINTS:
 			return "CreateListOfPoints";
 
-		case EuclidianConstants.MODE_SPREADSHEET_CREATE_MATRIX:
+		case euclideanConstants.MODE_SPREADSHEET_CREATE_MATRIX:
 			return "CreateMatrix";
 
-		case EuclidianConstants.MODE_SPREADSHEET_CREATE_TABLETEXT:
+		case euclideanConstants.MODE_SPREADSHEET_CREATE_TABLETEXT:
 			return "CreateTable";
 
-		case EuclidianConstants.MODE_SPREADSHEET_CREATE_POLYLINE:
+		case euclideanConstants.MODE_SPREADSHEET_CREATE_POLYLINE:
 			return "CreatePolyLine";
 
-		case EuclidianConstants.MODE_SPREADSHEET_SUM:
+		case euclideanConstants.MODE_SPREADSHEET_SUM:
 			return "SumCells";
 
-		case EuclidianConstants.MODE_SPREADSHEET_AVERAGE:
+		case euclideanConstants.MODE_SPREADSHEET_AVERAGE:
 			return "MeanCells";
 
-		case EuclidianConstants.MODE_SPREADSHEET_COUNT:
+		case euclideanConstants.MODE_SPREADSHEET_COUNT:
 			return "CountCells";
 
-		case EuclidianConstants.MODE_SPREADSHEET_MIN:
+		case euclideanConstants.MODE_SPREADSHEET_MIN:
 			return "MinCells";
 
-		case EuclidianConstants.MODE_SPREADSHEET_MAX:
+		case euclideanConstants.MODE_SPREADSHEET_MAX:
 			return "MaxCells";
 
-		case EuclidianConstants.MODE_EXTREMUM:
+		case euclideanConstants.MODE_EXTREMUM:
 			return "Extremum";
 
-		case EuclidianConstants.MODE_ROOTS:
+		case euclideanConstants.MODE_ROOTS:
 			return "Roots";
 
 		/** WHITEBOARD TOOLS */
-		case EuclidianConstants.MODE_SHAPE_LINE:
+		case euclideanConstants.MODE_SHAPE_LINE:
 			return "Line";
-		case EuclidianConstants.MODE_SHAPE_TRIANGLE:
+		case euclideanConstants.MODE_SHAPE_TRIANGLE:
 			return "ShapeTriangle";
-		case EuclidianConstants.MODE_SHAPE_SQUARE:
+		case euclideanConstants.MODE_SHAPE_SQUARE:
 			return "ShapeSquare";
-		case EuclidianConstants.MODE_SHAPE_RECTANGLE:
+		case euclideanConstants.MODE_SHAPE_RECTANGLE:
 			return "ShapeRectangle";
-		case EuclidianConstants.MODE_SHAPE_RECTANGLE_ROUND_EDGES:
+		case euclideanConstants.MODE_SHAPE_RECTANGLE_ROUND_EDGES:
 			return "ShapeRoundedRectangle";
-		case EuclidianConstants.MODE_SHAPE_PENTAGON:
+		case euclideanConstants.MODE_SHAPE_PENTAGON:
 			return "Pentagon";
-		case EuclidianConstants.MODE_SHAPE_FREEFORM:
+		case euclideanConstants.MODE_SHAPE_FREEFORM:
 			return "ShapeFreeform";
-		case EuclidianConstants.MODE_SHAPE_CIRCLE:
+		case euclideanConstants.MODE_SHAPE_CIRCLE:
 			return "Circle";
-		case EuclidianConstants.MODE_SHAPE_ELLIPSE:
+		case euclideanConstants.MODE_SHAPE_ELLIPSE:
 			return "Ellipse";
-		case EuclidianConstants.MODE_MASK:
+		case euclideanConstants.MODE_MASK:
 			return "MaskTool";
-		case EuclidianConstants.MODE_ERASER:
+		case euclideanConstants.MODE_ERASER:
 			return "Eraser";
-		case EuclidianConstants.MODE_HIGHLIGHTER:
+		case euclideanConstants.MODE_HIGHLIGHTER:
 			return "Highlighter";
 
-		case EuclidianConstants.MODE_PEN_PANEL:
+		case euclideanConstants.MODE_PEN_PANEL:
 			return "PenPanel";
-		case EuclidianConstants.MODE_TOOLS_PANEL:
+		case euclideanConstants.MODE_TOOLS_PANEL:
 			return "ToolsPanel";
-		case EuclidianConstants.MODE_MEDIA_PANEL:
+		case euclideanConstants.MODE_MEDIA_PANEL:
 			return "MediaPanel";
-		case EuclidianConstants.MODE_VIDEO:
+		case euclideanConstants.MODE_VIDEO:
 			return "Video";
-		case EuclidianConstants.MODE_CAMERA:
+		case euclideanConstants.MODE_CAMERA:
 			return "Camera";
-		case EuclidianConstants.MODE_AUDIO:
+		case euclideanConstants.MODE_AUDIO:
 			return "Audio";
-		case EuclidianConstants.MODE_GRAPHING:
+		case euclideanConstants.MODE_GRAPHING:
 			return "Graphing";
-		case EuclidianConstants.MODE_CAS:
+		case euclideanConstants.MODE_CAS:
 				return "CAS";
-        case EuclidianConstants.MODE_GRASPABLE_MATH:
+        case euclideanConstants.MODE_GRASPABLE_MATH:
             return "Graspable Math";
-		case EuclidianConstants.MODE_PDF:
+		case euclideanConstants.MODE_PDF:
 			return "PDF";
-		case EuclidianConstants.MODE_EXTENSION:
+		case euclideanConstants.MODE_EXTENSION:
 			return "Web";
-		case EuclidianConstants.MODE_SELECT:
+		case euclideanConstants.MODE_SELECT:
 			return "Select";
-		case EuclidianConstants.MODE_SELECT_MOW:
+		case euclideanConstants.MODE_SELECT_MOW:
 			return "Select";
-		case EuclidianConstants.MODE_TABLE:
+		case euclideanConstants.MODE_TABLE:
 			return "Table";
-		case EuclidianConstants.MODE_EQUATION:
+		case euclideanConstants.MODE_EQUATION:
 			return "Equation";
 
 		default:
@@ -990,7 +990,7 @@ public final class EuclidianConstants {
 	}
 
 	// prevent instantiation
-	private EuclidianConstants() {
+	private euclideanConstants() {
 	}
 
 }

@@ -56,11 +56,11 @@ public interface AppConfig {
 
 	boolean allowsSuggestions();
 
-	boolean shouldKeepRatioEuclidian();
+	boolean shouldKeepRatioeuclidean();
 
 	int getDefaultPrintDecimals();
 
-	boolean hasSingleEuclidianViewWhichIs3D();
+	boolean hasSingleeuclideanViewWhichIs3D();
 
 	/**
 	 * @return the decimal places that this app uses.
@@ -106,13 +106,13 @@ public interface AppConfig {
 
     /**
      *
-     * @return true if grid is shown at start on the active (main) euclidian view
+     * @return true if grid is shown at start on the active (main) euclidean view
      */
 	boolean showGridOnFileNew();
 
     /**
      *
-     * @return true if axes are shown at start on the active (main) euclidian view
+     * @return true if axes are shown at start on the active (main) euclidean view
      */
     boolean showAxesOnFileNew();
 

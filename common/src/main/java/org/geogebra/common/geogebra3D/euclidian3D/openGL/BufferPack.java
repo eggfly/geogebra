@@ -1,7 +1,7 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager.Type;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager.Type;
 
 /**
  * Buffer that packs several geometries
@@ -120,7 +120,7 @@ class BufferPack extends BufferPackAbstract {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.geogebra.common.geogebra3D.euclidian3D.openGL.BufferPackInterface#setElements()
+	 * @see org.geogebra.common.geogebra3D.euclidean3D.openGL.BufferPackInterface#setElements()
 	 */
 	@Override
 	public void setElements() {
@@ -161,7 +161,7 @@ class BufferPack extends BufferPackAbstract {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.geogebra.common.geogebra3D.euclidian3D.openGL.BufferPackInterface#setElements(float[], float, boolean)
+	 * @see org.geogebra.common.geogebra3D.euclidean3D.openGL.BufferPackInterface#setElements(float[], float, boolean)
 	 */
 	@Override
 	public void setElements(float[] translate, float scale,
@@ -178,7 +178,7 @@ class BufferPack extends BufferPackAbstract {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.geogebra.common.geogebra3D.euclidian3D.openGL.BufferPackInterface#setColor(org.geogebra.common.awt.GColor, int, int)
+	 * @see org.geogebra.common.geogebra3D.euclidean3D.openGL.BufferPackInterface#setColor(org.geogebra.common.awt.GColor, int, int)
 	 */
 	@Override
 	public void setColorAndLayer(GColor color, int layer, int offset, int length) {
@@ -220,7 +220,7 @@ class BufferPack extends BufferPackAbstract {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.geogebra.common.geogebra3D.euclidian3D.openGL.BufferPackInterface#draw(org.geogebra.common.geogebra3D.euclidian3D.openGL.RendererShadersInterface)
+	 * @see org.geogebra.common.geogebra3D.euclidean3D.openGL.BufferPackInterface#draw(org.geogebra.common.geogebra3D.euclidean3D.openGL.RendererShadersInterface)
 	 */
 	@Override
 	public void draw(Renderer r) {
@@ -241,7 +241,7 @@ class BufferPack extends BufferPackAbstract {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.geogebra.common.geogebra3D.euclidian3D.openGL.BufferPackInterface#reset()
+	 * @see org.geogebra.common.geogebra3D.euclidean3D.openGL.BufferPackInterface#reset()
 	 */
 	@Override
 	public void reset() {
@@ -256,7 +256,7 @@ class BufferPack extends BufferPackAbstract {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.geogebra.common.geogebra3D.euclidian3D.openGL.BufferPackInterface#setAlphaToTransparent(int, int)
+	 * @see org.geogebra.common.geogebra3D.euclidean3D.openGL.BufferPackInterface#setAlphaToTransparent(int, int)
 	 */
 	@Override
 	public void setAlphaToTransparent(int offset, int length) {
@@ -266,7 +266,7 @@ class BufferPack extends BufferPackAbstract {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.geogebra.common.geogebra3D.euclidian3D.openGL.BufferPackInterface#putToIndices(int, short)
+	 * @see org.geogebra.common.geogebra3D.euclidean3D.openGL.BufferPackInterface#putToIndices(int, short)
 	 */
 	@Override
 	public void putToIndices(int indicesIndex, short value) {
@@ -274,7 +274,7 @@ class BufferPack extends BufferPackAbstract {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.geogebra.common.geogebra3D.euclidian3D.openGL.BufferPackInterface#getVertexBuffer(int)
+	 * @see org.geogebra.common.geogebra3D.euclidean3D.openGL.BufferPackInterface#getVertexBuffer(int)
 	 */
 	@Override
 	public GLBuffer getVertexBuffer(int position) {
@@ -283,7 +283,7 @@ class BufferPack extends BufferPackAbstract {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.geogebra.common.geogebra3D.euclidian3D.openGL.BufferPackInterface#getNormalBuffer(int)
+	 * @see org.geogebra.common.geogebra3D.euclidean3D.openGL.BufferPackInterface#getNormalBuffer(int)
 	 */
 	@Override
 	public GLBuffer getNormalBuffer(int position) {
@@ -292,7 +292,7 @@ class BufferPack extends BufferPackAbstract {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.geogebra.common.geogebra3D.euclidian3D.openGL.BufferPackInterface#getIndicesBuffer(int)
+	 * @see org.geogebra.common.geogebra3D.euclidean3D.openGL.BufferPackInterface#getIndicesBuffer(int)
 	 */
 	@Override
 	public GLBufferIndices getIndicesBuffer(int position) {

@@ -247,7 +247,7 @@ public class AlgebraInputW extends FlowPanel
 		app.getKernel().getInputPreviewHelper().updatePreviewFromInputBar("",
 				app.getDefaultErrorHandler());
 		if (input == null || input.length() == 0) {
-			app.getActiveEuclidianView().requestFocusInWindow();
+			app.getActiveeuclideanView().requestFocusInWindow();
 			return;
 		}
 
@@ -272,7 +272,7 @@ public class AlgebraInputW extends FlowPanel
 					}
 
 					InputHelper.updateProperties(geos,
-							app.getActiveEuclidianView(), oldStep);
+							app.getActiveeuclideanView(), oldStep);
 
 					app.setScrollToShow(false);
 

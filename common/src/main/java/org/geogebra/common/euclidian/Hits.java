@@ -10,14 +10,14 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.FromMeta;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -199,7 +199,7 @@ public class Hits extends ArrayList<GeoElement> {
 	 * (!app.isLabelDragsEnabled()) return null; DrawableIterator it =
 	 * allDrawableList.getIterator(); while (it.hasNext()) { Drawable d =
 	 * it.next(); if (d.hitLabel(p.x, p.y)) { GeoElement geo =
-	 * d.getGeoElement(); if (geo.isEuclidianVisible()) return geo; } } return
+	 * d.getGeoElement(); if (geo.iseuclideanVisible()) return geo; } } return
 	 * null; }
 	 */
 
@@ -236,7 +236,7 @@ public class Hits extends ArrayList<GeoElement> {
 
 	/**
 	 * Removes all transparent geos. Transparency criteria same as in
-	 * EuclidianController3D::decideHideIntersection
+	 * euclideanController3D::decideHideIntersection
 	 */
 	final public void removeAllDimElements() {
 		for (int i = size() - 1; i >= 0; i--) {
@@ -525,7 +525,7 @@ public class Hits extends ArrayList<GeoElement> {
 	 *            view
 	 * @return array of changeable GeoElements out of hits
 	 */
-	final public Hits getMoveableHits(EuclidianViewInterfaceSlim view) {
+	final public Hits getMoveableHits(euclideanViewInterfaceSlim view) {
 		return getMoveables(view, TestGeo.MOVEABLE, null);
 	}
 
@@ -538,7 +538,7 @@ public class Hits extends ArrayList<GeoElement> {
 	 *            rotation center
 	 * @return array of changeable GeoElements out of hits that implement
 	 */
-	final public Hits getPointRotateableHits(EuclidianViewInterfaceSlim view,
+	final public Hits getPointRotateableHits(euclideanViewInterfaceSlim view,
 			GeoPointND rotCenter) {
 		return getMoveables(view, TestGeo.ROTATEMOVEABLE, rotCenter);
 	}
@@ -568,7 +568,7 @@ public class Hits extends ArrayList<GeoElement> {
 	 *            rotation center
 	 * @return (rotate)moveable geos
 	 */
-	protected Hits getMoveables(EuclidianViewInterfaceSlim view, TestGeo test,
+	protected Hits getMoveables(euclideanViewInterfaceSlim view, TestGeo test,
 			GeoPointND rotCenter) {
 
 		GeoElement geo;
@@ -777,7 +777,7 @@ public class Hits extends ArrayList<GeoElement> {
 	 * screen coords of Point p. If there are points at location p only the
 	 * points are returned. Otherwise all GeoElements are returned.
 	 * 
-	 * @see EuclidianController: mousePressed(), mouseMoved()
+	 * @see euclideanController: mousePressed(), mouseMoved()
 	 */
 	/*
 	 * final public ArrayList getTopHits(Point p) { return
@@ -790,8 +790,8 @@ public class Hits extends ArrayList<GeoElement> {
 	 * 
 	 * @return list of hit points
 	 * 
-	 * @see EuclidianController#wrapMousePressed(AbstractEvent)
-	 * @see EuclidianController#wrapMouseMoved(AbstractEvent)
+	 * @see euclideanController#wrapMousePressed(AbstractEvent)
+	 * @see euclideanController#wrapMouseMoved(AbstractEvent)
 	 */
 	public Hits getTopHits() {
 		if (isEmpty()) {

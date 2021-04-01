@@ -21,7 +21,7 @@ package org.geogebra.common.kernel.algos;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.StringTemplate;
@@ -190,7 +190,7 @@ public class AlgoIntersectPathLinePolygon extends AlgoElement {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_INTERSECTION_CURVE;
+		return euclideanConstants.MODE_INTERSECTION_CURVE;
 	}
 
 	// for AlgoElement

@@ -6,7 +6,7 @@ import java.util.Arrays;
 import javax.annotation.Nullable;
 
 import org.geogebra.common.kernel.Construction;
-import org.geogebra.common.kernel.EuclidianViewCE;
+import org.geogebra.common.kernel.euclideanViewCE;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.VarString;
 import org.geogebra.common.kernel.algos.AlgoElement;
@@ -43,12 +43,12 @@ import org.geogebra.common.util.StringUtil;
  */
 public class GeoSymbolic extends GeoElement
 		implements GeoSymbolicI, VarString, GeoEvaluatable, GeoFunctionable, DelegateProperties,
-		HasArbitraryConstant, EuclidianViewCE {
+		HasArbitraryConstant, euclideanViewCE {
 	private ExpressionValue value;
 	private ArrayList<FunctionVariable> fVars = new ArrayList<>();
 	private String casOutputString;
 	private boolean isTwinUpToDate = false;
-	private boolean isEuclidianShowable = true;
+	private boolean iseuclideanShowable = true;
 	private int tableColumn = -1;
 	private boolean pointsVisible = true;
 	private GeoFunction asFunction;
@@ -140,9 +140,9 @@ public class GeoSymbolic extends GeoElement
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		GeoElementND twin = getTwinGeo();
-		return isEuclidianShowable && twin != null && twin.isEuclidianShowable();
+		return iseuclideanShowable && twin != null && twin.iseuclideanShowable();
 	}
 
 	@Override
@@ -189,7 +189,7 @@ public class GeoSymbolic extends GeoElement
 		Command casInput = getCasInput(fixMatrixInput(casInputArg));
 
 		MyArbitraryConstant constant = getArbitraryConstant();
-		constant.setSymbolic(!shouldBeEuclidianVisible(casInput));
+		constant.setSymbolic(!shouldBeeuclideanVisible(casInput));
 
 		String s = evaluateGeoGebraCAS(casInput, constant);
 
@@ -207,7 +207,7 @@ public class GeoSymbolic extends GeoElement
 		setValue(casOutput);
 
 		isTwinUpToDate = false;
-		isEuclidianShowable = shouldBeEuclidianVisible(casInput);
+		iseuclideanShowable = shouldBeeuclideanVisible(casInput);
 	}
 
 	private Command getCasInput(ExpressionValue casInputArg) {
@@ -226,7 +226,7 @@ public class GeoSymbolic extends GeoElement
 				command.wrap(), constant, getStringTemplate(command), null, kernel);
 	}
 
-	private boolean shouldBeEuclidianVisible(Command input) {
+	private boolean shouldBeeuclideanVisible(Command input) {
 		String inputName = input.getName();
 		return !Commands.Solve.name().equals(inputName)
 				&& !Commands.NSolve.name().equals(inputName)
@@ -346,7 +346,7 @@ public class GeoSymbolic extends GeoElement
 		}
 
 		if (newTwin instanceof GeoList) {
-			newTwin.setEuclidianVisible(true);
+			newTwin.seteuclideanVisible(true);
 		}
 
 		if (twinGeo != null && newTwin != null) {
@@ -443,11 +443,11 @@ public class GeoSymbolic extends GeoElement
 		GeoElement[] elements = algebraProcessor.processValidExpression(expressionNode);
 		GeoElement result = elements.length > 1 ? toGeoList(elements) : elements[0];
 		AlgoElement parentAlgo = elements[0].getParentAlgorithm();
-		if (cons.isRegisteredEuclidianViewCE(parentAlgo)) {
-			cons.unregisterEuclidianViewCE(parentAlgo);
-			cons.registerEuclidianViewCE(this);
+		if (cons.isRegisteredeuclideanViewCE(parentAlgo)) {
+			cons.unregistereuclideanViewCE(parentAlgo);
+			cons.registereuclideanViewCE(this);
 		} else {
-			cons.unregisterEuclidianViewCE(this);
+			cons.unregistereuclideanViewCE(this);
 		}
 		return result;
 	}
@@ -799,7 +799,7 @@ public class GeoSymbolic extends GeoElement
 	}
 
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 		isTwinUpToDate = false;
 		return true;
 	}
@@ -807,6 +807,6 @@ public class GeoSymbolic extends GeoElement
 	@Override
 	public void doRemove() {
 		super.doRemove();
-		cons.unregisterEuclidianViewCE(this);
+		cons.unregistereuclideanViewCE(this);
 	}
 }

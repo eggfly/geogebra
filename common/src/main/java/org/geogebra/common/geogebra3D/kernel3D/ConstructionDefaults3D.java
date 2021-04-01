@@ -118,7 +118,7 @@ public class ConstructionDefaults3D extends ConstructionDefaults {
 
 		// axis
 		GeoAxis3D axis = new GeoAxis3D(cons);
-		// axis.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT);
+		// axis.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT);
 		axis.setLocalVariableLabel("Axis3D");
 		axis.setDefaultGeoType(DEFAULT_AXIS3D);
 		defaultGeoElements.put(DEFAULT_AXIS3D, axis);
@@ -126,7 +126,7 @@ public class ConstructionDefaults3D extends ConstructionDefaults {
 		// curve
 		GeoCurveCartesian3D curve = new GeoCurveCartesian3D(cons);
 		curve.setLocalVariableLabel("Curve3D");
-		// curve.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_LONG);
+		// curve.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_LONG);
 		curve.setObjColor(colCurveCartesian3D);
 		curve.setDefaultGeoType(DEFAULT_CURVECARTESIAN3D);
 		defaultGeoElements.put(DEFAULT_CURVECARTESIAN3D, curve);
@@ -138,7 +138,7 @@ public class ConstructionDefaults3D extends ConstructionDefaults {
 		plane.setAlphaValue(DEFAULT_PLANE3D_ALPHA);
 		plane.setLineThickness(DEFAULT_PLANE3D_GRID_THICKNESS);
 		plane.setFading(DEFAULT_PLANE3D_FADING);
-		// plane.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT);
+		// plane.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT);
 		plane.setDefaultGeoType(DEFAULT_PLANE3D);
 		defaultGeoElements.put(DEFAULT_PLANE3D, plane);
 

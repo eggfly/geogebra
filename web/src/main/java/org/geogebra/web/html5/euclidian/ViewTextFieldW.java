@@ -1,9 +1,9 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.ViewTextField;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.ViewTextField;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
 import org.geogebra.common.gui.inputfield.AutoCompleteTextField;
 import org.geogebra.web.html5.gui.inputfield.AutoCompleteTextFieldW;
 import org.geogebra.web.html5.javax.swing.Positioner;
@@ -17,24 +17,24 @@ public class ViewTextFieldW extends ViewTextField {
 	private Positioner positioner;
 	private SimplePanel box;
 	private AutoCompleteTextFieldW textField;
-	private final EuclidianViewWInterface euclidianView;
+	private final euclideanViewWInterface euclideanView;
 	private int hideRequest;
 
-	public ViewTextFieldW(EuclidianViewWInterface euclidianView) {
-		this.euclidianView = euclidianView;
+	public ViewTextFieldW(euclideanViewWInterface euclideanView) {
+		this.euclideanView = euclideanView;
 	}
 
 	private AutoCompleteTextFieldW newAutoCompleteTextField(int length,
 			Drawable drawTextField) {
 		return new AutoCompleteTextFieldW(length,
-				this.euclidianView.getApplication(), drawTextField, true);
+				this.euclideanView.getApplication(), drawTextField, true);
 	}
 
 	private void ensureBoxExists() {
 		if (box == null) {
 			box = new SimplePanel();
 			box.addStyleName("gbox");
-			positioner = new Positioner(euclidianView.getEuclidianController(), box);
+			positioner = new Positioner(euclideanView.geteuclideanController(), box);
 			box.setWidget(textField);
 		}
 	}
@@ -42,7 +42,7 @@ public class ViewTextFieldW extends ViewTextField {
 	@Override
 	public void setBoxVisible(boolean isVisible) {
 		ensureBoxExists();
-		((EuclidianViewW) euclidianView).doRepaint();
+		((euclideanViewW) euclideanView).doRepaint();
 		DomGlobal.cancelAnimationFrame(hideRequest);
 		if (isVisible) {
 			box.setVisible(true);
@@ -66,7 +66,7 @@ public class ViewTextFieldW extends ViewTextField {
 			textField.setAutoComplete(false);
 			ensureBoxExists();
 			box.setWidget(textField);
-			euclidianView.add(box, positioner.getPosition());
+			euclideanView.add(box, positioner.getPosition());
 		} else {
 			textField.setDrawTextField(drawInputBox);
 		}

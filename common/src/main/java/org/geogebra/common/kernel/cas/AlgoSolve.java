@@ -58,7 +58,7 @@ public class AlgoSolve extends AlgoElement implements UsesCAS {
 		setInputOutput();
 		compute();
 		if (type != Commands.PlotSolve) {
-			solutions.setEuclidianVisible(false);
+			solutions.seteuclideanVisible(false);
 		}
 	}
 

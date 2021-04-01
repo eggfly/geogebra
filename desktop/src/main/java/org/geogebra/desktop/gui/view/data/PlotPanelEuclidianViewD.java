@@ -28,16 +28,16 @@ import javax.swing.Action;
 import javax.swing.JDialog;
 import javax.swing.JPopupMenu;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.gui.view.data.PlotPanelEuclidianViewCommon;
-import org.geogebra.common.gui.view.data.PlotPanelEuclidianViewInterface;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.gui.view.data.PlotPaneleuclideanViewCommon;
+import org.geogebra.common.gui.view.data.PlotPaneleuclideanViewInterface;
 import org.geogebra.common.gui.view.data.PlotSettings;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.main.Localization;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GBufferedImageD;
-import org.geogebra.desktop.euclidian.EuclidianControllerListeners;
-import org.geogebra.desktop.euclidian.EuclidianViewD;
+import org.geogebra.desktop.euclidean.euclideanControllerListeners;
+import org.geogebra.desktop.euclidean.euclideanViewD;
 import org.geogebra.desktop.export.GraphicExportDialog;
 import org.geogebra.desktop.gui.GuiManagerD;
 import org.geogebra.desktop.main.AppD;
@@ -47,9 +47,9 @@ import com.himamis.retex.editor.share.util.Unicode;
 
 /**
  * 
- * An extension of EuclidianView used for display of a set of GeoElements
- * without all of the mouse and key controls of the full EuclidianView. Unlike
- * EuclidianView, this view remains centered in the panel when resized.
+ * An extension of euclideanView used for display of a set of GeoElements
+ * without all of the mouse and key controls of the full euclideanView. Unlike
+ * euclideanView, this view remains centered in the panel when resized.
  * 
  * Includes a right-click context menu and DnD support for exporting either the
  * set of GeoElements or an image of the view.
@@ -58,14 +58,14 @@ import com.himamis.retex.editor.share.util.Unicode;
  * @author G.Sturr 2010-6-30
  * 
  */
-public class PlotPanelEuclidianViewD extends EuclidianViewD
+public class PlotPaneleuclideanViewD extends euclideanViewD
 		implements ComponentListener, DragGestureListener, DragSourceListener,
-		PlotPanelEuclidianViewInterface {
+		PlotPaneleuclideanViewInterface {
 
-	private EuclidianController ec;
-	private final PlotPanelEuclidianViewD plotPanelEV;
+	private euclideanController ec;
+	private final PlotPaneleuclideanViewD plotPanelEV;
 
-	public PlotPanelEuclidianViewCommon commonFields;
+	public PlotPaneleuclideanViewCommon commonFields;
 	/** Mouse listener to trigger context menu */
 	private MyMouseListener myMouseListener;
 
@@ -79,7 +79,7 @@ public class PlotPanelEuclidianViewD extends EuclidianViewD
 	ArrayList<AbstractAction> actionList;
 
 	/**
-	 * Action method export of GeoElements to EuclidianView. Since the action is
+	 * Action method export of GeoElements to euclideanView. Since the action is
 	 * specific to the parent container, it is injected in the constructor.
 	 */
 	private AbstractAction exportToEVAction;
@@ -93,10 +93,10 @@ public class PlotPanelEuclidianViewD extends EuclidianViewD
 	/*************************************************
 	 * Construct the panel
 	 */
-	public PlotPanelEuclidianViewD(Kernel kernel, AbstractAction exportAction) {
-		super(new PlotPanelEuclidianControllerD(kernel),
-				PlotPanelEuclidianViewCommon.SHOW_AXES,
-				PlotPanelEuclidianViewCommon.SHOW_GRID, EVNO_GENERAL, null);
+	public PlotPaneleuclideanViewD(Kernel kernel, AbstractAction exportAction) {
+		super(new PlotPaneleuclideanControllerD(kernel),
+				PlotPaneleuclideanViewCommon.SHOW_AXES,
+				PlotPaneleuclideanViewCommon.SHOW_GRID, EVNO_GENERAL, null);
 
 		this.exportToEVAction = exportAction;
 
@@ -136,12 +136,12 @@ public class PlotPanelEuclidianViewD extends EuclidianViewD
 
 	private void setCommonFields() {
 		// set fields
-		commonFields = new PlotPanelEuclidianViewCommon(false);
+		commonFields = new PlotPaneleuclideanViewCommon(false);
 		commonFields.setPlotSettings(new PlotSettings());
 
 		setViewId(kernel);
 
-		this.ec = this.getEuclidianController();
+		this.ec = this.geteuclideanController();
 	}
 
 	@Override
@@ -153,7 +153,7 @@ public class PlotPanelEuclidianViewD extends EuclidianViewD
 	}
 
 	/**
-	 * Overrides EuclidianView setMode method so that no action is taken on a
+	 * Overrides euclideanView setMode method so that no action is taken on a
 	 * mode change.
 	 */
 	@Override
@@ -190,7 +190,7 @@ public class PlotPanelEuclidianViewD extends EuclidianViewD
 
 	/**
 	 * Uses the values stored in the plotSettings field to update the features
-	 * of this EuclidianView (e.g. axes visibility)
+	 * of this euclideanView (e.g. axes visibility)
 	 */
 	@Override
 	public void setEVParams() {
@@ -227,7 +227,7 @@ public class PlotPanelEuclidianViewD extends EuclidianViewD
 	// =================================================
 
 	/**
-	 * Enables/disables the default EuclidianController mouse listener and
+	 * Enables/disables the default euclideanController mouse listener and
 	 * myMouseListener, the listener that handles the right-click context menu.
 	 * 
 	 * @param enableECMouseListener
@@ -241,45 +241,45 @@ public class PlotPanelEuclidianViewD extends EuclidianViewD
 			myMouseListener = new MyMouseListener();
 		}
 		removeMouseListener(myMouseListener);
-		removeMouseListener((EuclidianControllerListeners) ec);
+		removeMouseListener((euclideanControllerListeners) ec);
 
 		if (enableMyMouseListener) {
 			addMouseListener(myMouseListener);
 		}
 		if (enableECMouseListener) {
-			addMouseListener((EuclidianControllerListeners) ec);
+			addMouseListener((euclideanControllerListeners) ec);
 		}
 	}
 
 	/**
-	 * Enables/disables the EuclidianController mouse motion listener
+	 * Enables/disables the euclideanController mouse motion listener
 	 * 
 	 * @param enableMouseMotion
 	 *            default = false
 	 */
 	public void setMouseMotionEnabled(boolean enableMouseMotion) {
-		removeMouseMotionListener((EuclidianControllerListeners) ec);
+		removeMouseMotionListener((euclideanControllerListeners) ec);
 		if (enableMouseMotion) {
-			addMouseMotionListener((EuclidianControllerListeners) ec);
+			addMouseMotionListener((euclideanControllerListeners) ec);
 		}
 	}
 
 	/**
-	 * Enables/disables the EuclidianController mouse wheel listener
+	 * Enables/disables the euclideanController mouse wheel listener
 	 * 
 	 * @param enableMouseWheel
 	 *            default = false
 	 */
 	public void setMouseWheelEnabled(boolean enableMouseWheel) {
-		removeMouseWheelListener((EuclidianControllerListeners) ec);
+		removeMouseWheelListener((euclideanControllerListeners) ec);
 		if (enableMouseWheel) {
-			addMouseWheelListener((EuclidianControllerListeners) ec);
+			addMouseWheelListener((euclideanControllerListeners) ec);
 		}
 	}
 
 	/**
 	 * Mouse listener class to handle right click trigger for the context menu.
-	 * Right click events are consumed to prevent the EuclidianController from
+	 * Right click events are consumed to prevent the euclideanController from
 	 * handling right-clicks as well.
 	 */
 	private class MyMouseListener implements MouseListener {
@@ -339,7 +339,7 @@ public class PlotPanelEuclidianViewD extends EuclidianViewD
 	}
 
 	/**
-	 * Overrides EuclidianView.setDefaultCursor so that DnD grab hand cursors
+	 * Overrides euclideanView.setDefaultCursor so that DnD grab hand cursors
 	 * are drawn when over the drag region.
 	 */
 	@Override

@@ -43,7 +43,7 @@ import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GRectangleD;
 import org.geogebra.desktop.gui.GuiManagerD;
 import org.geogebra.desktop.gui.app.GeoGebraFrame;
-import org.geogebra.desktop.gui.layout.panels.EuclidianDockPanelAbstract;
+import org.geogebra.desktop.gui.layout.panels.euclideanDockPanelAbstract;
 import org.geogebra.desktop.gui.toolbar.ToolbarContainer;
 import org.geogebra.desktop.gui.toolbar.ToolbarD;
 import org.geogebra.desktop.gui.util.LayoutUtil;
@@ -54,7 +54,7 @@ import org.geogebra.desktop.util.GuiResourcesD;
 /**
  * Every object which should be dragged needs to be of type DockPanel. A
  * DockPanel will wrap around the component with the real contents (e.g. the
- * EuclidianView) and will add a title bar if the user is not in the
+ * euclideanView) and will add a title bar if the user is not in the
  * "layout fixed" mode. The user can move the DockPanel by dragging the title
  * bar.
  * 
@@ -391,7 +391,7 @@ public abstract class DockPanelD extends JPanel implements ActionListener,
 	 * setFocus(true) was called and this panel had no focus before.
 	 * 
 	 * Remark: If GeoGebra is running as unsigned applet focus is just changed
-	 *         between euclidian views (even if other views were selected in the
+	 *         between euclidean views (even if other views were selected in the
 	 *         meantime).
 	 */
 	protected void focusGained() {
@@ -403,7 +403,7 @@ public abstract class DockPanelD extends JPanel implements ActionListener,
 	 * setFocus(false) was called and this panel had focus before.
 	 * 
 	 * Remark: If GeoGebra is running as unsigned applet focus is just changed
-	 *         between euclidian views (even if other views were selected in the
+	 *         between euclidean views (even if other views were selected in the
 	 *         meantime).
 	 */
 	protected void focusLost() {
@@ -412,7 +412,7 @@ public abstract class DockPanelD extends JPanel implements ActionListener,
 
 	/**
 	 * create the focus panel (composed of titleLabel, and, for
-	 * EuclidianDockPanels, focus icon)
+	 * euclideanDockPanels, focus icon)
 	 * 
 	 * @return the focus panel
 	 */
@@ -812,8 +812,8 @@ public abstract class DockPanelD extends JPanel implements ActionListener,
 				}
 			}
 
-			// euclidian view uses the general toolbar
-			if (this instanceof EuclidianDockPanelAbstract) {
+			// euclidean view uses the general toolbar
+			if (this instanceof euclideanDockPanelAbstract) {
 				// TODO implement..
 			}
 		}
@@ -1241,7 +1241,7 @@ public abstract class DockPanelD extends JPanel implements ActionListener,
 	 * @return If the style bar should be visible.
 	 */
 	protected boolean isStyleBarVisible() {
-		if (id == App.VIEW_EUCLIDIAN || id == App.VIEW_EUCLIDIAN2
+		if (id == App.VIEW_euclidean || id == App.VIEW_euclidean2
 				|| id == App.VIEW_ALGEBRA) {
 			if (!app.getSettings().getLayout().isAllowingStyleBar()) {
 				return false;
@@ -1679,7 +1679,7 @@ public abstract class DockPanelD extends JPanel implements ActionListener,
 		setVisible(visible);
 	}
 
-	public boolean isEuclidianDockPanel3D() {
+	public boolean iseuclideanDockPanel3D() {
 		return false;
 	}
 

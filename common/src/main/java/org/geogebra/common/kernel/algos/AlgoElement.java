@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.TreeSet;
 
 import org.geogebra.common.kernel.Construction;
-import org.geogebra.common.kernel.EuclidianViewCE;
+import org.geogebra.common.kernel.euclideanViewCE;
 import org.geogebra.common.kernel.GTemplate;
 import org.geogebra.common.kernel.SetRandomValue;
 import org.geogebra.common.kernel.StringTemplate;
@@ -52,7 +52,7 @@ import org.geogebra.common.util.StringUtil;
  * @author Markus
  */
 public abstract class AlgoElement extends ConstructionElement
-		implements EuclidianViewCE {
+		implements euclideanViewCE {
 	private static boolean tempSetLock = false;
 	private static TreeSet<AlgoElement> tempSet;
 	/** input elements */
@@ -814,7 +814,7 @@ public abstract class AlgoElement extends ConstructionElement
 		// every algorithm with an image as output
 		// should be notified about view changes
 		if (output.isGeoImage()) {
-			cons.registerEuclidianViewCE(this);
+			cons.registereuclideanViewCE(this);
 		}
 
 		// make sure that every output has same construction as this algorithm
@@ -828,7 +828,7 @@ public abstract class AlgoElement extends ConstructionElement
 	}
 
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 		update();
 		return false;
 	}

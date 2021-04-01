@@ -1,7 +1,7 @@
-package org.geogebra.common.geogebra3D.euclidian3D;
+package org.geogebra.common.geogebra3D.euclidean3D;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.TextDispatcher;
+import org.geogebra.common.euclidean.TextDispatcher;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
 import org.geogebra.common.kernel.CircularDefinitionException;
 import org.geogebra.common.kernel.Kernel;
@@ -22,7 +22,7 @@ import org.geogebra.common.util.StringUtil;
  */
 public class TextDispatcher3D extends TextDispatcher {
 
-	private EuclidianView3D view3D;
+	private euclideanView3D view3D;
 
 	/**
 	 * @param kernel
@@ -30,7 +30,7 @@ public class TextDispatcher3D extends TextDispatcher {
 	 * @param view
 	 *            view
 	 */
-	public TextDispatcher3D(Kernel kernel, EuclidianView3D view) {
+	public TextDispatcher3D(Kernel kernel, euclideanView3D view) {
 		super(kernel, view);
 		view3D = view;
 	}
@@ -40,7 +40,7 @@ public class TextDispatcher3D extends TextDispatcher {
 
 		Coords coords = view3D.getCursor3D().getCoords();
 
-		return view3D.getEuclidianController().createNewPoint(
+		return view3D.geteuclideanController().createNewPoint(
 				removeUnderscoresAndBraces(loc.getMenu("Point")
 						+ object.getLabel(StringTemplate.defaultTemplate)),
 				false, object, coords.getX(), coords.getY(), coords.getZ(),
@@ -52,7 +52,7 @@ public class TextDispatcher3D extends TextDispatcher {
 
 		Coords coords = view3D.getCursor3D().getCoords();
 
-		return view3D.getEuclidianController().getCompanion().createNewPoint(
+		return view3D.geteuclideanController().getCompanion().createNewPoint(
 				removeUnderscoresAndBraces(loc.getMenu("Point")
 						+ object.getLabel(StringTemplate.defaultTemplate)),
 				false, object, coords.getX(), coords.getY(), coords.getZ(),

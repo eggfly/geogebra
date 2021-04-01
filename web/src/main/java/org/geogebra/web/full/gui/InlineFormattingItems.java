@@ -6,9 +6,9 @@ import java.util.Locale;
 import java.util.Objects;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.draw.HasTextFormat;
-import org.geogebra.common.euclidian.inline.InlineTableController;
-import org.geogebra.common.euclidian.inline.InlineTextController;
+import org.geogebra.common.euclidean.draw.HasTextFormat;
+import org.geogebra.common.euclidean.inline.InlineTableController;
+import org.geogebra.common.euclidean.inline.InlineTextController;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoInlineTable;
 import org.geogebra.common.kernel.geos.GeoInlineText;

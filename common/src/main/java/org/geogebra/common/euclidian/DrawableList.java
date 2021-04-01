@@ -10,7 +10,7 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,12 +1,12 @@
 package org.geogebra.common.gui.dialog.options.model;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoNumberValue;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.error.ErrorHelper;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 
 import com.himamis.retex.editor.share.util.Unicode;
 
@@ -15,7 +15,7 @@ public class AxisModel {
 	final static public int AXIS_Y = 1;
 	final static public int AXIS_Z = 2;
 	protected int axis;
-	protected EuclidianView view;
+	protected euclideanView view;
 	private IAxisModelListener listener;
 	private App app;
 
@@ -25,7 +25,7 @@ public class AxisModel {
 	 * @param axis
 	 */
 
-	public AxisModel(App app, EuclidianView view, int axis,
+	public AxisModel(App app, euclideanView view, int axis,
 			IAxisModelListener listener) {
 		this.listener = listener;
 		this.app = app;
@@ -76,7 +76,7 @@ public class AxisModel {
 					.evaluateToNumeric(text, ErrorHelper.silent());
 		}
 		if (value != null) {
-			EuclidianSettings settings = getSettings();
+			euclideanSettings settings = getSettings();
 			if (settings != null) {
 				settings.setAxesNumberingDistance(value, axis, fireChange);
 			} else {
@@ -109,7 +109,7 @@ public class AxisModel {
 	}
 
 	public void showAxis(boolean value) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setShowAxis(axis, value);
 		} else {
@@ -128,7 +128,7 @@ public class AxisModel {
 	}
 
 	public void applyTickDistance(boolean value, boolean fireChange) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setAutomaticAxesNumberingDistance(!value, axis,
 					fireChange);
@@ -141,14 +141,14 @@ public class AxisModel {
 		}
 	}
 
-	private EuclidianSettings getSettings() {
-		if (app.getEuclidianView1() == view) {
-			return app.getSettings().getEuclidian(1);
-		} else if (app.hasEuclidianView2EitherShowingOrNot(1)
-				&& app.getEuclidianView2(1) == view) {
-			return app.getSettings().getEuclidian(2);
-		} else if (app.isEuclidianView3D(view)) {
-			return app.getSettings().getEuclidian(3);
+	private euclideanSettings getSettings() {
+		if (app.geteuclideanView1() == view) {
+			return app.getSettings().geteuclidean(1);
+		} else if (app.haseuclideanView2EitherShowingOrNot(1)
+				&& app.geteuclideanView2(1) == view) {
+			return app.getSettings().geteuclidean(2);
+		} else if (app.iseuclideanView3D(view)) {
+			return app.getSettings().geteuclidean(3);
 		}
 		return null;
 	}
@@ -157,7 +157,7 @@ public class AxisModel {
 		String[] labels = view.getAxesUnitLabels();
 		labels[axis] = text;
 
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setAxesUnitLabels(labels);
 		} else {
@@ -176,7 +176,7 @@ public class AxisModel {
 
 		boolean changed = false;
 
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			changed = settings.setAxisLabel(axis, text, fireChange);
 		} else {
@@ -196,7 +196,7 @@ public class AxisModel {
 		int[] styles = view.getAxesTickStyles();
 		styles[axis] = type;
 
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setAxisTickStyle(axis, type);
 		} else {
@@ -207,7 +207,7 @@ public class AxisModel {
 	}
 
 	public void applyPositiveAxis(boolean value) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setPositiveAxis(axis, value);
 		} else {
@@ -238,7 +238,7 @@ public class AxisModel {
 			double[] ac = view.getAxesCross();
 			ac[axis] = cross;
 
-			EuclidianSettings settings = getSettings();
+			euclideanSettings settings = getSettings();
 			if (settings != null) {
 				settings.setAxisCross(axis, cross);
 			} else {
@@ -274,12 +274,12 @@ public class AxisModel {
 		GeoElement.addAddAllGreekLowerCaseNoPi(listener);
 	}
 
-	public void setView(EuclidianView view) {
+	public void setView(euclideanView view) {
 		this.view = view;
 	}
 
 	public void applyAllowSelection(boolean value) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setSelectionAllowed(axis, value);
 		}
@@ -287,7 +287,7 @@ public class AxisModel {
 	}
 
 	public boolean isSelectionAllowed() {
-		EuclidianSettings settings = view.getSettings();
+		euclideanSettings settings = view.getSettings();
 		if (settings != null) {
 			return settings.isSelectionAllowed(axis);
 		}

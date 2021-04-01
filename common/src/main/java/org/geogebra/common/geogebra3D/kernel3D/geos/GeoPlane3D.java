@@ -2,7 +2,7 @@ package org.geogebra.common.geogebra3D.kernel3D.geos;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidianForPlane.EuclidianViewForPlaneCompanionInterface;
+import org.geogebra.common.euclideanForPlane.euclideanViewForPlaneCompanionInterface;
 import org.geogebra.common.geogebra3D.kernel3D.transform.MirrorableAtPlane;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
@@ -69,7 +69,7 @@ public class GeoPlane3D extends GeoElement3D
 	protected CoordSys coordsys;
 
 	private float fading = 0.10f;
-	private EuclidianViewForPlaneCompanionInterface euclidianViewForPlane;
+	private euclideanViewForPlaneCompanionInterface euclideanViewForPlane;
 
 	private Coords tmpCoords1;
 	private Coords tmpCoords2;
@@ -333,12 +333,12 @@ public class GeoPlane3D extends GeoElement3D
 
 	/** @return if there is a grid to plot or not */
 	public boolean isGridVisible() {
-		return getLineThickness() > 0 && isEuclidianVisible();
+		return getLineThickness() > 0 && iseuclideanVisible();
 	}
 
 	/** @return if there is a plate visible */
 	public boolean isPlateVisible() {
-		return plateVisible && isEuclidianVisible();
+		return plateVisible && iseuclideanVisible();
 	}
 
 	/**
@@ -443,7 +443,7 @@ public class GeoPlane3D extends GeoElement3D
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return isDefined();
 	}
 
@@ -611,24 +611,24 @@ public class GeoPlane3D extends GeoElement3D
 
 	@Override
 	public int getViewID() {
-		return euclidianViewForPlane.getId();
+		return euclideanViewForPlane.getId();
 	}
 
 	@Override
 	public void createView2D() {
-		euclidianViewForPlane = kernel.getApplication().getCompanion()
-				.createEuclidianViewForPlane(this, true);
-		euclidianViewForPlane.setTransformRegardingView();
+		euclideanViewForPlane = kernel.getApplication().getCompanion()
+				.createeuclideanViewForPlane(this, true);
+		euclideanViewForPlane.setTransformRegardingView();
 	}
 
 	@Override
 	public void removeView2D() {
-		euclidianViewForPlane.doRemove();
+		euclideanViewForPlane.doRemove();
 	}
 
 	@Override
 	public void doRemove() {
-		if (euclidianViewForPlane != null) {
+		if (euclideanViewForPlane != null) {
 			removeView2D();
 		}
 		super.doRemove();
@@ -636,13 +636,13 @@ public class GeoPlane3D extends GeoElement3D
 
 	@Override
 	public boolean hasView2DVisible() {
-		return euclidianViewForPlane != null && kernel.getApplication()
-				.getGuiManager().showView(euclidianViewForPlane.getId());
+		return euclideanViewForPlane != null && kernel.getApplication()
+				.getGuiManager().showView(euclideanViewForPlane.getId());
 	}
 
 	@Override
 	public void setView2DVisible(boolean flag) {
-		if (euclidianViewForPlane == null) {
+		if (euclideanViewForPlane == null) {
 			if (flag) {
 				createView2D();
 			}
@@ -650,22 +650,22 @@ public class GeoPlane3D extends GeoElement3D
 		}
 
 		kernel.getApplication().getGuiManager().setShowView(flag,
-				euclidianViewForPlane.getId());
+				euclideanViewForPlane.getId());
 
 	}
 
 	@Override
 	public void update(boolean drag) {
 		super.update(drag);
-		if (euclidianViewForPlane != null) {
-			euclidianViewForPlane.updateForPlane();
+		if (euclideanViewForPlane != null) {
+			euclideanViewForPlane.updateForPlane();
 		}
 	}
 
 	@Override
-	public void setEuclidianViewForPlane(
-			EuclidianViewForPlaneCompanionInterface view) {
-		euclidianViewForPlane = view;
+	public void seteuclideanViewForPlane(
+			euclideanViewForPlaneCompanionInterface view) {
+		euclideanViewForPlane = view;
 	}
 
 	@Override

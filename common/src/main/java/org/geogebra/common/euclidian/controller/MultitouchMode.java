@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.controller;
+package org.geogebra.common.euclidean.controller;
 
 /**
  * Different modes of a multitouch-event.

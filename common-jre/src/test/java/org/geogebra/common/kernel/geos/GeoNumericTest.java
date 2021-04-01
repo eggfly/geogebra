@@ -12,23 +12,23 @@ import org.junit.Test;
 public class GeoNumericTest extends BaseUnitTest {
 
 	@Test
-	public void euclidianShowabilityOfOperationResult() {
+	public void euclideanShowabilityOfOperationResult() {
 		GeoNumeric numeric = addAvInput("4+6");
-		assertThat(numeric.isEuclidianShowable(), is(false));
+		assertThat(numeric.iseuclideanShowable(), is(false));
 	}
 
 	@Test
 	public void testNumericIsNotDrawableInCas() {
 		getApp().setConfig(new AppConfigCas());
 		GeoNumeric numeric = addAvInput("2");
-		assertThat(numeric.isEuclidianShowable(), is(false));
+		assertThat(numeric.iseuclideanShowable(), is(false));
 	}
 
 	@Test
 	public void testSliderIsVisibleInEv() {
 		GeoNumeric numeric = new GeoNumeric(getConstruction());
 		GeoNumeric.setSliderFromDefault(numeric, false);
-		assertThat(numeric.isEuclidianShowable(), is(true));
+		assertThat(numeric.iseuclideanShowable(), is(true));
 	}
 
 	@Test

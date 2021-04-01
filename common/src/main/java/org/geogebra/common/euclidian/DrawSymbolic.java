@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
@@ -19,7 +19,7 @@ public class DrawSymbolic extends Drawable {
 	 * @param geo
 	 *            symbolic geo
 	 */
-	public DrawSymbolic(EuclidianView ev, GeoSymbolic geo) {
+	public DrawSymbolic(euclideanView ev, GeoSymbolic geo) {
 		this.view = ev;
 		this.geo = geo;
 		this.symbolic = geo;
@@ -37,7 +37,7 @@ public class DrawSymbolic extends Drawable {
 		} else {
 			twinDrawable = view.newDrawable(symbolic.getTwinGeo());
 			twinGeo.setVisualStyle(symbolic);
-			twinGeo.setEuclidianVisible(symbolic.isEuclidianVisible());
+			twinGeo.seteuclideanVisible(symbolic.iseuclideanVisible());
 			if (twinDrawable instanceof Drawable) {
 				((Drawable) twinDrawable).setTopLevelGeo(symbolic);
 				twinDrawable.update();
@@ -47,7 +47,7 @@ public class DrawSymbolic extends Drawable {
 
 	@Override
 	public void draw(GGraphics2D g2) {
-		if (twinDrawable != null && geo.isEuclidianVisible()) {
+		if (twinDrawable != null && geo.iseuclideanVisible()) {
 			((Drawable) twinDrawable).draw(g2);
 		}
 	}

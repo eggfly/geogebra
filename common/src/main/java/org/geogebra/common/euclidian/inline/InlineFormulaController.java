@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.inline;
+package org.geogebra.common.euclidean.inline;
 
 import org.geogebra.common.awt.GColor;
 

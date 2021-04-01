@@ -30,7 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.Border;
 
-import org.geogebra.common.euclidian.smallscreen.AdjustSlider;
+import org.geogebra.common.euclidean.smallscreen.AdjustSlider;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.geos.GeoAngle;
 import org.geogebra.common.kernel.geos.GeoAngle.AngleStyle;
@@ -237,7 +237,7 @@ public class SliderDialogD extends Dialog
 			geoResult.update();
 			if (!rbAngle.isSelected()) {
 				AdjustSlider.ensureOnScreen((GeoNumeric) geoResult,
-						app.getActiveEuclidianView());
+						app.getActiveeuclideanView());
 			}
 
 			((GeoNumeric) geoResult).setRandom(cbRandom.isSelected());

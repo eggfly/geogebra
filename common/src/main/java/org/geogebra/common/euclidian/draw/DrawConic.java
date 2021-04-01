@@ -16,7 +16,7 @@ the Free Software Foundation.
  * Created on 16. Oktober 2001, 15:13
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +31,11 @@ import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GRectangularShape;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.euclidian.clipping.ClipShape;
+import org.geogebra.common.euclidean.GeneralPathClipped;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.euclidean.clipping.ClipShape;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.MyPoint;
@@ -60,7 +60,7 @@ import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.kernelND.GeoSegmentND;
 import org.geogebra.common.kernel.matrix.CoordMatrix;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.debug.Log;
 
@@ -86,7 +86,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 	 */
 	protected GeoConicND conic;
 
-	/** whether this is euclidian visible and onscreen */
+	/** whether this is euclidean visible and onscreen */
 	protected boolean isVisible;
 	/** whether the label is visible */
 	protected boolean labelVisible;
@@ -200,7 +200,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 	 * @param ignoreSingularities
 	 *            true to avoid drawing points
 	 */
-	public DrawConic(EuclidianView view, GeoConicND c,
+	public DrawConic(euclideanView view, GeoConicND c,
 			boolean ignoreSingularities) {
 		this.view = view;
 		isPreview = false;
@@ -229,7 +229,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 	 * @param points
 	 *            preview points
 	 */
-	public DrawConic(EuclidianView view, int mode,
+	public DrawConic(euclideanView view, int mode,
 			ArrayList<GeoPointND> points) {
 		this.view = view;
 		prevPoints = points;
@@ -239,16 +239,16 @@ public class DrawConic extends SetDrawable implements Previewable {
 
 		switch (mode) {
 		default:
-		case EuclidianConstants.MODE_CIRCLE_TWO_POINTS:
-		case EuclidianConstants.MODE_CIRCLE_POINT_RADIUS:
+		case euclideanConstants.MODE_CIRCLE_TWO_POINTS:
+		case euclideanConstants.MODE_CIRCLE_POINT_RADIUS:
 			neededPrevPoints = 1;
 			break;
-		case EuclidianConstants.MODE_CIRCLE_THREE_POINTS:
-		case EuclidianConstants.MODE_ELLIPSE_THREE_POINTS:
-		case EuclidianConstants.MODE_HYPERBOLA_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_THREE_POINTS:
+		case euclideanConstants.MODE_ELLIPSE_THREE_POINTS:
+		case euclideanConstants.MODE_HYPERBOLA_THREE_POINTS:
 			neededPrevPoints = 2;
 			break;
-		case EuclidianConstants.MODE_CONIC_FIVE_POINTS:
+		case euclideanConstants.MODE_CONIC_FIVE_POINTS:
 			neededPrevPoints = 4;
 			break;
 		}
@@ -271,13 +271,13 @@ public class DrawConic extends SetDrawable implements Previewable {
 	 * @param points
 	 *            preview points
 	 */
-	public DrawConic(EuclidianView view, ArrayList<GeoPointND> points,
+	public DrawConic(euclideanView view, ArrayList<GeoPointND> points,
 			ArrayList<GeoLineND> selectedLines) {
 		this.view = view;
 		prevPoints = points;
 		prevLines = selectedLines;
 		neededPrevPoints = 1;
-		previewMode = EuclidianConstants.MODE_PARABOLA;
+		previewMode = euclideanConstants.MODE_PARABOLA;
 
 		Construction cons = view.getKernel().getConstruction();
 
@@ -308,7 +308,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 	 * @param conics
 	 *            preview conics
 	 */
-	public DrawConic(EuclidianView view, int mode, ArrayList<GeoPointND> points,
+	public DrawConic(euclideanView view, int mode, ArrayList<GeoPointND> points,
 			ArrayList<GeoSegmentND> segments, ArrayList<GeoConicND> conics) {
 		this.view = view;
 		prevPoints = points;
@@ -326,7 +326,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 
 	@Override
 	final public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (!isVisible) {
 			return;
 		}
@@ -1354,9 +1354,9 @@ public class DrawConic extends SetDrawable implements Previewable {
 			if ((conic == geo && conic.isInverseFill())
 					|| geo.isInverseFill() != conic.isInverseFill()) {
 				fill(g2, getShape());
-				pointType = EuclidianStyleConstants.POINT_STYLE_CIRCLE;
+				pointType = euclideanStyleConstants.POINT_STYLE_CIRCLE;
 			} else {
-				pointType = EuclidianStyleConstants.POINT_STYLE_DOT;
+				pointType = euclideanStyleConstants.POINT_STYLE_DOT;
 			}
 			if (!ignoreSingularities) {
 				drawPoint.setPointStyle(pointType);
@@ -1504,7 +1504,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible()) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible()) {
 			return null;
 		}
 
@@ -1822,14 +1822,14 @@ public class DrawConic extends SetDrawable implements Previewable {
 		isPreview = true;
 
 		switch (previewMode) {
-		case EuclidianConstants.MODE_CIRCLE_TWO_POINTS:
+		case euclideanConstants.MODE_CIRCLE_TWO_POINTS:
 			AlgoCircleTwoPoints algo = new AlgoCircleTwoPoints(cons,
 					previewTempPoints[0], previewTempPoints[1]);
 			cons.removeFromConstructionList(algo);
 			initConic(algo.getCircle());
 			break;
 
-		case EuclidianConstants.MODE_CIRCLE_POINT_RADIUS:
+		case euclideanConstants.MODE_CIRCLE_POINT_RADIUS:
 			Coords p = view
 					.getCoordsForView(prevPoints.get(0).getInhomCoordsInD3());
 			previewTempPoints[0].setCoords(p.projectInfDim(), false);
@@ -1842,7 +1842,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 			initConic(algoCircleRadius.getCircle());
 			break;
 
-		case EuclidianConstants.MODE_CONIC_FIVE_POINTS:
+		case euclideanConstants.MODE_CONIC_FIVE_POINTS:
 			GeoPoint[] pts = { previewTempPoints[0], previewTempPoints[1],
 					previewTempPoints[2], previewTempPoints[3],
 					previewTempPoints[4] };
@@ -1851,7 +1851,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 			initConic(algo0.getConic());
 			break;
 
-		case EuclidianConstants.MODE_CIRCLE_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_THREE_POINTS:
 			AlgoCircleThreePoints algo2 = new AlgoCircleThreePoints(cons,
 					previewTempPoints[0], previewTempPoints[1],
 					previewTempPoints[2]);
@@ -1859,7 +1859,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 			initConic(algo2.getCircle());
 			break;
 
-		case EuclidianConstants.MODE_ELLIPSE_THREE_POINTS:
+		case euclideanConstants.MODE_ELLIPSE_THREE_POINTS:
 			AlgoEllipseHyperbolaFociPoint algo3 = new AlgoEllipseHyperbolaFociPoint(
 					cons, previewTempPoints[0], previewTempPoints[1],
 					previewTempPoints[2], GeoConicNDConstants.CONIC_ELLIPSE);
@@ -1867,7 +1867,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 			initConic(algo3.getConic());
 			break;
 
-		case EuclidianConstants.MODE_HYPERBOLA_THREE_POINTS:
+		case euclideanConstants.MODE_HYPERBOLA_THREE_POINTS:
 			AlgoEllipseHyperbolaFociPoint algo4 = new AlgoEllipseHyperbolaFociPoint(
 					cons, previewTempPoints[0], previewTempPoints[1],
 					previewTempPoints[2], GeoConicNDConstants.CONIC_HYPERBOLA);
@@ -1875,14 +1875,14 @@ public class DrawConic extends SetDrawable implements Previewable {
 			initConic(algo4.getConic());
 			break;
 
-		case EuclidianConstants.MODE_COMPASSES:
+		case euclideanConstants.MODE_COMPASSES:
 			AlgoCirclePointRadius algo5 = new AlgoCirclePointRadius(cons,
 					previewTempPoints[0], previewTempRadius);
 			cons.removeFromConstructionList(algo5);
 			initConic(algo5.getCircle());
 			break;
 
-		case EuclidianConstants.MODE_PARABOLA:
+		case euclideanConstants.MODE_PARABOLA:
 			AlgoParabolaPointLine algo6 = new AlgoParabolaPointLine(cons,
 					previewTempPoints[0], previewTempLine);
 			cons.removeFromConstructionList(algo6);
@@ -1902,7 +1902,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 	final public void updatePreview() {
 
 		switch (previewMode) {
-		case EuclidianConstants.MODE_COMPASSES:
+		case euclideanConstants.MODE_COMPASSES:
 			// compass: set radius of preview circle
 			// two points or one segment selected to define radius
 			isVisible = conic != null && (prevPoints.size() == 2
@@ -1923,7 +1923,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 			}
 			break;
 
-		case EuclidianConstants.MODE_PARABOLA:
+		case euclideanConstants.MODE_PARABOLA:
 
 			isVisible = prevLines.size() == 1;
 
@@ -1948,7 +1948,7 @@ public class DrawConic extends SetDrawable implements Previewable {
 
 			break;
 
-		case EuclidianConstants.MODE_CIRCLE_POINT_RADIUS:
+		case euclideanConstants.MODE_CIRCLE_POINT_RADIUS:
 			isVisible = conic != null && prevPoints.size() == neededPrevPoints;
 			if (isVisible) {
 				Coords p = view.getCoordsForView(

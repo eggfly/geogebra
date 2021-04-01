@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.scripting;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.Command;
 import org.geogebra.common.kernel.arithmetic.NumberValue;
@@ -10,7 +10,7 @@ import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.kernelND.GeoAxisND;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.MyError;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 
 /**
  * SetVisibleInView
@@ -44,26 +44,26 @@ public class CmdSetVisibleInView extends CmdScripting {
 
 				int viewNo = (int) arg[1].evaluateDouble();
 
-				EuclidianViewInterfaceSlim ev = null;
+				euclideanViewInterfaceSlim ev = null;
 				boolean show = ((GeoBoolean) arg[2]).getBoolean();
 
 				int viewID;
 				switch (viewNo) {
 				case 1:
-					viewID = App.VIEW_EUCLIDIAN;
-					ev = app.getEuclidianView1();
+					viewID = App.VIEW_euclidean;
+					ev = app.geteuclideanView1();
 					break;
 				case 2:
-					viewID = App.VIEW_EUCLIDIAN2;
-					if (app.hasEuclidianView2(1)) {
+					viewID = App.VIEW_euclidean2;
+					if (app.haseuclideanView2(1)) {
 
-						ev = app.getEuclidianView2(1);
+						ev = app.geteuclideanView2(1);
 					}
 					break;
 				case -1:
-					viewID = App.VIEW_EUCLIDIAN3D;
-					if (app.isEuclidianView3Dinited()) {
-						ev = app.getEuclidianView3D();
+					viewID = App.VIEW_euclidean3D;
+					if (app.iseuclideanView3Dinited()) {
+						ev = app.geteuclideanView3D();
 					}
 					break;
 				default:
@@ -71,15 +71,15 @@ public class CmdSetVisibleInView extends CmdScripting {
 				}
 				if (geo instanceof GeoAxisND) {
 
-					EuclidianSettings evs = app.getSettings()
-							.getEuclidian(viewNo < 0 ? 3 : viewNo);
+					euclideanSettings evs = app.getSettings()
+							.geteuclidean(viewNo < 0 ? 3 : viewNo);
 
 					evs.setShowAxis(((GeoAxisND) geo).getType(), show);
 					geo.updateRepaint();
 					return arg;
 				}
 				if (show) {
-					geo.setEuclidianVisible(true);
+					geo.seteuclideanVisible(true);
 					geo.addView(viewID);
 					if (ev != null) {
 						ev.add(geo);

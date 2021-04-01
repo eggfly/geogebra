@@ -335,11 +335,11 @@ public class AlgebraTree extends JTree {
 		add(geo);
 	}
 
-	// TODO EuclidianView#setHighlighted() doesn't exist
+	// TODO euclideanView#setHighlighted() doesn't exist
 	/**
 	 * updates node of GeoElement geo (needed for highlighting)
 	 * 
-	 * see EuclidianViewD#setHighlighted()
+	 * see euclideanViewD#setHighlighted()
 	 */
 	public void update(GeoElement geo) {
 		GeoMutableTreeNode node = nodeTable.get(geo);

@@ -82,7 +82,7 @@ public class CompatibilityLayout {
 			}
 		}
 
-		GDimension evSize = app.getSettings().getEuclidian(1)
+		GDimension evSize = app.getSettings().geteuclidean(1)
 				.getPreferredSize();
 
 		// calculate window dimensions
@@ -110,7 +110,7 @@ public class CompatibilityLayout {
 		// didn't
 		// store the layout xml.
 		DockPanelData[] dpXml = new DockPanelData[] {
-				new DockPanelData(App.VIEW_EUCLIDIAN, null, true, false, false,
+				new DockPanelData(App.VIEW_euclidean, null, true, false, false,
 						AwtFactory.getPrototype().newRectangle(400, 400), defEV,
 						width),
 				new DockPanelData(App.VIEW_ALGEBRA, null, showAlgebra,

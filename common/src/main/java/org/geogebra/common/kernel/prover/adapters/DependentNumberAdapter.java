@@ -195,7 +195,7 @@ public class DependentNumberAdapter extends ProverAdapter {
 			if (s.getLabelSimple() == null) {
 				s.setLabel(currentVar.toString());
 				s.setAuxiliaryObject(true);
-				s.setEuclidianVisible(false);
+				s.seteuclideanVisible(false);
 				s.update();
 			}
 			cons.setSuppressLabelCreation(suppress);

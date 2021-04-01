@@ -10,8 +10,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.gui.view.spreadsheet.CellRange;
 import org.geogebra.common.gui.view.spreadsheet.MyTable;
 import org.geogebra.common.gui.view.spreadsheet.MyTableInterface;
@@ -21,7 +21,7 @@ import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoElementSpreadsheet;
 import org.geogebra.common.main.App;
 import org.geogebra.common.plugin.GeoClass;
-import org.geogebra.desktop.euclidian.event.MouseEventD;
+import org.geogebra.desktop.euclidean.event.MouseEventD;
 import org.geogebra.desktop.gui.layout.LayoutD;
 import org.geogebra.desktop.main.AppD;
 
@@ -114,13 +114,13 @@ public class SpreadsheetMouseListenerD
 			table.isDragging2 = false;
 			table.repaint();
 		} else if (app
-				.getMode() != EuclidianConstants.MODE_SELECTION_LISTENER) {
+				.getMode() != euclideanConstants.MODE_SELECTION_LISTENER) {
 			int row = table.rowAtPoint(e.getPoint());
 			int col = table.columnAtPoint(e.getPoint());
 			GeoElement geo = (GeoElement) model.getValueAt(row, col);
-			// let euclidianView know about the click
+			// let euclideanView know about the click
 			AbstractEvent event = MouseEventD.wrapEvent(e);
-			app.getActiveEuclidianView().clickedGeo(geo,
+			app.getActiveeuclideanView().clickedGeo(geo,
 					app.isControlDown(event));
 			event.release();
 		}
@@ -202,7 +202,7 @@ public class SpreadsheetMouseListenerD
 
 		// tell selection listener about click on GeoElement
 		if (!rightClick && app
-				.getMode() == EuclidianConstants.MODE_SELECTION_LISTENER) {
+				.getMode() == euclideanConstants.MODE_SELECTION_LISTENER) {
 			int row = table.rowAtPoint(e.getPoint());
 			int col = table.columnAtPoint(e.getPoint());
 			GeoElement geo = (GeoElement) model.getValueAt(row, col);

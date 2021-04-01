@@ -1,8 +1,8 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Path;
 import org.geogebra.common.kernel.PathNormalizer;
@@ -33,35 +33,35 @@ import org.geogebra.common.kernel.kernelND.GeoSegmentND;
 import org.geogebra.common.kernel.kernelND.GeoVectorND;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.main.DialogManager.CreateGeoForRotate;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 
 import com.google.j2objc.annotations.Weak;
 
 /**
- * Class that creates geos for EuclidianController. Needed for special 3D stuff.
+ * Class that creates geos for euclideanController. Needed for special 3D stuff.
  * 
  * @author mathieu
  *
  */
-public class EuclidianControllerCompanion {
+public class euclideanControllerCompanion {
 	/** controller */
 	@Weak
-	protected EuclidianController ec;
+	protected euclideanController ec;
 
 	/**
 	 * @param ec
 	 *            controller
 	 */
-	public EuclidianControllerCompanion(EuclidianController ec) {
-		setEuclidianController(ec);
+	public euclideanControllerCompanion(euclideanController ec) {
+		seteuclideanController(ec);
 	}
 
 	/**
 	 * @param ec
 	 *            controller
 	 */
-	protected void setEuclidianController(EuclidianController ec) {
+	protected void seteuclideanController(euclideanController ec) {
 		this.ec = ec;
 	}
 
@@ -695,7 +695,7 @@ public class EuclidianControllerCompanion {
 	 * @param creator
 	 *            contains object used to check clockwise orientation
 	 * @return clockwise (resp. not(clockwise)) if clockwise is displayed as it in
-	 *         the view (used for EuclidianViewForPlane)
+	 *         the view (used for euclideanViewForPlane)
 	 */
 	public boolean viewOrientationForClockwise(boolean clockwise, CreateGeoForRotate creator) {
 		return clockwise;
@@ -903,7 +903,7 @@ public class EuclidianControllerCompanion {
 	 * @return percentage for which we capture point to grid
 	 */
 	public double getPointCapturingPercentage() {
-		return EuclidianStyleConstants.POINT_CAPTURING_GRID;
+		return euclideanStyleConstants.POINT_CAPTURING_GRID;
 	}
 
 }

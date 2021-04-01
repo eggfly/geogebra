@@ -1,6 +1,6 @@
 package org.geogebra.web.full.main.video;
 
-import org.geogebra.common.euclidian.draw.DrawVideo;
+import org.geogebra.common.euclidean.draw.DrawVideo;
 
 /**
  * Represents a placeholder for videos.

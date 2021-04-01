@@ -3,20 +3,20 @@ package org.geogebra.web.full.main.mask;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.MaskWidgetList;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.MaskWidgetList;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoPolygon;
 import org.geogebra.web.full.gui.applet.GeoGebraFrameFull;
 import org.geogebra.web.full.main.AppWFull;
-import org.geogebra.web.html5.euclidian.EuclidianControllerW;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
-import org.geogebra.web.html5.euclidian.MouseTouchGestureControllerW;
-import org.geogebra.web.html5.euclidian.PointerEventHandler;
+import org.geogebra.web.html5.euclidean.euclideanControllerW;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
+import org.geogebra.web.html5.euclidean.MouseTouchGestureControllerW;
+import org.geogebra.web.html5.euclidean.PointerEventHandler;
 import org.geogebra.web.html5.event.PointerEvent;
 import org.geogebra.web.html5.gui.util.ClickStartHandler;
 
@@ -29,8 +29,8 @@ import org.geogebra.web.html5.gui.util.ClickStartHandler;
 public class MaskWidgetListW implements MaskWidgetList {
 
 	private GeoGebraFrameFull appletFrame;
-	private final EuclidianView view;
-	private final EuclidianController controller;
+	private final euclideanView view;
+	private final euclideanController controller;
 
 	private List<MaskWidget> widgets = new ArrayList<>();
 
@@ -41,8 +41,8 @@ public class MaskWidgetListW implements MaskWidgetList {
 	 */
 	public MaskWidgetListW(AppWFull app) {
 		this.appletFrame = app.getAppletFrame();
-		this.view = app.getActiveEuclidianView();
-		this.controller = view.getEuclidianController();
+		this.view = app.getActiveeuclideanView();
+		this.controller = view.geteuclideanController();
 	}
 
 	@Override
@@ -86,9 +86,9 @@ public class MaskWidgetListW implements MaskWidgetList {
 				controller.widgetsToBackground();
 				view.getApplication().getSelectionManager().clearSelectedGeos();
 				
-				if (view instanceof EuclidianViewW) {
-					PointerEventHandler.startCapture((EuclidianViewW) view);
-					MouseTouchGestureControllerW mtg = ((EuclidianControllerW) controller)
+				if (view instanceof euclideanViewW) {
+					PointerEventHandler.startCapture((euclideanViewW) view);
+					MouseTouchGestureControllerW mtg = ((euclideanControllerW) controller)
 							.getMouseTouchGestureController();
 					AbstractEvent event = new PointerEvent(x + xOffset,
 							y + yOffset, type, mtg);

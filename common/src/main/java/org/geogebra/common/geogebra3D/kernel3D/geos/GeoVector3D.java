@@ -215,7 +215,7 @@ public class GeoVector3D extends GeoVec4D
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return isDefined() && !isInfinite();
 	}
 

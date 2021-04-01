@@ -1,6 +1,6 @@
 package org.geogebra.desktop.geogebra3D.input3D.zspace;
  
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 import org.geogebra.desktop.geogebra3D.input3D.Input3DFactory.Input3DException;
 
 
@@ -28,11 +28,11 @@ public class Socket {
      
 	// start values
 	public double leftEyeX = 0,
-			leftEyeY = -EuclidianSettings3D.PROJECTION_PERSPECTIVE_EYE_DISTANCE_DEFAULT
+			leftEyeY = -euclideanSettings3D.PROJECTION_PERSPECTIVE_EYE_DISTANCE_DEFAULT
 					* Math.sin(Math.PI / 6),
-			leftEyeZ = EuclidianSettings3D.PROJECTION_PERSPECTIVE_EYE_DISTANCE_DEFAULT
+			leftEyeZ = euclideanSettings3D.PROJECTION_PERSPECTIVE_EYE_DISTANCE_DEFAULT
 					* Math.cos(Math.PI / 6);
-	public double rightEyeX = EuclidianSettings3D.EYE_SEP_DEFAULT,
+	public double rightEyeX = euclideanSettings3D.EYE_SEP_DEFAULT,
 			rightEyeY, rightEyeZ;
     public double glassesCenterX, glassesCenterY, glassesCenterZ;
     public double glassesOrientationX, glassesOrientationY, glassesOrientationZ, glassesOrientationW;

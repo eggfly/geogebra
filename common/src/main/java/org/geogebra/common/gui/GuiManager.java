@@ -17,14 +17,14 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import org.geogebra.common.GeoGebraConstants;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.gui.toolbar.ToolBar;
 import org.geogebra.common.gui.view.consprotocol.ConstructionProtocolNavigation;
 import org.geogebra.common.gui.view.consprotocol.ConstructionProtocolView;
 import org.geogebra.common.gui.view.data.DataAnalysisModel.IDataAnalysisListener;
-import org.geogebra.common.gui.view.data.PlotPanelEuclidianViewInterface;
+import org.geogebra.common.gui.view.data.PlotPaneleuclideanViewInterface;
 import org.geogebra.common.gui.view.probcalculator.ProbabilityCalculatorView;
 import org.geogebra.common.gui.view.table.TableValues;
 import org.geogebra.common.gui.view.table.TableValuesModel;
@@ -77,7 +77,7 @@ public abstract class GuiManager implements GuiManagerInterface {
 	@Weak
 	protected App app;
 	protected HashMap<Integer, ConstructionProtocolNavigation> constProtocolNavigationMap;
-	private HashMap<Integer, PlotPanelEuclidianViewInterface> plotPanelIDMap;
+	private HashMap<Integer, PlotPaneleuclideanViewInterface> plotPanelIDMap;
 	private int lastUsedPlotPanelID = -App.VIEW_PLOT_PANEL;
 	private boolean setModeFinished;
 	protected ProbabilityCalculatorView probCalculator;
@@ -245,14 +245,14 @@ public abstract class GuiManager implements GuiManagerInterface {
 		case App.VIEW_PROPERTIES:
 			attachPropertiesView();
 			break;
-		case App.VIEW_EUCLIDIAN:
-		case App.VIEW_EUCLIDIAN2:
+		case App.VIEW_euclidean:
+		case App.VIEW_euclidean2:
 			// handled elsewhere
 			break;
 		default:
 			// ignore 3D view
-			if (!App.isView3D(viewId) && (viewId < App.VIEW_EUCLIDIAN_FOR_PLANE_START
-					|| viewId > App.VIEW_EUCLIDIAN_FOR_PLANE_START)) {
+			if (!App.isView3D(viewId) && (viewId < App.VIEW_euclidean_FOR_PLANE_START
+					|| viewId > App.VIEW_euclidean_FOR_PLANE_START)) {
 				Log.error("Error attaching VIEW: " + viewId);
 			}
 		}
@@ -261,19 +261,19 @@ public abstract class GuiManager implements GuiManagerInterface {
 	@Override
 	public void showAxesCmd() {
 		// get ev with focus
-		EuclidianViewInterfaceCommon ev = getActiveEuclidianView();
+		euclideanViewInterfaceCommon ev = getActiveeuclideanView();
 
 		boolean bothAxesShown = ev.getShowXaxis() && ev.getShowYaxis();
-		if (getApp().getEuclidianView1() == ev) {
-			getApp().getSettings().getEuclidian(1).setShowAxes(!bothAxesShown,
+		if (getApp().geteuclideanView1() == ev) {
+			getApp().getSettings().geteuclidean(1).setShowAxes(!bothAxesShown,
 					!bothAxesShown);
 
-		} else if (getApp().hasEuclidianView2EitherShowingOrNot(1)
-				&& getApp().getEuclidianView2(1) == ev) {
-			getApp().getSettings().getEuclidian(2).setShowAxes(!bothAxesShown,
+		} else if (getApp().haseuclideanView2EitherShowingOrNot(1)
+				&& getApp().geteuclideanView2(1) == ev) {
+			getApp().getSettings().geteuclidean(2).setShowAxes(!bothAxesShown,
 					!bothAxesShown);
-		} else if (getApp().isEuclidianView3D(ev)) {
-			getApp().getSettings().getEuclidian(3).setShowAxes(!bothAxesShown);
+		} else if (getApp().iseuclideanView3D(ev)) {
+			getApp().getSettings().geteuclidean(3).setShowAxes(!bothAxesShown);
 
 		} else {
 			ev.setShowAxes(!bothAxesShown, true);
@@ -287,15 +287,15 @@ public abstract class GuiManager implements GuiManagerInterface {
 	@Override
 	public void showGridCmd() {
 		// get ev with focus
-		EuclidianView ev = getActiveEuclidianView();
-		if (getApp().getEuclidianView1() == ev) {
-			getApp().getSettings().getEuclidian(1).showGrid(!ev.getShowGrid());
+		euclideanView ev = getActiveeuclideanView();
+		if (getApp().geteuclideanView1() == ev) {
+			getApp().getSettings().geteuclidean(1).showGrid(!ev.getShowGrid());
 
-		} else if (getApp().hasEuclidianView2EitherShowingOrNot(1)
-				&& getApp().getEuclidianView2(1) == ev) {
-			getApp().getSettings().getEuclidian(2).showGrid(!ev.getShowGrid());
-		} else if (getApp().isEuclidianView3D(ev)) {
-			getApp().getSettings().getEuclidian(3).showGrid(!ev.getShowGrid());
+		} else if (getApp().haseuclideanView2EitherShowingOrNot(1)
+				&& getApp().geteuclideanView2(1) == ev) {
+			getApp().getSettings().geteuclidean(2).showGrid(!ev.getShowGrid());
+		} else if (getApp().iseuclideanView3D(ev)) {
+			getApp().getSettings().geteuclidean(3).showGrid(!ev.getShowGrid());
 
 		} else {
 			ev.showGrid(!ev.getShowGrid());
@@ -349,8 +349,8 @@ public abstract class GuiManager implements GuiManagerInterface {
 		case App.VIEW_DATA_ANALYSIS:
 			detachDataAnalysisView();
 			break;
-		case App.VIEW_EUCLIDIAN:
-		case App.VIEW_EUCLIDIAN2:
+		case App.VIEW_euclidean:
+		case App.VIEW_euclidean2:
 			Log.debug("TODO: should we detach EV1/2?");
 			break;
 		default:
@@ -399,8 +399,8 @@ public abstract class GuiManager implements GuiManagerInterface {
 		getConstructionProtocolNavigation(id).setVisible(show);
 
 		if (show) {
-			if (getApp().getActiveEuclidianView() != null) {
-				getApp().getActiveEuclidianView().resetMode();
+			if (getApp().getActiveeuclideanView() != null) {
+				getApp().getActiveeuclideanView().resetMode();
 			}
 
 			// the navigation bar currently needs the full Construction Protocol
@@ -497,7 +497,7 @@ public abstract class GuiManager implements GuiManagerInterface {
 	 */
 	@Override
 	public ConstructionProtocolNavigation getConstructionProtocolNavigation() {
-		return getConstructionProtocolNavigation(App.VIEW_EUCLIDIAN);
+		return getConstructionProtocolNavigation(App.VIEW_euclidean);
 	}
 
 	/**
@@ -509,7 +509,7 @@ public abstract class GuiManager implements GuiManagerInterface {
 		if (constProtocolNavigationMap == null) {
 			return null;
 		}
-		return constProtocolNavigationMap.get(App.VIEW_EUCLIDIAN);
+		return constProtocolNavigationMap.get(App.VIEW_euclidean);
 	}
 
 	@Override
@@ -548,7 +548,7 @@ public abstract class GuiManager implements GuiManagerInterface {
 	// PlotPanel ID handling
 	// =================================
 
-	protected HashMap<Integer, PlotPanelEuclidianViewInterface> getPlotPanelIDMap() {
+	protected HashMap<Integer, PlotPaneleuclideanViewInterface> getPlotPanelIDMap() {
 		if (plotPanelIDMap == null) {
 			plotPanelIDMap = new HashMap<>();
 		}
@@ -556,14 +556,14 @@ public abstract class GuiManager implements GuiManagerInterface {
 	}
 
 	/**
-	 * Adds the given PlotPanelEuclidianView instance to the plotPanelIDMap and
+	 * Adds the given PlotPaneleuclideanView instance to the plotPanelIDMap and
 	 * returns a unique viewID
 	 * 
 	 * @param plotPanel
 	 *            plot panel
 	 * @return plot panel ID
 	 */
-	public int assignPlotPanelID(PlotPanelEuclidianViewInterface plotPanel) {
+	public int assignPlotPanelID(PlotPaneleuclideanViewInterface plotPanel) {
 		lastUsedPlotPanelID--;
 		int viewID = lastUsedPlotPanelID;
 		getPlotPanelIDMap().put(viewID, plotPanel);
@@ -572,7 +572,7 @@ public abstract class GuiManager implements GuiManagerInterface {
 	}
 
 	@Override
-	public PlotPanelEuclidianViewInterface getPlotPanelView(int viewID) {
+	public PlotPaneleuclideanViewInterface getPlotPanelView(int viewID) {
 		return getPlotPanelIDMap().get(viewID);
 	}
 
@@ -592,13 +592,13 @@ public abstract class GuiManager implements GuiManagerInterface {
 
 		int newMode = setToolbarMode(mode, m);
 
-		if (mode != EuclidianConstants.MODE_SELECTION_LISTENER
+		if (mode != euclideanConstants.MODE_SELECTION_LISTENER
 				&& newMode != mode) {
 			mode = newMode;
 			kernel.notifyModeChanged(mode, m);
 		}
 
-		if (mode == EuclidianConstants.MODE_PROBABILITY_CALCULATOR) {
+		if (mode == euclideanConstants.MODE_PROBABILITY_CALCULATOR) {
 
 			// show or focus the probability calculator
 			if (showView(App.VIEW_PROBABILITY_CALCULATOR)) {
@@ -614,9 +614,9 @@ public abstract class GuiManager implements GuiManagerInterface {
 			getApp().setMoveMode();
 		}
 
-		if ((mode == EuclidianConstants.MODE_SPREADSHEET_ONEVARSTATS
-				|| mode == EuclidianConstants.MODE_SPREADSHEET_TWOVARSTATS
-				|| mode == EuclidianConstants.MODE_SPREADSHEET_MULTIVARSTATS)
+		if ((mode == euclideanConstants.MODE_SPREADSHEET_ONEVARSTATS
+				|| mode == euclideanConstants.MODE_SPREADSHEET_TWOVARSTATS
+				|| mode == euclideanConstants.MODE_SPREADSHEET_MULTIVARSTATS)
 				&& m == ModeSetter.TOOLBAR) {
 			// save the selected geos so they can be re-selected later
 			ArrayList<GeoElement> temp = new ArrayList<>();
@@ -747,9 +747,9 @@ public abstract class GuiManager implements GuiManagerInterface {
 
 		for (int i = 0; i < macroCount; i++) {
 			Macro macro = kernel.getMacro(i);
-			int macroMode = EuclidianConstants.MACRO_MODE_ID_OFFSET + i;
+			int macroMode = euclideanConstants.MACRO_MODE_ID_OFFSET + i;
 			int macroViewId = macro.getViewId() != null ? macro.getViewId()
-					: App.VIEW_EUCLIDIAN;
+					: App.VIEW_euclidean;
 			int activeViewId = getActiveToolbarId();
 
 			if (macro.isShowInToolBar()
@@ -768,7 +768,7 @@ public abstract class GuiManager implements GuiManagerInterface {
 			last = tools[tools.length - 1];
 			int lastToolId = Integer.parseInt(last);
 
-			if (lastToolId >= EuclidianConstants.MACRO_MODE_ID_OFFSET) {
+			if (lastToolId >= euclideanConstants.MACRO_MODE_ID_OFFSET) {
 				return toolbarDef + customToolBar.toString();
 			}
 			return "".equals(customToolBar.toString()) ? toolbarDef
@@ -806,13 +806,13 @@ public abstract class GuiManager implements GuiManagerInterface {
 
 		// make sure only the last image will be selected
 		GeoElement[] geos = { geoImage };
-		getApp().getActiveEuclidianView().getEuclidianController().clearSelections();
-		getApp().getActiveEuclidianView().getEuclidianController()
+		getApp().getActiveeuclideanView().geteuclideanController().clearSelections();
+		getApp().getActiveeuclideanView().geteuclideanController()
 				.memorizeJustCreatedGeos(geos);
 		if (!app.isWhiteboardActive()) {
 			getApp().setMoveMode();
 		}
-		getApp().getActiveEuclidianView().resetMode();
+		getApp().getActiveeuclideanView().resetMode();
 
 	}
 

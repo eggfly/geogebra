@@ -1,8 +1,8 @@
-package org.geogebra.common.euclidian.plot;
+package org.geogebra.common.euclidean.plot;
 
 import org.apache.commons.math3.util.Cloner;
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.kernelND.CurveEvaluable;
 import org.geogebra.common.util.DoubleUtil;
@@ -33,7 +33,7 @@ public class CurveSegmentPlotter {
 	private final double tMax;
 	private final int intervalDepth;
 	private final double maxParamStep;
-	private final EuclidianView view;
+	private final euclideanView view;
 	private final PathPlotter gp;
 	private final LabelPositionCalculator labelPositionCalculator;
 	private boolean needLabelPos;
@@ -66,7 +66,7 @@ public class CurveSegmentPlotter {
 	 */
 	public CurveSegmentPlotter(CurveEvaluable curve, double tMin,
 			double tMax, int intervalDepth, double maxParamStep,
-			EuclidianView view, PathPlotter gp, boolean calcLabelPos,
+			euclideanView view, PathPlotter gp, boolean calcLabelPos,
 			Gap moveToAllowed) {
 		this.curve = curve;
 		this.tMin = tMin;
@@ -377,7 +377,7 @@ public class CurveSegmentPlotter {
 	 * Returns whether curve is defined for c(t-eps) and c(t + eps).
 	 */
 	private static boolean isContinuousAround(CurveEvaluable curve, double t,
-			double eps, EuclidianView view, double[] evalT) {
+			double eps, euclideanView view, double[] evalT) {
 		// check if c(t) is undefined
 		double[] eval = curve.newDoubleArray();
 

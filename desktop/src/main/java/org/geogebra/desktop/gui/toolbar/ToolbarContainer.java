@@ -32,7 +32,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.view.properties.PropertiesView;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.common.main.App;
@@ -641,10 +641,10 @@ public class ToolbarContainer extends JPanel implements ComponentListener {
 		if (modeNameLabel.getMouseListeners().length > 0) {
 			modeNameLabel.removeMouseListener(helpMouseAdapter);
 		}
-		if (mode > EuclidianConstants.MACRO_MODE_ID_OFFSET) {
+		if (mode > euclideanConstants.MACRO_MODE_ID_OFFSET) {
 			return;
 		}
-		final String modeName = EuclidianConstants.getModeText(mode);
+		final String modeName = euclideanConstants.getModeText(mode);
 		if (!("".equals(modeName))) {
 			helpMouseAdapter = new MouseAdapter() {
 				@Override
@@ -874,7 +874,7 @@ public class ToolbarContainer extends JPanel implements ComponentListener {
 
 			for (final OptionType type : OptionType.values()) {
 
-				// if(type==OptionType.EUCLIDIAN3D){
+				// if(type==OptionType.euclidean3D){
 				// continue;
 				// }
 

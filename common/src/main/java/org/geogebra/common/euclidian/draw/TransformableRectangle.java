@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,9 +7,9 @@ import java.util.List;
 import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianBoundingBoxHandler;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.MediaBoundingBox;
+import org.geogebra.common.euclidean.euclideanBoundingBoxHandler;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.MediaBoundingBox;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoInlineText;
 import org.geogebra.common.kernel.geos.RectangleTransformable;
@@ -17,7 +17,7 @@ import org.geogebra.common.util.debug.Log;
 
 public class TransformableRectangle {
 
-	private final EuclidianView view;
+	private final euclideanView view;
 	private final RectangleTransformable geo;
 	private MediaBoundingBox boundingBox;
 	private GAffineTransform directTransform;
@@ -35,7 +35,7 @@ public class TransformableRectangle {
 	 * @param geo transformable geo
 	 * @param keepAspectRatio whether to keep aspect ratio
 	 */
-	TransformableRectangle(EuclidianView view, RectangleTransformable geo,
+	TransformableRectangle(euclideanView view, RectangleTransformable geo,
 			boolean keepAspectRatio) {
 		this.view = view;
 		this.geo = geo;
@@ -160,7 +160,7 @@ public class TransformableRectangle {
 	 * @param point new handler position
 	 * @param handler handler id
 	 */
-	public void updateByBoundingBoxResize(GPoint2D point, EuclidianBoundingBoxHandler handler) {
+	public void updateByBoundingBoxResize(GPoint2D point, euclideanBoundingBoxHandler handler) {
 		GPoint2D transformed = inverseTransform.transform(point, null);
 
 		double x = 0;
@@ -217,7 +217,7 @@ public class TransformableRectangle {
 	}
 
 	protected void updateAspectRatio(RectangleTransformable geo,
-			EuclidianBoundingBoxHandler handler) {
+			euclideanBoundingBoxHandler handler) {
 		if (!handler.isDiagonal()) {
 			aspectRatio = Double.NaN;
 		} else if (Double.isNaN(aspectRatio)) {

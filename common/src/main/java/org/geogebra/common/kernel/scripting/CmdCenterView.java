@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.scripting;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.Command;
 import org.geogebra.common.kernel.commands.CmdScripting;
@@ -32,7 +32,7 @@ public class CmdCenterView extends CmdScripting {
 			if (arg[0].isGeoPoint()) {
 				GeoPointND p = (GeoPointND) arg[0];
 
-				EuclidianViewInterfaceSlim ev = app.getActiveEuclidianView();
+				euclideanViewInterfaceSlim ev = app.getActiveeuclideanView();
 				ev.centerView(p);
 				return arg;
 

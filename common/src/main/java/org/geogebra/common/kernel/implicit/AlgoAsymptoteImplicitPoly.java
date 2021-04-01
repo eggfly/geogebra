@@ -22,7 +22,7 @@ import org.geogebra.common.kernel.commands.Commands;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoLine;
 import org.geogebra.common.kernel.geos.GeoList;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 
 /**
@@ -64,7 +64,7 @@ public class AlgoAsymptoteImplicitPoly extends AlgoElement {
 
 		setInputOutput(); // for AlgoElement
 
-		g.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT);
+		g.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT);
 		compute();
 
 		g.setLabel(label);
@@ -396,7 +396,7 @@ public class AlgoAsymptoteImplicitPoly extends AlgoElement {
 		// sb.append("}");
 
 		// g.set(kernel.getAlgebraProcessor().evaluateToList(sb.toString()));
-		// g.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT);
+		// g.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT);
 	}
 
 	// /**

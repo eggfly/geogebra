@@ -3,17 +3,17 @@ package org.geogebra.common.jre.headless;
 import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.CoordSystemAnimation;
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.euclidean.CoordSystemAnimation;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.main.settings.euclideanSettings;
 
-public class EuclidianView3DNoGui extends EuclidianView3D {
+public class euclideanView3DNoGui extends euclideanView3D {
 
-	public EuclidianView3DNoGui(EuclidianController3D ec,
-			EuclidianSettings settings) {
+	public euclideanView3DNoGui(euclideanController3D ec,
+			euclideanSettings settings) {
 		super(ec, settings);
 	}
 
@@ -138,19 +138,19 @@ public class EuclidianView3DNoGui extends EuclidianView3D {
 	}
 
 	@Override
-	protected EuclidianStyleBar newEuclidianStyleBar() {
+	protected euclideanStyleBar neweuclideanStyleBar() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected EuclidianStyleBar newDynamicStyleBar() {
+	protected euclideanStyleBar newDynamicStyleBar() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected void addDynamicStylebarToEV(EuclidianStyleBar dynamicStylebar) {
+	protected void addDynamicStylebarToEV(euclideanStyleBar dynamicStylebar) {
 		// TODO Auto-generated method stub
 
 	}

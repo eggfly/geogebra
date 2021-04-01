@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -7,8 +7,8 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPaint;
 import org.geogebra.common.awt.GShape;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.HatchingHandler;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.HatchingHandler;
 import org.geogebra.common.kernel.algos.ChartStyle;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.properties.FillType;

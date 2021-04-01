@@ -1,6 +1,6 @@
-package org.geogebra.common.euclidian.smallscreen;
+package org.geogebra.common.euclidean.smallscreen;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.main.App;
 
 /**
@@ -9,7 +9,7 @@ import org.geogebra.common.main.App;
  *
  */
 public abstract class AdjustWidget {
-	protected EuclidianView view;
+	protected euclideanView view;
 	protected double ratioX;
 	protected double ratioY;
 
@@ -17,13 +17,13 @@ public abstract class AdjustWidget {
 	 * @param view
 	 *            view
 	 */
-	public AdjustWidget(EuclidianView view) {
+	public AdjustWidget(euclideanView view) {
 		this.view = view;
 		App app = view.getApplication();
 		int fileWidth = app.getSettings()
-				.getEuclidian(view.getEuclidianViewNo()).getFileWidth();
+				.geteuclidean(view.geteuclideanViewNo()).getFileWidth();
 		int fileHeight = app.getSettings()
-				.getEuclidian(view.getEuclidianViewNo()).getFileHeight();
+				.geteuclidean(view.geteuclideanViewNo()).getFileHeight();
 
 		ratioX = fileWidth == 0 ? 1 : (double) view.getViewWidth() / fileWidth;
 		ratioY = fileHeight == 0 ? 1

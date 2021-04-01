@@ -3,7 +3,7 @@ package org.geogebra.web.full.cas.view;
 import org.geogebra.common.cas.view.CASInputHandler;
 import org.geogebra.common.cas.view.CASTableCellEditor;
 import org.geogebra.common.cas.view.CASView;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.main.App;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.web.full.gui.GuiManagerW;

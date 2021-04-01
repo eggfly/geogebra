@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.event;
+package org.geogebra.common.euclidean.event;
 
 /**
  * Common class for key events.

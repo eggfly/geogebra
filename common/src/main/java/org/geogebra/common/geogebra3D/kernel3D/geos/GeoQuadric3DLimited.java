@@ -160,7 +160,7 @@ public class GeoQuadric3DLimited extends GeoQuadricND
 		setObjColor(getObjectColor());
 		setLineThickness(getLineThickness());
 		setAlphaValue(getAlphaValue());
-		setEuclidianVisible(isEuclidianVisible());
+		seteuclideanVisible(iseuclideanVisible());
 	}
 
 	/**
@@ -441,13 +441,13 @@ public class GeoQuadric3DLimited extends GeoQuadricND
 	}
 
 	@Override
-	public void setEuclidianVisible(boolean visible) {
-		super.setEuclidianVisible(visible);
-		bottom.setEuclidianVisible(visible);
+	public void seteuclideanVisible(boolean visible) {
+		super.seteuclideanVisible(visible);
+		bottom.seteuclideanVisible(visible);
 		if (!silentTop) {
-			top.setEuclidianVisible(visible);
+			top.seteuclideanVisible(visible);
 		}
-		side.setEuclidianVisible(visible);
+		side.seteuclideanVisible(visible);
 
 	}
 
@@ -610,7 +610,7 @@ public class GeoQuadric3DLimited extends GeoQuadricND
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return true;
 	}
 

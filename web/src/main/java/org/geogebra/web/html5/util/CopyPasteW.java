@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.geogebra.common.awt.GPoint2D;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EmbedManager;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.draw.DrawInlineText;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.EmbedManager;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.draw.DrawInlineText;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoInlineText;
 import org.geogebra.common.main.App;
@@ -204,7 +204,7 @@ public class CopyPasteW extends CopyPaste {
 
 	private static void pastePlainText(final App app, String plainText) {
 		if (app.isWhiteboardActive()) {
-			final EuclidianView ev = app.getActiveEuclidianView();
+			final euclideanView ev = app.getActiveeuclideanView();
 
 			final GeoInlineText txt = new GeoInlineText(app.getKernel().getConstruction(),
 					new GPoint2D(ev.toRealWorldCoordX(-defaultTextWidth), 0));
@@ -223,7 +223,7 @@ public class CopyPasteW extends CopyPaste {
 
 			txt.setContent(array.toString());
 
-			final DrawableND drawText =  app.getActiveEuclidianView()
+			final DrawableND drawText =  app.getActiveeuclideanView()
 					.getDrawableFor(txt);
 			if (drawText != null) {
 				drawText.update();
@@ -238,7 +238,7 @@ public class CopyPasteW extends CopyPaste {
 						));
 						drawText.update();
 
-						ev.getEuclidianController().selectAndShowSelectionUI(txt);
+						ev.geteuclideanController().selectAndShowSelectionUI(txt);
 						app.storeUndoInfo();
 					}
 				});

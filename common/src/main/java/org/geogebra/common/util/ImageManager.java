@@ -3,7 +3,7 @@ package org.geogebra.common.util;
 import java.io.StringReader;
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.io.QDParser;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoImage;
@@ -90,7 +90,7 @@ abstract public class ImageManager {
 	public static void ensure2ndCornerOnScreen(double x1, GeoPoint point,
 			App app) {
 		double x2 = point.inhomX;
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 		double xmax = ev.toRealWorldCoordX((double) (ev.getWidth()) + 1);
 		if (x2 > xmax) {
 			point.setCoords((x1 + 9 * xmax) / 10, point.inhomY, 1);
@@ -99,7 +99,7 @@ abstract public class ImageManager {
 	}
 
 	private void ensure1stCornerOnScreen(GeoPointND point, App app) {
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 		double xmin = ev.toRealWorldCoordX(0.0);
 		double xmax = ev.toRealWorldCoordX((double) (ev.getWidth()) + 1);
 		double ymin = ev.toRealWorldCoordY(0.0);
@@ -118,7 +118,7 @@ abstract public class ImageManager {
 	 *            application
 	 */
 	private static void centerOnScreen(GeoImage geoImage, App app) {
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 		double screenWidth = ev.toRealWorldCoordX((double) (ev.getWidth()) + 1)
 				- ev.toRealWorldCoordX(0.0);
 		double screenHeight = ev.toRealWorldCoordY(

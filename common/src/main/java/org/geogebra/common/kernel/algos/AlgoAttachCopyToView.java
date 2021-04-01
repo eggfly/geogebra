@@ -34,7 +34,7 @@ import org.geogebra.common.kernel.geos.GeoPoly;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.util.MyMath;
 
 /**
@@ -60,7 +60,7 @@ public class AlgoAttachCopyToView extends AlgoTransformation {
 	 * @param in
 	 *            input element
 	 * @param viewID
-	 *            id of Euclidian view (0 = no,1 = EV1,2=EV2)
+	 *            id of euclidean view (0 = no,1 = EV1,2=EV2)
 	 * @param corner1
 	 *            first real world point
 	 * @param corner3
@@ -86,7 +86,7 @@ public class AlgoAttachCopyToView extends AlgoTransformation {
 	 * @param in
 	 *            input element
 	 * @param viewID
-	 *            id of Euclidian view (0 = no,1 = EV1,2=EV2)
+	 *            id of euclidean view (0 = no,1 = EV1,2=EV2)
 	 * @param corner1
 	 *            first real world point
 	 * @param corner3
@@ -122,7 +122,7 @@ public class AlgoAttachCopyToView extends AlgoTransformation {
 
 		setInputOutput();
 		compute();
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 
 	}
 
@@ -163,9 +163,9 @@ public class AlgoAttachCopyToView extends AlgoTransformation {
 
 		// #5014
 		// use Settings so we don't need to initialise EV2
-		EuclidianSettings ev = null;
+		euclideanSettings ev = null;
 		if (view == 1 || view == 2) {
-			ev = kernel.getApplication().getSettings().getEuclidian(view);
+			ev = kernel.getApplication().getSettings().geteuclidean(view);
 		}
 
 		if (ev == null && view != 0) {

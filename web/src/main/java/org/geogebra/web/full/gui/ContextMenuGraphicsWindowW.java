@@ -1,13 +1,13 @@
 package org.geogebra.web.full.gui;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.gui.dialog.handler.ColorChangeHandler;
 import org.geogebra.common.gui.menubar.MyActionListener;
 import org.geogebra.common.gui.menubar.RadioButtonMenuBar;
 import org.geogebra.common.main.OptionType;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.web.full.css.MaterialDesignResources;
 import org.geogebra.web.full.gui.dialog.DialogManagerW;
@@ -25,7 +25,7 @@ import com.google.gwt.resources.client.ResourcePrototype;
 import com.google.gwt.user.client.Command;
 
 /**
- * euclidian view/graphics view context menu
+ * euclidean view/graphics view context menu
  */
 public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 		implements MyActionListener {
@@ -63,9 +63,9 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 		this.px = px;
 		this.py = py;
 
-		EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
-		OptionType ot = ev.getEuclidianViewNo() == 1
-				? OptionType.EUCLIDIAN : OptionType.EUCLIDIAN2;
+		euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
+		OptionType ot = ev.geteuclideanViewNo() == 1
+				? OptionType.euclidean : OptionType.euclidean2;
 
 		if (!app.isWhiteboardActive()) {
 			if (app.isUnbundled()) {
@@ -74,7 +74,7 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 				addSnapToGridMenuItem();
 				addClearTraceMenuItem();
 			} else {
-				if (ev.getEuclidianViewNo() == 1) {
+				if (ev.geteuclideanViewNo() == 1) {
 					setTitle(loc.getMenu("DrawingPad"));
 				} else {
 					setTitle(loc.getMenu("DrawingPad2"));
@@ -108,10 +108,10 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 		if (!app.isUnbundled()) {
 			wrappedPopup.addItem(mi);
 		}
-		if (!app.getActiveEuclidianView().isZoomable()) {
+		if (!app.getActiveeuclideanView().isZoomable()) {
 			yaxisMenu.setEnabled(false);
 		}
-		if (app.getActiveEuclidianView().isLockedAxesRatio()) {
+		if (app.getActiveeuclideanView().isLockedAxesRatio()) {
 			yaxisMenu.setEnabled(false);
 		}
 	}
@@ -157,7 +157,7 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 	 */
 	protected void openColorChooser() {
 		((DialogManagerW) (app.getDialogManager())).showColorChooserDialog(
-				app.getSettings().getEuclidian(1).getBackground(),
+				app.getSettings().geteuclidean(1).getBackground(),
 				new ColorChangeHandler() {
 
 					@Override
@@ -168,7 +168,7 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 					@Override
 					public void onColorChange(GColor color) {
 						// change graphics background color
-						app.getSettings().getEuclidian(1).setBackground(color);
+						app.getSettings().geteuclidean(1).setBackground(color);
 					}
 
 					@Override
@@ -222,7 +222,7 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 				() -> app.setStandardView()
 		);
 
-		if (!app.getActiveEuclidianView().isZoomable()) {
+		if (!app.getActiveeuclideanView().isZoomable()) {
 			miShowAllObjectsView.setEnabled(false);
 			miStandardView.setEnabled(false);
 		}
@@ -258,8 +258,8 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 	public void addSnapToGridMenuItem() {
 		String img = MaterialDesignResources.INSTANCE.snap_to_grid()
 				.getSafeUri().asString();
-		final boolean isSnapToGrid = EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC == app
-				.getSettings().getEuclidian(1).getPointCapturingMode();
+		final boolean isSnapToGrid = euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC == app
+				.getSettings().geteuclidean(1).getPointCapturingMode();
 		final GCheckmarkMenuItem snapToGrid = new GCheckmarkMenuItem(
 				MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("SnapToGrid")),
 				isSnapToGrid);
@@ -267,13 +267,13 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 			@Override
 			public void execute() {
 
-				app.getEuclidianView1().setPointCapturing(isSnapToGrid
-						? EuclidianStyleConstants.POINT_CAPTURING_OFF
-						: EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC);
-				if (app.hasEuclidianView2EitherShowingOrNot(1)) {
-					app.getEuclidianView2(1).setPointCapturing(isSnapToGrid
-							? EuclidianStyleConstants.POINT_CAPTURING_OFF
-							: EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC);
+				app.geteuclideanView1().setPointCapturing(isSnapToGrid
+						? euclideanStyleConstants.POINT_CAPTURING_OFF
+						: euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC);
+				if (app.haseuclideanView2EitherShowingOrNot(1)) {
+					app.geteuclideanView2(1).setPointCapturing(isSnapToGrid
+							? euclideanStyleConstants.POINT_CAPTURING_OFF
+							: euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC);
 				}
 				snapToGrid.setChecked(!isSnapToGrid);
 				app.getGuiManager().updatePropertiesView();
@@ -291,8 +291,8 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 		String img = MaterialDesignResources.INSTANCE.axes_black()
 					.getSafeUri().asString();
 
-		boolean checked = app.getActiveEuclidianView().getShowXaxis()
-				&& (app.getActiveEuclidianView().getShowYaxis());
+		boolean checked = app.getActiveeuclideanView().getShowXaxis()
+				&& (app.getActiveeuclideanView().getShowYaxis());
 
 		final GCheckmarkMenuItem showAxes = new GCheckmarkMenuItem(
 				MainMenu.getMenuBarHtmlClassic(img, loc.getMenu("ShowAxes")),
@@ -306,7 +306,7 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 	 */
 	void toggleShowConstructionProtocolNavigation() {
 		((AppW) app).toggleShowConstructionProtocolNavigation(app
-				.getActiveEuclidianView().getViewID());
+				.getActiveeuclideanView().getViewID());
 	}
 
 	/**
@@ -349,12 +349,12 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 	 * set show all objects
 	 */
 	public void setViewShowAllObject() {
-		boolean keepRatio = app.getConfig().shouldKeepRatioEuclidian();
+		boolean keepRatio = app.getConfig().shouldKeepRatioeuclidean();
 		app.setViewShowAllObjects(keepRatio);
 	}
 
 	private void addAxesRatioItems(RadioButtonMenuBar menu) {
-		double scaleRatio = app.getActiveEuclidianView()
+		double scaleRatio = app.getActiveeuclideanView()
 		        .getScaleRatio();
 		String[] items = new String[axesRatios.length + 2];
 		String[] actionCommands = new String[axesRatios.length + 2];
@@ -416,7 +416,7 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 
 		wrappedPopup.addItem(zoomMenuItem);
 		addZoomItems(zoomMenu);
-		if (!app.getActiveEuclidianView().isZoomable()) {
+		if (!app.getActiveeuclideanView().isZoomable()) {
 			zoomMenuItem.setEnabled(false);
 		}
 	}
@@ -469,7 +469,7 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 		Command showConstructionStepCommand = this::toggleShowConstructionProtocolNavigation;
 
 		boolean selected = app.showConsProtNavigation(app
-				.getActiveEuclidianView().getViewID());
+				.getActiveeuclideanView().getViewID());
 
 		GCheckmarkMenuItem showConstructionStep = new GCheckmarkMenuItem(
 				loc.getMenu("NavigationBar"), selected, showConstructionStepCommand);
@@ -505,11 +505,11 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 		@Override
 		protected void initActions() {
 			addNoGridItem();
-			addGridItem("Grid.Major", EuclidianView.GRID_CARTESIAN);
+			addGridItem("Grid.Major", euclideanView.GRID_CARTESIAN);
 			addGridItem("Grid.MajorAndMinor",
-					EuclidianView.GRID_CARTESIAN_WITH_SUBGRID);
-			addGridItem("Polar", EuclidianView.GRID_POLAR);
-			addGridItem("Isometric", EuclidianView.GRID_ISOMETRIC);
+					euclideanView.GRID_CARTESIAN_WITH_SUBGRID);
+			addGridItem("Polar", euclideanView.GRID_POLAR);
+			addGridItem("Isometric", euclideanView.GRID_ISOMETRIC);
 		}
 
 		/**
@@ -517,19 +517,19 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 		 *            new grid type
 		 */
 		protected void setGridType(int gridType) {
-			app.getActiveEuclidianView().getSettings()
-					.showGrid(gridType != EuclidianView.GRID_NOT_SHOWN);
-			app.getActiveEuclidianView().getSettings().setGridType(gridType);
-			app.getActiveEuclidianView().setGridType(gridType);
-			app.getActiveEuclidianView().repaintView();
+			app.getActiveeuclideanView().getSettings()
+					.showGrid(gridType != euclideanView.GRID_NOT_SHOWN);
+			app.getActiveeuclideanView().getSettings().setGridType(gridType);
+			app.getActiveeuclideanView().setGridType(gridType);
+			app.getActiveeuclideanView().repaintView();
 			app.storeUndoInfo();
 			wrappedPopup.hideMenu();
 		}
 
 		private void addGridItem(String key, final int gridType) {
 			String text = app.getLocalization().getMenu(key);
-			boolean isSelected = app.getActiveEuclidianView()
-					.getGridType() == gridType && app.getActiveEuclidianView().getShowGrid();
+			boolean isSelected = app.getActiveeuclideanView()
+					.getGridType() == gridType && app.getActiveeuclideanView().getShowGrid();
 			addItem(text, isSelected, new Command() {
 
 				@Override
@@ -541,12 +541,12 @@ public class ContextMenuGraphicsWindowW extends ContextMenuGeoElementW
 
 		private void addNoGridItem() {
 			String text = app.getLocalization().getMenu("Grid.No");
-			boolean isSelected = !app.getActiveEuclidianView().getShowGrid();
+			boolean isSelected = !app.getActiveeuclideanView().getShowGrid();
 			addItem(text, isSelected, new Command() {
 
 				@Override
 				public void execute() {
-					setGridType(EuclidianView.GRID_NOT_SHOWN);
+					setGridType(euclideanView.GRID_NOT_SHOWN);
 				}
 			}, false);
 		}

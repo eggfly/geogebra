@@ -1,4 +1,4 @@
-package org.geogebra.test.euclidian;
+package org.geogebra.test.euclidean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,9 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
-import org.geogebra.common.euclidian.event.FocusListenerDelegate;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
+import org.geogebra.common.euclidean.event.FocusListenerDelegate;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.gui.inputfield.AutoCompleteTextField;
 import org.geogebra.common.gui.inputfield.InputMode;
 import org.geogebra.common.kernel.geos.GeoInputBox;

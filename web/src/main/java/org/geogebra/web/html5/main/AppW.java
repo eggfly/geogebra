@@ -11,11 +11,11 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.DrawEquation;
-import org.geogebra.common.euclidian.EmbedManager;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.DrawEquation;
+import org.geogebra.common.euclidean.EmbedManager;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.export.pstricks.GeoGebraExport;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.factories.CASFactory;
@@ -51,7 +51,7 @@ import org.geogebra.common.main.SpreadsheetTableModelSimple;
 import org.geogebra.common.main.error.ErrorHandler;
 import org.geogebra.common.main.settings.AlgebraSettings;
 import org.geogebra.common.main.settings.DefaultSettings;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.main.settings.SettingsBuilder;
 import org.geogebra.common.main.settings.config.AppConfigDefault;
 import org.geogebra.common.main.undo.UndoManager;
@@ -81,12 +81,12 @@ import org.geogebra.ggbjdk.java.awt.geom.Dimension;
 import org.geogebra.web.html5.Browser;
 import org.geogebra.web.html5.awt.GFontW;
 import org.geogebra.web.html5.css.GuiResourcesSimple;
-import org.geogebra.web.html5.euclidian.EuclidianControllerW;
-import org.geogebra.web.html5.euclidian.EuclidianPanelWAbstract;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
-import org.geogebra.web.html5.euclidian.MouseTouchGestureControllerW;
-import org.geogebra.web.html5.euclidian.profiler.FpsProfilerW;
+import org.geogebra.web.html5.euclidean.euclideanControllerW;
+import org.geogebra.web.html5.euclidean.euclideanPanelWAbstract;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
+import org.geogebra.web.html5.euclidean.MouseTouchGestureControllerW;
+import org.geogebra.web.html5.euclidean.profiler.FpsProfilerW;
 import org.geogebra.web.html5.export.GeoGebraToAsymptoteW;
 import org.geogebra.web.html5.export.GeoGebraToPgfW;
 import org.geogebra.web.html5.export.GeoGebraToPstricksW;
@@ -204,7 +204,7 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	protected final GeoGebraElement geoGebraElement;
 	protected final AppletParameters appletParameters;
 
-	protected EuclidianPanelWAbstract euclidianViewPanel;
+	protected euclideanPanelWAbstract euclideanViewPanel;
 
 	private final GLookAndFeelI laf;
 
@@ -233,7 +233,7 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	HashMap<String, String> revTranslateCommandTable = new HashMap<>();
 	private Runnable closeBroserCallback;
 	private Runnable insertImageCallback;
-	private ArrayList<MouseTouchGestureControllerW> euclidianHandlers = new ArrayList<>();
+	private ArrayList<MouseTouchGestureControllerW> euclideanHandlers = new ArrayList<>();
 	private ViewW viewW;
 	private ZoomPanel zoomPanel;
 	private PopupRegistry popupRegistry = new PopupRegistry();
@@ -430,7 +430,7 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	 * handler for window resize
 	 */
 	protected final void windowResized() {
-		for (MouseTouchGestureControllerW mtg : this.euclidianHandlers) {
+		for (MouseTouchGestureControllerW mtg : this.euclideanHandlers) {
 			mtg.calculateEnvironment();
 		}
 		if (this.getGuiManager() != null) {
@@ -538,8 +538,8 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	}
 
 	@Override
-	public EuclidianViewW getEuclidianView1() {
-		return (EuclidianViewW) euclidianView;
+	public euclideanViewW geteuclideanView1() {
+		return (euclideanViewW) euclideanView;
 	}
 
 	/**
@@ -862,12 +862,12 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 		for (int i = 0; i < macroCount; i++) {
 			Macro macro = kernel.getMacro(i);
 			if (macro.getViewId() == null) {
-				int macroMode = EuclidianConstants.MACRO_MODE_ID_OFFSET + i;
+				int macroMode = euclideanConstants.MACRO_MODE_ID_OFFSET + i;
 				if (toolbar3D != null
 						&& toolbar3D.contains(String.valueOf(macroMode))) {
-					macro.setViewId(VIEW_EUCLIDIAN3D);
+					macro.setViewId(VIEW_euclidean3D);
 				} else {
-					macro.setViewId(VIEW_EUCLIDIAN);
+					macro.setViewId(VIEW_euclidean);
 				}
 			}
 		}
@@ -882,9 +882,9 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 		if (this.getImageManager() != null && !asSlide) {
 			this.getImageManager().reset();
 		}
-		getEuclidianView1().setReIniting(true);
-		if (hasEuclidianView2EitherShowingOrNot(1)) {
-			getEuclidianView2(1).setReIniting(true);
+		geteuclideanView1().setReIniting(true);
+		if (haseuclideanView2EitherShowingOrNot(1)) {
+			geteuclideanView2(1).setReIniting(true);
 		}
 	}
 
@@ -1042,9 +1042,9 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	 */
 	protected final void resetPenTool() {
 		if (isWhiteboardActive()) {
-			getActiveEuclidianView().getSettings()
-					.setLastPenThickness(EuclidianConstants.DEFAULT_PEN_SIZE);
-			setMode(EuclidianConstants.MODE_PEN, ModeSetter.TOOLBAR);
+			getActiveeuclideanView().getSettings()
+					.setLastPenThickness(euclideanConstants.DEFAULT_PEN_SIZE);
+			setMode(euclideanConstants.MODE_PEN, ModeSetter.TOOLBAR);
 		}
 	}
 
@@ -1358,13 +1358,13 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	/**
 	 * @param viewId
 	 *            view ID
-	 * @return the plotpanel euclidianview
+	 * @return the plotpanel euclideanview
 	 */
-	public EuclidianViewW getPlotPanelEuclidianView(int viewId) {
+	public euclideanViewW getPlotPaneleuclideanView(int viewId) {
 		if (getGuiManager() == null) {
 			return null;
 		}
-		return (EuclidianViewW) getGuiManager().getPlotPanelView(viewId);
+		return (euclideanViewW) getGuiManager().getPlotPanelView(viewId);
 	}
 
 	/**
@@ -1620,7 +1620,7 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	}
 
 	/**
-	 * Initializes Kernel, EuclidianView, EuclidianSettings, etc..
+	 * Initializes Kernel, euclideanView, euclideanSettings, etc..
 	 *
 	 */
 	protected void initCoreObjects() {
@@ -1631,7 +1631,7 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 
 		fontManager = new FontManagerW();
 		setFontSize(16, false);
-		initEuclidianViews();
+		initeuclideanViews();
 
 		initImageManager();
 
@@ -1671,8 +1671,8 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 			getKernel().setSymbolicMode(getConfig().getSymbolicMode());
 		}
 
-		if (getSettings().getEuclidian(-1) != null) {
-			getSettings().getEuclidian(-1)
+		if (getSettings().geteuclidean(-1) != null) {
+			getSettings().geteuclidean(-1)
 					.setEnabled(getAppletParameters().getDataParamEnable3D(true));
 		}
 
@@ -1681,8 +1681,8 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 
 			boolean enableGraphing = getAppletParameters()
 					.getDataParamEnableGraphing(false);
-			getSettings().getEuclidian(1).setEnabled(enableGraphing);
-			getSettings().getEuclidian(2).setEnabled(enableGraphing);
+			getSettings().geteuclidean(1).setEnabled(enableGraphing);
+			getSettings().geteuclidean(2).setEnabled(enableGraphing);
 		}
 	}
 
@@ -1743,10 +1743,10 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 		buildApplicationPanel();
 
 		// update sizes
-		euclidianView.updateSize();
+		euclideanView.updateSize();
 		// needed: GGB-624
-		if (hasEuclidianView2(1)) {
-			getEuclidianView2(1).updateSize();
+		if (haseuclideanView2(1)) {
+			geteuclideanView2(1).updateSize();
 		}
 
 		// update layout
@@ -1867,12 +1867,12 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	}
 
 	@Override
-	protected EuclidianView newEuclidianView(boolean[] showEvAxes,
+	protected euclideanView neweuclideanView(boolean[] showEvAxes,
 			boolean showEvGrid) {
 
-		return euclidianView = newEuclidianView(euclidianViewPanel,
-				getEuclidianController(), showEvAxes, showEvGrid, 1,
-				getSettings().getEuclidian(1));
+		return euclideanView = neweuclideanView(euclideanViewPanel,
+				geteuclideanController(), showEvAxes, showEvGrid, 1,
+				getSettings().geteuclidean(1));
 	}
 
 	/**
@@ -1886,20 +1886,20 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	 * @param showEvGrid
 	 *            show grid ?
 	 * @param id
-	 *            euclidian view id
+	 *            euclidean view id
 	 * @param evSettings
 	 *            view settings
-	 * @return new euclidian view
+	 * @return new euclidean view
 	 */
-	public EuclidianViewW newEuclidianView(EuclidianPanelWAbstract evPanel,
-			EuclidianController ec, boolean[] showEvAxes, boolean showEvGrid,
-			int id, EuclidianSettings evSettings) {
-		return new EuclidianViewW(evPanel, ec, id, evSettings);
+	public euclideanViewW neweuclideanView(euclideanPanelWAbstract evPanel,
+			euclideanController ec, boolean[] showEvAxes, boolean showEvGrid,
+			int id, euclideanSettings evSettings) {
+		return new euclideanViewW(evPanel, ec, id, evSettings);
 	}
 
 	@Override
-	public EuclidianController newEuclidianController(Kernel kernel1) {
-		return new EuclidianControllerW(kernel1);
+	public euclideanController neweuclideanController(Kernel kernel1) {
+		return new euclideanControllerW(kernel1);
 	}
 
 	@Override
@@ -1917,52 +1917,52 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	// ===================================================
 
 	/**
-	 * @return euclidian panel
+	 * @return euclidean panel
 	 */
-	public EuclidianPanelWAbstract getEuclidianViewpanel() {
-		return euclidianViewPanel;
+	public euclideanPanelWAbstract geteuclideanViewpanel() {
+		return euclideanViewPanel;
 	}
 
 	@Override
-	public boolean hasEuclidianView2EitherShowingOrNot(int idx) {
+	public boolean haseuclideanView2EitherShowingOrNot(int idx) {
 		return (getGuiManager() != null)
-				&& getGuiManager().hasEuclidianView2EitherShowingOrNot(idx);
+				&& getGuiManager().haseuclideanView2EitherShowingOrNot(idx);
 	}
 
 	@Override
-	public EuclidianViewW getEuclidianView2(int idx) {
+	public euclideanViewW geteuclideanView2(int idx) {
 
 		if (getGuiManager() == null) {
 			return null;
 		}
 
-		return (EuclidianViewW) getGuiManager().getEuclidianView2(idx);
+		return (euclideanViewW) getGuiManager().geteuclideanView2(idx);
 	}
 
 	@Override
-	public EuclidianView getActiveEuclidianView() {
+	public euclideanView getActiveeuclideanView() {
 		if (getGuiManager() == null) {
-			return getEuclidianView1();
+			return geteuclideanView1();
 		}
-		return getGuiManager().getActiveEuclidianView();
+		return getGuiManager().getActiveeuclideanView();
 	}
 
 	@Override
-	public boolean isShowingEuclidianView2(int idx) {
+	public boolean isShowingeuclideanView2(int idx) {
 		return (getGuiManager() != null)
-				&& getGuiManager().hasEuclidianView2(idx)
-				&& getGuiManager().getEuclidianView2(idx).isShowing();
+				&& getGuiManager().haseuclideanView2(idx)
+				&& getGuiManager().geteuclideanView2(idx).isShowing();
 	}
 
 	@Override
-	public EuclidianViewW createEuclidianView() {
-		return (EuclidianViewW) this.euclidianView;
+	public euclideanViewW createeuclideanView() {
+		return (euclideanViewW) this.euclideanView;
 	}
 
 	@Override
 	public boolean showView(int view) {
 		if (getGuiManager() == null) {
-			return (view == App.VIEW_EUCLIDIAN);
+			return (view == App.VIEW_euclidean);
 		}
 		return getGuiManager().showView(view);
 	}
@@ -2125,7 +2125,7 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	 * @param ev
 	 *            view
 	 */
-	public final void copyEVtoClipboard(EuclidianViewW ev) {
+	public final void copyEVtoClipboard(euclideanViewW ev) {
 		String image = ev.getExportImageDataUrl(3, true, false);
 		String title = ev.getApplication().getKernel().getConstruction()
 				.getTitle();
@@ -2194,8 +2194,8 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 		if (getGuiManager() != null) {
 			getGuiManager().recalculateEnvironments();
 		}
-		if (getEuclidianView1() != null) {
-			getEuclidianView1().getEuclidianController().calculateEnvironment();
+		if (geteuclideanView1() != null) {
+			geteuclideanView1().geteuclideanController().calculateEnvironment();
 		}
 	}
 
@@ -2226,8 +2226,8 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 			getAlgebraView().resetItems(false);
 		}
 
-		if (getActiveEuclidianView() != null) {
-			getActiveEuclidianView().getEuclidianController()
+		if (getActiveeuclideanView() != null) {
+			getActiveeuclideanView().geteuclideanController()
 					.setObjectMenuActive(false);
 		}
 		//hideSymbolicEditors();
@@ -2371,14 +2371,14 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 				&& getLAF().examSupported())
 				|| (getLAF() != null && getLAF().isTablet() && !isUnbundled()
 						&& !isWhiteboardActive())) {
-			if (viewID == App.VIEW_EUCLIDIAN) {
-				return getSettings().getEuclidian(1).isEnabled();
-			} else if (viewID == App.VIEW_EUCLIDIAN2) {
-				return getSettings().getEuclidian(2).isEnabled();
+			if (viewID == App.VIEW_euclidean) {
+				return getSettings().geteuclidean(1).isEnabled();
+			} else if (viewID == App.VIEW_euclidean2) {
+				return getSettings().geteuclidean(2).isEnabled();
 			}
 		}
 
-		return viewID != App.VIEW_EUCLIDIAN3D;
+		return viewID != App.VIEW_euclidean3D;
 	}
 
 	/**
@@ -2569,16 +2569,16 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	}
 
 	public void attachNativeLoadHandler(ImageElement img) {
-		addNativeLoadHandler(img, getActiveEuclidianView());
+		addNativeLoadHandler(img, getActiveeuclideanView());
 	}
 
 	private native void addNativeLoadHandler(ImageElement img,
-			EuclidianView view) /*-{
+			euclideanView view) /*-{
 		img
 				.addEventListener(
 						"load",
 						function() {
-							view.@org.geogebra.web.html5.euclidian.EuclidianViewW::updateBackground()();
+							view.@org.geogebra.web.html5.euclidean.euclideanViewW::updateBackground()();
 						});
 	}-*/;
 
@@ -2631,12 +2631,12 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 			return;
 		}
 
-		if (getEuclidianView1().hasStyleBar()) {
-			getEuclidianView1().getStyleBar().updateStyleBar();
+		if (geteuclideanView1().hasStyleBar()) {
+			geteuclideanView1().getStyleBar().updateStyleBar();
 		}
 
-		if (hasEuclidianView2(1) && getEuclidianView2(1).hasStyleBar()) {
-			getEuclidianView2(1).getStyleBar().updateStyleBar();
+		if (haseuclideanView2(1) && geteuclideanView2(1).hasStyleBar()) {
+			geteuclideanView2(1).getStyleBar().updateStyleBar();
 		}
 
 		if (isUnbundledOrWhiteboard()) {
@@ -2646,12 +2646,12 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 
 	@Override
 	public void updateDynamicStyleBars() {
-		if (getEuclidianView1().hasDynamicStyleBar()) {
-			getEuclidianView1().getDynamicStyleBar().updateStyleBar();
+		if (geteuclideanView1().hasDynamicStyleBar()) {
+			geteuclideanView1().getDynamicStyleBar().updateStyleBar();
 		}
 
-		if (hasEuclidianView2(1) && getEuclidianView2(1).hasDynamicStyleBar()) {
-			getEuclidianView2(1).getDynamicStyleBar().updateStyleBar();
+		if (haseuclideanView2(1) && geteuclideanView2(1).hasDynamicStyleBar()) {
+			geteuclideanView2(1).getDynamicStyleBar().updateStyleBar();
 		}
 	}
 
@@ -2673,15 +2673,15 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	 *            height in px
 	 */
 	public void ggwGraphicsViewDimChanged(int width, int height) {
-		// Log.debug("dim changed" + getSettings().getEuclidian(1));
+		// Log.debug("dim changed" + getSettings().geteuclidean(1));
 		if (width > 0 && height > 0) {
-			getSettings().getEuclidian(1).setPreferredSize(
+			getSettings().geteuclidean(1).setPreferredSize(
 					AwtFactory.getPrototype().newDimension(width, height));
 		}
 
 		// Log.debug("syn size");
-		getEuclidianView1().setCoordinateSpaceSize(width, height);
-		getEuclidianView1().doRepaint2();
+		geteuclideanView1().setCoordinateSpaceSize(width, height);
+		geteuclideanView1().doRepaint2();
 	}
 
 	/**
@@ -2695,15 +2695,15 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	 */
 	public void ggwGraphicsView2DimChanged(int width, int height) {
 		if (width > 0 && height > 0) {
-			getSettings().getEuclidian(2).setPreferredSize(
+			getSettings().geteuclidean(2).setPreferredSize(
 					AwtFactory.getPrototype().newDimension(width, height));
 		}
 		// simple setting temp.
 		// appCanvasHeight = height;
 		// appCanvasWidth = width;
 
-		getEuclidianView2(1).setCoordinateSpaceSize(width, height);
-		getEuclidianView2(1).doRepaint2();
+		geteuclideanView2(1).setCoordinateSpaceSize(width, height);
+		geteuclideanView2(1).doRepaint2();
 	}
 
 	/**
@@ -2948,7 +2948,7 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	}
 
 	public void addWindowResizeListener(MouseTouchGestureControllerW mtg) {
-		this.euclidianHandlers.add(mtg);
+		this.euclideanHandlers.add(mtg);
 	}
 
 	public boolean showToolBarHelp() {
@@ -2964,12 +2964,12 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 
 		@Override
 		public void run() {
-			getEuclidianView1().setAltText();
-			if (hasEuclidianView2(1)) {
-				getEuclidianView2(1).setAltText();
+			geteuclideanView1().setAltText();
+			if (haseuclideanView2(1)) {
+				geteuclideanView2(1).setAltText();
 			}
-			if (isEuclidianView3Dinited()) {
-				((EuclidianViewWInterface) getEuclidianView3D()).setAltText();
+			if (iseuclideanView3Dinited()) {
+				((euclideanViewWInterface) geteuclideanView3D()).setAltText();
 			}
 		}
 	};
@@ -3109,9 +3109,9 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 		// reset cas and 3d settings for restart of exam
 		// needed for GGB-1015
 		this.getSettings().getCasSettings().resetEnabled();
-		this.getSettings().getEuclidian(-1).resetEnabled();
-		getSettings().getEuclidian(1).resetEnabled();
-		getSettings().getEuclidian(2).resetEnabled();
+		this.getSettings().geteuclidean(-1).resetEnabled();
+		getSettings().geteuclidean(1).resetEnabled();
+		getSettings().geteuclidean(2).resetEnabled();
 		setViewsEnabled();
 	}
 
@@ -3131,7 +3131,7 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 	}
 
 	@Override
-	public void ensureEvSizeSet(EuclidianSettings evSet) {
+	public void ensureEvSizeSet(euclideanSettings evSet) {
 		GDimension gd = evSet.getPreferredSize();
 		if (gd.getWidth() == 0 || gd.getHeight() == 0) {
 			// border already excluded
@@ -3390,7 +3390,7 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 
 	@Override
 	public void copyGraphicsViewToClipboard() {
-		EuclidianViewWInterface ev = (EuclidianViewWInterface) getActiveEuclidianView();
+		euclideanViewWInterface ev = (euclideanViewWInterface) getActiveeuclideanView();
 		copyImageToClipboard(ev.getExportImageDataUrl(3, false, false));
 	}
 
@@ -3454,7 +3454,7 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 
 			@Override
 			public void run() {
-				EuclidianViewW.forceResize(getEuclidianView1());
+				euclideanViewW.forceResize(geteuclideanView1());
 			}
 		});
 
@@ -3549,22 +3549,22 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 
 	@Override
 	public void testDraw() {
-		getEuclidianController().getMouseTouchGestureController().getDrawingEmulator().draw();
+		geteuclideanController().getMouseTouchGestureController().getDrawingEmulator().draw();
 	}
 
 	@Override
-	protected EuclidianControllerW getEuclidianController() {
-		return (EuclidianControllerW) super.getEuclidianController();
+	protected euclideanControllerW geteuclideanController() {
+		return (euclideanControllerW) super.geteuclideanController();
 	}
 
 	@Override
 	public void startDrawRecording() {
-		getEuclidianController().getMouseTouchGestureController().startDrawRecording();
+		geteuclideanController().getMouseTouchGestureController().startDrawRecording();
 	}
 
 	@Override
 	public void endDrawRecordingAndLogResults() {
-		getEuclidianController().getMouseTouchGestureController().endDrawRecordingAndLogResult();
+		geteuclideanController().getMouseTouchGestureController().endDrawRecordingAndLogResult();
 	}
 
 	/**

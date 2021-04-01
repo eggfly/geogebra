@@ -58,7 +58,7 @@ public class AccessibilityView implements View {
 	}
 
 	private void initGraphics3DControls() {
-		if (app.showView(App.VIEW_EUCLIDIAN3D)) {
+		if (app.showView(App.VIEW_euclidean3D)) {
 			if (graphicsView3D == null) {
 				graphicsView3D = new AccessibleGraphicsView(app, sliderFactory, this);
 			}
@@ -106,12 +106,12 @@ public class AccessibilityView implements View {
 	}
 
 	private static boolean isInteractive(GeoElement geo) {
-		if (!geo.isEuclidianVisible() || !geo.isSelectionAllowed(null)
+		if (!geo.iseuclideanVisible() || !geo.isSelectionAllowed(null)
 				|| geo.getLabelSimple() == null) {
 			return false;
 		}
-		for (int euclidianView = 1; euclidianView < 4; euclidianView++) {
-			if (geo.isVisibleInEV(euclidianView)) {
+		for (int euclideanView = 1; euclideanView < 4; euclideanView++) {
+			if (geo.isVisibleInEV(euclideanView)) {
 				return true;
 			}
 		}

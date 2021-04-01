@@ -10,29 +10,29 @@
 
  */
 
-package org.geogebra.web.geogebra3D.web.euclidianFor3D;
+package org.geogebra.web.geogebra3D.web.euclideanFor3D;
 
-import org.geogebra.common.euclidian.EuclidianControllerCompanion;
-import org.geogebra.common.geogebra3D.euclidianFor3D.EuclidianControllerFor3DCompanion;
+import org.geogebra.common.euclidean.euclideanControllerCompanion;
+import org.geogebra.common.geogebra3D.euclideanFor3D.euclideanControllerFor3DCompanion;
 import org.geogebra.common.kernel.Kernel;
-import org.geogebra.web.html5.euclidian.EuclidianControllerW;
+import org.geogebra.web.html5.euclidean.euclideanControllerW;
 
 /**
- * euclidian controller for 2D view with 3D geos
+ * euclidean controller for 2D view with 3D geos
  */
-public class EuclidianControllerFor3DW extends EuclidianControllerW {
+public class euclideanControllerFor3DW extends euclideanControllerW {
 
 	/**
 	 * @param kernel
 	 *            kernel
 	 */
-	public EuclidianControllerFor3DW(Kernel kernel) {
+	public euclideanControllerFor3DW(Kernel kernel) {
 		super(kernel);
 	}
 
 	@Override
-	protected EuclidianControllerCompanion newCompanion() {
-		return new EuclidianControllerFor3DCompanion(this);
+	protected euclideanControllerCompanion newCompanion() {
+		return new euclideanControllerFor3DCompanion(this);
 	}
 
 }

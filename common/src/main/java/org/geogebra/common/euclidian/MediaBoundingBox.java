@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GBasicStroke;
@@ -112,9 +112,9 @@ public class MediaBoundingBox extends BoundingBox<GShape> {
 	}
 
 	@Override
-	public EuclidianCursor getCursor(EuclidianBoundingBoxHandler handler) {
-		if (handler == EuclidianBoundingBoxHandler.ROTATION) {
-			return EuclidianCursor.ROTATION;
+	public euclideanCursor getCursor(euclideanBoundingBoxHandler handler) {
+		if (handler == euclideanBoundingBoxHandler.ROTATION) {
+			return euclideanCursor.ROTATION;
 		}
 
 		// evil hackery to get closest rotation handler
@@ -125,15 +125,15 @@ public class MediaBoundingBox extends BoundingBox<GShape> {
 		// Computer Science modulo (there is Math.floorMod in java8)
 		switch ((4 + cursorIndex) % 4) {
 		case 0:
-			return EuclidianCursor.RESIZE_NS;
+			return euclideanCursor.RESIZE_NS;
 		case 1:
-			return EuclidianCursor.RESIZE_NWSE;
+			return euclideanCursor.RESIZE_NWSE;
 		case 2:
-			return EuclidianCursor.RESIZE_EW;
+			return euclideanCursor.RESIZE_EW;
 		case 3:
-			return EuclidianCursor.RESIZE_NESW;
+			return euclideanCursor.RESIZE_NESW;
 		default:
-			return EuclidianCursor.DEFAULT;
+			return euclideanCursor.DEFAULT;
 		}
 	}
 }

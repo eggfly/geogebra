@@ -13,7 +13,7 @@ import org.geogebra.web.full.gui.dialog.options.OptionPanelW;
 import org.geogebra.web.full.gui.dialog.options.OptionsAlgebraW;
 import org.geogebra.web.full.gui.dialog.options.OptionsCASW;
 import org.geogebra.web.full.gui.dialog.options.OptionsDefaultsW;
-import org.geogebra.web.full.gui.dialog.options.OptionsEuclidianW;
+import org.geogebra.web.full.gui.dialog.options.OptionseuclideanW;
 import org.geogebra.web.full.gui.dialog.options.OptionsGlobalW;
 import org.geogebra.web.full.gui.dialog.options.OptionsLayoutW;
 import org.geogebra.web.full.gui.dialog.options.OptionsObjectW;
@@ -43,9 +43,9 @@ public class PropertiesViewW extends PropertiesView
 
 	// option panels
 	private OptionsDefaultsW defaultsPanel;
-	private OptionsEuclidianW euclidianPanel;
-	private OptionsEuclidianW euclidianPanel2;
-	private OptionsEuclidianW euclidianPanel3D;
+	private OptionseuclideanW euclideanPanel;
+	private OptionseuclideanW euclideanPanel2;
+	private OptionseuclideanW euclideanPanel3D;
 	private OptionsSpreadsheetW spreadsheetPanel;
 	private OptionsCASW casPanel;
 	private OptionsLayoutW layoutPanel;
@@ -138,31 +138,31 @@ public class PropertiesViewW extends PropertiesView
 			}
 			return casPanel;
 
-		case EUCLIDIAN:
-			if (euclidianPanel == null) {
-				euclidianPanel = new OptionsEuclidianW((AppW) app,
-						((AppW) app).getActiveEuclidianView());
-				euclidianPanel.setLabels();
-				euclidianPanel.setView(((AppW) app).getEuclidianView1());
+		case euclidean:
+			if (euclideanPanel == null) {
+				euclideanPanel = new OptionseuclideanW((AppW) app,
+						((AppW) app).getActiveeuclideanView());
+				euclideanPanel.setLabels();
+				euclideanPanel.setView(((AppW) app).geteuclideanView1());
 			}
-			return euclidianPanel;
+			return euclideanPanel;
 
-		case EUCLIDIAN2:
-			if (euclidianPanel2 == null) {
-				euclidianPanel2 = new OptionsEuclidianW((AppW) app,
-						((AppW) app).getEuclidianView2(1));
-				euclidianPanel2.setLabels();
-				euclidianPanel2.setView(((AppW) app).getEuclidianView2(1));
+		case euclidean2:
+			if (euclideanPanel2 == null) {
+				euclideanPanel2 = new OptionseuclideanW((AppW) app,
+						((AppW) app).geteuclideanView2(1));
+				euclideanPanel2.setLabels();
+				euclideanPanel2.setView(((AppW) app).geteuclideanView2(1));
 			}
-			return euclidianPanel2;
+			return euclideanPanel2;
 
-		case EUCLIDIAN3D:
-			if (euclidianPanel3D == null) {
-				euclidianPanel3D = new OptionsEuclidianW((AppW) app,
-						((AppW) app).getEuclidianView3D());
-				euclidianPanel3D.setLabels();
+		case euclidean3D:
+			if (euclideanPanel3D == null) {
+				euclideanPanel3D = new OptionseuclideanW((AppW) app,
+						((AppW) app).geteuclideanView3D());
+				euclideanPanel3D.setLabels();
 			}
-			return euclidianPanel2;
+			return euclideanPanel2;
 
 		case SPREADSHEET:
 			if (spreadsheetPanel == null) {
@@ -206,8 +206,8 @@ public class PropertiesViewW extends PropertiesView
 				? (OptionsObjectW) super.getObjectPanel() : null;
 	}
 
-	private OptionsEuclidianW getEuclidianPanel() {
-		return euclidianPanel;
+	private OptionseuclideanW geteuclideanPanel() {
+		return euclideanPanel;
 	}
 
 	@Override
@@ -279,17 +279,17 @@ public class PropertiesViewW extends PropertiesView
 		if (app.getSelectionManager().selectedGeosSize() != 0 && optionType != OptionType.OBJECTS) {
 			setOptionPanel(OptionType.OBJECTS);
 		} else if (app.getSelectionManager().selectedGeosSize() == 0) {
-			if (optionType != OptionType.EUCLIDIAN
-					|| optionType != OptionType.EUCLIDIAN2
-					|| optionType != OptionType.EUCLIDIAN3D
-					|| optionType != OptionType.EUCLIDIAN_FOR_PLANE) {
-				if (app.getActiveEuclidianView().isEuclidianView3D()) {
-					setOptionPanel(OptionType.EUCLIDIAN3D);
-				} else if (app.getActiveEuclidianView().isDefault2D()) {
-					setOptionPanel(app.getActiveEuclidianView().getEuclidianViewNo() == 1
-						? OptionType.EUCLIDIAN : OptionType.EUCLIDIAN2);
+			if (optionType != OptionType.euclidean
+					|| optionType != OptionType.euclidean2
+					|| optionType != OptionType.euclidean3D
+					|| optionType != OptionType.euclidean_FOR_PLANE) {
+				if (app.getActiveeuclideanView().iseuclideanView3D()) {
+					setOptionPanel(OptionType.euclidean3D);
+				} else if (app.getActiveeuclideanView().isDefault2D()) {
+					setOptionPanel(app.getActiveeuclideanView().geteuclideanViewNo() == 1
+						? OptionType.euclidean : OptionType.euclidean2);
 				} else {
-					setOptionPanel(OptionType.EUCLIDIAN_FOR_PLANE);
+					setOptionPanel(OptionType.euclidean_FOR_PLANE);
 				}
 			}
 		}
@@ -316,11 +316,11 @@ public class PropertiesViewW extends PropertiesView
 	@Override
 	protected void setSelectedTab(OptionType type) {
 		switch (type) {
-		case EUCLIDIAN:
-			euclidianPanel.setSelectedTab(getSelectedTab());
+		case euclidean:
+			euclideanPanel.setSelectedTab(getSelectedTab());
 			break;
-		case EUCLIDIAN2:
-			euclidianPanel2.setSelectedTab(getSelectedTab());
+		case euclidean2:
+			euclideanPanel2.setSelectedTab(getSelectedTab());
 			break;
 		default:
 			// do nothing
@@ -380,12 +380,12 @@ public class PropertiesViewW extends PropertiesView
 			panel.updateGUI();
 			if (optionType == OptionType.OBJECTS) {
 				if (!panel.getWrappedPanel().isVisible()) {
-					setOptionPanel(OptionType.EUCLIDIAN);
+					setOptionPanel(OptionType.euclidean);
 				}
 			}
 		}
-		if (getEuclidianPanel() != null) {
-			getEuclidianPanel().updateGUI();
+		if (geteuclideanPanel() != null) {
+			geteuclideanPanel().updateGUI();
 		}
 
 		if (styleBar != null) {
@@ -461,14 +461,14 @@ public class PropertiesViewW extends PropertiesView
 		if (globalPanel != null) {
 			globalPanel.setLabels();
 		}
-		if (euclidianPanel != null) {
-			euclidianPanel.setLabels();
+		if (euclideanPanel != null) {
+			euclideanPanel.setLabels();
 		}
-		if (euclidianPanel2 != null) {
-			euclidianPanel2.setLabels();
+		if (euclideanPanel2 != null) {
+			euclideanPanel2.setLabels();
 		}
-		if (euclidianPanel3D != null) {
-			euclidianPanel3D.setLabels();
+		if (euclideanPanel3D != null) {
+			euclideanPanel3D.setLabels();
 		}
 		if (spreadsheetPanel != null) {
 			spreadsheetPanel.setLabels();

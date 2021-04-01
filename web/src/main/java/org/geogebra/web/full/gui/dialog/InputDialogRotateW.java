@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoPolygon;
@@ -19,7 +19,7 @@ public abstract class InputDialogRotateW extends AngleInputDialogW {
 	/** selected geos */
 	GeoElement[] selGeos;
 	/** controller */
-	protected EuclidianController ec;
+	protected euclideanController ec;
 	/** 45 degrees */
 	final protected static String DEFAULT_ROTATE_ANGLE = Unicode.FORTY_FIVE_DEGREES_STRING;
 
@@ -39,7 +39,7 @@ public abstract class InputDialogRotateW extends AngleInputDialogW {
 	 */
 	public InputDialogRotateW(AppW app, DialogData data,
 			InputHandler handler, GeoPolygon[] polys, 
-			GeoElement[] selGeos, EuclidianController ec) {
+			GeoElement[] selGeos, euclideanController ec) {
 		super(app, app.getLocalization().getMenu("Angle"), data,
 				DEFAULT_ROTATE_ANGLE, handler, false);
 		this.polys = polys;

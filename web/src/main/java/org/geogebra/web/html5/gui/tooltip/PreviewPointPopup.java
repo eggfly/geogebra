@@ -50,12 +50,12 @@ public class PreviewPointPopup extends GPopupPanel {
 		StylebarPositioner positioner = new StylebarPositioner(app);
 		positioner.setCenter(true);
 		GPoint pos = positioner.getPositionFor(geos, offsetHeight, 33,
-				app.getActiveEuclidianView().getViewHeight() - offsetHeight,
+				app.getActiveeuclideanView().getViewHeight() - offsetHeight,
 				offsetWidth / 2,
-				app.getActiveEuclidianView().getViewWidth() - offsetWidth / 2);
+				app.getActiveeuclideanView().getViewWidth() - offsetWidth / 2);
 		if (pos != null) {
 			this.setPopupPosition(
-					pos.getX() + app.getActiveEuclidianView().getAbsoluteLeft()
+					pos.getX() + app.getActiveeuclideanView().getAbsoluteLeft()
 							- (int) ((AppW) app).getAbsLeft()
 							- offsetWidth / 2,
 					pos.getY());

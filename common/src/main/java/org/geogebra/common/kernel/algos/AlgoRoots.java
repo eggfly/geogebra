@@ -15,7 +15,7 @@ package org.geogebra.common.kernel.algos;
 import java.util.ArrayList;
 
 import org.apache.commons.math3.analysis.solvers.BrentSolver;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.Function;
@@ -109,12 +109,12 @@ public class AlgoRoots extends AlgoGeoPointsFunction {
 	 */
 	public AlgoRoots(Construction cons, String[] labels,
 			GeoFunctionable function,
-			EuclidianViewInterfaceCommon view) {
+			euclideanViewInterfaceCommon view) {
 		this(cons, labels, function, view.getXminObject(),
 				view.getXmaxObject(), true);
 
 		// updates the area that is visible
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 		intervalDefinedByEV = true;
 	}
 
@@ -458,7 +458,7 @@ public class AlgoRoots extends AlgoGeoPointsFunction {
 	}
 
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 		compute();
 		return true;
 	}

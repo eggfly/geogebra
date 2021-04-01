@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ import org.geogebra.common.util.debug.Log;
 /**
  * Freehand processor
  */
-public class EuclidianPenFreehand extends EuclidianPen {
+public class euclideanPenFreehand extends euclideanPen {
 
 	/**
 	 * minimum determinant for circles decrease to allow less "round" circles
@@ -128,9 +128,9 @@ public class EuclidianPenFreehand extends EuclidianPen {
 	 * @param app
 	 *            app
 	 * @param view
-	 *            euclidian view
+	 *            euclidean view
 	 */
-	public EuclidianPenFreehand(App app, EuclidianView view) {
+	public euclideanPenFreehand(App app, euclideanView view) {
 		super(app, view);
 		for (int i = 0; i < recos.length; i++) {
 			recos[i] = new RecoSegment();
@@ -353,7 +353,7 @@ public class EuclidianPenFreehand extends EuclidianPen {
 		ArrayList<GeoPoint> list = new ArrayList<>();
 		for (GPoint p : this.penPoints) {
 			this.view.setHits(p,
-					this.view.getEuclidianController().getDefaultEventType());
+					this.view.geteuclideanController().getDefaultEventType());
 			if (this.view.getHits().containsGeoPoint()) {
 				GeoPoint point = (GeoPoint) this.view.getHits()
 						.getFirstHit(TestGeo.GEOPOINT);
@@ -532,14 +532,14 @@ public class EuclidianPenFreehand extends EuclidianPen {
 
 			GeoPoint f0 = new GeoPoint(app.getKernel().getConstruction(), null,
 					focus[0].getInhomX(), focus[0].getInhomY(), 1);
-			f0.setEuclidianVisible(false);
+			f0.seteuclideanVisible(false);
 			GeoPoint f1 = new GeoPoint(app.getKernel().getConstruction(), null,
 					focus[1].getInhomX(), focus[1].getInhomY(), 1);
-			f1.setEuclidianVisible(false);
+			f1.seteuclideanVisible(false);
 			GeoPoint additionalPoint = new GeoPoint(
 					app.getKernel().getConstruction(), null,
 					pointOnConic.getInhomX(), pointOnConic.getInhomY(), 1);
-			additionalPoint.setEuclidianVisible(false);
+			additionalPoint.seteuclideanVisible(false);
 
 			conic = this.app.getKernel().getAlgoDispatcher()
 					.ellipseHyperbola(null, f0, f1, additionalPoint, type);
@@ -1077,15 +1077,15 @@ public class EuclidianPenFreehand extends EuclidianPen {
 				null, points);
 		GeoPolygon poly = algo.getPoly();
 
-		if (view.getEuclidianController()
-				.getPreviousMode() != EuclidianConstants.MODE_POLYGON) {
+		if (view.geteuclideanController()
+				.getPreviousMode() != euclideanConstants.MODE_POLYGON) {
 			poly.setIsShape(app.isWhiteboardActive());
 			poly.setAlphaValue(0);
 			poly.setBackgroundColor(GColor.WHITE);
 			poly.setObjColor(GColor.BLACK);
 			poly.updateRepaint();
 			for (GeoPointND point : points) {
-				point.setEuclidianVisible(false);
+				point.seteuclideanVisible(false);
 			}
 
 			for (GeoSegmentND geoSeg : poly.getSegments()) {
@@ -1101,8 +1101,8 @@ public class EuclidianPenFreehand extends EuclidianPen {
 		Construction cons = app.getKernel().getConstruction();
 		AlgoJoinPointsSegment algo = new AlgoJoinPointsSegment(cons,
 				first, last);
-		first.setEuclidianVisible(false);
-		last.setEuclidianVisible(false);
+		first.seteuclideanVisible(false);
+		last.seteuclideanVisible(false);
 		GeoElement line = algo.getOutput(0);
 		line.setIsShape(app.isWhiteboardActive());
 		line.setLabelVisible(false);
@@ -1147,7 +1147,7 @@ public class EuclidianPenFreehand extends EuclidianPen {
                     return (GeoConic) algoCircle.getCircle();
 				} else {
                     GeoPoint center = new GeoPoint(cons, null, centerX, centerY, 1.0);
-                    center.setEuclidianVisible(false);
+                    center.seteuclideanVisible(false);
 
                     GeoNumeric radiusVal = new GeoNumeric(cons, radius);
 
@@ -1267,7 +1267,7 @@ public class EuclidianPenFreehand extends EuclidianPen {
 		if (start + 1 >= penPoints.size()) {
 			// Log.error("problem in incr_inertia "+ start + " " + s + " " +
 			// coeff);
-			Log.debug("problem in EuclidianPen.incr_inertia " + start + " " + s
+			Log.debug("problem in euclideanPen.incr_inertia " + start + " " + s
 					+ " " + coeff);
 			return;
 		}

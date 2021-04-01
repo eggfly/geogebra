@@ -1,6 +1,6 @@
 package org.geogebra.desktop.gui.dialog.options;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.desktop.main.AppD;
 
 /**
@@ -9,7 +9,7 @@ import org.geogebra.desktop.main.AppD;
  * @author mathieu
  *
  */
-public class OptionsEuclidianForPlaneD extends OptionsEuclidianD {
+public class OptionseuclideanForPlaneD extends OptionseuclideanD {
 
 	/**
 	 * constructor
@@ -19,7 +19,7 @@ public class OptionsEuclidianForPlaneD extends OptionsEuclidianD {
 	 * @param view
 	 *            view
 	 */
-	public OptionsEuclidianForPlaneD(AppD app, EuclidianView view) {
+	public OptionseuclideanForPlaneD(AppD app, euclideanView view) {
 		super(app, view);
 	}
 

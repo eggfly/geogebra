@@ -15,9 +15,9 @@ public class SlopeTest extends BaseUnitTest {
 	}
 
 	@Test
-	public void showInEuclidianView() {
+	public void showIneuclideanView() {
 		addAvInput("f = Line((0,0), (1,1))");
 		GeoNumeric slope = addAvInput("s = Slope(f)");
-		assertThat(slope.showInEuclidianView(), is(true));
+		assertThat(slope.showIneuclideanView(), is(true));
 	}
 }

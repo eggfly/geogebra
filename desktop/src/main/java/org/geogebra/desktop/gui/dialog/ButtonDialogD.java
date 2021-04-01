@@ -88,7 +88,7 @@ public class ButtonDialogD extends Dialog
 		// create temp geos that may be returned as result
 		// Construction cons = app.getKernel().getConstruction();
 		// button = textField ? new GeoTextField(cons) : new GeoButton(cons);
-		// button.setEuclidianVisible(true);
+		// button.seteuclideanVisible(true);
 		// button.setAbsoluteScreenLoc(x, y);
 
 		createGUI();

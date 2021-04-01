@@ -1,14 +1,14 @@
-package org.geogebra.web.geogebra3D.web.euclidian3DnoWebGL;
+package org.geogebra.web.geogebra3D.web.euclidean3DnoWebGL;
 
 import java.util.HashMap;
 
 import org.geogebra.common.awt.GBufferedImage;
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.util.debug.Log;
-import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianView3DW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.euclideanView3DW;
 import org.geogebra.web.html5.gawt.GBufferedImageW;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.html5.main.GgbFile;
@@ -25,7 +25,7 @@ import com.google.gwt.dom.client.Style.Unit;
  * @author mathieu
  *
  */
-public class EuclidianView3DWnoWebGL extends EuclidianView3DW {
+public class euclideanView3DWnoWebGL extends euclideanView3DW {
 
 	private GBufferedImage thumb;
 
@@ -37,8 +37,8 @@ public class EuclidianView3DWnoWebGL extends EuclidianView3DW {
 	 * @param settings
 	 *            settings
 	 */
-	public EuclidianView3DWnoWebGL(EuclidianController3D ec,
-	        EuclidianSettings settings) {
+	public euclideanView3DWnoWebGL(euclideanController3D ec,
+	        euclideanSettings settings) {
 		super(ec, settings);
 		setCurrentFile(((AppW) ec.getApplication()).getCurrentFile());
 	}

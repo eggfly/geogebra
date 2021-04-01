@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog.image;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.shared.components.ComponentDialog;
@@ -30,7 +30,7 @@ public class WebcamPermissionDialog extends ComponentDialog {
 			addStyleName("narrowDialog");
 		}
 		buildContent(localizedMsg);
-		setOnNegativeAction(() -> app.getGuiManager().setMode(EuclidianConstants.MODE_MOVE,
+		setOnNegativeAction(() -> app.getGuiManager().setMode(euclideanConstants.MODE_MOVE,
 				ModeSetter.TOOLBAR));
 	}
 

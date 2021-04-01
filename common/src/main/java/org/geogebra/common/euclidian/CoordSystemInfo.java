@@ -1,12 +1,12 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 public class CoordSystemInfo {
-	private EuclidianView view;
+	private euclideanView view;
 	private boolean xAxisZoom = false;
 	private boolean centerView;
 	private boolean interactive = false;
 
-	public CoordSystemInfo(EuclidianView view) {
+	public CoordSystemInfo(euclideanView view) {
 		this.view = view;
 	}
 

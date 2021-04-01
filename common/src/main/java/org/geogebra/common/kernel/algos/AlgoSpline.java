@@ -85,7 +85,7 @@ public class AlgoSpline extends AlgoElement {
 		} else {
 			spline = new GeoCurveCartesian(cons);
 		}
-		spline.setEuclidianVisible(true);
+		spline.seteuclideanVisible(true);
 		parametersValues = new double[inputList.size()];
 		fv = new FunctionVariable(this.kernel, "t");
 		compute();

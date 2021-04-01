@@ -58,7 +58,7 @@ public class AlgoDependentCasCell extends AlgoElement
 
 		if (casCell.getInputVE() != null
 				&& casCell.getInputVE().isTopLevelCommand("SlopeField")) {
-			cons.registerEuclidianViewCE(this);
+			cons.registereuclideanViewCE(this);
 		}
 	}
 

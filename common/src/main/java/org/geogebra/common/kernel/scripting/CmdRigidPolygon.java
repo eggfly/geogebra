@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.scripting;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.Command;
 import org.geogebra.common.kernel.commands.CmdScripting;
@@ -38,8 +38,8 @@ public class CmdRigidPolygon extends CmdScripting {
 		case 1:
 			if (arg[0].isGeoPolygon()) {
 
-				EuclidianViewInterfaceCommon view = kernel.getApplication()
-						.getActiveEuclidianView();
+				euclideanViewInterfaceCommon view = kernel.getApplication()
+						.getActiveeuclideanView();
 
 				double offset = view.toRealWorldCoordX(view.getWidth()) / 15;
 

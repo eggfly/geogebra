@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GRectangle2D;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.EquationSolver;
@@ -373,7 +373,7 @@ public class GeoLocusStroke extends GeoLocus
 
 	@Override
 	public List<GeoElement> getPartialSelection(boolean removeOriginal) {
-		EuclidianView view = this.getKernel().getApplication().getActiveEuclidianView();
+		euclideanView view = this.getKernel().getApplication().getActiveeuclideanView();
 
 		List<GeoElement> splits = new ArrayList<>();
 		DrawableND drawable = view.getDrawableFor(this);
@@ -397,7 +397,7 @@ public class GeoLocusStroke extends GeoLocus
 			for (GeoElement split : splits) {
 				split.setLabel(null);
 				split.setVisualStyle(this);
-				split.setEuclidianVisible(true);
+				split.seteuclideanVisible(true);
 				split.update();
 			}
 
@@ -478,7 +478,7 @@ public class GeoLocusStroke extends GeoLocus
 		ArrayList<MyPoint> densePoints = new ArrayList<>();
 		int parts = 5;
 		int i = 1;
-		double rwLength = app.getActiveEuclidianView().getInvXscale() * MAX_SEGMENT_LENGTH;
+		double rwLength = app.getActiveeuclideanView().getInvXscale() * MAX_SEGMENT_LENGTH;
 		densePoints.add(getPoints().get(0));
 		while (i < getPoints().size()) {
 			MyPoint pt0 = getPoints().get(i - 1);

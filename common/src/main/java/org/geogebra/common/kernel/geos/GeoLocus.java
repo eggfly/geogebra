@@ -152,7 +152,7 @@ public class GeoLocus extends GeoLocusND<MyPoint> {
 	public void drawAsArrows(boolean checked) {
 		if (getParentAlgorithm() instanceof AlgoSlopeField) {
 			drawArrows = checked;
-			getParentAlgorithm().euclidianViewUpdate();
+			getParentAlgorithm().euclideanViewUpdate();
 		}
 	}
 

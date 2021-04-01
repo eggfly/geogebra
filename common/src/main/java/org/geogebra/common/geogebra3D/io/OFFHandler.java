@@ -102,7 +102,7 @@ public class OFFHandler {
 	private GeoPoint3D geoPoint(Coords p3d) {
 		GeoPoint3D p = new GeoPoint3D(construction);
 		p.setCoords(p3d);
-		p.setEuclidianVisible(false);
+		p.seteuclideanVisible(false);
 		p.setLabel(null);
 		return p;
 	}

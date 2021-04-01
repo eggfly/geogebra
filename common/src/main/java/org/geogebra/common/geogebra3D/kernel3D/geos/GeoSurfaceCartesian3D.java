@@ -243,7 +243,7 @@ public class GeoSurfaceCartesian3D extends GeoSurfaceCartesianND
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		// TODO Auto-generated method stub
 		return true;
 	}
@@ -358,9 +358,9 @@ public class GeoSurfaceCartesian3D extends GeoSurfaceCartesianND
 	}
 
 	@Override
-	public void setAllVisualPropertiesExceptEuclidianVisible(GeoElement geo,
+	public void setAllVisualPropertiesExcepteuclideanVisible(GeoElement geo,
 			boolean keepAdvanced, boolean setAuxiliaryProperty) {
-		super.setAllVisualPropertiesExceptEuclidianVisible(geo, keepAdvanced,
+		super.setAllVisualPropertiesExcepteuclideanVisible(geo, keepAdvanced,
 				setAuxiliaryProperty);
 
 		if (geo.hasLevelOfDetail()) {

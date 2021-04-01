@@ -1029,8 +1029,8 @@ public class CASInputHandler {
 	 */
 	public static void handleMarble(GeoCasCell cell, MarbleRenderer renderer) {
 		boolean marbleShown = cell.hasTwinGeo()
-				&& cell.getTwinGeo().isEuclidianVisible()
-				&& cell.getTwinGeo().isEuclidianShowable();
+				&& cell.getTwinGeo().iseuclideanVisible()
+				&& cell.getTwinGeo().iseuclideanShowable();
 		ValidExpression ve = cell.getValue();
 		boolean isPlottable = true;
 		int dim = cell.getKernel().getApplication().is3D() ? 3 : 2;

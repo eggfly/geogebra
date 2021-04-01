@@ -56,7 +56,7 @@ public class InputBarCallback implements AsyncOperation<GeoElementND[]> {
 			app.getSelectionManager().setSelectedGeos(list);
 		}
 
-		InputHelper.updateProperties(geos, app.getActiveEuclidianView(),
+		InputHelper.updateProperties(geos, app.getActiveeuclideanView(),
 				oldStep);
 		if (geos != null) {
 			app.setScrollToShow(false);

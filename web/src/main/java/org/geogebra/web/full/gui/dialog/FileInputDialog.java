@@ -62,7 +62,7 @@ public class FileInputDialog extends GPopupPanel implements ClickHandler {
 	 */
 	public void hideAndFocus() {
 		hide();
-		app.getActiveEuclidianView().requestFocusInWindow();
+		app.getActiveeuclideanView().requestFocusInWindow();
 	}
 
 	/**

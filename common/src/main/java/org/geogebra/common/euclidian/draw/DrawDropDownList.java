@@ -16,7 +16,7 @@ the Free Software Foundation.
  * Created on 11. Oktober 2001, 23:59
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,8 +29,8 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.font.GTextLayout;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.gui.util.DropDownList;
 import org.geogebra.common.gui.util.DropDownList.DropDownListener;
@@ -81,7 +81,7 @@ public final class DrawDropDownList extends CanvasDrawable
 		private static final int MARGIN = 5;
 
 		private static final int ROUND = 8;
-		final EuclidianView viewOpt;
+		final euclideanView viewOpt;
 		private int viewHeight = 0;
 		private int viewWidth = 0;
 
@@ -204,7 +204,7 @@ public final class DrawDropDownList extends CanvasDrawable
 			}
 		}
 
-		public DrawOptions(EuclidianView view) {
+		public DrawOptions(euclideanView view) {
 			this.viewOpt = view;
 			items = new ArrayList<>();
 			hovered = null;
@@ -354,7 +354,7 @@ public final class DrawDropDownList extends CanvasDrawable
 				int x = (dimItem.getWidth() - item.width) / 2;
 				int y = (itemHeight - yPadding);
 
-				EuclidianStatic.drawIndexedString(viewOpt.getApplication(), g2,
+				euclideanStatic.drawIndexedString(viewOpt.getApplication(), g2,
 						item.text, rectLeft + x, rectTop + y, false);
 			}
 
@@ -993,7 +993,7 @@ public final class DrawDropDownList extends CanvasDrawable
 	 * @param geoList
 	 *            list
 	 */
-	public DrawDropDownList(EuclidianView view, GeoList geoList) {
+	public DrawDropDownList(euclideanView view, GeoList geoList) {
 		this.view = view;
 		this.geoList = geoList;
 		geo = geoList;
@@ -1019,7 +1019,7 @@ public final class DrawDropDownList extends CanvasDrawable
 
 	@Override
 	public void update() {
-		isVisible = geo.isEuclidianVisible() && geoList.size() != 0;
+		isVisible = geo.iseuclideanVisible() && geoList.size() != 0;
 		int fontSize = (int) (view.getFontSize()
 				* geoList.getFontSizeMultiplier());
 		setLabelFontSize(fontSize);
@@ -1156,7 +1156,7 @@ public final class DrawDropDownList extends CanvasDrawable
 					+ (boxHeight + getLabelFontSize() - COMBO_TEXT_MARGIN) / 2;
 			g2.setPaint(geo.getObjectColor());
 			g2.setFont(getLabelFont());
-			EuclidianStatic.drawIndexedString(view.getApplication(), g2, text,
+			euclideanStatic.drawIndexedString(view.getApplication(), g2, text,
 					xLabel, textBottom, false);
 		}
 	}
@@ -1238,7 +1238,7 @@ public final class DrawDropDownList extends CanvasDrawable
 		final int w = (int) layout.getBounds().getWidth();
 
 		if (draw) {
-			EuclidianStatic.drawIndexedString(view.getApplication(), g2,
+			euclideanStatic.drawIndexedString(view.getApplication(), g2,
 					selectedText, left, top, false);
 		}
 
@@ -1404,7 +1404,7 @@ public final class DrawDropDownList extends CanvasDrawable
 	 * 
 	 */
 	public static DrawDropDownList asDrawable(App app, GeoElement geo) {
-		return (DrawDropDownList) app.getActiveEuclidianView()
+		return (DrawDropDownList) app.getActiveeuclideanView()
 				.getDrawableFor(geo);
 	}
 

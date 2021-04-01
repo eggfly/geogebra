@@ -1,6 +1,6 @@
 package org.geogebra.common.geogebra3D.kernel3D.algos;
 
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
@@ -31,7 +31,7 @@ public class AlgoDrawingPadCorner3D extends AlgoDrawingPadCorner {
 	 * @param number
 	 *            corner id
 	 * @param evNum
-	 *            euclidian view id
+	 *            euclidean view id
 	 */
 	public AlgoDrawingPadCorner3D(Construction cons, String label,
 			GeoNumberValue number, GeoNumberValue evNum) {
@@ -65,11 +65,11 @@ public class AlgoDrawingPadCorner3D extends AlgoDrawingPadCorner {
 		App app = cons.getApplication();
 
 		if (evNum != null && is3D(evNum)) {
-			if (!app.isEuclidianView3Dinited() || !corner.isGeoElement3D()) {
+			if (!app.iseuclideanView3Dinited() || !corner.isGeoElement3D()) {
 				corner.setUndefined();
 				return;
 			}
-			EuclidianView3DInterface ev = app.getEuclidianView3D();
+			euclideanView3DInterface ev = app.geteuclideanView3D();
 
 			switch ((int) number.getDouble()) {
 			case 1:
@@ -104,7 +104,7 @@ public class AlgoDrawingPadCorner3D extends AlgoDrawingPadCorner {
 			case 10: // return size of Window in pixels
 				// (to help with sizing for export to applet)
 				// doesn't work very well as it receives updates only when
-				// EuclidianView is changed
+				// euclideanView is changed
 				corner.setCoords(app.getWidth(), app.getHeight(), 1.0);
 
 				break;

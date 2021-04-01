@@ -23,14 +23,14 @@ public class SettingsBuilder {
 	 * @return The Settings object.
 	 */
 	public Settings newSettings() {
-		Settings settings = new Settings(app, getEuclidianLength());
+		Settings settings = new Settings(app, geteuclideanLength());
 		settings.setFontSettings(newFontSettings());
 		settings.setLabelSettings(newLabelSettings());
 		settings.setAlgebraSettings(newAlgebraSettings());
 		return settings;
 	}
 
-	private int getEuclidianLength() {
+	private int geteuclideanLength() {
 		return 3;
 	}
 

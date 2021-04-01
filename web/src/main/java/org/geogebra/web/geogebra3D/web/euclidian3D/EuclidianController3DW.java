@@ -1,20 +1,20 @@
-package org.geogebra.web.geogebra3D.web.euclidian3D;
+package org.geogebra.web.geogebra3D.web.euclidean3D;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.controller.MouseTouchGestureController;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian.event.PointerEventType;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.controller.MouseTouchGestureController;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.PointerEventType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.common.main.App;
 import org.geogebra.common.util.MyMath;
 import org.geogebra.web.full.gui.GuiManagerW;
-import org.geogebra.web.html5.euclidian.EnvironmentStyleW;
-import org.geogebra.web.html5.euclidian.IsEuclidianController;
-import org.geogebra.web.html5.euclidian.MouseTouchGestureControllerW;
+import org.geogebra.web.html5.euclidean.EnvironmentStyleW;
+import org.geogebra.web.html5.euclidean.IseuclideanController;
+import org.geogebra.web.html5.euclidean.MouseTouchGestureControllerW;
 import org.geogebra.web.html5.event.PointerEvent;
 import org.geogebra.web.html5.gui.util.LongTouchManager;
 import org.geogebra.web.html5.main.AppW;
@@ -48,15 +48,15 @@ import com.google.gwt.event.dom.client.TouchStartHandler;
 import com.google.gwt.user.client.Event;
 
 /**
- * 3D euclidian controller
+ * 3D euclidean controller
  *
  */
-public class EuclidianController3DW extends EuclidianController3D implements
+public class euclideanController3DW extends euclideanController3D implements
         MouseDownHandler, MouseUpHandler, MouseMoveHandler, MouseOutHandler,
         MouseOverHandler, MouseWheelHandler, TouchStartHandler,
         TouchEndHandler, TouchMoveHandler, TouchCancelHandler,
         GestureStartHandler, GestureEndHandler, GestureChangeHandler,
-		IsEuclidianController {
+		IseuclideanController {
 	private MouseTouchGestureControllerW mtg;
 	/**
 	 * x-coordinates of the center of the multitouch-event
@@ -97,7 +97,7 @@ public class EuclidianController3DW extends EuclidianController3D implements
 	 * @param kernel
 	 *            kernel
 	 */
-	public EuclidianController3DW(Kernel kernel) {
+	public euclideanController3DW(Kernel kernel) {
 		super(kernel.getApplication());
 		setKernel(kernel);
 		// RealSense.initIfSupported(this);
@@ -112,7 +112,7 @@ public class EuclidianController3DW extends EuclidianController3D implements
 	}
 
 	@Override
-	public void setView(EuclidianView view) {
+	public void setView(euclideanView view) {
 		super.setView(view);
 		setView3D(view);
 	}
@@ -152,10 +152,10 @@ public class EuclidianController3DW extends EuclidianController3D implements
 		app.closePopups();
 		if (app.getGuiManager() != null) {
 			((GuiManagerW) app.getGuiManager())
-					.setActivePanelAndToolbar(App.VIEW_EUCLIDIAN3D);
+					.setActivePanelAndToolbar(App.VIEW_euclidean3D);
 		} else {
-			setMode(EuclidianConstants.MODE_MOVE, ModeSetter.DOCK_PANEL);
-			// app.setMode(EuclidianConstants.MODE_MOVE);
+			setMode(euclideanConstants.MODE_MOVE, ModeSetter.DOCK_PANEL);
+			// app.setMode(euclideanConstants.MODE_MOVE);
 			// app.getGuiManager().updateToolbar();
 		}
 		mtg.onTouchStart(event);
@@ -166,10 +166,10 @@ public class EuclidianController3DW extends EuclidianController3D implements
 	public void onPointerEventStart(AbstractEvent event) {
 		if (app.getGuiManager() != null) {
 			((GuiManagerW) app.getGuiManager())
-					.setActivePanelAndToolbar(App.VIEW_EUCLIDIAN3D);
+					.setActivePanelAndToolbar(App.VIEW_euclidean3D);
 		} else {
-			setMode(EuclidianConstants.MODE_MOVE, ModeSetter.DOCK_PANEL);
-			// app.setMode(EuclidianConstants.MODE_MOVE);
+			setMode(euclideanConstants.MODE_MOVE, ModeSetter.DOCK_PANEL);
+			// app.setMode(euclideanConstants.MODE_MOVE);
 			// app.getGuiManager().updateToolbar();
 		}
 		mtg.onPointerEventStart(event);
@@ -275,7 +275,7 @@ public class EuclidianController3DW extends EuclidianController3D implements
 			getView().rememberOrigins();
 			getView().setCoordSystemFromMouseMove(centerX - oldCenterX3D,
 					centerY
-					- oldCenterY3D, EuclidianController.MOVE_ROTATE_VIEW);
+					- oldCenterY3D, euclideanController.MOVE_ROTATE_VIEW);
 			viewRotationOccured = true;
 			getView().repaintView();
 

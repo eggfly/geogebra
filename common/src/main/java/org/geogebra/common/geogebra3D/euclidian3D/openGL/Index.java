@@ -1,4 +1,4 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
 /**
  * Index for TreeSet that uses two integers

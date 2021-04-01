@@ -1,13 +1,13 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
-import org.geogebra.common.euclidian.draw.DrawInputBox;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
 import org.geogebra.common.factories.AwtFactoryCommon;
 import org.geogebra.common.jre.headless.LocalizationCommon;
 import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
 import org.geogebra.common.main.AppCommon3D;
-import org.geogebra.test.euclidian.AutoCompleteTextFieldC;
-import org.geogebra.test.euclidian.TextFieldCommonJre;
+import org.geogebra.test.euclidean.AutoCompleteTextFieldC;
+import org.geogebra.test.euclidean.TextFieldCommonJre;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import org.junit.Test;
 public class InputFieldTouchTest {
 
 	private static AppCommon3D app;
-	private static EuclidianView ev;
+	private static euclideanView ev;
 
 	private GeoInputBox input1;
 	private GeoInputBox input2;
@@ -26,7 +26,7 @@ public class InputFieldTouchTest {
 	public void setUp() {
 		app = new AppCommon3D(new LocalizationCommon(3),
 				new AwtFactoryCommon());
-		ev = app.getActiveEuclidianView();
+		ev = app.getActiveeuclideanView();
 		ev.setViewTextField(viewTextField);
 
 		input1 = addInputBox("inputbox1");

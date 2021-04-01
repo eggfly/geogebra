@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.kernelND;
 
-import org.geogebra.common.euclidianForPlane.EuclidianViewForPlaneCompanionInterface;
+import org.geogebra.common.euclideanForPlane.euclideanViewForPlaneCompanionInterface;
 
 /**
  * Geo that can create a new view (e.g. planes, polygons)
@@ -17,13 +17,13 @@ public interface ViewCreator extends GeoCoordSys2D {
 	public void removeView2D();
 
 	/**
-	 * set the euclidian view created
+	 * set the euclidean view created
 	 * 
 	 * @param view
 	 *            view
 	 */
-	public void setEuclidianViewForPlane(
-			EuclidianViewForPlaneCompanionInterface view);
+	public void seteuclideanViewForPlane(
+			euclideanViewForPlaneCompanionInterface view);
 
 	/**
 	 * tells if the view2D is visible

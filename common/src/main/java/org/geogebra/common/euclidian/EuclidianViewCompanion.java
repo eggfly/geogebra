@@ -1,13 +1,13 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.draw.DrawAngle;
-import org.geogebra.common.euclidian.draw.DrawParametricCurve;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.draw.DrawAngle;
+import org.geogebra.common.euclidean.draw.DrawParametricCurve;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.common.kernel.algos.AlgoElement;
 import org.geogebra.common.kernel.geos.GeoAngle;
@@ -23,7 +23,7 @@ import org.geogebra.common.kernel.matrix.CoordMatrix;
 import org.geogebra.common.kernel.matrix.CoordSys;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.main.settings.AbstractSettings;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 
 /**
  * 
@@ -32,9 +32,9 @@ import org.geogebra.common.main.settings.EuclidianSettings;
  *         view companion for methods that have to cross desktop/web
  *
  */
-public class EuclidianViewCompanion {
+public class euclideanViewCompanion {
 	/** the view */
-	protected EuclidianView view;
+	protected euclideanView view;
 
 	/**
 	 * constructor
@@ -42,15 +42,15 @@ public class EuclidianViewCompanion {
 	 * @param view
 	 *            view attached
 	 */
-	public EuclidianViewCompanion(EuclidianView view) {
+	public euclideanViewCompanion(euclideanView view) {
 		setView(view);
 	}
 
 	/**
 	 * @param view
-	 *            euclidian view
+	 *            euclidean view
 	 */
-	protected void setView(EuclidianView view) {
+	protected void setView(euclideanView view) {
 		this.view = view;
 	}
 
@@ -58,7 +58,7 @@ public class EuclidianViewCompanion {
 	 * 
 	 * @return view attached
 	 */
-	public EuclidianView getView() {
+	public euclideanView getView() {
 		return view;
 	}
 
@@ -228,7 +228,7 @@ public class EuclidianViewCompanion {
 	 *            settings
 	 */
 	public void settingsChanged(AbstractSettings settings) {
-		EuclidianSettings evs = (EuclidianSettings) settings;
+		euclideanSettings evs = (euclideanSettings) settings;
 
 		view.getKernel().getConstruction().setIgnoringNewTypes(true);
 		setMinMaxObjectsInView(evs);
@@ -303,7 +303,7 @@ public class EuclidianViewCompanion {
 
 		view.setAllowToolTips(evs.getAllowToolTips());
 
-		view.synchronizeMenuBarAndEuclidianStyleBar(evs);
+		view.synchronizeMenuBarAndeuclideanStyleBar(evs);
 
 		if (!evs.hasDynamicBounds()) {
 			// the xmin, xmax, ... we read from Settings are nulls;
@@ -315,8 +315,8 @@ public class EuclidianViewCompanion {
 				// don't match
 				int w = view.getWidth();
 				int h = view.getHeight();
-				if (w > EuclidianView.MIN_WIDTH
-						&& h > EuclidianView.MIN_HEIGHT) {
+				if (w > euclideanView.MIN_WIDTH
+						&& h > euclideanView.MIN_HEIGHT) {
 					int sw = evs.getWidth();
 					int sh = evs.getHeight();
 					// Log.debug("x0:" + x0 + ", y0:" + y0 + ", " + sw + "x"
@@ -351,14 +351,14 @@ public class EuclidianViewCompanion {
 				|| Double.isNaN(axisNumberingDistance.getDouble());
 	}
 
-	protected void setMinMaxObjectsInView(EuclidianSettings evs) {
+	protected void setMinMaxObjectsInView(euclideanSettings evs) {
 		view.setXminObject(evs.getXminObject());
 		view.setXmaxObject(evs.getXmaxObject());
 		view.setYminObject(evs.getYminObject());
 		view.setYmaxObject(evs.getYmaxObject());
 	}
 
-	protected void setMinMaxObjectsInSettings(EuclidianSettings evs) {
+	protected void setMinMaxObjectsInSettings(euclideanSettings evs) {
 		evs.setXminObject(view.xminObject, false);
 		evs.setXmaxObject(view.xmaxObject, false);
 		evs.setYminObject(view.yminObject, false);
@@ -396,8 +396,8 @@ public class EuclidianViewCompanion {
 		view.drawShapePreview(g2);
 
 		if (view.deletionRectangle != null) {
-			view.drawRect(g2, EuclidianView.colDeletionSquare,
-					EuclidianView.strokeDeletionSquare, view.deletionRectangle);
+			view.drawRect(g2, euclideanView.colDeletionSquare,
+					euclideanView.strokeDeletionSquare, view.deletionRectangle);
 		}
 
 		if (view.allowShowMouseCoords && view.showMouseCoords
@@ -441,7 +441,7 @@ public class EuclidianViewCompanion {
 	 * @return new drawable for given geo
 	 */
 	public DrawableND newDrawable(GeoElementND geo) {
-		return EuclidianDraw.newDrawable(view, geo);
+		return euclideanDraw.newDrawable(view, geo);
 	}
 
 	/**
@@ -510,7 +510,7 @@ public class EuclidianViewCompanion {
 	 *            event type
 	 */
 	public void setHits(PointerEventType type) {
-		view.setHits(view.getEuclidianController().getMouseLoc(), type);
+		view.setHits(view.geteuclideanController().getMouseLoc(), type);
 	}
 
 	/**

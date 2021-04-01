@@ -87,7 +87,7 @@ public class AlgoShearOrStretch extends AlgoTransformation {
 		setInputOutput();
 		compute();
 		if (inGeo.isGeoFunction()) {
-			cons.registerEuclidianViewCE(this);
+			cons.registereuclideanViewCE(this);
 		}
 	}
 

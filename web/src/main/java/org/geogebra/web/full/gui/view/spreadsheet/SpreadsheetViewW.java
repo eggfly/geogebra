@@ -349,11 +349,11 @@ public class SpreadsheetViewW implements SpreadsheetViewInterface,
 
 		toolbarManager.handleModeChange(mode);
 		// switch(mode){
-		// case EuclidianConstants.MODE_SPREADSHEET_SUM:
-		// case EuclidianConstants.MODE_SPREADSHEET_AVERAGE:
-		// case EuclidianConstants.MODE_SPREADSHEET_COUNT:
-		// case EuclidianConstants.MODE_SPREADSHEET_MIN:
-		// case EuclidianConstants.MODE_SPREADSHEET_MAX:
+		// case euclideanConstants.MODE_SPREADSHEET_SUM:
+		// case euclideanConstants.MODE_SPREADSHEET_AVERAGE:
+		// case euclideanConstants.MODE_SPREADSHEET_COUNT:
+		// case euclideanConstants.MODE_SPREADSHEET_MIN:
+		// case euclideanConstants.MODE_SPREADSHEET_MAX:
 		//
 		// // Handle autofunction modes
 		//

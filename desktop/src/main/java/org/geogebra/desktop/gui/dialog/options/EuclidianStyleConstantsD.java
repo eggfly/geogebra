@@ -2,9 +2,9 @@ package org.geogebra.desktop.gui.dialog.options;
 
 import javax.swing.JComboBox;
 
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
-public class EuclidianStyleConstantsD extends EuclidianStyleConstants {
+public class euclideanStyleConstantsD extends euclideanStyleConstants {
 
 	public static JComboBox getLineOptionsCombobox() {
 		final Integer[] iconArray = new Integer[getLineStyleOptionsLength()];

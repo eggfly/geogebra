@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianStatic;
+import org.geogebra.common.euclidean.euclideanStatic;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.main.App;
@@ -37,7 +37,7 @@ public class SimpleTextRenderer implements TextRenderer {
 		double boxContentWidth = drawable.getContentWidth();
 		String truncated = text.substring(0, getTruncIndex(text, graphics, boxContentWidth));
 		double newXPos = xPos + getTextOffset(truncated, geo, app, (int) boxContentWidth, graphics);
-		EuclidianStatic.drawIndexedString(app, graphics, truncated, newXPos, textBottom, false);
+		euclideanStatic.drawIndexedString(app, graphics, truncated, newXPos, textBottom, false);
 	}
 
 	private static int getTextOffset(String text, GeoInputBox geoInputBox, App app,
@@ -53,7 +53,7 @@ public class SimpleTextRenderer implements TextRenderer {
 	}
 
 	private static int getTextWidth(App app, GGraphics2D graphics2D, String text) {
-		return EuclidianStatic.drawIndexedString(app, graphics2D, text,
+		return euclideanStatic.drawIndexedString(app, graphics2D, text,
 				0, 0, false, false, null, null).x;
 	}
 

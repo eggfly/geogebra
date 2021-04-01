@@ -8,7 +8,7 @@ import com.google.gwt.resources.client.ImageResource;
 public interface StyleBarResources extends ClientBundle {
 	StyleBarResources INSTANCE = GWT.create(StyleBarResources.class);
 	
-	//EUCLIDIAN STYLEBAR:
+	//euclidean STYLEBAR:
 	
 	@Source("org/geogebra/common/icons/png/web/stylingbar/stylingbar_graphicsview_show_or_hide_the_axes.png")
 	ImageResource axes();

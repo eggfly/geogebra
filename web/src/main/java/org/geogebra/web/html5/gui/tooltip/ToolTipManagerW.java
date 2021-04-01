@@ -2,7 +2,7 @@ package org.geogebra.web.html5.gui.tooltip;
 
 import java.util.Locale;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.javax.swing.SwingConstants;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.web.html5.gui.util.CancelEventTimer;

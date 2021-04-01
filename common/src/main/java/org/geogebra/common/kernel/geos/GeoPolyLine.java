@@ -251,7 +251,7 @@ public class GeoPolyLine extends GeoElement implements GeoNumberValue,
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return defined;
 	}
 

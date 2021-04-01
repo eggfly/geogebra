@@ -1065,14 +1065,14 @@ public class AlgoIntersectRegionPlanePolyhedron
 							for (int i = 0; i < size && !visible
 									&& !labelVisible; i++) {
 								visible = visible || outputPoints.getElement(i)
-										.isEuclidianVisible();
+										.iseuclideanVisible();
 								labelVisible = labelVisible || outputPoints
 										.getElement(i).getLabelVisible();
 							}
-							newPoint.setEuclidianVisible(visible);
+							newPoint.seteuclideanVisible(visible);
 							if (!visible) { // if not visible, we don't want
 											// setParentAlgorithm() to change it
-								newPoint.dontSetEuclidianVisibleBySetParentAlgorithm();
+								newPoint.dontSeteuclideanVisibleBySetParentAlgorithm();
 							}
 							newPoint.setLabelVisible(labelVisible);
 						}

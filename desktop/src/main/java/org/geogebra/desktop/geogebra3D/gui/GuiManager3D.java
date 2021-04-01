@@ -8,21 +8,21 @@ import java.util.ArrayList;
 import javax.swing.AbstractAction;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.geogebra3D.main.App3DCompanion;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.desktop.euclidian.EuclidianViewD;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.desktop.euclidean.euclideanViewD;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.geogebra3D.App3D;
-import org.geogebra.desktop.geogebra3D.euclidianFor3D.EuclidianControllerFor3DD;
-import org.geogebra.desktop.geogebra3D.euclidianFor3D.EuclidianViewFor3DD;
+import org.geogebra.desktop.geogebra3D.euclideanFor3D.euclideanControllerFor3DD;
+import org.geogebra.desktop.geogebra3D.euclideanFor3D.euclideanViewFor3DD;
 import org.geogebra.desktop.geogebra3D.gui.dialogs.DialogManager3D;
-import org.geogebra.desktop.geogebra3D.gui.layout.panels.EuclidianDockPanel3DD;
+import org.geogebra.desktop.geogebra3D.gui.layout.panels.euclideanDockPanel3DD;
 import org.geogebra.desktop.geogebra3D.gui.view.properties.PropertiesView3DD;
 import org.geogebra.desktop.gui.ContextMenuChooseGeoD;
 import org.geogebra.desktop.gui.ContextMenuGeoElementD;
@@ -69,13 +69,13 @@ public class GuiManager3D extends GuiManagerD {
 	}
 
 	/**
-	 * Add 3D euclidian view to layout.
+	 * Add 3D euclidean view to layout.
 	 */
 	@Override
 	protected void initLayoutPanels() {
 		super.initLayoutPanels();
-		if (getApp().supportsView(App.VIEW_EUCLIDIAN3D)) {
-			getLayout().registerPanel(new EuclidianDockPanel3DD(getApp()));
+		if (getApp().supportsView(App.VIEW_euclidean3D)) {
+			getLayout().registerPanel(new euclideanDockPanel3DD(getApp()));
 		}
 	}
 
@@ -99,7 +99,7 @@ public class GuiManager3D extends GuiManagerD {
 			public void actionPerformed(ActionEvent e) {
 				// toggle axes
 				((App3D) getApp()).toggleAxis3D();
-				// getApp().getEuclidianView().repaint();
+				// getApp().geteuclideanView().repaint();
 				getApp().storeUndoInfo();
 				getApp().updateMenubar();
 
@@ -115,7 +115,7 @@ public class GuiManager3D extends GuiManagerD {
 			public void actionPerformed(ActionEvent e) {
 				// toggle grid
 				((App3D) getApp()).toggleGrid3D();
-				// getApp().getEuclidianView().repaint();
+				// getApp().geteuclideanView().repaint();
 				getApp().storeUndoInfo();
 				getApp().updateMenubar();
 
@@ -170,11 +170,11 @@ public class GuiManager3D extends GuiManagerD {
 
 	/**
 	 * Displays the zoom menu at the position p in the coordinate space of
-	 * euclidianView
+	 * euclideanView
 	 */
 	/*
 	 * public void showDrawingPadPopup(Component invoker, Point p) { // clear
-	 * highlighting and selections in views app.getEuclidianView().resetMode();
+	 * highlighting and selections in views app.geteuclideanView().resetMode();
 	 * 
 	 * // menu for drawing pane context menu ContextMenuGraphicsWindow3D
 	 * popupMenu = new ContextMenuGraphicsWindow3D( app, p.x, p.y);
@@ -183,7 +183,7 @@ public class GuiManager3D extends GuiManagerD {
 
 	/**
 	 * Displays the zoom menu at the position p in the coordinate space of
-	 * euclidianView
+	 * euclideanView
 	 * 
 	 * @param view
 	 *            view
@@ -191,16 +191,16 @@ public class GuiManager3D extends GuiManagerD {
 	 *            zoom point
 	 */
 	@Override
-	public void showDrawingPadPopup3D(EuclidianViewInterfaceCommon view,
+	public void showDrawingPadPopup3D(euclideanViewInterfaceCommon view,
 			GPoint p) {
 		// clear highlighting and selections in views
-		getApp().getEuclidianView3D().resetMode();
+		getApp().geteuclideanView3D().resetMode();
 
 		// menu for drawing pane context menu
 		ContextMenuGraphicsWindow3DD popupMenu = new ContextMenuGraphicsWindow3DD(
 				getApp());
 		popupMenu.getWrappedPopup()
-				.show(((EuclidianViewInterfaceD) view).getJPanel(), p.x, p.y);
+				.show(((euclideanViewInterfaceD) view).getJPanel(), p.x, p.y);
 	}
 
 	/**
@@ -218,7 +218,7 @@ public class GuiManager3D extends GuiManagerD {
 	 */
 	@Override
 	public void showPopupChooseGeo(ArrayList<GeoElement> selectedGeos,
-			ArrayList<GeoElement> geos, EuclidianView view, GPoint p) {
+			ArrayList<GeoElement> geos, euclideanView view, GPoint p) {
 
 		if (selectedGeos == null || selectedGeos.isEmpty()
 				|| selectedGeos.get(0) == null) {
@@ -226,9 +226,9 @@ public class GuiManager3D extends GuiManagerD {
 		}
 
 		// clear highlighting and selections in views
-		getApp().getActiveEuclidianView().resetMode();
+		getApp().getActiveeuclideanView().resetMode();
 
-		Component invoker = ((EuclidianViewInterfaceD) view).getJPanel();
+		Component invoker = ((euclideanViewInterfaceD) view).getJPanel();
 
 		Point screenPos = (invoker == null) ? new Point(0, 0)
 				: invoker.getLocationOnScreen();
@@ -250,12 +250,12 @@ public class GuiManager3D extends GuiManagerD {
 	}
 
 	@Override
-	protected EuclidianViewD newEuclidianView(boolean[] showAxis,
+	protected euclideanViewD neweuclideanView(boolean[] showAxis,
 			boolean showGrid, int viewId) {
 
-		EuclidianSettings settings = getApp().getSettings().getEuclidian(viewId);
+		euclideanSettings settings = getApp().getSettings().geteuclidean(viewId);
 
-		return new EuclidianViewFor3DD(new EuclidianControllerFor3DD(kernel),
+		return new euclideanViewFor3DD(new euclideanControllerFor3DD(kernel),
 				showAxis, showGrid, viewId, settings);
 	}
 
@@ -273,8 +273,8 @@ public class GuiManager3D extends GuiManagerD {
 
 		super.setLabels();
 
-		if (getApp().isEuclidianView3Dinited()) {
-			EuclidianView3DInterface view = getApp().getEuclidianView3D();
+		if (getApp().iseuclideanView3Dinited()) {
+			euclideanView3DInterface view = getApp().geteuclideanView3D();
 			if (view != null && view.hasStyleBar()) {
 				view.getStyleBar().setLabels();
 			}
@@ -284,7 +284,7 @@ public class GuiManager3D extends GuiManagerD {
 
 	@Override
 	public boolean loadURL(String urlString, boolean suppressErrorMsg) {
-		((App3DCompanion) getApp().getCompanion()).removeAllEuclidianViewForPlane();
+		((App3DCompanion) getApp().getCompanion()).removeAlleuclideanViewForPlane();
 		return super.loadURL(urlString, suppressErrorMsg);
 	}
 }

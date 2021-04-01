@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 /**
- * Interface for panel containing EuclidianView
+ * Interface for panel containing euclideanView
  */
-public interface EuclidianViewJPanel {
+public interface euclideanViewJPanel {
 	/**
 	 * @return true if the panel is focused
 	 */

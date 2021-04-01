@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.scripting;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.Command;
 import org.geogebra.common.kernel.commands.CmdScripting;
@@ -34,7 +34,7 @@ public class CmdZoomOut extends CmdScripting {
 			if (arg[0].isGeoNumeric()) {
 				GeoNumeric numGeo = (GeoNumeric) arg[0];
 
-				EuclidianViewInterfaceSlim ev = app.getActiveEuclidianView();
+				euclideanViewInterfaceSlim ev = app.getActiveeuclideanView();
 				double px = ev.getWidth() / 2.0; // mouseLoc.x;
 				double py = ev.getHeight() / 2.0; // mouseLoc.y;
 

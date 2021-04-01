@@ -39,7 +39,7 @@ public class GraphicsControlsPanel extends FlowPanel implements DockControlPanel
 		final FocusableWidget focusableWidget = new FocusableWidget(
 				AccessibilityGroup.getViewGroup(parent.getViewId()),
 				AccessibilityGroup.ViewControlId.SETTINGS_BUTTON,  graphicsContextMenuBtn);
-		if (parent.getViewId() == App.VIEW_EUCLIDIAN) {
+		if (parent.getViewId() == App.VIEW_euclidean) {
 			focusableWidget.attachTo(app);
 		}
 
@@ -75,7 +75,7 @@ public class GraphicsControlsPanel extends FlowPanel implements DockControlPanel
 
 		popup.addCloseHandler(event -> {
 			if (event.isAutoClosed()) {
-				app.getEuclidianView1().getEuclidianController()
+				app.geteuclideanView1().geteuclideanController()
 						.setPopupJustClosed(true);
 			}
 		});

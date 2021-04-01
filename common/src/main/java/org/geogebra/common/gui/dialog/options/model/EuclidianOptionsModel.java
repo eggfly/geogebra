@@ -2,33 +2,33 @@ package org.geogebra.common.gui.dialog.options.model;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.background.BackgroundType;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.background.BackgroundType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.algos.AlgoFractionText;
 import org.geogebra.common.kernel.arithmetic.NumberValue;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.common.main.settings.euclideanSettings3D;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 
 import com.himamis.retex.editor.share.util.Unicode;
 
-public class EuclidianOptionsModel {
+public class euclideanOptionsModel {
 	public static final int MAX_AXES_STYLE_COUNT = 5;
 	public static final int X_AXIS = 0;
 	public static final int Y_AXIS = 1;
 	public static final int Z_AXIS = 2;
 	private App app;
-	private EuclidianView view;
-	private IEuclidianOptionsListener listener;
+	private euclideanView view;
+	private IeuclideanOptionsListener listener;
 
-	public EuclidianOptionsModel(App app, EuclidianView view,
-			IEuclidianOptionsListener listener) {
+	public euclideanOptionsModel(App app, euclideanView view,
+			IeuclideanOptionsListener listener) {
 		this.app = app;
 		this.view = view;
 		this.listener = listener;
@@ -38,21 +38,21 @@ public class EuclidianOptionsModel {
 		return MAX_AXES_STYLE_COUNT;
 	}
 
-	public void setView(EuclidianView view) {
+	public void setView(euclideanView view) {
 		this.view = view;
 	}
 
 	public void applyBackgroundColor() {
-		if (view == app.getEuclidianView1()) {
-			app.getSettings().getEuclidian(1)
-					.setBackground(listener.getEuclidianBackground(1));
-		} else if (app.hasEuclidianView2EitherShowingOrNot(1)
-				&& app.getEuclidianView2(1) == view) {
-			app.getSettings().getEuclidian(2)
-					.setBackground(listener.getEuclidianBackground(2));
-		} else if (app.isEuclidianView3D(view)) {
-			app.getSettings().getEuclidian(3)
-					.setBackground(listener.getEuclidianBackground(3));
+		if (view == app.geteuclideanView1()) {
+			app.getSettings().geteuclidean(1)
+					.setBackground(listener.geteuclideanBackground(1));
+		} else if (app.haseuclideanView2EitherShowingOrNot(1)
+				&& app.geteuclideanView2(1) == view) {
+			app.getSettings().geteuclidean(2)
+					.setBackground(listener.geteuclideanBackground(2));
+		} else if (app.iseuclideanView3D(view)) {
+			app.getSettings().geteuclidean(3)
+					.setBackground(listener.geteuclideanBackground(3));
 		} else {
 			view.setBackground(view.getBackgroundCommon());
 		}
@@ -60,11 +60,11 @@ public class EuclidianOptionsModel {
 
 	public void applyBackgroundColor(int viewIdx, GColor color) {
 		if (viewIdx == 1 || viewIdx == 2 || viewIdx == 3) {
-			app.getSettings().getEuclidian(viewIdx).setBackground(color);
+			app.getSettings().geteuclidean(viewIdx).setBackground(color);
 			return;
 		}
 
-		EuclidianSettings settings = view.getSettings();
+		euclideanSettings settings = view.getSettings();
 		if (settings != null) {
 			settings.setBackground(color);
 			return;
@@ -74,7 +74,7 @@ public class EuclidianOptionsModel {
 	}
 
 	public void applyAxesColor(GColor col) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setAxesColor(col);
 			return;
@@ -83,22 +83,22 @@ public class EuclidianOptionsModel {
 		view.setAxesColor(col);
 	}
 
-	private EuclidianSettings getSettings() {
-		if (view == app.getEuclidianView1()) {
-			return app.getSettings().getEuclidian(1);
+	private euclideanSettings getSettings() {
+		if (view == app.geteuclideanView1()) {
+			return app.getSettings().geteuclidean(1);
 		}
-		if (app.hasEuclidianView2EitherShowingOrNot(1)
-				&& app.getEuclidianView2(1) == view) {
-			return app.getSettings().getEuclidian(2);
+		if (app.haseuclideanView2EitherShowingOrNot(1)
+				&& app.geteuclideanView2(1) == view) {
+			return app.getSettings().geteuclidean(2);
 		}
-		if (app.isEuclidianView3D(view)) {
-			return app.getSettings().getEuclidian(3);
+		if (app.iseuclideanView3D(view)) {
+			return app.getSettings().geteuclidean(3);
 		}
 		return view.getSettings();
 	}
 
 	public void applyGridColor(GColor col) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setGridColor(col);
 			return;
@@ -120,14 +120,14 @@ public class EuclidianOptionsModel {
 	public void applyTooltipMode(int mode0) {
 		int mode = mode0;
 		if (mode == 0) {
-			mode = EuclidianStyleConstants.TOOLTIPS_ON;
+			mode = euclideanStyleConstants.TOOLTIPS_ON;
 		} else if (mode == 1) {
-			mode = EuclidianStyleConstants.TOOLTIPS_AUTOMATIC;
+			mode = euclideanStyleConstants.TOOLTIPS_AUTOMATIC;
 		} else if (mode == 2) {
-			mode = EuclidianStyleConstants.TOOLTIPS_OFF;
+			mode = euclideanStyleConstants.TOOLTIPS_OFF;
 		}
 
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setAllowToolTips(mode);
 			return;
@@ -145,21 +145,21 @@ public class EuclidianOptionsModel {
 	public void applyRightAngleStyle(int mode0) {
 		int mode = mode0;
 		if (mode == 0) {
-			mode = EuclidianStyleConstants.RIGHT_ANGLE_STYLE_NONE;
+			mode = euclideanStyleConstants.RIGHT_ANGLE_STYLE_NONE;
 		} else if (mode == 1) {
-			mode = EuclidianStyleConstants.RIGHT_ANGLE_STYLE_SQUARE;
+			mode = euclideanStyleConstants.RIGHT_ANGLE_STYLE_SQUARE;
 		} else if (mode == 2) {
-			mode = EuclidianStyleConstants.RIGHT_ANGLE_STYLE_DOT;
+			mode = euclideanStyleConstants.RIGHT_ANGLE_STYLE_DOT;
 		} else if (mode == 3) {
-			mode = EuclidianStyleConstants.RIGHT_ANGLE_STYLE_L;
+			mode = euclideanStyleConstants.RIGHT_ANGLE_STYLE_L;
 		}
 
 		app.setRightAngleStyle(mode);
-		app.getEuclidianView1().updateAllDrawables(true);
+		app.geteuclideanView1().updateAllDrawables(true);
 	}
 
 	public void showAxes(boolean value) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setShowAxes(value);
 			return;
@@ -169,7 +169,7 @@ public class EuclidianOptionsModel {
 	}
 
 	public void applyBoldAxes(boolean isBold, boolean isVisible) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setBoldAxes(isBold);
 			return;
@@ -179,7 +179,7 @@ public class EuclidianOptionsModel {
 	}
 
 	public void showGrid(boolean value) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.showGrid(value);
 			return;
@@ -189,7 +189,7 @@ public class EuclidianOptionsModel {
 	}
 
 	public void applyBoldGrid(boolean value) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setGridIsBold(value);
 			return;
@@ -199,7 +199,7 @@ public class EuclidianOptionsModel {
 	}
 
 	public void applyMouseCoords(boolean value) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setAllowShowMouseCoords(value);
 			return;
@@ -209,20 +209,20 @@ public class EuclidianOptionsModel {
 	}
 
 	public void applyGridType(int type) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setGridType(type);
 			return;
 		}
 
 		view.setGridType(type);
-		if (type == EuclidianView.GRID_POLAR) {
+		if (type == euclideanView.GRID_POLAR) {
 			view.updateBounds(true, true);
 		}
 	}
 
 	public void applyAxesStyle(int style) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setAxesLineStyle(style);
 			return;
@@ -232,7 +232,7 @@ public class EuclidianOptionsModel {
 	}
 
 	public void applyGridStyle(int style) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setGridLineStyle(style);
 			return;
@@ -247,7 +247,7 @@ public class EuclidianOptionsModel {
 	}
 
 	public void applyGridManualTick(boolean value) {
-		EuclidianSettings settings = getSettings();
+		euclideanSettings settings = getSettings();
 		if (settings != null) {
 			settings.setAutomaticGridDistance(!value, true);
 			return;
@@ -283,12 +283,12 @@ public class EuclidianOptionsModel {
 					view.getXmaxObject().getLabel(StringTemplate.editTemplate),
 					view.getYminObject().getLabel(StringTemplate.editTemplate),
 					view.getYmaxObject().getLabel(StringTemplate.editTemplate),
-					((EuclidianView3D) view).getZminObject().getLabel(StringTemplate.editTemplate),
-					((EuclidianView3D) view).getZmaxObject().getLabel(StringTemplate.editTemplate));
+					((euclideanView3D) view).getZminObject().getLabel(StringTemplate.editTemplate),
+					((euclideanView3D) view).getZmaxObject().getLabel(StringTemplate.editTemplate));
 		} else {
-			final EuclidianSettings settings = getSettings();
-			if (settings instanceof EuclidianSettings3D) {
-				((EuclidianSettings3D) settings).setUpdateScaleOrigin(true);
+			final euclideanSettings settings = getSettings();
+			if (settings instanceof euclideanSettings3D) {
+				((euclideanSettings3D) settings).setUpdateScaleOrigin(true);
 			}
 
 			switch (type) {
@@ -323,16 +323,16 @@ public class EuclidianOptionsModel {
 				break;
 			case minZ:
 				if (settings != null) {
-					((EuclidianSettings3D) settings).setZminObject(minMax, true);
+					((euclideanSettings3D) settings).setZminObject(minMax, true);
 				} else {
-					((EuclidianView3D) view).setZminObject(minMax);
+					((euclideanView3D) view).setZminObject(minMax);
 				}
 				break;
 			case maxZ:
 				if (settings != null) {
-					((EuclidianSettings3D) settings).setZmaxObject(minMax, true);
+					((euclideanSettings3D) settings).setZmaxObject(minMax, true);
 				} else {
-					((EuclidianView3D) view).setZmaxObject(minMax);
+					((euclideanView3D) view).setZmaxObject(minMax);
 				}
 				break;
 			default:
@@ -371,17 +371,17 @@ public class EuclidianOptionsModel {
 				view.getGridIsBold(), view.getGridType());
 
 		listener.updateBackgroundColor(getBackgroundColor());
-		EuclidianSettings es = view.getSettings();
+		euclideanSettings es = view.getSettings();
 		listener.updateRuler(es.getBackgroundType().value(), es.getBgRulerColor(),
 				es.getRulerLineStyle(), es.isRulerBold());
 		int ind = view.getAllowToolTips();
 		int idx = -1;
 
-		if (ind == EuclidianStyleConstants.TOOLTIPS_ON) {
+		if (ind == euclideanStyleConstants.TOOLTIPS_ON) {
 			idx = 0;
-		} else if (ind == EuclidianStyleConstants.TOOLTIPS_AUTOMATIC) {
+		} else if (ind == euclideanStyleConstants.TOOLTIPS_AUTOMATIC) {
 			idx = 1;
-		} else if (ind == EuclidianStyleConstants.TOOLTIPS_OFF) {
+		} else if (ind == euclideanStyleConstants.TOOLTIPS_OFF) {
 			idx = 2;
 		}
 
@@ -395,10 +395,10 @@ public class EuclidianOptionsModel {
 		listener.updateBounds();
 
 		// need style with bold removed for menu
-		for (int i = 0; i < EuclidianStyleConstants
+		for (int i = 0; i < euclideanStyleConstants
 				.getLineStyleOptionsLength(); i++) {
-			if (EuclidianView.getBoldAxes(false,
-					view.getAxesLineStyle()) == EuclidianStyleConstants
+			if (euclideanView.getBoldAxes(false,
+					view.getAxesLineStyle()) == euclideanStyleConstants
 							.getLineStyleOptions(i)) {
 				listener.selectAxesStyle(i);
 				break;
@@ -423,11 +423,11 @@ public class EuclidianOptionsModel {
 	public void fillGridTypeCombo() {
 		String[] gridTypes = new String[4];
 		Localization loc = app.getLocalization();
-		gridTypes[EuclidianView.GRID_CARTESIAN] = loc
+		gridTypes[euclideanView.GRID_CARTESIAN] = loc
 				.getMenu("Grid.Major");
-		gridTypes[EuclidianView.GRID_ISOMETRIC] = loc.getMenu("Isometric");
-		gridTypes[EuclidianView.GRID_POLAR] = loc.getMenu("Polar");
-		gridTypes[EuclidianView.GRID_CARTESIAN_WITH_SUBGRID] = loc
+		gridTypes[euclideanView.GRID_ISOMETRIC] = loc.getMenu("Isometric");
+		gridTypes[euclideanView.GRID_POLAR] = loc.getMenu("Polar");
+		gridTypes[euclideanView.GRID_CARTESIAN_WITH_SUBGRID] = loc
 					.getMenu("Grid.MajorAndMinor");
 
 		for (String item : gridTypes) {
@@ -564,9 +564,9 @@ public class EuclidianOptionsModel {
 		minX, maxX, minY, maxY, minZ, maxZ
 	}
 
-	public interface IEuclidianOptionsListener {
+	public interface IeuclideanOptionsListener {
 
-		GColor getEuclidianBackground(int viewNumber);
+		GColor geteuclideanBackground(int viewNumber);
 
 		void addRulerTypeItem(String item, BackgroundType type);
 
@@ -616,7 +616,7 @@ public class EuclidianOptionsModel {
 	 *            the selected index
 	 */
 	public void applyRulerType(BackgroundType type) {
-		EuclidianSettings settings = view.getSettings();
+		euclideanSettings settings = view.getSettings();
 		settings.setBackgroundType(type);
 	}
 

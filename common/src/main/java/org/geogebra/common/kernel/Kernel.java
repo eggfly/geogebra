@@ -10,9 +10,9 @@ import java.util.TreeSet;
 
 import org.geogebra.common.GeoGebraConstants;
 import org.geogebra.common.cas.GeoGebraCAS;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.factories.FormatFactory;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.SetOrientation;
@@ -387,7 +387,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	protected double[] yscale = new double[1];
 	private boolean graphicsView2showing = false;
 	private boolean notifyRepaint = true;
-	private EuclidianView lastAttachedEV = null;
+	private euclideanView lastAttachedEV = null;
 	private boolean notifyViewsActive = true;
 
 	// MOB-1304 cache axes numbers
@@ -461,7 +461,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 		if (geoElements.length > 0 && geoElements[0] != null
 				&& geoElements[0].isGeoText()) {
 			InputHelper.centerText((GeoText) geoElements[0],
-					getApplication().getActiveEuclidianView());
+					getApplication().getActiveeuclideanView());
 
 		}
 	}
@@ -2819,7 +2819,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	 * @param yscale
 	 *            y scale (pixels per unit)
 	 */
-	final public void setEuclidianViewBounds(int viewNo, double xmin,
+	final public void seteuclideanViewBounds(int viewNo, double xmin,
 			double xmax, double ymin, double ymax, double xscale,
 			double yscale) {
 		int view = viewNo - 1;
@@ -2837,7 +2837,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 		this.yscale[view] = yscale;
 
 		graphicsView2showing = getApplication().isShowingMultipleEVs();
-		notifyEuclidianViewCE(EVProperty.ZOOM);
+		notifyeuclideanViewCE(EVProperty.ZOOM);
 	}
 
 	/**
@@ -2932,12 +2932,12 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	 * @param prop
 	 *            EV property that changed
 	 */
-	public void notifyEuclidianViewCE(EVProperty prop) {
+	public void notifyeuclideanViewCE(EVProperty prop) {
 		if (macroManager != null) {
-			macroManager.notifyEuclidianViewCE(prop);
+			macroManager.notifyeuclideanViewCE(prop);
 		}
 
-		cons.notifyEuclidianViewCE(prop);
+		cons.notifyeuclideanViewCE(prop);
 	}
 
 	/**
@@ -3350,7 +3350,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	/**
 	 * @param geo
 	 *            geo
-	 * @return RealWorld Coordinates of the rectangle covering all euclidian
+	 * @return RealWorld Coordinates of the rectangle covering all euclidean
 	 *         views in which <b>geo</b> is shown.<br>
 	 *         Format: {xMin,xMax,yMin,yMax,xScale,yScale}
 	 */
@@ -3361,11 +3361,11 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 			viewBounds[i] = Double.NEGATIVE_INFINITY;
 		}
 		viewBounds[0] = viewBounds[2] = Double.POSITIVE_INFINITY;
-		if (geo.isVisibleInView3D() && app.isEuclidianView3Dinited()) {
-			addViews(App.VIEW_EUCLIDIAN3D, viewBounds);
+		if (geo.isVisibleInView3D() && app.iseuclideanView3Dinited()) {
+			addViews(App.VIEW_euclidean3D, viewBounds);
 		}
 		if (viewSet == null) {
-			addViews(App.VIEW_EUCLIDIAN, viewBounds);
+			addViews(App.VIEW_euclidean, viewBounds);
 			return viewBounds;
 		}
 		// we can't use foreach here because of GWT
@@ -3384,9 +3384,9 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 
 	private void addViews(Integer id, double[] viewBounds) {
 		View view = getApplication().getView(id);
-		if ((view != null) && (view instanceof EuclidianViewInterfaceSlim)) {
+		if ((view != null) && (view instanceof euclideanViewInterfaceSlim)) {
 
-			EuclidianViewInterfaceSlim ev = (EuclidianViewInterfaceSlim) view;
+			euclideanViewInterfaceSlim ev = (euclideanViewInterfaceSlim) view;
 			viewBounds[0] = Math.min(viewBounds[0], ev.getXmin());
 			viewBounds[1] = Math.max(viewBounds[1], ev.getXmax());
 			viewBounds[2] = Math.min(viewBounds[2], ev.getYmin());
@@ -3458,8 +3458,8 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	 */
 	public final void notifyScreenChanged() {
 		for (View view : views) {
-			if (view instanceof EuclidianViewInterfaceCommon) {
-				((EuclidianViewInterfaceCommon) view).screenChanged();
+			if (view instanceof euclideanViewInterfaceCommon) {
+				((euclideanViewInterfaceCommon) view).screenChanged();
 			}
 		}
 	}
@@ -3470,8 +3470,8 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	public final void notifyControllersMoveIfWaiting() {
 		if (notifyRepaint && notifyViewsActive) {
 			for (View view : views) {
-				if (view instanceof EuclidianView) {
-					((EuclidianView) view).getEuclidianController()
+				if (view instanceof euclideanView) {
+					((euclideanView) view).geteuclideanController()
 							.moveIfWaiting();
 				}
 			}
@@ -3518,8 +3518,8 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	public void clearJustCreatedGeosInViews() {
 		if (notifyViewsActive) {
 			for (View view : views) {
-				if (view instanceof EuclidianViewInterfaceSlim) {
-					((EuclidianViewInterfaceSlim) view).getEuclidianController()
+				if (view instanceof euclideanViewInterfaceSlim) {
+					((euclideanViewInterfaceSlim) view).geteuclideanController()
 							.clearJustCreatedGeos();
 				}
 			}
@@ -3563,7 +3563,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 					notifyAddAll(view);
 				}
 
-				notifyEuclidianViewCE(EVProperty.ZOOM);
+				notifyeuclideanViewCE(EVProperty.ZOOM);
 				notifyReset();
 				// algebra settings need to be applied after remaking tree
 				if (app.getGuiManager() != null) {
@@ -3587,9 +3587,9 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	 */
 
 	/**
-	 * @return last attached euclidian view
+	 * @return last attached euclidean view
 	 */
-	final public EuclidianView getLastAttachedEV() {
+	final public euclideanView getLastAttachedEV() {
 		return lastAttachedEV;
 	}
 
@@ -3604,8 +3604,8 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 			views.add(view);
 		}
 
-		if (view instanceof EuclidianView) {
-			lastAttachedEV = (EuclidianView) view;
+		if (view instanceof euclideanView) {
+			lastAttachedEV = (euclideanView) view;
 		}
 
 		printAttachedViews();
@@ -3649,7 +3649,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	 * Notify the views that the mode changed.
 	 * 
 	 * @param mode
-	 *            mode (see EuclidianConstants)
+	 *            mode (see euclideanConstants)
 	 * @param m
 	 *            mode change event type
 	 */
@@ -4249,7 +4249,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 		app.getCompanion().storeViewCreators();
 		app.getScriptManager().disableListeners();
 		notifyReset();
-		getApplication().getActiveEuclidianView().getEuclidianController()
+		getApplication().getActiveeuclideanView().geteuclideanController()
 				.clearSelections();
 		cons.processXML(stateForModeStarting);
 		notifyReset();
@@ -4264,8 +4264,8 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	 */
 	public void undo() {
 		if (undoActive) {
-			if (getApplication().getActiveEuclidianView()
-					.getEuclidianController().isUndoableMode()) {
+			if (getApplication().getActiveeuclideanView()
+					.geteuclideanController().isUndoableMode()) {
 				if (getSelectionManager().isGeoToggled()
 						&& !getSelectionManager().getSelectedGeos().isEmpty()) {
 
@@ -4279,7 +4279,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 				app.batchUpdateStart();
 				cons.undo();
 
-				// repaint needed for last undo in second EuclidianView (bugfix)
+				// repaint needed for last undo in second euclideanView (bugfix)
 				if (!undoPossible()) {
 					notifyRepaint();
 				}
@@ -5020,7 +5020,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	 */
 	final public boolean noNeedToSpecifyXOYPlane() {
 		return getXOYPlane() == null
-				|| getApplication().getActiveEuclidianView().isDefault2D();
+				|| getApplication().getActiveeuclideanView().isDefault2D();
 	}
 
 	/**
@@ -5044,7 +5044,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	}
 
 	/**
-	 * set correct string mode regarding active euclidian view
+	 * set correct string mode regarding active euclidean view
 	 * 
 	 * @param point
 	 *            point
@@ -5055,7 +5055,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 			return;
 		}
 
-		if (app.getActiveEuclidianView().isEuclidianView3D()) {
+		if (app.getActiveeuclideanView().iseuclideanView3D()) {
 			point.setCartesian3D();
 		} else {
 			point.setCartesian();
@@ -5070,12 +5070,12 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 		if (getLoadingMode()) {
 			return false;
 		}
-		EuclidianViewInterfaceCommon ev = getApplication()
-				.getActiveEuclidianView();
-		if (ev.isEuclidianView3D() || ev.isShowing()) {
-			return ev.isEuclidianView3D();
+		euclideanViewInterfaceCommon ev = getApplication()
+				.getActiveeuclideanView();
+		if (ev.iseuclideanView3D() || ev.isShowing()) {
+			return ev.iseuclideanView3D();
 		}
-		return getApplication().showView(App.VIEW_EUCLIDIAN3D);
+		return getApplication().showView(App.VIEW_euclidean3D);
 
 	}
 
@@ -5173,7 +5173,7 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	@Override
 	public void specialPointsChanged(SpecialPointsManager manager, List<GeoElement> specialPoints) {
 		if (notifyViewsActive) {
-			app.getActiveEuclidianView().updateSpecPointFromInputBar(specialPoints);
+			app.getActiveeuclideanView().updateSpecPointFromInputBar(specialPoints);
 		}
 	}
 
@@ -5201,10 +5201,10 @@ public class Kernel implements SpecialPointsListener, ConstructionStepper {
 	 * @return the size of a unit on the screen in pixels
 	 */
 	public long precision() {
-		EuclidianView ev = this.getLastAttachedEV();
-		double evXscale = ev == null ? EuclidianView.SCALE_STANDARD
+		euclideanView ev = this.getLastAttachedEV();
+		double evXscale = ev == null ? euclideanView.SCALE_STANDARD
 				: ev.getXscale();
-		double evYscale = ev == null ? EuclidianView.SCALE_STANDARD
+		double evYscale = ev == null ? euclideanView.SCALE_STANDARD
 				: ev.getYscale();
 		double scale = evXscale < evYscale ? evXscale : evYscale;
 		long p = (long) scale;

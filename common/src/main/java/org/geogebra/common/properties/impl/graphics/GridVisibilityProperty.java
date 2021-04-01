@@ -1,7 +1,7 @@
 package org.geogebra.common.properties.impl.graphics;
 
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.properties.BooleanProperty;
 import org.geogebra.common.properties.impl.AbstractProperty;
 
@@ -11,29 +11,29 @@ import org.geogebra.common.properties.impl.AbstractProperty;
 public class GridVisibilityProperty extends AbstractProperty
 		implements BooleanProperty {
 
-	private EuclidianSettings euclidianSettings;
+	private euclideanSettings euclideanSettings;
 
 	/**
 	 * Constructs a GridVisibility property.
 	 *
 	 * @param localization
 	 *            localization for the name
-	 * @param euclidianSettings
-	 *            euclidian settings
+	 * @param euclideanSettings
+	 *            euclidean settings
 	 */
 	public GridVisibilityProperty(Localization localization,
-			EuclidianSettings euclidianSettings) {
+			euclideanSettings euclideanSettings) {
 		super(localization, "ShowGrid");
-		this.euclidianSettings = euclidianSettings;
+		this.euclideanSettings = euclideanSettings;
 	}
 
 	@Override
 	public boolean getValue() {
-		return euclidianSettings.getShowGrid();
+		return euclideanSettings.getShowGrid();
 	}
 
 	@Override
 	public void setValue(boolean value) {
-		euclidianSettings.showGrid(value);
+		euclideanSettings.showGrid(value);
 	}
 }

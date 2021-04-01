@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.common.media.MediaFactory;
 import org.geogebra.common.media.MediaURLParser;
@@ -49,7 +49,7 @@ public class VideoInputDialog extends MediaDialog {
 	@Override
 	public void hide() {
 		super.hide();
-		app.getGuiManager().setMode(EuclidianConstants.MODE_SELECT_MOW,
+		app.getGuiManager().setMode(euclideanConstants.MODE_SELECT_MOW,
 				ModeSetter.TOOLBAR);
 	}
 }

@@ -118,7 +118,7 @@ import org.geogebra.common.main.settings.Settings;
 import org.geogebra.common.main.syntax.CommandSyntax;
 import org.geogebra.common.main.syntax.EnglishCommandSyntax;
 import org.geogebra.common.main.syntax.LocalizedCommandSyntax;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.Event;
 import org.geogebra.common.plugin.EventType;
 import org.geogebra.common.plugin.GeoClass;
@@ -2949,7 +2949,7 @@ public class AlgebraProcessor {
 			line.setObjColor(line.getAutoColorScheme()
 					.getNext(!cons.getKernel().isSilentMode()));
 			line.setLineOpacity(
-					EuclidianStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_EQUATION_GEOMETRY);
+					euclideanStyleConstants.OBJSTYLE_DEFAULT_LINE_OPACITY_EQUATION_GEOMETRY);
 		}
 		if ((info.isForceUserEquation()
 				|| !app.getSettings().getCasSettings().isEnabled())
@@ -3801,7 +3801,7 @@ public class AlgebraProcessor {
 	}
 
 	private String getSyntax(CommandSyntax syntax, String cmdInt, Settings settings) {
-		int dim = settings.getEuclidian(-1).isEnabled() ? 3 : 2;
+		int dim = settings.geteuclidean(-1).isEnabled() ? 3 : 2;
 		if (cmdDispatcher.isCASAllowed()) {
 			return syntax.getCommandSyntax(cmdInt, dim);
 		}

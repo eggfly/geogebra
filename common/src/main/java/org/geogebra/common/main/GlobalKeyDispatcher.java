@@ -8,13 +8,13 @@ import java.util.TreeSet;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle2D;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.draw.DrawDropDownList;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.draw.DrawDropDownList;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.Kernel;
@@ -31,8 +31,8 @@ import org.geogebra.common.kernel.geos.MoveGeos;
 import org.geogebra.common.kernel.geos.PointProperties;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.debug.Log;
 
@@ -136,7 +136,7 @@ public abstract class GlobalKeyDispatcher {
 
 				if (geo instanceof GeoInputBox) {
 					DrawInputBox dt = (DrawInputBox) app
-							.getActiveEuclidianView().getDrawableFor(geo);
+							.getActiveeuclideanView().getDrawableFor(geo);
 					if (dt != null) {
 						dt.setFocus(ch + "");
 					}
@@ -162,8 +162,8 @@ public abstract class GlobalKeyDispatcher {
 		}
 
 		// don't instantiate: could steal focus
-		if (app.getActiveEuclidianView().hasDynamicStyleBar()) {
-			app.getActiveEuclidianView().getDynamicStyleBar().setVisible(false);
+		if (app.getActiveeuclideanView().hasDynamicStyleBar()) {
+			app.getActiveeuclideanView().getDynamicStyleBar().setVisible(false);
 		}
 		return false;
 	}
@@ -200,7 +200,7 @@ public abstract class GlobalKeyDispatcher {
 				&& app.getGuiManager().hasAlgebraView()) {
 			for (int i = 0; i < selSize; i++) {
 				GeoElement geo1 = selection.getSelectedGeos().get(i);
-				geo1.setEuclidianVisible(!geo1.isSetEuclidianVisible());
+				geo1.seteuclideanVisible(!geo1.isSeteuclideanVisible());
 				geo1.update();
 			}
 			app.getKernel().notifyRepaint();
@@ -260,7 +260,7 @@ public abstract class GlobalKeyDispatcher {
 	 */
 	public boolean handleArrowKeyMovement(List<GeoElement> geos,
 			double[] diff, double increment) {
-		app.getActiveEuclidianView().getEuclidianController().splitSelectedStrokes(true);
+		app.getActiveeuclideanView().geteuclideanController().splitSelectedStrokes(true);
 		GeoElement geo = geos.get(0);
 
 		boolean allSliders = true;
@@ -286,14 +286,14 @@ public abstract class GlobalKeyDispatcher {
 
 		// move objects
 		boolean moved = MoveGeos.moveObjects(geos, tempVec, null, null,
-				app.getActiveEuclidianView());
-		if (app.getActiveEuclidianView() != null) {
-			app.getActiveEuclidianView().getEuclidianController()
+				app.getActiveeuclideanView());
+		if (app.getActiveeuclideanView() != null) {
+			app.getActiveeuclideanView().geteuclideanController()
 					.onArrowKeyTyped();
 		}
 
-		if (app.isEuclidianView3Dinited()) {
-			EuclidianView3DInterface view3d = app.getEuclidianView3D();
+		if (app.iseuclideanView3Dinited()) {
+			euclideanView3DInterface view3d = app.geteuclideanView3D();
 			if (view3d.isShowing()) {
 				view3d.setCursor3DVisible(false);
 			}
@@ -335,14 +335,14 @@ public abstract class GlobalKeyDispatcher {
 	 *            whether alt is down
 	 * @param fromSpreadsheet
 	 *            whether this event comes from spreadsheet
-	 * @param fromEuclidianView
+	 * @param fromeuclideanView
 	 *            whether this event comes from EV
 	 * 
 	 * @return if key was consumed
 	 */
 	protected boolean handleGeneralKeys(KeyCodes key, boolean isShiftDown,
 			boolean isControlDown, boolean isAltDown, boolean fromSpreadsheet,
-			boolean fromEuclidianView) {
+			boolean fromeuclideanView) {
 
 		// eventually make an undo point (e.g. after zooming)
 		app.storeUndoInfoIfSetCoordSystemOccured();
@@ -412,7 +412,7 @@ public abstract class GlobalKeyDispatcher {
 					&& keyboardShortcutsEnabled()) {
 				if (app.getGuiManager() != null) {
 
-					EuclidianView view = app.getActiveEuclidianView();
+					euclideanView view = app.getActiveeuclideanView();
 
 					ArrayList<GeoElement> selectedGeos = app
 							.getSelectionManager().getSelectedGeos();
@@ -436,12 +436,12 @@ public abstract class GlobalKeyDispatcher {
 							app.getGuiManager().showPopupChooseGeo(
 									app.getSelectionManager().getSelectedGeos(),
 									app.getSelectionManager().getSelectedGeoList(),
-									app.getActiveEuclidianView(), p);
+									app.getActiveeuclideanView(), p);
 						}
 					} else {
 						// open in corner
 						app.getGuiManager().showDrawingPadPopup(
-								app.getActiveEuclidianView(), new GPoint(0, 0));
+								app.getActiveeuclideanView(), new GPoint(0, 0));
 
 					}
 				}
@@ -454,7 +454,7 @@ public abstract class GlobalKeyDispatcher {
 		// characters)
 		if (isControlDown && !isAltDown) {
 			consumed = consumed || handleCtrlKey(key, isShiftDown,
-					fromSpreadsheet, fromEuclidianView);
+					fromSpreadsheet, fromeuclideanView);
 
 		}
 
@@ -475,7 +475,7 @@ public abstract class GlobalKeyDispatcher {
 	protected abstract KeyCodes translateKey(int i);
 
 	private boolean handleCtrlKey(KeyCodes key, boolean isShiftDown,
-			boolean fromSpreadsheet, boolean fromEuclidianView) {
+			boolean fromSpreadsheet, boolean fromeuclideanView) {
 		boolean consumed = false;
 		switch (key) {
 		case K1:
@@ -488,8 +488,8 @@ public abstract class GlobalKeyDispatcher {
 																// event.isAltDown())
 																// {
 				app.getGuiManager().setShowView(
-						!app.getGuiManager().showView(App.VIEW_EUCLIDIAN),
-						App.VIEW_EUCLIDIAN);
+						!app.getGuiManager().showView(App.VIEW_euclidean),
+						App.VIEW_euclidean);
 				consumed = true;
 
 			} else { // make sure not triggered on
@@ -511,8 +511,8 @@ public abstract class GlobalKeyDispatcher {
 																// event.isAltDown())
 																// {
 				app.getGuiManager().setShowView(
-						!app.getGuiManager().showView(App.VIEW_EUCLIDIAN2),
-						App.VIEW_EUCLIDIAN2);
+						!app.getGuiManager().showView(App.VIEW_euclidean2),
+						App.VIEW_euclidean2);
 				consumed = true;
 
 			} else { // make sure not triggered on
@@ -532,12 +532,12 @@ public abstract class GlobalKeyDispatcher {
 			// Croatian keyboard)
 			if (isShiftDown && keyboardShortcutsEnabled()
 					&& app.getGuiManager() != null
-					&& app.supportsView(App.VIEW_EUCLIDIAN3D)) { // ||
+					&& app.supportsView(App.VIEW_euclidean3D)) { // ||
 																	// event.isAltDown())
 																	// {
 				app.getGuiManager().setShowView(
-						!app.getGuiManager().showView(App.VIEW_EUCLIDIAN3D),
-						App.VIEW_EUCLIDIAN3D);
+						!app.getGuiManager().showView(App.VIEW_euclidean3D),
+						App.VIEW_euclidean3D);
 				consumed = true;
 
 			} else { // make sure not triggered on
@@ -822,8 +822,8 @@ public abstract class GlobalKeyDispatcher {
 			}
 
 			// disable zooming in PEN mode
-			if (!EuclidianView
-					.isPenMode(app.getActiveEuclidianView().getMode())) {
+			if (!euclideanView
+					.isPenMode(app.getActiveeuclideanView().getMode())) {
 
 				boolean spanish = app.getLocalization().getLanguage()
 						.startsWith("es");
@@ -831,11 +831,11 @@ public abstract class GlobalKeyDispatcher {
 				// AltGr+ on Spanish keyboard is ] so
 				// allow <Ctrl>+ (zoom) but not <Ctrl><Alt>+ (fast zoom)
 				// from eg Input Bar
-				if (!spanish || fromEuclidianView) {
-					EuclidianController ec = app.getActiveEuclidianView().getEuclidianController();
+				if (!spanish || fromeuclideanView) {
+					euclideanController ec = app.getActiveeuclideanView().geteuclideanController();
 					double factor = key.equals(KeyCodes.MINUS) || key.equals(KeyCodes.SUBTRACT)
-							? 1d / EuclidianView.MOUSE_WHEEL_ZOOM_FACTOR
-							: EuclidianView.MOUSE_WHEEL_ZOOM_FACTOR;
+							? 1d / euclideanView.MOUSE_WHEEL_ZOOM_FACTOR
+							: euclideanView.MOUSE_WHEEL_ZOOM_FACTOR;
 
 					ec.zoomInOut(factor, 15, ec.mouseLoc.x, ec.mouseLoc.y);
 					app.setUnsaved();
@@ -867,7 +867,7 @@ public abstract class GlobalKeyDispatcher {
 				Iterator<GeoElement> it = objects.iterator();
 				while (it.hasNext()) {
 					GeoElement geo = it.next();
-					if (!geo.isSelectionAllowed(app.getActiveEuclidianView())) {
+					if (!geo.isSelectionAllowed(app.getActiveeuclideanView())) {
 						selectionAllowed = true;
 						break;
 					}
@@ -1004,15 +1004,15 @@ public abstract class GlobalKeyDispatcher {
 
 		// axes bold / not bold
 		for (int ev = 1; ev <= 2; ev++) {
-			EuclidianSettings settings = app.getSettings().getEuclidian(ev);
+			euclideanSettings settings = app.getSettings().geteuclidean(ev);
 			int style = settings.getAxesLineStyle();
 
 			// set bold
-			style = style | EuclidianStyleConstants.AXES_BOLD;
+			style = style | euclideanStyleConstants.AXES_BOLD;
 
 			if (!makeAxesBold) {
 				// turn bold off again
-				style = style ^ EuclidianStyleConstants.AXES_BOLD;
+				style = style ^ euclideanStyleConstants.AXES_BOLD;
 			}
 
 			settings.setAxesLineStyle(style);
@@ -1160,8 +1160,8 @@ public abstract class GlobalKeyDispatcher {
 
 		if (geos == null || geos.size() == 0) {
 
-			// Get the EuclidianView which has the focus
-			EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
+			// Get the euclideanView which has the focus
+			euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
 			int width = ev.getWidth();
 			int height = ev.getHeight();
 			if (ev.hasFocus() && app.isShiftDragZoomEnabled()) {
@@ -1188,8 +1188,8 @@ public abstract class GlobalKeyDispatcher {
 					if (app.isUsingFullGui() && app.getGuiManager() != null
 							&& app.getGuiManager().noMenusOpen()) {
 						if (isShiftDown) {
-							EuclidianViewInterfaceCommon view = app
-									.getActiveEuclidianView();
+							euclideanViewInterfaceCommon view = app
+									.getActiveeuclideanView();
 							if (!view.isLockedAxesRatio()) {
 								view.setCoordSystem(view.getXZero(),
 										view.getYZero(), view.getXscale(),
@@ -1211,8 +1211,8 @@ public abstract class GlobalKeyDispatcher {
 					if (app.isUsingFullGui() && app.getGuiManager() != null
 							&& app.getGuiManager().noMenusOpen()) {
 						if (isShiftDown) {
-							EuclidianViewInterfaceCommon view = app
-									.getActiveEuclidianView();
+							euclideanViewInterfaceCommon view = app
+									.getActiveeuclideanView();
 							if (!view.isLockedAxesRatio()) {
 								view.setCoordSystem(view.getXZero(),
 										view.getYZero(), view.getXscale(),
@@ -1232,8 +1232,8 @@ public abstract class GlobalKeyDispatcher {
 					if (app.isUsingFullGui() && app.getGuiManager() != null
 							&& app.getGuiManager().noMenusOpen()) {
 						if (isShiftDown) {
-							EuclidianViewInterfaceCommon view = app
-									.getActiveEuclidianView();
+							euclideanViewInterfaceCommon view = app
+									.getActiveeuclideanView();
 							if (!view.isLockedAxesRatio()) {
 								view.setCoordSystem(view.getXZero(),
 										view.getYZero(), view.getXscale() * 0.9,
@@ -1253,8 +1253,8 @@ public abstract class GlobalKeyDispatcher {
 					if (app.isUsingFullGui() && app.getGuiManager() != null
 							&& app.getGuiManager().noMenusOpen()) {
 						if (isShiftDown) {
-							EuclidianViewInterfaceCommon view = app
-									.getActiveEuclidianView();
+							euclideanViewInterfaceCommon view = app
+									.getActiveeuclideanView();
 							if (!view.isLockedAxesRatio()) {
 								view.setCoordSystem(view.getXZero(),
 										view.getYZero(), view.getXscale() / 0.9,
@@ -1280,7 +1280,7 @@ public abstract class GlobalKeyDispatcher {
 
 		case PAGEUP:
 			// 3D handled later (move object up/down)
-			if (!app.getActiveEuclidianView().isEuclidianView3D()) {
+			if (!app.getActiveeuclideanView().iseuclideanView3D()) {
 				it = geos.iterator();
 				while (it.hasNext()) {
 					GeoElement geo = it.next();
@@ -1291,7 +1291,7 @@ public abstract class GlobalKeyDispatcher {
 
 		case PAGEDOWN:
 			// 3D handled later (move object up/down)
-			if (!app.getActiveEuclidianView().isEuclidianView3D()) {
+			if (!app.getActiveeuclideanView().iseuclideanView3D()) {
 				it = geos.iterator();
 				while (it.hasNext()) {
 					GeoElement geo = it.next();
@@ -1334,7 +1334,7 @@ public abstract class GlobalKeyDispatcher {
 			}
 			// DELETE selected objects
 			if (!app.isApplet() || keyboardShortcutsEnabled()) {
-				app.getActiveEuclidianView().getEuclidianController().splitSelectedStrokes(true);
+				app.getActiveeuclideanView().geteuclideanController().splitSelectedStrokes(true);
 				app.deleteSelectedObjects(false);
 				return true;
 			}
@@ -1612,7 +1612,7 @@ public abstract class GlobalKeyDispatcher {
 		if (!geo.isGeoNumeric() && !geo.isGeoPoint()) {
 
 			ArrayList<GeoPointND> freeInputPoints = geo
-					.getFreeInputPoints(app.getActiveEuclidianView());
+					.getFreeInputPoints(app.getActiveeuclideanView());
 
 			if (freeInputPoints != null && freeInputPoints.size() > 0) {
 				increment = freeInputPoints.get(0).getAnimationStep();
@@ -1647,7 +1647,7 @@ public abstract class GlobalKeyDispatcher {
 				ScreenReader.readDropDownItemSelected(geo);
 				return true;
 			} else if (geo.isGeoInputBox()) {
-				app.getActiveEuclidianView()
+				app.getActiveeuclideanView()
 						.focusAndShowTextField((GeoInputBox) geo);
 			}
 		}

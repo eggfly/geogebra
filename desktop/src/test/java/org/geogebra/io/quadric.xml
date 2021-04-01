@@ -28,7 +28,7 @@
         <labelingStyle  val="0"/>
         <font  size="16"/>
     </gui>
-    <euclidianView>
+    <euclideanView>
         <viewNumber viewNo="1"/>
         <size  width="797" height="372"/>
         <coordSystem xZero="570.0404768578361" yZero="246.43996034083762" scale="20.866278838198603" yscale="20.866278838198614"/>
@@ -41,7 +41,7 @@
         <axis id="0" show="false" label="" unitLabel="" tickStyle="1" showNumbers="true" selectionAllowed="false"/>
         <axis id="1" show="false" label="" unitLabel="" tickStyle="1" showNumbers="true" selectionAllowed="false"/>
         <grid distX="1" distY="1" distTheta="0.5235987755982988"/>
-    </euclidianView>
+    </euclideanView>
     <kernel>
         <uses3D val="true"/>
         <continuous val="false"/>
@@ -53,7 +53,7 @@
     </kernel>
     <tableview min="-2" max="2" step="1"/>
     <scripting blocked="false" disabled="false"/>
-    <euclidianView3D>
+    <euclideanView3D>
         <coordSystem xZero="0.6738154997289394" yZero="-1.1694122751795915" zZero="-1.8444710638650355" scale="23.325369010486657" xAngle="40" zAngle="-694.194422757181"/>
         <evSettings axes="true" grid="false" gridIsBold="false" pointCapturing="3" rightAngleStyle="1" gridType="3"/>
         <axis id="0" show="true" label="" unitLabel="" tickStyle="1" showNumbers="true" selectionAllowed="false"/>
@@ -63,7 +63,7 @@
         <bgColor r="255" g="255" b="255"/>
         <clipping use="false" show="false" size="1"/>
         <projection type="0"/>
-    </euclidianView3D>
+    </euclideanView3D>
     <construction title="" author="" date="">
         <element type="numeric" label="hh">
             <value val="-8"/>

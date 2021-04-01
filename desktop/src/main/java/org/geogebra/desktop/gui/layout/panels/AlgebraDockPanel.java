@@ -54,14 +54,14 @@ public class AlgebraDockPanel extends NavigableDockPanel {
 
 	@Override
 	protected void setActiveToolBar() {
-		// use the focused euclidian view for active toolbar
-		if (dockManager.getFocusedEuclidianPanel() == null
-				|| !dockManager.getFocusedEuclidianPanel().hasToolbar()) {
+		// use the focused euclidean view for active toolbar
+		if (dockManager.getFocusedeuclideanPanel() == null
+				|| !dockManager.getFocusedeuclideanPanel().hasToolbar()) {
 			((GuiManagerD) app.getGuiManager()).getToolbarPanel()
 					.setActiveToolbar(-1);
 		} else {
 			((GuiManagerD) app.getGuiManager()).getToolbarPanel()
-					.setActiveToolbar(dockManager.getFocusedEuclidianPanel()
+					.setActiveToolbar(dockManager.getFocusedeuclideanPanel()
 							.getToolbar());
 		}
 	}

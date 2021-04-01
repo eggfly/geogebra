@@ -13,9 +13,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.Hits;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.Hits;
 import org.geogebra.common.kernel.geos.FromMeta;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.Feature;
@@ -33,7 +33,7 @@ public class ContextMenuChooseGeoD extends ContextMenuGeoElementD {
 	/**
 	 * 
 	 */
-	protected EuclidianView view;
+	protected euclideanView view;
 
 	/**
 	 * polygons/polyhedra parents of segments, polygons, ...
@@ -58,7 +58,7 @@ public class ContextMenuChooseGeoD extends ContextMenuGeoElementD {
 	 * @param location
 	 *            place to show
 	 */
-	public ContextMenuChooseGeoD(AppD app, EuclidianView view,
+	public ContextMenuChooseGeoD(AppD app, euclideanView view,
 			ArrayList<GeoElement> selectedGeos, ArrayList<GeoElement> geos,
 			Point location, GPoint invokerLocation) {
 
@@ -114,7 +114,7 @@ public class ContextMenuChooseGeoD extends ContextMenuGeoElementD {
 
 	private void createSelectAnotherMenu(int mode) {
 		Localization localization = app.getLocalization();
-		if (EuclidianConstants.isMoveOrSelectionMode(mode)) {
+		if (euclideanConstants.isMoveOrSelectionMode(mode)) {
 			selectAnotherMenu = new JMenu(
 					localization.getMenu("SelectAnother"));
 		} else {
@@ -206,7 +206,7 @@ public class ContextMenuChooseGeoD extends ContextMenuGeoElementD {
 			/*
 			 * geo.setHighlighted(true); app.getKernel().notifyRepaint();
 			 */
-			view.getEuclidianController().doSingleHighlighting(geo);
+			view.geteuclideanController().doSingleHighlighting(geo);
 		}
 
 		/*
@@ -228,7 +228,7 @@ public class ContextMenuChooseGeoD extends ContextMenuGeoElementD {
 			public void actionPerformed(ActionEvent e) {
 
 				if (selectedGeos.size() < 2) {
-					if (EuclidianConstants.isMoveOrSelectionMode(view.getMode())) { // change
+					if (euclideanConstants.isMoveOrSelectionMode(view.getMode())) { // change
 																			// selection
 																			// to
 																			// geo
@@ -243,7 +243,7 @@ public class ContextMenuChooseGeoD extends ContextMenuGeoElementD {
 					} else { // use geo clicked to process mode
 						Hits hits = new Hits();
 						hits.add(getGeo());
-						view.getEuclidianController().processMode(hits, false);
+						view.geteuclideanController().processMode(hits, false);
 					}
 				}
 

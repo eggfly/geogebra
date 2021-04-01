@@ -1,10 +1,10 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterSurface;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D.Type;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterSurface;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D.Type;
 import org.geogebra.common.kernel.kernelND.GeoConicND;
 import org.geogebra.common.kernel.kernelND.GeoConicNDConstants;
 import org.geogebra.common.kernel.kernelND.GeoConicPartND;
@@ -15,7 +15,7 @@ public class DrawConicPart3D extends DrawConic3D {
 	private Coords tmpCoords2;
 	private Coords tmpCoords3;
 
-	public DrawConicPart3D(EuclidianView3D view3d, GeoConicPartND conic) {
+	public DrawConicPart3D(euclideanView3D view3d, GeoConicPartND conic) {
 		super(view3d, (GeoConicND) conic);
 	}
 

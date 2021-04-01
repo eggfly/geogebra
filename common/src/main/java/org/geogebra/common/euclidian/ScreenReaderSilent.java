@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 public class ScreenReaderSilent implements ScreenReaderAdapter {
 

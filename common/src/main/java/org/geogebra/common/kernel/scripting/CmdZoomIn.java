@@ -1,8 +1,8 @@
 package org.geogebra.common.kernel.scripting;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.Command;
 import org.geogebra.common.kernel.arithmetic.MyDouble;
@@ -13,7 +13,7 @@ import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.main.MyError;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.util.DoubleUtil;
 
 /**
@@ -43,7 +43,7 @@ public class CmdZoomIn extends CmdScripting {
 			if (arg[0].isGeoNumeric()) {
 				GeoNumeric numGeo = (GeoNumeric) arg[0];
 
-				EuclidianViewInterfaceSlim ev = app.getActiveEuclidianView();
+				euclideanViewInterfaceSlim ev = app.getActiveeuclideanView();
 				double px = ev.getWidth() / 2.0; // mouseLoc.x;
 				double py = ev.getHeight() / 2.0; // mouseLoc.y;
 
@@ -71,8 +71,8 @@ public class CmdZoomIn extends CmdScripting {
 				}
 			}
 
-			EuclidianView view = app.getActiveEuclidianView();
-			EuclidianSettings evs = view.getSettings();
+			euclideanView view = app.getActiveeuclideanView();
+			euclideanSettings evs = view.getSettings();
 
 			// eg ZoomIn(a, a, -4, 4)
 			evs.setXminObject((GeoNumeric) arg[0], false);
@@ -99,14 +99,14 @@ public class CmdZoomIn extends CmdScripting {
 				}
 			}
 
-			if (!app.isEuclidianView3Dinited()) {
+			if (!app.iseuclideanView3Dinited()) {
 				return new GeoElement[0];
 			}
 
 			/*
 			 * Dynamic zoom not supported for 3D View
 			 * 
-			 * EuclidianView3DInterface view3D = app.getEuclidianView3D(); EuclidianSettings
+			 * euclideanView3DInterface view3D = app.geteuclideanView3D(); euclideanSettings
 			 * evs3D = view3D.getSettings();
 			 * 
 			 * 
@@ -165,8 +165,8 @@ public class CmdZoomIn extends CmdScripting {
 		boolean ok0;
 		if ((ok0 = arg[0].isGeoNumeric()) && arg[1].isGeoPoint()) {
 
-			EuclidianViewInterfaceCommon ev = proc.getApp()
-					.getActiveEuclidianView();
+			euclideanViewInterfaceCommon ev = proc.getApp()
+					.getActiveeuclideanView();
 			Coords coords = ev
 					.getCoordsForView(((GeoPointND) arg[1]).getCoordsInD3());
 			double px = ev.toScreenCoordXd(coords.getX());

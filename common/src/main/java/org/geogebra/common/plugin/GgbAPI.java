@@ -9,9 +9,9 @@ import java.util.TreeSet;
 import org.geogebra.common.GeoGebraConstants;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.export.pstricks.ExportFrameMinimal;
 import org.geogebra.common.export.pstricks.GeoGebraExport;
 import org.geogebra.common.gui.dialog.handler.RenameInputHandler;
@@ -51,7 +51,7 @@ import org.geogebra.common.kernel.scripting.CmdSetCoords;
 import org.geogebra.common.kernel.scripting.CmdSetValue;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.error.ErrorHelper;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.util.AsyncOperation;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
@@ -133,7 +133,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	 */
 	@Override
 	public synchronized void evalXML(String xmlString) {
-		getApplication().getActiveEuclidianView().saveInlines();
+		getApplication().getActiveeuclideanView().saveInlines();
 		String sb = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
 				+ "<geogebra format=\"" + GeoGebraConstants.XML_FILE_FORMAT
 				+ "\">\n"
@@ -142,7 +142,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 				+ "</construction>\n"
 				+ "</geogebra>\n";
 		getApplication().setXML(sb, false);
-		getApplication().getActiveEuclidianView().updateInlines();
+		getApplication().getActiveeuclideanView().updateInlines();
 	}
 
 	/**
@@ -327,7 +327,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		if (geo == null) {
 			return;
 		}
-		geo.setEuclidianVisible(visible);
+		geo.seteuclideanVisible(visible);
 		geo.updateRepaint();
 	}
 
@@ -342,9 +342,9 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		}
 		if (geo.isGeoCasCell()) {
 			return ((GeoCasCell) geo).getTwinGeo() != null
-					&& ((GeoCasCell) geo).getTwinGeo().isEuclidianVisible();
+					&& ((GeoCasCell) geo).getTwinGeo().iseuclideanVisible();
 		}
-		return geo.isEuclidianVisible();
+		return geo.iseuclideanVisible();
 	}
 
 	/**
@@ -380,7 +380,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	 */
 	@Override
 	public synchronized void setLayerVisible(int layer, boolean visible) {
-		if (layer < 0 || layer > EuclidianStyleConstants.MAX_LAYERS) {
+		if (layer < 0 || layer > euclideanStyleConstants.MAX_LAYERS) {
 			return;
 		}
 		String[] names = getAllObjectNames();
@@ -388,7 +388,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 			GeoElement geo = kernel.lookupLabel(name);
 			if (geo != null) {
 				if (geo.getLayer() == layer) {
-					geo.setEuclidianVisible(visible);
+					geo.seteuclideanVisible(visible);
 					geo.updateRepaint();
 				}
 			}
@@ -544,13 +544,13 @@ public abstract class GgbAPI implements JavaScriptAPI {
 			loc.setAbsoluteScreenLoc((int) Math.round(x), (int) Math.round(y));
 		} else if (geo instanceof Locateable) {
 			GeoPoint corner = new GeoPoint(kernel.getConstruction());
-			EuclidianView ev = app.getEuclidianView1();
+			euclideanView ev = app.geteuclideanView1();
 			if (geo.isVisibleInView(ev.getViewID())
-					&& app.hasEuclidianView2EitherShowingOrNot(1)
+					&& app.haseuclideanView2EitherShowingOrNot(1)
 					&& geo.isVisibleInView(
-							app.getEuclidianView2(1).getViewID())) {
+							app.geteuclideanView2(1).getViewID())) {
 				Log.debug("EV2");
-				// ev = app.getEuclidianView2();
+				// ev = app.geteuclideanView2();
 			}
 			corner.setCoords(ev.toRealWorldCoordX(x), ev.toRealWorldCoordY(y),
 					1);
@@ -614,7 +614,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 			int lineThickness) {
 		int thickness = lineThickness;
 		if (thickness == -1) {
-			thickness = EuclidianStyleConstants.DEFAULT_LINE_THICKNESS;
+			thickness = euclideanStyleConstants.DEFAULT_LINE_THICKNESS;
 		}
 		GeoElement geo = kernel.lookupLabel(objName);
 		if (geo == null) {
@@ -889,7 +889,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	}
 
 	/**
-	 * Sets the mode of the geometry window (EuclidianView).
+	 * Sets the mode of the geometry window (euclideanView).
 	 */
 	@Override
 	public synchronized void setMode(int mode) {
@@ -912,8 +912,8 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		// convert from 0,10,15,20,30
 		// to 0,1,2,3,4
 
-		for (int i = 0; i < EuclidianView.getLineTypeLength(); i++) {
-			if (type == EuclidianView.getLineType(i)) {
+		for (int i = 0; i < euclideanView.getLineTypeLength(); i++) {
+			if (type == euclideanView.getLineType(i)) {
 				return i;
 			}
 		}
@@ -924,7 +924,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	@Override
 	public synchronized void setLineStyle(String objName, int style) {
 
-		if (style < 0 || style >= EuclidianView.getLineTypeLength()) {
+		if (style < 0 || style >= euclideanView.getLineTypeLength()) {
 			return;
 		}
 
@@ -933,7 +933,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 			return;
 		}
 
-		geo.setLineType(EuclidianView.getLineType(style));
+		geo.setLineType(euclideanView.getLineType(style));
 		geo.updateRepaint();
 	}
 
@@ -1307,7 +1307,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	@Override
 	public synchronized void setCoordSystem(double xmin, double xmax,
 			double ymin, double ymax) {
-		app.getEuclidianView1().setRealWorldCoordSystem(xmin, xmax, ymin, ymax);
+		app.geteuclideanView1().setRealWorldCoordSystem(xmin, xmax, ymin, ymax);
 	}
 
 	/**
@@ -1329,7 +1329,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	public synchronized void setCoordSystem(double xmin, double xmax,
 			double ymin, double ymax, double zmin, double zmax,
 			boolean verticalY) {
-		EuclidianView3DInterface e3d = app.getEuclidianView3D();
+		euclideanView3DInterface e3d = app.geteuclideanView3D();
 		e3d.setYAxisVertical(verticalY);
 		Coords boundsMin = new Coords(xmin, ymin, zmin);
 		Coords boundsMax = new Coords(xmax, ymax, zmax);
@@ -1353,11 +1353,11 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		if (index < 1 || index > 3) {
 			return;
 		}
-		EuclidianSettings evs = app.getSettings().getEuclidian(index);
+		euclideanSettings evs = app.getSettings().geteuclidean(index);
 		evs.beginBatch();
-		evs.setShowAxis(EuclidianViewInterfaceCommon.AXIS_X, xVisible);
-		evs.setShowAxis(EuclidianViewInterfaceCommon.AXIS_Y, yVisible);
-		evs.setShowAxis(EuclidianViewInterfaceCommon.AXIS_Z, zVisible);
+		evs.setShowAxis(euclideanViewInterfaceCommon.AXIS_X, xVisible);
+		evs.setShowAxis(euclideanViewInterfaceCommon.AXIS_Y, yVisible);
+		evs.setShowAxis(euclideanViewInterfaceCommon.AXIS_Z, zVisible);
 		evs.endBatch();
 		kernel.notifyRepaint();
 	}
@@ -1372,10 +1372,10 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	 */
 	public synchronized void setAxesCornerCoordsVisible(
 			boolean showAxesCornerCoords) {
-		app.getEuclidianView1()
+		app.geteuclideanView1()
 				.setAxesCornerCoordsVisible(showAxesCornerCoords);
-		if (app.hasEuclidianView2(1)) {
-			app.getEuclidianView2(1)
+		if (app.haseuclideanView2(1)) {
+			app.geteuclideanView2(1)
 					.setAxesCornerCoordsVisible(showAxesCornerCoords);
 		}
 	}
@@ -1385,8 +1385,8 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	 */
 	@Override
 	public synchronized void setGridVisible(boolean flag) {
-		app.getSettings().getEuclidian(1).showGrid(flag);
-		app.getSettings().getEuclidian(2).showGrid(flag);
+		app.getSettings().geteuclidean(1).showGrid(flag);
+		app.getSettings().geteuclidean(2).showGrid(flag);
 	}
 
 	@Override
@@ -1395,7 +1395,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		if (index < 1 || index > 3) {
 			return;
 		}
-		app.getSettings().getEuclidian(index).showGrid(flag);
+		app.getSettings().geteuclidean(index).showGrid(flag);
 	}
 
 	/*
@@ -1479,26 +1479,26 @@ public abstract class GgbAPI implements JavaScriptAPI {
 
 	@Override
 	final public void setPenColor(int red, int green, int blue) {
-		app.getActiveEuclidianView().getEuclidianController().getPen().defaultPenLine
+		app.getActiveeuclideanView().geteuclideanController().getPen().defaultPenLine
 				.setObjColor(GColor.newColor(red, green, blue));
 	}
 
 	@Override
 	final public void setPenSize(int size) {
-		app.getActiveEuclidianView().getEuclidianController().getPen().defaultPenLine
+		app.getActiveeuclideanView().geteuclideanController().getPen().defaultPenLine
 				.setLineThickness(size);
 	}
 
 	@Override
 	public int getPenSize() {
-		return app.getActiveEuclidianView().getEuclidianController().getPen()
+		return app.getActiveeuclideanView().geteuclideanController().getPen()
 				.getPenSize();
 	}
 
 	@Override
 	public String getPenColor() {
-		return StringUtil.toHtmlColor(app.getActiveEuclidianView()
-				.getEuclidianController().getPen().getPenColor());
+		return StringUtil.toHtmlColor(app.getActiveeuclideanView()
+				.geteuclideanController().getPen().getPenColor());
 	}
 
 	@Override
@@ -1580,8 +1580,8 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	 */
 	@Override
 	public String getViewProperties(int view) {
-		EuclidianView ev = view == 2 ? app.getEuclidianView2(1)
-				: app.getEuclidianView1();
+		euclideanView ev = view == 2 ? app.geteuclideanView2(1)
+				: app.geteuclideanView1();
 		StringBuilder sb = new StringBuilder(100);
 		sb.append("{\"invXscale\":");
 		sb.append(ev.getInvXscale());
@@ -1726,9 +1726,9 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		}
 		
 		setPerspectiveWithViews(code);
-		if (app.getActiveEuclidianView() != null
+		if (app.getActiveeuclideanView() != null
 				&& !kernel.getConstruction().isScriptRunningForGeo()) {
-			app.getActiveEuclidianView().requestFocus();
+			app.getActiveeuclideanView().requestFocus();
 		}
 	}
 
@@ -1782,8 +1782,8 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		}
 		GeoElement geo = kernel.lookupLabel(label);
 		if (geo instanceof GeoAxisND) {
-			EuclidianSettings evs = app.getSettings()
-					.getEuclidian(view < 0 ? 3 : view);
+			euclideanSettings evs = app.getSettings()
+					.geteuclidean(view < 0 ? 3 : view);
 			int type = ((GeoAxisND) geo).getType();
 			if (type == 2 && view > 0) {
 				return false;
@@ -1802,8 +1802,8 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	}
 
 	private static boolean isVisibleInView(GeoElement geo, int view) {
-		return geo.isVisibleInView(view == -1 ? App.VIEW_EUCLIDIAN3D
-				: (view == 1 ? App.VIEW_EUCLIDIAN : App.VIEW_EUCLIDIAN2));
+		return geo.isVisibleInView(view == -1 ? App.VIEW_euclidean3D
+				: (view == 1 ? App.VIEW_euclidean : App.VIEW_euclidean2));
 	}
 
 	@Override
@@ -1816,8 +1816,8 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		if (view < -1 || view > 2 || view == 0) {
 			return false;
 		}
-		EuclidianSettings evs = app.getSettings()
-				.getEuclidian(view < 0 ? 3 : view);
+		euclideanSettings evs = app.getSettings()
+				.geteuclidean(view < 0 ? 3 : view);
 		return evs.getShowGrid();
 	}
 
@@ -1916,7 +1916,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	@Override
 	public void enable3D(boolean enable) {
 		if (!app.isUnbundled()) {
-			app.getSettings().getEuclidian(-1).setEnabled(enable);
+			app.getSettings().geteuclidean(-1).setEnabled(enable);
 		}
 	}
 
@@ -1955,7 +1955,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		if (index < 1 || index > 3) {
 			return;
 		}
-		EuclidianSettings evs = app.getSettings().getEuclidian(index);
+		euclideanSettings evs = app.getSettings().geteuclidean(index);
 		evs.beginBatch();
 		evs.setAxisNumberingDistance(0, this.algebraprocessor
 				.evaluateToNumeric(xStep, ErrorHelper.silent()));
@@ -1976,7 +1976,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		if (index < 1 || index > 3) {
 			return;
 		}
-		EuclidianSettings evs = app.getSettings().getEuclidian(index);
+		euclideanSettings evs = app.getSettings().geteuclidean(index);
 		evs.beginBatch();
 		evs.setAxisLabel(0, xLabel);
 		evs.setAxisLabel(1, yLabel);
@@ -1993,7 +1993,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		if (index < 1 || index > 3) {
 			return new String[0];
 		}
-		EuclidianSettings evs = app.getSettings().getEuclidian(index);
+		euclideanSettings evs = app.getSettings().geteuclidean(index);
 		return Arrays.copyOf(evs.getAxesLabels(), evs.getAxesLabels().length);
 	}
 
@@ -2004,7 +2004,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		if (index < 1 || index > 3) {
 			return;
 		}
-		EuclidianSettings evs = app.getSettings().getEuclidian(index);
+		euclideanSettings evs = app.getSettings().geteuclidean(index);
 		evs.beginBatch();
 		evs.setAxesUnitLabels(new String[] { xLabel, yLabel, zLabel });
 
@@ -2018,7 +2018,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		if (index < 1 || index > 3) {
 			return new String[0];
 		}
-		EuclidianSettings evs = app.getSettings().getEuclidian(index);
+		euclideanSettings evs = app.getSettings().geteuclidean(index);
 		return Arrays.copyOf(evs.getAxesUnitLabels(), evs.getAxesUnitLabels().length);
 	}
 
@@ -2028,7 +2028,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 		if (index < 1 || index > 3) {
 			return;
 		}
-		EuclidianSettings evs = app.getSettings().getEuclidian(index);
+		euclideanSettings evs = app.getSettings().geteuclidean(index);
 		evs.setPointCapturing(capture);
 		kernel.notifyRepaint();
 	}
@@ -2073,7 +2073,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 					return;
 				}
 
-				EuclidianView ev = app.getActiveEuclidianView();
+				euclideanView ev = app.getActiveeuclideanView();
 
 				ExportFrameMinimal frame = new ExportFrameMinimal(ev.getYmin(),
 						ev.getYmax());
@@ -2406,7 +2406,7 @@ public abstract class GgbAPI implements JavaScriptAPI {
 	 */
 	public void updateOrdering(String labels) {
 		construction.getLayerManager().updateOrdering(labels, kernel);
-		app.getActiveEuclidianView().invalidateDrawableList();
+		app.getActiveeuclideanView().invalidateDrawableList();
 	}
 
 	@Override

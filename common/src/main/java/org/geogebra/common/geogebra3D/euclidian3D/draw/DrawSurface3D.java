@@ -1,15 +1,15 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.plot.CurveSegmentPlotter;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterSurface;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.plot.CurveSegmentPlotter;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterSurface;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoCurveCartesian3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoSurfaceCartesian3D;
 import org.geogebra.common.kernel.Kernel;
@@ -28,7 +28,7 @@ import org.geogebra.common.kernel.kernelND.SurfaceEvaluable.LevelOfDetail;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.kernel.matrix.Coords3;
 import org.geogebra.common.kernel.matrix.CoordsDouble3;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.debug.Log;
 
@@ -172,7 +172,7 @@ public class DrawSurface3D extends Drawable3DSurfaces implements HasZPick {
 	 * @param surface
 	 *            surface
 	 */
-	public DrawSurface3D(EuclidianView3D a_view3d, SurfaceEvaluable surface) {
+	public DrawSurface3D(euclideanView3D a_view3d, SurfaceEvaluable surface) {
 		super(a_view3d, (GeoElement) surface);
 		this.surfaceGeo = surface;
 
@@ -282,7 +282,7 @@ public class DrawSurface3D extends Drawable3DSurfaces implements HasZPick {
 			}
 
 			if (getGeoElement()
-					.getLineTypeHidden() == EuclidianStyleConstants.LINE_TYPE_HIDDEN_NONE) {
+					.getLineTypeHidden() == euclideanStyleConstants.LINE_TYPE_HIDDEN_NONE) {
 				return;
 			}
 
@@ -704,7 +704,7 @@ public class DrawSurface3D extends Drawable3DSurfaces implements HasZPick {
 	}
 
 	private boolean updateCullingBox() {
-		EuclidianView3D view = getView3D();
+		euclideanView3D view = getView3D();
 		double off = maxRWPixelDistance * 4;
 		double offScaled = off / getView3D().getXscale();
 		cullingBox[0] = view.getXmin() - offScaled;
@@ -2964,7 +2964,7 @@ public class DrawSurface3D extends Drawable3DSurfaces implements HasZPick {
 		}
 
 		if (getGeoElement()
-				.getAlphaValue() < EuclidianController.MIN_VISIBLE_ALPHA_VALUE) {
+				.getAlphaValue() < euclideanController.MIN_VISIBLE_ALPHA_VALUE) {
 			return false;
 		}
 

@@ -18,8 +18,8 @@ import java.util.TreeSet;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.kernel.CircularDefinitionException;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
@@ -55,7 +55,7 @@ import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.kernelND.GeoQuadricND;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.GeoClass;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
@@ -114,7 +114,7 @@ public class GeoList extends GeoElement
 													// enough
 	private boolean locusCalledAlgoLocusList = false; // if a locus ever used
 														// this list as a path
-	private int pointSize = EuclidianStyleConstants.DEFAULT_POINT_SIZE;
+	private int pointSize = euclideanStyleConstants.DEFAULT_POINT_SIZE;
 	private int pointStyle = -1; // use global option if -1
 	// font options
 	private boolean serifFont = false;
@@ -126,7 +126,7 @@ public class GeoList extends GeoElement
 
 	private AngleStyle angleStyle = AngleStyle.ANTICLOCKWISE;
 	private boolean emphasizeRightAngle = true;
-	private int arcSize = EuclidianStyleConstants.DEFAULT_ANGLE_SIZE;
+	private int arcSize = euclideanStyleConstants.DEFAULT_ANGLE_SIZE;
 
 	private int totalWidth = 0;
 	private int totalHeight = 0;
@@ -153,7 +153,7 @@ public class GeoList extends GeoElement
 
 		elements = new ArrayList<>(size);
 		cacheList = new ArrayList<>(size);
-		setEuclidianVisible(false);
+		seteuclideanVisible(false);
 		// don't add here, see GGB-264
 		// setBackgroundColor(GColor.WHITE);
 	}
@@ -161,7 +161,7 @@ public class GeoList extends GeoElement
 	@Override
 	public void setParentAlgorithm(final AlgoElement algo) {
 		super.setParentAlgorithm(algo);
-		setEuclidianVisible(true);
+		seteuclideanVisible(true);
 		// GGB-1999 reset background to null: defaults should only apply to
 		// dropdowns or independent lists
 		setBackgroundColor(null);
@@ -353,7 +353,7 @@ public class GeoList extends GeoElement
 				// Circular definition -- do nothing
 			}
 
-			setElementEuclidianVisible(geo, isSetEuclidianVisible());
+			setElementeuclideanVisible(geo, isSeteuclideanVisible());
 		}
 	}
 
@@ -495,8 +495,8 @@ public class GeoList extends GeoElement
 	}
 
 	@Override
-	public void setEuclidianVisible(final boolean visible) {
-		super.setEuclidianVisible(visible);
+	public void seteuclideanVisible(final boolean visible) {
+		super.seteuclideanVisible(visible);
 
 		if ((elements == null) || (elements.size() == 0)) {
 			return;
@@ -509,15 +509,15 @@ public class GeoList extends GeoElement
 		final int size = elements.size();
 		for (int i = 0; i < size; i++) {
 			final GeoElement geo = get(i);
-			setElementEuclidianVisible(geo, visible);
+			setElementeuclideanVisible(geo, visible);
 		}
 	}
 
 	private void initScreenLocation() {
 		int count = countComboBoxes();
 		labelOffsetX = 5;
-		EuclidianViewInterfaceSlim ev = kernel.getApplication()
-				.getActiveEuclidianView();
+		euclideanViewInterfaceSlim ev = kernel.getApplication()
+				.getActiveeuclideanView();
 		if (ev != null) {
 			labelOffsetY = ev.getComboOffsetY() - 45 + 30 * count;
 		} else {
@@ -537,7 +537,7 @@ public class GeoList extends GeoElement
 			Iterator<GeoElement> it = lists.iterator();
 			while (it.hasNext()) {
 				GeoList list = (GeoList) it.next();
-				if (list.isEuclidianVisible() && list.drawAsComboBox()) {
+				if (list.iseuclideanVisible() && list.drawAsComboBox()) {
 					count++;
 				}
 			}
@@ -546,11 +546,11 @@ public class GeoList extends GeoElement
 		return count;
 	}
 
-	private static void setElementEuclidianVisible(final GeoElement geo,
+	private static void setElementeuclideanVisible(final GeoElement geo,
 			final boolean visible) {
 		if (!geo.isLabelSet()
 				&& (!geo.isGeoNumeric() || !geo.isIndependent())) {
-			geo.setEuclidianVisible(visible);
+			geo.seteuclideanVisible(visible);
 		}
 	}
 
@@ -629,7 +629,7 @@ public class GeoList extends GeoElement
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return isDefined() && isDrawable();
 	}
 
@@ -1938,7 +1938,7 @@ public class GeoList extends GeoElement
 
 	@Override
 	public boolean hasMoveableInputPoints(
-			final EuclidianViewInterfaceSlim view) {
+			final euclideanViewInterfaceSlim view) {
 		// we don't want e.g. DotPlots to be dragged
 		if (!((getParentAlgorithm() == null)
 				|| (getParentAlgorithm() instanceof AlgoDependentList))) {
@@ -1968,7 +1968,7 @@ public class GeoList extends GeoElement
 	 */
 	@Override
 	public ArrayList<GeoPointND> getFreeInputPoints(
-			final EuclidianViewInterfaceSlim view) {
+			final euclideanViewInterfaceSlim view) {
 		final ArrayList<GeoPointND> al = new ArrayList<>();
 
 		for (int i = 0; i < elements.size(); i++) {
@@ -3160,12 +3160,12 @@ public class GeoList extends GeoElement
 	}
 
 	@Override
-	public int getTotalWidth(EuclidianViewInterfaceCommon ev) {
+	public int getTotalWidth(euclideanViewInterfaceCommon ev) {
 		return totalWidth;
 	}
 
 	@Override
-	public int getTotalHeight(EuclidianViewInterfaceCommon ev) {
+	public int getTotalHeight(euclideanViewInterfaceCommon ev) {
 		return totalHeight;
 	}
 

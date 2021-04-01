@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GDimension;
@@ -7,7 +7,7 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.MyImage;
 import org.geogebra.common.awt.font.GTextLayout;
-import org.geogebra.common.euclidian.draw.CanvasDrawable;
+import org.geogebra.common.euclidean.draw.CanvasDrawable;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.arithmetic.MyDouble;
@@ -26,7 +26,7 @@ import org.geogebra.common.util.StringUtil;
 public class MyButton implements Observer {
 
 	private GeoButton geoButton;
-	private EuclidianView view;
+	private euclideanView view;
 	private StyleSettings styleSettings;
 
 	private int x;
@@ -55,7 +55,7 @@ public class MyButton implements Observer {
 	 * @param view
 	 *            view
 	 */
-	public MyButton(GeoButton button, EuclidianView view) {
+	public MyButton(GeoButton button, euclideanView view) {
 		this.geoButton = button;
 		this.view = view;
 		this.styleSettings = view.getApplication().getSettings().getStyle();
@@ -230,7 +230,7 @@ public class MyButton implements Observer {
 		}
 
 		g.setPaint(paint);
-		g.setStroke(EuclidianStatic.getDefaultStroke());
+		g.setStroke(euclideanStatic.getDefaultStroke());
 		g.fillRoundRect(x, y, getWidth() + (int) widthCorrection - 1,
 				getHeight() - 1 - shadowSize, arcSize, arcSize);
 

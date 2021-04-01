@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.algos.AlgoRoots;
@@ -268,7 +268,7 @@ public class AlgoIntersectImplicitpolyParametric
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_INTERSECT;
+		return euclideanConstants.MODE_INTERSECT;
 	}
 
 }

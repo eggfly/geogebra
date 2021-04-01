@@ -3,8 +3,8 @@ package org.geogebra.web.full.gui.dialog;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.EmbedManager;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.EmbedManager;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoEmbed;
@@ -100,7 +100,7 @@ public class EmbedInputDialog extends MediaDialog
 		GeoEmbed ge = new GeoEmbed(app.getKernel().getConstruction());
 		ge.setUrl(url);
 		ge.setAppName("extension");
-		ge.initDefaultPosition(app.getActiveEuclidianView());
+		ge.initDefaultPosition(app.getActiveeuclideanView());
 		EmbedManager embedManager = app.getEmbedManager();
 		if (embedManager != null) {
 			ge.setEmbedId(embedManager.nextID());
@@ -124,7 +124,7 @@ public class EmbedInputDialog extends MediaDialog
 	@Override
 	public void hide() {
 		super.hide();
-		app.getGuiManager().setMode(EuclidianConstants.MODE_SELECT_MOW,
+		app.getGuiManager().setMode(euclideanConstants.MODE_SELECT_MOW,
 				ModeSetter.TOOLBAR);
 	}
 

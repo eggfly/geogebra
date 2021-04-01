@@ -47,8 +47,8 @@ public class AccessibilityManagerW implements AccessibilityManagerInterface {
 		selection = app.getSelectionManager();
 		this.geoTabber =  new GeoTabber(app);
 		components.add(geoTabber);
-		components.add(new PlayButtonTabber(app.getActiveEuclidianView()));
-		components.add(new ResetButtonTabber(app.getActiveEuclidianView()));
+		components.add(new PlayButtonTabber(app.getActiveeuclideanView()));
+		components.add(new ResetButtonTabber(app.getActiveeuclideanView()));
 	}
 
 	@Override
@@ -147,7 +147,7 @@ public class AccessibilityManagerW implements AccessibilityManagerInterface {
 		if (geo != null) {
 			selection.addSelectedGeoForEV(geo);
 			if (!geo.isGeoInputBox()) {
-				app.getActiveEuclidianView().requestFocus();
+				app.getActiveeuclideanView().requestFocus();
 			}
 		} else {
 			if (menuContainer != null) {

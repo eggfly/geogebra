@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian.modes;
+package org.geogebra.common.euclidean.modes;
 
 import java.util.List;
 
-import org.geogebra.common.euclidian.BaseControllerTest;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.BaseControllerTest;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.junit.Assert;
@@ -13,7 +13,7 @@ public class ModeShapeTest extends BaseControllerTest {
 
 	@Test
 	public void shapeMaskTool() {
-		setMode(EuclidianConstants.MODE_MASK);
+		setMode(euclideanConstants.MODE_MASK);
 		dragStart(50, 50);
 		dragEnd(200, 150);
 		checkContent("q1 = 6");
@@ -23,10 +23,10 @@ public class ModeShapeTest extends BaseControllerTest {
 
 	@Test
 	public void maskShouldBeInFrontOfObjects() {
-		setMode(EuclidianConstants.MODE_MASK);
+		setMode(euclideanConstants.MODE_MASK);
 		dragStart(50, 50);
 		dragEnd(200, 150);
-		setMode(EuclidianConstants.MODE_SHAPE_RECTANGLE);
+		setMode(euclideanConstants.MODE_SHAPE_RECTANGLE);
 		dragStart(50, 50);
 		dragEnd(300, 150);
 		// fill the shape rectangle

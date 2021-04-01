@@ -256,7 +256,7 @@ final public class GeoSegment extends GeoLine
 	}
 
 	@Override
-	public boolean showInEuclidianView() {
+	public boolean showIneuclideanView() {
 		// segments of polygons can have thickness 0
 		return defined && getLineThickness() != 0;
 	}
@@ -580,7 +580,7 @@ final public class GeoSegment extends GeoLine
 	}
 
 	/**
-	 * Calculates the euclidian distance between this GeoSegment and GeoPoint P.
+	 * Calculates the euclidean distance between this GeoSegment and GeoPoint P.
 	 * 
 	 * returns distance from endpoints if appropriate
 	 */

@@ -484,19 +484,19 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 			return;
 		}
 
-		// make sure the polygon is defined to get correct euclidian visibility
+		// make sure the polygon is defined to get correct euclidean visibility
 		setDefined();
 
-		boolean euclidianVisible;
+		boolean euclideanVisible;
 
-		// check array zand euclidian visibility
+		// check array zand euclidean visibility
 		if (segmentsArray == null) {
 			segmentsArray = new ArrayList<>();
 		}
 		if (segmentsArray.size() < 1) {
-			euclidianVisible = isEuclidianVisible();
+			euclideanVisible = iseuclideanVisible();
 		} else {
-			euclidianVisible = segmentsArray.get(0).isEuclidianVisible();
+			euclideanVisible = segmentsArray.get(0).iseuclideanVisible();
 		}
 
 		segments = new GeoSegmentND[getPointsLength()];
@@ -511,7 +511,7 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 			algo.modifyInputPoints(startPoint, endPoint);
 			algo.compute();
 			segments[i] = segment;
-			segment.setEuclidianVisible(euclidianVisible);
+			segment.seteuclideanVisible(euclideanVisible);
 		}
 
 		// adjust size
@@ -519,7 +519,7 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 			GeoPointND startPoint = points[i];
 			GeoPointND endPoint = points[(i + 1) % getPointsLength()];
 			GeoSegmentND segment = createSegment(cons1, startPoint, endPoint,
-					euclidianVisible);
+					euclideanVisible);
 			segment.getParentAlgorithm().setProtectedInput(true); // avoid
 																	// remove by
 																	// other
@@ -545,13 +545,13 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 	 *            the start point
 	 * @param endPoint
 	 *            the end point
-	 * @param euclidianVisible
+	 * @param euclideanVisible
 	 *            true to make the segment visible
 	 * @return the segment
 	 */
 	public GeoSegmentND createSegment(Construction cons1, GeoPointND startPoint,
-			GeoPointND endPoint, boolean euclidianVisible) {
-		return createSegmentOwnDimension(cons1, startPoint, endPoint, euclidianVisible);
+			GeoPointND endPoint, boolean euclideanVisible) {
+		return createSegmentOwnDimension(cons1, startPoint, endPoint, euclideanVisible);
 	}
 
 	/**
@@ -559,10 +559,10 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 	 * @return segment
 	 */
 	public GeoSegmentND createSegmentOwnDimension(Construction cons1, GeoPointND startPoint,
-			GeoPointND endPoint, boolean euclidianVisible) {
+			GeoPointND endPoint, boolean euclideanVisible) {
 		AlgoJoinPointsSegment algoSegment = new AlgoJoinPointsSegment(cons1,
 				(GeoPoint) startPoint, (GeoPoint) endPoint, this, false);
-		return createSegment(algoSegment.getSegment(), euclidianVisible);
+		return createSegment(algoSegment.getSegment(), euclideanVisible);
 	}
 
 	/**
@@ -570,17 +570,17 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 	 * 
 	 * @param segment
 	 *            segment
-	 * @param euclidianVisible
+	 * @param euclideanVisible
 	 *            true to make the segment visible
 	 * @return the segment modified
 	 */
 	protected GeoSegmentND createSegment(GeoSegmentND segment,
-			boolean euclidianVisible) {
+			boolean euclideanVisible) {
 		// refresh color to ensure segments have same color as polygon:
 		segment.setObjColor(getObjectColor());
 		segment.setLineThickness(getLineThickness());
 		segment.setLineType(getLineType());
-		segment.setEuclidianVisible(euclidianVisible);
+		segment.seteuclideanVisible(euclideanVisible);
 
 		if (condShowObject != null) {
 			try {
@@ -1403,8 +1403,8 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 	}
 
 	@Override
-	public void setEuclidianVisible(boolean visible) {
-		setEuclidianVisible(visible, true);
+	public void seteuclideanVisible(boolean visible) {
+		seteuclideanVisible(visible, true);
 
 	}
 
@@ -1416,11 +1416,11 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 	 * @param updateSegments
 	 *            if true, applies also to segments
 	 */
-	public void setEuclidianVisible(boolean visible, boolean updateSegments) {
-		super.setEuclidianVisible(visible);
+	public void seteuclideanVisible(boolean visible, boolean updateSegments) {
+		super.seteuclideanVisible(visible);
 		if (updateSegments && segments != null) {
 			for (int i = 0; i < segments.length; i++) {
-				segments[i].setEuclidianVisible(visible);
+				segments[i].seteuclideanVisible(visible);
 				segments[i].updateVisualStyle(GProperty.VISIBLE);
 			}
 		}
@@ -1554,7 +1554,7 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return defined;
 	}
 
@@ -2608,7 +2608,7 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 
 	private void setPointSize(int size) {
 		for (GeoPointND point : points) {
-			point.setEuclidianVisibleIfNoConditionToShowObject(true);
+			point.seteuclideanVisibleIfNoConditionToShowObject(true);
 			point.setPointSize(size);
 			point.updateRepaint();
 		}
@@ -2616,7 +2616,7 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 
 	private void setPointNotVisibile() {
 		for (GeoPointND point : points) {
-			point.setEuclidianVisibleIfNoConditionToShowObject(false);
+			point.seteuclideanVisibleIfNoConditionToShowObject(false);
 			point.updateRepaint();
 		}
 	}
@@ -2805,7 +2805,7 @@ public class GeoPolygon extends GeoElement implements GeoNumberValue,
 	public void hideSegments() {
 		if (getSegments() != null) {
 			for (GeoSegmentND segment : getSegments()) {
-				segment.setEuclidianVisible(false);
+				segment.seteuclideanVisible(false);
 			}
 		}
 		setInitLabelsCalled(false);

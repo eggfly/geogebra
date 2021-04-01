@@ -1,4 +1,4 @@
-package org.geogebra.desktop.euclidian;
+package org.geogebra.desktop.euclidean;
 
 import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
@@ -14,31 +14,31 @@ import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.arithmetic.TextValue;
 import org.geogebra.common.kernel.geos.GeoText;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
 import org.geogebra.common.main.App;
 import org.geogebra.common.util.debug.Log;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.gui.GuiManagerD;
-import org.geogebra.desktop.gui.view.data.PlotPanelEuclidianViewD;
+import org.geogebra.desktop.gui.view.data.PlotPaneleuclideanViewD;
 import org.geogebra.desktop.main.AppD;
 import org.geogebra.desktop.util.AlgebraViewTransferHandler;
 import org.geogebra.desktop.util.CASTransferHandler;
 
 /**
- * Transfer handler for EuclidianView
+ * Transfer handler for euclideanView
  * 
  * @author G. Sturr
  * 
  */
-public class EuclidianViewTransferHandler extends TransferHandler
+public class euclideanViewTransferHandler extends TransferHandler
 		implements Transferable {
 
 	private static final long serialVersionUID = 1L;
 
-	private EuclidianView ev;
+	private euclideanView ev;
 	private AppD app;
 
 	static DataFlavor textReaderFlavor;
@@ -59,7 +59,7 @@ public class EuclidianViewTransferHandler extends TransferHandler
 	// null,//DataFlavor.stringFlavor,
 	// null,//DataFlavor.javaFileListFlavor,
 	// null,//AlgebraViewTransferHandler.algebraViewFlavor,
-	// null};//PlotPanelEuclidianView.plotPanelFlavor};
+	// null};//PlotPaneleuclideanView.plotPanelFlavor};
 
 	private void setSupportedFlavours() {
 		if (supportedFlavors == null) {
@@ -70,7 +70,7 @@ public class EuclidianViewTransferHandler extends TransferHandler
 				supportedFlavors0[1] = DataFlavor.stringFlavor;
 				supportedFlavors0[2] = DataFlavor.javaFileListFlavor;
 				supportedFlavors0[3] = AlgebraViewTransferHandler.algebraViewFlavor;
-				supportedFlavors0[4] = PlotPanelEuclidianViewD.plotPanelFlavor;
+				supportedFlavors0[4] = PlotPaneleuclideanViewD.plotPanelFlavor;
 			} else {
 				supportedFlavors0 = new DataFlavor[3];
 				supportedFlavors0[0] = DataFlavor.imageFlavor;
@@ -87,9 +87,9 @@ public class EuclidianViewTransferHandler extends TransferHandler
 	 * Constructor
 	 * 
 	 * @param ev
-	 *            euclidian view
+	 *            euclidean view
 	 */
-	public EuclidianViewTransferHandler(EuclidianView ev) {
+	public euclideanViewTransferHandler(euclideanView ev) {
 		this.ev = ev;
 		this.app = (AppD) ev.getApplication();
 	}
@@ -131,7 +131,7 @@ public class EuclidianViewTransferHandler extends TransferHandler
 		// give the drop target (this EV) the view focus
 		requestViewFocus();
 
-		Point mousePos = ((EuclidianViewInterfaceD) ev).getMousePosition();
+		Point mousePos = ((euclideanViewInterfaceD) ev).getMousePosition();
 
 		// ------------------------------------------
 		// Import handling is done in this order:
@@ -143,12 +143,12 @@ public class EuclidianViewTransferHandler extends TransferHandler
 		// ------------------------------------------
 
 		// try to get PlotPanel GeoElement copies
-		if (t.isDataFlavorSupported(PlotPanelEuclidianViewD.plotPanelFlavor)) {
+		if (t.isDataFlavorSupported(PlotPaneleuclideanViewD.plotPanelFlavor)) {
 
 			try {
 				AbstractAction act = (AbstractAction) t.getTransferData(
-						PlotPanelEuclidianViewD.plotPanelFlavor);
-				act.putValue("euclidianViewID", ev.getViewID());
+						PlotPaneleuclideanViewD.plotPanelFlavor);
+				act.putValue("euclideanViewID", ev.getViewID());
 				act.actionPerformed(new ActionEvent(act, 0, null));
 			} catch (UnsupportedFlavorException e) {
 				e.printStackTrace();
@@ -241,7 +241,7 @@ public class EuclidianViewTransferHandler extends TransferHandler
 							.getTransferData(
 									AlgebraViewTransferHandler.algebraViewFlavor);
 
-					text = EuclidianView.getDraggedLabels(list);
+					text = euclideanView.getDraggedLabels(list);
 
 					if (text == null) {
 						return false;
@@ -325,12 +325,12 @@ public class EuclidianViewTransferHandler extends TransferHandler
 	 * focus (current code assumes only 2 EVs)
 	 */
 	private void requestViewFocus() {
-		if (ev.equals(app.getEuclidianView1())) {
+		if (ev.equals(app.geteuclideanView1())) {
 			((GuiManagerD) app.getGuiManager()).getLayout()
-					.getDockManager().setFocusedPanel(App.VIEW_EUCLIDIAN);
+					.getDockManager().setFocusedPanel(App.VIEW_euclidean);
 		} else {
 			((GuiManagerD) app.getGuiManager()).getLayout()
-					.getDockManager().setFocusedPanel(App.VIEW_EUCLIDIAN2);
+					.getDockManager().setFocusedPanel(App.VIEW_euclidean2);
 		}
 	}
 

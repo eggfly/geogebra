@@ -73,7 +73,7 @@ import org.geogebra.common.kernel.kernelND.SurfaceEvaluable.LevelOfDetail;
 import org.geogebra.common.kernel.prover.AlgoProve;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.error.ErrorHelper;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.GeoClass;
 import org.geogebra.common.plugin.JsReference;
 import org.geogebra.common.plugin.ScriptType;
@@ -344,7 +344,7 @@ public class ConsElementXMLHandler {
 		// GGB-244 something that was formerly just a number is now a segment:
 		// hide it!
 		if (geo.isNumberValue() && !isNumber && !isBoolean) {
-			geo.setEuclidianVisible(false);
+			geo.seteuclideanVisible(false);
 			return true;
 		}
 		// set value even when definition exists; might be needed if value
@@ -1963,7 +1963,7 @@ public class ConsElementXMLHandler {
 
 	private boolean handleShow(LinkedHashMap<String, String> attrs) {
 		try {
-			geo.setEuclidianVisible(
+			geo.seteuclideanVisible(
 					MyXMLHandler.parseBoolean(attrs.get("object")));
 			geo.setLabelVisible(MyXMLHandler.parseBoolean(attrs.get("label")));
 
@@ -1976,15 +1976,15 @@ public class ConsElementXMLHandler {
 			}
 
 			if ((EVs & 1) == 0) {
-				geo.addView(App.VIEW_EUCLIDIAN);
+				geo.addView(App.VIEW_euclidean);
 			} else {
-				geo.removeView(App.VIEW_EUCLIDIAN);
+				geo.removeView(App.VIEW_euclidean);
 			}
 
 			if ((EVs & 2) == 2) { // bit 1
-				geo.addView(App.VIEW_EUCLIDIAN2);
+				geo.addView(App.VIEW_euclidean2);
 			} else {
-				geo.removeView(App.VIEW_EUCLIDIAN2);
+				geo.removeView(App.VIEW_euclidean2);
 			}
 
 			if ((EVs & 4) == 4) { // bit 2
@@ -2647,7 +2647,7 @@ public class ConsElementXMLHandler {
 				// (as older versions of this file format did not
 				// store show/hide information for all kinds of objects,
 				// e.g. GeoNumeric)
-				geo1.setEuclidianVisible(false);
+				geo1.seteuclideanVisible(false);
 			}
 		} else {
 			int defset = Integer.parseInt(defaultset);
@@ -2660,7 +2660,7 @@ public class ConsElementXMLHandler {
 					geo1 = xmlHandler.kernel.createGeoElement(xmlHandler.cons,
 							type);
 					geo1.setLoadedLabel(label);
-					geo1.setEuclidianVisible(false);
+					geo1.seteuclideanVisible(false);
 				}
 			}
 		}
@@ -2693,7 +2693,7 @@ public class ConsElementXMLHandler {
 			if (strPointStyle != null) {
 				docPointStyle = Integer.parseInt(strPointStyle);
 			} else {
-				docPointStyle = EuclidianStyleConstants.POINT_STYLE_DOT;
+				docPointStyle = euclideanStyleConstants.POINT_STYLE_DOT;
 			}
 
 			// TODO save as default construction (F.S.)

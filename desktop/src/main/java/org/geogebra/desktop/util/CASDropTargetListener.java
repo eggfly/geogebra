@@ -9,7 +9,7 @@ import java.awt.dnd.DropTargetListener;
 import java.util.ArrayList;
 
 import org.geogebra.common.cas.view.CASView;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.GeoCasCell;
@@ -171,7 +171,7 @@ public class CASDropTargetListener implements DropTargetListener {
 						}
 
 						// stop editing and evaluate the new input
-						app.setMode(EuclidianConstants.MODE_CAS_EVALUATE);
+						app.setMode(euclideanConstants.MODE_CAS_EVALUATE);
 						table.stopEditing();
 					}
 				}

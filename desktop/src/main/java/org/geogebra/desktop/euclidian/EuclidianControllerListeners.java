@@ -1,4 +1,4 @@
-package org.geogebra.desktop.euclidian;
+package org.geogebra.desktop.euclidean;
 
 import java.awt.Component;
 import java.awt.event.ComponentListener;
@@ -12,7 +12,7 @@ import java.awt.event.MouseWheelListener;
  * @author mathieu
  *
  */
-public interface EuclidianControllerListeners extends MouseListener,
+public interface euclideanControllerListeners extends MouseListener,
 		MouseMotionListener, MouseWheelListener, ComponentListener {
 
 	/**

@@ -10,15 +10,15 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GArea;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.implicit.GeoImplicit;
 
 /**
- * Draw GeoImplicitCurve on euclidian view
+ * Draw GeoImplicitCurve on euclidean view
  */
 public class DrawImplicitCurve extends DrawLocus {
 
@@ -35,7 +35,7 @@ public class DrawImplicitCurve extends DrawLocus {
 	 * @param implicitCurve
 	 *            implicit Curvenomial
 	 */
-	public DrawImplicitCurve(EuclidianView view, GeoImplicit implicitCurve) {
+	public DrawImplicitCurve(euclideanView view, GeoImplicit implicitCurve) {
 		super(view, implicitCurve.getLocus(),
 				implicitCurve.getTransformedCoordSys());
 		this.view = view;

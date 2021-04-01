@@ -41,7 +41,7 @@ public class ListAsComboModel extends BooleanOptionModel {
 		geo.setDrawAsComboBox(value);
 
 		if (value) {
-			geo.setEuclidianVisible(true);
+			geo.seteuclideanVisible(true);
 			geo.updateRepaint();
 		}
 

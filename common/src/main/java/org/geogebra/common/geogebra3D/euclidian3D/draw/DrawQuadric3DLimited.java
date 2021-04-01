@@ -1,10 +1,10 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoQuadric3DLimited;
 import org.geogebra.common.kernel.geos.GProperty;
 import org.geogebra.common.kernel.matrix.Coords;
@@ -29,7 +29,7 @@ public class DrawQuadric3DLimited extends Drawable3D {
 	 * @param geo
 	 *            limited quadric
 	 */
-	public DrawQuadric3DLimited(EuclidianView3D view3d,
+	public DrawQuadric3DLimited(euclideanView3D view3d,
 			GeoQuadric3DLimited geo) {
 		super(view3d, geo);
 
@@ -174,7 +174,7 @@ public class DrawQuadric3DLimited extends Drawable3D {
 	@Override
 	public boolean isTransparent() {
 		if (getPickingType() == PickingType.SURFACE) {
-			return getAlpha() <= EuclidianController.MAX_TRANSPARENT_ALPHA_VALUE_INT;
+			return getAlpha() <= euclideanController.MAX_TRANSPARENT_ALPHA_VALUE_INT;
 		}
 		return false;
 	}

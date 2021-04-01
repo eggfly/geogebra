@@ -57,8 +57,8 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.gui.dialog.TextInputDialog;
 import org.geogebra.common.gui.util.SelectionTable;
@@ -241,7 +241,7 @@ public class TextInputDialogD extends InputDialogD
 		this.startPoint = startPoint1;
 		this.rw = rw1;
 		setGeoText(text);
-		isTextMode = app.getMode() == EuclidianConstants.MODE_TEXT;
+		isTextMode = app.getMode() == euclideanConstants.MODE_TEXT;
 		updatePreviewText();
 		editor.requestFocus();
 	}
@@ -790,12 +790,12 @@ public class TextInputDialogD extends InputDialogD
 
 									if (isTextMode) {
 										app.setMode(
-												EuclidianConstants.MODE_TEXT);
+												euclideanConstants.MODE_TEXT);
 										return;
 									}
 								}
 								if (finished) {
-									app.setMode(EuclidianConstants.MODE_MOVE);
+									app.setMode(euclideanConstants.MODE_MOVE);
 								}
 
 							}
@@ -810,7 +810,7 @@ public class TextInputDialogD extends InputDialogD
 					setGeoText(editGeo);
 				}
 				if (isTextMode) {
-					app.setMode(EuclidianConstants.MODE_TEXT);
+					app.setMode(euclideanConstants.MODE_TEXT);
 				}
 			}
 
@@ -1210,8 +1210,8 @@ public class TextInputDialogD extends InputDialogD
 						t.setSerifFont(true);
 					}
 
-					EuclidianViewInterfaceCommon activeView = kernel
-							.getApplication().getActiveEuclidianView();
+					euclideanViewInterfaceCommon activeView = kernel
+							.getApplication().getActiveeuclideanView();
 
 					if (startPoint.isLabelSet()) {
 						t.checkVisibleIn3DViewNeeded();
@@ -1225,8 +1225,8 @@ public class TextInputDialogD extends InputDialogD
 						// changed to RealWorld
 						// not absolute
 						// startpoint contains mouse coords
-						// t.setAbsoluteScreenLoc(euclidianView.toScreenCoordX(startPoint.inhomX),
-						// euclidianView.toScreenCoordY(startPoint.inhomY));
+						// t.setAbsoluteScreenLoc(euclideanView.toScreenCoordX(startPoint.inhomX),
+						// euclideanView.toScreenCoordY(startPoint.inhomY));
 						// t.setAbsoluteScreenLocActive(true);
 						if (rw) {
 							Coords coords = startPoint.getInhomCoordsInD3();
@@ -1245,16 +1245,16 @@ public class TextInputDialogD extends InputDialogD
 
 						// when not a point clicked, show text only in active
 						// view
-						if (activeView.isEuclidianView3D()) {
+						if (activeView.iseuclideanView3D()) {
 							// we need to add it to 3D view since by default
 							// it may not
 							kernel.getApplication().addToViews3D(t);
-							app.removeFromEuclidianView(t);
+							app.removeFromeuclideanView(t);
 							t.setVisibleInViewForPlane(false);
 							kernel.getApplication().removeFromViewsForPlane(t);
 						} else if (activeView.isDefault2D()) {
 							if (kernel.getApplication()
-									.isEuclidianView3Dinited()) {
+									.iseuclideanView3Dinited()) {
 								kernel.getApplication().removeFromViews3D(t);
 							} else {
 								t.removeViews3D();
@@ -1262,9 +1262,9 @@ public class TextInputDialogD extends InputDialogD
 							t.setVisibleInViewForPlane(false);
 							kernel.getApplication().removeFromViewsForPlane(t);
 						} else { // view for plane
-							app.removeFromEuclidianView(t);
+							app.removeFromeuclideanView(t);
 							if (kernel.getApplication()
-									.isEuclidianView3Dinited()) {
+									.iseuclideanView3Dinited()) {
 								kernel.getApplication().removeFromViews3D(t);
 							} else {
 								t.removeViews3D();
@@ -1275,7 +1275,7 @@ public class TextInputDialogD extends InputDialogD
 					}
 
 					// make sure (only) the output of the text tool is selected
-					activeView.getEuclidianController()
+					activeView.geteuclideanController()
 							.memorizeJustCreatedGeos(ret);
 
 					t.updateRepaint();

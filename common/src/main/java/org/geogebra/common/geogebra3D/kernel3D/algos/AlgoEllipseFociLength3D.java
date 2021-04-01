@@ -18,7 +18,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.geogebra3D.kernel3D.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.commands.Commands;
@@ -47,7 +47,7 @@ public class AlgoEllipseFociLength3D extends AlgoConicFociLength3D {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_ELLIPSE_THREE_POINTS;
+		return euclideanConstants.MODE_ELLIPSE_THREE_POINTS;
 	}
 
 	@Override

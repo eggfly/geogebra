@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import static org.mockito.ArgumentMatchers.notNull;
 import static org.mockito.Mockito.atLeastOnce;
@@ -91,7 +91,7 @@ public class DrawablesTest {
 		TreeSet<GeoClass> types = new TreeSet<>();
 		for (int i = 0; i < def.length; i++) {
 			GeoElementND geo = ap.processAlgebraCommand(def[i], false)[0];
-			DrawableND draw = app.getEuclidianView1().newDrawable(geo);
+			DrawableND draw = app.geteuclideanView1().newDrawable(geo);
 			Assert.assertEquals(geo.getDefinitionForInputBar(),
 					expectDrawableFor(geo), draw != null);
 			types.add(geo.getGeoClassType());

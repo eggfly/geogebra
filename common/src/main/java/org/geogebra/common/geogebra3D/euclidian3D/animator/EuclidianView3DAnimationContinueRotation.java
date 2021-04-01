@@ -1,13 +1,13 @@
-package org.geogebra.common.geogebra3D.euclidian3D.animator;
+package org.geogebra.common.geogebra3D.euclidean3D.animator;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.animator.EuclidianView3DAnimator.AnimationType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.animator.euclideanView3DAnimator.AnimationType;
 
 /**
  * animation for continue rotation
  *
  */
-public class EuclidianView3DAnimationContinueRotation extends EuclidianView3DAnimation {
+public class euclideanView3DAnimationContinueRotation extends euclideanView3DAnimation {
 
 	private static final double MAX_ROT_SPEED = 0.1;
 
@@ -23,8 +23,8 @@ public class EuclidianView3DAnimationContinueRotation extends EuclidianView3DAni
 	 * @param delay delay occurring between user interaction and animation start
 	 * @param rotSpeed rotation speed
 	 */
-	EuclidianView3DAnimationContinueRotation(EuclidianView3D view3D,
-			EuclidianView3DAnimator animator, double delay, double rotSpeed) {
+	euclideanView3DAnimationContinueRotation(euclideanView3D view3D,
+			euclideanView3DAnimator animator, double delay, double rotSpeed) {
 
 		super(view3D, animator);
 		double rotSpeed2 = rotSpeed;

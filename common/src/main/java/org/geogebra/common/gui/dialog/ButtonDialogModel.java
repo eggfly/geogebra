@@ -65,7 +65,7 @@ public class ButtonDialogModel {
 		button = textField
 				? app.getKernel().getAlgoDispatcher().textfield(null, linkedGeo)
 				: GeoButton.getNewButton(cons);
-		button.setEuclidianVisible(true);
+		button.seteuclideanVisible(true);
 		button.setAbsoluteScreenLoc(x, y);
 
 		button.setLabel(null);
@@ -86,7 +86,7 @@ public class ButtonDialogModel {
 			button.setCaption(strCaption);
 		}
 
-		button.setEuclidianVisible(true);
+		button.seteuclideanVisible(true);
 		button.setLabelVisible(true);
 		button.setFixed(true);
 		button.updateRepaint();

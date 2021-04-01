@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.gui.dialog.handler.NumberInputHandler;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoPolygon;
@@ -33,7 +33,7 @@ public class DialogManager3DW extends DialogManagerW {
 	 */
 	@Override
 	public void showNumberInputDialogSpherePointRadius(String title,
-			GeoPointND center, EuclidianController ec) {
+			GeoPointND center, euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		DialogData data = new DialogData(title);
@@ -56,7 +56,7 @@ public class DialogManager3DW extends DialogManagerW {
 	 */
 	@Override
 	public void showNumberInputDialogConeTwoPointsRadius(String title,
-			GeoPointND a, GeoPointND b, EuclidianController ec) {
+			GeoPointND a, GeoPointND b, euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		DialogData data = new DialogData(title);
@@ -68,7 +68,7 @@ public class DialogManager3DW extends DialogManagerW {
 
 	@Override
 	public void showNumberInputDialogCylinderTwoPointsRadius(String title,
-			GeoPointND a, GeoPointND b, EuclidianController ec) {
+			GeoPointND a, GeoPointND b, euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		DialogData data = new DialogData(title);
@@ -81,7 +81,7 @@ public class DialogManager3DW extends DialogManagerW {
 	@Override
 	public void showNumberInputDialogCirclePointDirectionRadius(String title,
 			GeoPointND geoPoint, GeoDirectionND forAxis,
-			EuclidianController ec) {
+			euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		DialogData data = new DialogData(title);
@@ -94,7 +94,7 @@ public class DialogManager3DW extends DialogManagerW {
 	@Override
 	public void showNumberInputDialogRotate(String title, GeoPolygon[] polys,
 			GeoLineND[] selectedLines, GeoElement[] selGeos,
-			EuclidianController ec) {
+			euclideanController ec) {
 
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());

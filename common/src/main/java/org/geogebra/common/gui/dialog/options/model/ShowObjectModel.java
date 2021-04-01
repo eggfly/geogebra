@@ -23,7 +23,7 @@ public class ShowObjectModel extends BooleanOptionModel {
 		for (int i = 1; i < getGeosLength(); i++) {
 			temp = getGeoAt(i);
 			// same object visible value
-			if (geo0.isSetEuclidianVisible() != temp.isSetEuclidianVisible()) {
+			if (geo0.isSeteuclideanVisible() != temp.isSeteuclideanVisible()) {
 				equalObjectVal = false;
 				break;
 			}
@@ -34,7 +34,7 @@ public class ShowObjectModel extends BooleanOptionModel {
 		}
 
 		((IShowObjectListener) getListener()).updateCheckbox(equalObjectVal
-				&& geo0.isSetEuclidianVisible(),
+				&& geo0.isSeteuclideanVisible(),
 				!showObjectCondition);
 
 	}
@@ -64,7 +64,7 @@ public class ShowObjectModel extends BooleanOptionModel {
 	@Override
 	public void apply(int index, boolean value) {
 		GeoElement geo = getGeoAt(index);
-		geo.setEuclidianVisible(value);
+		geo.seteuclideanVisible(value);
 		geo.updateRepaint();
 		storeUndoInfo();
 	}

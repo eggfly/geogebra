@@ -1,7 +1,7 @@
-package org.geogebra.web.full.euclidian;
+package org.geogebra.web.full.euclidean;
 
 import org.geogebra.common.util.MyMath;
-import org.geogebra.web.html5.euclidian.EuclidianControllerW;
+import org.geogebra.web.html5.euclidean.euclideanControllerW;
 
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.Touch;
@@ -18,15 +18,15 @@ import com.google.gwt.event.dom.client.TouchStartHandler;
  */
 public class SmartTouchHandler implements TouchStartHandler, TouchEndHandler,
 		TouchMoveHandler {
-	private final EuclidianControllerW ec;
+	private final euclideanControllerW ec;
 	private Touch t1;
 	private Touch t2;
 
 	/**
 	 * @param ec
-	 *            euclidian controller
+	 *            euclidean controller
 	 */
-	public SmartTouchHandler(EuclidianControllerW ec) {
+	public SmartTouchHandler(euclideanControllerW ec) {
 		this.ec = ec;
 	}
 

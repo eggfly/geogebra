@@ -1,7 +1,7 @@
-package org.geogebra.web.full.euclidian;
+package org.geogebra.web.full.euclidean;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.web.full.css.MaterialDesignResources;
 import org.geogebra.web.full.gui.util.MyCJButton;
 import org.geogebra.web.full.javax.swing.GPopupMenuW;

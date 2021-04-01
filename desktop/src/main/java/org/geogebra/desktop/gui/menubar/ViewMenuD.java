@@ -98,7 +98,7 @@ public class ViewMenuD extends BaseMenu {
 	public boolean is3DViewShown() {
 		DockPanelD[] dockPanels = layout.getDockManager().getPanels();
 		for (DockPanelD panel : dockPanels) {
-			if (panel.isVisible() && panel.isEuclidianDockPanel3D()) {
+			if (panel.isVisible() && panel.iseuclideanDockPanel3D()) {
 				return true;
 			}
 		}

@@ -177,6 +177,6 @@ public class OptionsCASD implements OptionPanelD, ActionListener, SetLabels {
 
 	@Override
 	public void setSelected(boolean flag) {
-		// see OptionsEuclidianD for possible implementation
+		// see OptionseuclideanD for possible implementation
 	}
 }

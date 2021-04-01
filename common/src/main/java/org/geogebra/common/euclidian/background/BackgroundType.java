@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.background;
+package org.geogebra.common.euclidean.background;
 
 import java.util.Arrays;
 import java.util.Collections;

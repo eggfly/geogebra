@@ -1,21 +1,21 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Panel;
 
-public interface EuclidianPanelWAbstract {
+public interface euclideanPanelWAbstract {
 
 	AbsolutePanel getAbsolutePanel();
 
-	Panel getEuclidianPanel();
+	Panel geteuclideanPanel();
 
 	Canvas getCanvas();
 
-	EuclidianView getEuclidianView();
+	euclideanView geteuclideanView();
 
 	void setPixelSize(int x, int y);
 

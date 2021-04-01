@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 import org.geogebra.common.awt.GDimension;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.web.html5.Browser;
 import org.geogebra.web.html5.gui.util.AriaHelper;
@@ -39,7 +39,7 @@ public class ZoomController {
 	/** after we leave fullscreen, we must reset container position */
 	private HashMap<String, String> containerProps = new HashMap<>();
 	private boolean homeShown;
-	private EuclidianView view;
+	private euclideanView view;
 
 	private boolean emulated;
 
@@ -47,9 +47,9 @@ public class ZoomController {
 	 * @param app
 	 *            see {@link AppW}
 	 * @param view
-	 *            euclidian view
+	 *            euclidean view
 	 */
-	public ZoomController(AppW app, EuclidianView view) {
+	public ZoomController(AppW app, euclideanView view) {
 		this.app = app;
 		this.view = view;
 	}
@@ -139,12 +139,12 @@ public class ZoomController {
 	}
 
 	private void zoomInOut(boolean out) {
-		double factor = out ? 1d / EuclidianView.MODE_ZOOM_FACTOR
-				: EuclidianView.MODE_ZOOM_FACTOR;
+		double factor = out ? 1d / euclideanView.MODE_ZOOM_FACTOR
+				: euclideanView.MODE_ZOOM_FACTOR;
 		double px = view.getWidth() / 2.0;
 		double py = view.getHeight() / 2.0;
 
-		view.getEuclidianController().zoomInOut(factor, 15, px, py);
+		view.geteuclideanController().zoomInOut(factor, 15, px, py);
 	}
 
 	/**

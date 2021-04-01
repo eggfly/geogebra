@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import org.geogebra.common.GeoGebraConstants;
-import org.geogebra.common.euclidian3D.Input3DConstants;
+import org.geogebra.common.euclidean3D.Input3DConstants;
 import org.geogebra.common.main.App;
 import org.geogebra.desktop.gui.util.HelpAction;
 import org.geogebra.desktop.main.AppD;

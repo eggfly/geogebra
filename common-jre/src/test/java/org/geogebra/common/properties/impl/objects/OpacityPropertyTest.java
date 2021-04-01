@@ -26,7 +26,7 @@ public class OpacityPropertyTest extends BaseUnitTest {
 	@Test
 	public void testConstructorForSlider() {
 		GeoElement slider = addAvInput("1");
-		slider.setEuclidianVisible(true);
+		slider.seteuclideanVisible(true);
 		assertThrows(NotApplicablePropertyException.class,
 				() -> new OpacityProperty(getLocalization(), slider));
 	}

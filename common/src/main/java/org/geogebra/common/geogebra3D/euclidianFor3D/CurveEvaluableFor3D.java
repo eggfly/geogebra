@@ -1,4 +1,4 @@
-package org.geogebra.common.geogebra3D.euclidianFor3D;
+package org.geogebra.common.geogebra3D.euclideanFor3D;
 
 import org.apache.commons.math3.analysis.UnivariateFunction;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoCurveCartesian3D;

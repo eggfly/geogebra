@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.plot;
+package org.geogebra.common.euclidean.plot;
 
 import org.geogebra.common.kernel.MyPoint;
 import org.geogebra.common.kernel.SegmentType;

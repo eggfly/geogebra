@@ -263,7 +263,7 @@ public class LoadFilePresenter {
 		app.setFileVersion(GeoGebraConstants.VERSION_STRING, "auto");
 
 		// default layout doesn't have a Graphics View 2
-		app.getEuclidianViewpanel().deferredOnResize();
+		app.geteuclideanViewpanel().deferredOnResize();
 
 		app.appSplashCanNowHide();
 

@@ -1,10 +1,10 @@
-package org.geogebra.common.geogebra3D.euclidianForPlane;
+package org.geogebra.common.geogebra3D.euclideanForPlane;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.geogebra3D.euclidianFor3D.EuclidianControllerFor3DCompanion;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.geogebra3D.euclideanFor3D.euclideanControllerFor3DCompanion;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Path;
@@ -22,14 +22,14 @@ import org.geogebra.common.main.DialogManager.CreateGeoForRotate;
  * @author mathieu
  *
  */
-public class EuclidianControllerForPlaneCompanion
-		extends EuclidianControllerFor3DCompanion {
+public class euclideanControllerForPlaneCompanion
+		extends euclideanControllerFor3DCompanion {
 
 	/**
 	 * @param ec
-	 *            euclidian controller
+	 *            euclidean controller
 	 */
-	public EuclidianControllerForPlaneCompanion(EuclidianController ec) {
+	public euclideanControllerForPlaneCompanion(euclideanController ec) {
 		super(ec);
 	}
 
@@ -134,7 +134,7 @@ public class EuclidianControllerForPlaneCompanion
 
 	@Override
 	public boolean viewOrientationForClockwise(boolean clockwise, CreateGeoForRotate creator) {
-		return ((EuclidianViewForPlaneCompanion) ec.getView().getCompanion())
+		return ((euclideanViewForPlaneCompanion) ec.getView().getCompanion())
 				.viewOrientationForClockwise(clockwise);
 	}
 

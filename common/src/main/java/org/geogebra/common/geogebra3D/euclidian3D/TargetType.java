@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D;
+package org.geogebra.common.geogebra3D.euclidean3D;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.Hits;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.Hits;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoPolygon;
@@ -16,49 +16,49 @@ public enum TargetType {
 	/** no target */
 	NOT_USED {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			// nothing to draw
 		}
 	},
 	/** nothing targeted, no hit */
 	NOTHING_NO_HIT {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			// draw nothing (TODO)
 		}
 	},
 	/** nothing targeted, hit can be used for showing */
 	NOTHING {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			// draw nothing (TODO)
 		}
 	},
 	/** target new point on region */
 	POINT_ON_REGION {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			doDrawTarget(renderer, target);
 		}
 	},
 	/** target new point on path */
 	POINT_ON_PATH {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			doDrawTarget(renderer, target);
 		}
 	},
 	/** target new point at intersection */
 	POINT_INTERSECTION {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			doDrawTarget(renderer, target);
 		}
 	},
 	/** target existing point for move or select tools */
 	POINT_ALREADY_MOVE_OR_SELECT {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			renderer.setMatrix(view3d.getCursorMatrix());
 			view3d.drawPointAlready(view3d.getCursor3D());
 		}
@@ -66,7 +66,7 @@ public enum TargetType {
 	/** target existing point where arrows are shown to move it */
 	POINT_ALREADY_SHOW_ARROWS {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			renderer.setMatrix(view3d.getCursorMatrix());
             view3d.drawPointAlready(view3d.getCursor3D());
 		}
@@ -74,7 +74,7 @@ public enum TargetType {
 	/** target existing point where no arrow are shown */
 	POINT_ALREADY_NO_ARROW {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 		    // avoid z-fighting
 			renderer.getRendererImpl()
 					.setLayer(view3d.getCursor3D().getLayer() + 1);
@@ -85,28 +85,28 @@ public enum TargetType {
 	/** target free point (3D input devices) */
 	POINT_FREE {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			doDrawTarget(renderer, target);
 		}
 	},
 	/** target path to select */
 	SELECT_PATH {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			doDrawTarget(renderer, target);
 		}
 	},
 	/** target region to select */
 	SELECT_REGION {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			doDrawTarget(renderer, target);
 		}
 	},
 	/** target path or region with "view in front of" tool */
 	VIEW_IN_FRONT_OF {
 		@Override
-		public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target) {
+		public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target) {
 			renderer.setMatrix(view3d.getCursorMatrix());
 			renderer.drawViewInFrontOf();
 		}
@@ -120,11 +120,11 @@ public enum TargetType {
 	 *            3D controller
 	 * @return current target type regarding view 3D cursor and mode
 	 */
-	static public TargetType getCurrentTargetType(EuclidianView3D view3D,
-			EuclidianController3D ec) {
+	static public TargetType getCurrentTargetType(euclideanView3D view3D,
+			euclideanController3D ec) {
 		int mode = ec.getMode();
 		switch (view3D.getCursor3DType()) {
-		case EuclidianView3D.PREVIEW_POINT_ALREADY:
+		case euclideanView3D.PREVIEW_POINT_ALREADY:
 			if (isModePointAlreadyMoveOrSelect(mode)) {
 				return POINT_ALREADY_MOVE_OR_SELECT;
 			}
@@ -139,12 +139,12 @@ public enum TargetType {
 			}
 			return NOT_USED;
 
-		case EuclidianView3D.PREVIEW_POINT_DEPENDENT:
-			if (mode == EuclidianConstants.MODE_POINT_ON_OBJECT) {
+		case euclideanView3D.PREVIEW_POINT_DEPENDENT:
+			if (mode == euclideanConstants.MODE_POINT_ON_OBJECT) {
 				return NOTHING;
 			}
 			if (isModeForCreatingPoint(mode)) {
-				if (mode == EuclidianConstants.MODE_REGULAR_POLYGON) {
+				if (mode == euclideanConstants.MODE_REGULAR_POLYGON) {
 					return (ec.selPoints() == 0 || ec.selCS2D() == 1)
 							? POINT_INTERSECTION
 							: NOTHING;
@@ -153,16 +153,16 @@ public enum TargetType {
 			}
 			return NOT_USED;
 
-		case EuclidianView3D.PREVIEW_POINT_NONE:
+		case euclideanView3D.PREVIEW_POINT_NONE:
 			return isModeForCreatingPoint(mode) ? NOTHING_NO_HIT : NOT_USED;
-		case EuclidianView3D.PREVIEW_POINT_FREE:
+		case euclideanView3D.PREVIEW_POINT_FREE:
 			return isModeForCreatingPoint(mode) ? POINT_FREE : NOT_USED;
 
-		case EuclidianView3D.PREVIEW_POINT_PATH:
-		case EuclidianView3D.PREVIEW_POINT_REGION_AS_PATH:
+		case euclideanView3D.PREVIEW_POINT_PATH:
+		case euclideanView3D.PREVIEW_POINT_REGION_AS_PATH:
 			return getCurrentTargetTypeForPathOrRegion(view3D, ec, mode,
 					POINT_ON_PATH, SELECT_PATH);
-		case EuclidianView3D.PREVIEW_POINT_REGION:
+		case euclideanView3D.PREVIEW_POINT_REGION:
 			return getCurrentTargetTypeForPathOrRegion(view3D, ec, mode,
 					POINT_ON_REGION, SELECT_REGION);
 		}
@@ -177,8 +177,8 @@ public enum TargetType {
 	 * @return true if mode moves/select already created points
 	 */
 	static public boolean isModePointAlreadyMoveOrSelect(int mode) {
-		return mode == EuclidianConstants.MODE_MOVE
-				|| mode == EuclidianConstants.MODE_SELECT;
+		return mode == euclideanConstants.MODE_MOVE
+				|| mode == euclideanConstants.MODE_SELECT;
 	}
 
 	/**
@@ -188,8 +188,8 @@ public enum TargetType {
 	 * @return true if mode acts as point tool when over already created point
 	 */
 	static public boolean isModePointAlreadyAsPointTool(int mode) {
-		return mode == EuclidianConstants.MODE_POINT
-				|| mode == EuclidianConstants.MODE_POINT_ON_OBJECT;
+		return mode == euclideanConstants.MODE_POINT
+				|| mode == euclideanConstants.MODE_POINT_ON_OBJECT;
 	}
 
 	/**
@@ -200,32 +200,32 @@ public enum TargetType {
 	 */
 	static public boolean isModeForCreatingPoint(int mode) {
 		switch (mode) {
-		case EuclidianConstants.MODE_POINT:
-		case EuclidianConstants.MODE_POINT_ON_OBJECT:
-		case EuclidianConstants.MODE_SEGMENT:
-		case EuclidianConstants.MODE_SEGMENT_FIXED:
-		case EuclidianConstants.MODE_JOIN:
-		case EuclidianConstants.MODE_RAY:
-		case EuclidianConstants.MODE_VECTOR:
-		case EuclidianConstants.MODE_POLYGON:
-		case EuclidianConstants.MODE_PYRAMID:
-		case EuclidianConstants.MODE_PRISM:
-		case EuclidianConstants.MODE_TETRAHEDRON:
-		case EuclidianConstants.MODE_CUBE:
-		case EuclidianConstants.MODE_SPHERE_TWO_POINTS:
-		case EuclidianConstants.MODE_SPHERE_POINT_RADIUS:
-		case EuclidianConstants.MODE_CONE_TWO_POINTS_RADIUS:
-		case EuclidianConstants.MODE_CYLINDER_TWO_POINTS_RADIUS:
-		case EuclidianConstants.MODE_PLANE_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCLE_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCLE_ARC_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCUMCIRCLE_ARC_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCLE_SECTOR_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCUMCIRCLE_SECTOR_THREE_POINTS:
-		case EuclidianConstants.MODE_ELLIPSE_THREE_POINTS:
-		case EuclidianConstants.MODE_CONIC_FIVE_POINTS:
-		case EuclidianConstants.MODE_POLYLINE:
-		case EuclidianConstants.MODE_REGULAR_POLYGON:
+		case euclideanConstants.MODE_POINT:
+		case euclideanConstants.MODE_POINT_ON_OBJECT:
+		case euclideanConstants.MODE_SEGMENT:
+		case euclideanConstants.MODE_SEGMENT_FIXED:
+		case euclideanConstants.MODE_JOIN:
+		case euclideanConstants.MODE_RAY:
+		case euclideanConstants.MODE_VECTOR:
+		case euclideanConstants.MODE_POLYGON:
+		case euclideanConstants.MODE_PYRAMID:
+		case euclideanConstants.MODE_PRISM:
+		case euclideanConstants.MODE_TETRAHEDRON:
+		case euclideanConstants.MODE_CUBE:
+		case euclideanConstants.MODE_SPHERE_TWO_POINTS:
+		case euclideanConstants.MODE_SPHERE_POINT_RADIUS:
+		case euclideanConstants.MODE_CONE_TWO_POINTS_RADIUS:
+		case euclideanConstants.MODE_CYLINDER_TWO_POINTS_RADIUS:
+		case euclideanConstants.MODE_PLANE_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_ARC_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCUMCIRCLE_ARC_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_SECTOR_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCUMCIRCLE_SECTOR_THREE_POINTS:
+		case euclideanConstants.MODE_ELLIPSE_THREE_POINTS:
+		case euclideanConstants.MODE_CONIC_FIVE_POINTS:
+		case euclideanConstants.MODE_POLYLINE:
+		case euclideanConstants.MODE_REGULAR_POLYGON:
 			return true;
 		default:
 			return false;
@@ -233,34 +233,34 @@ public enum TargetType {
 	}
 
 	static private TargetType getCurrentTargetTypeForPathOrRegion(
-			EuclidianView3D view3D, EuclidianController3D ec, int mode,
+			euclideanView3D view3D, euclideanController3D ec, int mode,
 			TargetType onSuccess, TargetType onFail) {
 		switch (mode) {
-		case EuclidianConstants.MODE_POINT:
-		case EuclidianConstants.MODE_POINT_ON_OBJECT:
-		case EuclidianConstants.MODE_SEGMENT:
-		case EuclidianConstants.MODE_SEGMENT_FIXED:
-		case EuclidianConstants.MODE_JOIN:
-		case EuclidianConstants.MODE_RAY:
-		case EuclidianConstants.MODE_VECTOR:
-		case EuclidianConstants.MODE_POLYGON:
-		case EuclidianConstants.MODE_SPHERE_TWO_POINTS:
-		case EuclidianConstants.MODE_SPHERE_POINT_RADIUS:
-		case EuclidianConstants.MODE_CONE_TWO_POINTS_RADIUS:
-		case EuclidianConstants.MODE_CYLINDER_TWO_POINTS_RADIUS:
-		case EuclidianConstants.MODE_PLANE_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCLE_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCLE_ARC_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCUMCIRCLE_ARC_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCLE_SECTOR_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCUMCIRCLE_SECTOR_THREE_POINTS:
-		case EuclidianConstants.MODE_ELLIPSE_THREE_POINTS:
-		case EuclidianConstants.MODE_CONIC_FIVE_POINTS:
-		case EuclidianConstants.MODE_POLYLINE:
+		case euclideanConstants.MODE_POINT:
+		case euclideanConstants.MODE_POINT_ON_OBJECT:
+		case euclideanConstants.MODE_SEGMENT:
+		case euclideanConstants.MODE_SEGMENT_FIXED:
+		case euclideanConstants.MODE_JOIN:
+		case euclideanConstants.MODE_RAY:
+		case euclideanConstants.MODE_VECTOR:
+		case euclideanConstants.MODE_POLYGON:
+		case euclideanConstants.MODE_SPHERE_TWO_POINTS:
+		case euclideanConstants.MODE_SPHERE_POINT_RADIUS:
+		case euclideanConstants.MODE_CONE_TWO_POINTS_RADIUS:
+		case euclideanConstants.MODE_CYLINDER_TWO_POINTS_RADIUS:
+		case euclideanConstants.MODE_PLANE_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_ARC_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCUMCIRCLE_ARC_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_SECTOR_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCUMCIRCLE_SECTOR_THREE_POINTS:
+		case euclideanConstants.MODE_ELLIPSE_THREE_POINTS:
+		case euclideanConstants.MODE_CONIC_FIVE_POINTS:
+		case euclideanConstants.MODE_POLYLINE:
 			return onSuccess;
 
-		case EuclidianConstants.MODE_PYRAMID:
-		case EuclidianConstants.MODE_PRISM:
+		case euclideanConstants.MODE_PYRAMID:
+		case euclideanConstants.MODE_PRISM:
 			if (ec.selPolygons() == 1) {
 				return onSuccess;
 			}
@@ -270,17 +270,17 @@ public enum TargetType {
 			}
 			return hits.getPolyCount() > 0 ? onFail : onSuccess;
 
-		case EuclidianConstants.MODE_TETRAHEDRON:
+		case euclideanConstants.MODE_TETRAHEDRON:
 			return getCurrentTargetTypeForPathOrRegionWithArchimedeanMode(
 					view3D, ec, onSuccess, onFail, 3);
-		case EuclidianConstants.MODE_CUBE:
+		case euclideanConstants.MODE_CUBE:
 			return getCurrentTargetTypeForPathOrRegionWithArchimedeanMode(
 					view3D, ec, onSuccess, onFail, 4);
 
-		case EuclidianConstants.MODE_VIEW_IN_FRONT_OF:
+		case euclideanConstants.MODE_VIEW_IN_FRONT_OF:
 			return VIEW_IN_FRONT_OF;
 			
-		case EuclidianConstants.MODE_REGULAR_POLYGON:
+		case euclideanConstants.MODE_REGULAR_POLYGON:
 			// one point or one region: can create a point
 			if (ec.selPoints() == 0 || ec.selCS2D() == 1) {
 				return onSuccess;
@@ -305,7 +305,7 @@ public enum TargetType {
 	}
 
 	static private TargetType getCurrentTargetTypeForPathOrRegionWithArchimedeanMode(
-			EuclidianView3D view3D, EuclidianController3D ec,
+			euclideanView3D view3D, euclideanController3D ec,
 			TargetType onSuccess, TargetType onFail, int vertexCount) {
 		Hits hits;
 		// no point: can select a regular polygon
@@ -361,7 +361,7 @@ public enum TargetType {
 	 * @param target
 	 *            target
 	 */
-	abstract public void drawTarget(Renderer renderer, EuclidianView3D view3d, Target target);
+	abstract public void drawTarget(Renderer renderer, euclideanView3D view3d, Target target);
 
 	/**
 	 * draw sphere at current cursor position

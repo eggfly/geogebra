@@ -17,7 +17,7 @@ import java.util.Iterator;
 import java.util.TreeSet;
 
 import org.geogebra.common.awt.GPoint2D;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoPoint3DInRegion;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoPoint3DOnPath;
 import org.geogebra.common.kernel.Construction;
@@ -145,7 +145,7 @@ public abstract class AlgoLocusND<T extends MyPoint> extends AlgoElement {
 		setInputOutput(); // for AlgoElement
 
 		if (registerCE) {
-			cons.registerEuclidianViewCE(this);
+			cons.registereuclideanViewCE(this);
 		}
 
 		compute();
@@ -216,7 +216,7 @@ public abstract class AlgoLocusND<T extends MyPoint> extends AlgoElement {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_LOCUS;
+		return euclideanConstants.MODE_LOCUS;
 	}
 
 	/**
@@ -938,7 +938,7 @@ public abstract class AlgoLocusND<T extends MyPoint> extends AlgoElement {
 	}
 
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 		boolean changed = updateScreenBorders();
 		if (changed || !locus.getAlgoUpdateSet().isEmpty()) {
 			update();

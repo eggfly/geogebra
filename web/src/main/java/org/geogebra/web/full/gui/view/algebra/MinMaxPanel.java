@@ -1,7 +1,7 @@
 package org.geogebra.web.full.gui.view.algebra;
 
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.StringTemplate;

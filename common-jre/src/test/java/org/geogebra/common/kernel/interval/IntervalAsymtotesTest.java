@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.geogebra.common.BaseUnitTest;
-import org.geogebra.common.euclidian.plot.interval.PlotterUtils;
+import org.geogebra.common.euclidean.plot.interval.PlotterUtils;
 import org.geogebra.common.kernel.geos.GeoFunction;
 import org.junit.Test;
 

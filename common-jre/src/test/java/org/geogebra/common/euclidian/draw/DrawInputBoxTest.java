@@ -1,16 +1,16 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import org.geogebra.common.BaseUnitTest;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.plugin.GeoClass;
 import org.geogebra.common.plugin.script.GgbScript;
 import org.geogebra.common.util.TextObject;
-import org.geogebra.test.euclidian.AutoCompleteTextFieldC;
-import org.geogebra.test.euclidian.TextFieldCommonJre;
+import org.geogebra.test.euclidean.AutoCompleteTextFieldC;
+import org.geogebra.test.euclidean.TextFieldCommonJre;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -27,9 +27,9 @@ public class DrawInputBoxTest extends BaseUnitTest {
 		emptyInputBox.textObjectUpdated(textObject);
 
 		DrawInputBox inputBoxDrawer
-				= new DrawInputBox(getApp().getActiveEuclidianView(), inputBox);
+				= new DrawInputBox(getApp().getActiveeuclideanView(), inputBox);
 		DrawInputBox emptyInputBoxDrawer
-				= new DrawInputBox(getApp().getActiveEuclidianView(), emptyInputBox);
+				= new DrawInputBox(getApp().getActiveeuclideanView(), emptyInputBox);
 
 		int inputBoxHeight = getHeightOfInputBox(inputBoxDrawer, true);
 		int emptyInputBoxHeight = getHeightOfInputBox(emptyInputBoxDrawer, true);
@@ -43,10 +43,10 @@ public class DrawInputBoxTest extends BaseUnitTest {
 		GeoInputBox inputBox = (GeoInputBox) add("InputBox(a)");
 		inputBox.setSymbolicMode(true, false);
 
-		EuclidianView ev = getApp().getActiveEuclidianView();
+		euclideanView ev = getApp().getActiveeuclideanView();
 		ev.setViewTextField(new TextFieldCommonJre());
 
-		DrawInputBox inputBoxDrawer = new DrawInputBox(getApp().getActiveEuclidianView(), inputBox);
+		DrawInputBox inputBoxDrawer = new DrawInputBox(getApp().getActiveeuclideanView(), inputBox);
 		int symbolicInputBoxHeightNotFocused = getHeightOfInputBox(inputBoxDrawer, true);
 
 		inputBoxDrawer.getTextField().requestFocus();
@@ -63,13 +63,13 @@ public class DrawInputBoxTest extends BaseUnitTest {
 		GeoInputBox inputBox = add("InputBox(a)");
 		inputBox.setSymbolicMode(true, false);
 
-		EuclidianView ev = getApp().getActiveEuclidianView();
+		euclideanView ev = getApp().getActiveeuclideanView();
 		ev.setViewTextField(new TextFieldCommonJre());
 
 		TextObject textObject = mockTextObjectWithReturn("");
 		inputBox.textObjectUpdated(textObject);
 
-		DrawInputBox inputBoxDrawer = new DrawInputBox(getApp().getActiveEuclidianView(), inputBox);
+		DrawInputBox inputBoxDrawer = new DrawInputBox(getApp().getActiveeuclideanView(), inputBox);
 
 		int symbolicInputBoxHeightEmptyInput = getHeightOfInputBox(inputBoxDrawer, true);
 		textObject = mockTextObjectWithReturn("2");
@@ -81,7 +81,7 @@ public class DrawInputBoxTest extends BaseUnitTest {
 
 	@Test
 	public void inputBoxShouldNotStealContent() {
-		EuclidianView ev = getApp().getActiveEuclidianView();
+		euclideanView ev = getApp().getActiveeuclideanView();
 		ev.setViewTextField(new TextFieldCommonJre());
 		add("a=1");
 		GeoInputBox inputBoxNumber = add("InputBox(a)");

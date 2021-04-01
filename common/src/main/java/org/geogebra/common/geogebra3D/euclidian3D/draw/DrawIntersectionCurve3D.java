@@ -1,12 +1,12 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
 import org.geogebra.common.kernel.geos.GeoElement;
 
 /**
@@ -28,7 +28,7 @@ public class DrawIntersectionCurve3D extends Drawable3DCurves
 	 * @param geo
 	 *            first geo
 	 */
-	public DrawIntersectionCurve3D(EuclidianView3D a_view3D, GeoElement geo) {
+	public DrawIntersectionCurve3D(euclideanView3D a_view3D, GeoElement geo) {
 
 		super(a_view3D, geo);
 

@@ -17,7 +17,7 @@ import org.geogebra.common.awt.GBufferedImage;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.EuclidianStatic;
+import org.geogebra.common.euclidean.euclideanStatic;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.plugin.GeoClass;
@@ -73,7 +73,7 @@ public class GeoCanvasImage extends GeoImage {
 		pixelHeight = height;
 
 		this.setBackgroundColor(GColor.BLUE);
-		GBasicStroke objStroke = EuclidianStatic.getDefaultStroke();
+		GBasicStroke objStroke = euclideanStatic.getDefaultStroke();
 		createImage(objStroke, getAlgebraColor(), this.getBackgroundColor(),
 				alphaValue, pixelWidth, pixelHeight);
 
@@ -87,7 +87,7 @@ public class GeoCanvasImage extends GeoImage {
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return isDefined();
 	}
 

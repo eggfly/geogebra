@@ -1,13 +1,13 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.Hits;
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.Hits;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoForExtrusion;
 import org.geogebra.common.geogebra3D.kernel3D.algos.ExtrusionComputer;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -100,7 +100,7 @@ public abstract class DrawExtrusionOrConify3D extends Drawable3DSurfaces
 	 * @param selectedConics
 	 *            conics
 	 */
-	public DrawExtrusionOrConify3D(EuclidianView3D a_view3D,
+	public DrawExtrusionOrConify3D(euclideanView3D a_view3D,
 			ArrayList<GeoPolygon> selectedPolygons,
 			ArrayList<GeoConicND> selectedConics) {
 
@@ -167,18 +167,18 @@ public abstract class DrawExtrusionOrConify3D extends Drawable3DSurfaces
 				extrusionComputer.getAlgo().removeOutputFromAlgebraView();
 				extrusionComputer.getAlgo().removeOutputFromPicking();
 				extrusionComputer.getAlgo()
-						.setOutputPointsEuclidianVisible(false);
+						.setOutputPointseuclideanVisible(false);
 				extrusionComputer.getAlgo().notifyUpdateOutputPoints();
 
 				// sets the top face to be handled
-				((EuclidianController3D) getView3D().getEuclidianController())
+				((euclideanController3D) getView3D().geteuclideanController())
 						.setHandledGeo(
 								extrusionComputer.getAlgo().getGeoToHandle(),
 								basis);
 
 				// ensure correct drawing of visible parts of the previewable
 				extrusionComputer.getAlgo()
-						.setOutputOtherEuclidianVisible(true);
+						.setOutputOthereuclideanVisible(true);
 				extrusionComputer.getAlgo().notifyUpdateOutputOther();
 
 			}
@@ -189,7 +189,7 @@ public abstract class DrawExtrusionOrConify3D extends Drawable3DSurfaces
 	public void disposePreview() {
 		super.disposePreview();
 
-		((EuclidianController3D) getView3D().getEuclidianController())
+		((euclideanController3D) getView3D().geteuclideanController())
 				.disposeHandledGeo();
 
 		if (extrusionComputer != null) {
@@ -204,13 +204,13 @@ public abstract class DrawExtrusionOrConify3D extends Drawable3DSurfaces
 	 * Creates the polyhedron
 	 */
 	public void createPolyhedron() {
-		((EuclidianController3D) getView3D().getEuclidianController())
+		((euclideanController3D) getView3D().geteuclideanController())
 				.disposeHandledGeo();
 
 		if (extrusionComputer != null) {
 
 			// add current height to selected numeric (will be used on next
-			// EuclidianView3D::rightPrism() call)
+			// euclideanView3D::rightPrism() call)
 			Hits hits = new Hits();
 
 			if (!extrusionComputer.getWasComputedByDragging()) {
@@ -235,7 +235,7 @@ public abstract class DrawExtrusionOrConify3D extends Drawable3DSurfaces
 
 			} else {
 				hits.add(height);
-				getView3D().getEuclidianController()
+				getView3D().geteuclideanController()
 						.addSelectedNumberValue(hits, 1, false, false);
 			}
 
@@ -255,7 +255,7 @@ public abstract class DrawExtrusionOrConify3D extends Drawable3DSurfaces
 			implements AsyncOperation<GeoNumberValue> {
 
 		private GeoElement basis;
-		private EuclidianView3D view;
+		private euclideanView3D view;
 		private ExtrusionComputer extrusionComputer;
 
 		/**
@@ -266,7 +266,7 @@ public abstract class DrawExtrusionOrConify3D extends Drawable3DSurfaces
 		 * @param extrusionComputer
 		 *            conifier / extruder
 		 */
-		public void set(GeoElement basis, EuclidianView3D view,
+		public void set(GeoElement basis, euclideanView3D view,
 				ExtrusionComputer extrusionComputer) {
 			this.basis = basis;
 			this.view = view;
@@ -285,8 +285,8 @@ public abstract class DrawExtrusionOrConify3D extends Drawable3DSurfaces
 
 			GeoElement ret;
 			if (basis.isGeoPolygon()) {
-				if (view.getEuclidianController()
-						.getMode() == EuclidianConstants.MODE_EXTRUSION) {
+				if (view.geteuclideanController()
+						.getMode() == euclideanConstants.MODE_EXTRUSION) {
 					// prism
 					ret = basis.getKernel().getManager3D().prism(null,
 							(GeoPolygon) basis, num)[0];
@@ -297,8 +297,8 @@ public abstract class DrawExtrusionOrConify3D extends Drawable3DSurfaces
 				}
 
 			} else { // basis.isGeoConic()
-				if (view.getEuclidianController()
-						.getMode() == EuclidianConstants.MODE_EXTRUSION) {
+				if (view.geteuclideanController()
+						.getMode() == euclideanConstants.MODE_EXTRUSION) {
 					// cylinder
 					ret = basis.getKernel().getManager3D().cylinderLimited(null,
 							(GeoConicND) basis, num)[0];
@@ -310,7 +310,7 @@ public abstract class DrawExtrusionOrConify3D extends Drawable3DSurfaces
 				}
 			}
 
-			view.getEuclidianController().setDialogOccurred();
+			view.geteuclideanController().setDialogOccurred();
 			view.getApplication().getSelectionManager().clearLists();
 			view.getApplication().getSelectionManager().clearSelectedGeos(false,
 					false);

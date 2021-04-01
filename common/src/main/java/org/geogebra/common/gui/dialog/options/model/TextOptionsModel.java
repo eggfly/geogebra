@@ -3,7 +3,7 @@ package org.geogebra.common.gui.dialog.options.model;
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GFont;
-import org.geogebra.common.euclidian.EuclidianStyleBarStatic;
+import org.geogebra.common.euclidean.euclideanStyleBarStatic;
 import org.geogebra.common.gui.inputfield.DynamicTextElement;
 import org.geogebra.common.gui.inputfield.DynamicTextProcessor;
 import org.geogebra.common.gui.menubar.OptionsMenu;
@@ -143,7 +143,7 @@ public class TextOptionsModel extends OptionsModel {
 			}
 		}
 
-		listener.selectFontStyle(EuclidianStyleBarStatic.getFontStyle(getGeosAsList()));
+		listener.selectFontStyle(euclideanStyleBarStatic.getFontStyle(getGeosAsList()));
 	}
 
 	public void applyFontSizeFromString(String percentStr0) {
@@ -245,7 +245,7 @@ public class TextOptionsModel extends OptionsModel {
 	}
 
 	public void applyFontStyle(int mask, boolean add) {
-		EuclidianStyleBarStatic.applyFontStyle(getGeosAsList(), mask, add);
+		euclideanStyleBarStatic.applyFontStyle(getGeosAsList(), mask, add);
 
 		listener.updatePreviewPanel();
 	}

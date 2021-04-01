@@ -12,7 +12,7 @@ public class MaxPropertyTest extends BaseUnitTest {
 	@Test
 	public void testConstructorSucceeds() {
 		GeoNumeric slider = addAvInput("1");
-		slider.setEuclidianVisible(true);
+		slider.seteuclideanVisible(true);
 		try {
 			new MaxProperty(getKernel().getAlgebraProcessor(), getLocalization(), slider);
 		} catch (NotApplicablePropertyException e) {

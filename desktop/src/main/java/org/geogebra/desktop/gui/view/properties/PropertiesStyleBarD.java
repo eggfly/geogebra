@@ -138,11 +138,11 @@ public class PropertiesStyleBarD extends PropertiesStyleBar {
 	 */
 	protected PropertiesButton newPropertiesButton(OptionType type) {
 
-		if (type == OptionType.EUCLIDIAN3D) { // used only for 3D
+		if (type == OptionType.euclidean3D) { // used only for 3D
 			return null;
 		}
 
-		if (type == OptionType.EUCLIDIAN_FOR_PLANE) { // used only for 3D
+		if (type == OptionType.euclidean_FOR_PLANE) { // used only for 3D
 			return null;
 		}
 
@@ -163,11 +163,11 @@ public class PropertiesStyleBarD extends PropertiesStyleBar {
 
 		buttonMap.get(seltype).setSelected(true);
 
-		buttonMap.get(OptionType.EUCLIDIAN)
-				.setVisible(app.getGuiManager().showView(App.VIEW_EUCLIDIAN));
+		buttonMap.get(OptionType.euclidean)
+				.setVisible(app.getGuiManager().showView(App.VIEW_euclidean));
 
-		buttonMap.get(OptionType.EUCLIDIAN2)
-				.setVisible(app.getGuiManager().showView(App.VIEW_EUCLIDIAN2));
+		buttonMap.get(OptionType.euclidean2)
+				.setVisible(app.getGuiManager().showView(App.VIEW_euclidean2));
 
 		buttonMap.get(OptionType.SPREADSHEET)
 				.setVisible(app.getGuiManager().showView(App.VIEW_SPREADSHEET));
@@ -185,11 +185,11 @@ public class PropertiesStyleBarD extends PropertiesStyleBar {
 	 */
 	protected JMenuItem newJMenuItem(OptionType type) {
 
-		if (type == OptionType.EUCLIDIAN3D) { // used only for 3D
+		if (type == OptionType.euclidean3D) { // used only for 3D
 			return null;
 		}
 
-		if (type == OptionType.EUCLIDIAN_FOR_PLANE) { // used only for 3D
+		if (type == OptionType.euclidean_FOR_PLANE) { // used only for 3D
 			return null;
 		}
 

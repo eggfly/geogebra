@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import static org.junit.Assert.assertArrayEquals;
 
@@ -9,10 +9,10 @@ public class NotesSelectionTest extends BaseControllerTest {
 
 	@Test
 	public void selectionRectangleShouldSelectPartOfStroke() {
-		setMode(EuclidianConstants.MODE_PEN);
+		setMode(euclideanConstants.MODE_PEN);
 		dragStart(100, 100);
 		dragEnd(200, 100);
-		setMode(EuclidianConstants.MODE_SELECT_MOW);
+		setMode(euclideanConstants.MODE_SELECT_MOW);
 		dragStart(150, 50);
 		dragEnd(250, 150);
 		assertSelected(lookup("stroke1"));
@@ -20,14 +20,14 @@ public class NotesSelectionTest extends BaseControllerTest {
 
 	@Test
 	public void selectionRectangleShouldSelectPartOfMoreStrokes() {
-		setMode(EuclidianConstants.MODE_PEN);
+		setMode(euclideanConstants.MODE_PEN);
 		dragStart(100, 100);
 		dragEnd(200, 100);
-		setMode(EuclidianConstants.MODE_SELECT_MOW);
-		setMode(EuclidianConstants.MODE_PEN);
+		setMode(euclideanConstants.MODE_SELECT_MOW);
+		setMode(euclideanConstants.MODE_PEN);
 		dragStart(220, 100);
 		dragEnd(300, 100);
-		setMode(EuclidianConstants.MODE_SELECT_MOW);
+		setMode(euclideanConstants.MODE_SELECT_MOW);
 		dragStart(150, 50);
 		dragEnd(250, 150);
 		assertSelected(lookup("stroke1"), lookup("stroke2"));

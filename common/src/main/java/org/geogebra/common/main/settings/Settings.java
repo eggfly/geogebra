@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.main.App;
 
 /**
@@ -22,9 +22,9 @@ public class Settings {
 
 	private Set<Resetable> resetableSettings;
 
-	private final EuclidianSettings[] euclidianSettings;
+	private final euclideanSettings[] euclideanSettings;
 
-	private HashMap<String, EuclidianSettings> euclidianSettingsForPlane;
+	private HashMap<String, euclideanSettings> euclideanSettingsForPlane;
 
 	private AlgebraSettings algebraSettings;
 
@@ -59,22 +59,22 @@ public class Settings {
 	 * @param app
 	 *            - app
 	 * 
-	 * @param euclidianLength
-	 *            2 or 3 euclidian views
+	 * @param euclideanLength
+	 *            2 or 3 euclidean views
 	 */
-	public Settings(App app, int euclidianLength) {
-		euclidianSettings = new EuclidianSettings[euclidianLength];
-		euclidianSettingsForPlane = new HashMap<>();
+	public Settings(App app, int euclideanLength) {
+		euclideanSettings = new euclideanSettings[euclideanLength];
+		euclideanSettingsForPlane = new HashMap<>();
 		resetableSettings = new HashSet<>();
 		resetSettings(app);
 	}
 
-	private static EuclidianSettings createEuclidanSettings(App app, int i) {
+	private static euclideanSettings createEuclidanSettings(App app, int i) {
 		if (i == 2) { // 3D view
-			return new EuclidianSettings3D(app);
+			return new euclideanSettings3D(app);
 		}
 
-		return new EuclidianSettings(app);
+		return new euclideanSettings(app);
 	}
 
 	/**
@@ -84,22 +84,22 @@ public class Settings {
 	 *            - app
 	 */
 	public void resetSettings(App app) {
-		for (int i = 0; i < euclidianSettings.length; ++i) {
-			if (euclidianSettings[i] == null) {
-				euclidianSettings[i] = createEuclidanSettings(app, i);
+		for (int i = 0; i < euclideanSettings.length; ++i) {
+			if (euclideanSettings[i] == null) {
+				euclideanSettings[i] = createEuclidanSettings(app, i);
 			} else {
-				LinkedList<SettingListener> ls = euclidianSettings[i]
+				LinkedList<SettingListener> ls = euclideanSettings[i]
 						.getListeners();
-				euclidianSettings[i] = createEuclidanSettings(app, i);
+				euclideanSettings[i] = createEuclidanSettings(app, i);
 				Iterator<SettingListener> lsi = ls.iterator();
 				while (lsi.hasNext()) {
 					SettingListener a = lsi.next();
-					euclidianSettings[i].addListener(a);
+					euclideanSettings[i].addListener(a);
 				}
 			}
 		}
 
-		for (EuclidianSettings settings : euclidianSettingsForPlane.values()) {
+		for (euclideanSettings settings : euclideanSettingsForPlane.values()) {
 			settings.reset();
 		}
 
@@ -165,11 +165,11 @@ public class Settings {
 	 * individual setting containers should be used to start batching.
 	 */
 	public void beginBatch() {
-		for (EuclidianSettings settings : euclidianSettings) {
+		for (euclideanSettings settings : euclideanSettings) {
 			settings.beginBatch();
 		}
 
-		for (EuclidianSettings settings : euclidianSettingsForPlane.values()) {
+		for (euclideanSettings settings : euclideanSettingsForPlane.values()) {
 			settings.beginBatch();
 		}
 
@@ -191,11 +191,11 @@ public class Settings {
 	 * individual setting containers should be used to end batching.
 	 */
 	public void endBatch() {
-		for (EuclidianSettings settings : euclidianSettings) {
+		for (euclideanSettings settings : euclideanSettings) {
 			settings.endBatch();
 		}
 
-		for (EuclidianSettings settings : euclidianSettingsForPlane.values()) {
+		for (euclideanSettings settings : euclideanSettingsForPlane.values()) {
 			settings.endBatch();
 		}
 
@@ -212,22 +212,22 @@ public class Settings {
 
 	/**
 	 * @param number
-	 *            Number of euclidian view to return settings for. Starts with
+	 *            Number of euclidean view to return settings for. Starts with
 	 *            1.
-	 * @return Settings of euclidian view.
+	 * @return Settings of euclidean view.
 	 */
-	public final EuclidianSettings getEuclidian(int number) {
-		return euclidianSettings[number == -1 ? 2 : number - 1];
+	public final euclideanSettings geteuclidean(int number) {
+		return euclideanSettings[number == -1 ? 2 : number - 1];
 	}
 	
 	/**
 	 * @return - if support 3d
 	 */
 	public final boolean supports3D() {
-		if (euclidianSettings.length <= 2) {
+		if (euclideanSettings.length <= 2) {
 			return false;
 		}
-		return getEuclidian(-1).isEnabled();
+		return geteuclidean(-1).isEnabled();
 	}
 
 	/**
@@ -236,8 +236,8 @@ public class Settings {
 	 *            name of the plane creator
 	 * @return settings of view for this plane
 	 */
-	public final EuclidianSettings getEuclidianForPlane(String plane) {
-		return euclidianSettingsForPlane.get(plane);
+	public final euclideanSettings geteuclideanForPlane(String plane) {
+		return euclideanSettingsForPlane.get(plane);
 	}
 
 	/**
@@ -248,16 +248,16 @@ public class Settings {
 	 * @param settings
 	 *            settings
 	 */
-	public final void setEuclidianSettingsForPlane(String plane,
-			EuclidianSettings settings) {
-		euclidianSettingsForPlane.put(plane, settings);
+	public final void seteuclideanSettingsForPlane(String plane,
+			euclideanSettings settings) {
+		euclideanSettingsForPlane.put(plane, settings);
 	}
 
 	/**
 	 * clear all settings for plane
 	 */
-	public final void clearEuclidianSettingsForPlane() {
-		euclidianSettingsForPlane.clear();
+	public final void cleareuclideanSettingsForPlane() {
+		euclideanSettingsForPlane.clear();
 	}
 
 	/**
@@ -266,8 +266,8 @@ public class Settings {
 	 * @param plane
 	 *            name of the plane creator
 	 */
-	public final void removeEuclidianSettingsForPlane(String plane) {
-		euclidianSettingsForPlane.remove(plane);
+	public final void removeeuclideanSettingsForPlane(String plane) {
+		euclideanSettingsForPlane.remove(plane);
 	}
 
 	/**
@@ -354,20 +354,20 @@ public class Settings {
 
 	/**
 	 * @param ev
-	 *            - euclidian view
+	 *            - euclidean view
 	 * @param app
 	 *            - app
 	 * @return -
 	 */
-	public EuclidianSettings getEuclidianForView(
-			EuclidianViewInterfaceCommon ev, App app) {
-		if (app.getEuclidianView1() == ev) {
-			return getEuclidian(1);
-		} else if (app.hasEuclidianView2EitherShowingOrNot(1)
-				&& app.getEuclidianView2(1) == ev) {
-			return getEuclidian(2);
-		} else if (app.isEuclidianView3D(ev)) {
-			return getEuclidian(3);
+	public euclideanSettings geteuclideanForView(
+			euclideanViewInterfaceCommon ev, App app) {
+		if (app.geteuclideanView1() == ev) {
+			return geteuclidean(1);
+		} else if (app.haseuclideanView2EitherShowingOrNot(1)
+				&& app.geteuclideanView2(1) == ev) {
+			return geteuclidean(2);
+		} else if (app.iseuclideanView3D(ev)) {
+			return geteuclidean(3);
 		} else if (ev.isViewForPlane()) {
 			return ev.getSettings();
 		} else {
@@ -386,13 +386,13 @@ public class Settings {
 	}
 
 	/**
-	 * Reset euclidian settings for all views, no notifications.
+	 * Reset euclidean settings for all views, no notifications.
 	 */
-	public void resetNoFireEuclidianSettings() {
-		if (euclidianSettings == null) {
+	public void resetNoFireeuclideanSettings() {
+		if (euclideanSettings == null) {
 			return;
 		}
-		for (EuclidianSettings s : euclidianSettings) {
+		for (euclideanSettings s : euclideanSettings) {
 			if (s != null) {
 				s.resetNoFire();
 			}

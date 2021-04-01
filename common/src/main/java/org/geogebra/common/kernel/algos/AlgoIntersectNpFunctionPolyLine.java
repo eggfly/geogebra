@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.StringTemplate;
@@ -203,7 +203,7 @@ public class AlgoIntersectNpFunctionPolyLine extends AlgoRootNewton {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_INTERSECT;
+		return euclideanConstants.MODE_INTERSECT;
 	}
 
 	// for AlgoElement

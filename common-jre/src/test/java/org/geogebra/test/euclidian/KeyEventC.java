@@ -1,6 +1,6 @@
-package org.geogebra.test.euclidian;
+package org.geogebra.test.euclidean;
 
-import org.geogebra.common.euclidian.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyEvent;
 
 import com.himamis.retex.editor.share.util.KeyCodes;
 

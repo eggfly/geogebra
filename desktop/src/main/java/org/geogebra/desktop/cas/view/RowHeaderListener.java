@@ -99,7 +99,7 @@ public class RowHeaderListener extends MouseAdapter
 					if (table.isEditing()) {
 						table.stopEditing();
 					}
-					clickedCell.toggleTwinGeoEuclidianVisible();
+					clickedCell.toggleTwinGeoeuclideanVisible();
 				}
 			}
 		} catch (IndexOutOfBoundsException ex) {

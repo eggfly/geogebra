@@ -1,11 +1,11 @@
-package org.geogebra.common.euclidian.smallscreen;
+package org.geogebra.common.euclidean.smallscreen;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.AbsoluteScreenLocateable;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -13,7 +13,7 @@ import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Feature;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.debug.Log;
 
@@ -28,7 +28,7 @@ public class AdjustScreen {
 	private static final int HSLIDER_OVERLAP_THRESOLD = 25;
 	private static final int VSLIDER_OVERLAP_THRESOLD = 50;
 	// private static final int BUTTON_Y_GAP = 10;
-	private EuclidianView view;
+	private euclideanView view;
 	private App app;
 	private Kernel kernel;
 	private boolean enabled;
@@ -89,7 +89,7 @@ public class AdjustScreen {
 	 * @param view
 	 *            view
 	 */
-	public AdjustScreen(EuclidianView view) {
+	public AdjustScreen(euclideanView view) {
 		this.view = view;
 		app = view.getApplication();
 		kernel = app.getKernel();
@@ -339,9 +339,9 @@ public class AdjustScreen {
 	protected boolean needsAdjusting() {
 		App viewApp = view.getApplication();
 		int fileWidth = viewApp.getSettings()
-				.getEuclidian(view.getEuclidianViewNo()).getFileWidth();
+				.geteuclidean(view.geteuclideanViewNo()).getFileWidth();
 		int fileHeight = viewApp.getSettings()
-				.getEuclidian(view.getEuclidianViewNo()).getFileHeight();
+				.geteuclidean(view.geteuclideanViewNo()).getFileHeight();
 
 		Log.debug("[AS] file: " + fileWidth + "x" + fileHeight);
 
@@ -364,10 +364,10 @@ public class AdjustScreen {
 	 * Adjust the coordinate system to the screen size
 	 * 
 	 * @param view
-	 *            {@link EuclidianView}
+	 *            {@link euclideanView}
 	 */
-	public static void adjustCoordSystem(EuclidianView view) {
-		EuclidianSettings s = view.getSettings();
+	public static void adjustCoordSystem(euclideanView view) {
+		euclideanSettings s = view.getSettings();
 		double rX = (double) view.getWidth() / s.getFileWidth();
 		double rY = (double) view.getHeight() / s.getFileHeight();
 

@@ -12,7 +12,7 @@ describe('Mask tool test', () => {
         
         selectors.toolsPanelButton.click();
         selectors.maskToolButton.click();
-        selectors.euclidianView.get()
+        selectors.euclideanView.get()
             .mouseEvent('down', 100, 100) // drag to create a mask
             .mouseEvent('move', 800, 300)
             .mouseEvent('up', 800, 300)

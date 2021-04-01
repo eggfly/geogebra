@@ -1,6 +1,6 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 /**
  * Class managing textures (dash, images, etc.)
@@ -170,7 +170,7 @@ public class Textures {
 	 * call the correct texture for the line type specified
 	 * 
 	 * @param lineType
-	 *            line type (EuclidianStyleConstants.LINE_TYPE_*)
+	 *            line type (euclideanStyleConstants.LINE_TYPE_*)
 	 */
 	public void setDashFromLineType(int lineType) {
 		renderer.getRendererImpl()
@@ -184,15 +184,15 @@ public class Textures {
 	 */
 	final static public int getDashFromLineType(int lineType) {
 		switch (lineType) {
-		case EuclidianStyleConstants.LINE_TYPE_FULL:
+		case euclideanStyleConstants.LINE_TYPE_FULL:
 			return DASH_NONE;
-		case EuclidianStyleConstants.LINE_TYPE_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DOTTED:
 			return DASH_DOTTED;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_SHORT:
 			return DASH_SHORT;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_LONG:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_LONG:
 			return DASH_LONG;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_DOTTED:
 			return DASH_DOTTED_DASHED;
 		default:
 			return DASH_NONE;
@@ -217,15 +217,15 @@ public class Textures {
 	 */
 	final static public int getDashFromLineTypeHidden(int lineType) {
 		switch (lineType) {
-		case EuclidianStyleConstants.LINE_TYPE_FULL:
+		case euclideanStyleConstants.LINE_TYPE_FULL:
 			return DASH_NONE_HIDDEN;
-		case EuclidianStyleConstants.LINE_TYPE_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DOTTED:
 			return DASH_DOTTED_HIDDEN;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_SHORT:
 			return DASH_SHORT_HIDDEN;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_LONG:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_LONG:
 			return DASH_LONG_HIDDEN;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_DOTTED:
 			return DASH_DOTTED_DASHED_HIDDEN;
 		default:
 			return DASH_NONE_HIDDEN;
@@ -242,28 +242,28 @@ public class Textures {
 	final static public int getDashIdFromLineType(int lineType, int lineTypeHidden) {
 		int notHiddenId = getDashIdFromLineType(lineType);
 		switch (lineTypeHidden) {
-		case EuclidianStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN:
+		case euclideanStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN:
 			return notHiddenId * (1 + DASH_ID_LENGTH);
-		case EuclidianStyleConstants.LINE_TYPE_HIDDEN_DASHED:
+		case euclideanStyleConstants.LINE_TYPE_HIDDEN_DASHED:
 		default:
 			return notHiddenId * (1 + DASH_ID_LENGTH) + DASH_ID_LENGTH;
-		case EuclidianStyleConstants.LINE_TYPE_HIDDEN_NONE:
+		case euclideanStyleConstants.LINE_TYPE_HIDDEN_NONE:
 			return notHiddenId + DASH_ID_NONE * DASH_ID_LENGTH;
 		}
 	}
 
 	static private int getDashIdFromLineType(int lineType) {
 		switch (lineType) {
-		case EuclidianStyleConstants.LINE_TYPE_FULL:
+		case euclideanStyleConstants.LINE_TYPE_FULL:
 		default:
 			return DASH_ID_FULL;
-		case EuclidianStyleConstants.LINE_TYPE_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DOTTED:
 			return DASH_ID_DOTTED;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_SHORT:
 			return DASH_ID_DASHED_SHORT;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_LONG:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_LONG:
 			return DASH_ID_DASHED_LONG;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_DOTTED:
 			return DASH_ID_DASHED_DOTTED;
 		}
 	}

@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian.plot.interval;
+package org.geogebra.common.euclidean.plot.interval;
 
 import static org.junit.Assert.assertEquals;
 
 import org.geogebra.common.BaseUnitTest;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.geos.GeoFunction;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,7 +15,7 @@ public class IntervalPlotterTest extends BaseUnitTest {
 
 	@Test
 	public void testDiscontinuity() {
-		EuclidianView view = getApp().getActiveEuclidianView();
+		euclideanView view = getApp().getActiveeuclideanView();
 		view.setRealWorldCoordSystem(Math.PI - 0.0001, 2 * Math.PI + 0.0001, -2, 2);
 		IntervalPathPlotterMock gp = new IntervalPathPlotterMock();
 		IntervalPlotter plotter = new IntervalPlotter(view, gp, 10);
@@ -26,7 +26,7 @@ public class IntervalPlotterTest extends BaseUnitTest {
 
 	@Test
 	public void testDiscontinoutyOfArgument() {
-		EuclidianView view = getApp().getActiveEuclidianView();
+		euclideanView view = getApp().getActiveeuclideanView();
 		view.setRealWorldCoordSystem(-1, -1E-7, -9, 9);
 		IntervalPathPlotterMock gp = new IntervalPathPlotterMock();
 		IntervalPlotter plotter = new IntervalPlotter(view, gp, 10);
@@ -37,7 +37,7 @@ public class IntervalPlotterTest extends BaseUnitTest {
 
 	@Test
 	public void testSinLnx() {
-		EuclidianView view = getApp().getActiveEuclidianView();
+		euclideanView view = getApp().getActiveeuclideanView();
 		view.setRealWorldCoordSystem(-10, 0, -9, 9);
 		IntervalPathPlotterMock gp = new IntervalPathPlotterMock();
 		IntervalPlotter plotter = new IntervalPlotter(view, gp, 10);
@@ -48,7 +48,7 @@ public class IntervalPlotterTest extends BaseUnitTest {
 
 	@Test
 	public void testSqrtReciprocalX() {
-		EuclidianView view = getApp().getActiveEuclidianView();
+		euclideanView view = getApp().getActiveeuclideanView();
 		view.setRealWorldCoordSystem(-10, 0, -9, 9);
 		IntervalPathPlotterMock gp = new IntervalPathPlotterMock();
 		IntervalPlotter plotter = new IntervalPlotter(view, gp, 100);
@@ -59,7 +59,7 @@ public class IntervalPlotterTest extends BaseUnitTest {
 
 	@Test
 	public void testSecLnXInverse() {
-		EuclidianView view = getApp().getActiveEuclidianView();
+		euclideanView view = getApp().getActiveeuclideanView();
 		view.setRealWorldCoordSystem(0, 1, -7, 7);
 		IntervalPathPlotterMock gp = new IntervalPathPlotterMock();
 		IntervalPlotter plotter = new IntervalPlotter(view, gp, 20);

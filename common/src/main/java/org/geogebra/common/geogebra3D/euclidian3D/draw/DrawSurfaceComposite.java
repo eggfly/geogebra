@@ -1,7 +1,7 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.geogebra3D.kernel3D.implicit3D.GeoImplicitSurface;
 import org.geogebra.common.kernel.geos.GeoElement;
 
@@ -20,7 +20,7 @@ public class DrawSurfaceComposite extends DrawComposite3D {
 	 * @param geo
 	 *            surface
 	 */
-	public DrawSurfaceComposite(EuclidianView3D view3d,
+	public DrawSurfaceComposite(euclideanView3D view3d,
 			GeoImplicitSurface geo) {
 		super(view3d, geo);
 		this.geoSurface = geo;
@@ -32,7 +32,7 @@ public class DrawSurfaceComposite extends DrawComposite3D {
 			return surfaceCopy();
 		}
 		geoSurface.getParametric()
-				.setAllVisualPropertiesExceptEuclidianVisible(geoSurface, true, true);
+				.setAllVisualPropertiesExcepteuclideanVisible(geoSurface, true, true);
 		geoSurface.getParametric().setLineThickness(1);
 		return geoSurface.getParametric();
 	}

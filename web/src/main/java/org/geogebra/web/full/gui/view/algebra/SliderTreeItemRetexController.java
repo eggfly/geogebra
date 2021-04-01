@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.view.algebra;
 
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.web.html5.event.PointerEvent;
 import org.geogebra.web.html5.event.ZeroOffset;
@@ -185,7 +185,7 @@ public class SliderTreeItemRetexController extends LatexTreeItemController
 			slider.selectItem(true);
 			updateSelection(false, false);
 		}
-		// updates other views (e.g. Euclidian)
+		// updates other views (e.g. euclidean)
 		getApp().getKernel().notifyRepaint();
 	}
 

@@ -22,7 +22,7 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.commands.Commands;
@@ -104,7 +104,7 @@ public class AlgoTranslate extends AlgoTransformation
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_TRANSLATE_BY_VECTOR;
+		return euclideanConstants.MODE_TRANSLATE_BY_VECTOR;
 	}
 
 	// for AlgoElement

@@ -10,16 +10,16 @@ import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.dialog.TextPreviewer;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.GeoText;
 import org.geogebra.common.main.App;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.desktop.euclidian.EuclidianControllerD;
-import org.geogebra.desktop.euclidian.EuclidianControllerListeners;
-import org.geogebra.desktop.euclidian.EuclidianViewD;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.desktop.euclidean.euclideanControllerD;
+import org.geogebra.desktop.euclidean.euclideanControllerListeners;
+import org.geogebra.desktop.euclidean.euclideanViewD;
 import org.geogebra.desktop.gui.util.GeoGebraIconD;
 import org.geogebra.desktop.main.AppD;
 
@@ -41,10 +41,10 @@ public class TextPreviewPanelD extends TextPreviewer {
 	}
 
 	/**
-	 * @return JPanel that encloses the EuclidianView
+	 * @return JPanel that encloses the euclideanView
 	 */
 	public JPanel getJPanel() {
-		return ((EuclidianViewD) ev).getJPanel();
+		return ((euclideanViewD) ev).getJPanel();
 	}
 
 	/**
@@ -103,42 +103,42 @@ public class TextPreviewPanelD extends TextPreviewer {
 		}
 
 		// update this panel
-		((EuclidianViewD) ev).setPreferredSize(d);
-		((EuclidianViewD) ev).revalidate();
+		((euclideanViewD) ev).setPreferredSize(d);
+		((euclideanViewD) ev).revalidate();
 
 	}
 
 	@Override
 	protected void removeEVMouseListeners() {
-		((EuclidianViewD) ev).removeMouseListener(
-				(EuclidianControllerListeners) ev.getEuclidianController());
-		((EuclidianViewD) ev).removeMouseMotionListener(
-				(EuclidianControllerListeners) ev.getEuclidianController());
-		((EuclidianViewD) ev).removeMouseWheelListener(
-				(EuclidianControllerListeners) ev.getEuclidianController());
+		((euclideanViewD) ev).removeMouseListener(
+				(euclideanControllerListeners) ev.geteuclideanController());
+		((euclideanViewD) ev).removeMouseMotionListener(
+				(euclideanControllerListeners) ev.geteuclideanController());
+		((euclideanViewD) ev).removeMouseWheelListener(
+				(euclideanControllerListeners) ev.geteuclideanController());
 	}
 
 	@Override
-	protected EuclidianViewD getEuclidianView() {
+	protected euclideanViewD geteuclideanView() {
 		boolean[] showAxes = { false, false };
 		boolean showGrid = false;
 		if (ev == null) {
-			ev = new EuclidianViewTextPreview(new EuclidianControllerD(kernel),
-					showAxes, showGrid, EuclidianView.EVNO_GENERAL, null);
+			ev = new euclideanViewTextPreview(new euclideanControllerD(kernel),
+					showAxes, showGrid, euclideanView.EVNO_GENERAL, null);
 		}
-		return (EuclidianViewD) ev;
+		return (euclideanViewD) ev;
 	}
 
 	/****************************************************************************
-	 * Extension of EuclidianViewD for displaying preview text strings in the
+	 * Extension of euclideanViewD for displaying preview text strings in the
 	 * text editor.
 	 * 
 	 */
-	private static class EuclidianViewTextPreview extends EuclidianViewD {
+	private static class euclideanViewTextPreview extends euclideanViewD {
 
-		public EuclidianViewTextPreview(EuclidianController ec,
+		public euclideanViewTextPreview(euclideanController ec,
 				boolean[] showAxes, boolean showGrid, int evno,
-				EuclidianSettings settings) {
+				euclideanSettings settings) {
 			super(ec, showAxes, showGrid, evno, settings);
 		}
 

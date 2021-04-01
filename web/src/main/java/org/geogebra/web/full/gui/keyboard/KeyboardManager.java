@@ -61,8 +61,8 @@ public class KeyboardManager
 	public List<Integer> getKeyboardViews() {
 		ArrayList<Integer> keyboardViews = getKeyboardViewsNoEV();
 		if (app.getKernel().getConstruction().hasInputBoxes()) {
-			keyboardViews.add(App.VIEW_EUCLIDIAN);
-			keyboardViews.add(App.VIEW_EUCLIDIAN2);
+			keyboardViews.add(App.VIEW_euclidean);
+			keyboardViews.add(App.VIEW_euclidean2);
 		}
 		return keyboardViews;
 	}

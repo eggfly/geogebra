@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.dialog.TextInputDialog;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
@@ -96,7 +96,7 @@ public class DialogManagerMinimal extends DialogManager {
 	@Override
 	public void showNumberInputDialogAngleFixed(String menu,
 			GeoSegmentND[] selectedSegments, GeoPointND[] selectedPoints,
-			GeoElement[] selGeos, EuclidianController ec) {
+			GeoElement[] selGeos, euclideanController ec) {
 		// TODO Auto-generated method stub
 
 	}
@@ -104,7 +104,7 @@ public class DialogManagerMinimal extends DialogManager {
 	@Override
 	public void showNumberInputDialogDilate(String menu,
 			GeoPolygon[] selectedPolygons, GeoPointND[] selectedPoints,
-			GeoElement[] selGeos, EuclidianController ec) {
+			GeoElement[] selGeos, euclideanController ec) {
 		// TODO Auto-generated method stub
 
 	}
@@ -118,7 +118,7 @@ public class DialogManagerMinimal extends DialogManager {
 
 	@Override
 	public void showNumberInputDialogCirclePointRadius(String menu,
-			GeoPointND geoPointND, EuclidianView view) {
+			GeoPointND geoPointND, euclideanView view) {
 		// TODO Auto-generated method stub
 
 	}
@@ -192,7 +192,7 @@ public class DialogManagerMinimal extends DialogManager {
 
 	@Override
 	public void showNumberInputDialogRegularPolygon(String menu,
-			EuclidianController ec, GeoPointND geoPoint1, GeoPointND geoPoint2,
+			euclideanController ec, GeoPointND geoPoint1, GeoPointND geoPoint2,
 			GeoCoordSys2D direction) {
 		String inputString = prompt(menu + " " +
 				getLocalization().getMenu("Points"), "4");
@@ -214,7 +214,7 @@ public class DialogManagerMinimal extends DialogManager {
 	public TextInputDialog createTextDialog(GeoText text, GeoPointND startPoint,
 			boolean rw) {
 		return new TextInputDialogD(app, getLocalization().getMenu("Text"), text, startPoint,
-				rw, 30, 6, app.getMode() == EuclidianConstants.MODE_TEXT);
+				rw, 30, 6, app.getMode() == euclideanConstants.MODE_TEXT);
 	}
 
 	@Override
@@ -261,7 +261,7 @@ public class DialogManagerMinimal extends DialogManager {
 				slider.setLabel(null);
 				slider.setValue(isAngle ? 45 * Math.PI / 180 : 1);
 				slider.setSliderLocation(x, y, true);
-				slider.setEuclidianVisible(true);
+				slider.seteuclideanVisible(true);
 
 				slider.setLabelMode(GeoElement.LABEL_NAME_VALUE);
 				slider.setLabelVisible(true);
@@ -294,7 +294,7 @@ public class DialogManagerMinimal extends DialogManager {
 	@Override
 	public void showNumberInputDialogRotate(String menu,
 			GeoPolygon[] selectedPolygons, GeoPointND[] selectedPoints,
-			GeoElement[] selGeos, EuclidianController ec) {
+			GeoElement[] selGeos, euclideanController ec) {
 		String inputString = prompt(menu + " " + getLocalization().getMenu("Angle"),
 				defaultAngle);
 

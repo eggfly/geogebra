@@ -138,13 +138,13 @@ public class EvaluateInput {
 					}
 
 					if (AlgebraItem.isTextItem(geos[0]) && !(geos[0] instanceof AlgoFractionText)) {
-						geos[0].setEuclidianVisible(false);
+						geos[0].seteuclideanVisible(false);
 					}
 
 					AlgebraItem.addSelectedGeoWithSpecialPoints(geos[0], app);
 				}
 
-				InputHelper.updateProperties(geos, app.getActiveEuclidianView(),
+				InputHelper.updateProperties(geos, app.getActiveeuclideanView(),
 						oldStep);
 				app.storeUndoInfo();
 				app.setScrollToShow(false);

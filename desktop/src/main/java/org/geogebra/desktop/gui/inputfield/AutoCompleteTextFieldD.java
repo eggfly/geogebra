@@ -22,11 +22,11 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
-import org.geogebra.common.euclidian.event.FocusListenerDelegate;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
+import org.geogebra.common.euclidean.event.FocusListenerDelegate;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.gui.inputfield.AutoComplete;
 import org.geogebra.common.gui.inputfield.AutoCompleteTextField;
 import org.geogebra.common.gui.inputfield.InputHelper;
@@ -39,14 +39,14 @@ import org.geogebra.common.kernel.geos.properties.HorizontalAlignment;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
 import org.geogebra.common.main.MyError;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.AutoCompleteDictionary;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GColorD;
 import org.geogebra.desktop.awt.GFontD;
-import org.geogebra.desktop.euclidian.event.FocusListenerD;
-import org.geogebra.desktop.euclidian.event.KeyListenerD;
+import org.geogebra.desktop.euclidean.event.FocusListenerD;
+import org.geogebra.desktop.euclidean.event.KeyListenerD;
 import org.geogebra.desktop.gui.autocompletion.CommandCompletionListCellRenderer;
 import org.geogebra.desktop.gui.autocompletion.CompletionsPopup;
 import org.geogebra.desktop.gui.util.GeoGebraIconD;
@@ -367,7 +367,7 @@ public class AutoCompleteTextFieldD extends MathTextField
 			}
 
 			// loose focus
-			app.getActiveEuclidianView().requestFocusInWindow();
+			app.getActiveeuclideanView().requestFocusInWindow();
 			break;
 
 		// removed - what is this for?
@@ -417,7 +417,7 @@ public class AutoCompleteTextFieldD extends MathTextField
 
 		case KeyEvent.VK_TAB:
 			if (usedForInputBox()) {
-				AutoCompleteTextField tf = app.getActiveEuclidianView()
+				AutoCompleteTextField tf = app.getActiveeuclideanView()
 						.getTextField();
 				if (tf != null) {
 					geoUsedForInputBox.updateLinkedGeo(tf.getText());
@@ -432,9 +432,9 @@ public class AutoCompleteTextFieldD extends MathTextField
 				Log.debug("next is " + next);
 				if (next instanceof GeoInputBox) {
 					GeoInputBox input = (GeoInputBox) next;
-					app.getActiveEuclidianView().focusTextField(input);
+					app.getActiveeuclideanView().focusTextField(input);
 				} else {
-					// app.getActiveEuclidianView().requestFocus();
+					// app.getActiveeuclideanView().requestFocus();
 				}
 				//
 			} else if (moveToNextArgument(true)) {
@@ -1059,8 +1059,8 @@ public class AutoCompleteTextFieldD extends MathTextField
 		// TF Rectangle
 		if (drawTextField != null && drawTextField.hasError()) {
 			g2.setPaint(GColor.ERROR_RED);
-			g2.setStroke(EuclidianStatic.getStroke(2,
-					EuclidianStyleConstants.LINE_TYPE_DOTTED, GBasicStroke.JOIN_ROUND));
+			g2.setStroke(euclideanStatic.getStroke(2,
+					euclideanStyleConstants.LINE_TYPE_DOTTED, GBasicStroke.JOIN_ROUND));
 		} else {
 			g2.setPaint(GColor.TEXT_PRIMARY);
 		}

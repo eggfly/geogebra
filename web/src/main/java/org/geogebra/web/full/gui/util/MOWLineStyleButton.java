@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.kernel.geos.GeoElement;
-import org.geogebra.web.full.euclidian.EuclidianLineStylePopup;
+import org.geogebra.web.full.euclidean.euclideanLineStylePopup;
 import org.geogebra.web.html5.main.AppW;
 
 import com.google.gwt.user.client.ui.Label;
@@ -15,7 +15,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  * 
  * @author Laszlo
  */
-public class MOWLineStyleButton extends EuclidianLineStylePopup {
+public class MOWLineStyleButton extends euclideanLineStylePopup {
 	/** Size of the value canvas */
 	private static final int CANVAS_WIDTH = 30;
 	private static final int CANVAS_HEIGHT = 20;

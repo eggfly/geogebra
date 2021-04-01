@@ -1,10 +1,10 @@
-package org.geogebra.common.euclidianForPlane;
+package org.geogebra.common.euclideanForPlane;
 
 /**
- * interface for EuclidianViewForPlaneCompanion
+ * interface for euclideanViewForPlaneCompanion
  * 
  */
-public interface EuclidianViewForPlaneCompanionInterface {
+public interface euclideanViewForPlaneCompanionInterface {
 
 	/**
 	 * 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.annotation.Nonnull;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.AccessibilityGroup;
 import org.geogebra.common.javax.swing.SwingConstants;
 import org.geogebra.common.main.App;
@@ -23,7 +23,7 @@ import org.geogebra.web.full.gui.layout.DockGlassPaneW;
 import org.geogebra.web.full.gui.layout.DockManagerW;
 import org.geogebra.web.full.gui.layout.DockPanelW;
 import org.geogebra.web.full.gui.layout.panels.AlgebraPanelInterface;
-import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelW;
+import org.geogebra.web.full.gui.layout.panels.euclideanDockPanelW;
 import org.geogebra.web.full.gui.pagecontrolpanel.PageListPanel;
 import org.geogebra.web.full.gui.toolbar.mow.NotesLayout;
 import org.geogebra.web.full.gui.toolbarpanel.ToolbarPanel;
@@ -248,7 +248,7 @@ public class GeoGebraFrameFull
 			getKeyboardManager().onScreenEditingEnded();
 		}
 
-		app.getEuclidianView1().setKeepCenter(false);
+		app.geteuclideanView1().setKeepCenter(false);
 		if (show) {
 			showZoomPanel(false);
 			keyboardState = KeyboardState.ANIMATING_IN;
@@ -415,8 +415,8 @@ public class GeoGebraFrameFull
 			return;
 		}
 
-		EuclidianDockPanelW dp = (EuclidianDockPanelW) (getGuiManager()
-				.getLayout().getDockManager().getPanel(App.VIEW_EUCLIDIAN));
+		euclideanDockPanelW dp = (euclideanDockPanelW) (getGuiManager()
+				.getLayout().getDockManager().getPanel(App.VIEW_euclidean));
 		if (show) {
 			dp.showZoomPanel();
 		} else {
@@ -470,8 +470,8 @@ public class GeoGebraFrameFull
 
 	private boolean keyboardNeededForGraphicsTools() {
 		return app.isShowToolbar()
-				&& app.getActiveEuclidianView()
-				.getEuclidianController()
+				&& app.getActiveeuclideanView()
+				.geteuclideanController()
 						.modeNeedsKeyboard();
 	}
 
@@ -890,7 +890,7 @@ public class GeoGebraFrameFull
 	 * Actions performed when menu button is pressed
 	 */
 	private void onMenuButtonPressed() {
-		app.getActiveEuclidianView().getEuclidianController()
+		app.getActiveeuclideanView().geteuclideanController()
 				.widgetsToBackground();
 		app.hideKeyboard();
 		app.closePopups();
@@ -915,7 +915,7 @@ public class GeoGebraFrameFull
 	 */
 	public void deselectDragBtn() {
 		if (getApp().getZoomPanelMow() != null
-				&& app.getMode() == EuclidianConstants.MODE_TRANSLATEVIEW) {
+				&& app.getMode() == euclideanConstants.MODE_TRANSLATEVIEW) {
 			getApp().getZoomPanelMow().deselectDragBtn();
 		}
 	}

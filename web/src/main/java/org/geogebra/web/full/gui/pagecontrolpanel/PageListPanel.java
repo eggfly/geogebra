@@ -9,7 +9,7 @@ import org.geogebra.common.plugin.EventType;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.full.css.MaterialDesignResources;
 import org.geogebra.web.full.gui.applet.GeoGebraFrameFull;
-import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelW;
+import org.geogebra.web.full.gui.layout.panels.euclideanDockPanelW;
 import org.geogebra.web.full.gui.toolbar.mow.NotesLayout;
 import org.geogebra.web.full.main.AppWFull;
 import org.geogebra.web.html5.gui.view.button.StandardButton;
@@ -36,7 +36,7 @@ public class PageListPanel
 
 	private AppWFull app;
 	private GeoGebraFrameFull frame;
-	private EuclidianDockPanelW dockPanel;
+	private euclideanDockPanelW dockPanel;
 	private ScrollPanel scrollPanel;
 	private PersistablePanel contentPanel;
 	private StandardButton plusButton;
@@ -53,8 +53,8 @@ public class PageListPanel
 	public PageListPanel(AppWFull app) {
 		this.app = app;
 		this.frame = app.getAppletFrame();
-		this.dockPanel = (EuclidianDockPanelW) (app.getGuiManager().getLayout()
-				.getDockManager().getPanel(App.VIEW_EUCLIDIAN));
+		this.dockPanel = (euclideanDockPanelW) (app.getGuiManager().getLayout()
+				.getDockManager().getPanel(App.VIEW_euclidean));
 		this.notesLayout = frame.getNotesLayoutSafe(app);
 		pageController = new PageListController(app, this);
 		app.setPageController(pageController);

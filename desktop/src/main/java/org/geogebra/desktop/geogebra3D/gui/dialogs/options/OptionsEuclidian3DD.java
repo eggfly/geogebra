@@ -18,17 +18,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoClippingCube3D;
 import org.geogebra.common.kernel.StringTemplate;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.desktop.awt.GColorD;
 import org.geogebra.desktop.geogebra3D.gui.GuiResources3D;
 import org.geogebra.desktop.gui.GuiManagerD;
 import org.geogebra.desktop.gui.dialog.options.AxisPanel;
-import org.geogebra.desktop.gui.dialog.options.OptionsEuclidianD;
+import org.geogebra.desktop.gui.dialog.options.OptionseuclideanD;
 import org.geogebra.desktop.gui.inputfield.MyTextFieldD;
 import org.geogebra.desktop.gui.util.LayoutUtil;
 import org.geogebra.desktop.main.AppD;
@@ -39,7 +39,7 @@ import org.geogebra.desktop.main.AppD;
  * @author mathieu
  * 
  */
-public class OptionsEuclidian3DD extends OptionsEuclidianD<EuclidianView3D> {
+public class Optionseuclidean3DD extends OptionseuclideanD<euclideanView3D> {
 
 	private AxisPanel3D zAxisPanel;
 
@@ -63,7 +63,7 @@ public class OptionsEuclidian3DD extends OptionsEuclidianD<EuclidianView3D> {
 	 * @param view
 	 *            3D view
 	 */
-	public OptionsEuclidian3DD(AppD app, EuclidianView3D view) {
+	public Optionseuclidean3DD(AppD app, euclideanView3D view) {
 		super(app, view);
 
 		enableStuff(false);
@@ -304,21 +304,21 @@ public class OptionsEuclidian3DD extends OptionsEuclidianD<EuclidianView3D> {
 
 		private int buttonSelected;
 
-		private EuclidianView3D view;
+		private euclideanView3D view;
 
-		private ProjectionButtons(OptionsEuclidian3DD options) {
+		private ProjectionButtons(Optionseuclidean3DD options) {
 
 			view = options.view;
 
 			buttons = new JButton[4];
 
-			buttons[EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC] = new JButton(
+			buttons[euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC] = new JButton(
 					app.getScaledIcon(GuiResources3D.PROJECTION_ORTOGRAPHIC));
-			buttons[EuclidianView3DInterface.PROJECTION_PERSPECTIVE] = new JButton(
+			buttons[euclideanView3DInterface.PROJECTION_PERSPECTIVE] = new JButton(
 					app.getScaledIcon(GuiResources3D.PROJECTION_PERSPECTIVE));
-			buttons[EuclidianView3DInterface.PROJECTION_GLASSES] = new JButton(
+			buttons[euclideanView3DInterface.PROJECTION_GLASSES] = new JButton(
 					app.getScaledIcon(GuiResources3D.PROJECTION_GLASSES));
-			buttons[EuclidianView3DInterface.PROJECTION_OBLIQUE] = new JButton(
+			buttons[euclideanView3DInterface.PROJECTION_OBLIQUE] = new JButton(
 					app.getScaledIcon(GuiResources3D.PROJECTION_OBLIQUE));
 
 			for (int i = 0; i < 4; i++) {
@@ -344,13 +344,13 @@ public class OptionsEuclidian3DD extends OptionsEuclidianD<EuclidianView3D> {
 			if (buttons == null) {
 				return;
 			}
-			buttons[EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC].setIcon(
+			buttons[euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC].setIcon(
 					app.getScaledIcon(GuiResources3D.PROJECTION_ORTOGRAPHIC));
-			buttons[EuclidianView3DInterface.PROJECTION_PERSPECTIVE].setIcon(
+			buttons[euclideanView3DInterface.PROJECTION_PERSPECTIVE].setIcon(
 					app.getScaledIcon(GuiResources3D.PROJECTION_PERSPECTIVE));
-			buttons[EuclidianView3DInterface.PROJECTION_GLASSES].setIcon(
+			buttons[euclideanView3DInterface.PROJECTION_GLASSES].setIcon(
 					app.getScaledIcon(GuiResources3D.PROJECTION_GLASSES));
-			buttons[EuclidianView3DInterface.PROJECTION_OBLIQUE].setIcon(
+			buttons[euclideanView3DInterface.PROJECTION_OBLIQUE].setIcon(
 					app.getScaledIcon(GuiResources3D.PROJECTION_OBLIQUE));
 
 		}
@@ -370,12 +370,12 @@ public class OptionsEuclidian3DD extends OptionsEuclidianD<EuclidianView3D> {
 
 		JPanel orthoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		orthoPanel.add(projectionButtons
-				.getButton(EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC));
+				.getButton(euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC));
 		orthoPanel.add(projectionLabel[0]);
 
 		JPanel perspPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		perspPanel.add(projectionButtons
-				.getButton(EuclidianView3DInterface.PROJECTION_PERSPECTIVE));
+				.getButton(euclideanView3DInterface.PROJECTION_PERSPECTIVE));
 		perspPanel.add(projectionLabel[1]);
 		tfPerspLabel = new JLabel("");
 		perspPanel.add(tfPerspLabel);
@@ -386,7 +386,7 @@ public class OptionsEuclidian3DD extends OptionsEuclidianD<EuclidianView3D> {
 
 		JPanel glassesPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		glassesPanel.add(projectionButtons
-				.getButton(EuclidianView3DInterface.PROJECTION_GLASSES));
+				.getButton(euclideanView3DInterface.PROJECTION_GLASSES));
 		glassesPanel.add(projectionLabel[2]);
 		tfGlassesLabel = new JLabel("");
 		glassesPanel.add(tfGlassesLabel);
@@ -407,9 +407,9 @@ public class OptionsEuclidian3DD extends OptionsEuclidianD<EuclidianView3D> {
 
 		JPanel cavPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		cavPanel.add(projectionButtons
-				.getButton(EuclidianView3DInterface.PROJECTION_OBLIQUE));
+				.getButton(euclideanView3DInterface.PROJECTION_OBLIQUE));
 		cavPanel.add(
-				projectionLabel[EuclidianView3DInterface.PROJECTION_OBLIQUE]);
+				projectionLabel[euclideanView3DInterface.PROJECTION_OBLIQUE]);
 		tfObliqueAngleLabel = new JLabel("");
 		cavPanel.add(tfObliqueAngleLabel);
 		tfObliqueAngle = new MyTextFieldD(app, 4);
@@ -585,33 +585,33 @@ public class OptionsEuclidian3DD extends OptionsEuclidianD<EuclidianView3D> {
 						.getProjectionObliqueFactor());
 			}
 		} else if (source == projectionButtons
-				.getButton(EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC)) {
+				.getButton(euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC)) {
 			view.getSettings()
 					.setProjection(
-							EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC);
+							euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC);
 			projectionButtons
 					.setSelected(
-							EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC);
+							euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC);
 		} else if (source == projectionButtons
-				.getButton(EuclidianView3DInterface.PROJECTION_PERSPECTIVE)) {
+				.getButton(euclideanView3DInterface.PROJECTION_PERSPECTIVE)) {
 			view.getSettings()
 					.setProjection(
-							EuclidianView3DInterface.PROJECTION_PERSPECTIVE);
+							euclideanView3DInterface.PROJECTION_PERSPECTIVE);
 			projectionButtons
 					.setSelected(
-							EuclidianView3DInterface.PROJECTION_PERSPECTIVE);
+							euclideanView3DInterface.PROJECTION_PERSPECTIVE);
 		} else if (source == projectionButtons
-				.getButton(EuclidianView3DInterface.PROJECTION_GLASSES)) {
+				.getButton(euclideanView3DInterface.PROJECTION_GLASSES)) {
 			view.getSettings()
-					.setProjection(EuclidianView3DInterface.PROJECTION_GLASSES);
+					.setProjection(euclideanView3DInterface.PROJECTION_GLASSES);
 			projectionButtons
-					.setSelected(EuclidianView3DInterface.PROJECTION_GLASSES);
+					.setSelected(euclideanView3DInterface.PROJECTION_GLASSES);
 		} else if (source == projectionButtons
-				.getButton(EuclidianView3DInterface.PROJECTION_OBLIQUE)) {
+				.getButton(euclideanView3DInterface.PROJECTION_OBLIQUE)) {
 			view.getSettings()
-					.setProjection(EuclidianView3DInterface.PROJECTION_OBLIQUE);
+					.setProjection(euclideanView3DInterface.PROJECTION_OBLIQUE);
 			projectionButtons
-					.setSelected(EuclidianView3DInterface.PROJECTION_OBLIQUE);
+					.setSelected(euclideanView3DInterface.PROJECTION_OBLIQUE);
 		} else if (source == cbGlassesGray) {
 			view
 					.setGlassesGrayScaled(cbGlassesGray.isSelected());
@@ -636,7 +636,7 @@ public class OptionsEuclidian3DD extends OptionsEuclidianD<EuclidianView3D> {
 		private static final long serialVersionUID = 1L;
 		final static protected int AXIS_Z = 2;
 
-		public AxisPanel3D(AppD app, EuclidianView view, int axis) {
+		public AxisPanel3D(AppD app, euclideanView view, int axis) {
 			super(app, view, axis);
 		}
 
@@ -656,7 +656,7 @@ public class OptionsEuclidian3DD extends OptionsEuclidianD<EuclidianView3D> {
 
 	@Override
 	protected void actionBtBackgroundColor() {
-		EuclidianSettings settings = view.getSettings();
+		euclideanSettings settings = view.getSettings();
 		GColor old = settings == null ? view.getBackground()
 				: settings.getBackground();
 		GColor color = GColorD.newColor(

@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,9 +9,9 @@ import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.main.App;
 
-public class EuclidianStyleBarSelection {
+public class euclideanStyleBarSelection {
 	private final App app;
-	private final EuclidianController ec;
+	private final euclideanController ec;
 	private final HashMap<Integer, Integer> defaultGeoMap;
 	private ArrayList<GeoElement> defaultGeos;
 	private GeoElement oldDefaultGeo;
@@ -21,9 +21,9 @@ public class EuclidianStyleBarSelection {
 	 * @param app application
 	 * @param ec controller
 	 */
-	public EuclidianStyleBarSelection(App app, EuclidianController ec) {
+	public euclideanStyleBarSelection(App app, euclideanController ec) {
 		defaultGeos = new ArrayList<>();
-		defaultGeoMap = EuclidianStyleBarStatic.createDefaultMap();
+		defaultGeoMap = euclideanStyleBarStatic.createDefaultMap();
 		this.app = app;
 		this.ec = ec;
 	}
@@ -87,7 +87,7 @@ public class EuclidianStyleBarSelection {
 	 */
 	public void updateDefaultsForMode(int mode) {
 		defaultGeos = new ArrayList<>();
-		if (EuclidianView.isPenMode(mode)) {
+		if (euclideanView.isPenMode(mode)) {
 			GeoElement geo = ec.getPen().defaultPenLine;
 			if (geo != null) {
 				defaultGeos.add(geo);
@@ -119,7 +119,7 @@ public class EuclidianStyleBarSelection {
 	 */
 	public ArrayList<GeoElement> getGeos() {
 		ArrayList<GeoElement> targetGeos = new ArrayList<>(ec.getJustCreatedGeos());
-		if (!EuclidianConstants.isMoveOrSelectionMode(ec.getMode())) {
+		if (!euclideanConstants.isMoveOrSelectionMode(ec.getMode())) {
 			targetGeos.addAll(defaultGeos);
 			Previewable p = ec.getView().getPreviewDrawable();
 			if (p != null) {

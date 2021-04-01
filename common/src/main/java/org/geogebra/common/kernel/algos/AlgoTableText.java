@@ -70,7 +70,7 @@ public class AlgoTableText extends AlgoElement implements TableAlgo {
 	private int columns;
 	private int rows;
 
-	// getters for style variables (used by EuclidianStyleBar)
+	// getters for style variables (used by euclideanStyleBar)
 
 	/**
 	 * @return "v" or "h" for vertical / horizontal alignment

@@ -1,10 +1,10 @@
 package org.geogebra.web.html5.javax.swing;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.util.debug.Log;
-import org.geogebra.web.html5.euclidian.EnvironmentStyleW;
-import org.geogebra.web.html5.euclidian.IsEuclidianController;
+import org.geogebra.web.html5.euclidean.EnvironmentStyleW;
+import org.geogebra.web.html5.euclidean.IseuclideanController;
 
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -17,15 +17,15 @@ import com.google.gwt.user.client.ui.Widget;
 public class Positioner {
 
 	private SimplePanel impl;
-	private EuclidianController ec;
+	private euclideanController ec;
 
 	/**
 	 * @param ec
-	 *            euclidian controller
+	 *            euclidean controller
 	 * @param impl
 	 *            positioned panel
 	 */
-	public Positioner(EuclidianController ec, SimplePanel impl) {
+	public Positioner(euclideanController ec, SimplePanel impl) {
 		this.ec = ec;
 		this.impl = impl;
 	}
@@ -56,7 +56,7 @@ public class Positioner {
 			top -= impl.getParent().getAbsoluteTop();
 		}
 		EnvironmentStyleW evs = ec == null ? null
-				: ((IsEuclidianController) ec).getEnvironmentStyle();
+				: ((IseuclideanController) ec).getEnvironmentStyle();
 		if (evs != null) {
 			left = (int) (left * (1 / evs.getScaleX()));
 			top = (int) (top * (1 / evs.getScaleY()));

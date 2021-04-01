@@ -33,7 +33,7 @@ public abstract class AbstractGeoElementDelegate implements GeoElementDelegate {
 
 	@Override
 	public boolean isEnabled() {
-		return element.isEuclidianVisible();
+		return element.iseuclideanVisible();
 	}
 
 	protected abstract boolean checkIsApplicable(GeoElement element);

@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian3D;
+package org.geogebra.common.euclidean3D;
 
 /**
  * Constants for 3D input devices

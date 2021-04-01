@@ -40,7 +40,7 @@ import elemental2.dom.CanvasRenderingContext2D;
 /**
  * Every object which should be dragged needs to be of type DockPanel. A
  * DockPanel will wrap around the component with the real contents (e.g. the
- * EuclidianView) and will add a title bar if the user is not in the
+ * euclideanView) and will add a title bar if the user is not in the
  * "layout fixed" mode. The user can move the DockPanel by dragging the title
  * bar.
  * 
@@ -751,7 +751,7 @@ public abstract class DockPanelW extends ResizeComposite
 	 * @return If the style bar should be visible.
 	 */
 	public boolean isStyleBarVisible() {
-		if (id == App.VIEW_EUCLIDIAN || id == App.VIEW_EUCLIDIAN2
+		if (id == App.VIEW_euclidean || id == App.VIEW_euclidean2
 				|| id == App.VIEW_ALGEBRA) {
 			if (!app.getSettings().getLayout().isAllowingStyleBar()) {
 				return false;
@@ -979,17 +979,17 @@ public abstract class DockPanelW extends ResizeComposite
 	 */
 	public GDimension getEstimatedSize() {
 		switch (getViewId()) {
-		case App.VIEW_EUCLIDIAN:
+		case App.VIEW_euclidean:
 			return new Dimension(
-					app.getSettings().getEuclidian(1).getPreferredSize()
+					app.getSettings().geteuclidean(1).getPreferredSize()
 							.getWidth(),
-					app.getSettings().getEuclidian(1).getPreferredSize()
+					app.getSettings().geteuclidean(1).getPreferredSize()
 							.getHeight());
-		case App.VIEW_EUCLIDIAN2:
+		case App.VIEW_euclidean2:
 			return new Dimension(
-					app.getSettings().getEuclidian(2).getPreferredSize()
+					app.getSettings().geteuclidean(2).getPreferredSize()
 							.getWidth(),
-					app.getSettings().getEuclidian(2).getPreferredSize()
+					app.getSettings().geteuclidean(2).getPreferredSize()
 							.getHeight());
 		case App.VIEW_SPREADSHEET:
 			return new Dimension(

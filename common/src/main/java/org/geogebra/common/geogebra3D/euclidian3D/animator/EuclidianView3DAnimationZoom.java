@@ -1,12 +1,12 @@
-package org.geogebra.common.geogebra3D.euclidian3D.animator;
+package org.geogebra.common.geogebra3D.euclidean3D.animator;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 
 /**
  * animation for zoom
  *
  */
-public class EuclidianView3DAnimationZoom extends EuclidianView3DAnimationScaleAbstract {
+public class euclideanView3DAnimationZoom extends euclideanView3DAnimationScaleAbstract {
 
 	private double zoomFactor;
 	
@@ -16,7 +16,7 @@ public class EuclidianView3DAnimationZoom extends EuclidianView3DAnimationScaleA
 	 * @param animator animator
 	 * @param zoomFactor zoom factor
 	 */
-	EuclidianView3DAnimationZoom(EuclidianView3D view3D, EuclidianView3DAnimator animator,
+	euclideanView3DAnimationZoom(euclideanView3D view3D, euclideanView3DAnimator animator,
 			double zoomFactor) {
 		super(view3D, animator);
 		this.zoomFactor = zoomFactor;

@@ -1,6 +1,6 @@
 package org.geogebra.common.media;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.geos.GeoAudio;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoVideo;
@@ -29,7 +29,7 @@ public class MediaFactory {
 	 * @return the created audio geoElement
 	 */
 	public GeoElement addAudio(String url) {
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 		GeoAudio audio = new GeoAudio(app.getKernel().getConstruction(), url);
 		audio.getLocation().setLocation(
 				ev.toRealWorldCoordX((ev.getWidth() - audio.getWidth()) / 2),
@@ -37,7 +37,7 @@ public class MediaFactory {
 		);
 		audio.setLabel(null);
 		app.storeUndoInfo();
-		app.getActiveEuclidianView().repaint();
+		app.getActiveeuclideanView().repaint();
 		return audio;
 	}
 
@@ -49,7 +49,7 @@ public class MediaFactory {
 	 * @return the created video geoElement
 	 */
 	public GeoElement addVideo(VideoURL videoUrl) {
-		final EuclidianView ev = app.getActiveEuclidianView();
+		final euclideanView ev = app.getActiveeuclideanView();
 		final GeoVideo video = app.getVideoManager().createVideo(
 				app.getKernel().getConstruction(),
 				videoUrl);
@@ -63,7 +63,7 @@ public class MediaFactory {
 						ev.toRealWorldCoordY((ev.getHeight() - video.getHeight()) / 2)
 				);
 				video.notifyUpdate();
-				ev.getEuclidianController().selectAndShowSelectionUI(video);
+				ev.geteuclideanController().selectAndShowSelectionUI(video);
 				app.storeUndoInfo();
 			}
 		});

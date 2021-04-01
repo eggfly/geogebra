@@ -558,10 +558,10 @@ public abstract class GeoGebraFrameW extends FlowPanel implements
 		setHeight(height + "px");
 		app.setAppletWidth(width);
 		app.setAppletHeight(height);
-		app.getEuclidianViewpanel().setPixelSize(width, height);
+		app.geteuclideanViewpanel().setPixelSize(width, height);
 
 		// maybe onResize is OK too
-		app.getEuclidianViewpanel().deferredOnResize();
+		app.geteuclideanViewpanel().deferredOnResize();
 	}
 
 	/**
@@ -669,6 +669,6 @@ public abstract class GeoGebraFrameW extends FlowPanel implements
 	}
 
 	public void getScreenshotBase64(StringConsumer callback) {
-		callback.consume(app.getEuclidianView1().getCanvasBase64WithTypeString());
+		callback.consume(app.geteuclideanView1().getCanvasBase64WithTypeString());
 	}
 }

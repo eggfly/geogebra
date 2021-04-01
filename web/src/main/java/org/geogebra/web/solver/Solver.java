@@ -3,7 +3,7 @@ package org.geogebra.web.solver;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.stepbystep.SolveFailedException;
 import org.geogebra.common.kernel.stepbystep.solution.SolutionBuilder;
 import org.geogebra.common.kernel.stepbystep.steptree.StepEquation;
@@ -18,7 +18,7 @@ import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.editor.AppWsolver;
 import org.geogebra.web.editor.MathFieldProcessing;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.profiler.FpsProfilerW;
+import org.geogebra.web.html5.euclidean.profiler.FpsProfilerW;
 import org.geogebra.web.html5.gui.FastClickHandler;
 import org.geogebra.web.html5.gui.util.ClickStartHandler;
 import org.geogebra.web.html5.gui.view.button.StandardButton;

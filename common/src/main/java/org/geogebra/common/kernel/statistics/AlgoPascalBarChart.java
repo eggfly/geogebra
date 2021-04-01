@@ -40,7 +40,7 @@ public class AlgoPascalBarChart extends AlgoBarChart {
 	public AlgoPascalBarChart(Construction cons, String label, GeoNumberValue n,
 			GeoNumberValue p) {
 		super(cons, label, n, p, null, null, AlgoBarChart.TYPE_BARCHART_PASCAL);
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class AlgoPascalBarChart extends AlgoBarChart {
 			GeoNumberValue p, GeoBoolean isCumulative) {
 		super(cons, label, n, p, null, isCumulative,
 				AlgoBarChart.TYPE_BARCHART_PASCAL);
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 	}
 
 	private AlgoPascalBarChart(GeoNumberValue n, GeoNumberValue p,

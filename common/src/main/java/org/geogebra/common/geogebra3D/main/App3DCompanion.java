@@ -2,19 +2,19 @@ package org.geogebra.common.geogebra3D.main;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3DForExport;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3DForExport;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.RendererForExport;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Format;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.FormatCollada;
-import org.geogebra.common.geogebra3D.euclidianForPlane.EuclidianViewForPlaneCompanion;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3DForExport;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3DForExport;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.RendererForExport;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Format;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.FormatCollada;
+import org.geogebra.common.geogebra3D.euclideanForPlane.euclideanViewForPlaneCompanion;
 import org.geogebra.common.geogebra3D.kernel3D.GeoFactory3D;
 import org.geogebra.common.geogebra3D.kernel3D.Kernel3D;
-import org.geogebra.common.geogebra3D.main.settings.EuclidianSettingsForPlane;
+import org.geogebra.common.geogebra3D.main.settings.euclideanSettingsForPlane;
 import org.geogebra.common.gui.dialog.Export3dDialogInterface;
 import org.geogebra.common.gui.dialog.options.model.AxisModel;
 import org.geogebra.common.gui.layout.DockPanel;
@@ -26,8 +26,8 @@ import org.geogebra.common.kernel.kernelND.ViewCreator;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.AppCompanion;
 import org.geogebra.common.main.DialogManager;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 import org.geogebra.common.main.settings.Settings;
 import org.geogebra.common.plugin.Geometry3DGetter;
 
@@ -39,11 +39,11 @@ import org.geogebra.common.plugin.Geometry3DGetter;
  */
 public abstract class App3DCompanion extends AppCompanion {
 	// id of the first view
-	private int viewId = App.VIEW_EUCLIDIAN_FOR_PLANE_START;
+	private int viewId = App.VIEW_euclidean_FOR_PLANE_START;
 	/** view for plane companions */
-	protected ArrayList<EuclidianViewForPlaneCompanion> euclidianViewForPlaneCompanionList;
+	protected ArrayList<euclideanViewForPlaneCompanion> euclideanViewForPlaneCompanionList;
 
-	private EuclidianViewForPlaneCompanion euclidianViewForPlaneCompanion;
+	private euclideanViewForPlaneCompanion euclideanViewForPlaneCompanion;
 
 	/**
 	 * Constructor
@@ -72,11 +72,11 @@ public abstract class App3DCompanion extends AppCompanion {
 	}
 
 	// ///////////////////////////////
-	// EUCLIDIAN VIEW FOR PLANE
+	// euclidean VIEW FOR PLANE
 	// ///////////////////////////////
 
 	/**
-	 * add euclidian views for plane settings
+	 * add euclidean views for plane settings
 	 * 
 	 * @param sb
 	 *            string builder
@@ -85,24 +85,24 @@ public abstract class App3DCompanion extends AppCompanion {
 	 */
 	public void addCompleteUserInterfaceXMLForPlane(StringBuilder sb,
 			boolean asPreference) {
-		if (euclidianViewForPlaneCompanionList != null) {
-			for (EuclidianViewForPlaneCompanion vfpc : euclidianViewForPlaneCompanionList) {
+		if (euclideanViewForPlaneCompanionList != null) {
+			for (euclideanViewForPlaneCompanion vfpc : euclideanViewForPlaneCompanionList) {
 				vfpc.getView().getXML(sb, asPreference);
 			}
 		}
 	}
 
 	@Override
-	public void getEuclidianViewXML(StringBuilder sb, boolean asPreference) {
-		super.getEuclidianViewXML(sb, asPreference);
+	public void geteuclideanViewXML(StringBuilder sb, boolean asPreference) {
+		super.geteuclideanViewXML(sb, asPreference);
 
-		if (app.isEuclidianView3Dinited()) {
-			// TODO it would be cleaner to use EuclidianSettings here instead
-			app.getEuclidianView3D().getXML(sb, asPreference);
+		if (app.iseuclideanView3Dinited()) {
+			// TODO it would be cleaner to use euclideanSettings here instead
+			app.geteuclideanView3D().getXML(sb, asPreference);
 		}
 
-		if (euclidianViewForPlaneCompanionList != null) {
-			for (EuclidianViewForPlaneCompanion vfpc : euclidianViewForPlaneCompanionList) {
+		if (euclideanViewForPlaneCompanionList != null) {
+			for (euclideanViewForPlaneCompanion vfpc : euclideanViewForPlaneCompanionList) {
 				vfpc.getView().getXML(sb, asPreference);
 			}
 		}
@@ -110,7 +110,7 @@ public abstract class App3DCompanion extends AppCompanion {
 	}
 
 	/**
-	 * create new euclidian view for plane
+	 * create new euclidean view for plane
 	 * 
 	 * @param plane
 	 *            plane
@@ -120,36 +120,36 @@ public abstract class App3DCompanion extends AppCompanion {
 	 *            whether to set the visibility and size of the panel
 	 * @return view companion
 	 */
-	protected abstract EuclidianViewForPlaneCompanion createEuclidianViewForPlane(
-			ViewCreator plane, EuclidianSettings evSettings,
+	protected abstract euclideanViewForPlaneCompanion createeuclideanViewForPlane(
+			ViewCreator plane, euclideanSettings evSettings,
 			boolean panelSettings);
 
 	@Override
-	public EuclidianViewForPlaneCompanion createEuclidianViewForPlane(
+	public euclideanViewForPlaneCompanion createeuclideanViewForPlane(
 			ViewCreator plane, boolean panelSettings) {
 		// create new view for plane and controller
 		Settings settings = app.getSettings();
 		String name = plane.getLabelSimple();
-		EuclidianSettings evSettings = settings.getEuclidianForPlane(name);
+		euclideanSettings evSettings = settings.geteuclideanForPlane(name);
 		if (evSettings == null) {
-			evSettings = new EuclidianSettingsForPlane(app);
+			evSettings = new euclideanSettingsForPlane(app);
 			evSettings.setShowGridSetting(false);
 			evSettings.setShowAxes(false, false);
-			settings.setEuclidianSettingsForPlane(name, evSettings);
+			settings.seteuclideanSettingsForPlane(name, evSettings);
 		}
-		euclidianViewForPlaneCompanion = createEuclidianViewForPlane(plane,
+		euclideanViewForPlaneCompanion = createeuclideanViewForPlane(plane,
 				evSettings, panelSettings);
-		evSettings.addListener(euclidianViewForPlaneCompanion.getView());
-		euclidianViewForPlaneCompanion.getView().updateFonts();
-		euclidianViewForPlaneCompanion.addExistingGeos();
+		evSettings.addListener(euclideanViewForPlaneCompanion.getView());
+		euclideanViewForPlaneCompanion.getView().updateFonts();
+		euclideanViewForPlaneCompanion.addExistingGeos();
 
 		// add it to list
-		if (euclidianViewForPlaneCompanionList == null) {
-			euclidianViewForPlaneCompanionList = new ArrayList<>();
+		if (euclideanViewForPlaneCompanionList == null) {
+			euclideanViewForPlaneCompanionList = new ArrayList<>();
 		}
-		euclidianViewForPlaneCompanionList.add(euclidianViewForPlaneCompanion);
+		euclideanViewForPlaneCompanionList.add(euclideanViewForPlaneCompanion);
 
-		return euclidianViewForPlaneCompanion;
+		return euclideanViewForPlaneCompanion;
 	}
 
 	/**
@@ -158,33 +158,33 @@ public abstract class App3DCompanion extends AppCompanion {
 	 * @param vfpc
 	 *            view for plane companion
 	 */
-	public void removeEuclidianViewForPlaneFromList(
-			EuclidianViewForPlaneCompanion vfpc) {
-		euclidianViewForPlaneCompanionList.remove(vfpc);
-		app.getSettings().removeEuclidianSettingsForPlane(
+	public void removeeuclideanViewForPlaneFromList(
+			euclideanViewForPlaneCompanion vfpc) {
+		euclideanViewForPlaneCompanionList.remove(vfpc);
+		app.getSettings().removeeuclideanSettingsForPlane(
 				vfpc.getPlane().getLabelSimple());
 	}
 
 	/**
-	 * remove all euclidian views for plane
+	 * remove all euclidean views for plane
 	 */
-	public void removeAllEuclidianViewForPlane() {
+	public void removeAlleuclideanViewForPlane() {
 
-		if (euclidianViewForPlaneCompanionList == null) {
+		if (euclideanViewForPlaneCompanionList == null) {
 			return;
 		}
 
-		for (EuclidianViewForPlaneCompanion vfpc : euclidianViewForPlaneCompanionList) {
+		for (euclideanViewForPlaneCompanion vfpc : euclideanViewForPlaneCompanionList) {
 			vfpc.removeFromGuiAndKernel();
 		}
 
-		euclidianViewForPlaneCompanionList.clear();
-		app.getSettings().clearEuclidianSettingsForPlane();
+		euclideanViewForPlaneCompanionList.clear();
+		app.getSettings().cleareuclideanSettingsForPlane();
 
 	}
 
 	@Override
-	public DockPanel createEuclidianDockPanelForPlane(int id, String plane) {
+	public DockPanel createeuclideanDockPanelForPlane(int id, String plane) {
 
 		GeoElement geo = app.getKernel().lookupLabel(plane);
 		if (geo == null) {
@@ -195,7 +195,7 @@ public abstract class App3DCompanion extends AppCompanion {
 		}
 
 		ViewCreator vc = (ViewCreator) geo; // getViewCreator(id);
-		vc.setEuclidianViewForPlane(createEuclidianViewForPlane(vc, false));
+		vc.seteuclideanViewForPlane(createeuclideanViewForPlane(vc, false));
 		return getPanelForPlane();
 	}
 
@@ -206,18 +206,18 @@ public abstract class App3DCompanion extends AppCompanion {
 	abstract public DockPanel getPanelForPlane();
 
 	@Override
-	public boolean hasEuclidianViewForPlane() {
-		return euclidianViewForPlaneCompanionList != null
-				&& euclidianViewForPlaneCompanionList.size() > 0;
+	public boolean haseuclideanViewForPlane() {
+		return euclideanViewForPlaneCompanionList != null
+				&& euclideanViewForPlaneCompanionList.size() > 0;
 	}
 
 	@Override
-	public boolean hasEuclidianViewForPlaneVisible() {
-		if (!hasEuclidianViewForPlane()) {
+	public boolean haseuclideanViewForPlaneVisible() {
+		if (!haseuclideanViewForPlane()) {
 			return false;
 		}
 
-		for (EuclidianViewForPlaneCompanion c : euclidianViewForPlaneCompanionList) {
+		for (euclideanViewForPlaneCompanion c : euclideanViewForPlaneCompanionList) {
 
 			if (c.isPanelVisible()) {
 				return true;
@@ -228,12 +228,12 @@ public abstract class App3DCompanion extends AppCompanion {
 	}
 
 	@Override
-	public EuclidianView getViewForPlaneVisible() {
-		if (!hasEuclidianViewForPlane()) {
+	public euclideanView getViewForPlaneVisible() {
+		if (!haseuclideanViewForPlane()) {
 			return null;
 		}
 
-		for (EuclidianViewForPlaneCompanion c : euclidianViewForPlaneCompanionList) {
+		for (euclideanViewForPlaneCompanion c : euclideanViewForPlaneCompanionList) {
 			if (c.getView().isShowing()) {
 				return c.getView();
 			}
@@ -245,29 +245,29 @@ public abstract class App3DCompanion extends AppCompanion {
 
 	@Override
 	public void addToViewsForPlane(GeoElement geo) {
-		if (euclidianViewForPlaneCompanionList == null) {
+		if (euclideanViewForPlaneCompanionList == null) {
 			return;
 		}
 
-		for (EuclidianViewForPlaneCompanion c : euclidianViewForPlaneCompanionList) {
+		for (euclideanViewForPlaneCompanion c : euclideanViewForPlaneCompanionList) {
 			c.getView().add(geo);
 		}
 	}
 
 	@Override
 	public void removeFromViewsForPlane(GeoElement geo) {
-		if (euclidianViewForPlaneCompanionList == null) {
+		if (euclideanViewForPlaneCompanionList == null) {
 			return;
 		}
 
-		for (EuclidianViewForPlaneCompanion c : euclidianViewForPlaneCompanionList) {
+		for (euclideanViewForPlaneCompanion c : euclideanViewForPlaneCompanionList) {
 			c.getView().remove(geo);
 		}
 	}
 
 	@Override
-	public final void resetEuclidianViewForPlaneIds() {
-		viewId = App.VIEW_EUCLIDIAN_FOR_PLANE_START;
+	public final void reseteuclideanViewForPlaneIds() {
+		viewId = App.VIEW_euclidean_FOR_PLANE_START;
 	}
 
 	/**
@@ -285,8 +285,8 @@ public abstract class App3DCompanion extends AppCompanion {
 		if (format.useSpecificViewForExport()) {
 			int width = 0, height = 0;
 			boolean use2d = true;
-			if (app.isEuclidianView3Dinited()) {
-				EuclidianView3DInterface view3D = app.getEuclidianView3D();
+			if (app.iseuclideanView3Dinited()) {
+				euclideanView3DInterface view3D = app.geteuclideanView3D();
 				if (view3D.isShowing()) {
 					Renderer r = view3D.getRenderer();
 					width = r.getWidth();
@@ -294,12 +294,12 @@ public abstract class App3DCompanion extends AppCompanion {
 					use2d = false;
 				}
 			}
-			EuclidianSettings3D settings = (EuclidianSettings3D) app.getSettings().getEuclidian(3);
+			euclideanSettings3D settings = (euclideanSettings3D) app.getSettings().geteuclidean(3);
 			if (use2d) {
-				EuclidianView ev = app.getActiveEuclidianView();
+				euclideanView ev = app.getActiveeuclideanView();
 				width = ev.getWidth();
 				height = ev.getHeight();
-				EuclidianSettings s2d = ev.getSettings();
+				euclideanSettings s2d = ev.getSettings();
 				settings.setShowAxis(AxisModel.AXIS_X,
 						s2d.getShowAxis(AxisModel.AXIS_X));
 				settings.setShowAxis(AxisModel.AXIS_Y,
@@ -307,8 +307,8 @@ public abstract class App3DCompanion extends AppCompanion {
 				settings.setShowAxis(AxisModel.AXIS_Z, false);
 				settings.setShowPlate(false);
 				settings.setShowGridSetting(s2d.getShowGrid() && (s2d
-						.getGridType() == EuclidianView.GRID_CARTESIAN
-						|| s2d.getGridType() == EuclidianView.GRID_CARTESIAN_WITH_SUBGRID));
+						.getGridType() == euclideanView.GRID_CARTESIAN
+						|| s2d.getGridType() == euclideanView.GRID_CARTESIAN_WITH_SUBGRID));
 				double xscale = s2d.getXscale();
 				double yscale = s2d.getYscale();
 				double xmin = -s2d.getXZero() / xscale;
@@ -323,8 +323,8 @@ public abstract class App3DCompanion extends AppCompanion {
 				settings.setYAxisVertical(true); // this way view height will be
 													// used for clipping
 			}
-			EuclidianView3DForExport exportView3D = new EuclidianView3DForExport(
-					new EuclidianController3DForExport(app), settings);
+			euclideanView3DForExport exportView3D = new euclideanView3DForExport(
+					new euclideanController3DForExport(app), settings);
 			if (width > 0) {
 				RendererForExport renderer = (RendererForExport) exportView3D.getRenderer();
 				renderer.setReduceForClipping(!use2d);
@@ -345,17 +345,17 @@ public abstract class App3DCompanion extends AppCompanion {
 						export.toString());
 			}
 		} else {
-			if (app.isEuclidianView3Dinited()) {
-				EuclidianView3DInterface view3D = app.getEuclidianView3D();
+			if (app.iseuclideanView3Dinited()) {
+				euclideanView3DInterface view3D = app.geteuclideanView3D();
 				if (view3D.isShowing() && view3D.getRenderer().useShaders()) {
 					view3D.setExport3D(format);
 					return;
 				}
 			}
 			// use ad hoc 3D view for export
-			EuclidianView3DForExport exportView3D = new EuclidianView3DForExport(
-					new EuclidianController3DForExport(app),
-					app.getSettings().getEuclidian(3));
+			euclideanView3DForExport exportView3D = new euclideanView3DForExport(
+					new euclideanController3DForExport(app),
+					app.getSettings().geteuclidean(3));
 			StringBuilder export = exportView3D.export3D(format);
 			app.getKernel().detach(exportView3D);
 			app.exportStringToFile(format.getExtension(), export.toString());
@@ -368,9 +368,9 @@ public abstract class App3DCompanion extends AppCompanion {
 			double xzScale, double xTickDistance, double yTickDistance,
 			double zTickDistance) {
 		// use ad hoc 3D view for export
-		EuclidianSettings3D settings = new EuclidianSettings3D(app);
-		EuclidianView3DForExport exportView3D = new EuclidianView3DForExport(
-				new EuclidianController3DForExport(app), settings);
+		euclideanSettings3D settings = new euclideanSettings3D(app);
+		euclideanView3DForExport exportView3D = new euclideanView3DForExport(
+				new euclideanController3DForExport(app), settings);
 		Format format = new FormatCollada();
 		exportView3D.updateSettings(xmin, xmax, ymin, ymax, zmin, zmax, xyScale,
 				xzScale, xTickDistance, yTickDistance, zTickDistance);
@@ -385,13 +385,13 @@ public abstract class App3DCompanion extends AppCompanion {
 			double xyScale, double xzScale, double xTickDistance,
 			double yTickDistance, double zTickDistance) {
 		// use ad hoc 3D view for export
-		EuclidianSettings3D settings = new EuclidianSettings3D(app);
-		EuclidianView3DForExport exportView3D = new EuclidianView3DForExport(
-				new EuclidianController3DForExport(app), settings);
+		euclideanSettings3D settings = new euclideanSettings3D(app);
+		euclideanView3DForExport exportView3D = new euclideanView3DForExport(
+				new euclideanController3DForExport(app), settings);
 
-		if (app.isEuclidianView3Dinited()) {
-			EuclidianView3D view3D = (EuclidianView3D) app.getEuclidianView3D();
-			EuclidianSettings3D viewSettings = view3D.getSettings();
+		if (app.iseuclideanView3Dinited()) {
+			euclideanView3D view3D = (euclideanView3D) app.geteuclideanView3D();
+			euclideanSettings3D viewSettings = view3D.getSettings();
 			settings.setShowAxes(viewSettings.axisShown());
 			if (xmin > xmax) { // use original view settings
 				exportView3D.updateSettings(view3D.getXmin(), view3D.getXmax(),
@@ -416,17 +416,17 @@ public abstract class App3DCompanion extends AppCompanion {
 		app.getKernel().detach(exportView3D);
 	}
 
-	public EuclidianViewForPlaneCompanion getEuclidianViewForPlaneCompanion() {
-		return euclidianViewForPlaneCompanion;
+	public euclideanViewForPlaneCompanion geteuclideanViewForPlaneCompanion() {
+		return euclideanViewForPlaneCompanion;
 	}
 
 	@Override
 	public void updateFonts3D() {
-		if (app.isEuclidianView3Dinited()) {
-			((EuclidianView) app.getEuclidianView3D()).updateFonts();
+		if (app.iseuclideanView3Dinited()) {
+			((euclideanView) app.geteuclideanView3D()).updateFonts();
 		}
-		if (euclidianViewForPlaneCompanion != null) {
-			euclidianViewForPlaneCompanion.getView().updateFonts();
+		if (euclideanViewForPlaneCompanion != null) {
+			euclideanViewForPlaneCompanion.getView().updateFonts();
 		}
 	}
 }

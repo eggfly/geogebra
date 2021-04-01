@@ -11,7 +11,7 @@ import org.geogebra.common.kernel.arithmetic.NumberValue;
 import org.geogebra.common.kernel.commands.CmdScripting;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.MyError;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 /**
  * HideLayer
@@ -42,7 +42,7 @@ public class CmdShowHideLayer extends CmdScripting {
 			GeoElement[] arg = resArgs(c);
 			if (arg[0] instanceof NumberValue) {
 				int layer = (int) arg[0].evaluateDouble();
-				if (layer < 0 || layer > EuclidianStyleConstants.MAX_LAYERS) {
+				if (layer < 0 || layer > euclideanStyleConstants.MAX_LAYERS) {
 					return arg;
 				}
 				Iterator<GeoElement> it = kernel.getConstruction()
@@ -51,7 +51,7 @@ public class CmdShowHideLayer extends CmdScripting {
 				while (it.hasNext()) {
 					GeoElement geo = it.next();
 					if (geo.getLayer() == layer) {
-						geo.setEuclidianVisible(show);
+						geo.seteuclideanVisible(show);
 						set.add(geo);
 					}
 				}

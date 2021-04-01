@@ -2,7 +2,7 @@ package org.geogebra.web.full.gui;
 
 import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.inline.InlineTextController;
+import org.geogebra.common.euclidean.inline.InlineTextController;
 
 public class InlineTextControllerMock implements InlineTextController {
 	private String url;

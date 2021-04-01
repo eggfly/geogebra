@@ -3,23 +3,23 @@ package org.geogebra.web.full.gui.view.data;
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.Hits;
+import org.geogebra.common.euclidean.Hits;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.GeoElement;
-import org.geogebra.web.html5.euclidian.EuclidianControllerW;
+import org.geogebra.web.html5.euclidean.euclideanControllerW;
 
 /**
  * @author gabor
  * 
- * EuclidianController for plot panel in web
+ * euclideanController for plot panel in web
  *
  */
-public class PlotPanelEuclidianControllerW extends EuclidianControllerW {
+public class PlotPaneleuclideanControllerW extends euclideanControllerW {
 
 	/**
 	 * @param kernel Kernel
 	 */
-	public PlotPanelEuclidianControllerW(Kernel kernel) {
+	public PlotPaneleuclideanControllerW(Kernel kernel) {
 	    super(kernel);
     }
 	

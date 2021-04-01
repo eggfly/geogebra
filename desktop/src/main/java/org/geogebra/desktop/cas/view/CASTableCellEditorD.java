@@ -266,7 +266,7 @@ public class CASTableCellEditorD extends CASTableCell
 
 		case KeyEvent.VK_V:
 			if (AppD.isControlDown(e)) {
-				// make sure Ctrl-V isn't passed on to Euclidian View
+				// make sure Ctrl-V isn't passed on to euclidean View
 				getInputArea().paste();
 				e.consume();
 			}

@@ -541,11 +541,11 @@ public class ContextMenuGeoElementD extends ContextMenuGeoElement {
 			JCheckBoxMenuItem cbItem;
 
 			// show object
-			if (getGeo().isEuclidianToggleable()) {
+			if (getGeo().iseuclideanToggleable()) {
 				cbItem = new JCheckBoxMenuItem(loc.getMenu("ShowObject"));
 				cbItem.setIcon(((AppD) app)
 						.getScaledIcon(GuiResourcesD.MODE_SHOWHIDEOBJECT_GIF));
-				cbItem.setSelected(getGeo().isSetEuclidianVisible());
+				cbItem.setSelected(getGeo().isSeteuclideanVisible());
 				cbItem.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {

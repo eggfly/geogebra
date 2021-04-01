@@ -23,7 +23,7 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.view.properties.PropertiesStyleBar;
 import org.geogebra.common.gui.view.properties.PropertiesView;
@@ -33,14 +33,14 @@ import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.OptionType;
 import org.geogebra.common.util.debug.Log;
-import org.geogebra.desktop.euclidian.EuclidianViewD;
+import org.geogebra.desktop.euclidean.euclideanViewD;
 import org.geogebra.desktop.gui.GuiManagerD;
 import org.geogebra.desktop.gui.dialog.options.OptionPanelD;
 import org.geogebra.desktop.gui.dialog.options.OptionsAdvancedD;
 import org.geogebra.desktop.gui.dialog.options.OptionsAlgebraD;
 import org.geogebra.desktop.gui.dialog.options.OptionsCASD;
 import org.geogebra.desktop.gui.dialog.options.OptionsDefaultsD;
-import org.geogebra.desktop.gui.dialog.options.OptionsEuclidianD;
+import org.geogebra.desktop.gui.dialog.options.OptionseuclideanD;
 import org.geogebra.desktop.gui.dialog.options.OptionsLayoutD;
 import org.geogebra.desktop.gui.dialog.options.OptionsObjectD;
 import org.geogebra.desktop.gui.dialog.options.OptionsSpreadsheetD;
@@ -66,7 +66,7 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 
 	// option panels
 	private OptionsDefaultsD defaultsPanel;
-	private OptionsEuclidianD<EuclidianViewD> euclidianPanel, euclidianPanel2;
+	private OptionseuclideanD<euclideanViewD> euclideanPanel, euclideanPanel2;
 	private OptionsSpreadsheetD spreadsheetPanel;
 	private OptionsCASD casPanel;
 	private OptionsAdvancedD advancedPanel;
@@ -170,11 +170,11 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 	 * .createDefaultGeoElementsFromScratch();
 	 * 
 	 * // reset the stylebar defaultGeo if
-	 * (app.getEuclidianView1().hasStyleBar())
-	 * app.getEuclidianView1().getStyleBar() .restoreDefaultGeo(); if
-	 * (app.hasEuclidianView2EitherShowingOrNot()) if
-	 * (app.getEuclidianView2().hasStyleBar())
-	 * app.getEuclidianView2().getStyleBar() .restoreDefaultGeo();
+	 * (app.geteuclideanView1().hasStyleBar())
+	 * app.geteuclideanView1().getStyleBar() .restoreDefaultGeo(); if
+	 * (app.haseuclideanView2EitherShowingOrNot()) if
+	 * (app.geteuclideanView2().hasStyleBar())
+	 * app.geteuclideanView2().getStyleBar() .restoreDefaultGeo();
 	 * 
 	 * // restore dialog panels to display these defaults restoreDefaults();
 	 * 
@@ -238,7 +238,7 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 	}
 
 	/**
-	 * acts when mouse has been pressed in euclidian controller
+	 * acts when mouse has been pressed in euclidean controller
 	 */
 	@Override
 	public void mousePressedForPropertiesView() {
@@ -286,7 +286,7 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 		}
 
 		if (!isIniting && selectedOptionType == type
-				&& type != OptionType.EUCLIDIAN_FOR_PLANE) {
+				&& type != OptionType.euclidean_FOR_PLANE) {
 			updateTitleBar();
 			return;
 		}
@@ -319,7 +319,7 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 			defaultsPanel.updateGUI();
 		}
 
-		updateEuclidianPanelsGUI();
+		updateeuclideanPanelsGUI();
 
 		if (spreadsheetPanel != null) {
 			spreadsheetPanel.updateGUI();
@@ -343,14 +343,14 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 	}
 
 	/**
-	 * update euclidian panels GUI
+	 * update euclidean panels GUI
 	 */
-	public void updateEuclidianPanelsGUI() {
-		if (euclidianPanel != null) {
-			euclidianPanel.updateGUI();
+	public void updateeuclideanPanelsGUI() {
+		if (euclideanPanel != null) {
+			euclideanPanel.updateGUI();
 		}
-		if (euclidianPanel2 != null) {
-			euclidianPanel2.updateGUI();
+		if (euclideanPanel2 != null) {
+			euclideanPanel2.updateGUI();
 		}
 	}
 
@@ -365,14 +365,14 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 		default:
 			// do nothing
 			break;
-		case App.VIEW_EUCLIDIAN:
-			if (euclidianPanel != null) {
-				euclidianPanel.updateGUI();
+		case App.VIEW_euclidean:
+			if (euclideanPanel != null) {
+				euclideanPanel.updateGUI();
 			}
 			break;
-		case App.VIEW_EUCLIDIAN2:
-			if (euclidianPanel2 != null) {
-				euclidianPanel2.updateGUI();
+		case App.VIEW_euclidean2:
+			if (euclideanPanel2 != null) {
+				euclideanPanel2.updateGUI();
 			}
 			break;
 		case App.VIEW_SPREADSHEET:
@@ -412,26 +412,26 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 			}
 			return casPanel;
 
-		case EUCLIDIAN:
-			if (euclidianPanel == null) {
-				euclidianPanel = new OptionsEuclidianD<>(
+		case euclidean:
+			if (euclideanPanel == null) {
+				euclideanPanel = new OptionseuclideanD<>(
 						(AppD) app,
-						((AppD) app).getEuclidianView1());
-				euclidianPanel.setLabels();
-				// euclidianPanel.setView(((AppD) app).getEuclidianView1());
+						((AppD) app).geteuclideanView1());
+				euclideanPanel.setLabels();
+				// euclideanPanel.setView(((AppD) app).geteuclideanView1());
 			}
 
-			return euclidianPanel;
+			return euclideanPanel;
 
-		case EUCLIDIAN2:
-			if (euclidianPanel2 == null) {
-				euclidianPanel2 = new OptionsEuclidianD<>((AppD) app,
-						((AppD) app).getEuclidianView2(1));
-				euclidianPanel2.setLabels();
-				// euclidianPanel2.setView(((AppD) app).getEuclidianView2());
+		case euclidean2:
+			if (euclideanPanel2 == null) {
+				euclideanPanel2 = new OptionseuclideanD<>((AppD) app,
+						((AppD) app).geteuclideanView2(1));
+				euclideanPanel2.setLabels();
+				// euclideanPanel2.setView(((AppD) app).geteuclideanView2());
 			}
 
-			return euclidianPanel2;
+			return euclideanPanel2;
 
 		case SPREADSHEET:
 			if (spreadsheetPanel == null) {
@@ -497,11 +497,11 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 		if (defaultsPanel != null) {
 			defaultsPanel.setLabels();
 		}
-		if (euclidianPanel != null) {
-			euclidianPanel.setLabels();
+		if (euclideanPanel != null) {
+			euclideanPanel.setLabels();
 		}
-		if (euclidianPanel2 != null) {
-			euclidianPanel2.setLabels();
+		if (euclideanPanel2 != null) {
+			euclideanPanel2.setLabels();
 		}
 		if (spreadsheetPanel != null) {
 			spreadsheetPanel.setLabels();
@@ -656,7 +656,7 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 
 	}
 
-	private int mode = EuclidianConstants.MODE_MOVE;
+	private int mode = euclideanConstants.MODE_MOVE;
 
 	@Override
 	public void setMode(int mode, ModeSetter m) {
@@ -774,11 +774,11 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 		default:
 			// do nothing
 			break;
-		case EUCLIDIAN:
-			euclidianPanel.setSelectedTab(getSelectedTab());
+		case euclidean:
+			euclideanPanel.setSelectedTab(getSelectedTab());
 			break;
-		case EUCLIDIAN2:
-			euclidianPanel2.setSelectedTab(getSelectedTab());
+		case euclidean2:
+			euclideanPanel2.setSelectedTab(getSelectedTab());
 			break;
 		}
 	}
@@ -813,7 +813,7 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 	}
 
 	public void showSliderTab() {
-		selectedOptionType = OptionType.EUCLIDIAN;
+		selectedOptionType = OptionType.euclidean;
 		setOptionPanel(OptionType.OBJECTS);
 		((OptionsObjectD) getObjectPanel()).showSliderTab();
 		styleBar.updateGUI();
@@ -843,9 +843,9 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 			return app.getScaledIcon(GuiResourcesD.MENU_VIEW_SPREADSHEET);
 		case ALGEBRA:
 			return app.getScaledIcon(GuiResourcesD.MENU_VIEW_ALGEBRA);
-		case EUCLIDIAN:
+		case euclidean:
 			return app.getScaledIcon(GuiResourcesD.MENU_VIEW_GRAPHICS);
-		case EUCLIDIAN2:
+		case euclidean2:
 			return app.getScaledIcon(GuiResourcesD.MENU_VIEW_GRAPHICS2);
 		case CAS:
 			return app.getScaledIcon(GuiResourcesD.MENU_VIEW_CAS);
@@ -855,9 +855,9 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 			return app.getScaledIcon(GuiResourcesD.OPTIONS_OBJECTS_24);
 		case LAYOUT:
 			return app.getScaledIcon(GuiResourcesD.OPTIONS_LAYOUT_24);
-		case EUCLIDIAN3D:
+		case euclidean3D:
 			return app.getScaledIcon(GuiResourcesD.MENU_VIEW_GRAPHICS3D);
-		case EUCLIDIAN_FOR_PLANE:
+		case euclidean_FOR_PLANE:
 			return app.getScaledIcon(GuiResourcesD.MENU_VIEW_GRAPHICS_EXTRA);
 		}
 		return null;
@@ -879,13 +879,13 @@ public class PropertiesViewD extends PropertiesView implements SetLabels {
 		 {
 			defaultsPanel.updateFont(); // tree + button
 		}
-		if (euclidianPanel != null)
+		if (euclideanPanel != null)
 		 {
-			euclidianPanel.updateFont(); //
+			euclideanPanel.updateFont(); //
 		}
-		if (euclidianPanel2 != null)
+		if (euclideanPanel2 != null)
 		 {
-			euclidianPanel2.updateFont(); //
+			euclideanPanel2.updateFont(); //
 		}
 		if (spreadsheetPanel != null)
 		 {

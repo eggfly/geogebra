@@ -15,7 +15,7 @@ package org.geogebra.common.kernel.algos;
 import java.util.ArrayList;
 
 import org.apache.commons.math3.analysis.UnivariateFunction;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.commands.Commands;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -114,12 +114,12 @@ public class AlgoExtremumMulti extends AlgoGeoPointsFunction {
 	 *            view
 	 */
 	public AlgoExtremumMulti(Construction cons, String[] labels,
-			GeoFunctionable function, EuclidianViewInterfaceCommon view) {
+			GeoFunctionable function, euclideanViewInterfaceCommon view) {
 		this(cons, labels, function, view.getXminObject(),
 				view.getXmaxObject(), true);
 
 		// updates the area that is visible
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 		intervalDefinedByEV = true;
 	}
 
@@ -296,7 +296,7 @@ public class AlgoExtremumMulti extends AlgoGeoPointsFunction {
 	}
 
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 		compute();
 		return true;
 	}

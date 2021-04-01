@@ -10,7 +10,7 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -22,9 +22,9 @@ import org.geogebra.common.awt.GGeneralPath;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.GeneralPathClipped;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoTurtle;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
@@ -73,7 +73,7 @@ public class DrawTurtle extends Drawable {
 	 * @param turtle
 	 *            turtle
 	 */
-	public DrawTurtle(EuclidianView view, GeoTurtle turtle) {
+	public DrawTurtle(euclideanView view, GeoTurtle turtle) {
 		this.view = view;
 		this.turtle = turtle;
 		geo = turtle;
@@ -193,7 +193,7 @@ public class DrawTurtle extends Drawable {
 	@Override
 	final public void update() {
 
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 
 		if (isVisible) {
 			labelVisible = geo.isLabelVisible();
@@ -333,7 +333,7 @@ public class DrawTurtle extends Drawable {
 	@Override
 	final public GRectangle getBounds() {
 
-		if (!geo.isDefined() || !geo.isEuclidianVisible()
+		if (!geo.isDefined() || !geo.iseuclideanVisible()
 				|| turtleImageBounds == null) {
 			return null;
 		}

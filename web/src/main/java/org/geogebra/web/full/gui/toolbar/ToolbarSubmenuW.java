@@ -1,7 +1,7 @@
 package org.geogebra.web.full.gui.toolbar;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.web.full.css.GuiResources;
 import org.geogebra.web.full.gui.app.GGWToolBar;
 import org.geogebra.web.full.gui.images.AppResources;
@@ -132,15 +132,15 @@ public class ToolbarSubmenuW extends FlowPanel {
 
 		GGWToolBar.getImageResource(mode, app, img);
 		// temporary opacity fix until all the icons will be renewed
-		if (mode == EuclidianConstants.MODE_IMAGE
-				|| mode == EuclidianConstants.MODE_TEXTFIELD_ACTION
-				|| mode == EuclidianConstants.MODE_PEN
-				|| mode == EuclidianConstants.MODE_FREEHAND_SHAPE
-				|| mode == EuclidianConstants.MODE_ERASER) {
+		if (mode == euclideanConstants.MODE_IMAGE
+				|| mode == euclideanConstants.MODE_TEXTFIELD_ACTION
+				|| mode == euclideanConstants.MODE_PEN
+				|| mode == euclideanConstants.MODE_FREEHAND_SHAPE
+				|| mode == euclideanConstants.MODE_ERASER) {
 			img.addStyleName("mowPanelButton");
 		}
-		if (mode == EuclidianConstants.MODE_IMAGE
-				|| mode == EuclidianConstants.MODE_DELETE) {
+		if (mode == euclideanConstants.MODE_IMAGE
+				|| mode == euclideanConstants.MODE_DELETE) {
 			img.addStyleName("plusPadding");
 		}
 		return img;

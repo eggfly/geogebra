@@ -1,6 +1,6 @@
 package org.geogebra.common.gui.dialog.options;
 
-public abstract class OptionsEuclidian {
+public abstract class Optionseuclidean {
 
 	abstract public void updateGUI();
 

@@ -1,6 +1,6 @@
 package org.geogebra.web.full.main.video;
 
-import org.geogebra.common.euclidian.draw.DrawVideo;
+import org.geogebra.common.euclidean.draw.DrawVideo;
 
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;

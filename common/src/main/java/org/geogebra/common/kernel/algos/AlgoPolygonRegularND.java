@@ -14,7 +14,7 @@ package org.geogebra.common.kernel.algos;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.MyDouble;
@@ -133,12 +133,12 @@ public abstract class AlgoPolygonRegularND extends AlgoElement
 							for (int i = 0; i < size && !segmentsVisible; i++) {
 								segmentsVisible = segmentsVisible
 										|| outputSegments.getElement(i)
-												.isEuclidianVisible();
+												.iseuclideanVisible();
 							}
 						} else { // no segment yet
 							segmentsVisible = true;
 						}
-						segment.setEuclidianVisible(segmentsVisible);
+						segment.seteuclideanVisible(segmentsVisible);
 						segment.setLabelVisible(showNewSegmentsLabels);
 						segment.setViewFlags(((GeoElement) A).getViewSet());
 						segment.setVisibleInView3D((GeoElement) A);
@@ -159,8 +159,8 @@ public abstract class AlgoPolygonRegularND extends AlgoElement
 						newPoint.setParentAlgorithm(AlgoPolygonRegularND.this);
 						newPoint.setAuxiliaryObject(true);
 						((GeoPointND) newPoint).setPointSize(A.getPointSize());
-						newPoint.setEuclidianVisible(A.isEuclidianVisible()
-								|| B.isEuclidianVisible());
+						newPoint.seteuclideanVisible(A.iseuclideanVisible()
+								|| B.iseuclideanVisible());
 						newPoint.setAuxiliaryObject(true);
 						newPoint.setLabelVisible(showNewPointsLabels);
 						newPoint.setViewFlags(((GeoElement) A).getViewSet());
@@ -269,7 +269,7 @@ public abstract class AlgoPolygonRegularND extends AlgoElement
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_REGULAR_POLYGON;
+		return euclideanConstants.MODE_REGULAR_POLYGON;
 	}
 
 	/**
@@ -426,8 +426,8 @@ public abstract class AlgoPolygonRegularND extends AlgoElement
 		// update points and segments
 		if (vertices > nOld) {
 			showNewPointsLabels = labelPointsAndSegments
-					&& (A.isEuclidianVisible() && A.isLabelVisible()
-							|| B.isEuclidianVisible() && B.isLabelVisible());
+					&& (A.iseuclideanVisible() && A.isLabelVisible()
+							|| B.iseuclideanVisible() && B.isLabelVisible());
 			outputPoints.augmentOutputSize(vertices - nOld, false);
 			if (labelPointsAndSegments && !labelsNeedIniting) {
 				outputPoints.updateLabels();

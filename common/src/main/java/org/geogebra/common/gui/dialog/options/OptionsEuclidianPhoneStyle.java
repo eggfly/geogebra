@@ -1,6 +1,6 @@
 package org.geogebra.common.gui.dialog.options;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.dialog.options.model.AxisModel;
 import org.geogebra.common.main.App;
 
@@ -10,11 +10,11 @@ import org.geogebra.common.main.App;
  * @author mathieu
  *
  */
-public class OptionsEuclidianPhoneStyle extends OptionsEuclidian {
+public class OptionseuclideanPhoneStyle extends Optionseuclidean {
 	private static final String[] EDIT_TEXT_DEFAULT = { "x", "y", "z" };
 
 	private AxisModel[] mAxisModel;
-	private EuclidianView view;
+	private euclideanView view;
 	private int dimension;
 
 	/**
@@ -23,13 +23,13 @@ public class OptionsEuclidianPhoneStyle extends OptionsEuclidian {
 	 * @param app
 	 *            application
 	 * @param view
-	 *            euclidian view
+	 *            euclidean view
 	 */
-	public OptionsEuclidianPhoneStyle(App app, EuclidianView view) {
+	public OptionseuclideanPhoneStyle(App app, euclideanView view) {
 
         this.view = view;
 
-        if (view.isEuclidianView3D()) {
+        if (view.iseuclideanView3D()) {
 			dimension = 3;
 		} else {
 			dimension = 2;
@@ -49,9 +49,9 @@ public class OptionsEuclidianPhoneStyle extends OptionsEuclidian {
 
 	/**
 	 * 
-	 * @return related euclidian view
+	 * @return related euclidean view
 	 */
-	public EuclidianView getView() {
+	public euclideanView getView() {
 		return view;
 	}
 

@@ -1,6 +1,6 @@
 package org.geogebra.common.geogebra3D.kernel3D.scripting;
 
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.Command;
 import org.geogebra.common.kernel.commands.CmdScripting;
@@ -32,7 +32,7 @@ public class CmdSetViewDirection extends CmdScripting {
 	@Override
 	protected final GeoElement[] perform(Command c) throws MyError {
 
-		if (!app.isEuclidianView3Dinited()) {
+		if (!app.iseuclideanView3Dinited()) {
 			return new GeoElement[0];
 		}
 
@@ -44,7 +44,7 @@ public class CmdSetViewDirection extends CmdScripting {
 
 		// no argument: set default orientation
 		if (n == 0) {
-			app.getEuclidianView3D().setDefaultRotAnimation();
+			app.geteuclideanView3D().setDefaultRotAnimation();
 			return new GeoElement[0];
 		}
 
@@ -62,7 +62,7 @@ public class CmdSetViewDirection extends CmdScripting {
 		if (arg[0].isGeoVector()) {
 			GeoVectorND v = (GeoVectorND) arg[0];
 
-			EuclidianView3DInterface view3D = app.getEuclidianView3D();
+			euclideanView3DInterface view3D = app.geteuclideanView3D();
 
 			if (tmpCoords == null) {
 				tmpCoords = new Coords(3);
@@ -76,7 +76,7 @@ public class CmdSetViewDirection extends CmdScripting {
 		if (arg[0] instanceof GeoDirectionND) {
 			GeoDirectionND d = (GeoDirectionND) arg[0];
 
-			EuclidianView3DInterface view3D = app.getEuclidianView3D();
+			euclideanView3DInterface view3D = app.geteuclideanView3D();
 
 			Coords v = d.getDirectionInD3();
 			if (v != null) {
@@ -91,7 +91,7 @@ public class CmdSetViewDirection extends CmdScripting {
 			GeoPointND p = (GeoPointND) arg[0];
 
 			if (p.isDefined()) {
-				EuclidianView3DInterface view3D = app.getEuclidianView3D();
+				euclideanView3DInterface view3D = app.geteuclideanView3D();
 				view3D.setClosestRotAnimation(p.getInhomCoordsInD3(), animated);
 			}
 
@@ -104,7 +104,7 @@ public class CmdSetViewDirection extends CmdScripting {
 			// sign for anti-clockwise rotation
 			double value = -((GeoNumeric) arg[0]).getDouble() - Math.PI / 2;
 
-			app.getEuclidianView3D().setRotAnimation(value, false, animated);
+			app.geteuclideanView3D().setRotAnimation(value, false, animated);
 
 			return arg;
 

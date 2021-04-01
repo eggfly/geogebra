@@ -3,18 +3,18 @@ package org.geogebra.common.geogebra3D.input3D;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GPointWithZ;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianCursor;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.Hits;
-import org.geogebra.common.euclidian.event.PointerEventType;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3DCompanion;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawSegment3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterCompletingCursor;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterCursor;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanCursor;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.Hits;
+import org.geogebra.common.euclidean.event.PointerEventType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3DCompanion;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawSegment3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterCompletingCursor;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterCursor;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.geogebra3D.input3D.Input3D.OutOfField;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPlane3DConstant;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
@@ -26,10 +26,10 @@ import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.kernel.matrix.Coords;
 
 /**
- * Companion for EuclidianView3D using Input3D
+ * Companion for euclideanView3D using Input3D
  *
  */
-public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
+public class euclideanViewInput3DCompanion extends euclideanView3DCompanion {
 
 	private Input3D input3D;
 
@@ -59,7 +59,7 @@ public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
 	 * @param view
 	 *            3D view
 	 */
-	public EuclidianViewInput3DCompanion(EuclidianView view) {
+	public euclideanViewInput3DCompanion(euclideanView view) {
 		super(view);
 
 		mouse3DScenePosition = new Coords(4);
@@ -258,8 +258,8 @@ public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
 
 		// not moving a geo : see if user stays on the same hit to select it
 		if (input3D.useCompletingDelay()
-				&& getView().getEuclidianController()
-						.getMoveMode() == EuclidianController.MOVE_NONE
+				&& getView().geteuclideanController()
+						.getMoveMode() == euclideanController.MOVE_NONE
 				&& !input3D.hasCompletedGrabbingDelay()) {
 			long time = System.currentTimeMillis();
 			hittedGeo.setHitted(
@@ -270,10 +270,10 @@ public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
 			GeoElement geoToHit = hittedGeo.getGeo();
 			getView().getHits3D().init(geoToHit);
 			getView().updateCursor3D(getView().getHits());
-			getView().getApplication().setMode(EuclidianConstants.MODE_MOVE);
+			getView().getApplication().setMode(euclideanConstants.MODE_MOVE);
 			if (hittedGeo.hasLongDelay(time)) {
 				input3D.setHasCompletedGrabbingDelay(true);
-				getView().getEuclidianController().handleMovedElement(geoToHit,
+				getView().geteuclideanController().handleMovedElement(geoToHit,
 						false, PointerEventType.TOUCH);
 			}
 		}
@@ -350,16 +350,16 @@ public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
 	@Override
 	public void updateStylusBeamForMovedGeo() {
 
-		if (getView().getEuclidianController()
-				.getMoveMode() == EuclidianController.MOVE_NONE) {
+		if (getView().geteuclideanController()
+				.getMoveMode() == euclideanController.MOVE_NONE) {
 			return;
 		}
 
-		if (getView().getEuclidianController()
-				.getMoveMode() != EuclidianController.MOVE_PLANE) {
+		if (getView().geteuclideanController()
+				.getMoveMode() != euclideanController.MOVE_PLANE) {
 			getView().getCursor3D().setCoords(input3D.getMouse3DScenePosition(),
 					false);
-			GeoElement movedGeo = getView().getEuclidianController()
+			GeoElement movedGeo = getView().geteuclideanController()
 					.getMovedGeoElement();
 			if (movedGeo != null) {
 				zNearest = movedGeo.distance(getView().getCursor3D());
@@ -415,8 +415,8 @@ public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
 				if (input3D.isLeftPressed()) { // show stylus beam only if
 												// object is
 												// moved
-					if (getView().getEuclidianController()
-							.getMoveMode() == EuclidianController.MOVE_NONE) {
+					if (getView().geteuclideanController()
+							.getMoveMode() == euclideanController.MOVE_NONE) {
 						stylusBeamIsVisible = false;
 					} else {
 						stylusBeamIsVisible = hasMouse();
@@ -482,8 +482,8 @@ public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
 
 	@Override
 	public boolean handleSpaceKey() {
-		if (getView().getEuclidianController()
-				.getMoveMode() == EuclidianController.MOVE_NONE) {
+		if (getView().geteuclideanController()
+				.getMoveMode() == euclideanController.MOVE_NONE) {
 
 			hittedGeo.setHitted(getView().getHits3D().getTopHits()
 					.getFirstGeo6dofMoveable());
@@ -491,11 +491,11 @@ public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
 			GeoElement geoToHit = hittedGeo.getGeo();
 			getView().getHits3D().init(geoToHit);
 			getView().updateCursor3D(getView().getHits());
-			getView().getApplication().setMode(EuclidianConstants.MODE_MOVE);
+			getView().getApplication().setMode(euclideanConstants.MODE_MOVE);
 			if (geoToHit != null) {
 				hittedGeo.consumeLongDelay();
 				input3D.setHasCompletedGrabbingDelay(true);
-				getView().getEuclidianController().handleMovedElement(geoToHit,
+				getView().geteuclideanController().handleMovedElement(geoToHit,
 						false, PointerEventType.TOUCH);
 				return true;
 			}
@@ -513,15 +513,15 @@ public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
 		input3D.setHasCompletedGrabbingDelay(false);
 		getView().getApplication().getSelectionManager()
 				.clearSelectedGeos(true);
-		getView().getEuclidianController().endOfWrapMouseReleased(new Hits(),
+		getView().geteuclideanController().endOfWrapMouseReleased(new Hits(),
 				false, false, PointerEventType.TOUCH);
 	}
 
 	@Override
 	public void setMode(int mode, ModeSetter m) {
 
-		if (input3D.useHandGrabbing() && getView().getEuclidianController()
-				.getMoveMode() != EuclidianController.MOVE_NONE) {
+		if (input3D.useHandGrabbing() && getView().geteuclideanController()
+				.getMoveMode() != euclideanController.MOVE_NONE) {
 			releaseGrabbing();
 		}
 
@@ -539,14 +539,14 @@ public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
 
 	@Override
 	protected void drawTranslateViewCursor(Renderer renderer1,
-			EuclidianCursor cursor, GeoPoint3D cursorOnXOYPlane,
+			euclideanCursor cursor, GeoPoint3D cursorOnXOYPlane,
 			CoordMatrix4x4 cursorMatrix) {
 		if (!input3D.hasMouseDirection()) {
 			super.drawTranslateViewCursor(renderer1, cursor, cursorOnXOYPlane,
 					cursorMatrix);
 		} else {
 			if (input3D.currentlyUseMouse2D()) {
-				GPoint mouseLoc = getView().getEuclidianController()
+				GPoint mouseLoc = getView().geteuclideanController()
 						.getMouseLoc();
 				if (mouseLoc == null) {
 					super.drawTranslateViewCursor(renderer1, cursor,
@@ -555,7 +555,7 @@ public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
 
 					Coords v;
 					if (getView()
-							.getCursor3DType() == EuclidianView3D.CURSOR_DEFAULT) {
+							.getCursor3DType() == euclideanView3D.CURSOR_DEFAULT) {
 						// if mouse is over nothing, use mouse coords and screen
 						// for depth
 						v = new Coords(mouseLoc.x + renderer1.getLeft(),
@@ -784,7 +784,7 @@ public class EuclidianViewInput3DCompanion extends EuclidianView3DCompanion {
 						.abs(startCoords.getX() - newCoords.getX())
 						+ Math.abs(startCoords.getY() - newCoords.getY())
 						+ Math.abs(startCoords.getZ() - newCoords.getZ());
-				// Log.debug("\n -- "+(distance * ((EuclidianView3D)
+				// Log.debug("\n -- "+(distance * ((euclideanView3D)
 				// ec.view).getScale()));
 				if (distance * getView().getScale() > 30) {
 					startCoords.set(newCoords);

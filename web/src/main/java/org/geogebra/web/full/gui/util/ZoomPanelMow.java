@@ -1,8 +1,8 @@
 package org.geogebra.web.full.gui.util;
 
-import org.geogebra.common.euclidian.CoordSystemListener;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.CoordSystemListener;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.AccessibilityGroup;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.web.full.css.MaterialDesignResources;
@@ -38,9 +38,9 @@ public class ZoomPanelMow extends FlowPanel
 	 */
 	public ZoomPanelMow(AppW app) {
 		this.appW = app;
-		zoomController = new ZoomController(appW, app.getActiveEuclidianView());
-		if (app.getActiveEuclidianView() != null) {
-			app.getActiveEuclidianView().getEuclidianController()
+		zoomController = new ZoomController(appW, app.getActiveeuclideanView());
+		if (app.getActiveeuclideanView() != null) {
+			app.getActiveeuclideanView().geteuclideanController()
 					.addZoomerListener(this);
 		}
 		buildGui();
@@ -78,7 +78,7 @@ public class ZoomPanelMow extends FlowPanel
 	 */
 	public void deselectDragBtn() {
 		getDragPadBtn().removeStyleName("selected");
-		getAppW().setMode(EuclidianConstants.MODE_SELECT_MOW);
+		getAppW().setMode(euclideanConstants.MODE_SELECT_MOW);
 	}
 
 	private void addDragPadButton() {
@@ -92,7 +92,7 @@ public class ZoomPanelMow extends FlowPanel
 
 			@Override
 			public void onClick(Widget source) {
-				getAppW().setMode(EuclidianConstants.MODE_TRANSLATEVIEW);
+				getAppW().setMode(euclideanConstants.MODE_TRANSLATEVIEW);
 				getDragPadBtn().addStyleName("selected");
 				getAppW().hideMenu();
 			}
@@ -116,7 +116,7 @@ public class ZoomPanelMow extends FlowPanel
 	}
 
 	private int getViewId() {
-		return appW.getActiveEuclidianView().getViewID();
+		return appW.getActiveeuclideanView().getViewID();
 	}
 
 	/**

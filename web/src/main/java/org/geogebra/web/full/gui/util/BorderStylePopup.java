@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.util;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.util.SelectionTable;
 import org.geogebra.common.kernel.geos.properties.BorderType;
 import org.geogebra.web.full.css.MaterialDesignResources;

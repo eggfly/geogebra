@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.draw.DrawVideo;
+import org.geogebra.common.euclidean.draw.DrawVideo;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.geos.GeoVideo;
 import org.geogebra.common.main.App;
@@ -13,7 +13,7 @@ import org.geogebra.common.media.MediaURLParser;
 import org.geogebra.common.media.VideoManager;
 import org.geogebra.common.media.VideoURL;
 import org.geogebra.web.full.gui.layout.DockPanelW;
-import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelW;
+import org.geogebra.web.full.gui.layout.panels.euclideanDockPanelW;
 import org.geogebra.web.full.main.AppWFull;
 import org.geogebra.web.html5.css.GuiResourcesSimple;
 import org.geogebra.web.html5.main.MyImageW;
@@ -76,7 +76,7 @@ public class VideoManagerW implements VideoManager {
 						ImageElement.as(img.getElement()), false);
 				geo.setPreview(prev);
 				RootPanel.get().remove(img);
-				app.getActiveEuclidianView().updateAllDrawablesForView(true);
+				app.getActiveeuclideanView().updateAllDrawablesForView(true);
 			}
 		});
 		img.addErrorHandler(new ErrorHandler() {
@@ -85,7 +85,7 @@ public class VideoManagerW implements VideoManager {
 			public void onError(ErrorEvent event) {
 				img.setUrl(GuiResourcesSimple.INSTANCE.mow_video_player()
 						.getSafeUri());
-				app.getActiveEuclidianView().updateAllDrawablesForView(true);
+				app.getActiveeuclideanView().updateAllDrawablesForView(true);
 			}
 		});
 		RootPanel.get().add(img);
@@ -120,8 +120,8 @@ public class VideoManagerW implements VideoManager {
 		players.put(video, player);
 
 		DockPanelW panel = app.getGuiManager().getLayout().getDockManager()
-				.getPanel(App.VIEW_EUCLIDIAN);
-		((EuclidianDockPanelW) panel).getEuclidianPanel().add(player);
+				.getPanel(App.VIEW_euclidean);
+		((euclideanDockPanelW) panel).geteuclideanPanel().add(player);
 	}
 
 	private AbstractVideoPlayer createPlayerOffline(DrawVideo video, int id) {
@@ -181,7 +181,7 @@ public class VideoManagerW implements VideoManager {
 
 		players.clear();
 		cache.clear();
-		app.getActiveEuclidianView().getEuclidianController().clearSelectionAndRectangle();
+		app.getActiveeuclideanView().geteuclideanController().clearSelectionAndRectangle();
 	}
 
 	@Override

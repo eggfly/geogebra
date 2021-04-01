@@ -1,6 +1,6 @@
 package org.geogebra.common.main.settings.updater;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.settings.FontSettings;
 import org.geogebra.common.util.Util;
@@ -47,26 +47,26 @@ public class FontSettingsUpdater {
 	 */
 	public void setAppFontSizeAndUpdateViews(int fontSize) {
 		setAppFontSize(fontSize);
-		updateEuclidianViews();
+		updateeuclideanViews();
 		resetFonts();
 		app.updateUI();
 	}
 
-	private void updateEuclidianViews() {
-		EuclidianView ev1 = app.getEuclidianView1();
+	private void updateeuclideanViews() {
+		euclideanView ev1 = app.geteuclideanView1();
 		if (ev1 != null && ev1.hasStyleBar()) {
 			ev1.getStyleBar().reinit();
 		}
 
-		if (app.hasEuclidianView2(1)) {
-			EuclidianView ev2 = app.getEuclidianView2(1);
+		if (app.haseuclideanView2(1)) {
+			euclideanView ev2 = app.geteuclideanView2(1);
 			if (ev2 != null && ev2.hasStyleBar()) {
 				ev2.getStyleBar().reinit();
 			}
 		}
 
-		if (app.isEuclidianView3Dinited() && app.getEuclidianView3D().hasStyleBar()) {
-			app.getEuclidianView3D().getStyleBar().reinit();
+		if (app.iseuclideanView3Dinited() && app.geteuclideanView3D().hasStyleBar()) {
+			app.geteuclideanView3D().getStyleBar().reinit();
 		}
 	}
 
@@ -75,19 +75,19 @@ public class FontSettingsUpdater {
 	 */
 	public void resetFonts() {
 		app.getFontManager().setFontSize(getGUIFontSize());
-		updateEuclidianViewFonts();
+		updateeuclideanViewFonts();
 	}
 
-	protected void updateEuclidianViewFonts() {
-		EuclidianView euclidianView = app.getEuclidianView1();
-		if (euclidianView != null) {
-			euclidianView.updateFonts();
+	protected void updateeuclideanViewFonts() {
+		euclideanView euclideanView = app.geteuclideanView1();
+		if (euclideanView != null) {
+			euclideanView.updateFonts();
 		}
 
 		if (app.getGuiManager() != null) {
 			app.getGuiManager().updateFonts();
-			if (app.hasEuclidianView2(1)) {
-				app.getEuclidianView2(1).updateFonts();
+			if (app.haseuclideanView2(1)) {
+				app.geteuclideanView2(1).updateFonts();
 			}
 		}
 		if (app.getCompanion() != null) {

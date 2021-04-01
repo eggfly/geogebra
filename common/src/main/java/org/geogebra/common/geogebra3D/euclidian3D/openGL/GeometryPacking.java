@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager.Type;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager.Type;
 
 /**
  * geometry handler for buffer packing

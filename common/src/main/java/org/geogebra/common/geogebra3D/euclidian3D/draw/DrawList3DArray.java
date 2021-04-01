@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.draw.DrawListArray;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.draw.DrawListArray;
 import org.geogebra.common.kernel.geos.GeoElement;
 
 /**
@@ -25,7 +25,7 @@ public class DrawList3DArray extends DrawListArray {
 	 * @param drawList3D
 	 *            drawable for the list calling
 	 */
-	public DrawList3DArray(EuclidianViewInterfaceCommon view,
+	public DrawList3DArray(euclideanViewInterfaceCommon view,
 			DrawComposite3D drawList3D) {
 		super(view);
 		this.drawList3D = drawList3D;

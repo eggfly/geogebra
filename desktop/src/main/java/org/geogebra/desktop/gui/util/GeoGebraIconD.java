@@ -19,11 +19,11 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.draw.DrawText;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.draw.DrawText;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoText;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.desktop.awt.GColorD;
 import org.geogebra.desktop.awt.GFontD;
 import org.geogebra.desktop.awt.GGraphics2DD;
@@ -462,7 +462,7 @@ public class GeoGebraIconD {
 		// draw dashed line
 		g2.setPaint(fgColor);
 		g2.setStroke(((AwtFactoryD) AwtFactory.getPrototype())
-				.getAwtStroke(EuclidianStatic.getStroke(thickness, dashStyle)));
+				.getAwtStroke(euclideanStatic.getStroke(thickness, dashStyle)));
 		int mid = h / 2;
 		g2.drawLine(4, mid, w - 4, mid);
 
@@ -687,20 +687,20 @@ public class GeoGebraIconD {
 				g2.setBackground(bgColor);
 			}
 
-			// draw point using routine from euclidian.DrawPoint
+			// draw point using routine from euclidean.DrawPoint
 			g2.setPaint(fgColor);
 			getPath();
 
 			switch (pointStyle) {
-			case EuclidianStyleConstants.POINT_STYLE_PLUS:
-			case EuclidianStyleConstants.POINT_STYLE_CROSS:
+			case euclideanStyleConstants.POINT_STYLE_PLUS:
+			case euclideanStyleConstants.POINT_STYLE_CROSS:
 				// draw cross like: X or +
 				g2.setStroke(crossStrokes[pointSize]);
 				g2.draw(line1);
 				g2.draw(line2);
 				break;
 
-			case EuclidianStyleConstants.POINT_STYLE_EMPTY_DIAMOND:
+			case euclideanStyleConstants.POINT_STYLE_EMPTY_DIAMOND:
 				// draw diamond
 				g2.setStroke(crossStrokes[pointSize]);
 				g2.draw(line1);
@@ -709,24 +709,24 @@ public class GeoGebraIconD {
 				g2.draw(line4);
 				break;
 
-			case EuclidianStyleConstants.POINT_STYLE_FILLED_DIAMOND:
-			case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_NORTH:
-			case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_SOUTH:
-			case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_EAST:
-			case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_WEST:
+			case euclideanStyleConstants.POINT_STYLE_FILLED_DIAMOND:
+			case euclideanStyleConstants.POINT_STYLE_TRIANGLE_NORTH:
+			case euclideanStyleConstants.POINT_STYLE_TRIANGLE_SOUTH:
+			case euclideanStyleConstants.POINT_STYLE_TRIANGLE_EAST:
+			case euclideanStyleConstants.POINT_STYLE_TRIANGLE_WEST:
 				// draw diamond
 				g2.setStroke(crossStrokes[pointSize]);
 				g2.draw(gp);
 				g2.fill(gp);
 				break;
 
-			case EuclidianStyleConstants.POINT_STYLE_CIRCLE:
+			case euclideanStyleConstants.POINT_STYLE_CIRCLE:
 				// draw a circle
 				g2.setStroke(crossStrokes[pointSize]);
 				g2.draw(circle);
 				break;
 
-			// case EuclidianStyleConstants.POINT_STYLE_CIRCLE:
+			// case euclideanStyleConstants.POINT_STYLE_CIRCLE:
 			default:
 				// draw a dot
 				g2.fill(circle);
@@ -750,7 +750,7 @@ public class GeoGebraIconD {
 			coords[0] = w / 2.0;
 			coords[1] = h / 2.0;
 
-			// get draw path using routine from euclidian.DrawPoint
+			// get draw path using routine from euclidean.DrawPoint
 			double xUL = coords[0] - pointSize;
 			double yUL = coords[1] - pointSize;
 			double root3over2 = Math.sqrt(3.0) / 2.0;
@@ -759,7 +759,7 @@ public class GeoGebraIconD {
 			default:
 				// do nothing
 				break;
-			case EuclidianStyleConstants.POINT_STYLE_FILLED_DIAMOND:
+			case euclideanStyleConstants.POINT_STYLE_FILLED_DIAMOND:
 
 				double xR = coords[0] + pointSize;
 				double yB = coords[1] + pointSize;
@@ -778,11 +778,11 @@ public class GeoGebraIconD {
 				}
 				break;
 
-			case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_SOUTH:
-			case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_NORTH:
+			case euclideanStyleConstants.POINT_STYLE_TRIANGLE_SOUTH:
+			case euclideanStyleConstants.POINT_STYLE_TRIANGLE_NORTH:
 
 				double direction = 1.0;
-				if (pointStyle == EuclidianStyleConstants.POINT_STYLE_TRIANGLE_NORTH) {
+				if (pointStyle == euclideanStyleConstants.POINT_STYLE_TRIANGLE_NORTH) {
 					direction = -1.0;
 				}
 
@@ -804,11 +804,11 @@ public class GeoGebraIconD {
 				}
 				break;
 
-			case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_EAST:
-			case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_WEST:
+			case euclideanStyleConstants.POINT_STYLE_TRIANGLE_EAST:
+			case euclideanStyleConstants.POINT_STYLE_TRIANGLE_WEST:
 
 				direction = 1.0;
-				if (pointStyle == EuclidianStyleConstants.POINT_STYLE_TRIANGLE_WEST) {
+				if (pointStyle == euclideanStyleConstants.POINT_STYLE_TRIANGLE_WEST) {
 					direction = -1.0;
 				}
 
@@ -830,7 +830,7 @@ public class GeoGebraIconD {
 				}
 				break;
 
-			case EuclidianStyleConstants.POINT_STYLE_EMPTY_DIAMOND:
+			case euclideanStyleConstants.POINT_STYLE_EMPTY_DIAMOND:
 				xR = coords[0] + pointSize;
 				yB = coords[1] + pointSize;
 
@@ -852,7 +852,7 @@ public class GeoGebraIconD {
 				}
 				break;
 
-			case EuclidianStyleConstants.POINT_STYLE_PLUS:
+			case euclideanStyleConstants.POINT_STYLE_PLUS:
 				xR = coords[0] + pointSize;
 				yB = coords[1] + pointSize;
 
@@ -868,7 +868,7 @@ public class GeoGebraIconD {
 				}
 				break;
 
-			case EuclidianStyleConstants.POINT_STYLE_CROSS:
+			case euclideanStyleConstants.POINT_STYLE_CROSS:
 				xR = coords[0] + pointSize;
 				yB = coords[1] + pointSize;
 
@@ -884,7 +884,7 @@ public class GeoGebraIconD {
 				}
 				break;
 
-			case EuclidianStyleConstants.POINT_STYLE_CIRCLE:
+			case euclideanStyleConstants.POINT_STYLE_CIRCLE:
 				if (crossStrokes[pointSize] == null) {
 					crossStrokes[pointSize] = new BasicStroke(pointSize / 2f);
 				}
@@ -939,9 +939,9 @@ public class GeoGebraIconD {
 		// size
 		GeoText geo = new GeoText(app.getKernel().getConstruction(), latex);
 		geo.setSerifFont(serif);
-		DrawText draw = new DrawText(app.getActiveEuclidianView(), geo);
+		DrawText draw = new DrawText(app.getActiveeuclideanView(), geo);
 		draw.drawMultilineLaTeX(
-				app.getActiveEuclidianView()
+				app.getActiveeuclideanView()
 						.getTempGraphics2D(new GFontD(font)),
 				new GFontD(font), GColorD.newColor(fgColor),
 				GColorD.newColor(bgColor));

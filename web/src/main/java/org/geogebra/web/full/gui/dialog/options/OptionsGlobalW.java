@@ -363,12 +363,12 @@ public class OptionsGlobalW implements OptionPanelW, SetLabels {
 					.createDefaultGeoElements();
 
 			// reset the stylebar defaultGeo
-			if (app.getEuclidianView1().hasStyleBar()) {
-				app.getEuclidianView1().getStyleBar().restoreDefaultGeo();
+			if (app.geteuclideanView1().hasStyleBar()) {
+				app.geteuclideanView1().getStyleBar().restoreDefaultGeo();
 			}
-			if (app.hasEuclidianView2EitherShowingOrNot(1)
-					&& app.getEuclidianView2(1).hasStyleBar()) {
-				app.getEuclidianView2(1).getStyleBar().restoreDefaultGeo();
+			if (app.haseuclideanView2EitherShowingOrNot(1)
+					&& app.geteuclideanView2(1).hasStyleBar()) {
+				app.geteuclideanView2(1).getStyleBar().restoreDefaultGeo();
 			}
 			// TODO needed to eg. update rounding, possibly too heavy
 			app.getKernel().updateConstruction(false);

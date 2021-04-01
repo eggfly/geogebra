@@ -1,4 +1,4 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import org.geogebra.common.awt.GColor;
 

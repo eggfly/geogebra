@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.kernel.kernelND.GeoCoordSys2D;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
@@ -16,7 +16,7 @@ public class InputDialogRegularPolygonW extends ComponentInputDialog {
 	private GeoPointND geoPoint1;
 	private GeoPointND geoPoint2;
 	private GeoCoordSys2D direction;
-	private EuclidianController ec;
+	private euclideanController ec;
 
 	/**
 	 * @param app
@@ -34,7 +34,7 @@ public class InputDialogRegularPolygonW extends ComponentInputDialog {
 	 * @param direction
 	 *            orientation
 	 */
-	public InputDialogRegularPolygonW(AppW app, DialogData data, EuclidianController ec,
+	public InputDialogRegularPolygonW(AppW app, DialogData data, euclideanController ec,
 			InputHandler handler, GeoPointND point1, GeoPointND point2,
 			GeoCoordSys2D direction) {
 		super(app, data, false, false, handler,

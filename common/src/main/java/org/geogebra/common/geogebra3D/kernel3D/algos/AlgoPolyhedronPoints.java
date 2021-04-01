@@ -550,26 +550,26 @@ public abstract class AlgoPolyhedronPoints extends AlgoPolyhedron {
 	 * @param visible
 	 *            flag
 	 */
-	public void setOutputOtherEuclidianVisible(boolean visible) {
+	public void setOutputOthereuclideanVisible(boolean visible) {
 		for (int i = 0; i < outputSegmentsBottom.size(); i++) {
-			outputSegmentsBottom.getElement(i).setEuclidianVisible(visible);
+			outputSegmentsBottom.getElement(i).seteuclideanVisible(visible);
 		}
 		for (int i = 0; i < outputSegmentsSide.size(); i++) {
-			outputSegmentsSide.getElement(i).setEuclidianVisible(visible);
+			outputSegmentsSide.getElement(i).seteuclideanVisible(visible);
 		}
 		for (int i = 0; i < outputSegmentsTop.size(); i++) {
-			outputSegmentsTop.getElement(i).setEuclidianVisible(visible);
+			outputSegmentsTop.getElement(i).seteuclideanVisible(visible);
 		}
 		for (int i = 0; i < outputPolygonsBottom.size(); i++) {
-			outputPolygonsBottom.getElement(i).setEuclidianVisible(visible,
+			outputPolygonsBottom.getElement(i).seteuclideanVisible(visible,
 					false);
 		}
 		for (int i = 0; i < outputPolygonsSide.size(); i++) {
-			outputPolygonsSide.getElement(i).setEuclidianVisible(visible,
+			outputPolygonsSide.getElement(i).seteuclideanVisible(visible,
 					false);
 		}
 		for (int i = 0; i < outputPolygonsTop.size(); i++) {
-			outputPolygonsTop.getElement(i).setEuclidianVisible(visible, false);
+			outputPolygonsTop.getElement(i).seteuclideanVisible(visible, false);
 		}
 	}
 
@@ -603,9 +603,9 @@ public abstract class AlgoPolyhedronPoints extends AlgoPolyhedron {
 	 * @param visible
 	 *            flag
 	 */
-	public void setOutputPointsEuclidianVisible(boolean visible) {
+	public void setOutputPointseuclideanVisible(boolean visible) {
 		for (int i = 0; i < outputPoints.size(); i++) {
-			outputPoints.getElement(i).setEuclidianVisible(visible);
+			outputPoints.getElement(i).seteuclideanVisible(visible);
 		}
 	}
 
@@ -647,7 +647,7 @@ public abstract class AlgoPolyhedronPoints extends AlgoPolyhedron {
 	@Override
 	final protected boolean isFirstInputPointVisible() {
 		GeoElement point = (GeoElement) getBottomPoints()[0];
-		return point.isEuclidianVisible() && point.isLabelSet();
+		return point.iseuclideanVisible() && point.isLabelSet();
 	}
 
 	@Override

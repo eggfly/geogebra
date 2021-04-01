@@ -40,11 +40,11 @@ public class CmdSetPointSize extends CmdScripting {
 				if (arg[0] instanceof PointProperties) {
 
 					if (size > 0) {
-						arg[0].setEuclidianVisibleIfNoConditionToShowObject(
+						arg[0].seteuclideanVisibleIfNoConditionToShowObject(
 								true);
 						((PointProperties) arg[0]).setPointSize((int) size);
 					} else {
-						arg[0].setEuclidianVisibleIfNoConditionToShowObject(
+						arg[0].seteuclideanVisibleIfNoConditionToShowObject(
 								false);
 					}
 					arg[0].updateVisualStyleRepaint(GProperty.COMBINED);

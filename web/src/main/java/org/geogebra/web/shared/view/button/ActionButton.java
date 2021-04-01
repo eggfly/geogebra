@@ -1,6 +1,6 @@
 package org.geogebra.web.shared.view.button;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.view.ActionView;
 import org.geogebra.common.main.App;

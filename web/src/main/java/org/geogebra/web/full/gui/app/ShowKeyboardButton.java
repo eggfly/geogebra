@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.app;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.keyboard.web.KeyboardResources;
 import org.geogebra.keyboard.web.UpdateKeyBoardListener;
 import org.geogebra.web.full.gui.GuiManagerW;

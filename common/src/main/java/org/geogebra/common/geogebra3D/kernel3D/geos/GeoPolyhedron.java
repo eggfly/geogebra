@@ -1088,27 +1088,27 @@ public class GeoPolyhedron extends GeoElement3D
 	}
 
 	@Override
-	public void setEuclidianVisible(boolean visible) {
-		super.setEuclidianVisible(visible);
+	public void seteuclideanVisible(boolean visible) {
+		super.seteuclideanVisible(visible);
 
 		if (cons.isFileLoading()) {
 			return;
 		}
 
 		for (GeoPolygon3D polygon : polygons.values()) {
-			polygon.setEuclidianVisible(visible, false);
+			polygon.seteuclideanVisible(visible, false);
 		}
 
 		for (GeoPolygon polygon : polygonsLinked) {
-			polygon.setEuclidianVisible(visible, false);
+			polygon.seteuclideanVisible(visible, false);
 		}
 
 		for (GeoSegment3D segment : segments.values()) {
-			segment.setEuclidianVisible(visible);
+			segment.seteuclideanVisible(visible);
 		}
 
 		for (GeoSegmentND segment : getSegmentsLinked()) {
-			segment.setEuclidianVisible(visible);
+			segment.seteuclideanVisible(visible);
 		}
 	}
 
@@ -1614,7 +1614,7 @@ public class GeoPolyhedron extends GeoElement3D
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 
 		return isDefined();
 	}
@@ -2232,10 +2232,10 @@ public class GeoPolyhedron extends GeoElement3D
 
 	private static void setPointSize(GeoPointND point, int size) {
 		if (size > 0) {
-			point.setEuclidianVisibleIfNoConditionToShowObject(true);
+			point.seteuclideanVisibleIfNoConditionToShowObject(true);
 			point.setPointSize(size);
 		} else {
-			point.setEuclidianVisibleIfNoConditionToShowObject(false);
+			point.seteuclideanVisibleIfNoConditionToShowObject(false);
 		}
 		point.updateRepaint();
 	}

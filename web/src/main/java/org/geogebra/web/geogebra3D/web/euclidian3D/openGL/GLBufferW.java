@@ -1,8 +1,8 @@
-package org.geogebra.web.geogebra3D.web.euclidian3D.openGL;
+package org.geogebra.web.geogebra3D.web.euclidean3D.openGL;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBuffer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBuffer;
 
 import elemental2.core.Float32Array;
 import jsinterop.base.Js;

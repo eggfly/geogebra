@@ -25,7 +25,7 @@ public class SliderTest extends BaseUnitTest {
 		GeoNumeric slider = add("a = 1", info);
 		slider.initAlgebraSlider();
 		slider.setShowExtendedAV(false);
-		assertThat(slider.showInEuclidianView(), is(true));
+		assertThat(slider.showIneuclideanView(), is(true));
 	}
 
 	@Test
@@ -36,20 +36,20 @@ public class SliderTest extends BaseUnitTest {
 
 		GeoNumeric slider = add("a = 1", info);
 		app.storeUndoInfo();
-		slider.setEuclidianVisible(true);
+		slider.seteuclideanVisible(true);
 		app.storeUndoInfo();
 		slider.setShowExtendedAV(false);
 		app.storeUndoInfo();
-		slider.setEuclidianVisible(false);
+		slider.seteuclideanVisible(false);
 		app.storeUndoInfo();
-		slider.setEuclidianVisible(true);
+		slider.seteuclideanVisible(true);
 		app.storeUndoInfo();
 
 		slider = undoRedo.getAfterUndo("a");
-		assertThat(slider.isEuclidianVisible(), is(false));
+		assertThat(slider.iseuclideanVisible(), is(false));
 
 		slider = undoRedo.getAfterUndo("a");
-		assertThat(slider.isEuclidianVisible(), is(true));
+		assertThat(slider.iseuclideanVisible(), is(true));
 
 		slider = undoRedo.getAfterUndo("a");
 		assertThat(slider.isShowingExtendedAV(), is(true));
@@ -58,10 +58,10 @@ public class SliderTest extends BaseUnitTest {
 		assertThat(slider.isShowingExtendedAV(), is(false));
 
 		slider = undoRedo.getAfterRedo("a");
-		assertThat(slider.isEuclidianVisible(), is(false));
+		assertThat(slider.iseuclideanVisible(), is(false));
 
 		slider = undoRedo.getAfterRedo("a");
-		assertThat(slider.isEuclidianVisible(), is(true));
+		assertThat(slider.iseuclideanVisible(), is(true));
 	}
 
 	@Test
@@ -74,13 +74,13 @@ public class SliderTest extends BaseUnitTest {
 		app.storeUndoInfo();
 		slider.createSlider();
 		app.storeUndoInfo();
-		slider.setEuclidianVisible(true);
+		slider.seteuclideanVisible(true);
 		app.storeUndoInfo();
 		slider.removeSlider();
 		app.storeUndoInfo();
-		assertThat(slider.isSetEuclidianVisible(), is(false));
+		assertThat(slider.isSeteuclideanVisible(), is(false));
 
 		slider = undoRedo.getAfterUndo("a");
-		assertThat(slider.isEuclidianVisible(), is(true));
+		assertThat(slider.iseuclideanVisible(), is(true));
 	}
 }

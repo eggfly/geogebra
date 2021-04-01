@@ -40,7 +40,7 @@ public abstract class PropertiesView implements View {
 	@Weak
 	protected App app;
 	protected final Localization loc;
-	protected OptionType selectedOptionType = OptionType.EUCLIDIAN;
+	protected OptionType selectedOptionType = OptionType.euclidean;
 
 	private OptionsObject objectPanel;
 	protected int selectedTab = 0;
@@ -50,11 +50,11 @@ public abstract class PropertiesView implements View {
 	static {
 		viewMap.put(App.VIEW_CAS, OptionType.CAS);
 		viewMap.put(App.VIEW_SPREADSHEET, OptionType.SPREADSHEET);
-		viewMap.put(App.VIEW_EUCLIDIAN, OptionType.EUCLIDIAN);
-		viewMap.put(App.VIEW_EUCLIDIAN2, OptionType.EUCLIDIAN2);
-		viewMap.put(App.VIEW_EUCLIDIAN3D, OptionType.EUCLIDIAN3D);
-		viewMap.put(App.VIEW_EUCLIDIAN_FOR_PLANE_START,
-				OptionType.EUCLIDIAN_FOR_PLANE);
+		viewMap.put(App.VIEW_euclidean, OptionType.euclidean);
+		viewMap.put(App.VIEW_euclidean2, OptionType.euclidean2);
+		viewMap.put(App.VIEW_euclidean3D, OptionType.euclidean3D);
+		viewMap.put(App.VIEW_euclidean_FOR_PLANE_START,
+				OptionType.euclidean_FOR_PLANE);
 	}
 
 	/**
@@ -182,15 +182,15 @@ public abstract class PropertiesView implements View {
 					: loc.getPlain("PreferencesOfA", loc.getMenu("Defaults"));
 		case SPREADSHEET:
 			return loc.getPlain("PreferencesOfA", loc.getMenu("Spreadsheet"));
-		case EUCLIDIAN:
+		case euclidean:
 			return app.isUnbundledOrWhiteboard()
 					? loc.getMenu("DrawingPad")
 					: loc.getPlain("PreferencesOfA", loc.getMenu("DrawingPad"));
-		case EUCLIDIAN2:
+		case euclidean2:
 			return loc.getPlain("PreferencesOfA", loc.getMenu("DrawingPad2"));
-		case EUCLIDIAN_FOR_PLANE:
+		case euclidean_FOR_PLANE:
 			return loc.getPlain("PreferencesOfA", loc.getMenu("ExtraViews"));
-		case EUCLIDIAN3D:
+		case euclidean3D:
 			return loc.getPlain("PreferencesOfA",
 					loc.getMenu("GraphicsView3D"));
 		case CAS:
@@ -226,9 +226,9 @@ public abstract class PropertiesView implements View {
 			return loc.getMenu("Defaults");
 		case SPREADSHEET:
 			return loc.getMenu("Spreadsheet");
-		case EUCLIDIAN:
+		case euclidean:
 			return loc.getMenu("DrawingPad");
-		case EUCLIDIAN2:
+		case euclidean2:
 			return loc.getMenu("DrawingPad2");
 		case CAS:
 			return loc.getMenu("CAS");
@@ -239,9 +239,9 @@ public abstract class PropertiesView implements View {
 		// return objectPanel.getSelectionDescription();
 		case LAYOUT:
 			return loc.getMenu("Layout");
-		case EUCLIDIAN3D:
+		case euclidean3D:
 			return loc.getMenu("GraphicsView3D");
-		case EUCLIDIAN_FOR_PLANE:
+		case euclidean_FOR_PLANE:
 			return loc.getMenu("ExtraViews");
 		case ALGEBRA:
 			return loc.getMenu("Algebra");
@@ -277,17 +277,17 @@ public abstract class PropertiesView implements View {
 		boolean isAvailable = true;
 
 		switch (type) {
-		case EUCLIDIAN:
-			isAvailable = app.getGuiManager().showView(App.VIEW_EUCLIDIAN);
+		case euclidean:
+			isAvailable = app.getGuiManager().showView(App.VIEW_euclidean);
 			break;
-		case EUCLIDIAN2:
-			isAvailable = app.getGuiManager().showView(App.VIEW_EUCLIDIAN2);
+		case euclidean2:
+			isAvailable = app.getGuiManager().showView(App.VIEW_euclidean2);
 			break;
-		case EUCLIDIAN_FOR_PLANE:
-			isAvailable = app.hasEuclidianViewForPlaneVisible();
+		case euclidean_FOR_PLANE:
+			isAvailable = app.haseuclideanViewForPlaneVisible();
 			break;
-		case EUCLIDIAN3D:
-			isAvailable = app.getGuiManager().showView(App.VIEW_EUCLIDIAN3D);
+		case euclidean3D:
+			isAvailable = app.getGuiManager().showView(App.VIEW_euclidean3D);
 			break;
 		case SPREADSHEET:
 			isAvailable = app.getGuiManager().showView(App.VIEW_SPREADSHEET);
@@ -313,10 +313,10 @@ public abstract class PropertiesView implements View {
 	}
 
 	/**
-	 * acts when mouse has been released in euclidian controller
+	 * acts when mouse has been released in euclidean controller
 	 * 
 	 * @param creatorMode
-	 *            says if euclidian view is in creator mode (ie not move mode)
+	 *            says if euclidean view is in creator mode (ie not move mode)
 	 */
 	public void mouseReleasedForPropertiesView(boolean creatorMode) {
 
@@ -332,7 +332,7 @@ public abstract class PropertiesView implements View {
 			updatePropertiesViewCheckConstants(
 					app.getSelectionManager().getSelectedGeos());
 		} else if (geo != null) { // last created geo
-			if (creatorMode) { // if euclidian view is e.g. in move mode, then
+			if (creatorMode) { // if euclidean view is e.g. in move mode, then
 				// geo was created by a script, so just show
 				// object properties
 				ArrayList<GeoElement> geos = new ArrayList<>();
@@ -390,7 +390,7 @@ public abstract class PropertiesView implements View {
 	}
 
 	final protected void setOptionPanelRegardingFocus(
-			boolean updateEuclidianTab) {
+			boolean updateeuclideanTab) {
 
 		if (stayInCurrentPanelWithObjects()) {
 			return;
@@ -399,9 +399,9 @@ public abstract class PropertiesView implements View {
 		OptionType type = getFocusedViewType();
 
 		if (type != null) {
-			if (type == OptionType.EUCLIDIAN || type == OptionType.EUCLIDIAN2) {
+			if (type == OptionType.euclidean || type == OptionType.euclidean2) {
 
-				if (app.getActiveEuclidianView().getEuclidianController()
+				if (app.getActiveeuclideanView().geteuclideanController()
 						.checkBoxOrTextfieldOrButtonJustHitted()) {
 					// hit check box or text field : does nothing
 					return;
@@ -409,7 +409,7 @@ public abstract class PropertiesView implements View {
 
 				// ev clicked
 				setOptionPanelWithoutCheck(type);
-				if (updateEuclidianTab) {
+				if (updateeuclideanTab) {
 					setSelectedTab(type);
 				}
 
@@ -455,17 +455,17 @@ public abstract class PropertiesView implements View {
 			return OptionType.CAS;
 		case App.VIEW_SPREADSHEET:
 			return OptionType.SPREADSHEET;
-		case App.VIEW_EUCLIDIAN:
-			return OptionType.EUCLIDIAN;
-		case App.VIEW_EUCLIDIAN2:
-			return OptionType.EUCLIDIAN2;
-		case App.VIEW_EUCLIDIAN3D:
-			return OptionType.EUCLIDIAN3D;
+		case App.VIEW_euclidean:
+			return OptionType.euclidean;
+		case App.VIEW_euclidean2:
+			return OptionType.euclidean2;
+		case App.VIEW_euclidean3D:
+			return OptionType.euclidean3D;
 		}
 
-		if (id >= App.VIEW_EUCLIDIAN_FOR_PLANE_START
-				&& id <= App.VIEW_EUCLIDIAN_FOR_PLANE_END) {
-			return OptionType.EUCLIDIAN_FOR_PLANE;
+		if (id >= App.VIEW_euclidean_FOR_PLANE_START
+				&& id <= App.VIEW_euclidean_FOR_PLANE_END) {
+			return OptionType.euclidean_FOR_PLANE;
 		}
 
 		return null;

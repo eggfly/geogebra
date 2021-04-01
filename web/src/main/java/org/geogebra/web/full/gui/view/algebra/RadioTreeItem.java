@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.AccessibilityGroup;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.view.algebra.AlgebraItem;
@@ -1876,7 +1876,7 @@ public class RadioTreeItem extends AVTreeItem implements MathKeyboardListener,
 		GeoGebraActivity activity = app.getActivity();
 		stopEditing(activity.useValidInput() ? null : getText(), null, true);
 		updateIcons(this.errorMessage != null);
-		app.getActiveEuclidianView().requestFocus();
+		app.getActiveeuclideanView().requestFocus();
 	}
 
 	protected void renderLatex(String text0, Widget w, boolean isInput) {

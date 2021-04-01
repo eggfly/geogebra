@@ -22,8 +22,8 @@ import org.geogebra.web.html5.awt.GFontW;
 import org.geogebra.web.html5.awt.GGradientPaintW;
 import org.geogebra.web.html5.awt.GTexturePaintW;
 import org.geogebra.web.html5.awt.font.GTextLayoutW;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
-import org.geogebra.web.html5.euclidian.GGraphics2DWI;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
+import org.geogebra.web.html5.euclidean.GGraphics2DWI;
 import org.geogebra.web.html5.gawt.GBufferedImageW;
 import org.geogebra.web.html5.main.MyImageW;
 import org.geogebra.web.html5.util.ImageLoadCallback;
@@ -148,9 +148,9 @@ public class AwtFactoryW extends AwtFactoryHeadless {
 	void doRepaint(App app) {
 		repaintDeferred = false;
 		repaintsFromHereInProgress++;
-		((EuclidianViewW) app.getEuclidianView1()).doRepaint();
-		if (app.hasEuclidianView2(1)) {
-			((EuclidianViewW) app.getEuclidianView2(1)).doRepaint();
+		((euclideanViewW) app.geteuclideanView1()).doRepaint();
+		if (app.haseuclideanView2(1)) {
+			((euclideanViewW) app.geteuclideanView2(1)).doRepaint();
 		}
 		repaintsFromHereInProgress--;
 	}

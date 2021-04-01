@@ -12,8 +12,8 @@ import org.geogebra.common.awt.GPaint;
 import org.geogebra.common.awt.GPathIterator;
 import org.geogebra.common.awt.GShape;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.GPaintSVG;
-import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.euclidean.GPaintSVG;
+import org.geogebra.common.euclidean.GeneralPathClipped;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.arithmetic.MyDouble;
 import org.geogebra.common.util.debug.Log;
@@ -21,7 +21,7 @@ import org.geogebra.ggbjdk.java.awt.DefaultBasicStroke;
 import org.geogebra.ggbjdk.java.awt.geom.GeneralPath;
 import org.geogebra.ggbjdk.java.awt.geom.Path2D;
 import org.geogebra.ggbjdk.java.awt.geom.Shape;
-import org.geogebra.web.html5.euclidian.GGraphics2DWI;
+import org.geogebra.web.html5.euclidean.GGraphics2DWI;
 import org.geogebra.web.html5.gawt.GBufferedImageW;
 import org.geogebra.web.html5.main.MyImageW;
 import org.geogebra.web.html5.util.ImageLoadCallback;
@@ -638,7 +638,7 @@ public class GGraphics2DW implements GGraphics2DWI {
 	@Override
 	public void draw(GShape shape) {
 		if (shape == null) {
-			Log.error("Error in EuclidianView.draw");
+			Log.error("Error in euclideanView.draw");
 			return;
 		}
 		if (shape instanceof GeneralPathClipped) {
@@ -655,7 +655,7 @@ public class GGraphics2DW implements GGraphics2DWI {
 	@Override
 	public void fill(GShape gshape) {
 		if (gshape == null) {
-			Log.error("Error in EuclidianView.draw");
+			Log.error("Error in euclideanView.draw");
 			return;
 		}
 		Shape shape;

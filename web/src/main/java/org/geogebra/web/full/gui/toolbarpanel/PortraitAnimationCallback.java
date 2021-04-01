@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.toolbarpanel;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.main.App;
 import org.geogebra.web.html5.main.AppW;
 
@@ -43,8 +43,8 @@ public class PortraitAnimationCallback extends HeaderAnimationCallback {
 			header.addStyleName("header-close-portrait");
 		}
 
-		EuclidianView ev = header.app.getActiveEuclidianView();
-		if (ev.getViewID() == App.VIEW_EUCLIDIAN3D) {
+		euclideanView ev = header.app.getActiveeuclideanView();
+		if (ev.getViewID() == App.VIEW_euclidean3D) {
 			return;
 		}
 		int d = header.isOpen() ? -1 : 1;

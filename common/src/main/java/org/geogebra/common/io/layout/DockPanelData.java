@@ -59,7 +59,7 @@ final public class DockPanelData {
 	 * @param embeddedSize
 	 *            The size of the view in the main window.
 	 * @param plane
-	 *            Plane that created the view (for EuclidianViewForPlane)
+	 *            Plane that created the view (for euclideanViewForPlane)
 	 */
 	public DockPanelData(int viewId, String toolbar, boolean isVisible,
 			boolean openInFrame, boolean showStyleBar, GRectangle windowRect,
@@ -258,7 +258,7 @@ final public class DockPanelData {
 	 * @return view id for XML
 	 */
 	private int getViewIdForXML() {
-		return plane == null ? getViewId() : App.VIEW_EUCLIDIAN_FOR_PLANE_START;
+		return plane == null ? getViewId() : App.VIEW_euclidean_FOR_PLANE_START;
 	}
 
 	/**

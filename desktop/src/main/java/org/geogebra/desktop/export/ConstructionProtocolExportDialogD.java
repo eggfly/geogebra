@@ -34,7 +34,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.view.consprotocol.ConstructionProtocolView;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
@@ -105,7 +105,7 @@ public class ConstructionProtocolExportDialogD extends Dialog
 		}
 
 		// panel with fields to enter width and height of picture
-		EuclidianView ev = app.getEuclidianView1();
+		euclideanView ev = app.geteuclideanView1();
 		// int height = (int) Math.ceil(DEFAULT_GRAPHICS_WIDTH *
 		// (double) ev.getHeight() / ev.getWidth());
 		// sizePanel = new GraphicSizePanel(app, DEFAULT_GRAPHICS_WIDTH,
@@ -280,7 +280,7 @@ public class ConstructionProtocolExportDialogD extends Dialog
 			if (includePicture) {
 				// picture of drawing pad
 				img = GBufferedImageD.getAwtBufferedImage(
-						app.getEuclidianView1().getExportImage(1d));
+						app.geteuclideanView1().getExportImage(1d));
 			} else if (includeAlgebraPicture) {
 				// picture of drawing pad
 				img = getCenterPanelImage();

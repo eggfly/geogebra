@@ -1,7 +1,7 @@
 package org.geogebra.web.full.gui.util;
 
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.web.full.gui.advanced.client.datamodel.ListDataModel;
 import org.geogebra.web.full.gui.advanced.client.datamodel.ListModelEvent;

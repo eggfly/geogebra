@@ -1,13 +1,13 @@
-package org.geogebra.web.geogebra3D.web.euclidian3D;
+package org.geogebra.web.geogebra3D.web.euclidean3D;
 
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.kernel.arithmetic.MyDouble;
 import org.geogebra.common.kernel.geos.GeoElement;
-import org.geogebra.web.full.euclidian.PopupMenuButtonWithDefault;
+import org.geogebra.web.full.euclidean.PopupMenuButtonWithDefault;
 import org.geogebra.web.html5.gui.util.ImageOrText;
 import org.geogebra.web.html5.main.AppW;
 
@@ -17,7 +17,7 @@ import org.geogebra.web.html5.main.AppW;
  */
 public class AxesAndPlanePopup extends PopupMenuButtonWithDefault {
 
-	private EuclidianView3D ev;
+	private euclideanView3D ev;
 
 	/**
 	 * @param app
@@ -27,7 +27,7 @@ public class AxesAndPlanePopup extends PopupMenuButtonWithDefault {
 	 * @param ev
 	 *            view
 	 */
-	public AxesAndPlanePopup(AppW app, ImageOrText[] data, EuclidianView3D ev) {
+	public AxesAndPlanePopup(AppW app, ImageOrText[] data, euclideanView3D ev) {
 		super(app, data);
 		this.ev = ev;
 		this.setIcon(data[getIndexFromEV()]);
@@ -52,7 +52,7 @@ public class AxesAndPlanePopup extends PopupMenuButtonWithDefault {
 	}
 
 	/**
-	 * set euclidian view from index
+	 * set euclidean view from index
 	 */
 	public void setEVFromIndex() {
 		int index = getSelectedIndex();
@@ -60,14 +60,14 @@ public class AxesAndPlanePopup extends PopupMenuButtonWithDefault {
 		ev.getSettings().setShowAxes(MyDouble.isOdd(index));
 		ev.getSettings().setShowPlate(index >= 2);
 		ev.getSettings().endBatch();
-		((EuclidianView3DW) ev).doRepaint();
+		((euclideanView3DW) ev).doRepaint();
 	}
 
 	@Override
 	public void update(List<GeoElement> geos) {
 		this.setVisible(
-				geos.size() == 0 && !EuclidianView.isPenMode(app.getMode())
-						&& app.getMode() != EuclidianConstants.MODE_DELETE);
+				geos.size() == 0 && !euclideanView.isPenMode(app.getMode())
+						&& app.getMode() != euclideanConstants.MODE_DELETE);
 	}
 
 }

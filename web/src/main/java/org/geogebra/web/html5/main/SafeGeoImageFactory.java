@@ -123,7 +123,7 @@ public class SafeGeoImageFactory implements SafeImageProvider, ImageLoadCallback
 			geoImage.setAuxiliaryObject(false);
 		}
 		if (app.isWhiteboardActive()) {
-			app.getActiveEuclidianView().getEuclidianController()
+			app.getActiveeuclideanView().geteuclideanController()
 					.selectAndShowSelectionUI(geoImage);
 		}
 		app.setDefaultCursor();

@@ -1,10 +1,10 @@
-package org.geogebra.common.geogebra3D.euclidian3D.printer3D;
+package org.geogebra.common.geogebra3D.euclidean3D.printer3D;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.kernel.geos.GeoElement;
 
 /**

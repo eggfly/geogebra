@@ -80,7 +80,7 @@ public class GeoClippingCube3D extends GeoElement3D {
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return true;
 	}
 

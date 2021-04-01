@@ -130,7 +130,7 @@ public class AlgoDependentNumber extends AlgoElement
 					.copyInternal(cons);
 			// just a copy of segment / polygon / arc, not eg. list1(1)
 			if (!number.isGeoNumeric() && root.unwrap().isGeoElement()) {
-				number.setEuclidianVisible(false);
+				number.seteuclideanVisible(false);
 			}
 		} else if (isAngle) {
 			number = new GeoAngle(cons);

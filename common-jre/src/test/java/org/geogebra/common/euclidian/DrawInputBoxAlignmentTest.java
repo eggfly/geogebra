@@ -1,18 +1,18 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.eq;
 
 import org.geogebra.common.awt.GGraphicsCommon;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
 import org.geogebra.common.factories.AwtFactoryCommon;
 import org.geogebra.common.jre.headless.AppCommon;
 import org.geogebra.common.jre.headless.LocalizationCommon;
 import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.kernel.geos.properties.HorizontalAlignment;
-import org.geogebra.test.euclidian.AutoCompleteTextFieldC;
-import org.geogebra.test.euclidian.TextFieldCommonJre;
+import org.geogebra.test.euclidean.AutoCompleteTextFieldC;
+import org.geogebra.test.euclidean.TextFieldCommonJre;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -28,7 +28,7 @@ public class DrawInputBoxAlignmentTest {
 	public void setup() {
 		AwtFactoryCommon factoryCommon = new AwtFactoryCommon();
 		app = new AppCommon(new LocalizationCommon(2), factoryCommon);
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 		ev.setViewTextField(new TextFieldCommonJre());
 		app.getKernel().getAlgebraProcessor().processAlgebraCommand("ZoomIn(-1,-1, 1,1) ", false);
 		app.getKernel().getAlgebraProcessor().processAlgebraCommand("f = \"123456\" ", false);
@@ -68,7 +68,7 @@ public class DrawInputBoxAlignmentTest {
 
 	private void verifyAlignment(HorizontalAlignment left) {
 		AutoCompleteTextFieldC autoCompleteTextFieldC = (AutoCompleteTextFieldC) app
-				.getActiveEuclidianView().getTextField();
+				.getActiveeuclideanView().getTextField();
 		autoCompleteTextFieldC.setUsedForInputBox(inputBox);
 		inputBox.update();
 		assertEquals(left, autoCompleteTextFieldC.getAlignment());
@@ -76,7 +76,7 @@ public class DrawInputBoxAlignmentTest {
 
 	private void verifyDrawString(String string, double x) {
 		GGraphicsCommon graphics = Mockito.spy(new GGraphicsCommon());
-		Drawable drawable = (Drawable) app.getActiveEuclidianView().getDrawableFor(inputBox);
+		Drawable drawable = (Drawable) app.getActiveeuclideanView().getDrawableFor(inputBox);
 		drawable.draw(graphics);
 		Mockito.verify(graphics).drawString(eq(string), eq(x), anyDouble());
 	}

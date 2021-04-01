@@ -1,7 +1,7 @@
-package org.geogebra.common.euclidian.plot;
+package org.geogebra.common.euclidean.plot;
 
 import org.apache.commons.math3.util.Cloner;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 
 /**
  * Class to calculate the parameters of the segment
@@ -21,15 +21,15 @@ public class SegmentParams {
 	double left;
 	private final double tMin;
 	double[] divisors;
-	private final EuclidianView view;
+	private final euclideanView view;
 
 	/**
 	 *
 	 * @param tMin minimum of the segment parameter.
 	 * @param divisors splitters of the segment.
-	 * @param view {@link EuclidianView}
+	 * @param view {@link euclideanView}
 	 */
-	public SegmentParams(double tMin, double[] divisors, EuclidianView view) {
+	public SegmentParams(double tMin, double[] divisors, euclideanView view) {
 		this.tMin = tMin;
 		this.divisors = divisors;
 		this.view = view;

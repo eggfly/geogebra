@@ -117,7 +117,7 @@ class TextOptionsPanelW extends OptionPanel implements ITextOptionsListener,
 				model.applyFontSizeFromIndex(lbSize.getSelectedIndex());
 				double size = GeoText
 						.getRelativeFontSize(lbSize.getSelectedIndex())
-						* app.getActiveEuclidianView().getFontSize();
+						* app.getActiveeuclideanView().getFontSize();
 				inlineFormat("size", size);
 			}
 			updatePreviewPanel();

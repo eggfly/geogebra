@@ -279,7 +279,7 @@ public abstract class Transform {
 	 */
 	static final public void setVisualStyleForTransformations(GeoElement input,
 			GeoElement transformed) {
-		transformed.setEuclidianVisible(input.isSetEuclidianVisible());
+		transformed.seteuclideanVisible(input.isSeteuclideanVisible());
 		transformed.setVisualStyleForTransformations(input);
 	}
 }

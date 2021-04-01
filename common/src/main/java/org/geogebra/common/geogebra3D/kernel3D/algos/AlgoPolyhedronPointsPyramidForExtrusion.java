@@ -57,7 +57,7 @@ public class AlgoPolyhedronPointsPyramidForExtrusion
 	}
 
 	@Override
-	public void setOutputPointsEuclidianVisible(boolean visible) {
-		super.setOutputPointsEuclidianVisible(visible);
+	public void setOutputPointseuclideanVisible(boolean visible) {
+		super.setOutputPointseuclideanVisible(visible);
 	}
 }

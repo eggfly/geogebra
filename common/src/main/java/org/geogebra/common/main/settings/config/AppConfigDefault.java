@@ -112,7 +112,7 @@ public class AppConfigDefault extends AbstractAppConfig {
 	}
 
 	@Override
-	public boolean shouldKeepRatioEuclidian() {
+	public boolean shouldKeepRatioeuclidean() {
 		return false;
 	}
 
@@ -122,7 +122,7 @@ public class AppConfigDefault extends AbstractAppConfig {
 	}
 
 	@Override
-	public boolean hasSingleEuclidianViewWhichIs3D() {
+	public boolean hasSingleeuclideanViewWhichIs3D() {
 		return false;
 	}
 

@@ -2,20 +2,20 @@ package org.geogebra.desktop.geogebra3D.gui.layout.panels;
 
 import javax.swing.JComponent;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.toolbar.ToolBar;
 import org.geogebra.common.io.layout.DockPanelData;
 import org.geogebra.desktop.awt.GRectangleD;
-import org.geogebra.desktop.geogebra3D.euclidianForPlane.EuclidianViewForPlaneD;
-import org.geogebra.desktop.gui.layout.panels.EuclidianDockPanelAbstract;
+import org.geogebra.desktop.geogebra3D.euclideanForPlane.euclideanViewForPlaneD;
+import org.geogebra.desktop.gui.layout.panels.euclideanDockPanelAbstract;
 import org.geogebra.desktop.main.AppD;
 
 /**
- * Dock panel for the primary euclidian view.
+ * Dock panel for the primary euclidean view.
  */
-public class EuclidianDockPanelForPlaneD extends EuclidianDockPanelAbstract {
+public class euclideanDockPanelForPlaneD extends euclideanDockPanelAbstract {
 	private static final long serialVersionUID = 1L;
-	private EuclidianViewForPlaneD view;
+	private euclideanViewForPlaneD view;
 
 
 	/**
@@ -24,7 +24,7 @@ public class EuclidianDockPanelForPlaneD extends EuclidianDockPanelAbstract {
 	 * @param view
 	 *            view for plane
 	 */
-	public EuclidianDockPanelForPlaneD(AppD app, EuclidianViewForPlaneD view,
+	public euclideanDockPanelForPlaneD(AppD app, euclideanViewForPlaneD view,
 			int viewId) {
 		super(viewId, // view id
 				"GraphicsViewForPlaneA", // view title
@@ -50,7 +50,7 @@ public class EuclidianDockPanelForPlaneD extends EuclidianDockPanelAbstract {
 	 * 
 	 * @return view
 	 */
-	public EuclidianViewForPlaneD getView() {
+	public euclideanViewForPlaneD getView() {
 		return view;
 	}
 
@@ -66,7 +66,7 @@ public class EuclidianDockPanelForPlaneD extends EuclidianDockPanelAbstract {
 	}
 
 	@Override
-	public EuclidianView getEuclidianView() {
+	public euclideanView geteuclideanView() {
 		return view;
 	}
 

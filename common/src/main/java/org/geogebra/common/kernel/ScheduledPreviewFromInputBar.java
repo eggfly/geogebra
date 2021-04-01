@@ -151,7 +151,7 @@ public class ScheduledPreviewFromInputBar implements Runnable {
 					if (inputGeos != null) {
 						// TODO use thisif we want text centering
 						// InputHelper.updateProperties(inputGeos, kernel
-						// .getApplication().getActiveEuclidianView(), -2);
+						// .getApplication().getActiveeuclideanView(), -2);
 						int unlabeled = 0;
 						for (GeoElementND geo : inputGeos) {
 							if (geo instanceof GeoFunction) {

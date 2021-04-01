@@ -1,12 +1,12 @@
-package org.geogebra.common.geogebra3D.euclidian3D;
+package org.geogebra.common.geogebra3D.euclidean3D;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D;
-import org.geogebra.common.geogebra3D.euclidianFor3D.EuclidianControllerFor3DCompanion;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D;
+import org.geogebra.common.geogebra3D.euclideanFor3D.euclideanControllerFor3DCompanion;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoCursor3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPlane3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
@@ -24,19 +24,19 @@ import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.DialogManager.CreateGeoForRotate;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 
 /**
- * Euclidian controller creator for 3D controller
+ * euclidean controller creator for 3D controller
  * 
  * @author mathieu
  *
  */
-public class EuclidianController3DCompanion
-		extends EuclidianControllerFor3DCompanion {
+public class euclideanController3DCompanion
+		extends euclideanControllerFor3DCompanion {
 
-	private EuclidianController3D ec3D;
+	private euclideanController3D ec3D;
 	private Coords tmpCoords1 = new Coords(4);
 	private Coords tmpCoords2 = new Coords(4);
 	private Coords tmpCoordsForOrigin = new Coords(4);
@@ -52,14 +52,14 @@ public class EuclidianController3DCompanion
 	 * @param ec
 	 *            controller
 	 */
-	public EuclidianController3DCompanion(EuclidianController ec) {
+	public euclideanController3DCompanion(euclideanController ec) {
 		super(ec);
 	}
 
 	@Override
-	protected void setEuclidianController(EuclidianController ec) {
-		super.setEuclidianController(ec);
-		ec3D = (EuclidianController3D) ec;
+	protected void seteuclideanController(euclideanController ec) {
+		super.seteuclideanController(ec);
+		ec3D = (euclideanController3D) ec;
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class EuclidianController3DCompanion
 						|| (ec.movedGeoPoint
 								.getMoveMode() == GeoPointND.MOVE_MODE_TOOL_DEFAULT
 								&& ec3D.getPointMoveMode() == GeoPointND.MOVE_MODE_Z)) { // moves
-					long maxDelay = EuclidianConstants.DRAGGING_DELAY_FOR_MOVING_POINT_ALONG_Z;
+					long maxDelay = euclideanConstants.DRAGGING_DELAY_FOR_MOVING_POINT_ALONG_Z;
 					if (!ec.isTemporaryMode() || ec
 							.getElapsedTimeFromLastMousePressed() > maxDelay) {
 						moveAlongZAxis(movedGeoPoint3D);
@@ -122,7 +122,7 @@ public class EuclidianController3DCompanion
 				}
 
 				// update point decorations
-				if (ec.getMoveMode() == EuclidianController.MOVE_POINT) {
+				if (ec.getMoveMode() == euclideanController.MOVE_POINT) {
 					ec3D.view3D.updatePointDecorations();
 				}
 
@@ -186,7 +186,7 @@ public class EuclidianController3DCompanion
 				ec3D.getNormalTranslateDirection(),
 				tmpCoords1);
 
-		if (!ec3D.view3D.isXREnabled() && ec.getMoveMode() == EuclidianController.MOVE_POINT) {
+		if (!ec3D.view3D.isXREnabled() && ec.getMoveMode() == euclideanController.MOVE_POINT) {
 			// max z value
 			if (tmpCoords1.getZ() > ec3D.zMinMax[1]) {
 				tmpCoords1.setZ(ec3D.zMinMax[1]);
@@ -198,27 +198,27 @@ public class EuclidianController3DCompanion
 
 		// capturing points
 		switch (ec.getView().getPointCapturingMode()) {
-		case EuclidianStyleConstants.POINT_CAPTURING_STICKY_POINTS:
+		case euclideanStyleConstants.POINT_CAPTURING_STICKY_POINTS:
 			// TODO
 		default:
-		case EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC:
-			EuclidianView3D view = (EuclidianView3D) ec.getView();
+		case euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC:
+			euclideanView3D view = (euclideanView3D) ec.getView();
 			if (!view.isGridOrAxesShown() && !view.getShowPlane()) {
 				break;
 			}
-		case EuclidianStyleConstants.POINT_CAPTURING_ON:
-		case EuclidianStyleConstants.POINT_CAPTURING_ON_GRID:
+		case euclideanStyleConstants.POINT_CAPTURING_ON:
+		case euclideanStyleConstants.POINT_CAPTURING_ON_GRID:
 			double z0 = tmpCoords1.getZ();
 			double gz = ec.getView().getGridDistances(2);
 			double z = Kernel.roundToScale(z0, gz);
 			if (ec.getView()
-					.getPointCapturingMode() == EuclidianStyleConstants.POINT_CAPTURING_ON_GRID
+					.getPointCapturingMode() == euclideanStyleConstants.POINT_CAPTURING_ON_GRID
 					|| Math.abs(z - z0) < gz
 							* ec.getPointCapturingPercentage()) {
 				tmpCoords1.setZ(z);
 			}
 			break;
-		case EuclidianStyleConstants.POINT_CAPTURING_OFF:
+		case euclideanStyleConstants.POINT_CAPTURING_OFF:
 			break;
 		}
 
@@ -241,14 +241,14 @@ public class EuclidianController3DCompanion
 	public boolean checkPointCapturingXY(Coords coords) {
 		// capturing points
 		switch (ec.getView().getPointCapturingMode()) {
-		case EuclidianStyleConstants.POINT_CAPTURING_STICKY_POINTS:
+		case euclideanStyleConstants.POINT_CAPTURING_STICKY_POINTS:
 			// TODO
-		case EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC:
+		case euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC:
 			if (!ec.getView().isGridOrAxesShown()) {
 				return false;
 			}
-		case EuclidianStyleConstants.POINT_CAPTURING_ON:
-		case EuclidianStyleConstants.POINT_CAPTURING_ON_GRID:
+		case euclideanStyleConstants.POINT_CAPTURING_ON:
+		case euclideanStyleConstants.POINT_CAPTURING_ON_GRID:
 			double x0 = coords.getX();
 			double y0 = coords.getY();
 			double gx = ec.getView().getGridDistances(0);
@@ -257,7 +257,7 @@ public class EuclidianController3DCompanion
 			double y = Kernel.roundToScale(y0, gy);
 			// Log.debug("\n"+x+"\n"+y+"\np=\n"+project);
 			if (ec.getView()
-					.getPointCapturingMode() == EuclidianStyleConstants.POINT_CAPTURING_ON_GRID
+					.getPointCapturingMode() == euclideanStyleConstants.POINT_CAPTURING_ON_GRID
 					|| (Math.abs(x - x0) < gx * ec.getPointCapturingPercentage()
 							&& Math.abs(y - y0) < gy
 									* ec.getPointCapturingPercentage())) {
@@ -288,17 +288,17 @@ public class EuclidianController3DCompanion
 	public boolean checkPointCapturingXYThenZ(Coords coords) {
 		// capturing points
 		switch (ec.getView().getPointCapturingMode()) {
-		case EuclidianStyleConstants.POINT_CAPTURING_STICKY_POINTS:
+		case euclideanStyleConstants.POINT_CAPTURING_STICKY_POINTS:
 			// TODO
-		case EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC:
+		case euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC:
 			if (!ec.getView().isGridOrAxesShown()) {
 				if (specificPointCapturingAutomatic()) {
 					return checkPointCapturingZto0(coords);
 				}
 				return false;
 			}
-		case EuclidianStyleConstants.POINT_CAPTURING_ON:
-		case EuclidianStyleConstants.POINT_CAPTURING_ON_GRID:
+		case euclideanStyleConstants.POINT_CAPTURING_ON:
+		case euclideanStyleConstants.POINT_CAPTURING_ON_GRID:
 			double x0 = coords.getX();
 			double y0 = coords.getY();
 			double gx = ec.getView().getGridDistances(0);
@@ -307,7 +307,7 @@ public class EuclidianController3DCompanion
 			double y = Kernel.roundToScale(y0, gy);
 			// Log.debug("\nx="+x+"\ny="+y+"\nz=\n"+z);
 			if (ec.getView()
-					.getPointCapturingMode() == EuclidianStyleConstants.POINT_CAPTURING_ON_GRID
+					.getPointCapturingMode() == euclideanStyleConstants.POINT_CAPTURING_ON_GRID
 					|| (Math.abs(x - x0) < gx * ec.getPointCapturingPercentage()
 							&& Math.abs(y - y0) < gy
 									* ec.getPointCapturingPercentage())
@@ -355,7 +355,7 @@ public class EuclidianController3DCompanion
 		double gz = ec.getView().getGridDistances(2);
 		double z = Kernel.roundToScale(zStick, gz);
 		if (ec.getView()
-				.getPointCapturingMode() == EuclidianStyleConstants.POINT_CAPTURING_ON_GRID
+				.getPointCapturingMode() == euclideanStyleConstants.POINT_CAPTURING_ON_GRID
 				|| Math.abs(z - z0) < gz * ec.getPointCapturingPercentage()) {
 			if (!DoubleUtil.isEqual(z, z0)) {
 				coords.setZ(z);
@@ -377,7 +377,7 @@ public class EuclidianController3DCompanion
 		if (!forPreviewable) {
 			// if there's "no" 3D cursor, no point is created
 			if (ec3D.view3D
-					.getCursor3DType() == EuclidianView3D.PREVIEW_POINT_NONE) {
+					.getCursor3DType() == euclideanView3D.PREVIEW_POINT_NONE) {
 				return null;
 			}
 			point3D = (GeoPoint3D) ec.getKernel().getManager3D().point3D(null,
@@ -410,7 +410,7 @@ public class EuclidianController3DCompanion
                     point3D.setCoords(tmpCoords2);
                 } else {
                     point3D = null;
-                    ec3D.view3D.setCursor3DType(EuclidianView3D.PREVIEW_POINT_NONE);
+                    ec3D.view3D.setCursor3DType(euclideanView3D.PREVIEW_POINT_NONE);
                 }
             } else {
                 point3D = createNewFreePoint(complex);
@@ -421,7 +421,7 @@ public class EuclidianController3DCompanion
 			point3D.setPath(null);
 			point3D.setRegion(null);
 			ec3D.view3D
-					.setCursor3DType(EuclidianView3D.PREVIEW_POINT_FREE);
+					.setCursor3DType(euclideanView3D.PREVIEW_POINT_FREE);
 			return point3D;
 		}
 
@@ -449,7 +449,7 @@ public class EuclidianController3DCompanion
 			point3D.setPath(path);
 			point3D.setRegion(null);
 			ec3D.view3D
-					.setCursor3DType(EuclidianView3D.PREVIEW_POINT_PATH);
+					.setCursor3DType(euclideanView3D.PREVIEW_POINT_PATH);
 		}
 
 		ec3D.setMouseInformation(point3D);
@@ -506,7 +506,7 @@ public class EuclidianController3DCompanion
 					|| coords.getY() < plane.getYmin()
 					|| coords.getY() > plane.getYmax())) {
 				ec3D.view3D
-						.setCursor3DType(EuclidianView3D.PREVIEW_POINT_NONE);
+						.setCursor3DType(euclideanView3D.PREVIEW_POINT_NONE);
 				return null;
 			}
 
@@ -518,7 +518,7 @@ public class EuclidianController3DCompanion
 			}
 
 			ec3D.view3D
-					.setCursor3DType(EuclidianView3D.PREVIEW_POINT_REGION);
+					.setCursor3DType(euclideanView3D.PREVIEW_POINT_REGION);
 
 		} else {
 
@@ -534,10 +534,10 @@ public class EuclidianController3DCompanion
 			if (geo.isGeoQuadric() && ((GeoQuadric3D) geo)
 					.getType() == GeoQuadricNDConstants.QUADRIC_LINE) {
 				ec3D.view3D.setCursor3DType(
-						EuclidianView3D.PREVIEW_POINT_REGION_AS_PATH);
+						euclideanView3D.PREVIEW_POINT_REGION_AS_PATH);
 			} else {
 				ec3D.view3D
-						.setCursor3DType(EuclidianView3D.PREVIEW_POINT_REGION);
+						.setCursor3DType(euclideanView3D.PREVIEW_POINT_REGION);
 			}
 
 		}
@@ -629,8 +629,8 @@ public class EuclidianController3DCompanion
 	/**
 	 * @return the 3D view
 	 */
-	protected EuclidianView3D getView() {
-		return (EuclidianView3D) ec.getView();
+	protected euclideanView3D getView() {
+		return (euclideanView3D) ec.getView();
 	}
 
 	@Override
@@ -648,7 +648,7 @@ public class EuclidianController3DCompanion
 			return ec.getKernel().getManager3D().regularPolygon(null, geoPoint1,
 					geoPoint2, value,
 					direction == null
-							? ((EuclidianView3D) ec.getView()).getxOyPlane()
+							? ((euclideanView3D) ec.getView()).getxOyPlane()
 							: direction);
 		}
 

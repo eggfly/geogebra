@@ -10,7 +10,7 @@
  
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GBasicStroke;
 import org.geogebra.common.awt.GColor;
@@ -20,9 +20,9 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.font.GTextLayout;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.GeoBoolean;
@@ -63,7 +63,7 @@ public final class DrawBoolean extends Drawable {
 	 * @param geoBool
 	 *            boolean (checkbox)
 	 */
-	public DrawBoolean(EuclidianView view, GeoBoolean geoBool) {
+	public DrawBoolean(euclideanView view, GeoBoolean geoBool) {
 		this.view = view;
 		this.geoBool = geoBool;
 		geo = geoBool;
@@ -77,7 +77,7 @@ public final class DrawBoolean extends Drawable {
 
 	@Override
 	public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 
 		// return here, object is invisible, not just offscreen
 		if (!isVisible) {
@@ -118,7 +118,7 @@ public final class DrawBoolean extends Drawable {
 	public void draw(GGraphics2D g2) {
 		if (isVisible) {
 			g2.setFont(view.getFontPoint());
-			g2.setStroke(EuclidianStatic.getDefaultStroke());
+			g2.setStroke(euclideanStatic.getDefaultStroke());
 
 			CheckBoxIcon.paintIcon(geoBool.getBoolean(),
 					isHighlighted(), g2, geoBool.labelOffsetX + LEGACY_OFFSET,
@@ -166,7 +166,7 @@ public final class DrawBoolean extends Drawable {
 							+ checkBoxIcon.getIconWidth() + LABEL_MARGIN_TEXT + LEGACY_OFFSET;
 					int top = geoBool.labelOffsetY
 							+ (checkBoxIcon.getIconHeight() + height) / 2 + LEGACY_OFFSET;
-					EuclidianStatic.drawIndexedString(view.getApplication(), g2,
+					euclideanStatic.drawIndexedString(view.getApplication(), g2,
 							labelDesc, left, top, false);
 				}
 			}
@@ -210,7 +210,7 @@ public final class DrawBoolean extends Drawable {
 	 */
 	public static class CheckBoxIcon {
 
-		private EuclidianView ev;
+		private euclideanView ev;
 		private static GBasicStroke stroke13 = null;
 		private static GBasicStroke stroke26 = null;
 
@@ -230,7 +230,7 @@ public final class DrawBoolean extends Drawable {
 		 * @param ev
 		 *            view
 		 */
-		public CheckBoxIcon(EuclidianView ev) {
+		public CheckBoxIcon(euclideanView ev) {
 			this.ev = ev;
 		}
 

@@ -3,7 +3,7 @@ package org.geogebra.web.html5.main;
 import static org.junit.Assert.assertTrue;
 
 import org.geogebra.common.kernel.geos.GeoBoolean;
-import org.geogebra.web.html5.euclidian.EuclidianSimplePanelW;
+import org.geogebra.web.html5.euclidean.euclideanSimplePanelW;
 import org.geogebra.web.html5.util.AppletParameters;
 import org.geogebra.web.test.AppMocker;
 import org.geogebra.web.test.GgbMockitoTestRunner;
@@ -16,7 +16,7 @@ import com.google.gwtmockito.WithClassesToStub;
 import com.himamis.retex.renderer.web.graphics.JLMContext2d;
 
 @RunWith(GgbMockitoTestRunner.class)
-@WithClassesToStub({EuclidianSimplePanelW.class,
+@WithClassesToStub({euclideanSimplePanelW.class,
 		JLMContext2d.class, RootPanel.class})
 public class AppWSimpleLoadTest {
 	private static final String jsonPath =

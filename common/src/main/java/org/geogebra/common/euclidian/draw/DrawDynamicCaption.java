@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.kernel.geos.GeoText;
 
@@ -17,10 +17,10 @@ public class DrawDynamicCaption {
 
 	/**
 	 *
-	 * @param view {@link EuclidianView}
+	 * @param view {@link euclideanView}
 	 * @param drawInputBox {@link DrawInputBox}
 	 */
-	public DrawDynamicCaption(EuclidianView view,
+	public DrawDynamicCaption(euclideanView view,
 			DrawInputBox drawInputBox) {
 		this.drawInputBox = drawInputBox;
 		this.inputBox = drawInputBox.getGeoInputBox();
@@ -74,10 +74,10 @@ public class DrawDynamicCaption {
 
 	private void updateCaptionCopy() {
 		captionCopy.set(getDynamicCaption());
-		captionCopy.setAllVisualPropertiesExceptEuclidianVisible(getDynamicCaption(),
+		captionCopy.setAllVisualPropertiesExcepteuclideanVisible(getDynamicCaption(),
 				false, false);
 		captionCopy.setFontSizeMultiplier(inputBox.getFontSizeMultiplier());
-		captionCopy.setEuclidianVisible(true);
+		captionCopy.seteuclideanVisible(true);
 		captionCopy.setAbsoluteScreenLocActive(true);
 		drawCaption.update();
 	}

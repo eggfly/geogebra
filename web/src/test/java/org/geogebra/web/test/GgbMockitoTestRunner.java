@@ -2,8 +2,8 @@ package org.geogebra.web.test;
 
 import java.util.Collection;
 
-import org.geogebra.web.geogebra3D.web.euclidian3D.openGL.RendererImplShadersW;
-import org.geogebra.web.geogebra3D.web.euclidian3D.openGL.RendererWithImplW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.openGL.RendererImplShadersW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.openGL.RendererWithImplW;
 import org.geogebra.web.html5.main.FileDropHandlerW;
 import org.geogebra.web.html5.util.Dom;
 import org.geogebra.web.html5.util.MyNumberFormat;

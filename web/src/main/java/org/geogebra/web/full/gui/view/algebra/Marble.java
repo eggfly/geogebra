@@ -1,7 +1,7 @@
 package org.geogebra.web.full.gui.view.algebra;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.geos.GProperty;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.web.full.css.MaterialDesignResources;
@@ -26,11 +26,11 @@ public class Marble extends SimplePanel {
 	void toggleVisibility() {
 		GeoElement geo = gc.getGeo();
 
-		geo.setEuclidianVisible(!geo.isSetEuclidianVisible());
+		geo.seteuclideanVisible(!geo.isSeteuclideanVisible());
 		geo.updateVisualStyle(GProperty.VISIBLE);
 		geo.getKernel().getApplication().storeUndoInfo();
 		geo.getKernel().notifyRepaint();
-		setChecked(geo.isEuclidianVisible());
+		setChecked(geo.iseuclideanVisible());
 	}
 	
 	/**
@@ -120,11 +120,11 @@ public class Marble extends SimplePanel {
 	/**
 	 * Enable or disable this control
 	 * 
-	 * @param euclidianShowable
+	 * @param euclideanShowable
 	 *            whether the geo may be shown/hidden
 	 */
-	public void setEnabled(boolean euclidianShowable) {
-		if (!euclidianShowable) {
+	public void setEnabled(boolean euclideanShowable) {
+		if (!euclideanShowable) {
 			addStyleName("marbleHidden");
 		} else {
 			removeStyleName("marbleHidden");

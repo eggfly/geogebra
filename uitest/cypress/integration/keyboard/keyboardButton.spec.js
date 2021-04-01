@@ -14,7 +14,7 @@ describe('Keyboard button visibility test', () => {
         cy.writeInAVInput("f(x)=x");
         console.log(selectors)
         cy.keyboardShouldPresent();
-        selectors.euclidianView.get()
+        selectors.euclideanView.get()
                     .mouseEvent('down', 100, 100)
                     .mouseEvent('up', 100, 100);
 
@@ -41,7 +41,7 @@ describe('Keyboard button visibility test', () => {
         cy.wait(200); // wait for finishing keyboard up animation
         selectors.closeKeyboardButton.get().click()
 
-        selectors.euclidianView.get()
+        selectors.euclideanView.get()
                        .mouseEvent('down', 100, 100)
                        .mouseEvent('up', 100, 100);
 

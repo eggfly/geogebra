@@ -1,11 +1,11 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
-import org.geogebra.common.euclidian.Hits;
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
+import org.geogebra.common.euclidean.Hits;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.App.ExportType;
 
@@ -13,12 +13,12 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
- * interface for EuclidianViewW / EuclidianView3DW
+ * interface for euclideanViewW / euclideanView3DW
  * 
  * @author mathieu
  *
  */
-public interface EuclidianViewWInterface extends EuclidianViewInterfaceSlim {
+public interface euclideanViewWInterface extends euclideanViewInterfaceSlim {
 
 	/**
 	 * 
@@ -30,7 +30,7 @@ public interface EuclidianViewWInterface extends EuclidianViewInterfaceSlim {
 
 	boolean hasStyleBar();
 
-	EuclidianStyleBar getStyleBar();
+	euclideanStyleBar getStyleBar();
 
 	int getViewWidth();
 

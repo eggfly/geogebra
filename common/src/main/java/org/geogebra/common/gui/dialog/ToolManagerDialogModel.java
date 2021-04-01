@@ -17,7 +17,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.Macro;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -101,7 +101,7 @@ public class ToolManagerDialogModel {
 				// delete macro
 				changeToolBar = changeToolBar || macro.isShowInToolBar();
 				listener.removeMacroFromToolbar(kernel.getMacroID(macro)
-						+ EuclidianConstants.MACRO_MODE_ID_OFFSET);
+						+ euclideanConstants.MACRO_MODE_ID_OFFSET);
 
 				kernel.removeMacro(macro);
 				listener.refreshCustomToolsInToolBar();

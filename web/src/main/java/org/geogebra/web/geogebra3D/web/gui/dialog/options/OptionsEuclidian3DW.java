@@ -1,16 +1,16 @@
 package org.geogebra.web.geogebra3D.web.gui.dialog.options;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoClippingCube3D;
-import org.geogebra.common.gui.dialog.options.model.EuclidianOptionsModel;
+import org.geogebra.common.gui.dialog.options.model.euclideanOptionsModel;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.web.full.gui.dialog.options.BasicTab;
-import org.geogebra.web.full.gui.dialog.options.OptionsEuclidianW;
+import org.geogebra.web.full.gui.dialog.options.OptionseuclideanW;
 import org.geogebra.web.full.gui.util.MyToggleButtonW;
 import org.geogebra.web.geogebra3D.web.gui.images.StyleBar3DResources;
 import org.geogebra.web.html5.gui.inputfield.AutoCompleteTextFieldW;
@@ -39,7 +39,7 @@ import com.google.gwt.user.client.ui.Widget;
  *
  */
 @SuppressWarnings({ "synthetic-access" })
-public class OptionsEuclidian3DW extends OptionsEuclidianW {
+public class Optionseuclidean3DW extends OptionseuclideanW {
 
 	private AxisTab zAxisTab;
 
@@ -70,9 +70,9 @@ public class OptionsEuclidian3DW extends OptionsEuclidianW {
 		 * constructor
 		 * 
 		 * @param o
-		 *            euclidian options
+		 *            euclidean options
 		 */
-		public BasicTab3D(OptionsEuclidianW o) {
+		public BasicTab3D(OptionseuclideanW o) {
 			super(o);
 			addClippingOptionsPanel();
 		}
@@ -267,13 +267,13 @@ public class OptionsEuclidian3DW extends OptionsEuclidianW {
 			setText(radioClippingSmall, "BoxSize.small");
 			setText(radioClippingMedium, "BoxSize.medium");
 			setText(radioClippingLarge, "BoxSize.large");
-			getDimLabel()[4].setText(getOptionsEuclidianW().loc.getMenu("zmin") + ":");
-			getDimLabel()[5].setText(getOptionsEuclidianW().loc.getMenu("zmax") + ":");
+			getDimLabel()[4].setText(getOptionseuclideanW().loc.getMenu("zmin") + ":");
+			getDimLabel()[5].setText(getOptionseuclideanW().loc.getMenu("zmax") + ":");
 		}
 
 		@Override
 		protected void updateMinMax() {
-			EuclidianView3D view = (EuclidianView3D) getOptionsEuclidianW().getView();
+			euclideanView3D view = (euclideanView3D) getOptionseuclideanW().getView();
 			view.updateBoundObjects();
 			setMinMaxText(
 					view.getXminObject().getLabel(StringTemplate.editTemplate),
@@ -323,7 +323,7 @@ public class OptionsEuclidian3DW extends OptionsEuclidianW {
 		}
 	}
 
-	private class ProjectionTab extends EuclidianTab {
+	private class ProjectionTab extends euclideanTab {
 
 		private ProjectionButtons projectionButtons;
 
@@ -355,15 +355,15 @@ public class OptionsEuclidian3DW extends OptionsEuclidianW {
 			ProjectionButtons() {
 				buttons = new MyToggleButtonW[4];
 
-				buttons[EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC] = new MyToggleButtonW(
+				buttons[euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC] = new MyToggleButtonW(
 						new Image(StyleBar3DResources.INSTANCE
 								.viewOrthographic()));
-				buttons[EuclidianView3DInterface.PROJECTION_PERSPECTIVE] = new MyToggleButtonW(
+				buttons[euclideanView3DInterface.PROJECTION_PERSPECTIVE] = new MyToggleButtonW(
 						new Image(StyleBar3DResources.INSTANCE
 								.viewPerspective()));
-				buttons[EuclidianView3DInterface.PROJECTION_GLASSES] = new MyToggleButtonW(
+				buttons[euclideanView3DInterface.PROJECTION_GLASSES] = new MyToggleButtonW(
 						new Image(StyleBar3DResources.INSTANCE.viewGlasses()));
-				buttons[EuclidianView3DInterface.PROJECTION_OBLIQUE] = new MyToggleButtonW(
+				buttons[euclideanView3DInterface.PROJECTION_OBLIQUE] = new MyToggleButtonW(
 						new Image(StyleBar3DResources.INSTANCE.viewOblique()));
 
 				for (int i = 0; i < 4; i++) {
@@ -410,7 +410,7 @@ public class OptionsEuclidian3DW extends OptionsEuclidianW {
 			orthoPanel = new FlowPanel();
 			orthoPanel.add(projectionButtons
 					.getButton(
-							EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC));
+							euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC));
 			add(orthoTitle);
 			indent(orthoPanel);
 
@@ -444,7 +444,7 @@ public class OptionsEuclidian3DW extends OptionsEuclidianW {
 			perspPanel.add(LayoutUtilW.panelRow(
 					projectionButtons
 							.getButton(
-									EuclidianView3DInterface.PROJECTION_PERSPECTIVE),
+									euclideanView3DInterface.PROJECTION_PERSPECTIVE),
 					tfPerspPanel));
 			add(perspTitle);
 			indent(perspPanel);
@@ -500,7 +500,7 @@ public class OptionsEuclidian3DW extends OptionsEuclidianW {
 			glassesPanel.add(LayoutUtilW.panelRow(
 					projectionButtons
 							.getButton(
-									EuclidianView3DInterface.PROJECTION_GLASSES),
+									euclideanView3DInterface.PROJECTION_GLASSES),
 					tfGlassesPanel));
 			add(glassesTitle);
 			indent(glassesPanel);
@@ -558,7 +558,7 @@ public class OptionsEuclidian3DW extends OptionsEuclidianW {
 			obliquePanel.add(LayoutUtilW.panelRow(
 					projectionButtons
 							.getButton(
-									EuclidianView3DInterface.PROJECTION_OBLIQUE),
+									euclideanView3DInterface.PROJECTION_OBLIQUE),
 					tfObliquePanel));
 			add(obliqueTitle);
 			indent(obliquePanel);
@@ -675,7 +675,7 @@ public class OptionsEuclidian3DW extends OptionsEuclidianW {
 	 * @param view
 	 *            3D view
 	 */
-	public OptionsEuclidian3DW(AppW app, EuclidianViewInterfaceCommon view) {
+	public Optionseuclidean3DW(AppW app, euclideanViewInterfaceCommon view) {
 		super(app, view);
 
 	}
@@ -683,8 +683,8 @@ public class OptionsEuclidian3DW extends OptionsEuclidianW {
 	/**
 	 * @return 3D view
 	 */
-	public EuclidianView3D get3dview() {
-		return (EuclidianView3D) view;
+	public euclideanView3D get3dview() {
+		return (euclideanView3D) view;
 	}
 
 	@Override
@@ -721,7 +721,7 @@ public class OptionsEuclidian3DW extends OptionsEuclidianW {
 	}
 
 	private void addZAxisTab() {
-		zAxisTab = newAxisTab(EuclidianOptionsModel.Z_AXIS);
+		zAxisTab = newAxisTab(euclideanOptionsModel.Z_AXIS);
 		tabPanel.add(zAxisTab, "z");
 	}
 

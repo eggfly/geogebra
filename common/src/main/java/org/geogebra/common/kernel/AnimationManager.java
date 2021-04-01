@@ -242,12 +242,12 @@ public class AnimationManager implements GTimerListener {
 			kernel.notifyRepaint();
 			// check frame rate
 			long compTime = System.currentTimeMillis() - startTime;
-			if (kernel.getApplication().getEuclidianView1() != null) {
-				compTime += kernel.getApplication().getEuclidianView1()
+			if (kernel.getApplication().geteuclideanView1() != null) {
+				compTime += kernel.getApplication().geteuclideanView1()
 						.getLastRepaintTime();
 			}
-			if (kernel.getApplication().hasEuclidianView2(1)) {
-				compTime += kernel.getApplication().getEuclidianView2(1)
+			if (kernel.getApplication().haseuclideanView2(1)) {
+				compTime += kernel.getApplication().geteuclideanView2(1)
 						.getLastRepaintTime();
 			}
 			adaptFrameRate(compTime);

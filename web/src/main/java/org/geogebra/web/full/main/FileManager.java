@@ -13,7 +13,7 @@ import org.geogebra.web.full.gui.browser.BrowseGUI;
 import org.geogebra.web.full.gui.dialog.DialogManagerW;
 import org.geogebra.web.full.util.SaveCallback;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 import org.geogebra.web.html5.gui.tooltip.ToolTipManagerW;
 import org.geogebra.web.html5.main.AppW;
 
@@ -107,8 +107,8 @@ public abstract class FileManager extends MaterialsManager {
 		mat.setTitle(app.getKernel().getConstruction().getTitle());
 		mat.setDescription(app.getKernel().getConstruction()
 		        .getWorksheetText(0));
-		mat.setThumbnailBase64(((EuclidianViewWInterface) app
-		        .getActiveEuclidianView())
+		mat.setThumbnailBase64(((euclideanViewWInterface) app
+		        .getActiveeuclideanView())
 		        .getCanvasBase64WithTypeString());
 		if (app.getLoginOperation() != null) {
 			mat.setAuthorId(app.getLoginOperation().getModel().getUserId());

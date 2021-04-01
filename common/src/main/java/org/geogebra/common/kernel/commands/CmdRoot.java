@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.commands;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.algos.AlgoRootInterval;
 import org.geogebra.common.kernel.algos.AlgoRootNewton;
@@ -131,8 +131,8 @@ public class CmdRoot extends CommandProcessor {
 	 */
 	public static GeoPoint[] nonPolyRoots(Command c, Kernel kernel,
 			GeoFunctionable geoElement) {
-		EuclidianViewInterfaceCommon view = kernel.getApplication()
-				.getActiveEuclidianView();
+		euclideanViewInterfaceCommon view = kernel.getApplication()
+				.getActiveeuclideanView();
 
 		AlgoRoots algo = new AlgoRoots(kernel.getConstruction(), c.getLabels(),
 				geoElement, view);

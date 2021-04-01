@@ -4,7 +4,7 @@ import org.geogebra.common.kernel.geos.GProperty;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.PointProperties;
 import org.geogebra.common.main.App;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 public class PointStyleModel extends NumberOptionsModel {
 	private IComboListener listener;
@@ -30,7 +30,7 @@ public class PointStyleModel extends NumberOptionsModel {
 
 		if ((geo0 == null) || (geo0.getPointStyle() == -1)) {
 			// select default button
-			listener.setSelectedIndex(EuclidianStyleConstants.POINT_STYLE_DOT);
+			listener.setSelectedIndex(euclideanStyleConstants.POINT_STYLE_DOT);
 
 		} else {
 			// select custom button and set combo box selection

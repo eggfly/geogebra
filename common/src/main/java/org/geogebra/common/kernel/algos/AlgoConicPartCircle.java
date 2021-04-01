@@ -12,7 +12,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.kernel.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.commands.Commands;
 import org.geogebra.common.kernel.geos.GeoConicPart;
@@ -111,9 +111,9 @@ public class AlgoConicPartCircle extends AlgoConicPart implements
 	public int getRelatedModeID() {
 		switch (type) {
 		case GeoConicNDConstants.CONIC_PART_ARC:
-			return EuclidianConstants.MODE_CIRCLE_ARC_THREE_POINTS;
+			return euclideanConstants.MODE_CIRCLE_ARC_THREE_POINTS;
 		default:
-			return EuclidianConstants.MODE_CIRCLE_SECTOR_THREE_POINTS;
+			return euclideanConstants.MODE_CIRCLE_SECTOR_THREE_POINTS;
 		}
 	}
 

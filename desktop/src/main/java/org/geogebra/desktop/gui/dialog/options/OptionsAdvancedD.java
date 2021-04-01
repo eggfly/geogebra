@@ -35,7 +35,7 @@ import org.geogebra.common.kernel.PathRegionHandling;
 import org.geogebra.common.main.Feature;
 import org.geogebra.common.main.MyError.Errors;
 import org.geogebra.common.main.settings.Settings;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.Util;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.common.util.lang.Language;
@@ -444,13 +444,13 @@ public class OptionsAdvancedD implements OptionPanelD,
 				.getKernel().usePathAndRegionParameters == PathRegionHandling.OFF);
 
 		rightAngleRadio1
-				.setSelected(app.getEuclidianView1().getRightAngleStyle() == 0);
+				.setSelected(app.geteuclideanView1().getRightAngleStyle() == 0);
 		rightAngleRadio2
-				.setSelected(app.getEuclidianView1().getRightAngleStyle() == 1);
+				.setSelected(app.geteuclideanView1().getRightAngleStyle() == 1);
 		rightAngleRadio3
-				.setSelected(app.getEuclidianView1().getRightAngleStyle() == 2);
+				.setSelected(app.geteuclideanView1().getRightAngleStyle() == 2);
 		rightAngleRadio4
-				.setSelected(app.getEuclidianView1().getRightAngleStyle() == 3);
+				.setSelected(app.geteuclideanView1().getRightAngleStyle() == 3);
 
 		coordinatesRadio1.setSelected(app.getKernel().getCoordStyle() == 0);
 		coordinatesRadio2.setSelected(app.getKernel().getCoordStyle() == 1);
@@ -666,12 +666,12 @@ public class OptionsAdvancedD implements OptionPanelD,
 			changeWidthOrHeight(source);
 		} else {
 			handleEVOption(source);
-			app.getEuclidianView1().updateAllDrawables(true);
-			if (app.hasEuclidianView2EitherShowingOrNot(1)) {
-				app.getEuclidianView2(1).updateAllDrawables(true);
+			app.geteuclideanView1().updateAllDrawables(true);
+			if (app.haseuclideanView2EitherShowingOrNot(1)) {
+				app.geteuclideanView2(1).updateAllDrawables(true);
 			}
-			if (app.isEuclidianView3Dinited()) {
-				app.getEuclidianView3D().updateAllDrawables();
+			if (app.iseuclideanView3Dinited()) {
+				app.geteuclideanView3D().updateAllDrawables();
 			}
 		}
 	}
@@ -679,15 +679,15 @@ public class OptionsAdvancedD implements OptionPanelD,
 	private void handleEVOption(Object source) {
 		if (source == rightAngleRadio1) {
 			app.setRightAngleStyle(
-					EuclidianStyleConstants.RIGHT_ANGLE_STYLE_NONE);
+					euclideanStyleConstants.RIGHT_ANGLE_STYLE_NONE);
 		} else if (source == rightAngleRadio2) {
 			app.setRightAngleStyle(
-					EuclidianStyleConstants.RIGHT_ANGLE_STYLE_SQUARE);
+					euclideanStyleConstants.RIGHT_ANGLE_STYLE_SQUARE);
 		} else if (source == rightAngleRadio3) {
 			app.setRightAngleStyle(
-					EuclidianStyleConstants.RIGHT_ANGLE_STYLE_DOT);
+					euclideanStyleConstants.RIGHT_ANGLE_STYLE_DOT);
 		} else if (source == rightAngleRadio4) {
-			app.setRightAngleStyle(EuclidianStyleConstants.RIGHT_ANGLE_STYLE_L);
+			app.setRightAngleStyle(euclideanStyleConstants.RIGHT_ANGLE_STYLE_L);
 		}
 	}
 
@@ -1027,7 +1027,7 @@ public class OptionsAdvancedD implements OptionPanelD,
 
 	@Override
 	public void setSelected(boolean flag) {
-		// see OptionsEuclidianD for possible implementation
+		// see OptionseuclideanD for possible implementation
 	}
 
 	/** available tooltip timeouts (will be reused in OptionsAdvanced) */

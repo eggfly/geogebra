@@ -1,13 +1,13 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.ManagerShaders;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Textures;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.ManagerShaders;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Textures;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPlane3D;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 /**
  * Class for drawing 3D constant planes.
@@ -32,7 +32,7 @@ public class DrawPlaneConstant3D extends DrawPlane3D {
 	 * @param yAxis
 	 *            y axis
 	 */
-	public DrawPlaneConstant3D(EuclidianView3D a_view3D, GeoPlane3D a_plane3D,
+	public DrawPlaneConstant3D(euclideanView3D a_view3D, GeoPlane3D a_plane3D,
 			DrawAxis3D xAxis, DrawAxis3D yAxis) {
 
 		super(a_view3D, a_plane3D);
@@ -107,7 +107,7 @@ public class DrawPlaneConstant3D extends DrawPlane3D {
 
 	@Override
 	public int getLineType() {
-		return EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT;
+		return euclideanStyleConstants.LINE_TYPE_DASHED_SHORT;
 	}
 
 	@Override

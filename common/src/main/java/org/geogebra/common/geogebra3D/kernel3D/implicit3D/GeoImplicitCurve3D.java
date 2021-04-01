@@ -1,6 +1,6 @@
 package org.geogebra.common.geogebra3D.kernel3D.implicit3D;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPlane3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
 import org.geogebra.common.geogebra3D.kernel3D.transform.MirrorableAtPlane;
@@ -200,7 +200,7 @@ public class GeoImplicitCurve3D extends GeoImplicitCurve
 		functionExpression.translate(v);
 		translateZ += v.getZ();
 		CoordSys.translateEquationVector(planeEquation, v);
-		euclidianViewUpdate();
+		euclideanViewUpdate();
 	}
 
 	/**
@@ -244,12 +244,12 @@ public class GeoImplicitCurve3D extends GeoImplicitCurve
 	@Override
 	protected double[] getViewBounds() {
 		if (isVisibleInView3D()
-				&& kernel.getApplication().isEuclidianView3Dinited()) {
+				&& kernel.getApplication().iseuclideanView3Dinited()) {
 			// see AlgoIntersectFunctionNVarPlane.compute() where type is set
 			switch (type) {
 			case PLANE_X:
-				EuclidianView3D view = (EuclidianView3D) kernel.getApplication()
-						.getEuclidianView3D();
+				euclideanView3D view = (euclideanView3D) kernel.getApplication()
+						.geteuclideanView3D();
 				return new double[] {
 						view.getYmin(),
 						view.getYmax(),
@@ -259,8 +259,8 @@ public class GeoImplicitCurve3D extends GeoImplicitCurve
 						view.getZscale()
 				};
 			case PLANE_XY:
-				view = (EuclidianView3D) kernel.getApplication()
-						.getEuclidianView3D();
+				view = (euclideanView3D) kernel.getApplication()
+						.geteuclideanView3D();
 
 				double xmin1 = view.getXmin();
 				double xmax1 = view.getXmax();

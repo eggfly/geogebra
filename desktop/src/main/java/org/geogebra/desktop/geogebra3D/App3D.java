@@ -39,15 +39,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import org.geogebra.common.awt.GBufferedImage;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianCursor;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian3D.Input3DConstants;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLFactory;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanCursor;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean3D.Input3DConstants;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLFactory;
 import org.geogebra.common.geogebra3D.input3D.Input3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPlane3D;
 import org.geogebra.common.geogebra3D.main.App3DCompanion;
@@ -57,20 +57,20 @@ import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.AnimationExportSlider;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.AppCompanion;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 import org.geogebra.common.main.settings.updater.SettingsUpdaterBuilder;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.CommandLineArguments;
-import org.geogebra.desktop.euclidian.event.MouseEventD;
-import org.geogebra.desktop.geogebra3D.euclidian3D.EuclidianController3DD;
-import org.geogebra.desktop.geogebra3D.euclidian3D.EuclidianView3DD;
-import org.geogebra.desktop.geogebra3D.euclidianFor3D.EuclidianControllerFor3DD;
-import org.geogebra.desktop.geogebra3D.euclidianFor3D.EuclidianViewFor3DD;
-import org.geogebra.desktop.geogebra3D.euclidianInput3D.EuclidianControllerHand3D;
-import org.geogebra.desktop.geogebra3D.euclidianInput3D.EuclidianControllerInput3D;
-import org.geogebra.desktop.geogebra3D.euclidianInput3D.EuclidianViewInput3D;
+import org.geogebra.desktop.euclidean.event.MouseEventD;
+import org.geogebra.desktop.geogebra3D.euclidean3D.euclideanController3DD;
+import org.geogebra.desktop.geogebra3D.euclidean3D.euclideanView3DD;
+import org.geogebra.desktop.geogebra3D.euclideanFor3D.euclideanControllerFor3DD;
+import org.geogebra.desktop.geogebra3D.euclideanFor3D.euclideanViewFor3DD;
+import org.geogebra.desktop.geogebra3D.euclideanInput3D.euclideanControllerHand3D;
+import org.geogebra.desktop.geogebra3D.euclideanInput3D.euclideanControllerInput3D;
+import org.geogebra.desktop.geogebra3D.euclideanInput3D.euclideanViewInput3D;
 import org.geogebra.desktop.geogebra3D.gui.GuiManager3D;
-import org.geogebra.desktop.geogebra3D.gui.layout.panels.EuclidianDockPanel3DD;
+import org.geogebra.desktop.geogebra3D.gui.layout.panels.euclideanDockPanel3DD;
 import org.geogebra.desktop.geogebra3D.input3D.Input3DFactory;
 import org.geogebra.desktop.geogebra3D.input3D.Input3DFactory.Input3DException;
 import org.geogebra.desktop.geogebra3D.input3D.Input3DFactory.Input3DExceptionType;
@@ -86,8 +86,8 @@ import org.geogebra.desktop.util.FrameCollector;
 
 public class App3D extends AppD {
 
-	private EuclidianView3D euclidianView3D;
-	private EuclidianController3D euclidianController3D;
+	private euclideanView3D euclideanView3D;
+	private euclideanController3D euclideanController3D;
 
 	public App3D(CommandLineArguments args,
 			boolean undoActive) {
@@ -368,12 +368,12 @@ public class App3D extends AppD {
 		imageManager = new ImageManager3D(component, this);
 	}
 
-	private void initEuclidianController3D() {
+	private void initeuclideanController3D() {
 
 		Input3D input3D;
 
 		if (AppD.WINDOWS && !isApplet()) {
-			// init the 3D euclidian view (with perhaps a specific 3D input)
+			// init the 3D euclidean view (with perhaps a specific 3D input)
 			try {
 				input3D = Input3DFactory.createInput3D(this, getInput3DType());
 			} catch (Input3DException e) {
@@ -399,30 +399,30 @@ public class App3D extends AppD {
 		if (input3D != null) {
 			switch (input3D.getDeviceType()) {
 			case HAND:
-				euclidianController3D = new EuclidianControllerHand3D(kernel,
+				euclideanController3D = new euclideanControllerHand3D(kernel,
 						input3D);
 				break;
 			case PEN:
 			default:
-				euclidianController3D = new EuclidianControllerInput3D(kernel,
+				euclideanController3D = new euclideanControllerInput3D(kernel,
 						input3D);
 				break;
 			}
 
 			// set specific settings
 			input3D.setSpecificSettings(
-					(EuclidianSettings3D) getSettings().getEuclidian(3));
+					(euclideanSettings3D) getSettings().geteuclidean(3));
 
 		} else {
-			euclidianController3D = new EuclidianController3DD(kernel);
+			euclideanController3D = new euclideanController3DD(kernel);
 		}
 	}
 
 	@Override
 	protected void exitFrame() {
 		super.exitFrame();
-		if (euclidianController3D != null) {
-			euclidianController3D.exitInput3D();
+		if (euclideanController3D != null) {
+			euclideanController3D.exitInput3D();
 		}
 	}
 
@@ -436,23 +436,23 @@ public class App3D extends AppD {
 	}
 
 	@Override
-	public EuclidianController newEuclidianController(Kernel kernel) {
-		return new EuclidianControllerFor3DD(kernel);
+	public euclideanController neweuclideanController(Kernel kernel) {
+		return new euclideanControllerFor3DD(kernel);
 	}
 
 	@Override
-	protected EuclidianView newEuclidianView(boolean[] showAxes1,
+	protected euclideanView neweuclideanView(boolean[] showAxes1,
 			boolean showGrid1) {
-		return new EuclidianViewFor3DD(getEuclidianController(), showAxes1,
-				showGrid1, 1, getSettings().getEuclidian(1));
+		return new euclideanViewFor3DD(geteuclideanController(), showAxes1,
+				showGrid1, 1, getSettings().geteuclidean(1));
 	}
 
 	@Override
 	public void setMode(int mode) {
 		super.setMode(mode);
 
-		if (isEuclidianView3Dinited()) {
-			euclidianView3D.setMode(mode);
+		if (iseuclideanView3Dinited()) {
+			euclideanView3D.setMode(mode);
 		}
 	}
 
@@ -463,12 +463,12 @@ public class App3D extends AppD {
 		// save super settings
 		sb.append(super.getCompleteUserInterfaceXML(asPreference));
 
-		// save euclidianView3D settings
-		if (isEuclidianView3Dinited()) {
-			euclidianView3D.getXML(sb, asPreference);
+		// save euclideanView3D settings
+		if (iseuclideanView3Dinited()) {
+			euclideanView3D.getXML(sb, asPreference);
 		}
 
-		// save euclidian views for plane settings
+		// save euclidean views for plane settings
 		((App3DCompanion) companion).addCompleteUserInterfaceXMLForPlane(sb,
 				asPreference);
 
@@ -476,34 +476,34 @@ public class App3D extends AppD {
 	}
 
 	/**
-	 * return the 3D euclidian view
+	 * return the 3D euclidean view
 	 * 
-	 * @return the 3D euclidian view
+	 * @return the 3D euclidean view
 	 */
 	@Override
-	public EuclidianView3D getEuclidianView3D() {
-		if (this.euclidianView3D == null) {
-			initEuclidianController3D();
-			if (euclidianController3D.hasInput3D()) {
-				euclidianView3D = new EuclidianViewInput3D(
-						euclidianController3D, getSettings().getEuclidian(3));
+	public euclideanView3D geteuclideanView3D() {
+		if (this.euclideanView3D == null) {
+			initeuclideanController3D();
+			if (euclideanController3D.hasInput3D()) {
+				euclideanView3D = new euclideanViewInput3D(
+						euclideanController3D, getSettings().geteuclidean(3));
 			} else {
-				euclidianView3D = new EuclidianView3DD(euclidianController3D,
-						getSettings().getEuclidian(3));
+				euclideanView3D = new euclideanView3DD(euclideanController3D,
+						getSettings().geteuclidean(3));
 			}
 		}
-		return euclidianView3D;
+		return euclideanView3D;
 	}
 
 	@Override
-	public boolean isEuclidianView3Dinited() {
-		return this.euclidianView3D != null;
+	public boolean iseuclideanView3Dinited() {
+		return this.euclideanView3D != null;
 	}
 
 	@Override
 	public void needThumbnailFor3D() {
-		if (euclidianView3D != null) {
-			getEuclidianView3D().getRenderer().needExportImage();
+		if (euclideanView3D != null) {
+			geteuclideanView3D().getRenderer().needExportImage();
 		}
 	}
 
@@ -515,9 +515,9 @@ public class App3D extends AppD {
 	 * @return true if it's 3D
 	 */
 	@Override
-	public boolean isEuclidianView3D(EuclidianViewInterfaceCommon view) {
-		// euclidianView3D might be null
-		return view != null && view == euclidianView3D;
+	public boolean iseuclideanView3D(euclideanViewInterfaceCommon view) {
+		// euclideanView3D might be null
+		return view != null && view == euclideanView3D;
 	}
 
 	// ///////////////////////////////
@@ -526,11 +526,11 @@ public class App3D extends AppD {
 
 	@Override
 	public void refreshViews() {
-		if (isEuclidianView3Dinited()) {
-			getEuclidianView3D().reset();
+		if (iseuclideanView3Dinited()) {
+			geteuclideanView3D().reset();
 			DockManagerD dockManager = (DockManagerD) getGuiManager()
 					.getLayout().getDockManager();
-			((EuclidianDockPanel3DD) dockManager.getPanel(VIEW_EUCLIDIAN3D))
+			((euclideanDockPanel3DD) dockManager.getPanel(VIEW_euclidean3D))
 					.refresh(dockManager);
 
 		}
@@ -539,10 +539,10 @@ public class App3D extends AppD {
 
 	@Override
 	public void resume3DRenderer() {
-		if (isEuclidianView3Dinited()) {
+		if (iseuclideanView3Dinited()) {
 			DockManager dockManager = getGuiManager().getLayout()
 					.getDockManager();
-			((EuclidianDockPanel3DD) dockManager.getPanel(VIEW_EUCLIDIAN3D))
+			((euclideanDockPanel3DD) dockManager.getPanel(VIEW_euclidean3D))
 					.resumeRenderer();
 
 		}
@@ -550,21 +550,21 @@ public class App3D extends AppD {
 
 	public void toggleAxis3D() {
 		// toggle axis
-		getEuclidianView3D().toggleAxis();
+		geteuclideanView3D().toggleAxis();
 	}
 
 	public void togglePlane() {
 		// toggle xOy plane
-		getEuclidianView3D().getSettings().togglePlane();
+		geteuclideanView3D().getSettings().togglePlane();
 	}
 
 	public void toggleGrid3D() {
 		// toggle xOy grid
-		getEuclidianView3D().toggleGrid();
+		geteuclideanView3D().toggleGrid();
 	}
 
 	public void setShowAxesSelected3D(JCheckBoxMenuItem cb) {
-		cb.setSelected(getEuclidianView3D().axesAreAllVisible());
+		cb.setSelected(geteuclideanView3D().axesAreAllVisible());
 	}
 
 	/**
@@ -606,8 +606,8 @@ public class App3D extends AppD {
 	@Override
 	public void updateStyleBars() {
 		super.updateStyleBars();
-		if (showView(App.VIEW_EUCLIDIAN3D)) {
-			getEuclidianView3D().getStyleBar().updateStyleBar();
+		if (showView(App.VIEW_euclidean3D)) {
+			geteuclideanView3D().getStyleBar().updateStyleBar();
 		}
 	}
 
@@ -619,55 +619,55 @@ public class App3D extends AppD {
 		return true;
 	}
 
-	private EuclidianCursor oldCursorMode;
+	private euclideanCursor oldCursorMode;
 
 	@Override
 	protected void handleShiftEvent(boolean isShiftDown) {
-		if (!this.isEuclidianView3Dinited()) {
+		if (!this.iseuclideanView3Dinited()) {
 			return;
 		}
 		if (isShiftDown) {
-			EuclidianCursor cursor = getEuclidianView3D()
+			euclideanCursor cursor = geteuclideanView3D()
 					.updateCursorIfNotTranslateViewCursor();
 			if (cursor != null) {
 				oldCursorMode = cursor;
 			}
-			// oldCursorMode = getEuclidianView3D().getCursor();
-			// getEuclidianView3D().setCursor(EuclidianCursor.MOVE);
+			// oldCursorMode = geteuclideanView3D().getCursor();
+			// geteuclideanView3D().setCursor(euclideanCursor.MOVE);
 			// Log.debug(oldCursorMode);
 		} else {
 			if (oldCursorMode != null) {
-				getEuclidianView3D().setCursor(oldCursorMode);
+				geteuclideanView3D().setCursor(oldCursorMode);
 			}
 		}
 	}
 
 	@Override
-	public void exportAnimatedGIF(EuclidianView ev, FrameCollector gifEncoder,
+	public void exportAnimatedGIF(euclideanView ev, FrameCollector gifEncoder,
 			AnimationExportSlider num, int n, double val, double min,
 			double max, double step) {
 
-		if (!(ev instanceof EuclidianView3D)) {
+		if (!(ev instanceof euclideanView3D)) {
 			// regular 2D export
 			super.exportAnimatedGIF(ev, gifEncoder, num, n, val, min, max,
 					step);
 			return;
 		}
 
-		getEuclidianView3D().getRenderer().startAnimatedGIFExport(gifEncoder,
+		geteuclideanView3D().getRenderer().startAnimatedGIFExport(gifEncoder,
 				num, n, val, min, max, step);
 	}
 
 	@Override
 	public void copyGraphicsViewToClipboard() {
 
-		if (!(getActiveEuclidianView() instanceof EuclidianView3D)) {
+		if (!(getActiveeuclideanView() instanceof euclideanView3D)) {
 			// regular 2D export
 			super.copyGraphicsViewToClipboard();
 			return;
 		}
 
-		getEuclidianView3D().getRenderer().exportToClipboard();
+		geteuclideanView3D().getRenderer().exportToClipboard();
 
 	}
 
@@ -675,7 +675,7 @@ public class App3D extends AppD {
 	public void fileNew() {
 		super.fileNew();
 
-		((App3DCompanion) companion).removeAllEuclidianViewForPlane();
+		((App3DCompanion) companion).removeAlleuclideanViewForPlane();
 	}
 
 	@Override
@@ -685,7 +685,7 @@ public class App3D extends AppD {
 			return false;
 		}
 
-		((App3DCompanion) companion).removeAllEuclidianViewForPlane();
+		((App3DCompanion) companion).removeAlleuclideanViewForPlane();
 
 		return loadExistingFile(file, isMacroFile);
 	}
@@ -696,20 +696,20 @@ public class App3D extends AppD {
 	}
 
 	@Override
-	public GBufferedImage getActiveEuclidianViewExportImage(double maxX,
+	public GBufferedImage getActiveeuclideanViewExportImage(double maxX,
 			double maxY) {
 
-		EuclidianView ev = getActiveEuclidianView();
+		euclideanView ev = getActiveeuclideanView();
 
 		// force 3D view if showing
-		if (this.euclidianView3D != null) {
-			EuclidianView3D ev3D = getEuclidianView3D();
+		if (this.euclideanView3D != null) {
+			euclideanView3D ev3D = geteuclideanView3D();
 			if (ev3D.isShowing()) {
 				ev = ev3D;
 			}
 		}
 
-		return getEuclidianViewExportImage(ev, maxX, maxY);
+		return geteuclideanViewExportImage(ev, maxX, maxY);
 	}
 
 	/**
@@ -718,12 +718,12 @@ public class App3D extends AppD {
 	@Override
 	public void uploadToGeoGebraTubeOnCallback() {
 
-		if (!isEuclidianView3Dinited()) {
+		if (!iseuclideanView3Dinited()) {
 			uploadToGeoGebraTube();
 			return;
 		}
 
-		EuclidianView3D ev3D = getEuclidianView3D();
+		euclideanView3D ev3D = geteuclideanView3D();
 
 		if (ev3D.isShowing()) {
 			ev3D.getRenderer().uploadToGeoGebraTube();
@@ -789,9 +789,9 @@ public class App3D extends AppD {
 	@Override
 	public boolean handleSpaceKey() {
 
-		if (isEuclidianView3Dinited()) {
-			if (euclidianView3D.getCompanion().useHandGrabbing()) {
-				euclidianView3D.handleSpaceKey();
+		if (iseuclideanView3Dinited()) {
+			if (euclideanView3D.getCompanion().useHandGrabbing()) {
+				euclideanView3D.handleSpaceKey();
 			}
 		}
 
@@ -800,8 +800,8 @@ public class App3D extends AppD {
 
 	@Override
 	public boolean useHugeGuiForInput3D() {
-		return euclidianController3D != null
-				&& euclidianController3D.isZSpace();
+		return euclideanController3D != null
+				&& euclideanController3D.isZSpace();
 	}
 
 	@Override

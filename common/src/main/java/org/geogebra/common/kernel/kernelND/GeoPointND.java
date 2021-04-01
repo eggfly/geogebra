@@ -300,7 +300,7 @@ public interface GeoPointND extends PointProperties, Translateable,
 	/**
 	 * @return true if this can be displayed in EV
 	 */
-	public boolean showInEuclidianView();
+	public boolean showIneuclideanView();
 
 	/**
 	 * @return true if tracing

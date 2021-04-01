@@ -10,8 +10,8 @@ import org.junit.Test;
 public class AlgoBarChartTest extends BaseUnitTest {
 
 	@Test
-	public void showInEuclidianView() {
+	public void showIneuclideanView() {
 		GeoNumeric chart = addAvInput("BarChart({10, 11, 12, 13, 14}, {5, 8, 12, 0, 1})");
-		assertThat(chart.showInEuclidianView(), is(true));
+		assertThat(chart.showIneuclideanView(), is(true));
 	}
 }

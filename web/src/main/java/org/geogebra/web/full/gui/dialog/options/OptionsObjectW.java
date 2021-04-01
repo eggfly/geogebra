@@ -322,7 +322,7 @@ public class OptionsObjectW extends OptionsObject implements OptionPanelW {
 		@Override
 		public void drawListAsComboBox(GeoList geo, boolean value) {
 			if (geo.getViewSet() == null) {
-				app.getEuclidianView1().drawListAsComboBox(geo, value);
+				app.geteuclideanView1().drawListAsComboBox(geo, value);
 				return;
 			}
 
@@ -331,11 +331,11 @@ public class OptionsObjectW extends OptionsObject implements OptionPanelW {
 			// #3929
 			while (it.hasNext()) {
 				Integer view = it.next();
-				if (view.intValue() == App.VIEW_EUCLIDIAN) {
-					app.getEuclidianView1().drawListAsComboBox(geo, value);
-				} else if (view.intValue() == App.VIEW_EUCLIDIAN2
-						&& app.hasEuclidianView2(1)) {
-					app.getEuclidianView2(1).drawListAsComboBox(geo, value);
+				if (view.intValue() == App.VIEW_euclidean) {
+					app.geteuclideanView1().drawListAsComboBox(geo, value);
+				} else if (view.intValue() == App.VIEW_euclidean2
+						&& app.haseuclideanView2(1)) {
+					app.geteuclideanView2(1).drawListAsComboBox(geo, value);
 				}
 			}
 		}
@@ -676,7 +676,7 @@ public class OptionsObjectW extends OptionsObject implements OptionPanelW {
 
 				@Override
 				public void onClick(ClickEvent event) {
-					model.applyToEuclidianView1(cbGraphicsView.getValue());
+					model.applyToeuclideanView1(cbGraphicsView.getValue());
 				}
 			});
 
@@ -684,7 +684,7 @@ public class OptionsObjectW extends OptionsObject implements OptionPanelW {
 
 				@Override
 				public void onClick(ClickEvent event) {
-					model.applyToEuclidianView2(cbGraphicsView2.getValue());
+					model.applyToeuclideanView2(cbGraphicsView2.getValue());
 				}
 			});
 
@@ -692,7 +692,7 @@ public class OptionsObjectW extends OptionsObject implements OptionPanelW {
 
 				@Override
 				public void onClick(ClickEvent event) {
-					model.applyToEuclidianView3D(cbGraphicsView3D.getValue());
+					model.applyToeuclideanView3D(cbGraphicsView3D.getValue());
 				}
 			});
 
@@ -700,7 +700,7 @@ public class OptionsObjectW extends OptionsObject implements OptionPanelW {
 
 				@Override
 				public void onClick(ClickEvent event) {
-					model.applyToEuclidianViewForPlane(
+					model.applyToeuclideanViewForPlane(
 							cbGraphicsViewForPlane.getValue());
 				}
 			});

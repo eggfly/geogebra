@@ -1,12 +1,12 @@
 package org.geogebra.ar;
 
-import static org.geogebra.common.geogebra3D.euclidian3D.xr.XRManagerInterface.DESK_DISTANCE_AVERAGE;
-import static org.geogebra.common.geogebra3D.euclidian3D.xr.XRManagerInterface.DESK_DISTANCE_MAX;
-import static org.geogebra.common.geogebra3D.euclidian3D.xr.XRManagerInterface.MAX_FACTOR_TO_EMPHASIZE;
-import static org.geogebra.common.geogebra3D.euclidian3D.xr.XRManagerInterface.PROJECT_FACTOR_RELATIVE_PRECISION;
+import static org.geogebra.common.geogebra3D.euclidean3D.xr.XRManagerInterface.DESK_DISTANCE_AVERAGE;
+import static org.geogebra.common.geogebra3D.euclidean3D.xr.XRManagerInterface.DESK_DISTANCE_MAX;
+import static org.geogebra.common.geogebra3D.euclidean3D.xr.XRManagerInterface.MAX_FACTOR_TO_EMPHASIZE;
+import static org.geogebra.common.geogebra3D.euclidean3D.xr.XRManagerInterface.PROJECT_FACTOR_RELATIVE_PRECISION;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawClippingCube3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawClippingCube3D;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.util.DoubleUtil;
 
@@ -24,7 +24,7 @@ class RatioUtil {
         return ratioText;
     }
 
-    double setARScaleAtStart(EuclidianView3D view3D, CoordMatrix4x4 viewModelMatrix,
+    double setARScaleAtStart(euclideanView3D view3D, CoordMatrix4x4 viewModelMatrix,
                            CoordMatrix4x4 projectMatrix, double ggbToRw) {
         float mDistance = (float) viewModelMatrix.getOrigin().calcNorm3();
         // don't expect distance less than desk distance at start
@@ -61,23 +61,23 @@ class RatioUtil {
         return ratio;
     }
 
-    private static float getUnitConversion(EuclidianView3D view3D) {
-        if (view3D.getARRatioMetricSystem() == EuclidianView3D.RATIO_UNIT_INCHES) {
-            return EuclidianView3D.FROM_CM_TO_INCH;
+    private static float getUnitConversion(euclideanView3D view3D) {
+        if (view3D.getARRatioMetricSystem() == euclideanView3D.RATIO_UNIT_INCHES) {
+            return euclideanView3D.FROM_CM_TO_INCH;
         } else {
             return 1;
         }
     }
 
-    void setARRatio(double ratio, EuclidianView3D view3D) {
-        if (view3D.getARRatioMetricSystem() == EuclidianView3D.RATIO_UNIT_INCHES) {
-            ratioChange = (float) ((ratio * EuclidianView3D.FROM_INCH_TO_CM) / ratioAtStart);
+    void setARRatio(double ratio, euclideanView3D view3D) {
+        if (view3D.getARRatioMetricSystem() == euclideanView3D.RATIO_UNIT_INCHES) {
+            ratioChange = (float) ((ratio * euclideanView3D.FROM_INCH_TO_CM) / ratioAtStart);
         } else {
             ratioChange = (float) ((ratio) / ratioAtStart);
         }
     }
 
-    double calculateRatio(EuclidianView3D view3D, ARGestureManager arGestureManager) {
+    double calculateRatio(euclideanView3D view3D, ARGestureManager arGestureManager) {
         double ratio;
         if (arGestureManager != null) {
             ratio = ratioAtStart * arGestureManager.getScaleFactor() * ratioChange
@@ -97,7 +97,7 @@ class RatioUtil {
             ratio = (double) Math.round(ratio * 10) / 10d;
         }
 
-        if (view3D.getARRatioMetricSystem() == EuclidianView3D.RATIO_UNIT_INCHES) {
+        if (view3D.getARRatioMetricSystem() == euclideanView3D.RATIO_UNIT_INCHES) {
             view3D.setARRatioUnit("inch");
         } else {
             view3D.setARRatioUnit("cm");
@@ -105,7 +105,7 @@ class RatioUtil {
         return ratio;
     }
 
-    String getRatioMessage(double ratio, EuclidianView3D view3D) {
+    String getRatioMessage(double ratio, euclideanView3D view3D) {
         if(DoubleUtil.isInteger(ratio)) {
             ratioText = String.format("%d", (long) ratio);
         } else {

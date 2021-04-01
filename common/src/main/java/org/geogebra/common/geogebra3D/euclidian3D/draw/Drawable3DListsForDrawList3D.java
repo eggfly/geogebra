@@ -1,6 +1,6 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 
 /**
  * list of drawables stored by lists
@@ -17,7 +17,7 @@ public class Drawable3DListsForDrawList3D extends Drawable3DLists {
 	 *            3D view
 	 * 
 	 */
-	public Drawable3DListsForDrawList3D(EuclidianView3D view3D) {
+	public Drawable3DListsForDrawList3D(euclideanView3D view3D) {
 		super(view3D);
 	}
 

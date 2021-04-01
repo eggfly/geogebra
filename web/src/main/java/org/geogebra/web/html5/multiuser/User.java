@@ -12,12 +12,12 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle2D;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.draw.DrawLocus;
-import org.geogebra.common.euclidian.draw.DrawSegment;
-import org.geogebra.common.euclidian.draw.HasTransformation;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.draw.DrawLocus;
+import org.geogebra.common.euclidean.draw.DrawSegment;
+import org.geogebra.common.euclidean.draw.HasTransformation;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoInline;
@@ -43,7 +43,7 @@ class User {
 		this.color = color;
 	}
 
-	public void addSelection(EuclidianView view, String label, boolean newGeo) {
+	public void addSelection(euclideanView view, String label, boolean newGeo) {
 		GeoElement geo = view.getApplication().getKernel().lookupLabel(label);
 		if (geo instanceof GeoInline && newGeo) {
 			// if the inline element gets updated after it was deselected
@@ -68,7 +68,7 @@ class User {
 		view.repaintView();
 	}
 
-	public void deselectAll(EuclidianView view) {
+	public void deselectAll(euclideanView view) {
 		selectedGeos.clear();
 		updatedGeos.clear();
 		view.repaintView();
@@ -78,7 +78,7 @@ class User {
 		selectedGeos.remove(label);
 	}
 
-	public void paintInteractionBoxes(EuclidianView view, GGraphics2D graphics) {
+	public void paintInteractionBoxes(euclideanView view, GGraphics2D graphics) {
 		SelectionManager selection = view.getApplication().getSelectionManager();
 
 		Stream<String> startingStream = selectedGeos.isEmpty()
@@ -129,12 +129,12 @@ class User {
 				graphics.draw(d.getBoundsForStylebarPosition());
 			}
 		} else if (geos.size() > 1) {
-			graphics.draw(view.getEuclidianController().calculateBounds(geos));
+			graphics.draw(view.geteuclideanController().calculateBounds(geos));
 		}
 	}
 
 	private void showTooltipBy(AppW app, GeoElement geo) {
-		DrawableND drawable = app.getActiveEuclidianView().getDrawableFor(geo);
+		DrawableND drawable = app.getActiveeuclideanView().getDrawableFor(geo);
 		if (drawable != null) {
 			GRectangle2D bounds = drawable.getBoundsForStylebarPosition();
 			if (bounds != null) {
@@ -147,10 +147,10 @@ class User {
 	}
 
 	private double getOffsetY(AppW app) {
-		return app.getActiveEuclidianView().getAbsoluteTop() - app.getAbsTop();
+		return app.getActiveeuclideanView().getAbsoluteTop() - app.getAbsTop();
 	}
 
 	private double getOffsetX(AppW app) {
-		return app.getActiveEuclidianView().getAbsoluteLeft() - app.getAbsLeft();
+		return app.getActiveeuclideanView().getAbsoluteLeft() - app.getAbsLeft();
 	}
 }

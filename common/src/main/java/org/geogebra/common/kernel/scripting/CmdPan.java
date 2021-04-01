@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.scripting;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.Command;
 import org.geogebra.common.kernel.commands.CmdScripting;
@@ -35,7 +35,7 @@ public class CmdPan extends CmdScripting {
 
 				GeoNumeric x = (GeoNumeric) arg[0];
 				GeoNumeric y = (GeoNumeric) arg[1];
-				EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
+				euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
 				ev.rememberOrigins();
 				ev.translateCoordSystemInPixels((int) x.getDouble(),
 						-(int) y.getDouble(), 0);
@@ -54,7 +54,7 @@ public class CmdPan extends CmdScripting {
 				GeoNumeric x = (GeoNumeric) arg[0];
 				GeoNumeric y = (GeoNumeric) arg[1];
 				GeoNumeric z = (GeoNumeric) arg[2];
-				EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
+				euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
 				ev.rememberOrigins();
 				ev.translateCoordSystemInPixels((int) x.getDouble(),
 						-(int) y.getDouble(), (int) z.getDouble());

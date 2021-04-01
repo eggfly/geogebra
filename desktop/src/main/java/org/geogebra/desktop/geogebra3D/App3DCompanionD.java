@@ -3,15 +3,15 @@ package org.geogebra.desktop.geogebra3D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidianForPlane.EuclidianViewForPlaneCompanion;
+import org.geogebra.common.geogebra3D.euclideanForPlane.euclideanViewForPlaneCompanion;
 import org.geogebra.common.geogebra3D.main.App3DCompanion;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.kernelND.ViewCreator;
 import org.geogebra.common.main.App;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.desktop.geogebra3D.euclidianForPlane.EuclidianControllerForPlaneD;
-import org.geogebra.desktop.geogebra3D.euclidianForPlane.EuclidianViewForPlaneD;
-import org.geogebra.desktop.geogebra3D.gui.layout.panels.EuclidianDockPanelForPlaneD;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.desktop.geogebra3D.euclideanForPlane.euclideanControllerForPlaneD;
+import org.geogebra.desktop.geogebra3D.euclideanForPlane.euclideanViewForPlaneD;
+import org.geogebra.desktop.geogebra3D.gui.layout.panels.euclideanDockPanelForPlaneD;
 import org.geogebra.desktop.gui.layout.DockPanelD;
 import org.geogebra.desktop.gui.layout.LayoutD;
 import org.geogebra.desktop.main.AppD;
@@ -35,15 +35,15 @@ public class App3DCompanionD extends App3DCompanion {
 	}
 
 	@Override
-	protected EuclidianViewForPlaneCompanion createEuclidianViewForPlane(
-			ViewCreator plane, EuclidianSettings evSettings,
+	protected euclideanViewForPlaneCompanion createeuclideanViewForPlane(
+			ViewCreator plane, euclideanSettings evSettings,
 			boolean panelSettings) {
-		EuclidianViewForPlaneD view = new EuclidianViewForPlaneD(
-				new EuclidianControllerForPlaneD(app.getKernel()), plane,
+		euclideanViewForPlaneD view = new euclideanViewForPlaneD(
+				new euclideanControllerForPlaneD(app.getKernel()), plane,
 				evSettings);
 
 		// create dock panel
-		panel = new EuclidianDockPanelForPlaneD((AppD) app, view, incViewID());
+		panel = new euclideanDockPanelForPlaneD((AppD) app, view, incViewID());
 
 		view.setPanelID(panel.getViewId());
 
@@ -62,14 +62,14 @@ public class App3DCompanionD extends App3DCompanion {
 		return view.getCompanion();
 	}
 
-	private EuclidianDockPanelForPlaneD panel;
+	private euclideanDockPanelForPlaneD panel;
 
 	@Override
 	public DockPanelD getPanelForPlane() {
 		return panel;
 	}
 
-	private ArrayList<EuclidianDockPanelForPlaneD> panelForPlaneList;
+	private ArrayList<euclideanDockPanelForPlaneD> panelForPlaneList;
 
 	@Override
 	public void storeViewCreators() {
@@ -83,9 +83,9 @@ public class App3DCompanionD extends App3DCompanion {
 			DockPanelD[] panels = ((LayoutD) app.getGuiManager().getLayout())
 					.getDockManager().getPanels();
 			for (int i = 0; i < panels.length; i++) {
-				if (panels[i] instanceof EuclidianDockPanelForPlaneD) {
+				if (panels[i] instanceof euclideanDockPanelForPlaneD) {
 					panelForPlaneList
-							.add((EuclidianDockPanelForPlaneD) panels[i]);
+							.add((euclideanDockPanelForPlaneD) panels[i]);
 				}
 			}
 		}
@@ -95,15 +95,15 @@ public class App3DCompanionD extends App3DCompanion {
 	@Override
 	public void recallViewCreators() {
 
-		for (EuclidianDockPanelForPlaneD p : panelForPlaneList) {
-			EuclidianViewForPlaneD view = p.getView();
+		for (euclideanDockPanelForPlaneD p : panelForPlaneList) {
+			euclideanViewForPlaneD view = p.getView();
 			GeoElement geo = app.getKernel()
 					.lookupLabel(((GeoElement) view.getCompanion().getPlane())
 							.getLabelSimple());
 			if (geo != null && (geo instanceof ViewCreator)) {
 				ViewCreator plane = (ViewCreator) geo;
 				view.getCompanion().setPlane(plane);
-				plane.setEuclidianViewForPlane(view.getCompanion());
+				plane.seteuclideanViewForPlane(view.getCompanion());
 				view.getCompanion().updateForPlane();
 			} else {
 				// no more creator : remove

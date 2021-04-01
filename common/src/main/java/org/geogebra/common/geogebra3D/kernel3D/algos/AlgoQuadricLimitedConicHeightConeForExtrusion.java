@@ -51,7 +51,7 @@ public class AlgoQuadricLimitedConicHeightConeForExtrusion
 	}
 
 	@Override
-	public void setOutputPointsEuclidianVisible(boolean b) {
-		super.setOutputPointsEuclidianVisible(b);
+	public void setOutputPointseuclideanVisible(boolean b) {
+		super.setOutputPointseuclideanVisible(b);
 	}
 }

@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog.image;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.web.html5.Browser;
 import org.geogebra.web.html5.main.AppW;
@@ -27,7 +27,7 @@ public class ImageInputDialog extends UploadImageDialog
 		super(app, PREVIEW_WIDTH, PREVIEW_HEIGHT);
 		setOnNegativeAction(() -> {
 			app.getImageManager().setPreventAuxImage(false);
-			app.getGuiManager().setMode(EuclidianConstants.MODE_MOVE,
+			app.getGuiManager().setMode(euclideanConstants.MODE_MOVE,
 					ModeSetter.TOOLBAR);
 		});
 		setOnPositiveAction(this::positiveAction);

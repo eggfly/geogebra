@@ -1,7 +1,7 @@
 package org.geogebra.web.full.gui.dialog;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
 import org.geogebra.common.gui.dialog.handler.NumberInputHandler;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoPolygon;
@@ -36,15 +36,15 @@ public class InputDialogRotateAxisW extends InputDialogRotateW {
 	public InputDialogRotateAxisW(AppW app, DialogData data,
             NumberInputHandler handler, GeoPolygon[] polys,
             GeoLineND[] selectedLines, GeoElement[] selGeos,
-            EuclidianController ec) {
+            euclideanController ec) {
 		super(app, data, handler, polys, selGeos, ec);
 		this.lines = selectedLines;
 	}
 
 	@Override
 	protected void processInput(AsyncOperation<String> callback) {
-		EuclidianController3D.rotateObject(app,
+		euclideanController3D.rotateObject(app,
 				getInputText(), rbClockWise.getValue(), polys, lines,
-				selGeos, (EuclidianController3D) ec, this, callback);
+				selGeos, (euclideanController3D) ec, this, callback);
 	}
 }

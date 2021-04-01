@@ -489,7 +489,7 @@ public class ToolbarConfigPanel extends JPanel
 
 	/**
 	 * @param toolbarDefinition
-	 *            toolbar definition string (see EuclidianConstants)
+	 *            toolbar definition string (see euclideanConstants)
 	 * @return vector of menus (vectors of ints) and separators (ints)
 	 * 
 	 */

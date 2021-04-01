@@ -8,27 +8,27 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GetViewId;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.GetViewId;
 import org.geogebra.common.main.settings.ConstructionProtocolSettings;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.gui.layout.DockPanelD;
 import org.geogebra.desktop.gui.view.consprotocol.ConstructionProtocolNavigationD;
 
 /**
- * Abstract class for all "euclidian" panels.
+ * Abstract class for all "euclidean" panels.
  * 
  * @author Mathieu
- * Remark: {@link #getEuclidianView()} has to be overridden if
- *         {@link #getComponent()} does not return the euclidian view directly
+ * Remark: {@link #geteuclideanView()} has to be overridden if
+ *         {@link #getComponent()} does not return the euclidean view directly
  */
-public abstract class EuclidianDockPanelAbstract extends DockPanelD
+public abstract class euclideanDockPanelAbstract extends DockPanelD
 		implements GetViewId {
 	/** */
 	private static final long serialVersionUID = 1L;
 
-	private boolean hasEuclidianFocus;
+	private boolean haseuclideanFocus;
 	private JPanel panel;
 	/**
 	 * Component of the construction protocol navigation bar, invisible if not
@@ -45,7 +45,7 @@ public abstract class EuclidianDockPanelAbstract extends DockPanelD
 	 * @param hasStyleBar
 	 * @param menuOrder
 	 */
-	public EuclidianDockPanelAbstract(int id, String title, String toolbar,
+	public euclideanDockPanelAbstract(int id, String title, String toolbar,
 			boolean hasStyleBar, int menuOrder, char shortcut) {
 		super(id, title, toolbar, hasStyleBar, menuOrder, shortcut);
 	}
@@ -57,29 +57,29 @@ public abstract class EuclidianDockPanelAbstract extends DockPanelD
 	}
 
 	/**
-	 * @return The euclidian view associated with this dock panel.
+	 * @return The euclidean view associated with this dock panel.
 	 * Remark: This method has to be overridden if the component of the dock
-	 *         panel is not the euclidian view itself
+	 *         panel is not the euclidean view itself
 	 */
-	abstract public EuclidianView getEuclidianView();
+	abstract public euclideanView geteuclideanView();
 
 	/**
-	 * sets this euclidian panel to have the "euclidian focus"
+	 * sets this euclidean panel to have the "euclidean focus"
 	 * 
 	 * @param hasFocus
 	 */
-	public final void setEuclidianFocus(boolean hasFocus) {
-		hasEuclidianFocus = hasFocus;
+	public final void seteuclideanFocus(boolean hasFocus) {
+		haseuclideanFocus = hasFocus;
 	}
 
 	@Override
 	protected boolean titleIsBold() {
-		return super.titleIsBold() || hasEuclidianFocus;
+		return super.titleIsBold() || haseuclideanFocus;
 	}
 
 	/**
 	 * create the focus panel (composed of titleLabel, and, for
-	 * EuclidianDockPanels, focus icon)
+	 * euclideanDockPanels, focus icon)
 	 * 
 	 * @return the focus panel
 	 */
@@ -103,7 +103,7 @@ public abstract class EuclidianDockPanelAbstract extends DockPanelD
 	@Override
 	protected void setStyleBar() {
 		super.setStyleBar();
-		((EuclidianStyleBar) styleBar).resetFirstPaint();
+		((euclideanStyleBar) styleBar).resetFirstPaint();
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public abstract class EuclidianDockPanelAbstract extends DockPanelD
 			panel = new JPanel(new BorderLayout());
 
 			panel.add(
-					((EuclidianViewInterfaceD) getEuclidianView()).getJPanel(),
+					((euclideanViewInterfaceD) geteuclideanView()).getJPanel(),
 					BorderLayout.CENTER);
 
 			consProtNav = (ConstructionProtocolNavigationD) app.getGuiManager()

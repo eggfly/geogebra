@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian.modes;
+package org.geogebra.common.euclidean.modes;
 
 import static org.junit.Assert.assertEquals;
 
-import org.geogebra.common.euclidian.BaseControllerTest;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.BaseControllerTest;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.jre.util.ScientificFormat;
 import org.geogebra.common.kernel.StringTemplate;
 import org.junit.Test;
@@ -12,7 +12,7 @@ public class ModeDeleteTest extends BaseControllerTest {
 
 	@Test
 	public void eraserTest() throws InterruptedException {
-		setMode(EuclidianConstants.MODE_ERASER);
+		setMode(euclideanConstants.MODE_ERASER);
 		add("stroke = PolyLine((2,-4),(2,-2),(4,-2),(4,-4), true)");
 		click(140, 90);
 
@@ -40,7 +40,7 @@ public class ModeDeleteTest extends BaseControllerTest {
 
 	@Test
 	public void eraserTestStraight() {
-		setMode(EuclidianConstants.MODE_ERASER);
+		setMode(euclideanConstants.MODE_ERASER);
 		// delete the middle
 		add("stroke = PolyLine((2,-2),(3,-2),(4,-2), true)");
 		int x = 145;

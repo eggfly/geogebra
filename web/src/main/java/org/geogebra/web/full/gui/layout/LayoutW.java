@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.Layout;
 import org.geogebra.common.io.layout.DockPanelData;
 import org.geogebra.common.io.layout.Perspective;
@@ -117,7 +117,7 @@ public class LayoutW extends Layout {
 				app.setKeyboardNeeded(true);
 			}
 
-			if (dp.getViewId() == App.VIEW_EUCLIDIAN3D) {
+			if (dp.getViewId() == App.VIEW_euclidean3D) {
 				toolbar3D = dp.getToolbarString();
 			}
 		}
@@ -148,7 +148,7 @@ public class LayoutW extends Layout {
 	}
 	
 	private boolean mayHaveKeyboard(DockPanelData dp) {
-		if (dp.getViewId() == App.VIEW_EUCLIDIAN) {
+		if (dp.getViewId() == App.VIEW_euclidean) {
 			return app.getKernel().getConstruction().hasInputBoxes();
 		}
 		return (dp.getViewId() == App.VIEW_ALGEBRA
@@ -279,7 +279,7 @@ public class LayoutW extends Layout {
 		
 		// return the default perspective in case we're creating new preferences of
 		// a virgin application.		
-		EuclidianView ev = app.getEuclidianView1();
+		euclideanView ev = app.geteuclideanView1();
 		Perspective perspective = new Perspective(id);
 
 		if (dockManager.getRoot() != null) {

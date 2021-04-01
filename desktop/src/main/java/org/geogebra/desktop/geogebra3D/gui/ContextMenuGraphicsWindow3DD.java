@@ -2,7 +2,7 @@ package org.geogebra.desktop.geogebra3D.gui;
 
 import javax.swing.JCheckBoxMenuItem;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.main.App;
 import org.geogebra.desktop.geogebra3D.App3D;
 import org.geogebra.desktop.gui.ContextMenuGraphicsWindowD;
@@ -32,7 +32,7 @@ public class ContextMenuGraphicsWindow3DD extends ContextMenuGraphicsWindowD {
 		addAxesAndGridCheckBoxes();
 
 		addNavigationBar();
-		addZoomMenu(app.getActiveEuclidianView());
+		addZoomMenu(app.getActiveeuclideanView());
 		// getWrappedPopup().addSeparator();
 
 		addShowAllObjectsView(app);
@@ -47,7 +47,7 @@ public class ContextMenuGraphicsWindow3DD extends ContextMenuGraphicsWindowD {
 
 	@Override
 	protected void setStandardView() {
-		((EuclidianView3D) app.getEuclidianView3D()).setStandardView(true);
+		((euclideanView3D) app.geteuclideanView3D()).setStandardView(true);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class ContextMenuGraphicsWindow3DD extends ContextMenuGraphicsWindowD {
 	protected void showOptionsDialog() {
 		app.getGuiManager().setShowView(true, App.VIEW_PROPERTIES);
 		((GuiManagerD) app.getGuiManager()).setFocusedPanel(
-				((App3D) app).getEuclidianView3D().getViewID(), true);
+				((App3D) app).geteuclideanView3D().getViewID(), true);
 
 	}
 

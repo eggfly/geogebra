@@ -1,6 +1,6 @@
 package org.geogebra.common.geogebra3D.kernel3D.algos;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.geogebra3D.kernel3D.commands.CommandProcessor3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoVector3D;
 import org.geogebra.common.geogebra3D.kernel3D.implicit3D.AlgoIntersectImplicitSurface;
@@ -259,10 +259,10 @@ public class AlgoDispatcher3D extends AlgoDispatcher {
 
 	@Override
 	protected GeoPointND copyFreePoint(GeoPointND point,
-			EuclidianViewInterfaceCommon view) {
+			euclideanViewInterfaceCommon view) {
 		if (point.isGeoElement3D()) {
 			double xOffset = 0, yOffset = 0;
-			if (!view.isEuclidianView3D()) {
+			if (!view.iseuclideanView3D()) {
 				xOffset = DETACH_OFFSET * view.getInvXscale();
 				yOffset = DETACH_OFFSET * view.getInvYscale();
 			}

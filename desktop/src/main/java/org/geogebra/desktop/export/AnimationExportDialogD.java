@@ -23,7 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.kernel.geos.AnimationExportSlider;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoNumeric;
@@ -107,7 +107,7 @@ public class AnimationExportDialogD extends Dialog {
 				.getGeoSetNameDescriptionOrder();
 
 		// add rotation around Oz slider if 3D view
-		if (app.getActiveEuclidianView().isEuclidianView3D()) {
+		if (app.getActiveeuclideanView().iseuclideanView3D()) {
 			addRotOzSlider(comboModel);
 		}
 
@@ -199,7 +199,7 @@ public class AnimationExportDialogD extends Dialog {
 
 		private String description;
 
-		private EuclidianView3DInterface view3D;
+		private euclideanView3DInterface view3D;
 
 		private double value;
 
@@ -210,7 +210,7 @@ public class AnimationExportDialogD extends Dialog {
 		// 1 degree step )
 		static final private double step = Math.PI / 180;
 
-		public RotOzSlider(EuclidianView3DInterface view3D) {
+		public RotOzSlider(euclideanView3DInterface view3D) {
 			this.view3D = view3D;
 		}
 
@@ -265,7 +265,7 @@ public class AnimationExportDialogD extends Dialog {
 
 	private void addRotOzSlider(DefaultComboBoxModel comboModel) {
 		if (rotOzSlider == null) {
-			rotOzSlider = new RotOzSlider(app.getEuclidianView3D());
+			rotOzSlider = new RotOzSlider(app.geteuclideanView3D());
 		}
 		rotOzSlider.setDescription(
 				app.getLocalization().getMenu("RotationAroundVerticalAxis"));
@@ -380,7 +380,7 @@ public class AnimationExportDialogD extends Dialog {
 		progressBar.setMaximum(n);
 		progressBar.setMinimum(0);
 		try {
-			app.exportAnimatedGIF(app.getActiveEuclidianView(), collector, num,
+			app.exportAnimatedGIF(app.getActiveeuclideanView(), collector, num,
 					n, val, min, max, step);
 
 		} catch (Exception ex) {

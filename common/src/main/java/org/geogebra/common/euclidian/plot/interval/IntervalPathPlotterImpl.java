@@ -1,7 +1,7 @@
-package org.geogebra.common.euclidian.plot.interval;
+package org.geogebra.common.euclidean.plot.interval;
 
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.euclidean.GeneralPathClipped;
 
 public class IntervalPathPlotterImpl implements IntervalPathPlotter {
 	private final GeneralPathClipped gp;

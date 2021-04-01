@@ -20,8 +20,8 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GPathIterator;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.draw.DrawPoint;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.draw.DrawPoint;
 import org.geogebra.common.export.UnicodeTeX;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Kernel;
@@ -67,7 +67,7 @@ import org.geogebra.common.kernel.kernelND.GeoSegmentND;
 import org.geogebra.common.kernel.kernelND.GeoVectorND;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.main.App;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
 
@@ -199,7 +199,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 						.getGeoElements();
 				for (int j = 0; j < geos.length; j++) {
 					GeoElementND g = geos[j];
-					if (g.isEuclidianVisible() && g.isGeoPoint()) {
+					if (g.iseuclideanVisible() && g.isGeoPoint()) {
 						pointList.add((GeoPoint) g);
 					}
 				}
@@ -242,11 +242,11 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		initUnitAndVariable();
 
 		// Draw grid
-		if (euclidianView.getShowGrid() && frame.getShowAxes()) {
+		if (euclideanView.getShowGrid() && frame.getShowAxes()) {
 			drawGrid();
 		}
 		// Draw axis
-		if ((euclidianView.getShowXaxis() || euclidianView.getShowYaxis())
+		if ((euclideanView.getShowXaxis() || euclideanView.getShowYaxis())
 				&& frame.getShowAxes()) {
 			drawAxis();
 		}
@@ -255,12 +255,12 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		codeEndDoc.append(
 				"\nclip((xmin,ymin)--(xmin,ymax)--(xmax,ymax)--(xmax,ymin)--cycle); ");
 		// Background color
-		if (!euclidianView.getBackgroundCommon().equals(GColor.WHITE)) {
+		if (!euclideanView.getBackgroundCommon().equals(GColor.WHITE)) {
 			if (!compact) {
 				codeEndDoc.append("\n");
 			}
 			codeEndDoc.append("shipout(bbox(");
-			colorCode(euclidianView.getBackgroundCommon(), codeEndDoc);
+			colorCode(euclideanView.getBackgroundCommon(), codeEndDoc);
 			codeEndDoc.append(",Fill)); ");
 		}
 		// Re-scale
@@ -582,7 +582,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			drawFunction(f, true, geo, true);
 			drawFunction(f, true, geo, false);
 			f.setInterval(af, bf);
-			if (f.isEuclidianVisible()) {
+			if (f.iseuclideanVisible()) {
 				drawFunction(f, false, geo, false);
 			}
 		} else {
@@ -634,7 +634,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 	protected void drawSlope(GeoNumeric geo) { // TODO: label bug?
 		int slopeTriangleSize = geo.getSlopeTriangleSize();
 		double rwHeight = geo.getValue() * slopeTriangleSize;
-		double height = euclidianView.getYscale() * rwHeight;
+		double height = euclideanView.getYscale() * rwHeight;
 		double[] coords = new double[2];
 		if (Math.abs(height) > Float.MAX_VALUE) {
 			return;
@@ -657,8 +657,8 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 
 		// draw Label
 		double xLabelHor = (x + xright) / 2;
-		double yLabelHor = y - ((euclidianView.getFont().getSize() + 2)
-				/ euclidianView.getYscale());
+		double yLabelHor = y - ((euclideanView.getFont().getSize() + 2)
+				/ euclideanView.getYscale());
 		GColor geocolor = geo.getObjectColor();
 
 		if (!compact) {
@@ -770,12 +770,12 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 
 		angExt += angSt;
 		int arcSize = geo.getArcSize();
-		double r = arcSize / euclidianView.getXscale();
+		double r = arcSize / euclideanView.getXscale();
 
 		// StringBuilder tempsb = new StringBuilder();
 		startTransparentFill(codeFilledObject);
 		// if right angle and decoration is a little square
-		if (drawAngleAs(geo, EuclidianStyleConstants.RIGHT_ANGLE_STYLE_SQUARE)) {
+		if (drawAngleAs(geo, euclideanStyleConstants.RIGHT_ANGLE_STYLE_SQUARE)) {
 			r = r / Math.sqrt(2);
 			double[] x = new double[8];
 			x[0] = m[0] + r * Math.cos(angSt);
@@ -816,10 +816,10 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			endTransparentFill(geo, codeFilledObject);
 
 			// draw the [circular?] dot if right angle and decoration is dot
-			if (drawAngleAs(geo, EuclidianStyleConstants.RIGHT_ANGLE_STYLE_DOT)) {
+			if (drawAngleAs(geo, euclideanStyleConstants.RIGHT_ANGLE_STYLE_DOT)) {
 				double diameter = geo.getLineThickness()
-						/ euclidianView.getXscale();
-				double radius = arcSize / euclidianView.getXscale() / 1.7;
+						/ euclideanView.getXscale();
+				double radius = arcSize / euclideanView.getXscale() / 1.7;
 				double labelAngle = (angSt + angExt) / 2.0;
 				double x1 = m[0] + radius * Math.cos(labelAngle);
 				double x2 = m[1] + radius * Math.sin(labelAngle);
@@ -856,7 +856,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		// The arrow head goes away from the line.
 		// Arrow Winset=0.25, see PStricks spec for arrows
 		double arrowHeight = (geo.getLineThickness() * 0.8 + 3) * 1.4 * 3 / 4;
-		double angle = Math.asin(arrowHeight / 2 / euclidianView.getXscale() / r);
+		double angle = Math.asin(arrowHeight / 2 / euclideanView.getXscale() / r);
 		double angEnd = angEnd0 - angle;
 		code.append(format(Math.toDegrees(angEnd)));
 		code.append(")");
@@ -895,14 +895,14 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		double sin = Math.sin(-angle0);
 		double radius = geo.getArcSize();
 		double diff = 2.5 + geo.getLineThickness() / 4d;
-		double x1 = euclidianView.toRealWorldCoordX(
+		double x1 = euclideanView.toRealWorldCoordX(
 				vertex[0] + (radius - diff) * cos);
-		double x2 = euclidianView.toRealWorldCoordX(
+		double x2 = euclideanView.toRealWorldCoordX(
 				vertex[0] + (radius + diff) * cos);
-		double y1 = euclidianView.toRealWorldCoordY(vertex[1] + (radius - diff)
-				* sin * euclidianView.getScaleRatio());
-		double y2 = euclidianView.toRealWorldCoordY(vertex[1] + (radius + diff)
-				* sin * euclidianView.getScaleRatio());
+		double y1 = euclideanView.toRealWorldCoordY(vertex[1] + (radius - diff)
+				* sin * euclideanView.getScaleRatio());
+		double y2 = euclideanView.toRealWorldCoordY(vertex[1] + (radius + diff)
+				* sin * euclideanView.getScaleRatio());
 
 		startDraw();
 		addPoint(format(x1), format(y1), code);
@@ -923,10 +923,10 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 
 		// start point of horizontal line for slider
 		if (geo.isAbsoluteScreenLocActive()) {
-			x = euclidianView.toRealWorldCoordX(x);
-			y = euclidianView.toRealWorldCoordY(y);
-			width = horizontal ? width / euclidianView.getXscale()
-					: width / euclidianView.getYscale();
+			x = euclideanView.toRealWorldCoordX(x);
+			y = euclideanView.toRealWorldCoordY(y);
+			width = horizontal ? width / euclideanView.getXscale()
+					: width / euclideanView.getYscale();
 		}
 		// create point for slider
 		GeoPoint geoPoint = new GeoPoint(construction);
@@ -942,7 +942,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		} else {
 			geoPoint.setCoords(x, y + width * param, 1.0);
 		}
-		DrawPoint drawPoint = new DrawPoint(euclidianView, geoPoint);
+		DrawPoint drawPoint = new DrawPoint(euclideanView, geoPoint);
 		drawPoint.setGeoElement(geo);
 		if (geo.isLabelVisible()) {
 			if (horizontal) {
@@ -1015,21 +1015,21 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		} else {
 			gp = geo.getStartPoint();
 			if (gp == null) {
-				x = (int) euclidianView.getXZero();
-				y = (int) euclidianView.getYZero();
+				x = (int) euclideanView.getXZero();
+				y = (int) euclideanView.getYZero();
 			} else {
 				if (!gp.isDefined()) {
 					return;
 				}
-				x = euclidianView.toScreenCoordX(gp.getInhomX());
-				y = euclidianView.toScreenCoordY(gp.getInhomY());
+				x = euclideanView.toScreenCoordX(gp.getInhomX());
+				y = euclideanView.toScreenCoordY(gp.getInhomY());
 			}
 			x += geo.labelOffsetX;
 			y += geo.labelOffsetY;
 		}
-		x = euclidianView.toRealWorldCoordX(x);
-		y = euclidianView
-				.toRealWorldCoordY(y - euclidianView.getFont().getSize());
+		x = euclideanView.toRealWorldCoordX(x);
+		y = euclideanView
+				.toRealWorldCoordY(y - euclideanView.getFont().getSize());
 		int id = st.indexOf("\n");
 		boolean comma = false;
 
@@ -1085,7 +1085,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			code.append("label(\"$");
 			code.append("\\parbox{");
 			code.append(format(
-					width * (xmax - xmin) * xunit / euclidianView.getWidth()
+					width * (xmax - xmin) * xunit / euclideanView.getWidth()
 							+ 1));
 			code.append(" cm}{");
 			addText(sb.toString(), isLatex, style);
@@ -1542,7 +1542,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 
 		// just need one eigenvector to give angle
 		// assume getZ() is zero (check done earlier)
-		Coords ev0 = euclidianView.getCoordsForView(geo.getEigenvec3D(0));
+		Coords ev0 = euclideanView.getCoordsForView(geo.getEigenvec3D(0));
 		double eigenvecX = ev0.getX();
 		double eigenvecY = ev0.getY();
 		double angle = Math.toDegrees(Math.atan2(eigenvecY, eigenvecX));
@@ -1751,9 +1751,9 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			gp.getNameDescription();
 			int dotstyle = gp.getPointStyle();
 			if (dotstyle == -1) { // default
-				dotstyle = EuclidianStyleConstants.POINT_STYLE_DOT;
+				dotstyle = euclideanStyleConstants.POINT_STYLE_DOT;
 			} // draw special dot styles
-			if (dotstyle != EuclidianStyleConstants.POINT_STYLE_DOT) {
+			if (dotstyle != euclideanStyleConstants.POINT_STYLE_DOT) {
 				drawSpecialPoint(gp);
 			} else { // plain dot style
 				if (!compact) {
@@ -1784,7 +1784,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		double radius = dotsize * (2.54 / 72) * (frame.getXUnit());
 		int dotstyle = geo.getPointStyle();
 		if (dotstyle == -1) { // default
-			dotstyle = EuclidianStyleConstants.POINT_STYLE_DOT;
+			dotstyle = euclideanStyleConstants.POINT_STYLE_DOT;
 		}
 		double[] A = new double[3];
 
@@ -1800,7 +1800,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		GColor dotcolor = geo.getObjectColor();
 
 		switch (dotstyle) {
-		case EuclidianStyleConstants.POINT_STYLE_CROSS:
+		case euclideanStyleConstants.POINT_STYLE_CROSS:
 			startDraw();
 			code.append("shift((" + format(x) + "," + format(y) + "))*");
 			code.append("scale(");
@@ -1815,7 +1815,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			code.append("expi(3*pi/4)--expi(7*pi/4))");
 			endPoint(dotcolor);
 			break;
-		case EuclidianStyleConstants.POINT_STYLE_CIRCLE:
+		case euclideanStyleConstants.POINT_STYLE_CIRCLE:
 			// use dot(..,UnFill(0)) command in lieu of filldraw
 			if (!compactcse5) {
 				codePoint.append("dot(");
@@ -1838,7 +1838,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 				endPoint(dotcolor);
 			}
 			break;
-		case EuclidianStyleConstants.POINT_STYLE_EMPTY_DIAMOND:
+		case euclideanStyleConstants.POINT_STYLE_EMPTY_DIAMOND:
 			startDraw();
 			code.append("shift((" + format(x) + "," + format(y) + "))*");
 			code.append("scale(");
@@ -1846,7 +1846,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			code.append(")*((1,0)--(0,1)--(-1,0)--(0,-1)--cycle)");
 			endPoint(dotcolor);
 			break;
-		case EuclidianStyleConstants.POINT_STYLE_FILLED_DIAMOND:
+		case euclideanStyleConstants.POINT_STYLE_FILLED_DIAMOND:
 			if (!compact) {
 				code.append("\n");
 			}
@@ -1856,7 +1856,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 					"((1,0)--(0,1)--(-1,0)--(0,-1)--cycle)");
 			endPoint(dotcolor);
 			break;
-		case EuclidianStyleConstants.POINT_STYLE_PLUS:
+		case euclideanStyleConstants.POINT_STYLE_PLUS:
 			startDraw();
 			packSpaceBetween("shift((" + format(x) + "," + format(y) + "))",
 					"*", "scale(" + format(radius) + ")", "*",
@@ -1870,7 +1870,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			code.append("(1,0)--(-1,0))");
 			endPoint(dotcolor);
 			break;
-		case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_EAST:
+		case euclideanStyleConstants.POINT_STYLE_TRIANGLE_EAST:
 			if (!compact) {
 				code.append("\n");
 			}
@@ -1880,7 +1880,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 					"((1,0)--expi(2*pi/3)--expi(4*pi/3)--cycle)");
 			endPoint(dotcolor);
 			break;
-		case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_NORTH:
+		case euclideanStyleConstants.POINT_STYLE_TRIANGLE_NORTH:
 			if (!compact) {
 				code.append("\n");
 			}
@@ -1890,7 +1890,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 					"((1,0)--expi(2*pi/3)--expi(4*pi/3)--cycle)");
 			endPoint(dotcolor);
 			break;
-		case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_SOUTH:
+		case euclideanStyleConstants.POINT_STYLE_TRIANGLE_SOUTH:
 			if (!compact) {
 				code.append("\n");
 			}
@@ -1900,7 +1900,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 					"((1,0)--expi(2*pi/3)--expi(4*pi/3)--cycle)");
 			endPoint(dotcolor);
 			break;
-		case EuclidianStyleConstants.POINT_STYLE_TRIANGLE_WEST:
+		case euclideanStyleConstants.POINT_STYLE_TRIANGLE_WEST:
 			if (!compact) {
 				code.append("\n");
 			}
@@ -2023,7 +2023,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		String y1 = format(pointStart.getInhomY());
 
 		Coords equation = geo
-				.getCartesianEquationVector(euclidianView.getMatrix());
+				.getCartesianEquationVector(euclideanView.getMatrix());
 
 		double x = equation.getX();
 		double y = equation.getY();
@@ -2192,10 +2192,10 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		 * codeBeginPic.append("cm,yunit=");
 		 * codeBeginPic.append(sci2dec(yunit));
 		 * codeBeginPic.append("cm,algebraic=true,dotstyle=o,dotsize=");
-		 * codeBeginPic.append(EuclidianStyleConstants.DEFAULT_POINT_SIZE);
+		 * codeBeginPic.append(euclideanStyleConstants.DEFAULT_POINT_SIZE);
 		 * codeBeginPic.append("pt 0"); codeBeginPic.append(",linewidth=");
 		 * codeBeginPic
-		 * .append(format(EuclidianStyleConstants.DEFAULT_LINE_THICKNESS
+		 * .append(format(euclideanStyleConstants.DEFAULT_LINE_THICKNESS
 		 * /2*0.8)); codeBeginPic.append("pt,arrowsize=3pt 2,arrowinset=0.25}\n"
 		 * );
 		 */
@@ -2224,7 +2224,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			codePreamble.append(fontsize);
 			codePreamble.append("); pointfontpen=fp; ");
 		}
-		boolean[] positiveOnly = euclidianView.getPositiveAxes();
+		boolean[] positiveOnly = euclideanView.getPositiveAxes();
 		double assignMinX = xmin;
 		double assignMinY = ymin;
 		if (positiveOnly[0]) {
@@ -2258,8 +2258,8 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 
 		while (it.hasNext()) {
 			GeoPoint gp = it.next();
-			if (gp.getPointStyle() == EuclidianStyleConstants.POINT_STYLE_DOT
-					|| gp.getPointStyle() == EuclidianStyleConstants.POINT_STYLE_CIRCLE) {
+			if (gp.getPointStyle() == euclideanStyleConstants.POINT_STYLE_DOT
+					|| gp.getPointStyle() == euclideanStyleConstants.POINT_STYLE_CIRCLE) {
 				double x = gp.getX(), y = gp.getY(), z = gp.getZ();
 				x /= z;
 				y /= z;
@@ -2331,15 +2331,15 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			}
 			DrawableND drawGeo = drawGeo0;
 			if (drawGeo == null) {
-				drawGeo = euclidianView.getDrawableFor(geo);
+				drawGeo = euclideanView.getDrawableFor(geo);
 			}
 			if (drawGeo == null) {
 				return;
 			}
 			double xLabel = drawGeo.getxLabel();
 			double yLabel = drawGeo.getyLabel();
-			xLabel = euclidianView.toRealWorldCoordX(Math.round(xLabel));
-			yLabel = euclidianView.toRealWorldCoordY(Math.round(yLabel));
+			xLabel = euclideanView.toRealWorldCoordX(Math.round(xLabel));
+			yLabel = euclideanView.toRealWorldCoordY(Math.round(yLabel));
 
 			if (!compact) {
 				codePoint.append("\n");
@@ -2419,10 +2419,10 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 
 	// Draw the grid
 	private void drawGrid() {
-		GColor GridCol = euclidianView.getGridColor();
-		double[] GridDist = euclidianView.getGridDistances();
-		boolean GridBold = euclidianView.getGridIsBold();
-		int GridLine = euclidianView.getGridLineStyle();
+		GColor GridCol = euclideanView.getGridColor();
+		double[] GridDist = euclideanView.getGridDistances();
+		boolean GridBold = euclideanView.getGridIsBold();
+		int GridLine = euclideanView.getGridLineStyle();
 
 		if (!compact) {
 			// draws grid using Asymptote loops
@@ -2436,7 +2436,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			}
 			codeBeginPic.append(" + ");
 			colorCode(GridCol, codeBeginPic);
-			if (GridLine != EuclidianStyleConstants.LINE_TYPE_FULL) {
+			if (GridLine != euclideanStyleConstants.LINE_TYPE_FULL) {
 				codeBeginPic.append(" + ");
 				linestyleCode(GridLine, codeBeginPic);
 			}
@@ -2464,7 +2464,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 									 * codeBeginPic.append( "linewidth(0.7)");
 									 * codeBeginPic.append("+"); ColorCode
 									 * (GridCol,codeBeginPic); if(GridLine !=
-									 * EuclidianStyleConstants .LINE_TYPE_FULL)
+									 * euclideanStyleConstants .LINE_TYPE_FULL)
 									 * { codeBeginPic.append("+");
 									 * LinestyleCode(GridLine, codeBeginPic); }
 									 * codeBeginPic.append("; "); codeBeginPic
@@ -2492,7 +2492,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 									 * codeBeginPic.append( "linewidth(0.7)");
 									 * codeBeginPic.append("+"); ColorCode
 									 * (GridCol,codeBeginPic); if(GridLine !=
-									 * EuclidianStyleConstants .LINE_TYPE_FULL)
+									 * euclideanStyleConstants .LINE_TYPE_FULL)
 									 * { codeBeginPic.append("+");
 									 * LinestyleCode(GridLine, codeBeginPic); }
 									 * codeBeginPic. append("; real gx=");
@@ -2524,7 +2524,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		}
 		codeBeginPic.append("+");
 		colorCode(GridCol, codeBeginPic);
-		if (GridLine != EuclidianStyleConstants.LINE_TYPE_FULL) {
+		if (GridLine != euclideanStyleConstants.LINE_TYPE_FULL) {
 			codeBeginPic.append("+");
 			linestyleCode(GridLine, codeBeginPic);
 		}
@@ -2536,18 +2536,18 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 	// xaxis/yaxis.
 	// note: may shift around relative positions of certain labels.
 	private void drawAxis() {
-		boolean xAxis = euclidianView.getShowXaxis();
-		boolean yAxis = euclidianView.getShowYaxis();
-		boolean bx = euclidianView.getShowAxesNumbers()[0];
-		boolean by = euclidianView.getShowAxesNumbers()[1];
-		String Dx = format(euclidianView.getAxesNumberingDistances()[0]);
-		String Dy = format(euclidianView.getAxesNumberingDistances()[1]);
-		String[] label = euclidianView.getAxesLabels(false);
-		String[] units = euclidianView.getAxesUnitLabels();
-		int axisStyle = euclidianView.getAxesLineStyle();
-		int[] tickStyle = euclidianView.getAxesTickStyles();
-		GColor axisColor = euclidianView.getAxesColor();
-		boolean axisBold = (axisStyle & 2) == EuclidianStyleConstants.AXES_BOLD;
+		boolean xAxis = euclideanView.getShowXaxis();
+		boolean yAxis = euclideanView.getShowYaxis();
+		boolean bx = euclideanView.getShowAxesNumbers()[0];
+		boolean by = euclideanView.getShowAxesNumbers()[1];
+		String Dx = format(euclideanView.getAxesNumberingDistances()[0]);
+		String Dy = format(euclideanView.getAxesNumberingDistances()[1]);
+		String[] label = euclideanView.getAxesLabels(false);
+		String[] units = euclideanView.getAxesUnitLabels();
+		int axisStyle = euclideanView.getAxesLineStyle();
+		int[] tickStyle = euclideanView.getAxesTickStyles();
+		GColor axisColor = euclideanView.getAxesColor();
+		boolean axisBold = (axisStyle & 2) == euclideanStyleConstants.AXES_BOLD;
 
 		String lx = "", ly = ""; // axis labels
 		if (label[0] != null) {
@@ -2724,7 +2724,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 				codeBeginPic.append(",linewidth(1.2)");
 			}
 			packSpaceAfter(codeBeginPic, ",");
-			if (tickStyle[0] == EuclidianStyleConstants.AXES_TICK_STYLE_MAJOR) {
+			if (tickStyle[0] == euclideanStyleConstants.AXES_TICK_STYLE_MAJOR) {
 				packSpaceAfter(codeBeginPic, "Ticks(laxis,");
 				if (!bx) {
 					packSpaceAfter(codeBeginPic, "blank,");
@@ -2742,7 +2742,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 					packSpaceBetween(codeBeginPic, ",", "NoZero");
 				}
 				codeBeginPic.append(")");
-			} else if (tickStyle[0] == EuclidianStyleConstants.AXES_TICK_STYLE_MAJOR_MINOR) {
+			} else if (tickStyle[0] == euclideanStyleConstants.AXES_TICK_STYLE_MAJOR_MINOR) {
 				packSpaceAfter(codeBeginPic, "Ticks(laxis,");
 				if (!bx) {
 					packSpaceAfter(codeBeginPic, "blank,");
@@ -2785,7 +2785,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 				codeBeginPic.append(",linewidth(1.2)");
 			}
 			packSpaceAfter(codeBeginPic, ",");
-			if (tickStyle[1] == EuclidianStyleConstants.AXES_TICK_STYLE_MAJOR) {
+			if (tickStyle[1] == euclideanStyleConstants.AXES_TICK_STYLE_MAJOR) {
 				packSpaceAfter(codeBeginPic, "Ticks(laxis,");
 				if (!by) {
 					packSpaceAfter(codeBeginPic, "blank,");
@@ -2803,7 +2803,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 					packSpaceBetween(codeBeginPic, ",", "NoZero");
 				}
 				codeBeginPic.append(")");
-			} else if (tickStyle[1] == EuclidianStyleConstants.AXES_TICK_STYLE_MAJOR_MINOR) {
+			} else if (tickStyle[1] == euclideanStyleConstants.AXES_TICK_STYLE_MAJOR_MINOR) {
 				packSpaceAfter(codeBeginPic, "Ticks(laxis,");
 				if (!by) {
 					packSpaceAfter(codeBeginPic, "blank,");
@@ -2829,9 +2829,9 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 
 	private void drawArrows(int axisStyle, boolean axisBold) {
 		boolean axisLeftArrow = (axisStyle
-				& 4) == EuclidianStyleConstants.AXES_LEFT_ARROW;
+				& 4) == euclideanStyleConstants.AXES_LEFT_ARROW;
 		boolean axisRightArrow = (axisStyle
-				& 1) == EuclidianStyleConstants.AXES_RIGHT_ARROW;
+				& 1) == euclideanStyleConstants.AXES_RIGHT_ARROW;
 		String arrow = null;
 		String pt = "6";
 		if (axisBold) {
@@ -2863,11 +2863,11 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		GColor dotcolor = geo.getObjectColor();
 		int dotstyle = geo.getPointStyle();
 		if (dotstyle == -1) { // default
-			dotstyle = EuclidianStyleConstants.POINT_STYLE_DOT;
+			dotstyle = euclideanStyleConstants.POINT_STYLE_DOT;
 		}
 		boolean comma = false; // add comma
 
-		if (dotsize != EuclidianStyleConstants.DEFAULT_POINT_SIZE) {
+		if (dotsize != euclideanStyleConstants.DEFAULT_POINT_SIZE) {
 			// comma needed
 			comma = true;
 			sb.append(",linewidth(");
@@ -2903,7 +2903,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			}
 		}
 		// catch mistake
-		if (dotstyle != EuclidianStyleConstants.POINT_STYLE_DOT) {
+		if (dotstyle != euclideanStyleConstants.POINT_STYLE_DOT) {
 			if (comma) {
 				packSpace(sb, "+");
 			} else {
@@ -2928,7 +2928,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		Info info = new Info(geo);
 
 		boolean noPlus = true;
-		// if (linethickness != EuclidianStyleConstants.DEFAULT_LINE_THICKNESS)
+		// if (linethickness != euclideanStyleConstants.DEFAULT_LINE_THICKNESS)
 		// {
 		// first parameter
 		noPlus = false;
@@ -2936,7 +2936,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		sb.append(format(linethickness / 2.0 * 0.8));
 		sb.append(")");
 
-		if (linestyle != EuclidianStyleConstants.DEFAULT_LINE_TYPE) {
+		if (linestyle != euclideanStyleConstants.DEFAULT_LINE_TYPE) {
 			if (!noPlus) {
 				packSpace(sb, "+");
 			} else {
@@ -2973,10 +2973,10 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		default:
 			// do nothing
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DOTTED:
 			sb.append("dotted");
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_SHORT:
 			sb.append("linetype(\"");
 			// int size = resizePt(3);
 			int size = 2;
@@ -2985,7 +2985,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			sb.append(size);
 			sb.append("\")");
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_LONG:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_LONG:
 			sb.append("linetype(\"");
 			// size = resizePt(6);
 			size = 4;
@@ -2994,7 +2994,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 			sb.append(size);
 			sb.append("\")");
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_DOTTED:
 			sb.append("linetype(\"");
 			// int size1 = resizePt(2);
 			// int size2 = resizePt(8);
@@ -3191,7 +3191,7 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 	 * // Resize text Keep the ratio between font size and picture height
 	 * private String resizeFont(int fontSize){ int
 	 * latexFont=frame.getFontSize(); double
-	 * height_geogebra=euclidianView.getHeight()/30; double
+	 * height_geogebra=euclideanView.getHeight()/30; double
 	 * height_latex=frame.getLatexHeight(); double
 	 * ratio=height_latex/height_geogebra; int
 	 * theoric_size=(int)Math.round(ratio*fontSize); String st=null;
@@ -3774,19 +3774,19 @@ public abstract class GeoGebraToAsymptote extends GeoGebraExport {
 		StringBuilder sb = new StringBuilder();
 		switch (geo.getLineType()) {
 		default:
-		case EuclidianStyleConstants.DEFAULT_LINE_TYPE:
+		case euclideanStyleConstants.DEFAULT_LINE_TYPE:
 			sb.append("solid+");
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_LONG:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_LONG:
 			sb.append("longdashed+");
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_SHORT:
 			sb.append("dashed+");
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_DOTTED:
 			sb.append("dashdotted+");
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DOTTED:
 			sb.append("Dotted+");
 			break;
 		}

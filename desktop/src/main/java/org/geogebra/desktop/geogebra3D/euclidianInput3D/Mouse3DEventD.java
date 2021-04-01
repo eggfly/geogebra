@@ -1,10 +1,10 @@
-package org.geogebra.desktop.geogebra3D.euclidianInput3D;
+package org.geogebra.desktop.geogebra3D.euclideanInput3D;
 
 import java.awt.Component;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian3D.Mouse3DEvent;
-import org.geogebra.desktop.euclidian.event.MouseEventND;
+import org.geogebra.common.euclidean3D.Mouse3DEvent;
+import org.geogebra.desktop.euclidean.event.MouseEventND;
 
 /**
  * Class for 3D mouse event

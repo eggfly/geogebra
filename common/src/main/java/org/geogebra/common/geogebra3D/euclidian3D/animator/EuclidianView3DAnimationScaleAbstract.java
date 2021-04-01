@@ -1,13 +1,13 @@
-package org.geogebra.common.geogebra3D.euclidian3D.animator;
+package org.geogebra.common.geogebra3D.euclidean3D.animator;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.animator.EuclidianView3DAnimator.AnimationType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.animator.euclideanView3DAnimator.AnimationType;
 
 /**
  * animation for scale
  *
  */
-abstract public class EuclidianView3DAnimationScaleAbstract extends EuclidianView3DAnimation {
+abstract public class euclideanView3DAnimationScaleAbstract extends euclideanView3DAnimation {
 
 	protected double xScaleStart;
 	protected double yScaleStart;
@@ -31,8 +31,8 @@ abstract public class EuclidianView3DAnimationScaleAbstract extends EuclidianVie
 	 * @param view3D 3D view
 	 * @param animator animator
 	 */
-	EuclidianView3DAnimationScaleAbstract(EuclidianView3D view3D,
-			EuclidianView3DAnimator animator) {
+	euclideanView3DAnimationScaleAbstract(euclideanView3D view3D,
+			euclideanView3DAnimator animator) {
 		super(view3D, animator);
 	}
 

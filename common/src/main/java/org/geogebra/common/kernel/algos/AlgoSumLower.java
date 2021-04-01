@@ -42,13 +42,13 @@ public class AlgoSumLower extends AlgoFunctionAreaSums {
 	public AlgoSumLower(Construction cons, String label, GeoFunctionable f,
 			GeoNumberValue a, GeoNumberValue b, GeoNumberValue n) {
 		super(cons, label, f, a, b, n, SumType.LOWERSUM);
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 	}
 
 	private AlgoSumLower(GeoNumberValue a, GeoNumberValue b, GeoNumberValue n,
 			double[] vals, double[] borders, Construction cons1) {
 		super(a, b, n, SumType.LOWERSUM, vals, borders, cons1);
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 	}
 
 	@Override

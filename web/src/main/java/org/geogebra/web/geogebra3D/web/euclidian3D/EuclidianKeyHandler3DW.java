@@ -1,4 +1,4 @@
-package org.geogebra.web.geogebra3D.web.euclidian3D;
+package org.geogebra.web.geogebra3D.web.euclidean3D;
 
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.html5.main.GlobalKeyDispatcherW;
@@ -12,12 +12,12 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 
 /**
- * Class to handle tab key properly for {@link EuclidianView3DW}
+ * Class to handle tab key properly for {@link euclideanView3DW}
  *
  * @author laszlo
  *
  */
-public class EuclidianKeyHandler3DW implements KeyUpHandler, KeyDownHandler, KeyPressHandler {
+public class euclideanKeyHandler3DW implements KeyUpHandler, KeyDownHandler, KeyPressHandler {
 
 	private GlobalKeyDispatcherW gkd;
 
@@ -27,7 +27,7 @@ public class EuclidianKeyHandler3DW implements KeyUpHandler, KeyDownHandler, Key
 	 * @param app
 	 *            {@link AppW}
 	 */
-	public EuclidianKeyHandler3DW(AppW app) {
+	public euclideanKeyHandler3DW(AppW app) {
 		gkd = app.getGlobalKeyDispatcher();
 	}
 

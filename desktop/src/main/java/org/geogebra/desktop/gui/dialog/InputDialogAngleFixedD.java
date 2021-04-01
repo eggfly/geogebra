@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.text.JTextComponent;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
@@ -30,11 +30,11 @@ public class InputDialogAngleFixedD extends AngleInputDialogD
 
 	private Kernel kernel;
 
-	private EuclidianController ec;
+	private euclideanController ec;
 
 	public InputDialogAngleFixedD(AppD app, String title, InputHandler handler,
 			GeoSegmentND[] segments, GeoPointND[] points, Kernel kernel,
-			EuclidianController ec) {
+			euclideanController ec) {
 		super(app, app.getLocalization().getMenu("Angle"), title,
 				defaultRotateAngle, false, handler, false);
 

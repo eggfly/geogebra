@@ -327,7 +327,7 @@ public class StatGeo {
 			geo.setLineThickness(DataAnalysisModel.THICKNESS_BAR_CHART);
 			removeFromConstructionList(algoHistogram);
 		}
-		algoHistogram.getOutput(0).setEuclidianVisible(false);
+		algoHistogram.getOutput(0).seteuclideanVisible(false);
 		algoHistogram.setProtectedInput(true);
 		return geo;
 	}
@@ -920,7 +920,7 @@ public class StatGeo {
 		GeoElementND geo = polyLine.getOutput(0);
 
 		// set visibility
-		geo.setEuclidianVisible(true);
+		geo.seteuclideanVisible(true);
 		geo.setAuxiliaryObject(true);
 		geo.setLabelVisible(false);
 		geo.setObjColor(
@@ -947,7 +947,7 @@ public class StatGeo {
 		GeoList geo = dl.getGeoList();
 
 		// set visibility
-		geo.setEuclidianVisible(true);
+		geo.seteuclideanVisible(true);
 		geo.setAuxiliaryObject(true);
 		geo.setLabelVisible(false);
 		geo.setSelectionAllowed(false);
@@ -1048,7 +1048,7 @@ public class StatGeo {
 
 			// hide the dummy geo
 			if (regNone) {
-				geo.setEuclidianVisible(false);
+				geo.seteuclideanVisible(false);
 			}
 		}
 

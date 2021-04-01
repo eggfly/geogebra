@@ -1,12 +1,12 @@
-package org.geogebra.desktop.geogebra3D.euclidian3D.opengl;
+package org.geogebra.desktop.geogebra3D.euclidean3D.opengl;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.util.debug.Log;
 
 /**
@@ -36,7 +36,7 @@ public class ManagerGLList extends Manager {
 	 *            3D view
 	 */
 	public ManagerGLList(Renderer renderer,
-			JoglAndGluProvider joglAndGluProvider, EuclidianView3D view3D) {
+			JoglAndGluProvider joglAndGluProvider, euclideanView3D view3D) {
 
 		super();
 

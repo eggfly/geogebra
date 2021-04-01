@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
@@ -15,15 +15,15 @@ import com.google.j2objc.annotations.Weak;
  */
 public class DrawGrid {
 	@Weak
-	private EuclidianView view;
+	private euclideanView view;
 
 	/**
 	 * 
-	 * @param euclidianView
+	 * @param euclideanView
 	 *            view
 	 */
-	public DrawGrid(EuclidianView euclidianView) {
-		view = euclidianView;
+	public DrawGrid(euclideanView euclideanView) {
+		view = euclideanView;
 	}
 
 	/**

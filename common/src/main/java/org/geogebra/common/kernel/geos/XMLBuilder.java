@@ -31,12 +31,12 @@ public class XMLBuilder {
 			final StringBuilder sb, final boolean withLabelOffset) {
 		final boolean isDrawable = geo.isDrawable();
 
-		// show object and/or label in EuclidianView
+		// show object and/or label in euclideanView
 		// don't save this for simple dependent numbers (e.g. in spreadsheet)
 		if (isDrawable) {
 			sb.append("\t<show");
 			sb.append(" object=\"");
-			sb.append(geo.isSetEuclidianVisible());
+			sb.append(geo.isSeteuclideanVisible());
 			sb.append("\"");
 			sb.append(" label=\"");
 			sb.append(geo.getLabelVisible());
@@ -47,14 +47,14 @@ public class XMLBuilder {
 			// hidden in EV2
 			int EVs = 0;
 
-			if (!geo.isVisibleInView(App.VIEW_EUCLIDIAN)) {
+			if (!geo.isVisibleInView(App.VIEW_euclidean)) {
 				// bit 0 is opposite to bit 1
 				// 0 = showing
 				// 1 = hidden
 				EVs += 1; // bit 0
 			}
 
-			if (geo.isVisibleInView(App.VIEW_EUCLIDIAN2)) {
+			if (geo.isVisibleInView(App.VIEW_euclidean2)) {
 				// 0 = hidden
 				// 2 = showing
 				EVs += 2; // bit 1

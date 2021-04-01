@@ -1,4 +1,4 @@
-package org.geogebra.desktop.geogebra3D.euclidian3D.opengl;
+package org.geogebra.desktop.geogebra3D.euclidean3D.opengl;
 
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
@@ -12,16 +12,16 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.fixedfunc.GLLightingFunc;
 
 import org.geogebra.common.awt.GBufferedImage;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawLabel3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Textures;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.TexturesShaders;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawLabel3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Textures;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.TexturesShaders;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GBufferedImageD;
-import org.geogebra.desktop.geogebra3D.euclidian3D.EuclidianView3DD;
+import org.geogebra.desktop.geogebra3D.euclidean3D.euclideanView3DD;
 import org.geogebra.desktop.gui.menubar.GeoGebraMenuBar;
 import org.geogebra.desktop.gui.util.ImageSelection;
 import org.geogebra.desktop.util.FrameCollector;
@@ -52,7 +52,7 @@ public class RendererCheckGLVersionD extends Renderer
 	 * @param view
 	 * @param useCanvas
 	 */
-	public RendererCheckGLVersionD(EuclidianView3D view, boolean useCanvas) {
+	public RendererCheckGLVersionD(euclideanView3D view, boolean useCanvas) {
 		this(view, useCanvas, RendererType.NOT_SPECIFIED);
 	}
 
@@ -65,7 +65,7 @@ public class RendererCheckGLVersionD extends Renderer
 	 * @param useCanvas
 	 * @param type
 	 */
-	public RendererCheckGLVersionD(EuclidianView3D view, boolean useCanvas,
+	public RendererCheckGLVersionD(euclideanView3D view, boolean useCanvas,
 			RendererType type) {
 		super(view, type);
 		Log.debug("create jogl -- use Canvas : " + useCanvas);
@@ -238,15 +238,15 @@ public class RendererCheckGLVersionD extends Renderer
 	 * First, it calls {@link #doPick()} if a picking is to be done. Then, for
 	 * each {@link Drawable3D}, it calls:
 	 * <ul>
-	 * <li>{@link Drawable3D#drawHidden(EuclidianRenderer3D)} to draw hidden
+	 * <li>{@link Drawable3D#drawHidden(euclideanRenderer3D)} to draw hidden
 	 * parts (dashed segments, lines, ...)</li>
-	 * <li>{@link Drawable3D#drawTransp(EuclidianRenderer3D)} to draw
+	 * <li>{@link Drawable3D#drawTransp(euclideanRenderer3D)} to draw
 	 * transparent objects (planes, spheres, ...)</li>
-	 * <li>{@link Drawable3D#drawSurfacesForHiding(EuclidianRenderer3D)} to draw
+	 * <li>{@link Drawable3D#drawSurfacesForHiding(euclideanRenderer3D)} to draw
 	 * in the z-buffer objects that hides others (planes, spheres, ...)</li>
-	 * <li>{@link Drawable3D#drawTransp(EuclidianRenderer3D)} to re-draw
+	 * <li>{@link Drawable3D#drawTransp(euclideanRenderer3D)} to re-draw
 	 * transparent objects for a better alpha-blending</li>
-	 * <li>{@link Drawable3D#drawOutline(EuclidianRenderer3D)} to draw not
+	 * <li>{@link Drawable3D#drawOutline(euclideanRenderer3D)} to draw not
 	 * hidden parts (dash-less segments, lines, ...)</li>
 	 * </ul>
 	 */
@@ -339,7 +339,7 @@ public class RendererCheckGLVersionD extends Renderer
 				}
 				if (!getExportImageForThumbnail()) {
 					// call write to file
-					((EuclidianView3DD) view3D).writeExportImage();
+					((euclideanView3DD) view3D).writeExportImage();
 				}
 				getRendererImpl().endNeedExportImage();
 			}

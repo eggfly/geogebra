@@ -21,7 +21,7 @@ import org.geogebra.common.kernel.geos.GeoFunction;
 import org.geogebra.common.kernel.geos.GeoPoint;
 import org.geogebra.common.kernel.parser.ParseException;
 import org.geogebra.common.main.error.ErrorHelper;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.Operation;
 
 public class AlgoRemovableDiscontinuity extends AlgoGeoPointsFunction implements
@@ -161,7 +161,7 @@ public class AlgoRemovableDiscontinuity extends AlgoGeoPointsFunction implements
 	private void updatePoints() {
 		for (GeoPoint point : points) {
 			if (point != null) {
-				point.setPointStyle(EuclidianStyleConstants.POINT_STYLE_CIRCLE);
+				point.setPointStyle(euclideanStyleConstants.POINT_STYLE_CIRCLE);
 			}
 		}
 	}

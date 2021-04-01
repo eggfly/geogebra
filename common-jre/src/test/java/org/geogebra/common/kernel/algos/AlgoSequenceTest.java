@@ -16,6 +16,6 @@ public class AlgoSequenceTest extends BaseUnitTest {
 		addAvInput("C = (0, 1)");
 		addAvInput("list = Sequence(Angle(A,B,C), i, 1, 1)");
 		GeoAngle angle = addAvInput("list(1)");
-		assertThat(angle.showInEuclidianView(), is(true));
+		assertThat(angle.showIneuclideanView(), is(true));
 	}
 }

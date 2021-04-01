@@ -104,11 +104,11 @@ public class ExamDialog implements ClickHandler {
 			allow3D.addStyleName("examCheckbox");
 			allow3D.setValue(true);
 
-			app.getSettings().getEuclidian(-1).setEnabled(true);
+			app.getSettings().geteuclidean(-1).setEnabled(true);
 
 			cbxPanel.add(allow3D);
 			allow3D.addClickHandler(event -> {
-				app.getSettings().getEuclidian(-1).setEnabled(allow3D.getValue());
+				app.getSettings().geteuclidean(-1).setEnabled(allow3D.getValue());
 				guiManager.updateToolbarActions();
 			});
 		}
@@ -127,7 +127,7 @@ public class ExamDialog implements ClickHandler {
 		} else {
 			if (app.getAppletParameters().hasDataParamEnableGraphing()) {
 				boolean supportsCAS = app.getSettings().getCasSettings().isEnabled();
-				boolean supports3D = app.getSettings().getEuclidian(-1).isEnabled();
+				boolean supports3D = app.getSettings().geteuclidean(-1).isEnabled();
 				Log.debug(supportsCAS + "," + supports3D + "," + app.enableGraphing());
 				if (!supports3D) {
 					// CAS EXAM: cas && !3d && ev

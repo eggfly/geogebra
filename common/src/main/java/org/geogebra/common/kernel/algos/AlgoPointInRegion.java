@@ -12,7 +12,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.kernel.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Region;
 import org.geogebra.common.kernel.StringTemplate;
@@ -75,7 +75,7 @@ public class AlgoPointInRegion extends AlgoElement {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_POINT_ON_OBJECT;
+		return euclideanConstants.MODE_POINT_ON_OBJECT;
 	}
 
 	// for AlgoElement

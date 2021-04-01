@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.geos.FromMeta;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.Feature;
@@ -28,7 +28,7 @@ public class ContextMenuChooseGeoW extends ContextMenuGeoElementW {
 	/**
 	 * 
 	 */
-	protected EuclidianView view;
+	protected euclideanView view;
 
 	/**
 	 * polygons/polyhedra parents of segments, polygons, ...
@@ -53,7 +53,7 @@ public class ContextMenuChooseGeoW extends ContextMenuGeoElementW {
 	 * @param invokerLocation
 	 *            place to show
 	 */
-	public ContextMenuChooseGeoW(AppW app, EuclidianView view,
+	public ContextMenuChooseGeoW(AppW app, euclideanView view,
 								 ArrayList<GeoElement> selectedGeos, ArrayList<GeoElement> geos,
 								 GPoint invokerLocation, ContextMenuFactory factory) {
 		super(app, selectedGeos, factory);
@@ -132,9 +132,9 @@ public class ContextMenuChooseGeoW extends ContextMenuGeoElementW {
 
 		@Override
 		public void onBrowserEvent(Event event) {
-			view.getEuclidianController().doSingleHighlighting(geo);
+			view.geteuclideanController().doSingleHighlighting(geo);
 			Log.debug(
-					"view.getEuclidianController().doSingleHighlighting(geo) called");
+					"view.geteuclideanController().doSingleHighlighting(geo) called");
 		}
 
 	}
@@ -179,7 +179,7 @@ public class ContextMenuChooseGeoW extends ContextMenuGeoElementW {
 		selectAnotherMenu = new AriaMenuBar();
 		AriaMenuItem selectAnotherMenuItem;
 		Localization localization = app.getLocalization();
-		if (EuclidianConstants.isMoveOrSelectionMode(mode)) {
+		if (euclideanConstants.isMoveOrSelectionMode(mode)) {
 			selectAnotherMenuItem = new AriaMenuItem(
 					localization.getMenu("SelectAnother"), false,
 			        selectAnotherMenu);

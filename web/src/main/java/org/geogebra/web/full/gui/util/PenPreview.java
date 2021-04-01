@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.util;
 
-import org.geogebra.common.euclidian.EuclidianPen;
+import org.geogebra.common.euclidean.euclideanPen;
 import org.geogebra.web.html5.main.AppW;
 
 /**
@@ -10,7 +10,7 @@ import org.geogebra.web.html5.main.AppW;
  *
  */
 public class PenPreview extends StylePreview {
-	private EuclidianPen pen;
+	private euclideanPen pen;
 
 	/**
 	 * @param app
@@ -26,7 +26,7 @@ public class PenPreview extends StylePreview {
 
 	@Override
 	protected void createPreviewGeo() {
-		pen = app.getActiveEuclidianView().getEuclidianController().getPen();
+		pen = app.getActiveeuclideanView().geteuclideanController().getPen();
 	}
 
 	/**

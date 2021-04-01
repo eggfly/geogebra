@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
-import org.geogebra.common.euclidian.draw.DrawBoolean.CheckBoxIcon;
+import org.geogebra.common.euclidean.draw.DrawBoolean.CheckBoxIcon;
 import org.geogebra.common.gui.view.data.DataAnalysisModel;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.GeoElement;

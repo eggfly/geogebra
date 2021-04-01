@@ -1,6 +1,6 @@
 package org.geogebra.common.gui.inputfield;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.CircularDefinitionException;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
@@ -53,7 +53,7 @@ public class InputHelper {
 	 *            cons step before update
 	 */
 	public static void updateProperties(GeoElementND[] geos,
-			EuclidianViewInterfaceCommon ev, int oldStep) {
+			euclideanViewInterfaceCommon ev, int oldStep) {
 		// create texts in the middle of the visible view
 		// we must check that size of geos is not 0 (ZoomIn, ZoomOut, ...)
 		if (geos == null) {
@@ -80,7 +80,7 @@ public class InputHelper {
 	 *            view to use for centering
 	 */
 	public static void centerText(GeoText text,
-			EuclidianViewInterfaceCommon ev) {
+			euclideanViewInterfaceCommon ev) {
 		text.setAuxiliaryObject(false);
 		Construction cons = text.getConstruction();
 

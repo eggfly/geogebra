@@ -95,7 +95,7 @@ public class ConstructionProtocolNavigationD
 		// initGUI();
 
 		/*
-		 * //next 3 rows moved into EuclidianDockPanel.loadComponent //because
+		 * //next 3 rows moved into euclideanDockPanel.loadComponent //because
 		 * it not neccessary for all Contruction protocol navigation issue
 		 * ConstructionProtocolSettings cps =
 		 * app.getSettings().getConstructionProtocol(); settingsChanged(cps);

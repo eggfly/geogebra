@@ -1,14 +1,14 @@
-package org.geogebra.common.geogebra3D.euclidian3D.animator;
+package org.geogebra.common.geogebra3D.euclidean3D.animator;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.animator.EuclidianView3DAnimator.AnimationType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.animator.euclideanView3DAnimator.AnimationType;
 import org.geogebra.common.kernel.matrix.Coords;
 
 /**
  * animation for pinch zoom + translation
  *
  */
-public class EuclidianView3DAnimationScreenScale extends EuclidianView3DAnimation {
+public class euclideanView3DAnimationScreenScale extends euclideanView3DAnimation {
 
 	private static final double Z_MIN_FOR_TRANSLATE_Z = 0.85;
 	private static final double Z_MAX_FOR_TRANSLATE_XY = 0.45;
@@ -34,7 +34,7 @@ public class EuclidianView3DAnimationScreenScale extends EuclidianView3DAnimatio
 	 * @param view3D 3D view
 	 * @param animator animator
 	 */
-	EuclidianView3DAnimationScreenScale(EuclidianView3D view3D, EuclidianView3DAnimator animator) {
+	euclideanView3DAnimationScreenScale(euclideanView3D view3D, euclideanView3DAnimator animator) {
 		super(view3D, animator);
 	}
 

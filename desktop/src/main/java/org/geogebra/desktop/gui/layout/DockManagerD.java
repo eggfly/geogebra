@@ -14,7 +14,7 @@ import java.util.TreeSet;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 
-import org.geogebra.common.euclidian.EuclidianStyleBar;
+import org.geogebra.common.euclidean.euclideanStyleBar;
 import org.geogebra.common.gui.layout.DockComponent;
 import org.geogebra.common.gui.layout.DockManager;
 import org.geogebra.common.gui.layout.DockPanel;
@@ -25,9 +25,9 @@ import org.geogebra.common.io.layout.ShowDockPanelListener;
 import org.geogebra.common.main.App;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GRectangleD;
-import org.geogebra.desktop.euclidian.EuclidianViewJPanelD;
+import org.geogebra.desktop.euclidean.euclideanViewJPanelD;
 import org.geogebra.desktop.gui.GuiManagerD;
-import org.geogebra.desktop.gui.layout.panels.EuclidianDockPanelAbstract;
+import org.geogebra.desktop.gui.layout.panels.euclideanDockPanelAbstract;
 import org.geogebra.desktop.gui.toolbar.ToolbarContainer;
 import org.geogebra.desktop.main.AppD;
 
@@ -42,7 +42,7 @@ public class DockManagerD extends DockManager implements AWTEventListener {
 
 	/**
 	 * False if the application is running in unsigned mode. We can only listen
-	 * to euclidian view focus changes in this case.
+	 * to euclidean view focus changes in this case.
 	 */
 	private boolean hasFullFocusSystem;
 
@@ -62,9 +62,9 @@ public class DockManagerD extends DockManager implements AWTEventListener {
 	private DockPanelD focusedDockPanel;
 
 	/**
-	 * The euclidian dock panel which had the focus the last.
+	 * The euclidean dock panel which had the focus the last.
 	 */
-	private EuclidianDockPanelAbstract focusedEuclidianDockPanel;
+	private euclideanDockPanelAbstract focusedeuclideanDockPanel;
 
 	/**
 	 * A list with all registered dock panels.
@@ -284,7 +284,7 @@ public class DockManagerD extends DockManager implements AWTEventListener {
 				}
 			}
 
-			// recursive update resize weights for giving new space to euclidian
+			// recursive update resize weights for giving new space to euclidean
 			// views
 			updateSplitPanesResizeWeight();
 
@@ -510,9 +510,9 @@ public class DockManagerD extends DockManager implements AWTEventListener {
 		markAlonePanel();
 
 		// Manually dispatch a resize event as the size of the
-		// euclidian view isn't updated all the time.
+		// euclidean view isn't updated all the time.
 		// TODO What does the resize do which will update the component ?!
-		app.repaintEuclidianViews(rootPane);
+		app.repainteuclideanViews(rootPane);
 	}
 
 	/**
@@ -917,12 +917,12 @@ public class DockManagerD extends DockManager implements AWTEventListener {
 	 * Listen to mouse clicks and determine if the view focus changed. Just used
 	 * in case the full focus system is active.
 	 * 
-	 * Euclidian views always inform the dock manager about focus changes using
-	 * their own mouse click events (see EuclidianController:mouseClicked())
+	 * euclidean views always inform the dock manager about focus changes using
+	 * their own mouse click events (see euclideanController:mouseClicked())
 	 * because 1) This AWT event cannot be used for unsigned applets but we need
-	 * euclidian view focus changes for new object placement 2) An own mouse
-	 * listener may be called *after* the euclidian controller mouse listener
-	 * was called, therefore new objects may be created in the wrong euclidian
+	 * euclidean view focus changes for new object placement 2) An own mouse
+	 * listener may be called *after* the euclidean controller mouse listener
+	 * was called, therefore new objects may be created in the wrong euclidean
 	 * view as the focus was not changed at the time of object creation.
 	 */
 	@Override
@@ -942,17 +942,17 @@ public class DockManagerD extends DockManager implements AWTEventListener {
 				.getAncestorOfClass(DockPanelD.class, source);
 
 		// ignore this if we didn't hit a dock panel at all or if we hit the
-		// euclidian
+		// euclidean
 		// view, they are always handled by their own mouse event (see doc
 		// comment above)
 		if (dp != null
-				&& !(dp.getComponent() instanceof EuclidianViewJPanelD)) {
-			// updates the properties view only if source is not the euclidian
+				&& !(dp.getComponent() instanceof euclideanViewJPanelD)) {
+			// updates the properties view only if source is not the euclidean
 			// style bar
 			boolean updatePropertiesView = true;
-			if (source instanceof EuclidianStyleBar) {
+			if (source instanceof euclideanStyleBar) {
 				updatePropertiesView = false;
-			} else if (SwingUtilities.getAncestorOfClass(EuclidianStyleBar.class,
+			} else if (SwingUtilities.getAncestorOfClass(euclideanStyleBar.class,
 					source) != null) {
 				updatePropertiesView = false;
 			}
@@ -983,37 +983,37 @@ public class DockManagerD extends DockManager implements AWTEventListener {
 		if (focusedDockPanel == panel) {
 			return;
 		}
-		// euclidian focus
+		// euclidean focus
 
-		// in case there is no focused panel there is also no focused euclidian
+		// in case there is no focused panel there is also no focused euclidean
 		// dock panel
 		if (panel == null) {
-			if (focusedEuclidianDockPanel != null) {
-				focusedEuclidianDockPanel.setEuclidianFocus(false);
-				if (focusedEuclidianDockPanel != focusedDockPanel) {
-					focusedEuclidianDockPanel.setTitleLabelFocus();
+			if (focusedeuclideanDockPanel != null) {
+				focusedeuclideanDockPanel.seteuclideanFocus(false);
+				if (focusedeuclideanDockPanel != focusedDockPanel) {
+					focusedeuclideanDockPanel.setTitleLabelFocus();
 				}
-				focusedEuclidianDockPanel = null;
+				focusedeuclideanDockPanel = null;
 			}
 		} else {
-			if (panel instanceof EuclidianDockPanelAbstract
-					&& focusedEuclidianDockPanel != panel) {
+			if (panel instanceof euclideanDockPanelAbstract
+					&& focusedeuclideanDockPanel != panel) {
 				// remove focus from previously focused dock panel
-				if (focusedEuclidianDockPanel != null) {
-					focusedEuclidianDockPanel.setEuclidianFocus(false);
-					if (focusedEuclidianDockPanel != focusedDockPanel) {
-						focusedEuclidianDockPanel.setTitleLabelFocus();
+				if (focusedeuclideanDockPanel != null) {
+					focusedeuclideanDockPanel.seteuclideanFocus(false);
+					if (focusedeuclideanDockPanel != focusedDockPanel) {
+						focusedeuclideanDockPanel.setTitleLabelFocus();
 					}
 				}
 
-				// if a panel has focus and that panel is a euclidian dock panel
-				// change the focused euclidian dock panel to that panel
-				focusedEuclidianDockPanel = (EuclidianDockPanelAbstract) panel;
-				focusedEuclidianDockPanel.setEuclidianFocus(true);
+				// if a panel has focus and that panel is a euclidean dock panel
+				// change the focused euclidean dock panel to that panel
+				focusedeuclideanDockPanel = (euclideanDockPanelAbstract) panel;
+				focusedeuclideanDockPanel.seteuclideanFocus(true);
 
-				// (panels which are not euclidian dock panels do not change the
+				// (panels which are not euclidean dock panels do not change the
 				// focused
-				// euclidian dock panel (ie the old is kept))
+				// euclidean dock panel (ie the old is kept))
 
 			}
 		}
@@ -1078,11 +1078,11 @@ public class DockManagerD extends DockManager implements AWTEventListener {
 	}
 
 	/**
-	 * @return The dock euclidian panel which had focus the last.
+	 * @return The dock euclidean panel which had focus the last.
 	 */
 	@Override
-	public EuclidianDockPanelAbstract getFocusedEuclidianPanel() {
-		return focusedEuclidianDockPanel;
+	public euclideanDockPanelAbstract getFocusedeuclideanPanel() {
+		return focusedeuclideanDockPanel;
 	}
 
 	/**
@@ -1371,9 +1371,9 @@ public class DockManagerD extends DockManager implements AWTEventListener {
 			return getPanel(dpData.getViewId());
 		}
 
-		// euclidian view for plane case
+		// euclidean view for plane case
 		DockPanelD panel = (DockPanelD) app.getCompanion()
-				.createEuclidianDockPanelForPlane(dpData.getViewId(),
+				.createeuclideanDockPanelForPlane(dpData.getViewId(),
 						dpData.getPlane());
 		if (panel == null) {
 			Log.error("panel==null");
@@ -1389,7 +1389,7 @@ public class DockManagerD extends DockManager implements AWTEventListener {
 	/**
 	 * Returns a specific DockPanel.
 	 * 
-	 * Use the constants VIEW_EUCLIDIAN, VIEW_ALGEBRA etc. as viewId.
+	 * Use the constants VIEW_euclidean, VIEW_ALGEBRA etc. as viewId.
 	 * 
 	 * @param viewId
 	 * @return The panel associated to the viewId
@@ -1425,7 +1425,7 @@ public class DockManagerD extends DockManager implements AWTEventListener {
 
 	/**
 	 * @return True if all focus may change between all views, false if just the
-	 *         euclidian views are affected by this.
+	 *         euclidean views are affected by this.
 	 */
 	public boolean hasFullFocusSystem() {
 		return hasFullFocusSystem;

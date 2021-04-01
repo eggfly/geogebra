@@ -16,7 +16,7 @@ the Free Software Foundation.
  * Created on 21. 8 . 2003
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -25,10 +25,10 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GLine2D;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.euclidian.clipping.ClipLine;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.euclidean.clipping.ClipLine;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -64,7 +64,7 @@ public class DrawRay extends SetDrawable implements Previewable {
 	 * @param ray
 	 *            ray
 	 */
-	public DrawRay(EuclidianView view, GeoLineND ray) {
+	public DrawRay(euclideanView view, GeoLineND ray) {
 		this.view = view;
 		this.ray = ray;
 		geo = (GeoElement) ray;
@@ -80,7 +80,7 @@ public class DrawRay extends SetDrawable implements Previewable {
 	 * @param points
 	 *            preview points
 	 */
-	public DrawRay(EuclidianView view, ArrayList<GeoPointND> points) {
+	public DrawRay(euclideanView view, ArrayList<GeoPointND> points) {
 		this.view = view;
 		this.points = points;
 
@@ -101,7 +101,7 @@ public class DrawRay extends SetDrawable implements Previewable {
 	 */
 	public void update(boolean showLabel) {
 
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (isVisible) {
 			// calc direction vector of ray in screen coords
 			Coords equation = ray.getCartesianEquationVector(view.getMatrix());
@@ -224,10 +224,10 @@ public class DrawRay extends SetDrawable implements Previewable {
 			// clip ray at screen, that's important for huge coordinates of A
 			GPoint2D[] clippedPoints = ClipLine.getClipped(a[0], a[1],
 					a[0] + lambda * v[0], a[1] + lambda * v[1],
-					view.getMinXScreen() - EuclidianStatic.CLIP_DISTANCE,
-					view.getMaxXScreen() + EuclidianStatic.CLIP_DISTANCE,
-					view.getMinYScreen() - EuclidianStatic.CLIP_DISTANCE,
-					view.getMaxYScreen() + EuclidianStatic.CLIP_DISTANCE,
+					view.getMinXScreen() - euclideanStatic.CLIP_DISTANCE,
+					view.getMaxXScreen() + euclideanStatic.CLIP_DISTANCE,
+					view.getMinYScreen() - euclideanStatic.CLIP_DISTANCE,
+					view.getMaxYScreen() + euclideanStatic.CLIP_DISTANCE,
 					tmpClipPoints);
 			if (clippedPoints == null) {
 				isVisible = false;
@@ -301,7 +301,7 @@ public class DrawRay extends SetDrawable implements Previewable {
 
 			// round angle to nearest 15 degrees if alt pressed
 			if (points.size() == 1
-					&& view.getEuclidianController().isAltDown()) {
+					&& view.geteuclideanController().isAltDown()) {
 				// double xRW = view.toRealWorldCoordX(x);
 				// double yRW = view.toRealWorldCoordY(y);
 				GeoPointND p = points.get(0);
@@ -319,14 +319,14 @@ public class DrawRay extends SetDrawable implements Previewable {
 
 				endPoint.setX(xRW);
 				endPoint.setY(yRW);
-				view.getEuclidianController().setLineEndPoint(endPoint);
+				view.geteuclideanController().setLineEndPoint(endPoint);
 
 				// don't use view.toScreenCoordX/Y() as we don't want rounding
 				xx = view.getXZero() + xRW * view.getXscale();
 				yy = view.getYZero() - yRW * view.getYscale();
 
 			} else {
-				view.getEuclidianController().setLineEndPoint(null);
+				view.geteuclideanController().setLineEndPoint(null);
 			}
 
 			/*

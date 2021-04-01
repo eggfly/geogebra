@@ -3,28 +3,28 @@ package org.geogebra.desktop.geogebra3D.gui.layout.panels;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.toolbar.ToolBar;
 import org.geogebra.common.main.App;
 import org.geogebra.desktop.geogebra3D.App3D;
 import org.geogebra.desktop.gui.layout.DockManagerD;
 import org.geogebra.desktop.gui.layout.DockPanelD;
-import org.geogebra.desktop.gui.layout.panels.EuclidianDockPanelAbstract;
+import org.geogebra.desktop.gui.layout.panels.euclideanDockPanelAbstract;
 import org.geogebra.desktop.main.AppD;
 import org.geogebra.desktop.util.GuiResourcesD;
 
 /**
- * Dock panel for the primary euclidian view.
+ * Dock panel for the primary euclidean view.
  */
-public class EuclidianDockPanel3DD extends EuclidianDockPanelAbstract {
+public class euclideanDockPanel3DD extends euclideanDockPanelAbstract {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @param app
 	 *            application
 	 */
-	public EuclidianDockPanel3DD(AppD app) {
-		super(App.VIEW_EUCLIDIAN3D, // view id
+	public euclideanDockPanel3DD(AppD app) {
+		super(App.VIEW_euclidean3D, // view id
 				"GraphicsView3D", // view title
 				ToolBar.getAllToolsNoMacros3D(app), // toolbar string
 				true, // style bar?
@@ -39,16 +39,16 @@ public class EuclidianDockPanel3DD extends EuclidianDockPanelAbstract {
 
 	@Override
 	protected JComponent loadStyleBar() {
-		return (JComponent) ((App3D) app).getEuclidianView3D().getStyleBar();
+		return (JComponent) ((App3D) app).geteuclideanView3D().getStyleBar();
 	}
 
 	@Override
-	public EuclidianView getEuclidianView() {
-		return ((App3D) app).getEuclidianView3D();
+	public euclideanView geteuclideanView() {
+		return ((App3D) app).geteuclideanView3D();
 	}
 
 	@Override
-	public boolean isEuclidianDockPanel3D() {
+	public boolean iseuclideanDockPanel3D() {
 		return true;
 	}
 
@@ -132,7 +132,7 @@ public class EuclidianDockPanel3DD extends EuclidianDockPanelAbstract {
 	public void resumeRenderer() {
 
 		if (visible) {
-			((App3D) app).getEuclidianView3D().getRenderer().resumeAnimator();
+			((App3D) app).geteuclideanView3D().getRenderer().resumeAnimator();
 		}
 
 	}

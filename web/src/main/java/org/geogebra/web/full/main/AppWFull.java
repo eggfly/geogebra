@@ -8,18 +8,18 @@ import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 import org.geogebra.common.GeoGebraConstants;
-import org.geogebra.common.euclidian.EmbedManager;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.MaskWidgetList;
-import org.geogebra.common.euclidian.event.PointerEventType;
-import org.geogebra.common.euclidian.inline.InlineFormulaController;
-import org.geogebra.common.euclidian.inline.InlineTableController;
-import org.geogebra.common.euclidian.inline.InlineTextController;
-import org.geogebra.common.euclidian.smallscreen.AdjustScreen;
+import org.geogebra.common.euclidean.EmbedManager;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.MaskWidgetList;
+import org.geogebra.common.euclidean.event.PointerEventType;
+import org.geogebra.common.euclidean.inline.InlineFormulaController;
+import org.geogebra.common.euclidean.inline.InlineTableController;
+import org.geogebra.common.euclidean.inline.InlineTextController;
+import org.geogebra.common.euclidean.smallscreen.AdjustScreen;
 import org.geogebra.common.factories.CASFactory;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.FormatCollada;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.FormatColladaHTML;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.FormatCollada;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.FormatColladaHTML;
 import org.geogebra.common.gui.Layout;
 import org.geogebra.common.gui.inputfield.HasLastItem;
 import org.geogebra.common.gui.layout.DockPanel;
@@ -62,10 +62,10 @@ import org.geogebra.ggbjdk.java.awt.geom.Dimension;
 import org.geogebra.keyboard.web.HasKeyboard;
 import org.geogebra.keyboard.web.TabbedKeyboard;
 import org.geogebra.web.cas.giac.CASFactoryW;
-import org.geogebra.web.full.euclidian.EuclidianStyleBarW;
-import org.geogebra.web.full.euclidian.inline.InlineFormulaControllerW;
-import org.geogebra.web.full.euclidian.inline.InlineTableControllerW;
-import org.geogebra.web.full.euclidian.inline.InlineTextControllerW;
+import org.geogebra.web.full.euclidean.euclideanStyleBarW;
+import org.geogebra.web.full.euclidean.inline.InlineFormulaControllerW;
+import org.geogebra.web.full.euclidean.inline.InlineTableControllerW;
+import org.geogebra.web.full.euclidean.inline.InlineTextControllerW;
 import org.geogebra.web.full.gui.CustomizeToolbarGUI;
 import org.geogebra.web.full.gui.GuiManagerW;
 import org.geogebra.web.full.gui.MyHeaderPanel;
@@ -86,7 +86,7 @@ import org.geogebra.web.full.gui.layout.DockPanelW;
 import org.geogebra.web.full.gui.layout.DockSplitPaneW;
 import org.geogebra.web.full.gui.layout.LayoutW;
 import org.geogebra.web.full.gui.layout.panels.AlgebraStyleBarW;
-import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelW;
+import org.geogebra.web.full.gui.layout.panels.euclideanDockPanelW;
 import org.geogebra.web.full.gui.layout.panels.ToolbarDockPanelW;
 import org.geogebra.web.full.gui.menu.MenuViewController;
 import org.geogebra.web.full.gui.menu.MenuViewListener;
@@ -117,7 +117,7 @@ import org.geogebra.web.full.main.mask.MaskWidgetListW;
 import org.geogebra.web.full.main.video.VideoManagerW;
 import org.geogebra.web.full.move.googledrive.operations.GoogleDriveOperationW;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
 import org.geogebra.web.html5.gui.GPopupPanel;
 import org.geogebra.web.html5.gui.GeoGebraFrameW;
 import org.geogebra.web.html5.gui.HasKeyboardPopup;
@@ -249,7 +249,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 		initCommonObjects();
 		initing = true;
 
-		this.euclidianViewPanel = new EuclidianDockPanelW(this,
+		this.euclideanViewPanel = new euclideanDockPanelW(this,
 				allowStylebar());
 		initCoreObjects();
 		checkExamPerspective();
@@ -719,7 +719,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	}
 
 	private void showBrowser(MyHeaderPanel bg) {
-		EuclidianController evController = getActiveEuclidianView().getEuclidianController();
+		euclideanController evController = getActiveeuclideanView().geteuclideanController();
 		if (evController != null) {
 			evController.hideDynamicStylebar();
 		}
@@ -964,9 +964,9 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 
 	@Override
 	public void updateViewSizes() {
-		getEuclidianViewpanel().deferredOnResize();
-		if (hasEuclidianView2(1)) {
-			getGuiManager().getEuclidianView2DockPanel(1)
+		geteuclideanViewpanel().deferredOnResize();
+		if (haseuclideanView2(1)) {
+			getGuiManager().geteuclideanView2DockPanel(1)
 					.deferredOnResize();
 		}
 		if (getGuiManager().hasSpreadsheetView()) {
@@ -1044,7 +1044,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	@Override
 	public final void closePopups() {
 		super.closePopups();
-		EuclidianStyleBarW.setCurrentPopup(null);
+		euclideanStyleBarW.setCurrentPopup(null);
 		if (getToolbar() != null && getToolbar().isMobileToolbar()) {
 			((GGWToolBar) getToolbar()).getToolBar().closeAllSubmenu();
 		}
@@ -1053,7 +1053,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 			hideMenu();
 			justClosed = justClosed || closePageControlPanel();
 			if (justClosed) {
-				getEuclidianController().setPopupJustClosed(justClosed);
+				geteuclideanController().setPopupJustClosed(justClosed);
 			}
 		}
 	}
@@ -1221,7 +1221,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 
 	@Override
 	public final void ensureStandardView() {
-		getActiveEuclidianView()
+		getActiveeuclideanView()
 				.setKeepCenter(true);
 	}
 
@@ -1268,8 +1268,8 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	private void afterCoreObjectsInited() {
 		// Code to run before buildApplicationPanel
 		initGuiManager();
-		if (this.showConsProtNavigation(App.VIEW_EUCLIDIAN)) {
-			((EuclidianDockPanelW) euclidianViewPanel).addNavigationBar();
+		if (this.showConsProtNavigation(App.VIEW_euclidean)) {
+			((euclideanDockPanelW) euclideanViewPanel).addNavigationBar();
 		}
 		// following lines were swapped before but for async file loading it
 		// does not matter
@@ -1282,21 +1282,21 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	private void buildSingleApplicationPanel() {
 		if (frame != null) {
 			frame.clear();
-			frame.add((Widget) getEuclidianViewpanel());
+			frame.add((Widget) geteuclideanViewpanel());
 			// we need to make sure trace works after this, see
 			// https://jira.geogebra.org/browse/TRAC-4232
 			// https://jira.geogebra.org/browse/TRAC-4034
-			getEuclidianView1().createImage();
-			getEuclidianView1().invalidateBackground();
-			DockPanelW euclidianDockPanel = (DockPanelW) getEuclidianViewpanel();
-			euclidianDockPanel.setVisible(true);
-			euclidianDockPanel.setEmbeddedSize(getSettings()
-					.getEuclidian(1).getPreferredSize().getWidth());
-			getEuclidianViewpanel().setPixelSize(
-					getSettings().getEuclidian(1).getPreferredSize().getWidth(),
-					getSettings().getEuclidian(1).getPreferredSize()
+			geteuclideanView1().createImage();
+			geteuclideanView1().invalidateBackground();
+			DockPanelW euclideanDockPanel = (DockPanelW) geteuclideanViewpanel();
+			euclideanDockPanel.setVisible(true);
+			euclideanDockPanel.setEmbeddedSize(getSettings()
+					.geteuclidean(1).getPreferredSize().getWidth());
+			geteuclideanViewpanel().setPixelSize(
+					getSettings().geteuclidean(1).getPreferredSize().getWidth(),
+					getSettings().geteuclidean(1).getPreferredSize()
 							.getHeight());
-			euclidianDockPanel.updatePanel(false);
+			euclideanDockPanel.updatePanel(false);
 
 			oldSplitLayoutPanel = null;
 			updateVoiceover();
@@ -1306,7 +1306,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	@Override
 	public void buildApplicationPanel() {
 		if (!isUsingFullGui()) {
-			if (showConsProtNavigation() || !isJustEuclidianVisible()) {
+			if (showConsProtNavigation() || !isJusteuclideanVisible()) {
 				useFullGui = true;
 			}
 		}
@@ -1480,7 +1480,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 		frame.updateHeaderSize();
 		String perspective = getAppletParameters().getDataParamPerspective();
 		if (!isUsingFullGui()) {
-			if (showConsProtNavigation() || !isJustEuclidianVisible()
+			if (showConsProtNavigation() || !isJusteuclideanVisible()
 					|| perspective.length() > 0) {
 				useFullGui = true;
 			}
@@ -1532,16 +1532,16 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 
 		getScriptManager().ggbOnInit(); // put this here from Application
 										// constructor because we have to delay
-										// scripts until the EuclidianView is
+										// scripts until the euclideanView is
 										// shown
 
-		getEuclidianView1().synCanvasSize();
+		geteuclideanView1().synCanvasSize();
 
 		if (!appletParameters.getDataParamFitToScreen()) {
 			getAppletFrame().resetAutoSize();
 		}
 
-		getEuclidianView1().doRepaint2();
+		geteuclideanView1().doRepaint2();
 		frame.hideSplash();
 
 		if (isUsingFullGui()) {
@@ -1579,7 +1579,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 		}
 		kernel.notifyScreenChanged();
 		if (isWhiteboardActive()) {
-			AdjustScreen.adjustCoordSystem(getActiveEuclidianView());
+			AdjustScreen.adjustCoordSystem(getActiveeuclideanView());
 		}
 		if (!asSlide) {
 			// should run after coord system changed
@@ -1662,10 +1662,10 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	}
 
 	/**
-	 * Check if just the euclidian view is visible in the document just loaded.
+	 * Check if just the euclidean view is visible in the document just loaded.
 	 * @return whether just ev1 is isible
 	 */
-	private boolean isJustEuclidianVisible() {
+	private boolean isJusteuclideanVisible() {
 		Perspective docPerspective = getTmpPerspective(null);
 
 		if (docPerspective == null) {
@@ -1673,7 +1673,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 		}
 
 		for (DockPanelData panel : docPerspective.getDockPanelData()) {
-			if ((panel.getViewId() != App.VIEW_EUCLIDIAN)
+			if ((panel.getViewId() != App.VIEW_euclidean)
 					&& panel.isVisible()) {
 				return false;
 			}
@@ -2102,7 +2102,7 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	@Override
 	public HasLastItem getLastItemProvider() {
 		if (!getConfig().hasAnsButtonInAv()
-				|| getActiveEuclidianView().getEuclidianController()
+				|| getActiveeuclideanView().geteuclideanController()
 				.isSymbolicEditorSelected()) {
 			return null;
 		}
@@ -2146,22 +2146,22 @@ public class AppWFull extends AppW implements HasKeyboard, MenuViewListener {
 	}
 
 	@Override
-	public InlineTextController createInlineTextController(EuclidianView view, GeoInlineText geo) {
-		Element parentElement = ((EuclidianViewW) view).getAbsolutePanel().getParent().getElement();
+	public InlineTextController createInlineTextController(euclideanView view, GeoInlineText geo) {
+		Element parentElement = ((euclideanViewW) view).getAbsolutePanel().getParent().getElement();
 		return new InlineTextControllerW(geo, view, parentElement);
 	}
 
 	@Override
-	public InlineFormulaController createInlineFormulaController(EuclidianView view,
+	public InlineFormulaController createInlineFormulaController(euclideanView view,
 			GeoFormula geo) {
-		EuclidianDockPanelW panel = (EuclidianDockPanelW) getGuiManager().getLayout()
-				.getDockManager().getPanel(VIEW_EUCLIDIAN);
-		return new InlineFormulaControllerW(geo, this, panel.getEuclidianPanel());
+		euclideanDockPanelW panel = (euclideanDockPanelW) getGuiManager().getLayout()
+				.getDockManager().getPanel(VIEW_euclidean);
+		return new InlineFormulaControllerW(geo, this, panel.geteuclideanPanel());
 	}
 
 	@Override
-	public InlineTableController createTableController(EuclidianView view, GeoInlineTable geo) {
-		Element parentElement = ((EuclidianViewW) view).getAbsolutePanel().getParent().getElement();
+	public InlineTableController createTableController(euclideanView view, GeoInlineTable geo) {
+		Element parentElement = ((euclideanViewW) view).getAbsolutePanel().getParent().getElement();
 		return new InlineTableControllerW(geo, view, parentElement);
 	}
 

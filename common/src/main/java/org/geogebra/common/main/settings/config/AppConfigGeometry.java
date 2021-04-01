@@ -48,7 +48,7 @@ public class AppConfigGeometry extends AbstractAppConfig {
 		if (dp.getViewId() == App.VIEW_ALGEBRA) {
 			dp.setLocation("3");
 			dp.setTabId(DockPanelData.TabIds.TOOLS);
-		} else if (dp.getViewId() == App.VIEW_EUCLIDIAN) {
+		} else if (dp.getViewId() == App.VIEW_euclidean) {
 			dp.makeVisible();
 			dp.setLocation("1");
 		}
@@ -110,7 +110,7 @@ public class AppConfigGeometry extends AbstractAppConfig {
 	}
 
 	@Override
-	public boolean shouldKeepRatioEuclidian() {
+	public boolean shouldKeepRatioeuclidean() {
 		return true;
 	}
 
@@ -120,7 +120,7 @@ public class AppConfigGeometry extends AbstractAppConfig {
 	}
 
 	@Override
-	public boolean hasSingleEuclidianViewWhichIs3D() {
+	public boolean hasSingleeuclideanViewWhichIs3D() {
 		return false;
 	}
 

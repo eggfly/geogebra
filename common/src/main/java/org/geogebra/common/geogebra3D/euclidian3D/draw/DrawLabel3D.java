@@ -1,4 +1,4 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GBufferedImage;
@@ -7,11 +7,11 @@ import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianStatic;
+import org.geogebra.common.euclidean.euclideanStatic;
 import org.geogebra.common.factories.AwtFactory;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.TextProperties;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
@@ -63,7 +63,7 @@ public class DrawLabel3D {
 	private int textureIndex = -1;
 
 	/** current view where this label is drawn */
-	protected EuclidianView3D view;
+	protected euclideanView3D view;
 
 	/** says it wait for reset */
 	private boolean waitForReset;
@@ -102,7 +102,7 @@ public class DrawLabel3D {
 	 * @param drawable
 	 *            drawable linked to this label
 	 */
-	public DrawLabel3D(EuclidianView3D view, Drawable3D drawable) {
+	public DrawLabel3D(euclideanView3D view, Drawable3D drawable) {
 		this.view = view;
 		this.drawable = drawable;
 		if (view.drawsLabels()) {
@@ -274,12 +274,12 @@ public class DrawLabel3D {
 
 	protected GRectangle getBounds() {
 		
-		GRectangle rectangle = EuclidianStatic.drawMultiLineText(
+		GRectangle rectangle = euclideanStatic.drawMultiLineText(
 				view.getApplication(), text, 0, 0, tempGraphics, false, font,
 				AwtFactory.getPrototype().newRectangle(), null);
 		if (text.contains("_")) { // text contains subscript
 			hasIndex = true;
-			GPoint p = EuclidianStatic.drawIndexedString(view.getApplication(),
+			GPoint p = euclideanStatic.drawIndexedString(view.getApplication(),
 					tempGraphics, text, 0, 0, false);
 			rectangle.setRect(rectangle.getMinX(), rectangle.getMinY(),
 					rectangle.getWidth(), rectangle.getHeight() + p.y);
@@ -327,7 +327,7 @@ public class DrawLabel3D {
 		g2d.setFont(font);
 
 		if (hasIndex) {
-			EuclidianStatic.drawIndexedString(view.getApplication(), g2d, text,
+			euclideanStatic.drawIndexedString(view.getApplication(), g2d, text,
 					0, 0, false);
 		} else {
 			g2d.drawString(text, 0, 0);

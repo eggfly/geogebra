@@ -25,7 +25,7 @@ public interface DockComponent {
 	 * Update resize weight
 	 * 
 	 * @return true if it contains a panel that takes new space (currently if
-	 *         contains an euclidian view)
+	 *         contains an euclidean view)
 	 */
 	public boolean updateResizeWeight();
 

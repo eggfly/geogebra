@@ -12,7 +12,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.kernel.scripting;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.BooleanValue;
 import org.geogebra.common.kernel.arithmetic.Command;
@@ -44,12 +44,12 @@ public class CmdShowAxes extends CmdScripting {
 	protected final GeoElement[] perform(Command c) throws MyError {
 		int n = c.getArgumentNumber();
 
-		EuclidianViewInterfaceCommon ev = null;
+		euclideanViewInterfaceCommon ev = null;
 
 		GeoElement[] arg = resArgs(c);
 		switch (n) {
 		case 0:
-			ev = app.getActiveEuclidianView();
+			ev = app.getActiveeuclideanView();
 			ev.setShowAxis(true);
 			ev.repaintView();
 			break;
@@ -59,7 +59,7 @@ public class CmdShowAxes extends CmdScripting {
 			}
 
 			boolean show = ((BooleanValue) arg[0]).getBoolean();
-			ev = app.getActiveEuclidianView();
+			ev = app.getActiveeuclideanView();
 			setAndRepaint(show, ev);
 
 			break;
@@ -75,17 +75,17 @@ public class CmdShowAxes extends CmdScripting {
 
 			switch ((int) (arg[0].evaluateDouble())) {
 			case 2:
-				if (app.hasEuclidianView2(1)) {
-					ev = app.getEuclidianView2(1);
+				if (app.haseuclideanView2(1)) {
+					ev = app.geteuclideanView2(1);
 				}
 				break;
 			case 3:
-				if (app.isEuclidianView3Dinited()) {
-					ev = app.getEuclidianView3D();
+				if (app.iseuclideanView3Dinited()) {
+					ev = app.geteuclideanView3D();
 				}
 				break;
 			default:
-				ev = app.getEuclidianView1();
+				ev = app.geteuclideanView1();
 			}
 			if (ev != null) {
 				setAndRepaint(show, ev);
@@ -99,7 +99,7 @@ public class CmdShowAxes extends CmdScripting {
 	}
 
 	private static void setAndRepaint(boolean show,
-			EuclidianViewInterfaceCommon ev) {
+			euclideanViewInterfaceCommon ev) {
 		if (ev.getSettings() != null) {
 			ev.getSettings().setShowAxes(show);
 		} else {

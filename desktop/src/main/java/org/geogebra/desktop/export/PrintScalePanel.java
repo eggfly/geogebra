@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.main.Localization;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.gui.inputfield.MyTextFieldD;
@@ -25,7 +25,7 @@ import org.geogebra.desktop.main.AppD;
 import com.himamis.retex.editor.share.util.Unicode;
 
 /**
- * Panel for print scale of EuclidianView. Notifies attached ActionListeners
+ * Panel for print scale of euclideanView. Notifies attached ActionListeners
  * about scale changes.
  * 
  * @author Markus Hohenwarter
@@ -41,7 +41,7 @@ public class PrintScalePanel extends JPanel {
 	private JTextField tfScaleFixed;
 
 	private Vector<ActionListener> listeners = new Vector<>();
-	private EuclidianView ev;
+	private euclideanView ev;
 	private NumberFormat nf;
 
 	@SuppressWarnings("rawtypes")
@@ -68,7 +68,7 @@ public class PrintScalePanel extends JPanel {
 	 *            selected view
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public PrintScalePanel(AppD app, EuclidianView ev) {
+	public PrintScalePanel(AppD app, euclideanView ev) {
 		this.ev = ev;
 		Localization loc = app.getLocalization();
 		nf = NumberFormat.getInstance(Locale.ENGLISH);

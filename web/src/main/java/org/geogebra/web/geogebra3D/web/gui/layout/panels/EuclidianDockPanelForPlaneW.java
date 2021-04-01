@@ -1,15 +1,15 @@
 package org.geogebra.web.geogebra3D.web.gui.layout.panels;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.gui.toolbar.ToolBar;
 import org.geogebra.common.io.layout.DockPanelData;
 import org.geogebra.common.main.App;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.ggbjdk.java.awt.geom.Rectangle;
-import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelWAbstract;
-import org.geogebra.web.geogebra3D.web.euclidianForPlane.EuclidianViewForPlaneW;
-import org.geogebra.web.html5.euclidian.EuclidianPanelWAbstract;
+import org.geogebra.web.full.gui.layout.panels.euclideanDockPanelWAbstract;
+import org.geogebra.web.geogebra3D.web.euclideanForPlane.euclideanViewForPlaneW;
+import org.geogebra.web.html5.euclidean.euclideanPanelWAbstract;
 import org.geogebra.web.html5.main.AppW;
 
 import com.google.gwt.canvas.client.Canvas;
@@ -21,18 +21,18 @@ import com.google.gwt.user.client.ui.Widget;
  * Dock panel for view for plane
  *
  */
-public class EuclidianDockPanelForPlaneW extends EuclidianDockPanelWAbstract
-        implements EuclidianPanelWAbstract {
+public class euclideanDockPanelForPlaneW extends euclideanDockPanelWAbstract
+        implements euclideanPanelWAbstract {
 
 	/**
 	 * default width of this panel
 	 */
 	public static final int DEFAULT_WIDTH = 480;
 
-	private EuclidianViewForPlaneW view;
+	private euclideanViewForPlaneW view;
 
 	/** pcontent panel */
-	EuclidianPanel euclidianpanel;
+	euclideanPanel euclideanpanel;
 
 	/** static foreground */
 	Canvas eview1 = null;
@@ -46,7 +46,7 @@ public class EuclidianDockPanelForPlaneW extends EuclidianDockPanelWAbstract
 	 *            view ID
 	 * 
 	 */
-	public EuclidianDockPanelForPlaneW(App app, int viewId) {
+	public euclideanDockPanelForPlaneW(App app, int viewId) {
 		super(viewId, // view id
 		        "GraphicsViewForPlaneA", // view title
 		        ToolBar.getAllToolsNoMacrosForPlane(), // toolbar string
@@ -68,9 +68,9 @@ public class EuclidianDockPanelForPlaneW extends EuclidianDockPanelWAbstract
 	 * set the view attached
 	 * 
 	 * @param view
-	 *            euclidian view
+	 *            euclidean view
 	 */
-	public void setView(EuclidianViewForPlaneW view) {
+	public void setView(euclideanViewForPlaneW view) {
 		this.view = view;
 		view.getCompanion().setDockPanel(this);
 	}
@@ -78,15 +78,15 @@ public class EuclidianDockPanelForPlaneW extends EuclidianDockPanelWAbstract
 	@Override
 	public Widget loadComponent() {
 		setViewImage(getResources().styleBar_graphics_extra());
-		if (euclidianpanel == null) {
-			euclidianpanel = new EuclidianPanel(this);
+		if (euclideanpanel == null) {
+			euclideanpanel = new euclideanPanel(this);
 			eview1 = Canvas.createIfSupported();
 			eview1.getElement().getStyle().setPosition(Style.Position.RELATIVE);
 			eview1.getElement().getStyle().setZIndex(0);
-			euclidianpanel.getAbsolutePanel().add(eview1);
+			euclideanpanel.getAbsolutePanel().add(eview1);
 		}
 
-		return euclidianpanel;
+		return euclideanpanel;
 	}
 
 	@Override
@@ -98,7 +98,7 @@ public class EuclidianDockPanelForPlaneW extends EuclidianDockPanelWAbstract
 	 * 
 	 * @return view attached in this panel
 	 */
-	public EuclidianViewForPlaneW getView() {
+	public euclideanViewForPlaneW getView() {
 		return view;
 	}
 
@@ -108,12 +108,12 @@ public class EuclidianDockPanelForPlaneW extends EuclidianDockPanelWAbstract
 	}
 
 	@Override
-	public EuclidianPanel getEuclidianPanel() {
-		return euclidianpanel;
+	public euclideanPanel geteuclideanPanel() {
+		return euclideanpanel;
 	}
 
 	@Override
-	public EuclidianView getEuclidianView() {
+	public euclideanView geteuclideanView() {
 		return view;
 	}
 
@@ -136,15 +136,15 @@ public class EuclidianDockPanelForPlaneW extends EuclidianDockPanelWAbstract
 
 	@Override
 	public void calculateEnvironment() {
-		view.getEuclidianController().calculateEnvironment();
+		view.geteuclideanController().calculateEnvironment();
 
 	}
 
 	@Override
 	public void resizeView(int width, int height) {
 
-		final EuclidianSettings settings = app.getSettings()
-				.getEuclidianForPlane(
+		final euclideanSettings settings = app.getSettings()
+				.geteuclideanForPlane(
 						view.getCompanion().getPlane()
 								.getLabelSimple());
 		settings.setPreferredSize(

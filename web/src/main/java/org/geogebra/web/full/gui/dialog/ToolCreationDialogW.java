@@ -449,7 +449,7 @@ public class ToolCreationDialogW extends DialogBoxW implements
 			returnHandler.callback(toolModel.getNewTool());
 			returnHandler = null;
 		} else {
-			appw.getActiveEuclidianView().requestFocusInWindow();
+			appw.getActiveeuclideanView().requestFocusInWindow();
 		}
 	}
 

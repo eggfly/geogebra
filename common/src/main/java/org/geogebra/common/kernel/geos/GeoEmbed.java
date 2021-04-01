@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
 import org.geogebra.common.plugin.GeoClass;
@@ -68,7 +68,7 @@ public class GeoEmbed extends GeoWidget {
 	@Override
 	public void zoomIfNeeded() {
 		if (realWidth != null && realHeight != null) {
-			EuclidianView ev = app.getActiveEuclidianView();
+			euclideanView ev = app.getActiveeuclideanView();
 
 			setSize(ev.getXscale() * realWidth, ev.getYscale() * realHeight);
 
@@ -85,7 +85,7 @@ public class GeoEmbed extends GeoWidget {
 	 * @param ev
 	 *            view
 	 */
-	public void initPosition(EuclidianViewInterfaceCommon ev) {
+	public void initPosition(euclideanViewInterfaceCommon ev) {
 		double x = ev.toRealWorldCoordX((ev.getViewWidth() - getWidth()) / 2.0);
 		double y = ev.toRealWorldCoordY((ev.getViewHeight() - getHeight()) / 2.0);
 		startPoint.setLocation(x, y);
@@ -93,9 +93,9 @@ public class GeoEmbed extends GeoWidget {
 
 	/**
 	 * Set the size to the default, and then center it in the view
-	 * @param view euclidian view
+	 * @param view euclidean view
 	 */
-	public void initDefaultPosition(EuclidianView view) {
+	public void initDefaultPosition(euclideanView view) {
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		initPosition(view);
 	}

@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoForExtrusion;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoPolyhedronPointsPrismForExtrusion;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoQuadricLimitedConicHeightCylinderForExtrusion;
@@ -28,7 +28,7 @@ public class DrawExtrusion3D extends DrawExtrusionOrConify3D {
 	 * @param selectedConics
 	 *            conics
 	 */
-	public DrawExtrusion3D(EuclidianView3D a_view3D,
+	public DrawExtrusion3D(euclideanView3D a_view3D,
 			ArrayList<GeoPolygon> selectedPolygons,
 			ArrayList<GeoConicND> selectedConics) {
 		super(a_view3D, selectedPolygons, selectedConics);

@@ -1,7 +1,7 @@
 package org.geogebra.common.properties.impl.graphics;
 
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 import org.geogebra.common.properties.BooleanProperty;
 import org.geogebra.common.properties.impl.AbstractProperty;
 
@@ -11,29 +11,29 @@ import org.geogebra.common.properties.impl.AbstractProperty;
 public class AxesColoredProperty extends AbstractProperty
 		implements BooleanProperty {
 
-	private EuclidianSettings3D euclidianSettings;
+	private euclideanSettings3D euclideanSettings;
 
 	/**
 	 * Constructs an Axes colored property.
 	 *
 	 * @param localization
 	 *            localization for the title
-	 * @param euclidianSettings
-	 *            euclidian settings
+	 * @param euclideanSettings
+	 *            euclidean settings
 	 */
 	public AxesColoredProperty(Localization localization,
-                               EuclidianSettings3D euclidianSettings) {
+                               euclideanSettings3D euclideanSettings) {
 		super(localization, "AxesColored");
-		this.euclidianSettings = euclidianSettings;
+		this.euclideanSettings = euclideanSettings;
 	}
 
 	@Override
 	public boolean getValue() {
-		return euclidianSettings.getHasColoredAxes();
+		return euclideanSettings.getHasColoredAxes();
 	}
 
 	@Override
 	public void setValue(boolean value) {
-		euclidianSettings.setHasColoredAxes(value);
+		euclideanSettings.setHasColoredAxes(value);
 	}
 }

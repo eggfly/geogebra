@@ -7,7 +7,7 @@ import org.geogebra.common.util.HttpRequest;
 import org.geogebra.common.util.Prover;
 import org.geogebra.common.util.Reflection;
 import org.geogebra.common.util.URLEncoder;
-import org.geogebra.web.html5.euclidian.profiler.FpsProfilerW;
+import org.geogebra.web.html5.euclidean.profiler.FpsProfilerW;
 import org.geogebra.web.html5.sound.GTimerW;
 import org.geogebra.web.html5.util.HttpRequestW;
 import org.geogebra.web.html5.util.ProverW;

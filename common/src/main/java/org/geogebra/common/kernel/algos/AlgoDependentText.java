@@ -18,7 +18,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.kernel.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.arithmetic.Command;
@@ -69,7 +69,7 @@ public class AlgoDependentText extends AlgoElement implements DependentAlgo {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_TEXT;
+		return euclideanConstants.MODE_TEXT;
 	}
 
 	/**

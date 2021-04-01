@@ -1,11 +1,11 @@
-package org.geogebra.common.geogebra3D.euclidian3D;
+package org.geogebra.common.geogebra3D.euclidean3D;
 
 import org.geogebra.common.main.App;
 
 /**
  * 3D controller not-displayed 3D view (this controller just avoids NPE)
  */
-public class EuclidianController3DForExport extends EuclidianController3D {
+public class euclideanController3DForExport extends euclideanController3D {
 
 	/**
 	 * constructor
@@ -13,7 +13,7 @@ public class EuclidianController3DForExport extends EuclidianController3D {
 	 * @param app
 	 *            application
 	 */
-	public EuclidianController3DForExport(App app) {
+	public euclideanController3DForExport(App app) {
 		super(app);
 		setKernel(app.getKernel());
 	}

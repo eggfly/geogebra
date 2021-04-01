@@ -1,7 +1,7 @@
 package org.geogebra.desktop.geogebra3D.gui.dialogs;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.dialog.handler.NumberInputHandler;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoPolygon;
@@ -9,7 +9,7 @@ import org.geogebra.common.kernel.kernelND.GeoDirectionND;
 import org.geogebra.common.kernel.kernelND.GeoLineND;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.desktop.geogebra3D.App3D;
-import org.geogebra.desktop.geogebra3D.euclidianForPlane.EuclidianViewForPlaneD;
+import org.geogebra.desktop.geogebra3D.euclideanForPlane.euclideanViewForPlaneD;
 import org.geogebra.desktop.gui.dialog.DialogManagerD;
 import org.geogebra.desktop.gui.dialog.InputDialogD;
 import org.geogebra.desktop.main.AppD;
@@ -32,12 +32,12 @@ public class DialogManager3D extends DialogManagerD {
 
 	@Override
 	public void showNumberInputDialogCirclePointRadius(String title,
-			GeoPointND geoPoint1, EuclidianView view) {
+			GeoPointND geoPoint1, euclideanView view) {
 		if (((GeoElement) geoPoint1).isGeoElement3D()
-				|| (view instanceof EuclidianViewForPlaneD)) {
+				|| (view instanceof euclideanViewForPlaneD)) {
 			// create a circle parallel to plane containing the view
 			showNumberInputDialogCirclePointDirectionRadius(title, geoPoint1,
-					view.getDirection(), view.getEuclidianController());
+					view.getDirection(), view.geteuclideanController());
 		} else {
 			// create 2D circle
 			super.showNumberInputDialogCirclePointRadius(title, geoPoint1,
@@ -54,7 +54,7 @@ public class DialogManager3D extends DialogManagerD {
 	@Override
 	public void showNumberInputDialogCirclePointDirectionRadius(String title,
 			GeoPointND geoPoint, GeoDirectionND forAxis,
-			EuclidianController ec) {
+			euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		InputDialogD id = new InputDialogCirclePointDirectionRadius((AppD) app,
@@ -69,7 +69,7 @@ public class DialogManager3D extends DialogManagerD {
 	 */
 	@Override
 	public void showNumberInputDialogSpherePointRadius(String title,
-			GeoPointND geoPoint, EuclidianController ec) {
+			GeoPointND geoPoint, euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		InputDialogD id = new InputDialogSpherePointRadius((AppD) app, title,
@@ -88,7 +88,7 @@ public class DialogManager3D extends DialogManagerD {
 	 */
 	@Override
 	public void showNumberInputDialogConeTwoPointsRadius(String title,
-			GeoPointND a, GeoPointND b, EuclidianController ec) {
+			GeoPointND a, GeoPointND b, euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		InputDialogD id = new InputDialogConeTwoPointsRadius((AppD) app, title,
@@ -107,7 +107,7 @@ public class DialogManager3D extends DialogManagerD {
 	 */
 	@Override
 	public void showNumberInputDialogCylinderTwoPointsRadius(String title,
-			GeoPointND a, GeoPointND b, EuclidianController ec) {
+			GeoPointND a, GeoPointND b, euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		InputDialogD id = new InputDialogCylinderTwoPointsRadius((AppD) app,
@@ -118,7 +118,7 @@ public class DialogManager3D extends DialogManagerD {
 	@Override
 	public void showNumberInputDialogRotate(String title, GeoPolygon[] polys,
 			GeoLineND[] selectedLines, GeoElement[] selGeos,
-			EuclidianController ec) {
+			euclideanController ec) {
 
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());

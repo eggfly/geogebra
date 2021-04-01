@@ -2,7 +2,7 @@ package org.geogebra.common.properties.impl.graphics;
 
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.properties.impl.AbstractEnumerableProperty;
 
 /**
@@ -11,10 +11,10 @@ import org.geogebra.common.properties.impl.AbstractEnumerableProperty;
 public class PointCapturingProperty extends AbstractEnumerableProperty {
 
     private static final int[] pointCapturingModes = {
-            EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC,
-            EuclidianStyleConstants.POINT_CAPTURING_ON,
-            EuclidianStyleConstants.POINT_CAPTURING_ON_GRID,
-            EuclidianStyleConstants.POINT_CAPTURING_OFF
+            euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC,
+            euclideanStyleConstants.POINT_CAPTURING_ON,
+            euclideanStyleConstants.POINT_CAPTURING_ON_GRID,
+            euclideanStyleConstants.POINT_CAPTURING_OFF
     };
 
     private App app;
@@ -38,7 +38,7 @@ public class PointCapturingProperty extends AbstractEnumerableProperty {
 
     @Override
     public int getIndex() {
-        int pointCapturingMode = app.getActiveEuclidianView().getPointCapturingMode();
+        int pointCapturingMode = app.getActiveeuclideanView().getPointCapturingMode();
         for (int i = 0; i < pointCapturingModes.length; i++) {
             if (pointCapturingModes[i] == pointCapturingMode) {
                 return i;
@@ -49,6 +49,6 @@ public class PointCapturingProperty extends AbstractEnumerableProperty {
 
     @Override
     protected void setValueSafe(String value, int index) {
-        app.getActiveEuclidianView().setPointCapturing(pointCapturingModes[index]);
+        app.getActiveeuclideanView().setPointCapturing(pointCapturingModes[index]);
     }
 }

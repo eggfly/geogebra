@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 /**
  * handlers type for bounding box
@@ -6,7 +6,7 @@ package org.geogebra.common.euclidian;
  * @author csilla
  *
  */
-public enum EuclidianBoundingBoxHandler {
+public enum euclideanBoundingBoxHandler {
 
 	/**
 	 * top right corner handler of bounding box
@@ -52,7 +52,7 @@ public enum EuclidianBoundingBoxHandler {
 	private int dx;
 	private int dy;
 
-	private EuclidianBoundingBoxHandler(int dx, int dy) {
+	private euclideanBoundingBoxHandler(int dx, int dy) {
 		this.dx = dx;
 		this.dy = dy;
 	}

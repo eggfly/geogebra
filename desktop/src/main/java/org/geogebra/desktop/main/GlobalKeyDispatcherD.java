@@ -12,7 +12,7 @@ import javax.swing.JRootPane;
 import javax.swing.JTable;
 import javax.swing.text.JTextComponent;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.inputfield.AutoCompleteTextField;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -21,7 +21,7 @@ import org.geogebra.common.main.GlobalKeyDispatcher;
 import org.geogebra.common.main.GuiManagerInterface;
 import org.geogebra.common.util.CopyPaste;
 import org.geogebra.common.util.FileExtensions;
-import org.geogebra.desktop.euclidian.EuclidianViewD;
+import org.geogebra.desktop.euclidean.euclideanViewD;
 import org.geogebra.desktop.gui.GuiManagerD;
 import org.geogebra.desktop.gui.app.GeoGebraFrame;
 import org.geogebra.desktop.gui.app.MyFileFilter;
@@ -148,7 +148,7 @@ public class GlobalKeyDispatcherD extends GlobalKeyDispatcher
 		return handleGeneralKeys(KeyCodes.translateJavacode(event.getKeyCode()),
 				event.isShiftDown(), AppD.isControlDown(event),
 				event.isAltDown(), event.getSource() instanceof JTable,
-				event.getSource() instanceof EuclidianViewD);
+				event.getSource() instanceof euclideanViewD);
 	}
 
 	private boolean handleSelectedGeosKeys(KeyEvent event,
@@ -191,7 +191,7 @@ public class GlobalKeyDispatcherD extends GlobalKeyDispatcher
 	@Override
 	public boolean handleTabDesktop(boolean isControlDown, boolean isShiftDown) {
 
-		app.getActiveEuclidianView().closeDropdowns();
+		app.getActiveeuclideanView().closeDropdowns();
 
 		if (isControlDown && app.isUsingFullGui()) {
 
@@ -202,7 +202,7 @@ public class GlobalKeyDispatcherD extends GlobalKeyDispatcher
 			return true;
 
 		}
-		boolean useTab = app.getActiveEuclidianView().hasFocus()
+		boolean useTab = app.getActiveeuclideanView().hasFocus()
 				|| app.getAlgebraView().hasFocus();
 
 		// make sure TAB works in Input Boxes but also in Spreadsheet, Input Bar
@@ -213,7 +213,7 @@ public class GlobalKeyDispatcherD extends GlobalKeyDispatcher
 		}
 
 		if (useTab) {
-			EuclidianView ev = app.getActiveEuclidianView();
+			euclideanView ev = app.getActiveeuclideanView();
 
 			ev.closeDropdowns();
 

@@ -186,7 +186,7 @@ public abstract class AlgoQuadricLimitedConicHeight extends AlgoElement3D {
 	// FOR PREVIEWABLE
 	// /////////////////////////////////////////////////////
 
-	public void setOutputPointsEuclidianVisible(boolean b) {
+	public void setOutputPointseuclideanVisible(boolean b) {
 		//
 	}
 
@@ -206,9 +206,9 @@ public abstract class AlgoQuadricLimitedConicHeight extends AlgoElement3D {
 	 * @param b
 	 *            whether side and top should be visible
 	 */
-	public void setOutputOtherEuclidianVisible(boolean b) {
-		side.setEuclidianVisible(b);
-		top.setEuclidianVisible(b);
+	public void setOutputOthereuclideanVisible(boolean b) {
+		side.seteuclideanVisible(b);
+		top.seteuclideanVisible(b);
 	}
 
 	/**

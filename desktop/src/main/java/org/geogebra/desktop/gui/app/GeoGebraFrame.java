@@ -56,7 +56,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import org.geogebra.common.GeoGebraConstants;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.UtilFactory;
 import org.geogebra.common.jre.util.DownloadManager;
 import org.geogebra.common.kernel.Kernel;
@@ -70,9 +70,9 @@ import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.AppId;
 import org.geogebra.desktop.CommandLineArguments;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.export.GraphicExportDialog;
-import org.geogebra.desktop.geogebra3D.euclidian3D.EuclidianView3DD;
+import org.geogebra.desktop.geogebra3D.euclidean3D.euclideanView3DD;
 import org.geogebra.desktop.gui.FileDropTargetListener;
 import org.geogebra.desktop.gui.GuiManagerD;
 import org.geogebra.desktop.gui.dialog.DialogManagerD;
@@ -210,7 +210,7 @@ public class GeoGebraFrame extends JFrame
 			}
 
 			super.setVisible(true);
-			app.getActiveEuclidianView().requestFocusInWindow();
+			app.getActiveeuclideanView().requestFocusInWindow();
 		} else {
 			if (!isShowing()) {
 				return;
@@ -485,8 +485,8 @@ public class GeoGebraFrame extends JFrame
 			 * // init CAS app.getKernel().getGeoGebraCAS();
 			 * 
 			 * // init JLaTeXMath Graphics2D g2d =
-			 * app.getEuclidianView().g2Dtemp; Drawable.drawEquation(app,
-			 * app.getEuclidianView().g2Dtemp, 0, 0, "x^{2}", g2d.getFont(),
+			 * app.geteuclideanView().g2Dtemp; Drawable.drawEquation(app,
+			 * app.geteuclideanView().g2Dtemp, 0, 0, "x^{2}", g2d.getFont(),
 			 * false, Color.BLACK, Color.WHITE); } };
 			 */
 			Thread runner = GeoGebraFrame.createAppThread(app);
@@ -536,7 +536,7 @@ public class GeoGebraFrame extends JFrame
 
 			// init JLaTeXMath
 			// Graphics2D g2d =
-			// this.app.getEuclidianView1().getTempGraphics2D();
+			// this.app.geteuclideanView1().getTempGraphics2D();
 			// app.getDrawEquation().drawEquation(this.app, null,
 			// new GGraphics2DD(g2d), 0, 0, "x^{2}",
 			// new GFontD(g2d.getFont()), false,
@@ -866,7 +866,7 @@ public class GeoGebraFrame extends JFrame
 			final int dpi = Integer
 					.parseInt("".equals(dpiStr) ? "300" : dpiStr);
 
-			final EuclidianView ev = app.getActiveEuclidianView();
+			final euclideanView ev = app.getActiveeuclideanView();
 			final String filename0 = args.getStringValue("exportAnimation");
 
 			final String extension = StringUtil.getFileExtensionStr(filename0);
@@ -874,9 +874,9 @@ public class GeoGebraFrame extends JFrame
 			final String filename = StringUtil.removeFileExtension(filename0);
 
 			GeoElement export1 = app.getKernel()
-					.lookupLabel(EuclidianView.EXPORT1);
+					.lookupLabel(euclideanView.EXPORT1);
 			GeoElement export2 = app.getKernel()
-					.lookupLabel(EuclidianView.EXPORT2);
+					.lookupLabel(euclideanView.EXPORT2);
 
 			if ("gif".equals(extension) && export1 != null && export2 != null) {
 				// maximize window
@@ -1018,7 +1018,7 @@ public class GeoGebraFrame extends JFrame
 						File file = new File(filename + i + "." + extension);
 
 						GraphicExportDialog.export(extension,
-								(EuclidianViewInterfaceD) ev, file, transparent,
+								(euclideanViewInterfaceD) ev, file, transparent,
 								dpi, exportScale, textAsShapes, useEMFplus,
 								pixelWidth, pixelHeight, app);
 
@@ -1049,13 +1049,13 @@ public class GeoGebraFrame extends JFrame
 			Log.debug("attempting to export: " + filename + " at " + dpiStr
 					+ "dpi");
 
-			// wait for EuclidianView etc to initialize before export
+			// wait for euclideanView etc to initialize before export
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
 
-					EuclidianViewInterfaceD ev = (EuclidianViewInterfaceD) app
-							.getActiveEuclidianView();
+					euclideanViewInterfaceD ev = (euclideanViewInterfaceD) app
+							.getActiveeuclideanView();
 					try {
 
 						boolean export3D = false;
@@ -1063,12 +1063,12 @@ public class GeoGebraFrame extends JFrame
 						// if 3D view exists, assume that we should export
 						// that
 						// (only PNG supported right now for 3D)
-						if (app.isEuclidianView3Dinited()) {
+						if (app.iseuclideanView3Dinited()) {
 
 							if ("png".equals(extension)) {
 								Log.debug("exporting 3D View");
-								ev = (EuclidianView3DD) app
-										.getEuclidianView3D();
+								ev = (euclideanView3DD) app
+										.geteuclideanView3D();
 
 								export3D = true;
 							}

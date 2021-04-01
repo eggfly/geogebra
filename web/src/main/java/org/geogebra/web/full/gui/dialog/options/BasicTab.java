@@ -3,14 +3,14 @@ package org.geogebra.web.full.gui.dialog.options;
 import java.util.Collection;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.gui.dialog.handler.ColorChangeHandler;
-import org.geogebra.common.gui.dialog.options.model.EuclidianOptionsModel;
-import org.geogebra.common.gui.dialog.options.model.EuclidianOptionsModel.MinMaxType;
+import org.geogebra.common.gui.dialog.options.model.euclideanOptionsModel;
+import org.geogebra.common.gui.dialog.options.model.euclideanOptionsModel.MinMaxType;
 import org.geogebra.common.gui.view.consprotocol.ConstructionProtocolNavigation;
 import org.geogebra.common.kernel.StringTemplate;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.web.full.css.MaterialDesignResources;
 import org.geogebra.web.full.gui.util.GeoGebraIconW;
 import org.geogebra.web.full.gui.util.MyCJButton;
@@ -34,12 +34,12 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 
-public class BasicTab extends OptionsEuclidianW.EuclidianTab {
+public class BasicTab extends OptionseuclideanW.euclideanTab {
 
 	/**
 	 * 
 	 */
-	private final OptionsEuclidianW optionsEuclidianW;
+	private final OptionseuclideanW optionseuclideanW;
 	private Label dimTitle;
 	private FormLabel[] dimLabel;
 	private AutoCompleteTextFieldW[] dimField;
@@ -75,18 +75,18 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 	protected CheckBox cbAxisLabelBold;
 	protected CheckBox cbAxisLabelItalic;
 	protected FlowPanel miscPanel;
-	private EuclidianOptionsModel model;
+	private euclideanOptionsModel model;
 	ListBox rightAngleStyleListBox;
 	ListBox lbTooltips;
 
 	/**
-	 * @param optionsEuclidianW
-	 *            euclidian options panel
+	 * @param optionseuclideanW
+	 *            euclidean options panel
 	 */
-	public BasicTab(OptionsEuclidianW optionsEuclidianW) {
+	public BasicTab(OptionseuclideanW optionseuclideanW) {
 		super();
-		this.optionsEuclidianW = optionsEuclidianW;
-		this.model = optionsEuclidianW.model;
+		this.optionseuclideanW = optionseuclideanW;
+		this.model = optionseuclideanW.model;
 		addDimensionPanel();
 		addAxesOptionsPanel();
 		addConsProtocolPanel();
@@ -102,7 +102,7 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 			public void keyReleased(KeyEvent e) {
 				if (e.isEnterKey()) {
 					model.applyMinMax(tf.getText(), type);
-					BasicTab.this.optionsEuclidianW.updateView();
+					BasicTab.this.optionseuclideanW.updateView();
 				}
 			}
 		});
@@ -112,7 +112,7 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 			@Override
 			public void onBlur(BlurEvent event) {
 				model.applyMinMax(tf.getText(), type);
-				BasicTab.this.optionsEuclidianW.updateView();
+				BasicTab.this.optionseuclideanW.updateView();
 			}
 		});
 
@@ -122,15 +122,15 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 		if (text == null || "".equals(text)) {
 			return Double.NaN;
 		}
-		return this.optionsEuclidianW.app.getKernel().getAlgebraProcessor()
+		return this.optionseuclideanW.app.getKernel().getAlgebraProcessor()
 				.evaluateToDouble(text);
 	}
 
 	void applyAxesRatio() {
-		this.optionsEuclidianW.model.applyAxesRatio(
+		this.optionseuclideanW.model.applyAxesRatio(
 				parseDouble(tfAxesRatioX.getText()),
 				parseDouble(tfAxesRatioY.getText()));
-		this.optionsEuclidianW.updateView();
+		this.optionseuclideanW.updateView();
 	}
 
 	private void addAxesRatioHandler(final AutoCompleteTextFieldW tf) {
@@ -157,15 +157,15 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 	private void addDimensionPanel() {
 		dimTitle = new Label("");
 		dimTitle.setStyleName("panelTitle");
-		int dimension = this.optionsEuclidianW.view.getDimension();
+		int dimension = this.optionseuclideanW.view.getDimension();
 		dimLabel = new FormLabel[dimension * 2]; // "Xmin", "Xmax" etc.
 		dimField = new AutoCompleteTextFieldW[dimension * 2];
 
-		tfAxesRatioX = this.optionsEuclidianW.getTextField();
-		tfAxesRatioY = this.optionsEuclidianW.getTextField();
+		tfAxesRatioX = this.optionseuclideanW.getTextField();
+		tfAxesRatioY = this.optionseuclideanW.getTextField();
 
-		enableAxesRatio(this.optionsEuclidianW.view.isZoomable()
-				&& !this.optionsEuclidianW.view.isLockedAxesRatio());
+		enableAxesRatio(this.optionseuclideanW.view.isZoomable()
+				&& !this.optionseuclideanW.view.isLockedAxesRatio());
 
 		imgLock = new Image(new ImageResourcePrototype(null,
 				MaterialDesignResources.INSTANCE.lock_black()
@@ -178,8 +178,8 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 						0, 0, 18, 18, false, false));
 
 		tbLockRatio = new GToggleButton(imgLock);
-		tbLockRatio.setValue(this.optionsEuclidianW.view.isLockedAxesRatio());
-		tbLockRatio.setEnabled(this.optionsEuclidianW.view.isZoomable());
+		tbLockRatio.setValue(this.optionseuclideanW.view.isLockedAxesRatio());
+		tbLockRatio.setEnabled(this.optionseuclideanW.view.isZoomable());
 
 		axesRatioLabel = new Label("");
 
@@ -197,7 +197,7 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 		}
 		for (int i = 0; i < fields.length; i++) {
 			dimLabel[i] = new FormLabel();
-			dimField[i] = this.optionsEuclidianW.getTextField();
+			dimField[i] = this.optionseuclideanW.getTextField();
 			axisRangePanel[i] = new FlowPanel();
 			axisRangePanel[i].setStyleName("panelRowCell");
 			axisRangePanel[i].add(dimLabel[i].setFor(dimField[i]));
@@ -255,27 +255,27 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 		axesOptionsTitle.setStyleName("panelTitle");
 		// show axes checkbox
 		cbShowAxes = new CheckBox(
-				this.optionsEuclidianW.loc.getMenu("ShowAxes"));
+				this.optionseuclideanW.loc.getMenu("ShowAxes"));
 
 		// show bold checkbox
-		cbBoldAxes = new CheckBox(this.optionsEuclidianW.loc.getMenu("Bold"));
+		cbBoldAxes = new CheckBox(this.optionseuclideanW.loc.getMenu("Bold"));
 
 		// axes color
 		colorLabel = new Label(
-				this.optionsEuclidianW.loc.getMenu("Color") + ":");
+				this.optionseuclideanW.loc.getMenu("Color") + ":");
 
 		lblAxisLabelStyle = new Label(
-				this.optionsEuclidianW.loc.getMenu("LabelStyle") + ":");
+				this.optionseuclideanW.loc.getMenu("LabelStyle") + ":");
 		// show axis label bold checkbox
 		cbAxisLabelBold = new CheckBox(
-				this.optionsEuclidianW.loc.getMenu("Bold"));
+				this.optionseuclideanW.loc.getMenu("Bold"));
 
 		cbAxisLabelSerif = new CheckBox(
-				this.optionsEuclidianW.loc.getMenu("Serif"));
+				this.optionseuclideanW.loc.getMenu("Serif"));
 
 		// show axis label italic checkbox
 		cbAxisLabelItalic = new CheckBox(
-				this.optionsEuclidianW.loc.getMenu("Italic"));
+				this.optionseuclideanW.loc.getMenu("Italic"));
 
 		btAxesColor = new MyCJButton();
 
@@ -283,7 +283,7 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				BasicTab.this.optionsEuclidianW.getDialogManager()
+				BasicTab.this.optionseuclideanW.getDialogManager()
 						.showColorChooserDialog(model.getAxesColor(),
 								new ColorChangeHandler() {
 
@@ -328,27 +328,27 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 
 		// axes style
 		lineStyle = new Label(
-				this.optionsEuclidianW.loc.getMenu("LineStyle") + ":");
-		final ImageOrText[] iconArray = new ImageOrText[EuclidianOptionsModel
+				this.optionseuclideanW.loc.getMenu("LineStyle") + ":");
+		final ImageOrText[] iconArray = new ImageOrText[euclideanOptionsModel
 				.getAxesStyleLength()];
 		for (int i = 0; i < iconArray.length; i++) {
 			iconArray[i] = GeoGebraIconW.createAxesStyleIcon(
-					EuclidianStyleConstants.getLineStyleOptions(i));
+					euclideanStyleConstants.getLineStyleOptions(i));
 		}
 
-		axesStylePopup = new PopupMenuButtonW(this.optionsEuclidianW.app,
+		axesStylePopup = new PopupMenuButtonW(this.optionseuclideanW.app,
 				iconArray, -1, 1,
 				org.geogebra.common.gui.util.SelectionTable.MODE_ICON) {
 			@Override
 			public void handlePopupActionEvent() {
 				int idx = getSelectedIndex();
 
-				model.applyAxesStyle(EuclidianStyleConstants
+				model.applyAxesStyle(euclideanStyleConstants
 						.getLineStyleOptions(idx)
 						// make sure bold checkbox doesn't change
 						+ (cbBoldAxes.getValue()
-								? EuclidianStyleConstants.AXES_BOLD : 0));
-				BasicTab.this.optionsEuclidianW.updateView();
+								? euclideanStyleConstants.AXES_BOLD : 0));
+				BasicTab.this.optionseuclideanW.updateView();
 				super.handlePopupActionEvent();
 
 			}
@@ -364,8 +364,8 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 			@Override
 			public void onClick(ClickEvent event) {
 				setShowAxes(cbShowAxes.getValue());
-				BasicTab.this.optionsEuclidianW.updateView();
-				BasicTab.this.optionsEuclidianW.app.storeUndoInfo();
+				BasicTab.this.optionseuclideanW.updateView();
+				BasicTab.this.optionseuclideanW.app.storeUndoInfo();
 			}
 		});
 
@@ -375,7 +375,7 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 			public void onClick(ClickEvent event) {
 				model.applyBoldAxes(cbBoldAxes.getValue(),
 						cbShowAxes.getValue());
-				BasicTab.this.optionsEuclidianW.updateView();
+				BasicTab.this.optionseuclideanW.updateView();
 			}
 		});
 
@@ -407,9 +407,9 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 	}
 
 	protected void setShowAxes(Boolean value) {
-		this.optionsEuclidianW.model.showAxes(value);
-		this.optionsEuclidianW.xAxisTab.setShowAxis(value);
-		this.optionsEuclidianW.yAxisTab.setShowAxis(value);
+		this.optionseuclideanW.model.showAxes(value);
+		this.optionseuclideanW.xAxisTab.setShowAxis(value);
+		this.optionseuclideanW.yAxisTab.setShowAxis(value);
 	}
 
 	protected void fillAxesOptionsPanel() {
@@ -422,23 +422,23 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 
 	void togglePlayButton() {
 
-		Collection<ConstructionProtocolNavigation> cpns = this.optionsEuclidianW.app
+		Collection<ConstructionProtocolNavigation> cpns = this.optionseuclideanW.app
 				.getGuiManager().getAllCPNavigations();
 		for (ConstructionProtocolNavigation cpn : cpns) {
 			cpn.setPlayButtonVisible(!cpn.isPlayButtonVisible());
 		}
-		this.optionsEuclidianW.app.setUnsaved();
-		this.optionsEuclidianW.updateGUI();
+		this.optionseuclideanW.app.setUnsaved();
+		this.optionseuclideanW.updateGUI();
 	}
 
 	void toggleConsProtButton() {
-		Collection<ConstructionProtocolNavigation> cpns = this.optionsEuclidianW.app
+		Collection<ConstructionProtocolNavigation> cpns = this.optionseuclideanW.app
 				.getGuiManager().getAllCPNavigations();
 		for (ConstructionProtocolNavigation cpn : cpns) {
 			cpn.setConsProtButtonVisible(!cpn.isConsProtButtonVisible());
 		}
-		this.optionsEuclidianW.app.setUnsaved();
-		this.optionsEuclidianW.updateGUI();
+		this.optionseuclideanW.app.setUnsaved();
+		this.optionseuclideanW.updateGUI();
 	}
 
 	private void addConsProtocolPanel() {
@@ -471,9 +471,9 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				BasicTab.this.optionsEuclidianW.app
+				BasicTab.this.optionseuclideanW.app
 						.toggleShowConstructionProtocolNavigation(
-								BasicTab.this.optionsEuclidianW.view
+								BasicTab.this.optionseuclideanW.view
 										.getViewID());
 				cbNavPlay.setEnabled(cbShowNavbar.getValue());
 				cbOpenConsProtocol.setEnabled(cbShowNavbar.getValue());
@@ -499,19 +499,19 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 
 	protected void applyBackgroundColor(GColor color) {
 		int viewIdx = 0;
-		if (this.optionsEuclidianW.view == this.optionsEuclidianW.app
-				.getEuclidianView1()) {
+		if (this.optionseuclideanW.view == this.optionseuclideanW.app
+				.geteuclideanView1()) {
 			viewIdx = 1;
-		} else if (this.optionsEuclidianW.app
-				.hasEuclidianView2EitherShowingOrNot(1)
-				&& this.optionsEuclidianW.view == this.optionsEuclidianW.app
-						.getEuclidianView2(1)) {
+		} else if (this.optionseuclideanW.app
+				.haseuclideanView2EitherShowingOrNot(1)
+				&& this.optionseuclideanW.view == this.optionseuclideanW.app
+						.geteuclideanView2(1)) {
 			viewIdx = 2;
-		} else if (this.optionsEuclidianW.app
-				.isEuclidianView3D(this.optionsEuclidianW.view)) {
+		} else if (this.optionseuclideanW.app
+				.iseuclideanView3D(this.optionseuclideanW.view)) {
 			viewIdx = 3;
 		}
-		this.optionsEuclidianW.model.applyBackgroundColor(viewIdx, color);
+		this.optionseuclideanW.model.applyBackgroundColor(viewIdx, color);
 	}
 
 	protected void addMiscPanel() {
@@ -519,7 +519,7 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 		miscTitle.setStyleName("panelTitle");
 		// background color panel
 		backgroundColorLabel = new Label(
-				this.optionsEuclidianW.loc.getMenu("BackgroundColor") + ":");
+				this.optionseuclideanW.loc.getMenu("BackgroundColor") + ":");
 
 		btBackgroundColor = new MyCJButton();
 
@@ -530,15 +530,15 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 		this.lbTooltips = new ListBox();
 		fillTooltipCombo();
 		tooltips = new FormLabel(
-				this.optionsEuclidianW.loc.getMenu("Tooltips") + ":")
+				this.optionseuclideanW.loc.getMenu("Tooltips") + ":")
 						.setFor(lbTooltips);
 
 		this.rightAngleStyleListBox = new ListBox();
 		updateRightAngleCombo();
 		rightAngleStyleListBox
-				.setSelectedIndex(optionsEuclidianW.view.getRightAngleStyle());
+				.setSelectedIndex(optionseuclideanW.view.getRightAngleStyle());
 		rightAngleStyleLabel = new FormLabel(
-				this.optionsEuclidianW.loc.getMenu("RightAngleStyle") + ":")
+				this.optionseuclideanW.loc.getMenu("RightAngleStyle") + ":")
 						.setFor(rightAngleStyleListBox);
 		miscPanel = new FlowPanel();
 		add(miscTitle);
@@ -551,7 +551,7 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				BasicTab.this.optionsEuclidianW.getDialogManager()
+				BasicTab.this.optionseuclideanW.getDialogManager()
 						.showColorChooserDialog(model.getBackgroundColor(),
 								new ColorChangeHandler() {
 
@@ -635,54 +635,54 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 
 	@Override
 	public void setLabels() {
-		dimTitle.setText(this.optionsEuclidianW.loc.getMenu("Dimensions"));
+		dimTitle.setText(this.optionseuclideanW.loc.getMenu("Dimensions"));
 
-		dimLabel[0].setText(this.optionsEuclidianW.loc.getMenu("xmin") + ":");
-		dimLabel[1].setText(this.optionsEuclidianW.loc.getMenu("xmax") + ":");
-		dimLabel[2].setText(this.optionsEuclidianW.loc.getMenu("ymin") + ":");
-		dimLabel[3].setText(this.optionsEuclidianW.loc.getMenu("ymax") + ":");
-		axesRatioLabel.setText(this.optionsEuclidianW.loc.getMenu("xAxis")
-				+ " : " + this.optionsEuclidianW.loc.getMenu("yAxis"));
+		dimLabel[0].setText(this.optionseuclideanW.loc.getMenu("xmin") + ":");
+		dimLabel[1].setText(this.optionseuclideanW.loc.getMenu("xmax") + ":");
+		dimLabel[2].setText(this.optionseuclideanW.loc.getMenu("ymin") + ":");
+		dimLabel[3].setText(this.optionseuclideanW.loc.getMenu("ymax") + ":");
+		axesRatioLabel.setText(this.optionseuclideanW.loc.getMenu("xAxis")
+				+ " : " + this.optionseuclideanW.loc.getMenu("yAxis"));
 
-		axesOptionsTitle.setText(this.optionsEuclidianW.loc.getMenu("Axes"));
-		cbShowAxes.setText(this.optionsEuclidianW.loc.getMenu("ShowAxes"));
-		cbBoldAxes.setText(this.optionsEuclidianW.loc.getMenu("Bold"));
-		colorLabel.setText(this.optionsEuclidianW.loc.getMenu("Color") + ":");
+		axesOptionsTitle.setText(this.optionseuclideanW.loc.getMenu("Axes"));
+		cbShowAxes.setText(this.optionseuclideanW.loc.getMenu("ShowAxes"));
+		cbBoldAxes.setText(this.optionseuclideanW.loc.getMenu("Bold"));
+		colorLabel.setText(this.optionseuclideanW.loc.getMenu("Color") + ":");
 		lineStyle
-				.setText(this.optionsEuclidianW.loc.getMenu("LineStyle") + ":");
+				.setText(this.optionseuclideanW.loc.getMenu("LineStyle") + ":");
 
-		miscTitle.setText(this.optionsEuclidianW.loc.getMenu("Miscellaneous"));
+		miscTitle.setText(this.optionseuclideanW.loc.getMenu("Miscellaneous"));
 		backgroundColorLabel.setText(
-				this.optionsEuclidianW.loc.getMenu("BackgroundColor") + ":");
+				this.optionseuclideanW.loc.getMenu("BackgroundColor") + ":");
 		int index = this.lbTooltips.getSelectedIndex();
 
 		fillTooltipCombo();
 		this.lbTooltips.setSelectedIndex(index);
 		cbShowMouseCoords.setText(
-				this.optionsEuclidianW.loc.getMenu("ShowMouseCoordinates"));
+				this.optionseuclideanW.loc.getMenu("ShowMouseCoordinates"));
 
 		index = this.rightAngleStyleListBox.getSelectedIndex();
 
 		updateRightAngleCombo();
 		this.rightAngleStyleListBox.setSelectedIndex(index);
 
-		consProtocolTitle.setText(this.optionsEuclidianW.loc
+		consProtocolTitle.setText(this.optionseuclideanW.loc
 				.getMenu("ConstructionProtocolNavigation"));
 
-		cbShowNavbar.setText(this.optionsEuclidianW.loc.getMenu("Show"));
-		cbNavPlay.setText(this.optionsEuclidianW.loc.getMenu("PlayButton"));
-		cbOpenConsProtocol.setText(this.optionsEuclidianW.loc
+		cbShowNavbar.setText(this.optionseuclideanW.loc.getMenu("Show"));
+		cbNavPlay.setText(this.optionseuclideanW.loc.getMenu("PlayButton"));
+		cbOpenConsProtocol.setText(this.optionseuclideanW.loc
 				.getMenu("ConstructionProtocolButton"));
 
 		lblAxisLabelStyle.setText(
-				this.optionsEuclidianW.loc.getMenu("LabelStyle") + ":");
-		cbAxisLabelSerif.setText(this.optionsEuclidianW.loc.getMenu("Serif"));
-		cbAxisLabelBold.setText(this.optionsEuclidianW.loc.getMenu("Bold"));
-		cbAxisLabelItalic.setText(this.optionsEuclidianW.loc.getMenu("Italic"));
-		tooltips.setText(this.optionsEuclidianW.loc.getMenu("Tooltips") + ":");
+				this.optionseuclideanW.loc.getMenu("LabelStyle") + ":");
+		cbAxisLabelSerif.setText(this.optionseuclideanW.loc.getMenu("Serif"));
+		cbAxisLabelBold.setText(this.optionseuclideanW.loc.getMenu("Bold"));
+		cbAxisLabelItalic.setText(this.optionseuclideanW.loc.getMenu("Italic"));
+		tooltips.setText(this.optionseuclideanW.loc.getMenu("Tooltips") + ":");
 
 		rightAngleStyleLabel.setText(
-				this.optionsEuclidianW.loc.getMenu("RightAngleStyle") + ":");
+				this.optionseuclideanW.loc.getMenu("RightAngleStyle") + ":");
 	}
 
 	private void fillTooltipCombo() {
@@ -755,9 +755,9 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 	 */
 	public final void updateAxes(GColor color) {
 		// btAxesColor.setForeground(new GColorW(view.getAxesColor()));
-		cbShowAxes.setValue(this.optionsEuclidianW.view.getShowXaxis()
-				&& this.optionsEuclidianW.view.getShowYaxis());
-		cbBoldAxes.setValue(this.optionsEuclidianW.view.areAxesBold());
+		cbShowAxes.setValue(this.optionseuclideanW.view.getShowXaxis()
+				&& this.optionseuclideanW.view.getShowYaxis());
+		cbBoldAxes.setValue(this.optionseuclideanW.view.areAxesBold());
 		updateAxesColorButton(color);
 	}
 
@@ -790,7 +790,7 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 	public void updateConsProtocolPanel(boolean isVisible) {
 		// cons protocol panel
 		cbShowNavbar.setValue(isVisible);
-		ConstructionProtocolNavigation cpn = this.optionsEuclidianW.app
+		ConstructionProtocolNavigation cpn = this.optionseuclideanW.app
 				.getGuiManager().getCPNavigationIfExists();
 		cbNavPlay.setValue(cpn == null || cpn.isPlayButtonVisible());
 		cbOpenConsProtocol
@@ -813,16 +813,16 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 	}
 
 	protected void updateMinMax() {
-		this.optionsEuclidianW.view.updateBoundObjects();
+		this.optionseuclideanW.view.updateBoundObjects();
 
 			setMinMaxText(
-					this.optionsEuclidianW.view.getXminObject()
+					this.optionseuclideanW.view.getXminObject()
 							.getLabel(StringTemplate.editTemplate),
-					this.optionsEuclidianW.view.getXmaxObject()
+					this.optionseuclideanW.view.getXmaxObject()
 							.getLabel(StringTemplate.editTemplate),
-					this.optionsEuclidianW.view.getYminObject()
+					this.optionseuclideanW.view.getYminObject()
 							.getLabel(StringTemplate.editTemplate),
-					this.optionsEuclidianW.view.getYmaxObject()
+					this.optionseuclideanW.view.getYmaxObject()
 							.getLabel(StringTemplate.editTemplate));
 	}
 
@@ -833,14 +833,14 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 
 		updateMinMax();
 
-		double xscale = this.optionsEuclidianW.view.getXscale();
-		double yscale = this.optionsEuclidianW.view.getYscale();
+		double xscale = this.optionseuclideanW.view.getXscale();
+		double yscale = this.optionseuclideanW.view.getYscale();
 		if (xscale >= yscale) {
 			tfAxesRatioX.setText("1");
-			tfAxesRatioY.setText(this.optionsEuclidianW.app.getKernel()
+			tfAxesRatioY.setText(this.optionseuclideanW.app.getKernel()
 					.format(xscale / yscale, StringTemplate.editTemplate));
 		} else {
-			tfAxesRatioX.setText(this.optionsEuclidianW.app.getKernel()
+			tfAxesRatioX.setText(this.optionseuclideanW.app.getKernel()
 					.format(yscale / xscale, StringTemplate.editTemplate));
 			tfAxesRatioY.setText("1");
 		}
@@ -851,7 +851,7 @@ public class BasicTab extends OptionsEuclidianW.EuclidianTab {
 		return dimLabel;
 	}
 
-	public OptionsEuclidianW getOptionsEuclidianW() {
-		return optionsEuclidianW;
+	public OptionseuclideanW getOptionseuclideanW() {
+		return optionseuclideanW;
 	}
 }

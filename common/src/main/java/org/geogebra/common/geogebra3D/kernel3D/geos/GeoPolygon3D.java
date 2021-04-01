@@ -2,7 +2,7 @@ package org.geogebra.common.geogebra3D.kernel3D.geos;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidianForPlane.EuclidianViewForPlaneCompanionInterface;
+import org.geogebra.common.euclideanForPlane.euclideanViewForPlaneCompanionInterface;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoJoinPoints3D;
 import org.geogebra.common.geogebra3D.kernel3D.transform.MirrorableAtPlane;
 import org.geogebra.common.kernel.Construction;
@@ -53,7 +53,7 @@ public class GeoPolygon3D extends GeoPolygon implements GeoPolygon3DInterface,
 	private boolean createSegments = true;
 	private ArrayList<GeoPoint3D> points3DArray;
 
-	private EuclidianViewForPlaneCompanionInterface euclidianViewForPlane;
+	private euclideanViewForPlaneCompanionInterface euclideanViewForPlane;
 
 	private CoordMatrix4x4 tmpMatrix4x4;
 
@@ -156,25 +156,25 @@ public class GeoPolygon3D extends GeoPolygon implements GeoPolygon3DInterface,
 	 */
 	@Override
 	public GeoSegmentND createSegment(Construction cons1, GeoPointND startPoint,
-			GeoPointND endPoint, boolean euclidianVisible) {
+			GeoPointND endPoint, boolean euclideanVisible) {
 
 		// if start and end points are both 2D, then use super method
 		if (!startPoint.isGeoElement3D() && !endPoint.isGeoElement3D()) {
 			return super.createSegmentOwnDimension(cons1, startPoint, endPoint,
-					euclidianVisible);
+					euclideanVisible);
 		}
-		return createSegmentOwnDimension(cons1, startPoint, endPoint, euclidianVisible);
+		return createSegmentOwnDimension(cons1, startPoint, endPoint, euclideanVisible);
 	}
 
 	@Override
 	public GeoSegmentND createSegmentOwnDimension(Construction cons1, GeoPointND startPoint,
-			GeoPointND endPoint, boolean euclidianVisible) {
+			GeoPointND endPoint, boolean euclideanVisible) {
 		AlgoJoinPoints3D algoSegment = new AlgoJoinPoints3D(cons, startPoint,
 				endPoint, this, GeoClass.SEGMENT3D);
 		cons.removeFromConstructionList(algoSegment);
 
 		return createSegment((GeoSegmentND) algoSegment.getCS(),
-				euclidianVisible);
+				euclideanVisible);
 	}
 
 	/**
@@ -232,8 +232,8 @@ public class GeoPolygon3D extends GeoPolygon implements GeoPolygon3DInterface,
 	}
 
 	@Override
-	public void setEuclidianVisible(boolean visible) {
-		setEuclidianVisible(visible, createSegments);
+	public void seteuclideanVisible(boolean visible) {
+		seteuclideanVisible(visible, createSegments);
 
 	}
 
@@ -596,37 +596,37 @@ public class GeoPolygon3D extends GeoPolygon implements GeoPolygon3DInterface,
 
 	@Override
 	public int getViewID() {
-		return euclidianViewForPlane.getId();
+		return euclideanViewForPlane.getId();
 	}
 
 	@Override
 	public void createView2D() {
-		euclidianViewForPlane = kernel
+		euclideanViewForPlane = kernel
 				.getApplication().getCompanion()
-				.createEuclidianViewForPlane(this, true);
-		euclidianViewForPlane.setTransformRegardingView();
+				.createeuclideanViewForPlane(this, true);
+		euclideanViewForPlane.setTransformRegardingView();
 	}
 
 	@Override
 	public void removeView2D() {
-		euclidianViewForPlane.doRemove();
+		euclideanViewForPlane.doRemove();
 	}
 
 	@Override
-	public void setEuclidianViewForPlane(
-			EuclidianViewForPlaneCompanionInterface view) {
-		euclidianViewForPlane = view;
+	public void seteuclideanViewForPlane(
+			euclideanViewForPlaneCompanionInterface view) {
+		euclideanViewForPlane = view;
 	}
 
 	@Override
 	public boolean hasView2DVisible() {
-		return euclidianViewForPlane != null && kernel.getApplication()
-				.getGuiManager().showView(euclidianViewForPlane.getId());
+		return euclideanViewForPlane != null && kernel.getApplication()
+				.getGuiManager().showView(euclideanViewForPlane.getId());
 	}
 
 	@Override
 	public void setView2DVisible(boolean flag) {
-		if (euclidianViewForPlane == null) {
+		if (euclideanViewForPlane == null) {
 			if (flag) {
 				createView2D();
 			}
@@ -634,21 +634,21 @@ public class GeoPolygon3D extends GeoPolygon implements GeoPolygon3DInterface,
 		}
 
 		kernel.getApplication().getGuiManager().setShowView(flag,
-				euclidianViewForPlane.getId());
+				euclideanViewForPlane.getId());
 
 	}
 
 	@Override
 	public void update(boolean drag) {
 		super.update(drag);
-		if (euclidianViewForPlane != null) {
-			euclidianViewForPlane.updateForPlane();
+		if (euclideanViewForPlane != null) {
+			euclideanViewForPlane.updateForPlane();
 		}
 	}
 
 	@Override
 	public void doRemove() {
-		if (euclidianViewForPlane != null) {
+		if (euclideanViewForPlane != null) {
 			removeView2D();
 		}
 		super.doRemove();

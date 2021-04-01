@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.smallscreen;
+package org.geogebra.common.euclidean.smallscreen;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.AbsoluteScreenLocateable;
 import org.geogebra.common.kernel.geos.GeoBoolean;
@@ -30,7 +30,7 @@ public class LayoutAbsoluteGeos {
 	private List<AbsoluteScreenLocateable> originals = new ArrayList<>();
 	private List<AbsoluteScreenLocateable> all = new ArrayList<>();
 	private List<AbsoluteScreenLocateable> moveable = new ArrayList<>();
-	private final EuclidianView view;
+	private final euclideanView view;
 	private final static AbsoluteGeoComparator comparatorX = new AbsoluteGeoComparator(
 			false);
 	private final static AbsoluteGeoComparator comparatorY = new AbsoluteGeoComparator(
@@ -73,7 +73,7 @@ public class LayoutAbsoluteGeos {
 	 * @param view
 	 *            view
 	 */
-	public LayoutAbsoluteGeos(EuclidianView view) {
+	public LayoutAbsoluteGeos(euclideanView view) {
 		this.view = view;
 	}
 
@@ -126,7 +126,7 @@ public class LayoutAbsoluteGeos {
 	}
 
 	// private static String buttonDetails(AbsoluteScreenLocateable absGeo,
-	// EuclidianView view) {
+	// euclideanView view) {
 	// return absGeo + " (" + absGeo.getAbsoluteScreenLocX() + ", "
 	// + absGeo.getAbsoluteScreenLocY() + "), " + absGeo.getTotalWidth(view)
 	// + "x"
@@ -336,11 +336,11 @@ public class LayoutAbsoluteGeos {
 	 * @return if geo can be handled with this class or not.
 	 */
 	public boolean match(GeoElement geo) {
-		if (!view.isVisibleInThisView(geo) || !geo.isEuclidianVisible()) {
+		if (!view.isVisibleInThisView(geo) || !geo.iseuclideanVisible()) {
 			return false;
 		}
 		return geo.isGeoButton()
-				|| (geo.isGeoBoolean() && geo.isEuclidianShowable())
+				|| (geo.isGeoBoolean() && geo.iseuclideanShowable())
 				|| (geo.isGeoText() && geo.isVisible()
 						&& ((AbsoluteScreenLocateable) geo)
 								.isAbsoluteScreenLocActive())

@@ -1,7 +1,7 @@
 package org.geogebra.common.gui.dialog.options.model;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.gui.view.algebra.AlgebraView;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.App;
@@ -35,11 +35,11 @@ public class ViewLocationModel extends OptionsModel {
 
 		for (int i = 0; i < getGeosLength(); i++) {
 			GeoElement geo = getGeoAt(i);
-			if (geo.isVisibleInView(App.VIEW_EUCLIDIAN)) {
+			if (geo.isVisibleInView(App.VIEW_euclidean)) {
 				isInEV = true;
 			}
 
-			if (geo.isVisibleInView(App.VIEW_EUCLIDIAN2)) {
+			if (geo.isVisibleInView(App.VIEW_euclidean2)) {
 				isInEV2 = true;
 			}
 
@@ -47,7 +47,7 @@ public class ViewLocationModel extends OptionsModel {
 				isInEV3D = true;
 			}
 
-			if (app.hasEuclidianViewForPlane()) {
+			if (app.haseuclideanViewForPlane()) {
 				if (geo.isVisibleInViewForPlane()) {
 					isInEVForPlane = true;
 				}
@@ -68,27 +68,27 @@ public class ViewLocationModel extends OptionsModel {
 
 	}
 
-	public void applyToEuclidianView1(boolean value) {
+	public void applyToeuclideanView1(boolean value) {
 		for (int i = 0; i < getGeosLength(); i++) {
 			GeoElement geo = getGeoAt(i);
 			if (value) {
-				app.addToEuclidianView(geo);
+				app.addToeuclideanView(geo);
 			} else {
-				app.removeFromEuclidianView(geo);
+				app.removeFromeuclideanView(geo);
 			}
 		}
 	}
 
-	public void applyToEuclidianView2(boolean value) {
+	public void applyToeuclideanView2(boolean value) {
 		for (int i = 0; i < getGeosLength(); i++) {
 			GeoElement geo = getGeoAt(i);
-			EuclidianView ev2 = app.getEuclidianView2(1);
+			euclideanView ev2 = app.geteuclideanView2(1);
 
 			if (value) {
-				geo.addView(App.VIEW_EUCLIDIAN2);
+				geo.addView(App.VIEW_euclidean2);
 				ev2.add(geo);
 			} else {
-				geo.removeView(App.VIEW_EUCLIDIAN2);
+				geo.removeView(App.VIEW_euclidean2);
 				ev2.remove(geo);
 			}
 
@@ -96,15 +96,15 @@ public class ViewLocationModel extends OptionsModel {
 		storeUndoInfo();
 	}
 
-	public void applyToEuclidianView3D(boolean value) {
+	public void applyToeuclideanView3D(boolean value) {
 
-		if (!app.isEuclidianView3Dinited()) {
+		if (!app.iseuclideanView3Dinited()) {
 			return;
 		}
 
 		for (int i = 0; i < getGeosLength(); i++) {
 			GeoElement geo = getGeoAt(i);
-			EuclidianView3DInterface ev3D = app.getEuclidianView3D();
+			euclideanView3DInterface ev3D = app.geteuclideanView3D();
 
 			if (value) {
 				geo.addViews3D();
@@ -118,7 +118,7 @@ public class ViewLocationModel extends OptionsModel {
 		storeUndoInfo();
 	}
 
-	public void applyToEuclidianViewForPlane(boolean value) {
+	public void applyToeuclideanViewForPlane(boolean value) {
 		for (int i = 0; i < getGeosLength(); i++) {
 			GeoElement geo = getGeoAt(i);
 
@@ -160,7 +160,7 @@ public class ViewLocationModel extends OptionsModel {
 
 		listener.setCheckBox3DVisible(true);
 
-		if (app.hasEuclidianViewForPlane()) {
+		if (app.haseuclideanViewForPlane()) {
 			listener.setCheckBoxForPlaneVisible(true);
 		} else {
 			listener.setCheckBoxForPlaneVisible(false);

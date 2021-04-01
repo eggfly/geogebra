@@ -18,7 +18,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.kernel.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.commands.Commands;
@@ -70,7 +70,7 @@ public class AlgoDistancePoints extends AlgoElement
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_DISTANCE;
+		return euclideanConstants.MODE_DISTANCE;
 	}
 
 	// for AlgoElement

@@ -1,15 +1,15 @@
-package org.geogebra.common.geogebra3D.euclidian3D;
+package org.geogebra.common.geogebra3D.euclidean3D;
 
 import org.geogebra.common.factories.UtilFactory;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawPoint3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawPoint3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoCursor3D;
 import org.geogebra.common.kernel.arithmetic.MyDouble;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.matrix.AnimatableValue;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 
 /**
@@ -397,13 +397,13 @@ public class Target {
 	 * @param view
 	 *            3D view
 	 */
-	public void updateType(EuclidianView3D view) {
+	public void updateType(euclideanView3D view) {
 		if (tmpNormal == null) {
 			tmpNormal = new Coords(3);
 			initSynced();
 		}
 		type = TargetType.getCurrentTargetType(view,
-				(EuclidianController3D) view.getEuclidianController());
+				(euclideanController3D) view.geteuclideanController());
 	}
 
 	synchronized private void initSynced() {
@@ -435,7 +435,7 @@ public class Target {
 	 * @param view
 	 *            3D view
 	 */
-	public void draw(Renderer renderer, EuclidianView3D view) {
+	public void draw(Renderer renderer, euclideanView3D view) {
 		type.drawTarget(renderer, view, this);
 	}
 
@@ -469,15 +469,15 @@ public class Target {
 	 * @param view
 	 *            3D view
 	 */
-	public void updateMatrices(EuclidianView3D view) {
+	public void updateMatrices(euclideanView3D view) {
 		switch (view.getCursor3DType()) {
-		case EuclidianView3D.PREVIEW_POINT_FREE:
+		case euclideanView3D.PREVIEW_POINT_FREE:
 			setCentersGoal(null);
 			// assume free points are on horizontal plane
-			setMatrices(view, EuclidianStyleConstants.PREVIEW_POINT_SIZE_WHEN_FREE
+			setMatrices(view, euclideanStyleConstants.PREVIEW_POINT_SIZE_WHEN_FREE
 					* DrawPoint3D.DRAW_POINT_FACTOR, Coords.VZ);
 			break;
-		case EuclidianView3D.PREVIEW_POINT_REGION:
+		case euclideanView3D.PREVIEW_POINT_REGION:
 			tmpNormal.set3(view.getCursor3D().getMoveNormalDirection());
 			view.scaleNormalXYZ(tmpNormal);
 			tmpNormal.normalize();
@@ -487,12 +487,12 @@ public class Target {
 				setCentersGoal((GeoElement) view.getCursor3D().getRegion());
 			}
 			setMatrices(view,
-					EuclidianStyleConstants.PREVIEW_POINT_SIZE_WHEN_FREE
+					euclideanStyleConstants.PREVIEW_POINT_SIZE_WHEN_FREE
 							* DrawPoint3D.DRAW_POINT_FACTOR,
 					tmpNormal);
 			break;
-		case EuclidianView3D.PREVIEW_POINT_PATH:
-		case EuclidianView3D.PREVIEW_POINT_REGION_AS_PATH:
+		case euclideanView3D.PREVIEW_POINT_PATH:
+		case euclideanView3D.PREVIEW_POINT_REGION_AS_PATH:
 			tmpNormal.set3(view.getCursorPath().getMainDirection());
 			view.scaleXYZ(tmpNormal);
 			tmpNormal.normalize();
@@ -502,19 +502,19 @@ public class Target {
 				setCentersGoal(view.getCursorPath());
 			}
 			setMatrices(view, view.getCursorPath().getLineThickness()
-					+ EuclidianStyleConstants.PREVIEW_POINT_ENLARGE_SIZE_ON_PATH,
+					+ euclideanStyleConstants.PREVIEW_POINT_ENLARGE_SIZE_ON_PATH,
 					tmpNormal);
 			break;
-		case EuclidianView3D.PREVIEW_POINT_DEPENDENT:
+		case euclideanView3D.PREVIEW_POINT_DEPENDENT:
 			setCentersGoal(view.getCursor3D().getSource1(), view.getCursor3D().getSource2());
 			setMatrices(view,
 					view.getIntersectionThickness());
 			break;
-		case EuclidianView3D.PREVIEW_POINT_ALREADY:
+		case euclideanView3D.PREVIEW_POINT_ALREADY:
 			if (type == TargetType.POINT_ALREADY_NO_ARROW) {
 				setCentersGoal(view.getCursor3D().getSource1());
 				setMatrices(view, (view.getCursor3D().getPointSize()
-						+ EuclidianStyleConstants.PREVIEW_POINT_ENLARGE_SIZE_WHEN_ALREADY)
+						+ euclideanStyleConstants.PREVIEW_POINT_ENLARGE_SIZE_WHEN_ALREADY)
 						* DrawPoint3D.DRAW_POINT_FACTOR);
 			}
 			break;
@@ -526,12 +526,12 @@ public class Target {
 		}
 	}
 
-	synchronized private void setMatrices(EuclidianView3D view,
+	synchronized private void setMatrices(euclideanView3D view,
 			double dotScale) {
 		setMatrices(view, dotScale, hittingDirection);
 	}
 
-	synchronized private void setMatrices(EuclidianView3D view, double dotScale,
+	synchronized private void setMatrices(euclideanView3D view, double dotScale,
 			Coords circleNormal) {
 
 		// dot center
@@ -547,7 +547,7 @@ public class Target {
 		// set hitting
 		// WARNING: circleNormal can be hittingDirection which must be updated
 		// first
-		view.getHittingOrigin(view.getEuclidianController().getMouseLoc(),
+		view.getHittingOrigin(view.geteuclideanController().getMouseLoc(),
 				hittingOrigin);
 		view.getHittingDirection(hittingDirection);
 

@@ -2,7 +2,7 @@ package org.geogebra.common.gui.view.data;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.view.data.DataAnalysisModel.Regression;
 import org.geogebra.common.gui.view.data.DataVariable.GroupType;
 import org.geogebra.common.kernel.Construction;
@@ -523,12 +523,12 @@ public class DataDisplayModel {
 			}
 
 			if (freqTableGeo != null) {
-				freqTableGeo.setEuclidianVisible(false);
+				freqTableGeo.seteuclideanVisible(false);
 				freqTableGeo.updateRepaint();
 			}
 
 			if (histogram != null) {
-				histogram.setEuclidianVisible(settings.isShowHistogram()
+				histogram.seteuclideanVisible(settings.isShowHistogram()
 						&& getSelectedPlot() == PlotType.HISTOGRAM);
 				histogram.updateRepaint();
 			}
@@ -556,12 +556,12 @@ public class DataDisplayModel {
 
 	/**
 	 * Exports all GeoElements that are currently displayed in this panel to a
-	 * target EuclidianView.
+	 * target euclideanView.
 	 * 
-	 * @param euclidianViewID
-	 *            viewID of the target EuclidianView
+	 * @param euclideanViewID
+	 *            viewID of the target euclideanView
 	 */
-	public void exportGeosToEV(int euclidianViewID) {
+	public void exportGeosToEV(int euclideanViewID) {
 
 		// TODO:
 		// in multivar mode create dynamic boxplots linked to separate lists
@@ -569,7 +569,7 @@ public class DataDisplayModel {
 		app.setWaitCursor();
 		// app.storeUndoInfo();
 		GeoElement regressionCopy = null;
-		EuclidianView targetEV = (EuclidianView) app.getView(euclidianViewID);
+		euclideanView targetEV = (euclideanView) app.getView(euclideanViewID);
 
 		try {
 
@@ -599,7 +599,7 @@ public class DataDisplayModel {
 
 			// prepare all display geos to appear in the EV
 			for (GeoElementND geo : plotGeoList) {
-				prepareGeoForEV(geo, euclidianViewID);
+				prepareGeoForEV(geo, euclideanViewID);
 			}
 
 			// the regression geo is maintained by the da view, so we create a
@@ -610,7 +610,7 @@ public class DataDisplayModel {
 				regressionCopy = statGeo.createRegressionPlot(
 						(GeoList) scatterPlot, daModel.getRegressionMode(),
 						daModel.getRegressionOrder(), false);
-				prepareGeoForEV(regressionCopy, euclidianViewID);
+				prepareGeoForEV(regressionCopy, euclideanViewID);
 			}
 
 			// =================================================================
@@ -681,26 +681,26 @@ public class DataDisplayModel {
 
 	/**
 	 * Prepares the specified GeoElement for visibility in a target
-	 * EuclidianView.
+	 * euclideanView.
 	 * 
 	 * @param geo
 	 *            plot element
-	 * @param euclidianViewID
-	 *            viewID of the target EuclidianView
+	 * @param euclideanViewID
+	 *            viewID of the target euclideanView
 	 */
-	private static void prepareGeoForEV(GeoElementND geo, int euclidianViewID) {
+	private static void prepareGeoForEV(GeoElementND geo, int euclideanViewID) {
 
 		geo.setLabel(null);
-		geo.setEuclidianVisible(true);
+		geo.seteuclideanVisible(true);
 		geo.setAuxiliaryObject(false);
-		if (euclidianViewID == App.VIEW_EUCLIDIAN) {
-			geo.addView(App.VIEW_EUCLIDIAN);
-			geo.removeView(App.VIEW_EUCLIDIAN2);
+		if (euclideanViewID == App.VIEW_euclidean) {
+			geo.addView(App.VIEW_euclidean);
+			geo.removeView(App.VIEW_euclidean2);
 			geo.update();
 		}
-		if (euclidianViewID == App.VIEW_EUCLIDIAN2) {
-			geo.addView(App.VIEW_EUCLIDIAN2);
-			geo.removeView(App.VIEW_EUCLIDIAN);
+		if (euclideanViewID == App.VIEW_euclidean2) {
+			geo.addView(App.VIEW_euclidean2);
+			geo.removeView(App.VIEW_euclidean);
 			geo.update();
 		}
 

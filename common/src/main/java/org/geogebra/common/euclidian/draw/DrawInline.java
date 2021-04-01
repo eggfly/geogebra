@@ -1,8 +1,8 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.BoundingBox;
-import org.geogebra.common.euclidian.RemoveNeeded;
+import org.geogebra.common.euclidean.BoundingBox;
+import org.geogebra.common.euclidean.RemoveNeeded;
 
 public interface DrawInline extends RemoveNeeded, HasTransformation {
 	/**

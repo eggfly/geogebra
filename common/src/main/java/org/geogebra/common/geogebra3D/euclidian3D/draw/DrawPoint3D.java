@@ -1,16 +1,16 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.euclidian.draw.DrawPoint;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D.Type;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Geometry3DGetterManager;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.euclidean.draw.DrawPoint;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D.Type;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Geometry3DGetterManager;
 import org.geogebra.common.kernel.arithmetic.Functional2Var;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
@@ -47,7 +47,7 @@ public class DrawPoint3D extends Drawable3DCurves
 	 * @param point
 	 *            point
 	 */
-	public DrawPoint3D(EuclidianView3D view3D, GeoPointND point) {
+	public DrawPoint3D(euclideanView3D view3D, GeoPointND point) {
 
 		super(view3D, (GeoElement) point);
 
@@ -133,7 +133,7 @@ public class DrawPoint3D extends Drawable3DCurves
 	 * @param a_view3D
 	 *            view
 	 */
-	public DrawPoint3D(EuclidianView3D a_view3D) {
+	public DrawPoint3D(euclideanView3D a_view3D) {
 
 		super(a_view3D);
 

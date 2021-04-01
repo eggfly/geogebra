@@ -10,7 +10,7 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -19,11 +19,11 @@ import org.geogebra.common.awt.GArc2D;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.euclidian.clipping.ClipShape;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.euclidean.clipping.ClipShape;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.algos.AlgoConicPartCircle;
@@ -90,7 +90,7 @@ public class DrawConicPart extends Drawable implements Previewable {
 	 * @param conicPart
 	 *            conic part
 	 */
-	public DrawConicPart(EuclidianView view, GeoConicPartND conicPart) {
+	public DrawConicPart(euclideanView view, GeoConicPartND conicPart) {
 		this.view = view;
 		isPreview = false;
 		initConicPart(conicPart);
@@ -119,7 +119,7 @@ public class DrawConicPart extends Drawable implements Previewable {
 	 * @param points
 	 *            points
 	 */
-	public DrawConicPart(EuclidianView view, int mode,
+	public DrawConicPart(euclideanView view, int mode,
 			ArrayList<GeoPointND> points) {
 		this.view = view;
 		prevPoints = points;
@@ -127,7 +127,7 @@ public class DrawConicPart extends Drawable implements Previewable {
 		isPreview = true;
 
 		Construction cons = view.getKernel().getConstruction();
-		neededPrevPoints = mode == EuclidianConstants.MODE_SEMICIRCLE ? 1 : 2;
+		neededPrevPoints = mode == euclideanConstants.MODE_SEMICIRCLE ? 1 : 2;
 		previewTempPoints = new GeoPoint[neededPrevPoints + 1];
 		for (int i = 0; i < previewTempPoints.length; i++) {
 			previewTempPoints[i] = new GeoPoint(cons);
@@ -138,7 +138,7 @@ public class DrawConicPart extends Drawable implements Previewable {
 
 	@Override
 	final public void update() {
-		isVisible = geo.isEuclidianVisible() && geo.isDefined();
+		isVisible = geo.iseuclideanVisible() && geo.isDefined();
 		if (isVisible) {
 			labelVisible = geo.isLabelVisible();
 			updateStrokes((GeoConicND) conicPart);
@@ -353,7 +353,7 @@ public class DrawConicPart extends Drawable implements Previewable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible()) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible()) {
 			return null;
 		}
 
@@ -413,16 +413,16 @@ public class DrawConicPart extends Drawable implements Previewable {
 		default:
 			// do nothing
 			break;
-		case EuclidianConstants.MODE_SEMICIRCLE:
+		case euclideanConstants.MODE_SEMICIRCLE:
 			AlgoSemicircle alg = new AlgoSemicircle(cons, previewTempPoints[0],
 					previewTempPoints[1]);
 			cons.removeFromConstructionList(alg);
 			initConicPart(alg.getSemicircle());
 			break;
 
-		case EuclidianConstants.MODE_CIRCLE_ARC_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCLE_SECTOR_THREE_POINTS:
-			arcMode = previewMode == EuclidianConstants.MODE_CIRCLE_ARC_THREE_POINTS
+		case euclideanConstants.MODE_CIRCLE_ARC_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCLE_SECTOR_THREE_POINTS:
+			arcMode = previewMode == euclideanConstants.MODE_CIRCLE_ARC_THREE_POINTS
 					? GeoConicNDConstants.CONIC_PART_ARC
 					: GeoConicNDConstants.CONIC_PART_SECTOR;
 			AlgoConicPartCircle algo = new AlgoConicPartCircle(cons,
@@ -432,10 +432,10 @@ public class DrawConicPart extends Drawable implements Previewable {
 			initConicPart(algo.getConicPart());
 			break;
 
-		case EuclidianConstants.MODE_CIRCUMCIRCLE_ARC_THREE_POINTS:
-		case EuclidianConstants.MODE_CIRCUMCIRCLE_SECTOR_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCUMCIRCLE_ARC_THREE_POINTS:
+		case euclideanConstants.MODE_CIRCUMCIRCLE_SECTOR_THREE_POINTS:
 
-			arcMode = previewMode == EuclidianConstants.MODE_CIRCUMCIRCLE_ARC_THREE_POINTS
+			arcMode = previewMode == euclideanConstants.MODE_CIRCUMCIRCLE_ARC_THREE_POINTS
 					? GeoConicNDConstants.CONIC_PART_ARC
 					: GeoConicNDConstants.CONIC_PART_SECTOR;
 			AlgoConicPartCircumcircle algo2 = new AlgoConicPartCircumcircle(

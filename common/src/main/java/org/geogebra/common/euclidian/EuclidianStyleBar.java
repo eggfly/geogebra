@@ -1,11 +1,11 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.kernel.geos.GeoElement;
 
 /**
- * Style bar for Euclidian view
+ * Style bar for euclidean view
  */
-public interface EuclidianStyleBar {
+public interface euclideanStyleBar {
 
 	// /** tooltip x location for buttons */
 	// public static final int TOOLTIP_LOCATION_X = 0;
@@ -14,7 +14,7 @@ public interface EuclidianStyleBar {
 
 	/**
 	 * @param mode
-	 *            euclidian view mode
+	 *            euclidean view mode
 	 */
 	void setMode(int mode);
 
@@ -37,7 +37,7 @@ public interface EuclidianStyleBar {
 	 * Update capture button
 	 * 
 	 * @param mode
-	 *            euclidian view mode
+	 *            euclidean view mode
 	 */
 	void updateButtonPointCapture(int mode);
 

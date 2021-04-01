@@ -965,7 +965,7 @@ public class RelativeCopy {
 			for (int i = 0; i < newValues.length; i++) {
 				newValues[i].setAuxiliaryObject(true);
 				if (newValues[i].isGeoText()) {
-					newValues[i].setEuclidianVisible(false);
+					newValues[i].seteuclideanVisible(false);
 				}
 			}
 
@@ -987,7 +987,7 @@ public class RelativeCopy {
 			newValues = kernel.getAlgebraProcessor()
 					.processAlgebraCommandNoExceptions(text, false);
 			newValues[0].setLabel(name);
-			newValues[0].setEuclidianVisible(false);
+			newValues[0].seteuclideanVisible(false);
 			newValues[0].update();
 		}
 		return newValues[0];
@@ -1083,7 +1083,7 @@ public class RelativeCopy {
 									Double.NaN);
 						}
 					}
-					newValue.setEuclidianVisible(false);
+					newValue.seteuclideanVisible(false);
 					newValue.update();
 					callback.callback(newValue);
 				}

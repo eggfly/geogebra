@@ -1,4 +1,4 @@
-package org.geogebra.desktop.geogebra3D.euclidian3D;
+package org.geogebra.desktop.geogebra3D.euclidean3D;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -6,25 +6,25 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianStyleBarStatic3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanStyleBarStatic3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoClippingCube3D;
 import org.geogebra.common.gui.util.SelectionTable;
 import org.geogebra.common.kernel.geos.GeoElement;
-import org.geogebra.desktop.euclidian.EuclidianStyleBarD;
+import org.geogebra.desktop.euclidean.euclideanStyleBarD;
 import org.geogebra.desktop.geogebra3D.gui.GuiResources3D;
 import org.geogebra.desktop.gui.util.MyToggleButtonD;
 import org.geogebra.desktop.gui.util.PopupMenuButtonD;
 import org.geogebra.desktop.main.AppD;
 
 /**
- * StyleBar for 3D euclidian view
+ * StyleBar for 3D euclidean view
  * 
  * @author Mathieu
  *
  */
-public class EuclidianStyleBar3D extends EuclidianStyleBarD {
+public class euclideanStyleBar3D extends euclideanStyleBarD {
 
 	/**
 	 * 
@@ -42,13 +42,13 @@ public class EuclidianStyleBar3D extends EuclidianStyleBarD {
 	 * 
 	 * @param ev
 	 */
-	public EuclidianStyleBar3D(EuclidianView3D ev) {
+	public euclideanStyleBar3D(euclideanView3D ev) {
 		super(ev);
 	}
 
 	@Override
 	protected void createDefaultMap() {
-		EuclidianStyleBarStatic3D.addToDefaultMap(selection.getDefaultMap());
+		euclideanStyleBarStatic3D.addToDefaultMap(selection.getDefaultMap());
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class EuclidianStyleBar3D extends EuclidianStyleBarD {
 		@Override
 		public void update(List<GeoElement> geos) {
 			this.setVisible(
-					geos.size() == 0 && mode != EuclidianConstants.MODE_PEN);
+					geos.size() == 0 && mode != euclideanConstants.MODE_PEN);
 		}
 
 		/*
@@ -238,7 +238,7 @@ public class EuclidianStyleBar3D extends EuclidianStyleBarD {
 		@Override
 		public void update(List<GeoElement> geos) {
 			this.setVisible(
-					geos.size() == 0 && mode != EuclidianConstants.MODE_PEN);
+					geos.size() == 0 && mode != euclideanConstants.MODE_PEN);
 		}
 
 		/*
@@ -340,8 +340,8 @@ public class EuclidianStyleBar3D extends EuclidianStyleBarD {
 		return ret;
 	}
 
-	public EuclidianView3D getView() {
-		return (EuclidianView3D) ev;
+	public euclideanView3D getView() {
+		return (euclideanView3D) ev;
 	}
 
 	@Override

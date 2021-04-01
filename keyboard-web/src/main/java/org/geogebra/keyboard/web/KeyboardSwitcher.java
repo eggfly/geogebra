@@ -3,7 +3,7 @@ package org.geogebra.keyboard.web;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.keyboard.base.KeyboardType;
 import org.geogebra.web.html5.gui.util.ClickStartHandler;
 import org.geogebra.web.html5.gui.util.GCustomButton;

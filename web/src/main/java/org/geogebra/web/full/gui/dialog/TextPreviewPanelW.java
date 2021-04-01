@@ -3,18 +3,18 @@ package org.geogebra.web.full.gui.dialog;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.gui.dialog.TextPreviewer;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.GeoText;
 import org.geogebra.common.main.App;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.web.html5.euclidian.EuclidianControllerW;
-import org.geogebra.web.html5.euclidian.EuclidianPanelWAbstract;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.web.html5.euclidean.euclideanControllerW;
+import org.geogebra.web.html5.euclidean.euclideanPanelWAbstract;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.dom.client.Style;
@@ -31,7 +31,7 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class TextPreviewPanelW extends TextPreviewer {
 
-	private MyEuclidianViewPanelForTextPreviewPanelW evPanel;
+	private MyeuclideanViewPanelForTextPreviewPanelW evPanel;
 
 	/**
 	 * @param kernel
@@ -42,7 +42,7 @@ public class TextPreviewPanelW extends TextPreviewer {
 	}
 
 	/**
-	 * @return Widget that encloses the EuclidianView
+	 * @return Widget that encloses the euclideanView
 	 */
 	public Widget getPanel() {
 		return getEVPanel();
@@ -77,7 +77,7 @@ public class TextPreviewPanelW extends TextPreviewer {
 		GRectangle rect = AwtFactory.getPrototype().newRectangle();
 		if (isLatex) {
 		
-			EuclidianStatic.drawMultilineLaTeX(getApp(),
+			euclideanStatic.drawMultilineLaTeX(getApp(),
 					ev.getTempGraphics2D(textFont), previewGeo,
 					ev.getTempGraphics2D(textFont), textFont, GColor.BLACK,
 					GColor.WHITE,
@@ -85,39 +85,39 @@ public class TextPreviewPanelW extends TextPreviewer {
 			
 		} else {
 			
-			rect = EuclidianStatic.drawMultiLineText(getApp(),
+			rect = euclideanStatic.drawMultiLineText(getApp(),
 					previewGeo.getTextString(), 0, 0,
-					((EuclidianViewW) ev).getG2P(),
+					((euclideanViewW) ev).getG2P(),
 					serif, textFont, rect, null);
 		}
 		//App.debug("text rect: " + rect.getWidth() + " x " +
 	//	rect.getHeight());
 		int w = (int) rect.getWidth() + padding;
 		int h = (int) rect.getHeight() + padding;
-		((EuclidianViewW) ev).setPreferredSize(w, h);
+		((euclideanViewW) ev).setPreferredSize(w, h);
 		evPanel.setSize(w + "px", h + "px");
 
 	}
 
 	@Override
 	protected void removeEVMouseListeners() {
-		// ev.removeMouseListener(ev.getEuclidianController());
-		// ev.removeMouseMotionListener(ev.getEuclidianController());
-		// ev.removeMouseWheelListener(ev.getEuclidianController());
+		// ev.removeMouseListener(ev.geteuclideanController());
+		// ev.removeMouseMotionListener(ev.geteuclideanController());
+		// ev.removeMouseWheelListener(ev.geteuclideanController());
 	}
 
 	@Override
-	protected EuclidianViewW getEuclidianView() {
+	protected euclideanViewW geteuclideanView() {
 		if (ev == null) {
-			ev = new MyEuclidianView(getEVPanel(), new EuclidianControllerW(
-					kernel), EuclidianView.EVNO_GENERAL, null);
+			ev = new MyeuclideanView(getEVPanel(), new euclideanControllerW(
+					kernel), euclideanView.EVNO_GENERAL, null);
 		}
-		return (EuclidianViewW) ev;
+		return (euclideanViewW) ev;
 	}
 
-	private MyEuclidianViewPanelForTextPreviewPanelW getEVPanel() {
+	private MyeuclideanViewPanelForTextPreviewPanelW getEVPanel() {
 		if (evPanel == null) {
-			evPanel = new MyEuclidianViewPanelForTextPreviewPanelW();
+			evPanel = new MyeuclideanViewPanelForTextPreviewPanelW();
 		}
 		return evPanel;
 	}
@@ -130,14 +130,14 @@ public class TextPreviewPanelW extends TextPreviewer {
 	}
 
 	/****************************************************************************
-	 * Extension of EuclidianViewD for displaying preview text strings
+	 * Extension of euclideanViewD for displaying preview text strings
 	 * 
 	 */
-	private static class MyEuclidianView extends EuclidianViewW {
+	private static class MyeuclideanView extends euclideanViewW {
 
-		public MyEuclidianView(MyEuclidianViewPanelForTextPreviewPanelW panel,
-				EuclidianController ec, 
-		        int evno, EuclidianSettings settings) {
+		public MyeuclideanView(MyeuclideanViewPanelForTextPreviewPanelW panel,
+				euclideanController ec,
+		        int evno, euclideanSettings settings) {
 			super(panel, ec, evno, settings);
 
 			// the show axis and show grid parameters currently do nothing, so
@@ -167,15 +167,15 @@ public class TextPreviewPanelW extends TextPreviewer {
 	}
 
 	/****************************************************************************
-	 * Panel for EuclidianView
+	 * Panel for euclideanView
 	 * 
 	 */
-	private class MyEuclidianViewPanelForTextPreviewPanelW extends AbsolutePanel implements
-	        EuclidianPanelWAbstract {
+	private class MyeuclideanViewPanelForTextPreviewPanelW extends AbsolutePanel implements
+	        euclideanPanelWAbstract {
 
 		private Canvas canvas;
 
-		public MyEuclidianViewPanelForTextPreviewPanelW() {
+		public MyeuclideanViewPanelForTextPreviewPanelW() {
 			super();
 			canvas = Canvas.createIfSupported();
 			canvas.getElement().getStyle().setPosition(Style.Position.ABSOLUTE);
@@ -189,7 +189,7 @@ public class TextPreviewPanelW extends TextPreviewer {
 		}
 
 		@Override
-		public Panel getEuclidianPanel() {
+		public Panel geteuclideanPanel() {
 			return this;
 		}
 
@@ -199,7 +199,7 @@ public class TextPreviewPanelW extends TextPreviewer {
 		}
 
 		@Override
-		public EuclidianView getEuclidianView() {
+		public euclideanView geteuclideanView() {
 			return ev;
 		}
 

@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.plot.interval;
+package org.geogebra.common.euclidean.plot.interval;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package org.geogebra.web.html5.gui.zoompanel;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.AccessibilityGroup;
 import org.geogebra.common.gui.MayHaveFocus;
 import org.geogebra.web.html5.Browser;

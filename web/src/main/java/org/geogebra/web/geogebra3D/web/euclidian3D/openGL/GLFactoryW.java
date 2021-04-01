@@ -1,8 +1,8 @@
-package org.geogebra.web.geogebra3D.web.euclidian3D.openGL;
+package org.geogebra.web.geogebra3D.web.euclidean3D.openGL;
 
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBuffer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBufferIndices;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLFactory;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBuffer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBufferIndices;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLFactory;
 
 /**
  * GL factory for web

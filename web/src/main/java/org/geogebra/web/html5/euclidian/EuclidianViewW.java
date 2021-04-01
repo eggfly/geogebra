@@ -1,4 +1,4 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
 import org.geogebra.common.awt.GBasicStroke;
 import org.geogebra.common.awt.GBufferedImage;
@@ -8,19 +8,19 @@ import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.CoordSystemAnimation;
-import org.geogebra.common.euclidian.EmbedManager;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianCursor;
-import org.geogebra.common.euclidian.EuclidianPen;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.PenPreviewLine;
-import org.geogebra.common.euclidian.SymbolicEditor;
-import org.geogebra.common.euclidian.background.BackgroundType;
-import org.geogebra.common.euclidian.draw.DrawWidget;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.CoordSystemAnimation;
+import org.geogebra.common.euclidean.EmbedManager;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanCursor;
+import org.geogebra.common.euclidean.euclideanPen;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.PenPreviewLine;
+import org.geogebra.common.euclidean.SymbolicEditor;
+import org.geogebra.common.euclidean.background.BackgroundType;
+import org.geogebra.common.euclidean.draw.DrawWidget;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.io.MyXMLio;
 import org.geogebra.common.kernel.geos.GeoAxis;
@@ -29,7 +29,7 @@ import org.geogebra.common.kernel.geos.GeoText;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.App.ExportType;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.GeoGebraProfiler;
@@ -95,15 +95,15 @@ import jsinterop.base.Js;
 /**
  * Web implementation of graphics view
  */
-public class EuclidianViewW extends EuclidianView implements
-		EuclidianViewWInterface, PrintableW {
+public class euclideanViewW extends euclideanView implements
+		euclideanViewWInterface, PrintableW {
 
 	/**
 	 * For filtering events if they happen too often
 	 */
 	final public static int DELAY_BETWEEN_MOVE_EVENTS = 15;
 	/** CSS class of the absolute panel*/
-	public static final String ABSOLUTE_PANEL_CLASS = "EuclidianPanel";
+	public static final String ABSOLUTE_PANEL_CLASS = "euclideanPanel";
 
 	private static final int OUTER_GLOW_WIDTH = 5;
 	private static final int OUTER_GLOW_ALPHA = 48;
@@ -135,7 +135,7 @@ public class EuclidianViewW extends EuclidianView implements
 	private ImageElement playImageHL;
 	private ImageElement pauseImageHL;
 	/** parent panel */
-	protected EuclidianPanelWAbstract evPanel;
+	protected euclideanPanelWAbstract evPanel;
 	private PointerEventHandler pointerHandler;
 
 	private GDimension preferredSize;
@@ -154,24 +154,24 @@ public class EuclidianViewW extends EuclidianView implements
 	private Boolean cacheGraphics;
 
 	/**
-	 * @param euclidianViewPanel
+	 * @param euclideanViewPanel
 	 *            panel
-	 * @param euclidiancontroller
+	 * @param euclideancontroller
 	 *            controller
 	 * @param evNo
-	 *            Euclidian view number (1,2)
+	 *            euclidean view number (1,2)
 	 * @param settings
 	 *            settings
 	 */
-	public EuclidianViewW(EuclidianPanelWAbstract euclidianViewPanel,
-			EuclidianController euclidiancontroller, int evNo,
-			EuclidianSettings settings) {
+	public euclideanViewW(euclideanPanelWAbstract euclideanViewPanel,
+			euclideanController euclideancontroller, int evNo,
+			euclideanSettings settings) {
 
-		super(euclidiancontroller, evNo, settings);
+		super(euclideancontroller, evNo, settings);
 		viewTextField = new ViewTextFieldW(this);
-		evPanel = euclidianViewPanel;
+		evPanel = euclideanViewPanel;
 
-		initBaseComponents(euclidianViewPanel, euclidiancontroller, evNo,
+		initBaseComponents(euclideanViewPanel, euclideancontroller, evNo,
 				settings);
 		initAriaDefaults();
 		attachFocusinHandler();
@@ -184,35 +184,35 @@ public class EuclidianViewW extends EuclidianView implements
 	private native void addFocusEventHandler(Element element) /*-{
         var that = this;
         var handler = function(e) {
-            that.@org.geogebra.web.html5.euclidian.EuclidianViewW::setResetIconSelected(Z)(false);
+            that.@org.geogebra.web.html5.euclidean.euclideanViewW::setResetIconSelected(Z)(false);
         }
         element.addEventListener("focusin", handler);
     }-*/;
 
 	/**
-	 * @param euclidiancontroller
+	 * @param euclideancontroller
 	 *            controller
 	 * @param viewNo
 	 *            view number
 	 * @param settings
 	 *            settings
 	 */
-	public EuclidianViewW(EuclidianController euclidiancontroller, int viewNo,
-	        EuclidianSettings settings) {
-		super(euclidiancontroller, viewNo, settings);
+	public euclideanViewW(euclideanController euclideancontroller, int viewNo,
+	        euclideanSettings settings) {
+		super(euclideancontroller, viewNo, settings);
 		viewTextField = new ViewTextFieldW(this);
-		evPanel = newMyEuclidianViewPanel();
+		evPanel = newMyeuclideanViewPanel();
 
-		// It seems this constructor is only called from PlotPanelEuclidianViewW
+		// It seems this constructor is only called from PlotPaneleuclideanViewW
 		// currently,
 		// so this -1 is changed to viewNo because EVNO_GENERAL is needed for
 		// making sure that this view does not change the toolbar, code in
-		// EuclidianControllerW
-		// if you think it is not Okay, then use (-1) in EuclidianControllerW
+		// euclideanControllerW
+		// if you think it is not Okay, then use (-1) in euclideanControllerW
 		// instead of EVNO_GENERAL
 		// at mouse events which call setActiveToolbarId #plotpanelevno
-		// initBaseComponents(EVPanel, euclidiancontroller, -1);
-		initBaseComponents(evPanel, euclidiancontroller, viewNo, settings);
+		// initBaseComponents(EVPanel, euclideancontroller, -1);
+		initBaseComponents(evPanel, euclideancontroller, viewNo, settings);
 		initAriaDefaults();
 	}
 
@@ -276,7 +276,7 @@ public class EuclidianViewW extends EuclidianView implements
 
 		if (cacheGraphics != null && cacheGraphics) {
 			penCanvas.clearRect(0, 0, getWidth(), getHeight());
-			getEuclidianController().getPen().repaintIfNeeded(penCanvas);
+			geteuclideanController().getPen().repaintIfNeeded(penCanvas);
 		} else {
 			g2p.resetLayer();
 			updateBackgroundIfNecessary();
@@ -458,15 +458,15 @@ public class EuclidianViewW extends EuclidianView implements
 	@Override
 	public String getExportPDF(double scale) {
 
-		boolean page2 = getViewID() == App.VIEW_EUCLIDIAN
-				&& app.hasEuclidianView2(1);
+		boolean page2 = getViewID() == App.VIEW_euclidean
+				&& app.haseuclideanView2(1);
 
 		int width = (int) Math.floor(getExportWidth() * scale);
 		int height = (int) Math.floor(getExportHeight() * scale);
 
-		EuclidianView view2 = null;
+		euclideanView view2 = null;
 		if (page2) {
-			view2 = app.getEuclidianView2(1);
+			view2 = app.geteuclideanView2(1);
 			width = (int) Math.max(width,
 					Math.floor(view2.getExportWidth() * scale));
 			height = (int) Math.max(height,
@@ -544,7 +544,7 @@ public class EuclidianViewW extends EuclidianView implements
 
 		getApplication().ensureTimerRunning();
 		if (waitForRepaint == TimerSystemW.SLEEPING_FLAG) {
-			waitForRepaint = TimerSystemW.EUCLIDIAN_LOOPS;
+			waitForRepaint = TimerSystemW.euclidean_LOOPS;
 		}
 	}
 
@@ -592,7 +592,7 @@ public class EuclidianViewW extends EuclidianView implements
 			        .setWidth(width, Style.Unit.PX);
 			g2p.getElement().getParentElement().getStyle()
 			        .setHeight(height, Style.Unit.PX);
-			getEuclidianController().calculateEnvironment();
+			geteuclideanController().calculateEnvironment();
 		} catch (Exception exc) {
 			Log.debug("Problem with the parent element of the canvas");
 		}
@@ -653,15 +653,15 @@ public class EuclidianViewW extends EuclidianView implements
 	/**
 	 * @return new panel
 	 */
-	protected MyEuclidianViewPanel newMyEuclidianViewPanel() {
-		return new MyEuclidianViewPanel(this);
+	protected MyeuclideanViewPanel newMyeuclideanViewPanel() {
+		return new MyeuclideanViewPanel(this);
 	}
 
-	private void initBaseComponents(EuclidianPanelWAbstract euclidianViewPanel,
-			EuclidianController euclidiancontroller, int newEvNo,
-			EuclidianSettings settings) {
+	private void initBaseComponents(euclideanPanelWAbstract euclideanViewPanel,
+			euclideanController euclideancontroller, int newEvNo,
+			euclideanSettings settings) {
 
-		final Canvas canvas = euclidianViewPanel.getCanvas();
+		final Canvas canvas = euclideanViewPanel.getCanvas();
 		this.evNo = newEvNo;
 
 		this.g2p = new LayeredGGraphicsW(canvas);
@@ -674,28 +674,28 @@ public class EuclidianViewW extends EuclidianView implements
 		initView(true);
 		attachView();
 
-		if (getViewID() == App.VIEW_EUCLIDIAN || getViewID() == App.VIEW_EUCLIDIAN2) {
+		if (getViewID() == App.VIEW_euclidean || getViewID() == App.VIEW_euclidean2) {
 			g2p.getElement().getStyle().setPosition(Style.Position.ABSOLUTE);
 		}
 
-		euclidiancontroller.setView(this);
+		euclideancontroller.setView(this);
 
 		if (getViewID() != App.VIEW_TEXT_PREVIEW) {
 			registerKeyHandlers(canvas);
-			registerMouseTouchGestureHandlers(euclidianViewPanel,
-			        (EuclidianControllerW) euclidiancontroller);
+			registerMouseTouchGestureHandlers(euclideanViewPanel,
+			        (euclideanControllerW) euclideancontroller);
 		}
 
-		registerDragDropHandlers(euclidianViewPanel,
-				(EuclidianControllerW) euclidiancontroller);
+		registerDragDropHandlers(euclideanViewPanel,
+				(euclideanControllerW) euclideancontroller);
 
-		EuclidianSettings es = null;
+		euclideanSettings es = null;
 		if (settings != null) {
 			es = settings;
 			// settings from XML for EV1, EV2
 			// not for eg probability calculator
 		} else if ((newEvNo == 1) || (newEvNo == 2)) {
-			es = getApplication().getSettings().getEuclidian(newEvNo);
+			es = getApplication().getSettings().geteuclidean(newEvNo);
 		}
 
 		if (es != null) {
@@ -715,47 +715,47 @@ public class EuclidianViewW extends EuclidianView implements
 	}
 
 	private void registerMouseTouchGestureHandlers(
-	        EuclidianPanelWAbstract euclidianViewPanel,
-	        EuclidianControllerW euclidiancontroller) {
-		Widget absPanel = euclidianViewPanel.getAbsolutePanel();
-		absPanel.addDomHandler(euclidiancontroller, MouseWheelEvent.getType());
+	        euclideanPanelWAbstract euclideanViewPanel,
+	        euclideanControllerW euclideancontroller) {
+		Widget absPanel = euclideanViewPanel.getAbsolutePanel();
+		absPanel.addDomHandler(euclideancontroller, MouseWheelEvent.getType());
 		if (Browser.supportsPointerEvents()) {
-			pointerHandler = new PointerEventHandler((IsEuclidianController) euclidianController,
-					euclidiancontroller.getOffsets());
+			pointerHandler = new PointerEventHandler((IseuclideanController) euclideanController,
+					euclideancontroller.getOffsets());
 			PointerEventHandler.attachTo(absPanel.getElement(), pointerHandler);
 			CancelEventTimer.killTouch(absPanel);
 		} else {
-			absPanel.addDomHandler(euclidiancontroller,
+			absPanel.addDomHandler(euclideancontroller,
 					MouseMoveEvent.getType());
-			absPanel.addDomHandler(euclidiancontroller,
+			absPanel.addDomHandler(euclideancontroller,
 					MouseOverEvent.getType());
-			absPanel.addDomHandler(euclidiancontroller, MouseOutEvent.getType());
-			absPanel.addDomHandler(euclidiancontroller, MouseUpEvent.getType());
+			absPanel.addDomHandler(euclideancontroller, MouseOutEvent.getType());
+			absPanel.addDomHandler(euclideancontroller, MouseUpEvent.getType());
 			if (appW.getLAF() == null || !appW.getLAF().isSmart()) {
-				absPanel.addDomHandler(euclidiancontroller,
+				absPanel.addDomHandler(euclideancontroller,
 						MouseDownEvent.getType());
 			}
 			if (appW.getLAF() != null) {
-				if (appW.getLAF().registerHandlers(absPanel, euclidiancontroller)) {
+				if (appW.getLAF().registerHandlers(absPanel, euclideancontroller)) {
 					return;
 				}
 			}
 
-			absPanel.addBitlessDomHandler(euclidiancontroller, TouchStartEvent.getType());
-			absPanel.addBitlessDomHandler(euclidiancontroller, TouchEndEvent.getType());
-			absPanel.addBitlessDomHandler(euclidiancontroller, TouchMoveEvent.getType());
-			absPanel.addBitlessDomHandler(euclidiancontroller, TouchCancelEvent.getType());
-			absPanel.addDomHandler(euclidiancontroller, GestureStartEvent.getType());
-			absPanel.addDomHandler(euclidiancontroller, GestureChangeEvent.getType());
-			absPanel.addDomHandler(euclidiancontroller, GestureEndEvent.getType());
+			absPanel.addBitlessDomHandler(euclideancontroller, TouchStartEvent.getType());
+			absPanel.addBitlessDomHandler(euclideancontroller, TouchEndEvent.getType());
+			absPanel.addBitlessDomHandler(euclideancontroller, TouchMoveEvent.getType());
+			absPanel.addBitlessDomHandler(euclideancontroller, TouchCancelEvent.getType());
+			absPanel.addDomHandler(euclideancontroller, GestureStartEvent.getType());
+			absPanel.addDomHandler(euclideancontroller, GestureChangeEvent.getType());
+			absPanel.addDomHandler(euclideancontroller, GestureEndEvent.getType());
 		}
 	}
 
 	private static void registerDragDropHandlers(
-	        EuclidianPanelWAbstract euclidianViewPanel,
-	        EuclidianControllerW euclidiancontroller) {
-		Widget evPanel = euclidianViewPanel.getAbsolutePanel();
-		evPanel.addDomHandler(euclidiancontroller, DropEvent.getType());
+	        euclideanPanelWAbstract euclideanViewPanel,
+	        euclideanControllerW euclideancontroller) {
+		Widget evPanel = euclideanViewPanel.getAbsolutePanel();
+		evPanel.addDomHandler(euclideancontroller, DropEvent.getType());
 	}
 
 	/* Code for dashed lines removed in r23713 */
@@ -789,8 +789,8 @@ public class EuclidianViewW extends EuclidianView implements
 	}
 
 	@Override
-	public EuclidianControllerW getEuclidianController() {
-		return (EuclidianControllerW) euclidianController;
+	public euclideanControllerW geteuclideanController() {
+		return (euclideanControllerW) euclideanController;
 	}
 
 	@Override
@@ -872,22 +872,22 @@ public class EuclidianViewW extends EuclidianView implements
 	}
 
 	@Override
-	protected EuclidianStyleBar newEuclidianStyleBar() {
+	protected euclideanStyleBar neweuclideanStyleBar() {
 		if (appW.getGuiManager() == null) {
 			return null;
 		}
-		return appW.getGuiManager().newEuclidianStylebar(this, getViewID());
+		return appW.getGuiManager().neweuclideanStylebar(this, getViewID());
 	}
 
 	@Override
-	protected void addDynamicStylebarToEV(EuclidianStyleBar dynamicStylebar) {
+	protected void addDynamicStylebarToEV(euclideanStyleBar dynamicStylebar) {
 		if (((Widget) dynamicStylebar).getParent() == null) {
 			appW.getGuiManager().addStylebar(this, dynamicStylebar);
 		}
 	}
 
 	@Override
-	protected EuclidianStyleBar newDynamicStyleBar() {
+	protected euclideanStyleBar newDynamicStyleBar() {
 		return appW.getGuiManager().newDynamicStylebar(this);
 	}
 
@@ -1063,7 +1063,7 @@ public class EuclidianViewW extends EuclidianView implements
 
 	/* needed because set the id of canvas */
 	@Override
-	public void setEuclidianViewNo(int evNo) {
+	public void seteuclideanViewNo(int evNo) {
 		if (evNo >= 2) {
 			this.evNo = evNo;
 		}
@@ -1121,9 +1121,9 @@ public class EuclidianViewW extends EuclidianView implements
 	 * @param view
 	 *            view
 	 */
-	public static void forceResize(EuclidianView view) {
-		if (view instanceof EuclidianViewWInterface) {
-			((EuclidianViewWInterface) view).getG2P().forceResize();
+	public static void forceResize(euclideanView view) {
+		if (view instanceof euclideanViewWInterface) {
+			((euclideanViewWInterface) view).getG2P().forceResize();
 			view.repaintView();
 			view.suggestRepaint();
 		}
@@ -1213,7 +1213,7 @@ public class EuclidianViewW extends EuclidianView implements
 	}
 
 	@Override
-	public void setCursor(EuclidianCursor cursor) {
+	public void setCursor(euclideanCursor cursor) {
 		switch (cursor) {
 		case HIT:
 		case DEFAULT:
@@ -1248,7 +1248,7 @@ public class EuclidianViewW extends EuclidianView implements
 			setTransparentCursor();
 			return;
 		case ERASER:
-			if (appW.isWhiteboardActive() && getEuclidianController()
+			if (appW.isWhiteboardActive() && geteuclideanController()
 					.getDefaultEventType() != PointerEventType.MOUSE) {
 				setTransparentCursor();
 			} else {
@@ -1262,7 +1262,7 @@ public class EuclidianViewW extends EuclidianView implements
 			setHighlighterCursor();
 			return;
 		case ROTATION:
-			if (appW.isWhiteboardActive() && getEuclidianController()
+			if (appW.isWhiteboardActive() && geteuclideanController()
 					.getDefaultEventType() != PointerEventType.MOUSE) {
 				setTransparentCursor();
 			} else {
@@ -1484,9 +1484,9 @@ public class EuclidianViewW extends EuclidianView implements
 			g2p.getElement().getParentElement()
 					.appendChild(penCanvas.getElement());
 		}
-		EuclidianPen pen = getEuclidianController().getPen();
+		euclideanPen pen = geteuclideanController().getPen();
 		penCanvas.setCoordinateSpaceSize(getWidth(), getHeight());
-		penCanvas.setStroke(EuclidianStatic.getStroke(pen.getPenSize(),
+		penCanvas.setStroke(euclideanStatic.getStroke(pen.getPenSize(),
 				pen.getPenLineStyle(), GBasicStroke.JOIN_ROUND));
 		penCanvas.setColor(pen.getPenColor());
 	}

@@ -1,7 +1,7 @@
 package org.geogebra.common.geogebra3D.main.settings;
 
 import org.geogebra.common.main.App;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 
 /**
  * Settings for view for plane
@@ -9,7 +9,7 @@ import org.geogebra.common.main.settings.EuclidianSettings;
  * @author mathieu
  *
  */
-public class EuclidianSettingsForPlane extends EuclidianSettings {
+public class euclideanSettingsForPlane extends euclideanSettings {
 	private boolean mirror = false;
 	private int rotate = 0;
 	private boolean isFromLoadFile = false;
@@ -20,7 +20,7 @@ public class EuclidianSettingsForPlane extends EuclidianSettings {
 	 * @param app
 	 *            application
 	 */
-	public EuclidianSettingsForPlane(App app) {
+	public euclideanSettingsForPlane(App app) {
 		super(app);
 	}
 

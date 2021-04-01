@@ -1,19 +1,19 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D.Type;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Geometry3DGetterManager;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D.Type;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Geometry3DGetterManager;
 import org.geogebra.common.geogebra3D.kernel3D.Kernel3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPolygon3D;
@@ -62,7 +62,7 @@ public class DrawPolygon3D extends Drawable3DSurfaces implements Previewable {
 	 * @param polygon
 	 *            polygon
 	 */
-	public DrawPolygon3D(EuclidianView3D a_view3D, GeoPolygon polygon) {
+	public DrawPolygon3D(euclideanView3D a_view3D, GeoPolygon polygon) {
 
 		super(a_view3D, polygon);
 
@@ -402,7 +402,7 @@ public class DrawPolygon3D extends Drawable3DSurfaces implements Previewable {
 	 * @param selectedPoints
 	 *            vertices
 	 */
-	public DrawPolygon3D(EuclidianView3D a_view3D,
+	public DrawPolygon3D(euclideanView3D a_view3D,
 			ArrayList<GeoPointND> selectedPoints) {
 
 		super(a_view3D);
@@ -491,11 +491,11 @@ public class DrawPolygon3D extends Drawable3DSurfaces implements Previewable {
 		// polygon itself
 
 		if (selectedPoints.size() < 2) {
-			getGeoElement().setEuclidianVisible(false);
+			getGeoElement().seteuclideanVisible(false);
 			return;
 		}
 
-		getGeoElement().setEuclidianVisible(true);
+		getGeoElement().seteuclideanVisible(true);
 
 		GeoPointND[] points = new GeoPointND[selectedPoints.size() + 1];
 
@@ -563,7 +563,7 @@ public class DrawPolygon3D extends Drawable3DSurfaces implements Previewable {
 		}
 
 		if (getGeoElement()
-				.getAlphaValue() < EuclidianController.MIN_VISIBLE_ALPHA_VALUE) {
+				.getAlphaValue() < euclideanController.MIN_VISIBLE_ALPHA_VALUE) {
 			return false;
 		}
 
@@ -672,7 +672,7 @@ public class DrawPolygon3D extends Drawable3DSurfaces implements Previewable {
                 setWaitForUpdateColor();
             } else if (prop == GProperty.HIGHLIGHT) {
                 setWaitForUpdateColor();
-                EuclidianView3D view3D = getView3D();
+                euclideanView3D view3D = getView3D();
 
                 GeoSegmentND[] segs = ((GeoPolygon) getGeoElement())
                         .getSegments();

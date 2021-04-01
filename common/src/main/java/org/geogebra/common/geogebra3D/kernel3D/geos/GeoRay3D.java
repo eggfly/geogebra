@@ -1,6 +1,6 @@
 package org.geogebra.common.geogebra3D.kernel3D.geos;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoJoinPoints3D;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoRayPointVector3D;
 import org.geogebra.common.kernel.Construction;
@@ -247,7 +247,7 @@ public class GeoRay3D extends GeoLine3D implements GeoRayND, LimitedPath {
 	}
 
 	@Override
-	public boolean isWhollyIn2DView(EuclidianView ev) {
+	public boolean isWhollyIn2DView(euclideanView ev) {
 
 		// check start point
 		if (!DoubleUtil.isZero(getStartPoint().getInhomCoords().getZ())) {

@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoLine3D;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.kernelND.GeoLineND;
@@ -27,7 +27,7 @@ public class DrawLine3D extends DrawCoordSys1D {
 	 * @param line
 	 *            line
 	 */
-	public DrawLine3D(EuclidianView3D a_view3D, GeoLineND line) {
+	public DrawLine3D(euclideanView3D a_view3D, GeoLineND line) {
 		this(a_view3D, line, null);
 	}
 
@@ -41,7 +41,7 @@ public class DrawLine3D extends DrawCoordSys1D {
 	 * @param geo2
 	 *            parent geo
 	 */
-	public DrawLine3D(EuclidianView3D a_view3D, GeoLineND line,
+	public DrawLine3D(euclideanView3D a_view3D, GeoLineND line,
 			GeoElement geo2) {
 		super(a_view3D);
 		init((GeoElement) line, geo2);
@@ -55,7 +55,7 @@ public class DrawLine3D extends DrawCoordSys1D {
 	 * @param selectedPoints
 	 *            endpoints
 	 */
-	public DrawLine3D(EuclidianView3D a_view3D, ArrayList<GeoPointND> selectedPoints) {
+	public DrawLine3D(euclideanView3D a_view3D, ArrayList<GeoPointND> selectedPoints) {
 		super(a_view3D, selectedPoints, new GeoLine3D(a_view3D.getKernel().getConstruction()));
 	}
 

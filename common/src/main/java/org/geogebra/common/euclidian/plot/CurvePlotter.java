@@ -1,7 +1,7 @@
-package org.geogebra.common.euclidian.plot;
+package org.geogebra.common.euclidean.plot;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.kernelND.CurveEvaluable;
 
 /**
@@ -22,14 +22,14 @@ public class CurvePlotter {
 	 * @param tMin min value of parameter
 	 * @param tMax max value of parameter
 	 * @param curve curve to be drawn
-	 * @param view Euclidian view to be used
+	 * @param view euclidean view to be used
 	 * @param gp generalpath that can be drawn afterwards
 	 * @param calcLabelPos whether label position should be calculated and returned
 	 * @param moveToAllowed whether moveTo() may be used for gp
 	 * @author Markus Hohenwarter, based on an algorithm by John Gillam
 	 */
 	public CurvePlotter(CurveEvaluable curve, double tMin,
-			double tMax, EuclidianView view, PathPlotter gp, boolean calcLabelPos,
+			double tMax, euclideanView view, PathPlotter gp, boolean calcLabelPos,
 			Gap moveToAllowed) {
 
 		// ensure MIN_PLOT_POINTS
@@ -51,7 +51,7 @@ public class CurvePlotter {
 	 * @param tMin min value of parameter
 	 * @param tMax max value of parameter
 	 * @param curve curve to be drawn
-	 * @param view Euclidian view to be used
+	 * @param view euclidean view to be used
 	 * @param gp generalpath that can be drawn afterwards
 	 * @param calcLabelPos whether label position should be calculated and returned
 	 * @param moveToAllowed whether moveTo() may be used for gp
@@ -59,7 +59,7 @@ public class CurvePlotter {
 	 * @author Markus Hohenwarter, based on an algorithm by John Gillam
 	 */
 	public static GPoint plotCurve(CurveEvaluable curve, double tMin,
-			double tMax, EuclidianView view, PathPlotter gp, boolean calcLabelPos,
+			double tMax, euclideanView view, PathPlotter gp, boolean calcLabelPos,
 			Gap moveToAllowed) {
 		if (LEGACY) {
 			return CurvePlotterOriginal.plotCurve(curve, tMin, tMax, view, gp,

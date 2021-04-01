@@ -41,7 +41,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.ToolTipManager;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.common.main.App;
 import org.geogebra.desktop.awt.GGraphics2DD;
@@ -118,7 +118,7 @@ public class ModeToggleMenuD extends JPanel {
 	private void selectItem(JMenuItem mi, ModeSetter ms) {
 		// check if the menu item is already selected
 		boolean imageDialog = mi.getActionCommand()
-				.equals(Integer.toString(EuclidianConstants.MODE_IMAGE));
+				.equals(Integer.toString(euclideanConstants.MODE_IMAGE));
 		if (tbutton.isSelected()
 				&& tbutton.getActionCommand().equals(mi.getActionCommand())
 				&& !imageDialog) {
@@ -194,7 +194,7 @@ public class ModeToggleMenuD extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JMenuItem item = (JMenuItem) e.getSource();
-			if (!(Integer.toString(EuclidianConstants.MODE_IMAGE)
+			if (!(Integer.toString(euclideanConstants.MODE_IMAGE)
 					.equals(item.getActionCommand()))) {
 				selectItem(item, ModeSetter.TOOLBAR);
 				tbutton.doClick();

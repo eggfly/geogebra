@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.modes;
+package org.geogebra.common.euclidean.modes;
 
 import java.util.ArrayList;
 
@@ -9,10 +9,10 @@ import org.geogebra.common.awt.GLine2D;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.algos.AlgoJoinPointsSegment;
 import org.geogebra.common.kernel.algos.AlgoPolygon;
@@ -23,7 +23,7 @@ import org.geogebra.common.kernel.geos.GeoPolygon;
 import org.geogebra.common.kernel.geos.GeoSegment;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.main.GeoGebraColorConstants;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 /**
  * Mouse handlers for shape tools
@@ -34,8 +34,8 @@ public class ModeShape {
 
 	private static final double MAX_SNAP_DISTANCE = 20;
 	private static final double MAX_SNAP_SLOPE = 0.1;
-	private EuclidianView view;
-	private EuclidianController ec;
+	private euclideanView view;
+	private euclideanController ec;
 	/**
 	 * start point of dragging movement
 	 */
@@ -66,10 +66,10 @@ public class ModeShape {
 
 	/**
 	 * @param view
-	 *            - euclidianView
+	 *            - euclideanView
 	 */
-	public ModeShape(EuclidianView view) {
-		this.ec = view.getEuclidianController();
+	public ModeShape(euclideanView view) {
+		this.ec = view.geteuclideanController();
 		this.view = view;
 	}
 
@@ -89,7 +89,7 @@ public class ModeShape {
 	public void handleMousePressedForShapeMode(AbstractEvent event) {
 		moveEnded = true;
 		if (!dragPointSet || (pointListFreePoly.isEmpty()
-				&& ec.getMode() == EuclidianConstants.MODE_SHAPE_FREEFORM)) {
+				&& ec.getMode() == euclideanConstants.MODE_SHAPE_FREEFORM)) {
 			dragStartPoint.setLocation(event.getX(), event.getY());
 			view.resetBoundingBoxes();
 			pointListFreePoly.clear();
@@ -97,7 +97,7 @@ public class ModeShape {
 			dragPointSet = true;
 			return;
 		}
-		if (ec.getMode() == EuclidianConstants.MODE_SHAPE_FREEFORM) {
+		if (ec.getMode() == euclideanConstants.MODE_SHAPE_FREEFORM) {
 			if (pointListFreePoly.get(0)
 					.distance(new GPoint(event.getX(), event.getY())) < 15
 					&& pointListFreePoly.size() > 1) {
@@ -122,53 +122,53 @@ public class ModeShape {
 
 		int mode = ec.getMode();
 		wasDragged = true;
-		if (mode != EuclidianConstants.MODE_SHAPE_FREEFORM) {
+		if (mode != euclideanConstants.MODE_SHAPE_FREEFORM) {
 			dragPointSet = false;
 		}
-		if (mode == EuclidianConstants.MODE_SHAPE_RECTANGLE
-				|| mode == EuclidianConstants.MODE_SHAPE_RECTANGLE_ROUND_EDGES) {
+		if (mode == euclideanConstants.MODE_SHAPE_RECTANGLE
+				|| mode == euclideanConstants.MODE_SHAPE_RECTANGLE_ROUND_EDGES) {
 			updateRectangle(event, false);
-			if (mode == EuclidianConstants.MODE_SHAPE_RECTANGLE_ROUND_EDGES) {
+			if (mode == euclideanConstants.MODE_SHAPE_RECTANGLE_ROUND_EDGES) {
 				view.setRounded(true);
 			} else {
 				view.setRounded(false);
 			}
 			view.setShapeRectangle(rectangle);
 			view.repaintView();
-		} else if (mode == EuclidianConstants.MODE_SHAPE_SQUARE) {
+		} else if (mode == euclideanConstants.MODE_SHAPE_SQUARE) {
 			updateRectangle(event, true);
 			view.setRounded(false);
 			view.setShapeRectangle(rectangle);
 			view.repaintView();
-		} else if (mode == EuclidianConstants.MODE_SHAPE_ELLIPSE
-				|| mode == EuclidianConstants.MODE_SHAPE_CIRCLE) {
-			if (mode == EuclidianConstants.MODE_SHAPE_ELLIPSE) {
+		} else if (mode == euclideanConstants.MODE_SHAPE_ELLIPSE
+				|| mode == euclideanConstants.MODE_SHAPE_CIRCLE) {
+			if (mode == euclideanConstants.MODE_SHAPE_ELLIPSE) {
 				updateEllipse(event, false);
 			} else {
 				updateEllipse(event, true);
 			}
 			view.setShapeEllipse(ellipse);
 			view.repaintView();
-		} else if (mode == EuclidianConstants.MODE_SHAPE_LINE) {
+		} else if (mode == euclideanConstants.MODE_SHAPE_LINE) {
 			GPoint2D snap = snapPoint(dragStartPoint.getX(), dragStartPoint.getY(), event.getX(),
 					event.getY());
 			line.setLine(dragStartPoint.getX(), dragStartPoint.getY(),
 					snap.getX(), snap.getY());
 			view.setShapeLine(line);
 			view.repaintView();
-		} else if (mode == EuclidianConstants.MODE_SHAPE_TRIANGLE) {
+		} else if (mode == euclideanConstants.MODE_SHAPE_TRIANGLE) {
 			updateTriangle(event);
 			view.setShapePolygon(polygon);
 			view.repaintView();
-		} else if (mode == EuclidianConstants.MODE_SHAPE_PENTAGON) {
+		} else if (mode == euclideanConstants.MODE_SHAPE_PENTAGON) {
 			updateRegularPolygon(event);
 			view.setShapePolygon(polygon);
 			view.repaintView();
-		} else if (mode == EuclidianConstants.MODE_MASK) {
+		} else if (mode == euclideanConstants.MODE_MASK) {
 			updateRectangle(event, false);
 			view.setMaskPreview(rectangle);
 			view.repaintView();
-		} else if (mode == EuclidianConstants.MODE_SHAPE_FREEFORM) {
+		} else if (mode == euclideanConstants.MODE_SHAPE_FREEFORM) {
 			updateFreeFormPolygon(event, wasDragged);
 		}
 	}
@@ -261,15 +261,15 @@ public class ModeShape {
 		view.setRounded(false);
 		int mode = ec.getMode();
 		// make sure we set new start point after ignoring simple click
-		if (mode != EuclidianConstants.MODE_SHAPE_FREEFORM && !wasDragged) {
+		if (mode != euclideanConstants.MODE_SHAPE_FREEFORM && !wasDragged) {
 			dragPointSet = false;
 			dragStartPoint = new GPoint();
 			return null;
 		}
-		if (mode == EuclidianConstants.MODE_SHAPE_RECTANGLE || ec
-				.getMode() == EuclidianConstants.MODE_SHAPE_RECTANGLE_ROUND_EDGES
-				|| mode == EuclidianConstants.MODE_SHAPE_SQUARE) {
-			boolean square = mode == EuclidianConstants.MODE_SHAPE_SQUARE;
+		if (mode == euclideanConstants.MODE_SHAPE_RECTANGLE || ec
+				.getMode() == euclideanConstants.MODE_SHAPE_RECTANGLE_ROUND_EDGES
+				|| mode == euclideanConstants.MODE_SHAPE_SQUARE) {
+			boolean square = mode == euclideanConstants.MODE_SHAPE_SQUARE;
 			AlgoPolygon algo = getPolyAlgo(getPointArray(event, square));
 
 			createPolygon(algo);
@@ -278,7 +278,7 @@ public class ModeShape {
 			view.repaintView();
 			wasDragged = false;
 			return algo.getOutput(0);
-		} else if (mode == EuclidianConstants.MODE_MASK) {
+		} else if (mode == euclideanConstants.MODE_MASK) {
 			AlgoPolygon algo = getPolyAlgo(getPointArray(event, false));
 
 			createMask(algo);
@@ -287,10 +287,10 @@ public class ModeShape {
 			view.repaintView();
 			wasDragged = false;
 			return algo.getOutput(0);
-		} else if (mode == EuclidianConstants.MODE_SHAPE_ELLIPSE
-				|| mode == EuclidianConstants.MODE_SHAPE_CIRCLE) {
+		} else if (mode == euclideanConstants.MODE_SHAPE_ELLIPSE
+				|| mode == euclideanConstants.MODE_SHAPE_CIRCLE) {
 			double[] conicEqu;
-			if (mode == EuclidianConstants.MODE_SHAPE_ELLIPSE) {
+			if (mode == euclideanConstants.MODE_SHAPE_ELLIPSE) {
 				conicEqu = getEquationOfConic(event, false);
 			} else {
 				conicEqu = getEquationOfConic(event, true);
@@ -304,7 +304,7 @@ public class ModeShape {
 			view.repaintView();
 			wasDragged = false;
 			return conic;
-		} else if (mode == EuclidianConstants.MODE_SHAPE_LINE) {
+		} else if (mode == euclideanConstants.MODE_SHAPE_LINE) {
 			GeoPoint[] points = getRealPointsOfLine(event);
 			AlgoJoinPointsSegment algo = new AlgoJoinPointsSegment(
 					view.getKernel().getConstruction(),
@@ -317,10 +317,10 @@ public class ModeShape {
 			view.repaintView();
 			wasDragged = false;
 			return segment;
-		} else if (mode == EuclidianConstants.MODE_SHAPE_TRIANGLE
-				|| mode == EuclidianConstants.MODE_SHAPE_PENTAGON) {
+		} else if (mode == euclideanConstants.MODE_SHAPE_TRIANGLE
+				|| mode == euclideanConstants.MODE_SHAPE_PENTAGON) {
 			GeoPoint[] points = null;
-			if (mode == EuclidianConstants.MODE_SHAPE_TRIANGLE) {
+			if (mode == euclideanConstants.MODE_SHAPE_TRIANGLE) {
 				points = getRealPointsOfTriangle(event);
 			} else {
 				points = getRealPointsOfPolygon(event);
@@ -331,7 +331,7 @@ public class ModeShape {
 			view.repaintView();
 			wasDragged = false;
 			return algo.getOutput(0);
-		} else if (mode == EuclidianConstants.MODE_SHAPE_FREEFORM) {
+		} else if (mode == euclideanConstants.MODE_SHAPE_FREEFORM) {
 			if (wasDragged) {
 				if (pointListFreePoly.size() > 1
 						&& pointListFreePoly.get(0).distance(
@@ -374,7 +374,7 @@ public class ModeShape {
 
 	private static void createPolygon(AlgoPolygon algo) {
 		GeoPolygon poly = algo.getPoly();
-		poly.setLineThickness(EuclidianStyleConstants.DEFAULT_LINE_THICKNESS);
+		poly.setLineThickness(euclideanStyleConstants.DEFAULT_LINE_THICKNESS);
 		poly.setIsShape(true);
 		poly.setLabelVisible(false);
 		poly.setAlphaValue(0);
@@ -398,7 +398,7 @@ public class ModeShape {
 	 *            - mouse event
 	 */
 	public void handleMouseMoveForShapeMode(AbstractEvent event) {
-		if (ec.getMode() == EuclidianConstants.MODE_SHAPE_FREEFORM) {
+		if (ec.getMode() == euclideanConstants.MODE_SHAPE_FREEFORM) {
 			if (dragPointSet) {
 				if (moveEnded) {
 					polygon.lineTo(event.getX(), event.getY());
@@ -437,7 +437,7 @@ public class ModeShape {
 	private GeoPoint invisibleScreenPoint(double startX, double startY) {
 		GeoPoint pt = new GeoPoint(view.getKernel().getConstruction(),
 				view.toRealWorldCoordX(startX), view.toRealWorldCoordY(startY), 1);
-		pt.setEuclidianVisible(false);
+		pt.seteuclideanVisible(false);
 		pt.updateRepaint();
 		return pt;
 	}

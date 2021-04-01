@@ -120,7 +120,7 @@ public class GeoLine3D extends GeoCoordSys1D {
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return coordsys.isDefined();
 	}
 

@@ -2,7 +2,7 @@ package org.geogebra.common.geogebra3D.kernel3D.geos;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawConic3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawConic3D;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoDependentQuadric3D;
 import org.geogebra.common.geogebra3D.kernel3D.transform.MirrorableAtPlane;
 import org.geogebra.common.kernel.Construction;
@@ -164,7 +164,7 @@ public class GeoQuadric3D extends GeoQuadricND implements Functional2Var,
 	@Override
 	public void hideIfNotSphere() {
 		if (type != QUADRIC_SPHERE && type != QUADRIC_SINGLE_POINT) {
-			setEuclidianVisible(false);
+			seteuclideanVisible(false);
 		}
 	}
 
@@ -1881,7 +1881,7 @@ public class GeoQuadric3D extends GeoQuadricND implements Functional2Var,
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return type != GeoQuadricNDConstants.QUADRIC_NOT_CLASSIFIED
 				&& type != GeoQuadricNDConstants.QUADRIC_EMPTY;
 	}

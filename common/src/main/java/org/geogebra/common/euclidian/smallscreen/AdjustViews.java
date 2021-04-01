@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.smallscreen;
+package org.geogebra.common.euclidean.smallscreen;
 
 import org.geogebra.common.main.App;
 

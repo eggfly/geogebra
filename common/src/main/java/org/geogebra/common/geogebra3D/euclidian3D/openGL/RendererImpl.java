@@ -1,12 +1,12 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.util.debug.Log;
 
 public abstract class RendererImpl {
 
-	protected EuclidianView3D view3D;
+	protected euclideanView3D view3D;
 	private int fboWidth = 1;
 
 	private int fboHeight = 1;
@@ -33,7 +33,7 @@ public abstract class RendererImpl {
 	 * @param view
 	 *            view
 	 */
-	public RendererImpl(Renderer renderer, EuclidianView3D view) {
+	public RendererImpl(Renderer renderer, euclideanView3D view) {
 		this.renderer = renderer;
 		this.view3D = view;
 	}

@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ public class BoundingBoxResizeState {
 	private double widthHeightRatio = 1;
 
 	private GRectangle2D rect;
-	private final EuclidianView view;
+	private final euclideanView view;
 	private final ArrayList<GeoElement> geos;
 
 	private HashMap<GeoElement, ArrayList<GPoint2D>> ratios;
@@ -37,7 +37,7 @@ public class BoundingBoxResizeState {
 	 *            current view
 	 */
 	public BoundingBoxResizeState(GRectangle2D rect, ArrayList<GeoElement> geos,
-			EuclidianView view) {
+			euclideanView view) {
 		ratios = new HashMap<>();
 		this.rect = rect;
 		this.geos = geos;

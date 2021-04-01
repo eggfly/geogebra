@@ -1,4 +1,4 @@
-package org.geogebra.web.full.euclidian;
+package org.geogebra.web.full.euclidean;
 
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.kernel.geos.GeoInputBox;

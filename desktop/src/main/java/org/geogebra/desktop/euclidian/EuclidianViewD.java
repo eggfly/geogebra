@@ -10,7 +10,7 @@
  
  */
 
-package org.geogebra.desktop.euclidian;
+package org.geogebra.desktop.euclidean;
 
 import java.awt.AWTEvent;
 import java.awt.Color;
@@ -47,19 +47,19 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianCursor;
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.ScreenReaderAdapter;
-import org.geogebra.common.euclidian.SymbolicEditor;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanCursor;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.ScreenReaderAdapter;
+import org.geogebra.common.euclidean.SymbolicEditor;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.EVProperty;
 import org.geogebra.common.main.App.ExportType;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GBufferedImageD;
@@ -67,7 +67,7 @@ import org.geogebra.desktop.awt.GColorD;
 import org.geogebra.desktop.awt.GDimensionD;
 import org.geogebra.desktop.awt.GFontD;
 import org.geogebra.desktop.awt.GGraphics2DD;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.export.GraphicExportDialog;
 import org.geogebra.desktop.io.MyImageIO;
 import org.geogebra.desktop.main.AppD;
@@ -78,8 +78,8 @@ import org.geogebra.desktop.util.ImageResourceD;
  * 
  * @author Markus Hohenwarter
  */
-public class EuclidianViewD extends EuclidianView
-		implements EuclidianViewInterfaceD, Printable {
+public class euclideanViewD extends euclideanView
+		implements euclideanViewInterfaceD, Printable {
 
 	// temp
 	// public static final int DRAW_MODE_DIRECT_DRAW = 0;
@@ -101,9 +101,9 @@ public class EuclidianViewD extends EuclidianView
 	protected Cursor defaultCursor;
 
 	/** Java component for this view */
-	protected EuclidianViewJPanelD evjpanel;
+	protected euclideanViewJPanelD evjpanel;
 
-	// set EuclidianView no - 2 for 2nd EulidianView, 1 for 1st EuclidianView
+	// set euclideanView no - 2 for 2nd EulidianView, 1 for 1st euclideanView
 	// and Applet
 	// EVNO_GENERAL for others
 
@@ -117,13 +117,13 @@ public class EuclidianViewD extends EuclidianView
 	 * @param settings
 	 *            settings
 	 */
-	public EuclidianViewD(EuclidianController ec, boolean[] showAxes,
-			boolean showGrid, EuclidianSettings settings) {
+	public euclideanViewD(euclideanController ec, boolean[] showAxes,
+			boolean showGrid, euclideanSettings settings) {
 		this(ec, showAxes, showGrid, 1, settings);
 	}
 
 	/**
-	 * Creates EuclidianView
+	 * Creates euclideanView
 	 * 
 	 * @param ec
 	 *            controller
@@ -134,14 +134,14 @@ public class EuclidianViewD extends EuclidianView
 	 * @param evno
 	 *            number of this view
 	 * @param settings
-	 *            euclidian settings
+	 *            euclidean settings
 	 */
-	public EuclidianViewD(EuclidianController ec, boolean[] showAxes,
-			boolean showGrid, int evno, EuclidianSettings settings) {
+	public euclideanViewD(euclideanController ec, boolean[] showAxes,
+			boolean showGrid, int evno, euclideanSettings settings) {
 
 		super(ec, evno, settings);
 		viewTextField = new ViewTextFieldD(this);
-		evjpanel = new EuclidianViewJPanelD(this);
+		evjpanel = new euclideanViewJPanelD(this);
 
 		setApplication(ec.getApplication());
 
@@ -151,7 +151,7 @@ public class EuclidianViewD extends EuclidianView
 
 		// algebra controller will take care of our key events
 
-		euclidianController.setView(this);
+		euclideanController.setView(this);
 
 		attachView();
 
@@ -159,13 +159,13 @@ public class EuclidianViewD extends EuclidianView
 
 		// updateRightAngleStyle(app.getLocale());
 
-		EuclidianSettings es = null;
+		euclideanSettings es = null;
 		if (settings != null) {
 			es = settings;
 			// settings from XML for EV1, EV2
 			// not for eg probability calculator
 		} else if ((evNo == 1) || (evNo == 2)) {
-			es = getApplication().getSettings().getEuclidian(evNo);
+			es = getApplication().getSettings().geteuclidean(evNo);
 		}
 
 		if (es != null) {
@@ -195,7 +195,7 @@ public class EuclidianViewD extends EuclidianView
 	 */
 	public void setDragCursor() {
 
-		if (getMode() == EuclidianConstants.MODE_TRANSLATEVIEW) {
+		if (getMode() == euclideanConstants.MODE_TRANSLATEVIEW) {
 			setGrabbingCursor();
 		}
 
@@ -262,15 +262,15 @@ public class EuclidianViewD extends EuclidianView
 		default:
 			// do nothing
 			break;
-		case EuclidianConstants.MODE_ZOOM_IN:
+		case euclideanConstants.MODE_ZOOM_IN:
 			defaultCursor = getCursorForImage(GuiResourcesD.CURSOR_ZOOMIN);
 			break;
 
-		case EuclidianConstants.MODE_ZOOM_OUT:
+		case euclideanConstants.MODE_ZOOM_OUT:
 			defaultCursor = getCursorForImage(GuiResourcesD.CURSOR_ZOOMOUT);
 			break;
 
-		case EuclidianConstants.MODE_TRANSLATEVIEW:
+		case euclideanConstants.MODE_TRANSLATEVIEW:
 			defaultCursor = getCursorForImage(GuiResourcesD.CURSOR_GRAB);
 			break;
 		}
@@ -498,7 +498,7 @@ public class EuclidianViewD extends EuclidianView
 		 * button g2.setColor(GColor.DARK_GRAY); } else {
 		 * g2.setColor(GColor.LIGHT_GRAY); }
 		 * 
-		 * g2.setStroke(EuclidianStatic .getDefaultStroke());
+		 * g2.setStroke(euclideanStatic .getDefaultStroke());
 		 * 
 		 * // draw pause or play button g2.drawRect(x - 2, y - 2, 18, 18);
 		 */
@@ -520,8 +520,8 @@ public class EuclidianViewD extends EuclidianView
 	}
 
 	@Override
-	public EuclidianController getEuclidianController() {
-		return euclidianController;
+	public euclideanController geteuclideanController() {
+		return euclideanController;
 	}
 
 	/**
@@ -752,7 +752,7 @@ public class EuclidianViewD extends EuclidianView
 	}
 
 	/**
-	 * @see EuclidianViewJPanelD#processMouseEventImpl(MouseEvent)
+	 * @see euclideanViewJPanelD#processMouseEventImpl(MouseEvent)
 	 * @param e
 	 *            mouse event
 	 */
@@ -774,8 +774,8 @@ public class EuclidianViewD extends EuclidianView
 	// @Override
 	@Override
 	public void setToolTipText(String plain) {
-		if ((tooltipsInThisView == EuclidianStyleConstants.TOOLTIPS_ON)
-				|| (tooltipsInThisView == EuclidianStyleConstants.TOOLTIPS_AUTOMATIC)) {
+		if ((tooltipsInThisView == euclideanStyleConstants.TOOLTIPS_ON)
+				|| (tooltipsInThisView == euclideanStyleConstants.TOOLTIPS_AUTOMATIC)) {
 			evjpanel.setToolTipText(plain);
 		}
 	}
@@ -802,7 +802,7 @@ public class EuclidianViewD extends EuclidianView
 		companion.setXYMinMaxForUpdateSize();
 		if (app.getKernel().getConstruction() != null) {
 			app.getKernel().getConstruction()
-					.notifyEuclidianViewCE(EVProperty.SIZE);
+					.notifyeuclideanViewCE(EVProperty.SIZE);
 		}
 		setRealWorldBounds();
 
@@ -884,11 +884,11 @@ public class EuclidianViewD extends EuclidianView
 
 	/**
 	 * 
-	 * @return new euclidian style bar
+	 * @return new euclidean style bar
 	 */
 	@Override
-	protected EuclidianStyleBarD newEuclidianStyleBar() {
-		return new EuclidianStyleBarD(this);
+	protected euclideanStyleBarD neweuclideanStyleBar() {
+		return new euclideanStyleBarD(this);
 	}
 
 	@Override
@@ -957,7 +957,7 @@ public class EuclidianViewD extends EuclidianView
 	}
 
 	@Override
-	public void setCursor(EuclidianCursor cursor) {
+	public void setCursor(euclideanCursor cursor) {
 		switch (cursor) {
 		case HIT:
 			setHitCursor();
@@ -995,13 +995,13 @@ public class EuclidianViewD extends EuclidianView
 	}
 
 	@Override
-	protected EuclidianStyleBar newDynamicStyleBar() {
+	protected euclideanStyleBar newDynamicStyleBar() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected void addDynamicStylebarToEV(EuclidianStyleBar dynamicStylebar) {
+	protected void addDynamicStylebarToEV(euclideanStyleBar dynamicStylebar) {
 		// TODO Auto-generated method stub
 
 	}

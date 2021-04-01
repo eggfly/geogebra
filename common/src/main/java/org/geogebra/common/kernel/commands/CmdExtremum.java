@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.commands;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.algos.AlgoExtremumMulti;
 import org.geogebra.common.kernel.algos.AlgoExtremumPolynomial;
@@ -93,8 +93,8 @@ public class CmdExtremum extends CommandProcessor {
 				true);
 		if (!gf.isPolynomialFunction(true)
 				|| (poly != null && poly.isMaxDegreeReached())) {
-			EuclidianViewInterfaceCommon view = this.kernel.getApplication()
-					.getActiveEuclidianView();
+			euclideanViewInterfaceCommon view = this.kernel.getApplication()
+					.getActiveeuclideanView();
 			AlgoExtremumMulti algo = new AlgoExtremumMulti(cons, c.getLabels(),
 					gf, view);
 			return algo.getExtremumPoints();

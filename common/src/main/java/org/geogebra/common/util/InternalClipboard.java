@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.geogebra.common.awt.GRectangle2D;
-import org.geogebra.common.euclidian.EmbedManager;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.EmbedManager;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.algos.AlgoElement;
@@ -184,8 +184,8 @@ public class InternalClipboard {
 
 		for (int j = geostohide.size() - 1; j >= 0; j--) {
 			geo = geostohide.get(j);
-			if (geo.isGeoElement() && ((GeoElement) geo).isEuclidianVisible()) {
-				((GeoElement) geo).setEuclidianVisible(false);
+			if (geo.isGeoElement() && ((GeoElement) geo).iseuclideanVisible()) {
+				((GeoElement) geo).seteuclideanVisible(false);
 			} else {
 				geostohide.remove(geo);
 			}
@@ -222,7 +222,7 @@ public class InternalClipboard {
 		for (int j = geostoshow.size() - 1; j >= 0; j--) {
 			geo = geostoshow.get(j);
 			if (geo.isGeoElement()) {
-				((GeoElement) geo).setEuclidianVisible(true);
+				((GeoElement) geo).seteuclideanVisible(true);
 			}
 		}
 	}
@@ -283,27 +283,27 @@ public class InternalClipboard {
 		final boolean scriptsBlocked = app.isBlockUpdateScripts();
 		app.setBlockUpdateScripts(true);
 
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 		// don't update selection
-		EuclidianController euclidianController = ev.getEuclidianController();
-		euclidianController.clearSelections(true, false);
-		euclidianController.widgetsToBackground();
+		euclideanController euclideanController = ev.geteuclideanController();
+		euclideanController.clearSelections(true, false);
+		euclideanController.widgetsToBackground();
 		// don't update properties view
 		app.updateSelection(false);
 		app.getGgbApi().evalXML(copiedXml);
 		app.getKernel().getConstruction().updateConstruction(false);
-		if (ev == app.getEuclidianView1()) {
-			app.setActiveView(App.VIEW_EUCLIDIAN);
-		} else if (app.isEuclidianView3D(ev)) {
-			app.setActiveView(App.VIEW_EUCLIDIAN3D);
+		if (ev == app.geteuclideanView1()) {
+			app.setActiveView(App.VIEW_euclidean);
+		} else if (app.iseuclideanView3D(ev)) {
+			app.setActiveView(App.VIEW_euclidean3D);
 		} else {
-			app.setActiveView(App.VIEW_EUCLIDIAN2);
+			app.setActiveView(App.VIEW_euclidean2);
 		}
 
 		ArrayList<GeoElement> createdElements = CopyPaste.handleLabels(app, copiedXmlLabels, false);
 
 		app.setBlockUpdateScripts(scriptsBlocked);
-		app.getActiveEuclidianView().invalidateDrawableList();
+		app.getActiveeuclideanView().invalidateDrawableList();
 		app.getKernel().notifyPasteComplete(createdElements);
 
 		if (app.isWhiteboardActive()) {
@@ -317,7 +317,7 @@ public class InternalClipboard {
 			}
 
 			app.getSelectionManager().setSelectedGeos(shapes);
-			euclidianController.updateBoundingBoxFromSelection(false);
+			euclideanController.updateBoundingBoxFromSelection(false);
 
 			int viewCenterX = ev.getWidth() / 2;
 			int viewCenterY = ev.getHeight() / 2;
@@ -330,12 +330,12 @@ public class InternalClipboard {
 			Coords coords = new Coords(ev.getInvXscale() * (viewCenterX - boxCenterX),
 					ev.getInvYscale() * (boxCenterY - viewCenterY), 0);
 
-			euclidianController.addFreePoints(createdElements);
+			euclideanController.addFreePoints(createdElements);
 			MoveGeos.moveObjects(createdElements, coords, null, null, ev);
 			ev.updateAllDrawables(true);
 
-			euclidianController.updateBoundingBoxFromSelection(false);
-			euclidianController.showDynamicStylebar();
+			euclideanController.updateBoundingBoxFromSelection(false);
+			euclideanController.showDynamicStylebar();
 		}
 
 		app.storeUndoInfo();

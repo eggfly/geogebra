@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.toolbar.mow;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.AccessibilityGroup;
 import org.geogebra.common.gui.toolbar.ToolBar;
 import org.geogebra.web.html5.Browser;
@@ -31,22 +31,22 @@ public class MediaSubMenu extends SubMenuPanel {
 
 	@Override
 	public int getFirstMode() {
-		return EuclidianConstants.MODE_MEDIA_TEXT;
+		return euclideanConstants.MODE_MEDIA_TEXT;
 	}
 
 	@Override
 	public boolean isValidMode(int mode) {
-		return mode == EuclidianConstants.MODE_MEDIA_TEXT
-				|| mode == EuclidianConstants.MODE_IMAGE
-				|| mode == EuclidianConstants.MODE_CAMERA
-				|| mode == EuclidianConstants.MODE_VIDEO
-				|| mode == EuclidianConstants.MODE_AUDIO
-				|| mode == EuclidianConstants.MODE_GRAPHING
-				|| mode == EuclidianConstants.MODE_PDF
-				|| mode == EuclidianConstants.MODE_EXTENSION
-				|| mode == EuclidianConstants.MODE_TABLE
-				|| mode == EuclidianConstants.MODE_EQUATION
-				|| mode == EuclidianConstants.MODE_GRASPABLE_MATH
-				|| mode == EuclidianConstants.MODE_CAS;
+		return mode == euclideanConstants.MODE_MEDIA_TEXT
+				|| mode == euclideanConstants.MODE_IMAGE
+				|| mode == euclideanConstants.MODE_CAMERA
+				|| mode == euclideanConstants.MODE_VIDEO
+				|| mode == euclideanConstants.MODE_AUDIO
+				|| mode == euclideanConstants.MODE_GRAPHING
+				|| mode == euclideanConstants.MODE_PDF
+				|| mode == euclideanConstants.MODE_EXTENSION
+				|| mode == euclideanConstants.MODE_TABLE
+				|| mode == euclideanConstants.MODE_EQUATION
+				|| mode == euclideanConstants.MODE_GRASPABLE_MATH
+				|| mode == euclideanConstants.MODE_CAS;
 	}
 }

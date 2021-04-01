@@ -3,11 +3,11 @@ package org.geogebra.web.full.gui.laf;
 import org.geogebra.common.GeoGebraConstants.Platform;
 import org.geogebra.common.main.App;
 import org.geogebra.common.move.ggtapi.models.Material;
-import org.geogebra.web.full.euclidian.SmartTouchHandler;
+import org.geogebra.web.full.euclidean.SmartTouchHandler;
 import org.geogebra.web.full.gui.browser.EmbeddedMaterialElement;
 import org.geogebra.web.full.gui.browser.MaterialListElement;
 import org.geogebra.web.full.gui.browser.SmartSignInController;
-import org.geogebra.web.html5.euclidian.EuclidianControllerW;
+import org.geogebra.web.html5.euclidean.euclideanControllerW;
 import org.geogebra.web.html5.gui.tooltip.ToolTipManagerW;
 import org.geogebra.web.html5.gui.util.CancelEvents;
 import org.geogebra.web.html5.main.AppW;
@@ -83,8 +83,8 @@ public class SmartLookAndFeel extends GLookAndFeel {
     }
 	
 	@Override
-    public boolean registerHandlers(Widget evPanel, EuclidianControllerW euclidiancontroller) {
-		SmartTouchHandler sh = new SmartTouchHandler(euclidiancontroller);
+    public boolean registerHandlers(Widget evPanel, euclideanControllerW euclideancontroller) {
+		SmartTouchHandler sh = new SmartTouchHandler(euclideancontroller);
 		evPanel.addBitlessDomHandler(sh, TouchStartEvent.getType());
 		evPanel.addBitlessDomHandler(sh, TouchEndEvent.getType());
 		evPanel.addBitlessDomHandler(sh, TouchMoveEvent.getType());

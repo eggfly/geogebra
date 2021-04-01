@@ -1,12 +1,12 @@
-package org.geogebra.common.euclidian.controller;
+package org.geogebra.common.euclidean.controller;
 
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.Hits;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.Hits;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.algos.AlgoCirclePointRadius;
 import org.geogebra.common.kernel.algos.AlgoElement;
 import org.geogebra.common.kernel.algos.AlgoSphereNDPointRadius;
@@ -37,7 +37,7 @@ public class MouseTouchGestureController {
 	@Weak
 	protected App app;
 	/** Controller */
-	protected EuclidianController ec;
+	protected euclideanController ec;
 
 	/**
 	 * The mode of the multitouch-event.
@@ -94,7 +94,7 @@ public class MouseTouchGestureController {
 	 * @param ec
 	 *            controller
 	 */
-	public MouseTouchGestureController(App app, EuclidianController ec) {
+	public MouseTouchGestureController(App app, euclideanController ec) {
 		this.app = app;
 		this.ec = ec;
 	}
@@ -393,11 +393,11 @@ public class MouseTouchGestureController {
 	 */
 	private static boolean isMovableWithTwoFingers(GeoElement geoElement) {
 		return geoElement.getParentAlgorithm()
-				.getRelatedModeID() == EuclidianConstants.MODE_JOIN
+				.getRelatedModeID() == euclideanConstants.MODE_JOIN
 				|| geoElement.getParentAlgorithm()
-						.getRelatedModeID() == EuclidianConstants.MODE_SEGMENT
+						.getRelatedModeID() == euclideanConstants.MODE_SEGMENT
 				|| geoElement.getParentAlgorithm()
-						.getRelatedModeID() == EuclidianConstants.MODE_RAY;
+						.getRelatedModeID() == euclideanConstants.MODE_RAY;
 	}
 
 	/**

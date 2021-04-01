@@ -42,18 +42,18 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.background.BackgroundType;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.background.BackgroundType;
 import org.geogebra.common.gui.SetLabels;
-import org.geogebra.common.gui.dialog.options.OptionsEuclidian;
-import org.geogebra.common.gui.dialog.options.model.EuclidianOptionsModel;
-import org.geogebra.common.gui.dialog.options.model.EuclidianOptionsModel.IEuclidianOptionsListener;
-import org.geogebra.common.gui.dialog.options.model.EuclidianOptionsModel.MinMaxType;
+import org.geogebra.common.gui.dialog.options.Optionseuclidean;
+import org.geogebra.common.gui.dialog.options.model.euclideanOptionsModel;
+import org.geogebra.common.gui.dialog.options.model.euclideanOptionsModel.IeuclideanOptionsListener;
+import org.geogebra.common.gui.dialog.options.model.euclideanOptionsModel.MinMaxType;
 import org.geogebra.common.gui.view.consprotocol.ConstructionProtocolNavigation;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.StringTemplate;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.desktop.awt.GColorD;
 import org.geogebra.desktop.gui.GuiManagerD;
 import org.geogebra.desktop.gui.NumberComboBox;
@@ -70,19 +70,19 @@ import org.geogebra.desktop.util.GuiResourcesD;
 import com.himamis.retex.editor.share.util.Unicode;
 
 /**
- * Panel with options for the euclidian view. TODO: optimization: updateGUI()
+ * Panel with options for the euclidean view. TODO: optimization: updateGUI()
  * called too often (F.S.)
  * 
  * revised by G.Sturr 2010-8-15
  * 
  */
-public class OptionsEuclidianD<T extends EuclidianView> extends OptionsEuclidian
+public class OptionseuclideanD<T extends euclideanView> extends Optionseuclidean
 		implements OptionPanelD, ActionListener, FocusListener, ItemListener,
-		SetLabels, IEuclidianOptionsListener {
+		SetLabels, IeuclideanOptionsListener {
 
 	protected AppD app;
 	private Kernel kernel;
-	private EuclidianOptionsModel model;
+	private euclideanOptionsModel model;
 	protected T view;
 
 	// GUI containers
@@ -155,19 +155,19 @@ public class OptionsEuclidianD<T extends EuclidianView> extends OptionsEuclidian
 	// private JButton restoreDefaultsButton;
 
 	/***********************************************
-	 * Creates a new dialog for the properties of the Euclidian view.
+	 * Creates a new dialog for the properties of the euclidean view.
 	 * 
 	 * @param app
 	 *            parent frame
 	 */
-	public OptionsEuclidianD(AppD app, T view) {
+	public OptionseuclideanD(AppD app, T view) {
 
 		isIniting = true;
 		this.app = app;
 		this.loc = app.getLocalization();
 		kernel = app.getKernel();
 		this.view = view;
-		model = new EuclidianOptionsModel(app, view, this);
+		model = new euclideanOptionsModel(app, view, this);
 		view.setOptionPanel(this);
 
 		wrappedPanel = new JPanel();
@@ -365,7 +365,7 @@ public class OptionsEuclidianD<T extends EuclidianView> extends OptionsEuclidian
 		lblAxisLabelStyle = new JLabel(loc.getMenu("LabelStyle") + ":");
 
 		AxesStyleListRenderer renderer = new AxesStyleListRenderer();
-		cbAxesStyle = EuclidianStyleConstantsD.getLineOptionsCombobox();
+		cbAxesStyle = euclideanStyleConstantsD.getLineOptionsCombobox();
 		cbAxesStyle.setRenderer(renderer);
 		cbAxesStyle.setMaximumRowCount(AxesStyleListRenderer.MAX_ROW_COUNT);
 		// cbAxesStyle.setBackground(getBackground());
@@ -379,9 +379,9 @@ public class OptionsEuclidianD<T extends EuclidianView> extends OptionsEuclidian
 		 * 
 		 * PointStyleListRenderer renderer = new PointStyleListRenderer();
 		 * renderer.setPreferredSize(new Dimension(18, 18)); cbStyle = new
-		 * JComboBox(EuclidianViewD.getPointStyles());
+		 * JComboBox(euclideanViewD.getPointStyles());
 		 * cbStyle.setRenderer(renderer);
-		 * cbStyle.setMaximumRowCount(EuclidianStyleConstants.MAX_POINT_STYLE +
+		 * cbStyle.setMaximumRowCount(euclideanStyleConstants.MAX_POINT_STYLE +
 		 * 1); cbStyle.setBackground(getBackground());
 		 * cbStyle.addActionListener(this); add(cbStyle);
 		 */
@@ -510,7 +510,7 @@ public class OptionsEuclidianD<T extends EuclidianView> extends OptionsEuclidian
 		// line style
 		DashListRenderer renderer = new DashListRenderer();
 		renderer.setPreferredSize(new Dimension(80, app.getGUIFontSize() + 6));
-		cbGridStyle = new JComboBox(EuclidianView.getLineTypes());
+		cbGridStyle = new JComboBox(euclideanView.getLineTypes());
 		cbGridStyle.setRenderer(renderer);
 		cbGridStyle.addActionListener(this);
 
@@ -814,7 +814,7 @@ public class OptionsEuclidianD<T extends EuclidianView> extends OptionsEuclidian
 					((Integer) cbAxesStyle.getSelectedItem()).intValue()
 							// make sure bold checkbox doesn't change
 							+ (cbBoldAxes.isSelected()
-									? EuclidianStyleConstants.AXES_BOLD : 0));
+									? euclideanStyleConstants.AXES_BOLD : 0));
 		} else if (source == cbAxisLabelBold) {
 			model.setAxisFontBold(cbAxisLabelBold.isSelected());
 
@@ -1138,9 +1138,9 @@ public class OptionsEuclidianD<T extends EuclidianView> extends OptionsEuclidian
 	};
 
 	@Override
-	public GColor getEuclidianBackground(int viewNumber) {
+	public GColor geteuclideanBackground(int viewNumber) {
 		return GColorD.newColor(((GuiManagerD) (app.getGuiManager()))
-				.showColorChooser(app.getSettings().getEuclidian(viewNumber)
+				.showColorChooser(app.getSettings().geteuclidean(viewNumber)
 						.getBackground()));
 	}
 
@@ -1189,7 +1189,7 @@ public class OptionsEuclidianD<T extends EuclidianView> extends OptionsEuclidian
 		ncbGridTickY.removeItemListener(this);
 		cbGridTickAngle.removeItemListener(this);
 
-		if (gridType != EuclidianView.GRID_POLAR) {
+		if (gridType != euclideanView.GRID_POLAR) {
 
 			ncbGridTickY.setVisible(true);
 			gridLabel2.setVisible(true);

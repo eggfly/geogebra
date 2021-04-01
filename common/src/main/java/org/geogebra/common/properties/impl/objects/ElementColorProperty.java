@@ -1,7 +1,7 @@
 package org.geogebra.common.properties.impl.objects;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianStyleBarStatic;
+import org.geogebra.common.euclidean.euclideanStyleBarStatic;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.GeoGebraColorConstants;
@@ -31,7 +31,7 @@ public class ElementColorProperty extends AbstractProperty implements ColorPrope
 	@Override
 	public void setColor(GColor color) {
 		App app = element.getApp();
-		EuclidianStyleBarStatic.applyColor(
+		euclideanStyleBarStatic.applyColor(
 				color, element.getAlphaValue(), app, app.getSelectionManager().getSelectedGeos());
 	}
 
@@ -45,7 +45,7 @@ public class ElementColorProperty extends AbstractProperty implements ColorPrope
 
 	@Override
 	public boolean isEnabled() {
-		return element.isEuclidianVisible();
+		return element.iseuclideanVisible();
 	}
 
 	private GColor[] createColorValues() {

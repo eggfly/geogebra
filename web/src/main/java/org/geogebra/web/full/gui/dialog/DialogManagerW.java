@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import org.geogebra.common.GeoGebraConstants;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.gui.dialog.Export3dDialogInterface;
 import org.geogebra.common.gui.dialog.TextInputDialog;
@@ -173,7 +173,7 @@ public class DialogManagerW extends DialogManager
 
 	@Override
 	public void showNumberInputDialogRegularPolygon(String title,
-			EuclidianController ec, GeoPointND geoPoint1, GeoPointND geoPoint2,
+			euclideanController ec, GeoPointND geoPoint1, GeoPointND geoPoint2,
 			GeoCoordSys2D direction) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
@@ -185,7 +185,7 @@ public class DialogManagerW extends DialogManager
 
 	@Override
 	public void showNumberInputDialogCirclePointRadius(String title,
-			GeoPointND geoPoint1, EuclidianView view) {
+			GeoPointND geoPoint1, euclideanView view) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		DialogData data = new DialogData(title);
@@ -237,7 +237,7 @@ public class DialogManagerW extends DialogManager
 		}
 
 		if (app.isUnbundled()) {
-			if (app.getActiveEuclidianView().getDynamicStyleBar().isVisible()) {
+			if (app.getActiveeuclideanView().getDynamicStyleBar().isVisible()) {
 				return;
 			}
 		}
@@ -379,7 +379,7 @@ public class DialogManagerW extends DialogManager
 
 	@Override
 	public void showNumberInputDialogRotate(String title, GeoPolygon[] polys,
-			GeoPointND[] points, GeoElement[] selGeos, EuclidianController ec) {
+			GeoPointND[] points, GeoElement[] selGeos, euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		DialogData data = new DialogData(title);
@@ -391,7 +391,7 @@ public class DialogManagerW extends DialogManager
 	@Override
 	public void showNumberInputDialogAngleFixed(String title,
 			GeoSegmentND[] segments, GeoPointND[] points, GeoElement[] selGeos,
-			EuclidianController ec) {
+			euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		DialogData data = new DialogData(title);
@@ -402,7 +402,7 @@ public class DialogManagerW extends DialogManager
 
 	@Override
 	public void showNumberInputDialogDilate(String title, GeoPolygon[] polys,
-			GeoPointND[] points, GeoElement[] selGeos, EuclidianController ec) {
+			GeoPointND[] points, GeoElement[] selGeos, euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		DialogData data = new DialogData(title);
@@ -487,7 +487,7 @@ public class DialogManagerW extends DialogManager
 				app.getSelectionManager().addSelectedGeos(geos, true);
 			}
 
-			if (geos.size() == 1 && geos.get(0).isEuclidianVisible()
+			if (geos.size() == 1 && geos.get(0).iseuclideanVisible()
 					&& geos.get(0) instanceof GeoNumeric) {
 				// AbstractApplication.debug("TODO :
 				// propPanel.showSliderTab()");
@@ -522,9 +522,9 @@ public class DialogManagerW extends DialogManager
 
 	@Override
 	public void showDataSourceDialog(int mode, boolean doAutoLoadSelectedGeos) {
-		if (mode == EuclidianConstants.MODE_SPREADSHEET_ONEVARSTATS
-				|| mode == EuclidianConstants.MODE_SPREADSHEET_TWOVARSTATS
-				|| mode == EuclidianConstants.MODE_SPREADSHEET_MULTIVARSTATS) {
+		if (mode == euclideanConstants.MODE_SPREADSHEET_ONEVARSTATS
+				|| mode == euclideanConstants.MODE_SPREADSHEET_TWOVARSTATS
+				|| mode == euclideanConstants.MODE_SPREADSHEET_MULTIVARSTATS) {
 
 			Log.debug("[DAMODE] about to show mode " + mode);
 			DataAnalysisViewW da = (DataAnalysisViewW) app.getGuiManager()
@@ -616,7 +616,7 @@ public class DialogManagerW extends DialogManager
 			boolean rw) {
 		return new TextInputDialogW((AppW) app, app.getLocalization().getMenu("Text"),
 				text, startPoint, rw, 30, 6,
-				app.getMode() == EuclidianConstants.MODE_TEXT);
+				app.getMode() == euclideanConstants.MODE_TEXT);
 	}
 
 	/**
@@ -624,8 +624,8 @@ public class DialogManagerW extends DialogManager
 	 */
 	@Override
 	public void showPrintPreview() {
-		if (app.getGuiManager().showView(App.VIEW_EUCLIDIAN)
-				|| app.getGuiManager().showView(App.VIEW_EUCLIDIAN2)
+		if (app.getGuiManager().showView(App.VIEW_euclidean)
+				|| app.getGuiManager().showView(App.VIEW_euclidean2)
 				|| app.getGuiManager().showView(App.VIEW_ALGEBRA)
 				|| app.getGuiManager()
 						.showView(App.VIEW_CONSTRUCTION_PROTOCOL)) {

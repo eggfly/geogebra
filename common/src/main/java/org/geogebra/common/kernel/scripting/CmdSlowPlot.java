@@ -55,11 +55,11 @@ public class CmdSlowPlot extends CmdScripting {
 
 				GeoNumeric var = new GeoNumeric(cons, 0.0);
 
-				arg[0].setEuclidianVisible(false);
+				arg[0].seteuclideanVisible(false);
 				arg[0].update();
 
 				var.setLabel(null); // set label to next available
-				var.setEuclidianVisible(true);
+				var.seteuclideanVisible(true);
 				var.setIntervalMin(0.0);
 				var.setIntervalMax(1.0);
 				var.setAnimating(true);

@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.plot;
+package org.geogebra.common.euclidean.plot;
 
 import org.apache.commons.math3.util.Cloner;
 

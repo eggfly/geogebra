@@ -10,15 +10,15 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GBasicStroke;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoText;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
@@ -75,7 +75,7 @@ public final class DrawText extends Drawable {
 	 * @param text
 	 *            text
 	 */
-	public DrawText(EuclidianView view, GeoText text) {
+	public DrawText(euclideanView view, GeoText text) {
 		this.view = view;
 		this.text = text;
 		geo = text;
@@ -92,7 +92,7 @@ public final class DrawText extends Drawable {
 
 	@Override
 	public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (!isVisible && !text.isNeedsUpdatedBoundingBox()) {
 			// Corner[Element[text
 			return;
@@ -257,7 +257,7 @@ public final class DrawText extends Drawable {
 			xLabel -= labelRectangle.getWidth();
 		}
 		if (verticalVal == -1) {
-			// magic number 6 comes from EuclidianStatic::drawMultiLineText
+			// magic number 6 comes from euclideanStatic::drawMultiLineText
 	 		yLabel += labelRectangle.getHeight() - 6;
 		}
 		if (horizontalVal == 0) {
@@ -355,7 +355,7 @@ public final class DrawText extends Drawable {
 	 */
 	@Override
 	public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible()) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible()) {
 			return null;
 		}
 

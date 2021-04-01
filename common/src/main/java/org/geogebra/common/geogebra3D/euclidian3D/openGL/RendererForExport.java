@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
 import org.geogebra.common.awt.GBufferedImage;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawLabel3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawLabel3D;
 
 /**
  * Renderer in the background (no visible 3D view)
@@ -18,7 +18,7 @@ public class RendererForExport extends Renderer {
 	 * @param view
 	 *            3D view
 	 */
-	public RendererForExport(EuclidianView3D view) {
+	public RendererForExport(euclideanView3D view) {
 		super(view, RendererType.SHADER);
 		reduceForClipping = true;
 		setView(0, 0, 1600, 900); // set default values for "window" size

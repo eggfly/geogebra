@@ -22,7 +22,7 @@ import org.geogebra.common.kernel.geos.GeoFunction;
 import org.geogebra.common.kernel.geos.GeoLine;
 import org.geogebra.common.kernel.geos.GeoPoint;
 import org.geogebra.common.kernel.kernelND.GeoConicNDConstants;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.Operation;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.debug.Log;
@@ -235,9 +235,9 @@ public class Inequality {
 			border = funBorder;
 		}
 		if (isStrict()) {
-			border.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT);
+			border.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT);
 		} else {
-			border.setLineType(EuclidianStyleConstants.LINE_TYPE_FULL);
+			border.setLineType(euclideanStyleConstants.LINE_TYPE_FULL);
 		}
 	}
 
@@ -274,9 +274,9 @@ public class Inequality {
 		cons.setSuppressLabelCreation(supress);
 		border = funBorder;
 		if (isStrict()) {
-			border.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT);
+			border.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT);
 		} else {
-			border.setLineType(EuclidianStyleConstants.LINE_TYPE_FULL);
+			border.setLineType(euclideanStyleConstants.LINE_TYPE_FULL);
 		}
 
 	}

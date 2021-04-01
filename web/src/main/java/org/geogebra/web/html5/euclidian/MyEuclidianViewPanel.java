@@ -1,6 +1,6 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.dom.client.Style;
@@ -11,17 +11,17 @@ import com.google.gwt.user.client.ui.Panel;
  * Used for plot panel and for 3D
  *
  */
-public class MyEuclidianViewPanel extends AbsolutePanel implements
-        EuclidianPanelWAbstract {
+public class MyeuclideanViewPanel extends AbsolutePanel implements
+        euclideanPanelWAbstract {
 	/** canvas */
 	private Canvas canvas;
-	private EuclidianView ev;
+	private euclideanView ev;
 
 	/**
 	 * @param ev
 	 *            view wrapped in this panel
 	 */
-	public MyEuclidianViewPanel(EuclidianView ev) {
+	public MyeuclideanViewPanel(euclideanView ev) {
 		super();
 		this.ev = ev;
 		canvas = createCanvas();
@@ -48,7 +48,7 @@ public class MyEuclidianViewPanel extends AbsolutePanel implements
 	}
 
 	@Override
-	public Panel getEuclidianPanel() {
+	public Panel geteuclideanPanel() {
 		return this;
 	}
 
@@ -58,7 +58,7 @@ public class MyEuclidianViewPanel extends AbsolutePanel implements
 	}
 
 	@Override
-	public EuclidianView getEuclidianView() {
+	public euclideanView geteuclideanView() {
 		return ev;
 	}
 

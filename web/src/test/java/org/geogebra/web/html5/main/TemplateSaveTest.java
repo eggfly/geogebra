@@ -1,7 +1,7 @@
 package org.geogebra.web.html5.main;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.move.ggtapi.models.Material;
 import org.geogebra.web.full.main.AppWFull;
 import org.geogebra.web.html5.util.AppletParameters;
@@ -27,7 +27,7 @@ public class TemplateSaveTest {
 		AppletParameters articleElement = new AppletParameters("notes");
 		app = AppMocker.mockApplet(articleElement);
 		app.getSaveController().setSaveType(Material.MaterialType.ggsTemplate);
-		EuclidianSettings settings = app.getActiveEuclidianView().getSettings();
+		euclideanSettings settings = app.getActiveeuclideanView().getSettings();
 		settings.setLastPenThickness(30);
 		settings.setLastSelectedPenColor(GColor.newColor(204,0,153));
 		settings.setLastHighlighterThinckness(1);
@@ -36,7 +36,7 @@ public class TemplateSaveTest {
 		String pathString = "src/test/java/org/geogebra/web/html5/main/templateXML.txt";
 		String fileContent = FileIO.load(pathString);
 		StringBuilder sb = new StringBuilder();
-		app.getActiveEuclidianView().getXML(sb, false);
+		app.getActiveeuclideanView().getXML(sb, false);
         Assert.assertEquals(sb.toString().trim(), fileContent);
 	}
 }

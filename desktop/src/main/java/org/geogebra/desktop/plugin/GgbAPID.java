@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 
 import org.geogebra.common.GeoGebraConstants;
 import org.geogebra.common.awt.GBufferedImage;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.jre.plugin.GgbAPIJre;
 import org.geogebra.common.jre.util.Base64;
 import org.geogebra.common.main.App.ExportType;
@@ -32,7 +32,7 @@ import org.geogebra.common.util.FileExtensions;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.desktop.awt.GBufferedImageD;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.export.GraphicExportDialog;
 import org.geogebra.desktop.gui.util.ImageSelection;
 import org.geogebra.desktop.io.MyImageIO;
@@ -202,7 +202,7 @@ public class GgbAPID extends GgbAPIJre {
 						try {
 							// draw graphics view into image
 							GBufferedImage img = ((AppD) getApplication())
-									.getActiveEuclidianView()
+									.getActiveeuclideanView()
 									.getExportImage(exportScale, transparent,
 											ExportType.PNG);
 
@@ -248,15 +248,15 @@ public class GgbAPID extends GgbAPIJre {
 
 	@Override
 	protected void exportPNGClipboard(boolean transparent, int DPI,
-			double exportScale, EuclidianView ev) {
+			double exportScale, euclideanView ev) {
 		// more control but doesn't paste into eg Paint, Google Docs
 		GraphicExportDialog.exportPNGClipboard(transparent, DPI, exportScale,
-				(AppD) app, (EuclidianViewInterfaceD) ev);
+				(AppD) app, (euclideanViewInterfaceD) ev);
 	}
 
 	@Override
 	protected void exportPNGClipboardDPIisNaN(boolean transparent,
-			double exportScale, EuclidianView ev) {
+			double exportScale, euclideanView ev) {
 		// pastes into more programs
 		GBufferedImage img = ev.getExportImage(exportScale, transparent,
 				ExportType.PNG);
@@ -269,8 +269,8 @@ public class GgbAPID extends GgbAPIJre {
 
 	@Override
 	protected String base64encodePNG(boolean transparent, double DPI,
-			double exportScale, EuclidianView ev) {
-		GBufferedImage img = ((EuclidianViewInterfaceD) ev)
+			double exportScale, euclideanView ev) {
+		GBufferedImage img = ((euclideanViewInterfaceD) ev)
 				.getExportImage(exportScale, transparent, ExportType.PNG);
 		return base64encode(GBufferedImageD.getAwtBufferedImage(img), DPI);
 	}
@@ -351,7 +351,7 @@ public class GgbAPID extends GgbAPIJre {
 	 * @return dimensions of the real world coordinate system
 	 */
 	public synchronized Rectangle2D.Double getCoordSystemRectangle() {
-		EuclidianView ev = app.getEuclidianView1();
+		euclideanView ev = app.geteuclideanView1();
 		return new Rectangle2D.Double(ev.getXmin(), ev.getYmin(),
 				ev.getXmax() - ev.getXmin(), ev.getYmax() - ev.getYmin());
 	}
@@ -368,7 +368,7 @@ public class GgbAPID extends GgbAPIJre {
 
 		File file = new File(filename);
 
-		EuclidianView view = app.getActiveEuclidianView();
+		euclideanView view = app.getActiveeuclideanView();
 		GraphicExportDialog.exportSVG(app, view, file, true,
 				view.getExportWidth(),
 				view.getExportHeight(), -1, -1, 1, true);
@@ -398,7 +398,7 @@ public class GgbAPID extends GgbAPIJre {
 
 		File file = new File(filename);
 
-		EuclidianView view = app.getActiveEuclidianView();
+		euclideanView view = app.getActiveeuclideanView();
 		GraphicExportDialog.exportPDF(app, view, file, true,
 				view.getExportWidth(),
 				view.getExportHeight(), exportScale);

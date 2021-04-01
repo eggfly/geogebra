@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager.Type;
-import org.geogebra.common.geogebra3D.euclidian3D.xr.XRManagerInterface;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager.Type;
+import org.geogebra.common.geogebra3D.euclidean3D.xr.XRManagerInterface;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 
 /**
@@ -123,7 +123,7 @@ public abstract class RendererImplShaders extends RendererImpl {
 
 	};
 
-	public RendererImplShaders(Renderer renderer, EuclidianView3D view) {
+	public RendererImplShaders(Renderer renderer, euclideanView3D view) {
 		super(renderer, view);
 	}
 

@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.plot;
+package org.geogebra.common.euclidean.plot;
 
 /**
  * Info that can be pushed on stack using draw curve segments.

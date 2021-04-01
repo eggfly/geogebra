@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.CoordSystemListener;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.CoordSystemListener;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.Kernel;
@@ -34,7 +34,7 @@ import org.geogebra.common.kernel.geos.GeoPoint;
 import org.geogebra.common.kernel.geos.GeoSymbolic;
 import org.geogebra.common.kernel.geos.PointProperties;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.Event;
 import org.geogebra.common.plugin.EventListener;
 import org.geogebra.common.plugin.EventType;
@@ -71,7 +71,7 @@ public class SpecialPointsManager implements UpdateSelection, EventListener, Coo
 		App app = kernel.getApplication();
 		app.getSelectionManager().addListener(this);
 		app.getEventDispatcher().addEventListener(this);
-		app.getActiveEuclidianView().getEuclidianController().addZoomerListener(this);
+		app.getActiveeuclideanView().geteuclideanController().addZoomerListener(this);
 	}
 
 	/**
@@ -138,9 +138,9 @@ public class SpecialPointsManager implements UpdateSelection, EventListener, Coo
 		if (!shouldShowSpecialPoints(geo)) {
 			return;
 		}
-		boolean xAxis = kernel.getApplication().getActiveEuclidianView()
+		boolean xAxis = kernel.getApplication().getActiveeuclideanView()
 				.getShowAxis(0);
-		boolean yAxis = kernel.getApplication().getActiveEuclidianView()
+		boolean yAxis = kernel.getApplication().getActiveeuclideanView()
 				.getShowAxis(1);
 		if (!xAxis && !yAxis) {
 			return;
@@ -181,8 +181,8 @@ public class SpecialPointsManager implements UpdateSelection, EventListener, Coo
 		if (xAxis && (poly == null || poly.getDegree() > 0)) {
 			if (!geo.isPolynomialFunction(true)
 					&& geo.isDefined()) {
-				EuclidianViewInterfaceCommon view = kernel.getApplication()
-						.getActiveEuclidianView();
+				euclideanViewInterfaceCommon view = kernel.getApplication()
+						.getActiveeuclideanView();
 
 				AlgoRoots algoRoots = new AlgoRoots(kernel.getConstruction(),
 						null, geo, view.getXminObject(),
@@ -198,8 +198,8 @@ public class SpecialPointsManager implements UpdateSelection, EventListener, Coo
 		if (poly == null || poly.getDegree() > 1) {
 			if (!geo.isPolynomialFunction(true)
 					|| (poly != null && poly.isMaxDegreeReached())) {
-				EuclidianViewInterfaceCommon view = this.kernel.getApplication()
-						.getActiveEuclidianView();
+				euclideanViewInterfaceCommon view = this.kernel.getApplication()
+						.getActiveeuclideanView();
 				AlgoExtremumMulti algoExtremumMulti = new AlgoExtremumMulti(
 						kernel.getConstruction(), null, geo,
 						view.getXminObject(), view.getXmaxObject(), false);
@@ -211,7 +211,7 @@ public class SpecialPointsManager implements UpdateSelection, EventListener, Coo
 		AlgoRemovableDiscontinuity algoRemovableDiscontinuity =
 				new AlgoRemovableDiscontinuity(kernel.getConstruction(), geo, null, false);
 		processAlgo(geo, algoRemovableDiscontinuity, retList,
-				EuclidianStyleConstants.POINT_STYLE_CIRCLE);
+				euclideanStyleConstants.POINT_STYLE_CIRCLE);
 
 		if (yAxis) {
 			AlgoIntersectPolynomialLine algoPolynomialLine = new AlgoIntersectPolynomialLine(
@@ -261,7 +261,7 @@ public class SpecialPointsManager implements UpdateSelection, EventListener, Coo
 
 		Set<GeoElement> elements = new TreeSet<>(cons.getGeoSetConstructionOrder());
 		for (GeoElement element: elements) {
-			if (hasIntersectsBetween(element) && element != geo && element.isEuclidianVisible()) {
+			if (hasIntersectsBetween(element) && element != geo && element.iseuclideanVisible()) {
 				getSpecialPointsIntersect(geo, element, intersect, cmd, retList);
 			}
 		}
@@ -294,12 +294,12 @@ public class SpecialPointsManager implements UpdateSelection, EventListener, Coo
 
 	private static boolean shouldShowSpecialPoints(GeoElementND geo) {
 		GeoElementND geoTwin = geo.unwrapSymbolic();
-		return geo.isEuclidianShowable()
+		return geo.iseuclideanShowable()
 				&& (geoTwin instanceof GeoFunction || geoTwin instanceof EquationValue
 				|| geoTwin instanceof GeoSymbolic)
 				&& !(geoTwin.isGeoSegment())
 				&& geoTwin.isVisible() && geoTwin.isDefined()
-				&& geoTwin.isEuclidianVisible() && !geoTwin.isGeoElement3D();
+				&& geoTwin.iseuclideanVisible() && !geoTwin.isGeoElement3D();
 	}
 
 	private static boolean hasIntersectsBetween(GeoElementND element) {

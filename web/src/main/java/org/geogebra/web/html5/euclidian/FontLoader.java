@@ -1,4 +1,4 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
 import java.util.HashMap;
 import java.util.Map;

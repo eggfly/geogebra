@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianStyleBarStatic;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanStyleBarStatic;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.dialog.handler.ColorChangeHandler;
 import org.geogebra.common.gui.dialog.options.model.PointStyleModel;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -22,7 +22,7 @@ import org.geogebra.common.main.Localization;
 import org.geogebra.common.main.OptionType;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
-import org.geogebra.web.full.euclidian.EuclidianLineStylePopup;
+import org.geogebra.web.full.euclidean.euclideanLineStylePopup;
 import org.geogebra.web.full.gui.GuiManagerW;
 import org.geogebra.web.full.gui.color.ColorPopupMenuButton;
 import org.geogebra.web.full.gui.dialog.DialogManagerW;
@@ -37,7 +37,7 @@ import org.geogebra.web.html5.main.AppW;
 public abstract class StyleBarW2 extends StyleBarW implements PopupMenuHandler {
 
 	protected ColorPopupMenuButton btnColor;
-	protected EuclidianLineStylePopup btnLineStyle;
+	protected euclideanLineStylePopup btnLineStyle;
 	protected PointStylePopup btnPointStyle;
 
 	protected boolean needUndo = false;
@@ -58,11 +58,11 @@ public abstract class StyleBarW2 extends StyleBarW implements PopupMenuHandler {
 	protected void createLineStyleBtn() {
 		btnLineStyle = app.isWhiteboardActive()
 				? new MOWLineStyleButton(app)
-				: new EuclidianLineStylePopup(app, 5, true);
+				: new euclideanLineStylePopup(app, 5, true);
 		btnLineStyle.getMySlider().setMinimum(1);
 		btnLineStyle.getMySlider()
 				.setMaximum(app.isWhiteboardActive()
-						? 2 * EuclidianConstants.MAX_PEN_HIGHLIGHTER_SIZE : 13);
+						? 2 * euclideanConstants.MAX_PEN_HIGHLIGHTER_SIZE : 13);
 		btnLineStyle.getMySlider().setTickSpacing(1);
 		btnLineStyle.addPopupHandler(this);
 	}
@@ -111,7 +111,7 @@ public abstract class StyleBarW2 extends StyleBarW implements PopupMenuHandler {
 				openColorChooser(targetGeos, false);
 			} else {
 				double alpha = btnColor.getSliderValue() / 100.0;
-				needUndo = EuclidianStyleBarStatic.applyColor(color,
+				needUndo = euclideanStyleBarStatic.applyColor(color,
 						alpha, app, targetGeos);
 			}
 		} else if (source == btnLineStyle) {
@@ -119,14 +119,14 @@ public abstract class StyleBarW2 extends StyleBarW implements PopupMenuHandler {
 				int selectedIndex = btnLineStyle.getSelectedIndex();
 				int lineSize = btnLineStyle.getSliderValue();
 				btnLineStyle.setSelectedIndex(selectedIndex);
-				needUndo = EuclidianStyleBarStatic.applyLineStyle(selectedIndex,
+				needUndo = euclideanStyleBarStatic.applyLineStyle(selectedIndex,
 						lineSize, app, targetGeos);
 			}
 		} else if (source == btnPointStyle) {
 			if (btnPointStyle.getSelectedValue() != null) {
 				int pointStyleSelIndex = btnPointStyle.getSelectedIndex();
 				int pointSize = btnPointStyle.getSliderValue();
-				needUndo = EuclidianStyleBarStatic.applyPointStyle(targetGeos,
+				needUndo = euclideanStyleBarStatic.applyPointStyle(targetGeos,
 						pointStyleSelIndex, pointSize);
 			}
 		} else {
@@ -174,7 +174,7 @@ public abstract class StyleBarW2 extends StyleBarW implements PopupMenuHandler {
 			public void onColorChange(GColor color) {
 				boolean changed;
 				if (background) {
-					changed = EuclidianStyleBarStatic.applyBgColor(targetGeos, color,
+					changed = euclideanStyleBarStatic.applyBgColor(targetGeos, color,
 								geo0.getAlphaValue());
 				} else {
 					changed = applyColor(targetGeos, color, geo0.getAlphaValue());
@@ -217,7 +217,7 @@ public abstract class StyleBarW2 extends StyleBarW implements PopupMenuHandler {
 
 	protected boolean applyColor(ArrayList<GeoElement> targetGeos, GColor color,
 			double alpha) {
-		boolean ret = EuclidianStyleBarStatic.applyColor(color,
+		boolean ret = euclideanStyleBarStatic.applyColor(color,
 				alpha, app, targetGeos);
 		String htmlColor = StringUtil.toHtmlColor(color);
 		return inlineFormatter.formatInlineText(targetGeos, "color", htmlColor)
@@ -233,13 +233,13 @@ public abstract class StyleBarW2 extends StyleBarW implements PopupMenuHandler {
 
 			@Override
 			public void update(List<GeoElement> geos) {
-				if (mode == EuclidianConstants.MODE_FREEHAND_SHAPE) {
+				if (mode == euclideanConstants.MODE_FREEHAND_SHAPE) {
 					super.setVisible(false);
 					Log.debug(
 							"MODE_FREEHAND_SHAPE not working in StyleBar yet");
 				} else {
 					boolean geosOK = (geos.size() > 0
-							|| EuclidianView.isPenMode(mode));
+							|| euclideanView.isPenMode(mode));
 					boolean hasOpacity = true;
 					for (GeoElement geoElement : geos) {
 						GeoElement geo = geoElement
@@ -273,7 +273,7 @@ public abstract class StyleBarW2 extends StyleBarW implements PopupMenuHandler {
 								break;
 							}
 							if (geo instanceof GeoPolyLine
-									&& EuclidianView.isPenMode(mode)) {
+									&& euclideanView.isPenMode(mode)) {
 								hasFillable = true;
 								alpha = geo.getLineOpacity();
 
@@ -301,7 +301,7 @@ public abstract class StyleBarW2 extends StyleBarW implements PopupMenuHandler {
 
 						setSliderVisible(hasFillable && hasOpacity);
 
-						if (EuclidianView.isPenMode(mode)) {
+						if (euclideanView.isPenMode(mode)) {
 							setSliderValue(
 									(int) Math.round((alpha * 100) / 255));
 						} else {
@@ -314,14 +314,14 @@ public abstract class StyleBarW2 extends StyleBarW implements PopupMenuHandler {
 						// find the geoColor in the table and select it
 						int index = this.getColorIndex(geoColor);
 						setSelectedIndex(index);
-						if (EuclidianView.isPenMode(mode)) {
+						if (euclideanView.isPenMode(mode)) {
 							setDefaultColor(alpha / 255, geoColor);
 						} else {
 							setDefaultColor(alpha, geoColor);
 						}
 
 						this.setKeepVisible(!app.isUnbundledOrWhiteboard()
-								&& EuclidianConstants
+								&& euclideanConstants
 								.isMoveOrSelectionMode(mode));
 					}
 				}

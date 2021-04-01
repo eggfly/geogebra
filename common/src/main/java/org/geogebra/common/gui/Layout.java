@@ -3,7 +3,7 @@ package org.geogebra.common.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.gui.layout.DockManager;
 import org.geogebra.common.gui.toolbar.ToolBar;
@@ -14,8 +14,8 @@ import org.geogebra.common.javax.swing.SwingConstants;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.App.InputPosition;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 import org.geogebra.common.main.settings.LayoutSettings;
 import org.geogebra.common.main.settings.SettingListener;
 import org.geogebra.common.main.settings.Settings;
@@ -71,7 +71,7 @@ public abstract class Layout implements SettingListener {
 		Perspective geometry = createGeometryPerspective(app, spData, defToolbar);
 		perspectives.add(geometry);
 
-		// Table & Graphics - spreadsheet and euclidian view
+		// Table & Graphics - spreadsheet and euclidean view
 		Perspective spreadsheet = createSpreadsheetPerspective(defToolbar);
 		perspectives.add(spreadsheet);
 
@@ -80,7 +80,7 @@ public abstract class Layout implements SettingListener {
 		Perspective cas = supportsCas ? createCasPerspective(spData, defToolbar) : null;
 		perspectives.add(cas);
 
-		boolean supports3D = app.supportsView(App.VIEW_EUCLIDIAN3D);
+		boolean supports3D = app.supportsView(App.VIEW_euclidean3D);
 		Perspective graphing3D = supports3D
 				? createGraphing3DPerspective(app, spData, defToolbar)
 				: null;
@@ -107,7 +107,7 @@ public abstract class Layout implements SettingListener {
 	private static Perspective createGraphingPerspective(App app, DockSplitPaneData[] spData,
 														 String defToolbar) {
 		DockPanelData[] dpData = new DockPanelData[6];
-		dpData[0] = new DockPanelData(App.VIEW_EUCLIDIAN, null, true, false,
+		dpData[0] = new DockPanelData(App.VIEW_euclidean, null, true, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				app.isPortrait() ? "3" : "1",
@@ -128,7 +128,7 @@ public abstract class Layout implements SettingListener {
 				true,
 				AwtFactory.getPrototype().newRectangle(100, 100, 700, 550),
 				"1,1,1,1", 400);
-		dpData[5] = new DockPanelData(App.VIEW_EUCLIDIAN3D, null, false, false,
+		dpData[5] = new DockPanelData(App.VIEW_euclidean3D, null, false, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				"1,1,1", 500);
@@ -140,7 +140,7 @@ public abstract class Layout implements SettingListener {
 	private static Perspective createGeometryPerspective(App app, DockSplitPaneData[] spData,
 														 String defToolbar) {
 		DockPanelData[] dpData = new DockPanelData[6];
-		dpData[0] = new DockPanelData(App.VIEW_EUCLIDIAN, null, true, false,
+		dpData[0] = new DockPanelData(App.VIEW_euclidean, null, true, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				app.isPortrait() ? "3" : "1",
@@ -163,7 +163,7 @@ public abstract class Layout implements SettingListener {
 				true,
 				AwtFactory.getPrototype().newRectangle(100, 100, 700, 550),
 				"1,1,1,1", 400);
-		dpData[5] = new DockPanelData(App.VIEW_EUCLIDIAN3D, null, false, false,
+		dpData[5] = new DockPanelData(App.VIEW_euclidean3D, null, false, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				"1,1,1", 500);
@@ -182,13 +182,13 @@ public abstract class Layout implements SettingListener {
 	}
 
 	private static Perspective createSpreadsheetPerspective(String defToolbar) {
-		// Table & Graphics - spreadsheet and euclidian view
+		// Table & Graphics - spreadsheet and euclidean view
 		DockSplitPaneData[] spData = new DockSplitPaneData[1];
 		spData[0] = new DockSplitPaneData("", 0.45,
 				SwingConstants.HORIZONTAL_SPLIT);
 
 		DockPanelData[] dpData = new DockPanelData[6];
-		dpData[0] = new DockPanelData(App.VIEW_EUCLIDIAN, null, true, false,
+		dpData[0] = new DockPanelData(App.VIEW_euclidean, null, true, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400), "1",
 				500);
@@ -207,7 +207,7 @@ public abstract class Layout implements SettingListener {
 				true,
 				AwtFactory.getPrototype().newRectangle(100, 100, 700, 550),
 				"1,1,1", 400);
-		dpData[5] = new DockPanelData(App.VIEW_EUCLIDIAN3D, null, false, false,
+		dpData[5] = new DockPanelData(App.VIEW_euclidean3D, null, false, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				"1,1", 500);
@@ -219,7 +219,7 @@ public abstract class Layout implements SettingListener {
 
 	private static Perspective createCasPerspective(DockSplitPaneData[] spData, String defToolbar) {
 		DockPanelData[] dpData = new DockPanelData[6];
-		dpData[0] = new DockPanelData(App.VIEW_EUCLIDIAN, null, true, false,
+		dpData[0] = new DockPanelData(App.VIEW_euclidean, null, true, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				"1", 500);
@@ -239,7 +239,7 @@ public abstract class Layout implements SettingListener {
 				true, true,
 				AwtFactory.getPrototype().newRectangle(100, 100, 700, 550),
 				"1,1,1", 400);
-		dpData[5] = new DockPanelData(App.VIEW_EUCLIDIAN3D, null, false,
+		dpData[5] = new DockPanelData(App.VIEW_euclidean3D, null, false,
 				false, false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				"1,1", 500);
@@ -252,7 +252,7 @@ public abstract class Layout implements SettingListener {
 	private static Perspective createGraphing3DPerspective(App app, DockSplitPaneData[] spData,
 														   String defToolbar) {
 		DockPanelData[] dpData = new DockPanelData[6];
-		dpData[5] = new DockPanelData(App.VIEW_EUCLIDIAN, null, false,
+		dpData[5] = new DockPanelData(App.VIEW_euclidean, null, false,
 				false, false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				"1,3", 500);
@@ -272,7 +272,7 @@ public abstract class Layout implements SettingListener {
 				true, true,
 				AwtFactory.getPrototype().newRectangle(100, 100, 700, 550),
 				"1,1,1,1", 400);
-		dpData[0] = new DockPanelData(App.VIEW_EUCLIDIAN3D, null, true,
+		dpData[0] = new DockPanelData(App.VIEW_euclidean3D, null, true,
 				false, false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				app.isPortrait() ? "3" : "1", 500);
@@ -286,7 +286,7 @@ public abstract class Layout implements SettingListener {
 
 	private static Perspective createProbabilityPerspective(double avPercent, String defToolbar) {
 		DockPanelData[] dpData = new DockPanelData[7];
-		dpData[5] = new DockPanelData(App.VIEW_EUCLIDIAN, null, false, false,
+		dpData[5] = new DockPanelData(App.VIEW_euclidean, null, false, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400), "3",
 				500);
@@ -305,7 +305,7 @@ public abstract class Layout implements SettingListener {
 				true,
 				AwtFactory.getPrototype().newRectangle(100, 100, 700, 550),
 				"1,1,1,1", 400);
-		dpData[6] = new DockPanelData(App.VIEW_EUCLIDIAN3D, null, false, false,
+		dpData[6] = new DockPanelData(App.VIEW_euclidean3D, null, false, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				"1,1", 500);
@@ -325,7 +325,7 @@ public abstract class Layout implements SettingListener {
 
 	private static Perspective createWhiteboardPerspective(DockSplitPaneData[] spData) {
 		DockPanelData[] dpData = new DockPanelData[6];
-		dpData[0] = new DockPanelData(App.VIEW_EUCLIDIAN, null, true, false,
+		dpData[0] = new DockPanelData(App.VIEW_euclidean, null, true, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				"1", 500);
@@ -345,7 +345,7 @@ public abstract class Layout implements SettingListener {
 				true, true,
 				AwtFactory.getPrototype().newRectangle(100, 100, 700, 550),
 				"1,1,1,1", 400);
-		dpData[5] = new DockPanelData(App.VIEW_EUCLIDIAN3D, null, false,
+		dpData[5] = new DockPanelData(App.VIEW_euclidean3D, null, false,
 				false, false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				"1,1,1", 500);
@@ -361,7 +361,7 @@ public abstract class Layout implements SettingListener {
 
 	private static Perspective createScientificPerspective(App app, double avPercent) {
 		DockPanelData[] dpData = new DockPanelData[6];
-		dpData[0] = new DockPanelData(App.VIEW_EUCLIDIAN, null, false, false,
+		dpData[0] = new DockPanelData(App.VIEW_euclidean, null, false, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400), "3",
 				500);
@@ -380,7 +380,7 @@ public abstract class Layout implements SettingListener {
 				true,
 				AwtFactory.getPrototype().newRectangle(100, 100, 700, 550),
 				"1,1,1,1", 400);
-		dpData[5] = new DockPanelData(App.VIEW_EUCLIDIAN3D, null, false, false,
+		dpData[5] = new DockPanelData(App.VIEW_euclidean3D, null, false, false,
 				false,
 				AwtFactory.getPrototype().newRectangle(100, 100, 600, 400),
 				"1,1,1", 500);
@@ -481,20 +481,20 @@ public abstract class Layout implements SettingListener {
 			Perspective perspective) {
 		boolean changed = false;
 		if (!"tmp".equals(perspective.getId())) {
-			EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
-			EuclidianSettings euclidianSettings = getEuclidianSettings(app);
-			if (euclidianSettings != null) {
+			euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
+			euclideanSettings euclideanSettings = geteuclideanSettings(app);
+			if (euclideanSettings != null) {
 				changed =
-						euclidianSettings.setShowAxes(
+						euclideanSettings.setShowAxes(
 								perspective.getShowAxes(),
 								perspective.getShowAxes());
-				changed |= euclidianSettings.showGrid(perspective.getShowGrid());
+				changed |= euclideanSettings.showGrid(perspective.getShowGrid());
 
-				if (app.isEuclidianView3D(ev)) {
-					changed |= ((EuclidianSettings3D) euclidianSettings).setHasColoredAxes(true);
+				if (app.iseuclideanView3D(ev)) {
+					changed |= ((euclideanSettings3D) euclideanSettings).setHasColoredAxes(true);
 				}
 
-				euclidianSettings.setDefaultLabelingStyle(perspective.getLabelingStyle());
+				euclideanSettings.setDefaultLabelingStyle(perspective.getLabelingStyle());
 			} else {
 				changed = ev.setShowAxes(perspective.getShowAxes(), false);
 				changed |= ev.showGrid(perspective.getShowGrid());
@@ -504,16 +504,16 @@ public abstract class Layout implements SettingListener {
 		return changed;
 	}
 
-	private EuclidianSettings getEuclidianSettings(App app) {
-		EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
+	private euclideanSettings geteuclideanSettings(App app) {
+		euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
 		Settings settings = app.getSettings();
-		if (app.getEuclidianView1() == ev) {
-			return settings.getEuclidian(1);
-		} else if (app.hasEuclidianView2EitherShowingOrNot(1)
-				&& app.getEuclidianView2(1) == ev) {
-			return settings.getEuclidian(2);
-		} else if (app.isEuclidianView3D(ev)) {
-			return settings.getEuclidian(3);
+		if (app.geteuclideanView1() == ev) {
+			return settings.geteuclidean(1);
+		} else if (app.haseuclideanView2EitherShowingOrNot(1)
+				&& app.geteuclideanView2(1) == ev) {
+			return settings.geteuclidean(2);
+		} else if (app.iseuclideanView3D(ev)) {
+			return settings.geteuclidean(3);
 		} else {
 			return null;
 		}

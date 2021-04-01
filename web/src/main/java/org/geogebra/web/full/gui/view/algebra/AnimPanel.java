@@ -3,7 +3,7 @@ package org.geogebra.web.full.gui.view.algebra;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.Localization;
 import org.geogebra.web.full.css.GuiResources;

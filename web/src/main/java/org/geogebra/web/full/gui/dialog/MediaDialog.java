@@ -1,7 +1,7 @@
 package org.geogebra.web.full.gui.dialog;
 
 import org.geogebra.common.GeoGebraConstants;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.web.html5.main.AppW;
@@ -70,7 +70,7 @@ public abstract class MediaDialog extends ComponentDialog {
 
 	@Override
 	public void hide() {
-		app.getGuiManager().setMode(EuclidianConstants.MODE_MOVE,
+		app.getGuiManager().setMode(euclideanConstants.MODE_MOVE,
 				ModeSetter.TOOLBAR);
 		super.hide();
 	}
@@ -84,7 +84,7 @@ public abstract class MediaDialog extends ComponentDialog {
 	}
 
 	protected void onMediaElementCreated(GeoElement geoElement) {
-		getApplication().getActiveEuclidianView()
-				.getEuclidianController().selectAndShowSelectionUI(geoElement);
+		getApplication().getActiveeuclideanView()
+				.geteuclideanController().selectAndShowSelectionUI(geoElement);
 	}
 }

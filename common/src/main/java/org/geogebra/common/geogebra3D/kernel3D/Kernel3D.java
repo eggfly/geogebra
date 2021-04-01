@@ -383,7 +383,7 @@ public class Kernel3D extends Kernel {
 	 * @param zscale
 	 *            z scale
 	 */
-	final public void setEuclidianView3DBounds(int view, double xmin,
+	final public void seteuclideanView3DBounds(int view, double xmin,
 			double xmax, double ymin, double ymax, double zmin, double zmax,
 			double xscale, double yscale, double zscale) {
 		prolongGraphicsBoundArrays(3);
@@ -398,7 +398,7 @@ public class Kernel3D extends Kernel {
 		this.yscale[2] = yscale;
 		this.zscale3 = zscale;
 
-		notifyEuclidianViewCE(EVProperty.ZOOM);
+		notifyeuclideanViewCE(EVProperty.ZOOM);
 	}
 
 	@Override

@@ -3,27 +3,27 @@ package org.geogebra.desktop.gui.layout.panels;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.main.App;
 import org.geogebra.desktop.main.AppD;
 import org.geogebra.desktop.util.GuiResourcesD;
 
 /**
- * Dock panel for the primary euclidian view.
+ * Dock panel for the primary euclidean view.
  */
-public class EuclidianDockPanel extends EuclidianDockPanelAbstract {
+public class euclideanDockPanel extends euclideanDockPanelAbstract {
 	private static final long serialVersionUID = 1L;
 	private AppD app;
 
 	/**
-	 * Panel to hold euclidian view and navigation bar if necessary.
+	 * Panel to hold euclidean view and navigation bar if necessary.
 	 */
 
 	/**
 	 * @param app
 	 */
-	public EuclidianDockPanel(AppD app, String toolbar) {
-		super(App.VIEW_EUCLIDIAN, // view id
+	public euclideanDockPanel(AppD app, String toolbar) {
+		super(App.VIEW_euclidean, // view id
 				"DrawingPad", // view title
 				toolbar, // toolbar string
 				true, // style bar?
@@ -36,17 +36,17 @@ public class EuclidianDockPanel extends EuclidianDockPanelAbstract {
 
 	@Override
 	protected JComponent loadStyleBar() {
-		return (JComponent) app.getEuclidianView1().getStyleBar();
+		return (JComponent) app.geteuclideanView1().getStyleBar();
 	}
 
 	/**
-	 * As the component of this panel is not just the euclidian view as asserted
-	 * in EuclidianDockPanelAbstract we have to override this method to provide
-	 * the correct euclidian view.
+	 * As the component of this panel is not just the euclidean view as asserted
+	 * in euclideanDockPanelAbstract we have to override this method to provide
+	 * the correct euclidean view.
 	 */
 	@Override
-	public EuclidianView getEuclidianView() {
-		return app.getEuclidianView1();
+	public euclideanView geteuclideanView() {
+		return app.geteuclideanView1();
 	}
 
 	@Override

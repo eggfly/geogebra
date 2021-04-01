@@ -1,7 +1,7 @@
-package org.geogebra.web.geogebra3D.web.euclidian3DnoWebGL;
+package org.geogebra.web.geogebra3D.web.euclidean3DnoWebGL;
 
 import org.geogebra.common.kernel.Kernel;
-import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianController3DW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.euclideanController3DW;
 
 import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.dom.client.MouseMoveEvent;
@@ -17,7 +17,7 @@ import com.google.gwt.event.dom.client.TouchStartEvent;
  * @author mathieu
  *
  */
-public class EuclidianController3DWnoWebGL extends EuclidianController3DW {
+public class euclideanController3DWnoWebGL extends euclideanController3DW {
 
 	/**
 	 * constructor
@@ -25,7 +25,7 @@ public class EuclidianController3DWnoWebGL extends EuclidianController3DW {
 	 * @param kernel
 	 *            kernel
 	 */
-	public EuclidianController3DWnoWebGL(Kernel kernel) {
+	public euclideanController3DWnoWebGL(Kernel kernel) {
 		super(kernel);
 	}
 
@@ -66,8 +66,8 @@ public class EuclidianController3DWnoWebGL extends EuclidianController3DW {
 
 	@Override
 	public void calculateEnvironment() {
-		if (getView() instanceof EuclidianView3DWnoWebGL) {
-			((EuclidianView3DWnoWebGL) getView()).onResize();
+		if (getView() instanceof euclideanView3DWnoWebGL) {
+			((euclideanView3DWnoWebGL) getView()).onResize();
 			getView().repaint();
 		}
 	}

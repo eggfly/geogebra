@@ -1,20 +1,20 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
 import java.util.LinkedList;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.controller.MouseTouchGestureController;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.controller.MouseTouchGestureController;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoList;
 import org.geogebra.common.util.debug.GeoGebraProfiler;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.profiler.FpsProfilerW;
-import org.geogebra.web.html5.euclidian.profiler.drawer.DrawingEmulator;
-import org.geogebra.web.html5.euclidian.profiler.drawer.DrawingRecorder;
+import org.geogebra.web.html5.euclidean.profiler.FpsProfilerW;
+import org.geogebra.web.html5.euclidean.profiler.drawer.DrawingEmulator;
+import org.geogebra.web.html5.euclidean.profiler.drawer.DrawingRecorder;
 import org.geogebra.web.html5.event.HasOffsets;
 import org.geogebra.web.html5.event.PointerEvent;
 import org.geogebra.web.html5.event.ZeroOffset;
@@ -78,7 +78,7 @@ public class MouseTouchGestureControllerW extends MouseTouchGestureController
 	private LinkedList<PointerEvent> mousePool = new LinkedList<>();
 	private LinkedList<PointerEvent> touchPool = new LinkedList<>();
 	private boolean comboboxFocused;
-	private boolean euclidianOffsetsInited = false;
+	private boolean euclideanOffsetsInited = false;
 
 	private DrawingEmulator drawingEmulator;
 	private DrawingRecorder drawingRecorder;
@@ -127,9 +127,9 @@ public class MouseTouchGestureControllerW extends MouseTouchGestureController
 	}
 
 	private int getEnvXoffset() {
-		// return EuclidianViewXOffset;
+		// return euclideanViewXOffset;
 		// the former solution doesn't update on scrolling
-		return (((EuclidianViewWInterface) ec.getView()).getAbsoluteLeft()
+		return (((euclideanViewWInterface) ec.getView()).getAbsoluteLeft()
 				- Window.getScrollLeft());
 
 	}
@@ -138,14 +138,14 @@ public class MouseTouchGestureControllerW extends MouseTouchGestureController
 	 * @return offset to get correct getY() in mouseEvents
 	 */
 	private int getEnvYoffset() {
-		// return EuclidianViewYOffset;
+		// return euclideanViewYOffset;
 		// the former solution doesn't update on scrolling
-		return ((EuclidianViewWInterface) ec.getView()).getAbsoluteTop()
+		return ((euclideanViewWInterface) ec.getView()).getAbsoluteTop()
 		        - Window.getScrollTop();
 	}
 
 	public boolean isOffsetsUpToDate() {
-		return euclidianOffsetsInited;
+		return euclideanOffsetsInited;
 	}
 
 	private Timer repaintTimer = new Timer() {
@@ -175,9 +175,9 @@ public class MouseTouchGestureControllerW extends MouseTouchGestureController
 	 * @param app
 	 *            application
 	 * @param ec
-	 *            euclidian controller
+	 *            euclidean controller
 	 */
-	public MouseTouchGestureControllerW(AppW app, EuclidianController ec) {
+	public MouseTouchGestureControllerW(AppW app, euclideanController ec) {
 		super(app, ec);
 		this.app = app;
 
@@ -235,7 +235,7 @@ public class MouseTouchGestureControllerW extends MouseTouchGestureController
 	 */
 	public void onTouchCancel(TouchCancelEvent event) {
 		// AbstractEvent e =
-		// geogebra.web.euclidian.event.TouchEvent.wrapEvent(event.getNativeEvent());
+		// geogebra.web.euclidean.event.TouchEvent.wrapEvent(event.getNativeEvent());
 		Log.debug(event.getAssociatedType().getName());
 	}
 
@@ -258,7 +258,7 @@ public class MouseTouchGestureControllerW extends MouseTouchGestureController
 			}
 
 			if (time < this.lastMoveEvent
-			        + EuclidianViewW.DELAY_BETWEEN_MOVE_EVENTS) {
+			        + euclideanViewW.DELAY_BETWEEN_MOVE_EVENTS) {
 				boolean wasWaiting = waitingTouchMove != null
 				        || waitingMouseMove != null;
 				this.waitingTouchMove = e0;
@@ -433,7 +433,7 @@ public class MouseTouchGestureControllerW extends MouseTouchGestureController
 	}
 
 	private boolean isWholePageDrag() {
-		boolean result = ec.getMode() == EuclidianConstants.MODE_MOVE
+		boolean result = ec.getMode() == euclideanConstants.MODE_MOVE
 				&& !app.isShiftDragZoomEnabled()
 				&& ec.getView().getHits().isEmpty();
 		return result;
@@ -527,7 +527,7 @@ public class MouseTouchGestureControllerW extends MouseTouchGestureController
 		// cancel repaint to avoid closing newly opened tooltips
 		repaintTimer.cancel();
 		// hide dialogs if they are open
-		((EuclidianViewWInterface) ec.getView()).resetPointerEventHandler();
+		((euclideanViewWInterface) ec.getView()).resetPointerEventHandler();
 		AbstractEvent e = PointerEvent.wrapEvent(event, this);
 		ec.wrapMouseExited(e);
 		e.release();
@@ -553,7 +553,7 @@ public class MouseTouchGestureControllerW extends MouseTouchGestureController
 		long time = System.currentTimeMillis();
 
 		if (time < this.lastMoveEvent
-		        + EuclidianViewW.DELAY_BETWEEN_MOVE_EVENTS) {
+		        + euclideanViewW.DELAY_BETWEEN_MOVE_EVENTS) {
 
 			boolean wasWaiting = waitingTouchMove != null
 			        || waitingMouseMove != null;
@@ -563,8 +563,8 @@ public class MouseTouchGestureControllerW extends MouseTouchGestureController
 				this.repaintTimer
 						.schedule(delayUntilMoveFinish);
 			}
-			if (ec.getView().getMode() != EuclidianConstants.MODE_FREEHAND_SHAPE
-					&& ec.getView().getMode() != EuclidianConstants.MODE_PEN) {
+			if (ec.getView().getMode() != euclideanConstants.MODE_FREEHAND_SHAPE
+					&& ec.getView().getMode() != euclideanConstants.MODE_PEN) {
 				return;
 			}
 		}
@@ -703,7 +703,7 @@ public class MouseTouchGestureControllerW extends MouseTouchGestureController
 					.recordCoordinate(event.getX(), event.getY(), System.currentTimeMillis());
 		}
 		if (event.getType() == PointerEventType.TOUCH
-				&& EuclidianConstants.isMoveOrSelectionMode(ec.getMode())) {
+				&& euclideanConstants.isMoveOrSelectionMode(ec.getMode())) {
 			longTouchManager.scheduleTimer((LongTouchHandler) ec, event.getX(), event.getY());
 		}
 

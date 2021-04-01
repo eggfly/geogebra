@@ -16,7 +16,7 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.FixedPathRegionAlgo;
 import org.geogebra.common.kernel.Path;
@@ -131,7 +131,7 @@ public class AlgoPointOnPath extends AlgoElement
 		if (addIncidence) {
 			addIncidence();
 		} else {
-			P.setEuclidianVisible(false);
+			P.seteuclideanVisible(false);
 		}
 	}
 
@@ -162,7 +162,7 @@ public class AlgoPointOnPath extends AlgoElement
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_POINT;
+		return euclideanConstants.MODE_POINT;
 	}
 
 	// for AlgoElement

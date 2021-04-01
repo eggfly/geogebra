@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.keyboard;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.keyboard.web.HasKeyboard;
 import org.geogebra.keyboard.web.KeyBoardButtonBase;
 import org.geogebra.keyboard.web.TabbedKeyboard;

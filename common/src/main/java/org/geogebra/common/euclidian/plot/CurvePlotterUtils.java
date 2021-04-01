@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.plot;
+package org.geogebra.common.euclidean.plot;
 
 import java.util.ArrayList;
 

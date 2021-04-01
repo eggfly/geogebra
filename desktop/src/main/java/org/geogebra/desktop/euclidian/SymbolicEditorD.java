@@ -1,4 +1,4 @@
-package org.geogebra.desktop.euclidian;
+package org.geogebra.desktop.euclidean;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -11,9 +11,9 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.SymbolicEditor;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.SymbolicEditor;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
 import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.main.App;
 import org.geogebra.common.util.SyntaxAdapterImpl;
@@ -31,7 +31,7 @@ public class SymbolicEditorD extends SymbolicEditor {
 	private MathFieldD mathField;
 	private double baseline;
 
-	protected SymbolicEditorD(App app, EuclidianView view) {
+	protected SymbolicEditorD(App app, euclideanView view) {
 		super(app, view);
 
 		box = Box.createHorizontalBox();
@@ -111,7 +111,7 @@ public class SymbolicEditorD extends SymbolicEditor {
 		baseline = bounds.getY() + bounds.getHeight() / 2;
 
 		box.setBounds(GRectangleD.getAWTRectangle(bounds));
-		((EuclidianViewD) view).add(box);
+		((euclideanViewD) view).add(box);
 		box.setVisible(true);
 		box.revalidate();
 

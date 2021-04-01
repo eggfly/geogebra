@@ -10,7 +10,7 @@
 
  */
 
-package org.geogebra.desktop.euclidian;
+package org.geogebra.desktop.euclidean;
 
 import java.awt.Component;
 import java.awt.event.ComponentEvent;
@@ -19,30 +19,30 @@ import java.awt.event.MouseWheelEvent;
 
 import javax.swing.ToolTipManager;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.kernel.Kernel;
-import org.geogebra.desktop.euclidian.event.MouseEventD;
+import org.geogebra.desktop.euclidean.event.MouseEventD;
 import org.geogebra.desktop.main.AppD;
 
 /**
- * EuclidianController.java
+ * euclideanController.java
  * 
  * Created on 16. October 2001, 15:41
  */
-public class EuclidianControllerD extends EuclidianController
-		implements EuclidianControllerListeners {
+public class euclideanControllerD extends euclideanController
+		implements euclideanControllerListeners {
 
 	private int moveCounter = 0;
 	private int defaultInitialDelay;
 
 	/***********************************************
-	 * Creates new EuclidianController
+	 * Creates new euclideanController
 	 * 
 	 * @param kernel
 	 *            kernel
 	 **********************************************/
-	public EuclidianControllerD(Kernel kernel) {
+	public euclideanControllerD(Kernel kernel) {
 		super(kernel.getApplication());
 		setKernel(kernel);
 
@@ -140,12 +140,12 @@ public class EuclidianControllerD extends EuclidianController
 	 * 
 	 * if (usePointCapturing) { double pointCapturingPercentage = 1; switch
 	 * (view.getPointCapturingMode()) { case
-	 * EuclidianConstants.POINT_CAPTURING_AUTOMATIC: if
+	 * euclideanConstants.POINT_CAPTURING_AUTOMATIC: if
 	 * (!view.isGridOrAxesShown())break;
 	 * 
-	 * case EuclidianView.POINT_CAPTURING_ON: pointCapturingPercentage = 0.125;
+	 * case euclideanView.POINT_CAPTURING_ON: pointCapturingPercentage = 0.125;
 	 * 
-	 * case EuclidianView.POINT_CAPTURING_ON_GRID: // X = (x, y) ... next grid
+	 * case euclideanView.POINT_CAPTURING_ON_GRID: // X = (x, y) ... next grid
 	 * point double x = Kernel.roundToScale(xRW, view.gridDistances[0]); double
 	 * y = Kernel.roundToScale(yRW, view.gridDistances[1]); // if |X - XRW| <
 	 * gridInterval * pointCapturingPercentage then take the grid point double a

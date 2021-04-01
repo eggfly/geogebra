@@ -23,7 +23,7 @@ import org.geogebra.common.util.debug.Log;
 import org.geogebra.ggbjdk.java.awt.geom.Dimension;
 import org.geogebra.ggbjdk.java.awt.geom.Rectangle;
 import org.geogebra.web.full.gui.laf.GLookAndFeel;
-import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelWAbstract;
+import org.geogebra.web.full.gui.layout.panels.euclideanDockPanelWAbstract;
 import org.geogebra.web.full.gui.layout.panels.ToolbarDockPanelW;
 import org.geogebra.web.full.gui.toolbarpanel.ToolbarPanel;
 import org.geogebra.web.full.gui.view.algebra.AlgebraViewW;
@@ -71,9 +71,9 @@ public class DockManagerW extends DockManager {
 	private DockPanelW focusedDockPanel;
 
 	/**
-	 * The euclidian dock panel which had the focus the last.
+	 * The euclidean dock panel which had the focus the last.
 	 */
-	private EuclidianDockPanelWAbstract focusedEuclidianDockPanel;
+	private euclideanDockPanelWAbstract focusedeuclideanDockPanel;
 
 	/**
 	 * A list with all registered dock panels.
@@ -335,7 +335,7 @@ public class DockManagerW extends DockManager {
 				// }
 			}
 
-			// recursive update resize weights for giving new space to euclidian
+			// recursive update resize weights for giving new space to euclidean
 			// views
 
 			updateSplitPanesResizeWeight();
@@ -395,7 +395,7 @@ public class DockManagerW extends DockManager {
 			// is focused dock panel not visible anymore => reset
 			if (focusedDockPanel != null && !focusedDockPanel.isVisible()) {
 				focusedDockPanel = null;
-				focusedEuclidianDockPanel = null;
+				focusedeuclideanDockPanel = null;
 			}
 
 		}
@@ -434,9 +434,9 @@ public class DockManagerW extends DockManager {
 				panel.setVisible(
 						dpData[i].isVisible() && !dpData[i].isOpenInFrame());
 
-				if (dpData[i].getViewId() == App.VIEW_EUCLIDIAN
-						|| dpData[i].getViewId() == App.VIEW_EUCLIDIAN2) {
-					((EuclidianDockPanelWAbstract) panel).reset();
+				if (dpData[i].getViewId() == App.VIEW_euclidean
+						|| dpData[i].getViewId() == App.VIEW_euclidean2) {
+					((euclideanDockPanelWAbstract) panel).reset();
 				}
 			}
 		}
@@ -1212,7 +1212,7 @@ public class DockManagerW extends DockManager {
 		GuiManagerInterfaceW guiManager = app.getGuiManager();
 
 		// default
-		int toolbarID = App.VIEW_EUCLIDIAN;
+		int toolbarID = App.VIEW_euclidean;
 		if (dpData != null) {
 			viewsInPerspective.clear();
 			for (int i = 0; i < dpData.length; i++) {
@@ -1224,19 +1224,19 @@ public class DockManagerW extends DockManager {
 				toolbarID = App.VIEW_CAS;
 			} else if (viewsInPerspective.contains(App.VIEW_SPREADSHEET)) {
 				toolbarID = App.VIEW_SPREADSHEET;
-			} else if (viewsInPerspective.contains(App.VIEW_EUCLIDIAN)) {
-				toolbarID = App.VIEW_EUCLIDIAN;
-			} else if (viewsInPerspective.contains(App.VIEW_EUCLIDIAN2)) {
-				toolbarID = App.VIEW_EUCLIDIAN2;
-			} else if (viewsInPerspective.contains(App.VIEW_EUCLIDIAN3D)) {
-				toolbarID = App.VIEW_EUCLIDIAN3D;
+			} else if (viewsInPerspective.contains(App.VIEW_euclidean)) {
+				toolbarID = App.VIEW_euclidean;
+			} else if (viewsInPerspective.contains(App.VIEW_euclidean2)) {
+				toolbarID = App.VIEW_euclidean2;
+			} else if (viewsInPerspective.contains(App.VIEW_euclidean3D)) {
+				toolbarID = App.VIEW_euclidean3D;
 			} else if (viewsInPerspective
 					.contains(App.VIEW_PROBABILITY_CALCULATOR)) {
 				toolbarID = App.VIEW_PROBABILITY_CALCULATOR;
 			}
 		}
 		// show CAS-toolbar in CAS-perspective (same for Spreadsheet)
-		// in the other perspectives use Euclidian-toolbar (if available)
+		// in the other perspectives use euclidean-toolbar (if available)
 		else if (guiManager.hasCasView() && getPanel(App.VIEW_CAS) != null
 				&& getPanel(App.VIEW_CAS).isVisible()) {
 			toolbarID = App.VIEW_CAS;
@@ -1244,14 +1244,14 @@ public class DockManagerW extends DockManager {
 				&& getPanel(App.VIEW_SPREADSHEET) != null
 				&& getPanel(App.VIEW_SPREADSHEET).isVisible()) {
 			toolbarID = App.VIEW_SPREADSHEET;
-		} else if (app.getEuclidianView1().isShowing()) {
-			toolbarID = App.VIEW_EUCLIDIAN;
-		} else if (app.hasEuclidianView2(1)
-				&& app.getEuclidianView2(1).isShowing()) {
-			toolbarID = App.VIEW_EUCLIDIAN2;
-		} else if (app.isEuclidianView3Dinited()
-				&& app.showView(App.VIEW_EUCLIDIAN3D)) {
-			toolbarID = App.VIEW_EUCLIDIAN3D;
+		} else if (app.geteuclideanView1().isShowing()) {
+			toolbarID = App.VIEW_euclidean;
+		} else if (app.haseuclideanView2(1)
+				&& app.geteuclideanView2(1).isShowing()) {
+			toolbarID = App.VIEW_euclidean2;
+		} else if (app.iseuclideanView3Dinited()
+				&& app.showView(App.VIEW_euclidean3D)) {
+			toolbarID = App.VIEW_euclidean3D;
 			// what else can it be??
 		} else if (guiManager.hasProbabilityCalculator()
 				&& getPanel(App.VIEW_PROBABILITY_CALCULATOR) != null
@@ -1289,22 +1289,22 @@ public class DockManagerW extends DockManager {
 			return;
 		}
 
-		// in case there is no focused panel there is also no focused euclidian
+		// in case there is no focused panel there is also no focused euclidean
 		// dock panel
 		if (panel == null) {
-			if (focusedEuclidianDockPanel != null) {
-				focusedEuclidianDockPanel = null;
+			if (focusedeuclideanDockPanel != null) {
+				focusedeuclideanDockPanel = null;
 			}
 		} else {
-			if (panel instanceof EuclidianDockPanelWAbstract
-					&& focusedEuclidianDockPanel != panel) {
-				// if a panel has focus and that panel is a euclidian dock panel
-				// change the focused euclidian dock panel to that panel
-				focusedEuclidianDockPanel = (EuclidianDockPanelWAbstract) panel;
+			if (panel instanceof euclideanDockPanelWAbstract
+					&& focusedeuclideanDockPanel != panel) {
+				// if a panel has focus and that panel is a euclidean dock panel
+				// change the focused euclidean dock panel to that panel
+				focusedeuclideanDockPanel = (euclideanDockPanelWAbstract) panel;
 
-				// (panels which are not euclidian dock panels do not change the
+				// (panels which are not euclidean dock panels do not change the
 				// focused
-				// euclidian dock panel (ie the old is kept))
+				// euclidean dock panel (ie the old is kept))
 			}
 		}
 
@@ -1361,11 +1361,11 @@ public class DockManagerW extends DockManager {
 	}
 
 	/**
-	 * @return The dock euclidian panel which had focus the last.
+	 * @return The dock euclidean panel which had focus the last.
 	 */
 	@Override
-	public EuclidianDockPanelWAbstract getFocusedEuclidianPanel() {
-		return focusedEuclidianDockPanel;
+	public euclideanDockPanelWAbstract getFocusedeuclideanPanel() {
+		return focusedeuclideanDockPanel;
 	}
 
 	/**
@@ -1442,7 +1442,7 @@ public class DockManagerW extends DockManager {
 	/**
 	 * 
 	 * @param dpData
-	 *            data containing view ID and plane for euclidian view for plane
+	 *            data containing view ID and plane for euclidean view for plane
 	 * @return a DockPanel
 	 */
 	public DockPanelW getPanel(DockPanelData dpData) {
@@ -1450,9 +1450,9 @@ public class DockManagerW extends DockManager {
 			return getPanel(dpData.getViewId());
 		}
 
-		// euclidian view for plane case
+		// euclidean view for plane case
 		DockPanelW panel = (DockPanelW) app.getCompanion()
-				.createEuclidianDockPanelForPlane(dpData.getViewId(),
+				.createeuclideanDockPanelForPlane(dpData.getViewId(),
 						dpData.getPlane());
 		if (panel == null) {
 			Log.error("panel==null");
@@ -1468,7 +1468,7 @@ public class DockManagerW extends DockManager {
 	/**
 	 * Returns a specific DockPanel.
 	 * 
-	 * Use the constants VIEW_EUCLIDIAN, VIEW_ALGEBRA etc. as viewId.
+	 * Use the constants VIEW_euclidean, VIEW_ALGEBRA etc. as viewId.
 	 * 
 	 * @param viewId
 	 *            view ID
@@ -1630,7 +1630,7 @@ public class DockManagerW extends DockManager {
 
 		Widget opposite = split.getOpposite(avPanel);
 
-		if (!(opposite instanceof EuclidianDockPanelWAbstract)) {
+		if (!(opposite instanceof euclideanDockPanelWAbstract)) {
 			return;
 		}
 

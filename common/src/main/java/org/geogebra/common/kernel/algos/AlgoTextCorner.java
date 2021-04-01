@@ -54,7 +54,7 @@ public class AlgoTextCorner extends AlgoElement {
 		compute();
 		corner.setLabel(label);
 
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class AlgoTextCorner extends AlgoElement {
 	}
 
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 		// update text to update it's bounding box
 		kernel.notifyUpdate((GeoElement) txt);
 

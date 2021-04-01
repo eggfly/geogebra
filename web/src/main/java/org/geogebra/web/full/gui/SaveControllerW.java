@@ -25,7 +25,7 @@ import org.geogebra.web.full.main.FileManager;
 import org.geogebra.web.full.move.googledrive.operations.GoogleDriveOperationW;
 import org.geogebra.web.full.util.SaveCallback;
 import org.geogebra.web.full.util.SaveCallback.SaveState;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 import org.geogebra.web.html5.gui.tooltip.ToolTipManagerW;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.html5.util.StringConsumer;
@@ -388,8 +388,8 @@ public class SaveControllerW implements SaveController {
 					if (parseResponse.size() == 1) {
 						Material newMat = parseResponse.get(0);
 						newMat.setThumbnailBase64(
-								((EuclidianViewWInterface) getAppW()
-										.getActiveEuclidianView())
+								((euclideanViewWInterface) getAppW()
+										.getActiveeuclideanView())
 										.getCanvasBase64WithTypeString());
 						getAppW().getKernel().getConstruction()
 								.setTitle(getFileName());

@@ -1,8 +1,8 @@
-package org.geogebra.web.full.euclidian;
+package org.geogebra.web.full.euclidean;
 
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.dialog.options.model.LineStyleModel;
 import org.geogebra.common.gui.dialog.options.model.LineStyleModel.ILineStyleListener;
@@ -17,7 +17,7 @@ import com.google.gwt.event.dom.client.ChangeHandler;
 /**
  * Line style popup
  */
-public class EuclidianLineStylePopup extends LineStylePopup implements
+public class euclideanLineStylePopup extends LineStylePopup implements
 		ILineStyleListener, SetLabels {
 	private LineStyleModel model;
 
@@ -29,7 +29,7 @@ public class EuclidianLineStylePopup extends LineStylePopup implements
 	 * @param hasSlider
 	 *            slider
 	 */
-	public EuclidianLineStylePopup(AppW app,
+	public euclideanLineStylePopup(AppW app,
 			Integer columns, boolean hasSlider) {
 		super(app, LineStylePopup.getLineStyleIcons(), -1, columns,
 				SelectionTable.MODE_ICON, true, hasSlider,
@@ -54,7 +54,7 @@ public class EuclidianLineStylePopup extends LineStylePopup implements
 	public Object updatePanel(Object[] geos) {
 		model.setGeos(geos);
 
-		if (!model.hasGeos() || app.getMode() == EuclidianConstants.MODE_FREEHAND_SHAPE) {
+		if (!model.hasGeos() || app.getMode() == euclideanConstants.MODE_FREEHAND_SHAPE) {
 			this.setVisible(false);
 			return null;
 		}
@@ -79,7 +79,7 @@ public class EuclidianLineStylePopup extends LineStylePopup implements
 	public void handlePopupActionEvent() {
 		// store the index, won't be the same after split updates the UI
 		int selectedIndex = getSelectedIndex();
-		if (app.getActiveEuclidianView().getEuclidianController()
+		if (app.getActiveeuclideanView().geteuclideanController()
 				.splitSelectedStrokes(true)) {
 			model.setGeos(app.getSelectionManager().getSelectedGeos().toArray());
 		}

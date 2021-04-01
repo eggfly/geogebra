@@ -1,6 +1,6 @@
 package org.geogebra.common.cas.view;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.common.main.App;
 
@@ -30,10 +30,10 @@ public class CASTableCellController {
 		ModeSetter ms = focus ? ModeSetter.TOOLBAR : ModeSetter.CAS_BLUR;
 		// Ctrl + Enter toggles between the modes Evaluate and Numeric
 		if (control) {
-			if (mode == EuclidianConstants.MODE_CAS_NUMERIC) {
-				app.setMode(EuclidianConstants.MODE_CAS_EVALUATE, ms);
+			if (mode == euclideanConstants.MODE_CAS_NUMERIC) {
+				app.setMode(euclideanConstants.MODE_CAS_EVALUATE, ms);
 			} else {
-				app.setMode(EuclidianConstants.MODE_CAS_NUMERIC, ms);
+				app.setMode(euclideanConstants.MODE_CAS_NUMERIC, ms);
 			}
 			app.setMode(mode, ms);
 			return;
@@ -41,10 +41,10 @@ public class CASTableCellController {
 
 		// Alt + Enter toggles between the modes Evaluate and Keep Input
 		if (alt) {
-			if (mode == EuclidianConstants.MODE_CAS_KEEP_INPUT) {
-				app.setMode(EuclidianConstants.MODE_CAS_EVALUATE, ms);
+			if (mode == euclideanConstants.MODE_CAS_KEEP_INPUT) {
+				app.setMode(euclideanConstants.MODE_CAS_EVALUATE, ms);
 			} else {
-				app.setMode(EuclidianConstants.MODE_CAS_KEEP_INPUT, ms);
+				app.setMode(euclideanConstants.MODE_CAS_KEEP_INPUT, ms);
 			}
 			app.setMode(mode, ms);
 			return;
@@ -54,11 +54,11 @@ public class CASTableCellController {
 		switch (mode) {
 		default:
 			// switch back to Evaluate
-			app.setMode(EuclidianConstants.MODE_CAS_EVALUATE, ms);
+			app.setMode(euclideanConstants.MODE_CAS_EVALUATE, ms);
 			break;
-		case EuclidianConstants.MODE_CAS_EVALUATE:
-		case EuclidianConstants.MODE_CAS_NUMERIC:
-		case EuclidianConstants.MODE_CAS_KEEP_INPUT:
+		case euclideanConstants.MODE_CAS_EVALUATE:
+		case euclideanConstants.MODE_CAS_NUMERIC:
+		case euclideanConstants.MODE_CAS_KEEP_INPUT:
 			// apply current tool again
 			app.setMode(mode, ms);
 			break;

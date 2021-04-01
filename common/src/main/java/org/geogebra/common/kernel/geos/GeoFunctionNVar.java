@@ -422,7 +422,7 @@ public class GeoFunctionNVar extends GeoElement
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		if (fun != null && isInequality == null && isBooleanFunction()) {
 			getIneqs();
 		}
@@ -1014,14 +1014,14 @@ public class GeoFunctionNVar extends GeoElement
 
 	/**
 	 * We seek for a point in region by desperately testing grid points in
-	 * euclidian view. This should be called only when every algorithm fails.
+	 * euclidean view. This should be called only when every algorithm fails.
 	 * 
 	 * @param P
 	 *            point
 	 */
 	private void tryLocateInEV(GeoPointND P) {
-		// EuclidianViewInterfaceSlim ev =
-		// kernel.getApplication().getEuclidianView();
+		// euclideanViewInterfaceSlim ev =
+		// kernel.getApplication().geteuclideanView();
 		boolean found = false;
 		double xmin = kernel.getViewsXMin(P);
 		double xmax = kernel.getViewsXMax(P);
@@ -1361,9 +1361,9 @@ public class GeoFunctionNVar extends GeoElement
 	}
 
 	@Override
-	public void setAllVisualPropertiesExceptEuclidianVisible(GeoElement geo,
+	public void setAllVisualPropertiesExcepteuclideanVisible(GeoElement geo,
 			boolean keepAdvanced, boolean setAuxiliaryProperty) {
-		super.setAllVisualPropertiesExceptEuclidianVisible(geo, keepAdvanced,
+		super.setAllVisualPropertiesExcepteuclideanVisible(geo, keepAdvanced,
 				setAuxiliaryProperty);
 
 		if (hasLevelOfDetail() && geo.hasLevelOfDetail()) {

@@ -1,7 +1,7 @@
-package org.geogebra.common.euclidian.plot;
+package org.geogebra.common.euclidean.plot;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 
 /**
  * Class to determine the position of the label belongs to the function curve
@@ -19,9 +19,9 @@ public class LabelPositionCalculator {
 	private static final int Y_THRESHOLD_BOTTOM = 30;
 	private static final int Y_MARGIN_BOTTOM = 5;
 
-	private final EuclidianView view;
+	private final euclideanView view;
 
-	public LabelPositionCalculator(EuclidianView view) {
+	public LabelPositionCalculator(euclideanView view) {
 		this.view = view;
 	}
 

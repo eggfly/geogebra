@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.gui.view.algebra.AlgebraView.SortMode;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.Path;
@@ -77,7 +77,7 @@ public class SelectionManager {
 	private final ArrayList<GeoVectorND> selectedVectors = new ArrayList<>();
 	private final ArrayList<GeoPolygon> selectedPolygons = new ArrayList<>();
 	private final ArrayList<GeoPolyLine> selectedPolyLines = new ArrayList<>();
-	private final ArrayList<GeoElement> selectedGeosEuclidian = new ArrayList<>();
+	private final ArrayList<GeoElement> selectedGeoseuclidean = new ArrayList<>();
 	private final ArrayList<GeoList> selectedLists = new ArrayList<>();
 	private final ArrayList<GeoCoordSys> selectedCS2D = new ArrayList<>();
 	private final ArrayList<GeoQuadricND> selectedQuadric = new ArrayList<>();
@@ -488,7 +488,7 @@ public class SelectionManager {
 					&& !geo.isGeoPolyLine()
 					&& geo.getGeoClassType() != GeoClass.QUADRIC_LIMITED
 					&& geo.getGeoClassType() != GeoClass.NET) {
-				geo.setEuclidianVisible(!geo.isEuclidianVisible());
+				geo.seteuclideanVisible(!geo.iseuclideanVisible());
 				geo.updateVisualStyle(GProperty.VISIBLE);
 			}
 		}
@@ -497,7 +497,7 @@ public class SelectionManager {
 			GeoElement geo = selectedGeos.get(i);
 			if (geo.isGeoPolygon() || geo.isGeoPolyLine()
 					|| geo.getGeoClassType() == GeoClass.QUADRIC_LIMITED) {
-				geo.setEuclidianVisible(!geo.isEuclidianVisible());
+				geo.seteuclideanVisible(!geo.iseuclideanVisible());
 				geo.updateVisualStyle(GProperty.VISIBLE);
 			}
 		}
@@ -506,7 +506,7 @@ public class SelectionManager {
 			GeoElement geo = selectedGeos.get(i);
 			if (geo.isGeoPolyhedron()
 					|| geo.getGeoClassType() == GeoClass.NET) {
-				geo.setEuclidianVisible(!geo.isEuclidianVisible());
+				geo.seteuclideanVisible(!geo.iseuclideanVisible());
 				geo.updateVisualStyle(GProperty.VISIBLE);
 			}
 		}
@@ -768,32 +768,32 @@ public class SelectionManager {
 		checkInputBoxAndFocus(geo);
 		App app1 = kernel.getApplication();
 
-		if (app1.isEuclidianView3Dinited()) {
-			EuclidianView3DInterface view3d = app1.getEuclidianView3D();
+		if (app1.iseuclideanView3Dinited()) {
+			euclideanView3DInterface view3d = app1.geteuclideanView3D();
 			if (view3d.isShowing()) {
 				view3d.showFocusOn(geo);
 			}
 		}
 	}
 
-	private EuclidianViewInterfaceCommon getViewOf(GeoElement geo) {
+	private euclideanViewInterfaceCommon getViewOf(GeoElement geo) {
 		int viewID = geo.getViewSet() != null && geo.getViewSet().size() > 0
 				? geo.getViewSet().get(0)
 				: -1;
 		App app1 = kernel.getApplication();
-		if (viewID == App.VIEW_EUCLIDIAN2) {
-			return app1.getEuclidianView2(1);
-		} else if (viewID == App.VIEW_EUCLIDIAN3D) {
-			return app1.getEuclidianView3D();
+		if (viewID == App.VIEW_euclidean2) {
+			return app1.geteuclideanView2(1);
+		} else if (viewID == App.VIEW_euclidean3D) {
+			return app1.geteuclideanView3D();
 		}
 
-		return app1.getEuclidianView1();
+		return app1.geteuclideanView1();
 	}
 
 	private void checkInputBoxAndFocus(GeoElement geo) {
-		EuclidianViewInterfaceCommon view = getViewOf(geo);
+		euclideanViewInterfaceCommon view = getViewOf(geo);
 		if (geo instanceof GeoInputBox) {
-			((EuclidianView) view).focusAndShowTextField((GeoInputBox) geo);
+			((euclideanView) view).focusAndShowTextField((GeoInputBox) geo);
 		} else {
 			view.requestFocus();
 		}
@@ -816,15 +816,15 @@ public class SelectionManager {
 			if (!geo.isSelectionAllowed(null) || !geo.isLead()) {
 				remove = true;
 			} else {
-				boolean visibleInView = (app.showView(App.VIEW_EUCLIDIAN3D)
+				boolean visibleInView = (app.showView(App.VIEW_euclidean3D)
 						&& geo.isVisibleInView3D())
-						|| (app.showView(App.VIEW_EUCLIDIAN2)
-								&& geo.isVisibleInView(App.VIEW_EUCLIDIAN2))
-						|| (app.showView(App.VIEW_EUCLIDIAN)
-								&& geo.isVisibleInView(App.VIEW_EUCLIDIAN));
-				// remove = !avShowing && (!geo.isEuclidianVisible() || !visibleInView);
+						|| (app.showView(App.VIEW_euclidean2)
+								&& geo.isVisibleInView(App.VIEW_euclidean2))
+						|| (app.showView(App.VIEW_euclidean)
+								&& geo.isVisibleInView(App.VIEW_euclidean));
+				// remove = !avShowing && (!geo.iseuclideanVisible() || !visibleInView);
 				remove = !avShowing
-						&& (!geo.isEuclidianVisible() || !visibleInView);
+						&& (!geo.iseuclideanVisible() || !visibleInView);
 			}
 
 			if (remove) {
@@ -860,7 +860,7 @@ public class SelectionManager {
 
 	/**
 	 * 
-	 * @return set over which TAB iterates and belongs to the active Euclidian View.
+	 * @return set over which TAB iterates and belongs to the active euclidean View.
 	 */
 	public TreeSet<GeoElement> getEVFilteredTabbingSet() {
 		TreeSet<GeoElement> tree = new TreeSet<>(getTabbingSet());
@@ -1022,7 +1022,7 @@ public class SelectionManager {
 	}
 
 	public ArrayList<GeoElement> getSelectedGeoList() {
-		return selectedGeosEuclidian;
+		return selectedGeoseuclidean;
 	}
 
 	public ArrayList<GeoList> getSelectedListList() {

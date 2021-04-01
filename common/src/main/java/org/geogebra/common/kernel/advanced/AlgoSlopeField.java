@@ -2,7 +2,7 @@ package org.geogebra.common.kernel.advanced;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.MyPoint;
 import org.geogebra.common.kernel.SegmentType;
@@ -101,7 +101,7 @@ public class AlgoSlopeField extends AlgoElement {
 		// g.setLabel(label);
 		locus.setLabel(label);
 
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 
 	}
 
@@ -182,7 +182,7 @@ public class AlgoSlopeField extends AlgoElement {
 			al.clear();
 		}
 
-		EuclidianView mainView = null;
+		euclideanView mainView = null;
 		double xmax = -Double.MAX_VALUE;
 		double ymin = Double.MAX_VALUE;
 		double xmin = Double.MAX_VALUE;
@@ -193,16 +193,16 @@ public class AlgoSlopeField extends AlgoElement {
 			ymax = maxY.getDouble();
 			xmin = minX.getDouble();
 			ymin = minY.getDouble();
-			mainView = kernel.getApplication().getEuclidianView1();
-			if (kernel.getApplication().hasEuclidianView2(1)
-					&& kernel.getApplication().getEuclidianView2(1)
+			mainView = kernel.getApplication().geteuclideanView1();
+			if (kernel.getApplication().haseuclideanView2(1)
+					&& kernel.getApplication().geteuclideanView2(1)
 							.isVisibleInThisView(locus)
 					&& !mainView.isVisibleInThisView(locus)) {
-				mainView = kernel.getApplication().getEuclidianView2(1);
+				mainView = kernel.getApplication().geteuclideanView2(1);
 			}
 		} else {
 			// make sure it covers all of EV1 & EV2 if appropriate
-			EuclidianView view = kernel.getApplication().getEuclidianView1();
+			euclideanView view = kernel.getApplication().geteuclideanView1();
 
 			if (view.isVisibleInThisView(locus)) {
 				mainView = view;
@@ -214,9 +214,9 @@ public class AlgoSlopeField extends AlgoElement {
 						view.toRealWorldCoordY((view.getHeight())));
 			}
 
-			if (kernel.getApplication().hasEuclidianView2(1)) {
-				EuclidianView view2 = kernel.getApplication()
-						.getEuclidianView2(1);
+			if (kernel.getApplication().haseuclideanView2(1)) {
+				euclideanView view2 = kernel.getApplication()
+						.geteuclideanView2(1);
 				if (view2.isVisibleInThisView(locus)) {
 					if (mainView == null) {
 						mainView = view2;

@@ -1,6 +1,6 @@
 package org.geogebra.common.plugin;
 
-public class EuclidianStyleConstants {
+public class euclideanStyleConstants {
 	public static final int LINE_TYPE_POINTWISE = -1;
 
 	public static final int LINE_TYPE_FULL = 0;
@@ -96,7 +96,7 @@ public class EuclidianStyleConstants {
 
 	public static final double SELECTION_ADD = 2.0;
 
-	// ggb3D 2008-10-27 : mode constants moved to EuclidianConstants.java
+	// ggb3D 2008-10-27 : mode constants moved to euclideanConstants.java
 
 	public static final int AXES_TICK_STYLE_MAJOR_MINOR = 0;
 
@@ -131,11 +131,11 @@ public class EuclidianStyleConstants {
 
 	// for the options menu
 	final private static Integer[] lineStyleOptions = {
-			EuclidianStyleConstants.AXES_LINE_TYPE_FULL,
-			EuclidianStyleConstants.AXES_LINE_TYPE_ARROW,
-			EuclidianStyleConstants.AXES_LINE_TYPE_ARROW_FILLED,
-			EuclidianStyleConstants.AXES_LINE_TYPE_TWO_ARROWS,
-			EuclidianStyleConstants.AXES_LINE_TYPE_TWO_ARROWS_FILLED };
+			euclideanStyleConstants.AXES_LINE_TYPE_FULL,
+			euclideanStyleConstants.AXES_LINE_TYPE_ARROW,
+			euclideanStyleConstants.AXES_LINE_TYPE_ARROW_FILLED,
+			euclideanStyleConstants.AXES_LINE_TYPE_TWO_ARROWS,
+			euclideanStyleConstants.AXES_LINE_TYPE_TWO_ARROWS_FILLED };
 
 	public static final int POINT_STYLE_DOT = 0;
 	public static final int POINT_STYLE_CROSS = 1;

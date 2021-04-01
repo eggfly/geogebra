@@ -1,4 +1,4 @@
-package org.geogebra.web.full.euclidian.inline;
+package org.geogebra.web.full.euclidean.inline;
 
 import static com.google.gwt.dom.client.Style.Visibility.HIDDEN;
 import static com.google.gwt.dom.client.Style.Visibility.VISIBLE;
@@ -7,8 +7,8 @@ import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint2D;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.inline.InlineTableController;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.inline.InlineTableController;
 import org.geogebra.common.kernel.geos.GProperty;
 import org.geogebra.common.kernel.geos.GeoInlineTable;
 import org.geogebra.common.kernel.geos.properties.BorderType;
@@ -19,7 +19,7 @@ import org.geogebra.common.move.ggtapi.models.json.JSONException;
 import org.geogebra.common.move.ggtapi.models.json.JSONObject;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.html5.awt.GGraphics2DW;
-import org.geogebra.web.html5.euclidian.FontLoader;
+import org.geogebra.web.html5.euclidean.FontLoader;
 import org.geogebra.web.html5.util.CopyPasteW;
 import org.geogebra.web.richtext.EditorChangeListener;
 import org.geogebra.web.richtext.impl.Carota;
@@ -38,7 +38,7 @@ import jsinterop.base.JsPropertyMap;
 public class InlineTableControllerW implements InlineTableController {
 
 	private GeoInlineTable table;
-	private final EuclidianView view;
+	private final euclideanView view;
 
 	private Element tableElement;
 	private Style style;
@@ -50,7 +50,7 @@ public class InlineTableControllerW implements InlineTableController {
 	 * @param view view
 	 * @param table editable table
 	 */
-	public InlineTableControllerW(GeoInlineTable table, EuclidianView view, Element parent) {
+	public InlineTableControllerW(GeoInlineTable table, euclideanView view, Element parent) {
 		this.table = table;
 		this.view = view;
 		CarotaUtil.ensureInitialized(view.getFontSize());

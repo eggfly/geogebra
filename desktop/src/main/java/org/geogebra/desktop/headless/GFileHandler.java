@@ -35,7 +35,7 @@ public class GFileHandler {
 			((AppDI) app).storeFrameCenter();
 
 			// make sure objects are displayed in the correct View
-			app.setActiveView(App.VIEW_EUCLIDIAN);
+			app.setActiveView(App.VIEW_euclidean);
 
 			// reset unique id (for old files, in case they don't have one)
 			app.resetUniqueId();

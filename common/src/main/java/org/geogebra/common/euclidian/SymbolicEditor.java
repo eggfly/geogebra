@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.main.App;
@@ -16,12 +16,12 @@ import com.himamis.retex.editor.share.serializer.GeoGebraSerializer;
 import com.himamis.retex.editor.share.serializer.TeXSerializer;
 
 /**
- * MathField-capable editor for input boxes on EuclidianView.
+ * MathField-capable editor for input boxes on euclideanView.
  */
 public abstract class SymbolicEditor implements MathFieldListener {
 
 	protected final App app;
-	protected final EuclidianView view;
+	protected final euclideanView view;
 
 	protected TeXSerializer texSerializer;
 
@@ -29,7 +29,7 @@ public abstract class SymbolicEditor implements MathFieldListener {
 	private DrawInputBox drawInputBox;
 	private final GeoGebraSerializer asciiSerializer = new GeoGebraSerializer();
 
-	protected SymbolicEditor(App app, EuclidianView view) {
+	protected SymbolicEditor(App app, euclideanView view) {
 		this.app = app;
 		this.view = view;
 		this.texSerializer = new TeXSerializer(new SyntaxAdapterImpl(app.getKernel()));

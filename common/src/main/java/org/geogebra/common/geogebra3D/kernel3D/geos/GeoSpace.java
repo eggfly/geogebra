@@ -70,7 +70,7 @@ public class GeoSpace extends GeoElement3D implements GeoDirectionND {
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return false;
 	}
 

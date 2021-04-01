@@ -2,8 +2,8 @@ package org.geogebra.export;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.export.pstricks.ExportFrameMinimal;
 import org.geogebra.common.export.pstricks.GeoGebraExport;
 import org.geogebra.common.kernel.commands.AlgebraTest;
@@ -21,7 +21,7 @@ import org.junit.Test;
 
 public class Pstricks {
 	private static AppDNoGui app;
-	private static EuclidianController ec;
+	private static euclideanController ec;
 	private static ArrayList<TestEvent> events = new ArrayList<>();
 	private static ArrayList<String> inputs;
 
@@ -35,7 +35,7 @@ public class Pstricks {
 	@BeforeClass
 	public static void setup() {
 		app = AlgebraTest.createApp();
-		ec = app.getActiveEuclidianView().getEuclidianController();
+		ec = app.getActiveeuclideanView().geteuclideanController();
 		inputs = new ArrayList<>();
 		createObjects();
 	}
@@ -69,7 +69,7 @@ public class Pstricks {
 
 	private void testInputs(GeoGebraExport ps, String string) {
 		String last = "";
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 
 		ExportFrameMinimal frame = new ExportFrameMinimal(ev.getYmin(),
 				ev.getYmax());

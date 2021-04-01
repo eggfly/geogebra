@@ -1,8 +1,8 @@
-package org.geogebra.common.euclidian.inline;
+package org.geogebra.common.euclidean.inline;
 
 import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.draw.HasTextFormat;
+import org.geogebra.common.euclidean.draw.HasTextFormat;
 
 /**
  * Controller for the inline text editor.

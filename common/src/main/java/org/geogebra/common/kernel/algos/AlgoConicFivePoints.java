@@ -20,7 +20,7 @@ package org.geogebra.common.kernel.algos;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.StringTemplate;
@@ -165,7 +165,7 @@ public class AlgoConicFivePoints extends AlgoElement
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_CONIC_FIVE_POINTS;
+		return euclideanConstants.MODE_CONIC_FIVE_POINTS;
 	}
 
 	// for AlgoElement

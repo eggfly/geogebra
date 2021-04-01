@@ -7,8 +7,8 @@ import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.cas.giac.CASFactoryW;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.EuclidianSimplePanelW;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
+import org.geogebra.web.html5.euclidean.euclideanSimplePanelW;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
 import org.geogebra.web.html5.gui.GeoGebraFrameW;
 import org.geogebra.web.html5.gui.zoompanel.ZoomPanel;
 import org.geogebra.web.html5.util.AppletParameters;
@@ -52,8 +52,8 @@ public class AppWsimple extends AppW {
 		initCommonObjects();
 		initing = true;
 
-		// TODO: EuclidianSimplePanelW
-		this.euclidianViewPanel = new EuclidianSimplePanelW(this);
+		// TODO: euclideanSimplePanelW
+		this.euclideanViewPanel = new euclideanSimplePanelW(this);
 
 		initCoreObjects();
 		setUndoActive(undoActive);
@@ -67,9 +67,9 @@ public class AppWsimple extends AppW {
 		GeoGebraFrameW.handleLoadFile(appletParameters, this);
 		initing = false;
 		if (ZoomPanel.neededFor(this)) {
-			ZoomPanel zp = new ZoomPanel(getEuclidianView1(), this, true, true);
+			ZoomPanel zp = new ZoomPanel(geteuclideanView1(), this, true, true);
 			setZoomPanel(zp);
-			euclidianViewPanel.getAbsolutePanel().add(zp);
+			euclideanViewPanel.getAbsolutePanel().add(zp);
 		}
 	}
 
@@ -77,12 +77,12 @@ public class AppWsimple extends AppW {
 	public void buildApplicationPanel() {
 		if (frame != null) {
 			frame.clear();
-			frame.add((Widget) getEuclidianViewpanel());
-			getEuclidianViewpanel()
+			frame.add((Widget) geteuclideanViewpanel());
+			geteuclideanViewpanel()
 			        .setPixelSize(
-			                getSettings().getEuclidian(1).getPreferredSize()
+			                getSettings().geteuclidean(1).getPreferredSize()
 			                        .getWidth(),
-			                getSettings().getEuclidian(1).getPreferredSize()
+			                getSettings().geteuclidean(1).getPreferredSize()
 			                        .getHeight());
 			updateVoiceover();
 		}
@@ -102,12 +102,12 @@ public class AppWsimple extends AppW {
 
 		getScriptManager().ggbOnInit(); // put this here from Application
 										// constructor because we have to delay
-										// scripts until the EuclidianView is
+										// scripts until the euclideanView is
 										// shown
 
 		initUndoInfoSilent();
 
-		EuclidianViewW view = getEuclidianView1();
+		euclideanViewW view = geteuclideanView1();
 		view.synCanvasSize();
 		view.createImage();
 		getAppletFrame().resetAutoSize();
@@ -118,10 +118,10 @@ public class AppWsimple extends AppW {
 		checkScaleContainer();
 		frame.useDataParamBorder();
 		setAltText();
-		updateEuclidianView(view);
+		updateeuclideanView(view);
 	}
 
-	private void updateEuclidianView(EuclidianViewW view) {
+	private void updateeuclideanView(euclideanViewW view) {
 		view.updateBounds(true, true);
 		view.doRepaint2();
 	}

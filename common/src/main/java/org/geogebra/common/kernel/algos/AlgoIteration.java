@@ -326,7 +326,7 @@ public class AlgoIteration extends AlgoElement {
 				listElement.setDrawAlgorithm(
 						((DrawInformationAlgo) expression.getDrawAlgorithm())
 								.copy());
-				listElement.setEuclidianVisible(true);
+				listElement.seteuclideanVisible(true);
 			}
 			listElement.update();
 			i++;

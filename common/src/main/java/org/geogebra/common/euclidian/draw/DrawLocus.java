@@ -10,7 +10,7 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -19,10 +19,10 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.plot.CurvePlotterUtils;
-import org.geogebra.common.euclidian.plot.GeneralPathClippedForCurvePlotter;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.plot.CurvePlotterUtils;
+import org.geogebra.common.euclidean.plot.GeneralPathClippedForCurvePlotter;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.MyPoint;
 import org.geogebra.common.kernel.algos.AlgoElement;
@@ -66,7 +66,7 @@ public class DrawLocus extends Drawable {
 	 * @param transformSys
 	 *            coord system of trnsformed locus
 	 */
-	public DrawLocus(EuclidianView view, GeoLocusND<? extends MyPoint> locus,
+	public DrawLocus(euclideanView view, GeoLocusND<? extends MyPoint> locus,
 			CoordSys transformSys) {
 		this.view = view;
 		this.locus = locus;
@@ -77,7 +77,7 @@ public class DrawLocus extends Drawable {
 
 	@Override
 	final public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		bitmap = null;
 		if (!isVisible) {
 			return;
@@ -298,7 +298,7 @@ public class DrawLocus extends Drawable {
 	final public GRectangle getBounds() {
 		if (!geo.isDefined()
 				|| (!locus.isClosedPath() && geo.getGeoClassType() != GeoClass.PENSTROKE)
-				|| !geo.isEuclidianVisible() || gp == null) {
+				|| !geo.iseuclideanVisible() || gp == null) {
 			return null;
 		}
 		return gp.getBounds();

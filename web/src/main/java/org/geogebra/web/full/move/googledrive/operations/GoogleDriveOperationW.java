@@ -14,7 +14,7 @@ import org.geogebra.web.full.move.googledrive.api.GoogleViewId;
 import org.geogebra.web.full.util.SaveCallback;
 import org.geogebra.web.full.util.SaveCallback.SaveState;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.html5.move.googledrive.GoogleDriveOperation;
 import org.geogebra.web.html5.util.JsRunnable;
@@ -278,7 +278,7 @@ public class GoogleDriveOperationW implements GoogleDriveOperation {
 	}
 
 	private String getThumbnail() {
-		return ((EuclidianViewWInterface) app.getActiveEuclidianView())
+		return ((euclideanViewWInterface) app.getActiveeuclideanView())
 				.getCanvasBase64WithTypeString()
 				.substring(StringUtil.pngMarker.length()).replace("+", "-")
 				.replace("/", "_");

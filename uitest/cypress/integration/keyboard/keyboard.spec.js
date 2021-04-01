@@ -40,8 +40,8 @@ describe('Keyboard ANS button test', () => {
     /*it("does not show the 'ans' button in for symbolic inputbox", () => {
         cy.writeInAVInput("f(x)=x{enter}");
         cy.writeInAVInput("InputBox(f){enter}");
-        selectors.euclidianView.get().trigger('mousedown', 100, 100);
-        selectors.euclidianView.get().trigger('mousedown', 140, 50).trigger('mouseup',  140, 50);
+        selectors.euclideanView.get().trigger('mousedown', 100, 100);
+        selectors.euclideanView.get().trigger('mousedown', 140, 50).trigger('mouseup',  140, 50);
 
 		cy.wait(3000);
         cy.keyboardShouldPresent();

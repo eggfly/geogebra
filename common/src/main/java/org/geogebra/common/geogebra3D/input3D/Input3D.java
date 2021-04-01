@@ -2,16 +2,16 @@ package org.geogebra.common.geogebra3D.input3D;
 
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GPointWithZ;
-import org.geogebra.common.euclidian.event.PointerEventType;
-import org.geogebra.common.euclidian3D.Input3DConstants;
-import org.geogebra.common.euclidian3D.Mouse3DEvent;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.euclidean.event.PointerEventType;
+import org.geogebra.common.euclidean3D.Input3DConstants;
+import org.geogebra.common.euclidean3D.Mouse3DEvent;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.kernel.matrix.CoordMatrix;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.kernel.matrix.Quaternion;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 
 /**
  * class for specific 3D inputs
@@ -40,7 +40,7 @@ abstract public class Input3D implements Input3DConstants {
 	protected int panelX;
 	protected int panelY;
 
-	protected EuclidianView3D view3D;
+	protected euclideanView3D view3D;
 
 	private double[] inputPositionOnScreen;
 
@@ -195,7 +195,7 @@ abstract public class Input3D implements Input3DConstants {
 	 *            current 3D mouse position
 	 * @return true if input3D has mouse on 3D view
 	 */
-	abstract public boolean hasMouse(EuclidianView3D ev3D,
+	abstract public boolean hasMouse(euclideanView3D ev3D,
 			Coords mouse3D);
 
 	/**
@@ -204,7 +204,7 @@ abstract public class Input3D implements Input3DConstants {
 	 *            3D view
 	 * @return true if input3D has mouse on 3D view
 	 */
-	abstract public boolean hasMouse(EuclidianView3D ev3D);
+	abstract public boolean hasMouse(euclideanView3D ev3D);
 
 	/**
 	 * 
@@ -364,13 +364,13 @@ abstract public class Input3D implements Input3DConstants {
 	 * @param settings
 	 *            TODO
 	 */
-	abstract public void setSpecificSettings(EuclidianSettings3D settings);
+	abstract public void setSpecificSettings(euclideanSettings3D settings);
 
 	/**
 	 * @param eView3D
 	 *            3D view
 	 */
-	public void init(EuclidianView3D eView3D) {
+	public void init(euclideanView3D eView3D) {
 		this.view3D = eView3D;
 
 		// glasses position
@@ -449,7 +449,7 @@ abstract public class Input3D implements Input3DConstants {
 	public void updateHeadTracking() {
 		// eyes : set position only if we use glasses
 		if (useHeadTracking() && view3D
-				.getProjection() == EuclidianView3D.PROJECTION_GLASSES) {
+				.getProjection() == euclideanView3D.PROJECTION_GLASSES) {
 
 			// set glasses position from tracker data
 			setGlassesPosition();
@@ -618,8 +618,8 @@ abstract public class Input3D implements Input3DConstants {
 		vx = toSceneRotMatrix.mul(Coords.VX);
 	}
 
-	private EuclidianController3D getEuclidianController() {
-		return (EuclidianController3D) view3D.getEuclidianController();
+	private euclideanController3D geteuclideanController() {
+		return (euclideanController3D) view3D.geteuclideanController();
 	}
 
 	private void startRightPress() {
@@ -627,10 +627,10 @@ abstract public class Input3D implements Input3DConstants {
 		// automatic rotation
 		if (view3D.isRotAnimated()) {
 			view3D.stopAnimation();
-			getEuclidianController().setViewRotationOccured(true);
+			geteuclideanController().setViewRotationOccured(true);
 		}
 
-		getEuclidianController().getRotationSpeedHandler().setStart(0,
+		geteuclideanController().getRotationSpeedHandler().setStart(0,
 				PointerEventType.MOUSE);
 
 		// start values
@@ -659,7 +659,7 @@ abstract public class Input3D implements Input3DConstants {
 		}
 
 		view3D.shiftRotAboutZ(angle);
-		getEuclidianController().getRotationSpeedHandler()
+		geteuclideanController().getRotationSpeedHandler()
 				.rotationOccurred(angle);
 	}
 
@@ -808,10 +808,10 @@ abstract public class Input3D implements Input3DConstants {
 			if (wasLeftReleased) {
 				startMouse3DPosition.set(mouse3DPosition);
 				storeOrientation();
-				view3D.getEuclidianController().wrapMousePressed(mouse3DEvent);
+				view3D.geteuclideanController().wrapMousePressed(mouse3DEvent);
 			} else {
 				// no capture in desktop
-				view3D.getEuclidianController().wrapMouseDragged(mouse3DEvent,
+				view3D.geteuclideanController().wrapMouseDragged(mouse3DEvent,
 						false);
 			}
 			wasRightReleased = true;
@@ -825,7 +825,7 @@ abstract public class Input3D implements Input3DConstants {
 				storeOrientation();
 			} else {
 				// no capture in desktop
-				view3D.getEuclidianController().wrapMouseDragged(mouse3DEvent,
+				view3D.geteuclideanController().wrapMouseDragged(mouse3DEvent,
 						false);
 			}
 			wasRightReleased = true;
@@ -835,11 +835,11 @@ abstract public class Input3D implements Input3DConstants {
 			// process button release
 			if (!wasRightReleased || !wasLeftReleased
 					|| !wasThirdButtonReleased) {
-				view3D.getEuclidianController().wrapMouseReleased(mouse3DEvent);
+				view3D.geteuclideanController().wrapMouseReleased(mouse3DEvent);
 			}
 
 			// process move
-			view3D.getEuclidianController().wrapMouseMoved(mouse3DEvent);
+			view3D.geteuclideanController().wrapMouseMoved(mouse3DEvent);
 			wasRightReleased = true;
 			wasLeftReleased = true;
 			wasThirdButtonReleased = true;

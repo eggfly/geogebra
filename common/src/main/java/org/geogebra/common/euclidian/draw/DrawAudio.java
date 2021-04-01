@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GBasicStroke;
 import org.geogebra.common.awt.GColor;
@@ -9,15 +9,15 @@ import org.geogebra.common.awt.GLine2D;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.font.GTextLayout;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.arithmetic.MyDouble;
 import org.geogebra.common.kernel.geos.GeoAudio;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.kernel.geos.GeoWidget;
 import org.geogebra.common.main.App;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 /**
  * Drawable class for Audio elemens.
@@ -44,8 +44,8 @@ public class DrawAudio extends DrawWidget {
 	private static final GColor PLAY_COLOR = GColor.TEXT_PRIMARY;
 	private static final GColor TIME_COLOR = GColor.TEXT_PRIMARY;
 	private static final GColor SLIDER_STROKE_COLOR = GColor.TEXT_PRIMARY;
-	private static final GBasicStroke SLIDER_STROKE = EuclidianStatic.getStroke(SLIDER_THICKNESS,
-			EuclidianStyleConstants.LINE_TYPE_FULL);
+	private static final GBasicStroke SLIDER_STROKE = euclideanStatic.getStroke(SLIDER_THICKNESS,
+			euclideanStyleConstants.LINE_TYPE_FULL);
 
 	private final GeoAudio geoAudio;
 
@@ -71,11 +71,11 @@ public class DrawAudio extends DrawWidget {
 
 	/**
 	 * @param view
-	 *            The euclidian view.
+	 *            The euclidean view.
 	 * @param geo
 	 *            The GeoElement that represents the audio content.
 	 */
-	public DrawAudio(EuclidianView view, GeoAudio geo) {
+	public DrawAudio(euclideanView view, GeoAudio geo) {
 		super(view, geo, false);
 		this.geoAudio = geo;
 		getColors();
@@ -91,7 +91,7 @@ public class DrawAudio extends DrawWidget {
 	@Override
 	public void update() {
 		updateBounds();
-		isVisible = geo.isEuclidianVisible() && geoAudio.isDefined();
+		isVisible = geo.iseuclideanVisible() && geoAudio.isDefined();
 		if (!isVisible) {
 			return;
 		}
@@ -237,7 +237,7 @@ public class DrawAudio extends DrawWidget {
 		int x = TAP_AREA_SIZE + MARGIN_BEFORE_TEXT_X;
 		int y = (int) (getHeight() + txtLayout.getBounds().getHeight()) / 2;
 
-		EuclidianStatic.drawIndexedString(view.getApplication(), g2, text,
+		euclideanStatic.drawIndexedString(view.getApplication(), g2, text,
 				x, y, false, null, null);
 	}
 

@@ -4,7 +4,7 @@ import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBuffer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBuffer;
 
 /**
  * buffers for openGL

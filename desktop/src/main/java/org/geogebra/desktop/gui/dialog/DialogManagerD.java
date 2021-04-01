@@ -15,9 +15,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.gui.dialog.TextInputDialog;
 import org.geogebra.common.gui.dialog.handler.NumberChangeSignInputHandler;
@@ -176,7 +176,7 @@ public class DialogManagerD extends DialogManagerMinimal {
 		// show the view
 		((GuiManagerD) app.getGuiManager()).setShowView(true,
 				App.VIEW_PROPERTIES);
-		if (geos != null && geos.size() == 1 && geos.get(0).isEuclidianVisible()
+		if (geos != null && geos.size() == 1 && geos.get(0).iseuclideanVisible()
 				&& geos.get(0) instanceof GeoNumeric) {
 			((GuiManagerD) app.getGuiManager()).showPropertiesViewSliderTab();
 		}
@@ -187,7 +187,7 @@ public class DialogManagerD extends DialogManagerMinimal {
 	 */
 	@Override
 	public void showToolbarConfigDialog() {
-		app.getActiveEuclidianView().resetMode();
+		app.getActiveeuclideanView().resetMode();
 		ToolbarConfigDialog dialog = new ToolbarConfigDialog(((AppD) app));
 		dialog.setVisible(true);
 	}
@@ -329,7 +329,7 @@ public class DialogManagerD extends DialogManagerMinimal {
 
 	@Override
 	public void showNumberInputDialogRegularPolygon(String title,
-			EuclidianController ec, GeoPointND geoPoint1, GeoPointND geoPoint2,
+			euclideanController ec, GeoPointND geoPoint1, GeoPointND geoPoint2,
 			GeoCoordSys2D direction) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
@@ -340,7 +340,7 @@ public class DialogManagerD extends DialogManagerMinimal {
 
 	@Override
 	public void showNumberInputDialogCirclePointRadius(String title,
-			GeoPointND geoPoint1, EuclidianView view) {
+			GeoPointND geoPoint1, euclideanView view) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		InputDialogD id = new InputDialogCirclePointRadius(((AppD) app), title,
@@ -350,7 +350,7 @@ public class DialogManagerD extends DialogManagerMinimal {
 
 	@Override
 	public void showNumberInputDialogRotate(String title, GeoPolygon[] polys,
-			GeoPointND[] points, GeoElement[] selGeos, EuclidianController ec) {
+			GeoPointND[] points, GeoElement[] selGeos, euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		InputDialogD id = new InputDialogRotatePointD(((AppD) app), title,
@@ -361,7 +361,7 @@ public class DialogManagerD extends DialogManagerMinimal {
 	@Override
 	public void showNumberInputDialogAngleFixed(String title,
 			GeoSegmentND[] segments, GeoPointND[] points, GeoElement[] selGeos,
-			EuclidianController ec) {
+			euclideanController ec) {
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
 		InputDialogD id = new InputDialogAngleFixedD(((AppD) app), title,
@@ -371,7 +371,7 @@ public class DialogManagerD extends DialogManagerMinimal {
 
 	@Override
 	public void showNumberInputDialogDilate(String title, GeoPolygon[] polys,
-			GeoPointND[] points, GeoElement[] selGeos, EuclidianController ec) {
+			GeoPointND[] points, GeoElement[] selGeos, euclideanController ec) {
 
 		NumberInputHandler handler = new NumberInputHandler(
 				app.getKernel().getAlgebraProcessor());
@@ -636,6 +636,6 @@ public class DialogManagerD extends DialogManagerMinimal {
 	public TextInputDialog createTextDialog(GeoText text, GeoPointND startPoint,
 			boolean rw) {
 		return new TextInputDialogD(app, getLocalization().getMenu("Text"), text, startPoint,
-				rw, 30, 6, app.getMode() == EuclidianConstants.MODE_TEXT);
+				rw, 30, 6, app.getMode() == euclideanConstants.MODE_TEXT);
 	}
 }

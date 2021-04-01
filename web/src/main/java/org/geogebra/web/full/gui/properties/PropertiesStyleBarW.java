@@ -31,9 +31,9 @@ public class PropertiesStyleBarW extends
 
 	private static final OptionType[] OPTION_TYPE_IMPL = {
 		// Implemented types of the web
-			OptionType.GLOBAL, OptionType.OBJECTS, OptionType.EUCLIDIAN,
-			OptionType.EUCLIDIAN2,
-			OptionType.EUCLIDIAN_FOR_PLANE, OptionType.EUCLIDIAN3D,
+			OptionType.GLOBAL, OptionType.OBJECTS, OptionType.euclidean,
+			OptionType.euclidean2,
+			OptionType.euclidean_FOR_PLANE, OptionType.euclidean3D,
 			OptionType.SPREADSHEET, OptionType.CAS, OptionType.ALGEBRA
 	};
 	
@@ -91,13 +91,13 @@ public class PropertiesStyleBarW extends
 		setButtonVisible(OptionType.OBJECTS,
 				app.getSelectionManager().selectedGeosSize() > 0);
 		
-		setButtonVisible(OptionType.EUCLIDIAN,
+		setButtonVisible(OptionType.euclidean,
 				app.getGuiManager()
-						.showView(App.VIEW_EUCLIDIAN));
+						.showView(App.VIEW_euclidean));
 		
-		setButtonVisible(OptionType.EUCLIDIAN2,
+		setButtonVisible(OptionType.euclidean2,
 				app.getGuiManager()
-						.showView(App.VIEW_EUCLIDIAN2));
+						.showView(App.VIEW_euclidean2));
 
 		setButtonVisible(OptionType.SPREADSHEET,
 				app.getGuiManager().showView(App.VIEW_SPREADSHEET));
@@ -176,8 +176,8 @@ public class PropertiesStyleBarW extends
 	 * @return true if the type is really available
 	 */
 	protected boolean typeAvailable(OptionType type) {
-		return type != OptionType.EUCLIDIAN3D
-				&& type != OptionType.EUCLIDIAN_FOR_PLANE;
+		return type != OptionType.euclidean3D
+				&& type != OptionType.euclidean_FOR_PLANE;
 	}
 	
 	/**
@@ -212,9 +212,9 @@ public class PropertiesStyleBarW extends
 			return AppResources.INSTANCE.options_defaults224().getSafeUri().asString();
 		case SPREADSHEET:
 			return pr.menu_icon_spreadsheet_transparent().getSafeUri().asString();
-		case EUCLIDIAN:
+		case euclidean:
 			return pr.menu_icon_graphics().getSafeUri().asString();
-		case EUCLIDIAN2:
+		case euclidean2:
 			return pr.menu_icon_graphics2_transparent().getSafeUri().asString();
 		case CAS:
 			return pr.menu_icon_cas_transparent().getSafeUri().asString();

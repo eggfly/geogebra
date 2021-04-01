@@ -15,9 +15,9 @@ package org.geogebra.web.full.gui.view.algebra;
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoText;
 import org.geogebra.common.main.App;
@@ -399,7 +399,7 @@ public class RadioTreeItemController implements ClickHandler,
 	 *            mouse move event
 	 */
 	protected void onPointerMove(AbstractEvent event) {
-		// used to tell EuclidianView to handle mouse over
+		// used to tell euclideanView to handle mouse over
 	}
 
 	protected void onPointerUp(AbstractEvent event) {
@@ -425,11 +425,11 @@ public class RadioTreeItemController implements ClickHandler,
 				return;
 			}
 		}
-		EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
+		euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
 		int mode = ev.getMode();
-		if (!EuclidianConstants.isMoveOrSelectionMode(mode)
-				&& mode != EuclidianConstants.MODE_SELECTION_LISTENER) {
-			// let euclidianView know about the click
+		if (!euclideanConstants.isMoveOrSelectionMode(mode)
+				&& mode != euclideanConstants.MODE_SELECTION_LISTENER) {
+			// let euclideanView know about the click
 			ev.clickedGeo(geo, app.isControlDown(event));
 		}
 		ev.mouseMovedOver(null);
@@ -467,7 +467,7 @@ public class RadioTreeItemController implements ClickHandler,
 	 *            whether control was pressed
 	 */
 	protected void startEdit(boolean ctrl) {
-		EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
+		euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
 		selectionCtrl.clear();
 		ev.resetMode();
 

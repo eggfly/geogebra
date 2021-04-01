@@ -1,7 +1,7 @@
 package org.geogebra.common.geogebra3D.kernel3D.geos;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidianForPlane.EuclidianViewForPlaneCompanionInterface;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclideanForPlane.euclideanViewForPlaneCompanionInterface;
 import org.geogebra.common.geogebra3D.kernel3D.transform.MirrorableAtPlane;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
@@ -35,7 +35,7 @@ public class GeoConic3D extends GeoConicND
 	private Coords midpoint3D;
 	private CoordMatrix4x4 tmpMatrix4x4;
 
-	private EuclidianViewForPlaneCompanionInterface euclidianViewForPlane;
+	private euclideanViewForPlaneCompanionInterface euclideanViewForPlane;
 
 	/**
 	 * Creates an empty 3D conic with 2D coord sys
@@ -595,24 +595,24 @@ public class GeoConic3D extends GeoConicND
 
 	@Override
 	public int getViewID() {
-		return euclidianViewForPlane.getId();
+		return euclideanViewForPlane.getId();
 	}
 
 	@Override
 	public void createView2D() {
-		euclidianViewForPlane = kernel.getApplication().getCompanion()
-				.createEuclidianViewForPlane(this, true);
-		euclidianViewForPlane.setTransformRegardingView();
+		euclideanViewForPlane = kernel.getApplication().getCompanion()
+				.createeuclideanViewForPlane(this, true);
+		euclideanViewForPlane.setTransformRegardingView();
 	}
 
 	@Override
 	public void removeView2D() {
-		euclidianViewForPlane.doRemove();
+		euclideanViewForPlane.doRemove();
 	}
 
 	@Override
 	public void doRemove() {
-		if (euclidianViewForPlane != null) {
+		if (euclideanViewForPlane != null) {
 			removeView2D();
 		}
 		super.doRemove();
@@ -620,14 +620,14 @@ public class GeoConic3D extends GeoConicND
 
 	@Override
 	public boolean hasView2DVisible() {
-		return euclidianViewForPlane != null && kernel.getApplication()
-				.getGuiManager().showView(euclidianViewForPlane.getId());
+		return euclideanViewForPlane != null && kernel.getApplication()
+				.getGuiManager().showView(euclideanViewForPlane.getId());
 	}
 
 	@Override
 	public void setView2DVisible(boolean flag) {
 
-		if (euclidianViewForPlane == null) {
+		if (euclideanViewForPlane == null) {
 			if (flag) {
 				createView2D();
 			}
@@ -635,27 +635,27 @@ public class GeoConic3D extends GeoConicND
 		}
 
 		kernel.getApplication().getGuiManager().setShowView(flag,
-				euclidianViewForPlane.getId());
+				euclideanViewForPlane.getId());
 
 	}
 
 	@Override
 	public void update(boolean drag) {
 		super.update(drag);
-		if (euclidianViewForPlane != null) {
-			euclidianViewForPlane.updateMatrix();
+		if (euclideanViewForPlane != null) {
+			euclideanViewForPlane.updateMatrix();
 			updateViewForPlane();
 		}
 	}
 
 	private void updateViewForPlane() {
-		euclidianViewForPlane.updateAllDrawables(true);
+		euclideanViewForPlane.updateAllDrawables(true);
 	}
 
 	@Override
-	public void setEuclidianViewForPlane(
-			EuclidianViewForPlaneCompanionInterface view) {
-		euclidianViewForPlane = view;
+	public void seteuclideanViewForPlane(
+			euclideanViewForPlaneCompanionInterface view) {
+		euclideanViewForPlane = view;
 	}
 
 	@Override
@@ -698,7 +698,7 @@ public class GeoConic3D extends GeoConicND
 	}
 
 	@Override
-	public boolean isWhollyIn2DView(EuclidianView ev) {
+	public boolean isWhollyIn2DView(euclideanView ev) {
 
 		// check center
 		if (!DoubleUtil.isZero(getMidpoint3D().getInhomCoords().getZ())) {

@@ -1,6 +1,6 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoLine3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoQuadric3D;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -23,7 +23,7 @@ public class DrawLine3DForQuadrics extends DrawLine3D {
 	 * @param quadric
 	 *            quadric
 	 */
-	public DrawLine3DForQuadrics(EuclidianView3D a_view3D, GeoLine3D line,
+	public DrawLine3DForQuadrics(euclideanView3D a_view3D, GeoLine3D line,
 			GeoQuadric3D quadric) {
 		super(a_view3D, line, quadric);
 	}

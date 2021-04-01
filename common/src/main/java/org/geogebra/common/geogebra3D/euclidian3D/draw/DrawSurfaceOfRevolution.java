@@ -1,12 +1,12 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.Hits;
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.euclidean.Hits;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.geogebra3D.kernel3D.Kernel3D;
 import org.geogebra.common.geogebra3D.kernel3D.algos.RotationConverter;
 import org.geogebra.common.kernel.Kernel;
@@ -34,7 +34,7 @@ public class DrawSurfaceOfRevolution extends Drawable3DSurfaces
 	 * @param selectedFunctions
 	 *            selected functions
 	 */
-	public DrawSurfaceOfRevolution(EuclidianView3D a_view3d,
+	public DrawSurfaceOfRevolution(euclideanView3D a_view3d,
 			ArrayList<Path> selectedFunctions) {
 		super(a_view3d);
 		this.selectedFunctions = selectedFunctions;
@@ -53,7 +53,7 @@ public class DrawSurfaceOfRevolution extends Drawable3DSurfaces
 			kernel.setSilentMode(oldSilent);
 			previewSurface.setAlgebraVisible(false);
 			previewSurface.setLabel(null);
-			((EuclidianController3D) getView3D().getEuclidianController())
+			((euclideanController3D) getView3D().geteuclideanController())
 					.setHandledGeo(previewSurface,
 							selectedFunctions.get(0).toGeoElement());
 		}
@@ -122,13 +122,13 @@ public class DrawSurfaceOfRevolution extends Drawable3DSurfaces
 			angleValue = angle.getValue();
 		}
 		hits.add(createAngle(angleValue));
-		getView3D().getEuclidianController().addSelectedNumberValue(hits, 1,
+		getView3D().geteuclideanController().addSelectedNumberValue(hits, 1,
 				false, false);
 		cleanUp();
 	}
 
 	private void cleanUp() {
-		((EuclidianController3D) getView3D().getEuclidianController())
+		((euclideanController3D) getView3D().geteuclideanController())
 				.disposeHandledGeo();
 		if (previewSurface != null) {
 			previewSurface.remove();

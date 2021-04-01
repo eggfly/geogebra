@@ -1,8 +1,8 @@
-package org.geogebra.test.euclidian;
+package org.geogebra.test.euclidean;
 
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.ViewTextField;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
+import org.geogebra.common.euclidean.ViewTextField;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
 import org.geogebra.common.gui.inputfield.AutoCompleteTextField;
 
 public class ViewTextFieldMock extends ViewTextField {

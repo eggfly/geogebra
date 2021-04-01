@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EmbedManager;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.EmbedManager;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.gui.view.table.InvalidValuesException;
 import org.geogebra.common.io.MyXMLio;
 import org.geogebra.common.io.file.Base64ZipFile;
@@ -31,8 +31,8 @@ import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.html5.Browser;
 import org.geogebra.web.html5.css.GuiResourcesSimple;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 import org.geogebra.web.html5.gui.GuiManagerInterfaceW;
 import org.geogebra.web.html5.gui.tooltip.ToolTipManagerW;
 import org.geogebra.web.html5.js.ResourcesInjector;
@@ -170,15 +170,15 @@ public class GgbAPIW extends GgbAPI {
 			boolean greyscale) {
 		String url;
 
-		EuclidianViewWInterface ev = ((EuclidianViewWInterface) app
-				.getActiveEuclidianView());
+		euclideanViewWInterface ev = ((euclideanViewWInterface) app
+				.getActiveeuclideanView());
 
 		// get export image
 		// DPI ignored
-		url = ((EuclidianViewWInterface) app.getActiveEuclidianView())
+		url = ((euclideanViewWInterface) app.getActiveeuclideanView())
 				.getExportImageDataUrl(exportScale, transparent, greyscale);
 
-		if (MyDouble.isFinite(dpi) && dpi > 0 && ev instanceof EuclidianViewW) {
+		if (MyDouble.isFinite(dpi) && dpi > 0 && ev instanceof euclideanViewW) {
 
 			JavaScriptInjector
 					.inject(GuiResourcesSimple.INSTANCE.rewritePHYS());
@@ -207,7 +207,7 @@ public class GgbAPIW extends GgbAPI {
 
 			if (app.getGuiManager().getLayout().getDockManager()
 					.getFocusedViewId() == App.VIEW_PROBABILITY_CALCULATOR) {
-				return pngBase64(((EuclidianViewWInterface) app.getGuiManager()
+				return pngBase64(((euclideanViewWInterface) app.getGuiManager()
 						.getPlotPanelEuclidanView()).getExportImageDataUrl(
 								exportScale, transparent, greyscale));
 			}
@@ -535,7 +535,7 @@ public class GgbAPIW extends GgbAPI {
 		if (includeThumbnail) {
 			ImageManagerW
 					.addImageToZip(MyXMLio.XML_FILE_THUMBNAIL,
-					((EuclidianViewWInterface) getViewForThumbnail())
+					((euclideanViewWInterface) getViewForThumbnail())
 							.getCanvasBase64WithTypeString(),
 					archiveContent);
 		}
@@ -548,7 +548,7 @@ public class GgbAPIW extends GgbAPI {
 	 * @return base64 encoded thumbnail
 	 */
 	public String getThumbnailBase64() {
-		return ((EuclidianViewWInterface) getViewForThumbnail())
+		return ((euclideanViewWInterface) getViewForThumbnail())
 				.getCanvasBase64WithTypeString()
 				.substring(StringUtil.pngMarker.length());
 	}
@@ -556,31 +556,31 @@ public class GgbAPIW extends GgbAPI {
 	/**
 	 * @return view for thumbnail
 	 */
-	public EuclidianViewInterfaceCommon getViewForThumbnail() {
-		EuclidianViewInterfaceCommon ret = getViewForThumbnail(true);
+	public euclideanViewInterfaceCommon getViewForThumbnail() {
+		euclideanViewInterfaceCommon ret = getViewForThumbnail(true);
 		if (ret == null) {
 			ret = getViewForThumbnail(false);
 		}
 		if (ret == null) {
-			ret = app.getActiveEuclidianView();
+			ret = app.getActiveeuclideanView();
 		}
 		return ret;
 	}
 
-	private EuclidianViewInterfaceCommon getViewForThumbnail(
+	private euclideanViewInterfaceCommon getViewForThumbnail(
 			boolean needsObjects) {
-		if (app.isEuclidianView3Dinited() && app.showView(App.VIEW_EUCLIDIAN3D)
+		if (app.iseuclideanView3Dinited() && app.showView(App.VIEW_euclidean3D)
 				&& (!needsObjects
-						|| app.getEuclidianView3D().hasVisibleObjects())) {
-			return app.getEuclidianView3D();
+						|| app.geteuclideanView3D().hasVisibleObjects())) {
+			return app.geteuclideanView3D();
 		}
-		if (app.showView(App.VIEW_EUCLIDIAN) && (!needsObjects
-				|| app.getEuclidianView1().hasVisibleObjects())) {
-			return app.getEuclidianView1();
+		if (app.showView(App.VIEW_euclidean) && (!needsObjects
+				|| app.geteuclideanView1().hasVisibleObjects())) {
+			return app.geteuclideanView1();
 		}
-		if (app.showView(App.VIEW_EUCLIDIAN2) && (!needsObjects
-				|| app.getEuclidianView2(1).hasVisibleObjects())) {
-			return app.getEuclidianView2(1);
+		if (app.showView(App.VIEW_euclidean2) && (!needsObjects
+				|| app.geteuclideanView2(1).hasVisibleObjects())) {
+			return app.geteuclideanView2(1);
 		}
 		if (app.showView(App.VIEW_PROBABILITY_CALCULATOR)) {
 			return app.getGuiManager().getPlotPanelEuclidanView();
@@ -1067,7 +1067,7 @@ public class GgbAPIW extends GgbAPI {
 	}
 
 	/**
-	 * recalculates euclidianviews environments
+	 * recalculates euclideanviews environments
 	 */
 	public void recalculateEnvironments() {
 		((AppW) app).recalculateEnvironments();
@@ -1232,10 +1232,10 @@ public class GgbAPIW extends GgbAPI {
 	 */
 	@Override
 	final public String exportSVG(String filename) {
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 
-		if (ev instanceof EuclidianViewW) {
-			EuclidianViewW evw = (EuclidianViewW) ev;
+		if (ev instanceof euclideanViewW) {
+			euclideanViewW evw = (euclideanViewW) ev;
 
 			String svg = evw.getExportSVG(1, true);
 
@@ -1267,11 +1267,11 @@ public class GgbAPIW extends GgbAPI {
 
 		} else {
 
-			EuclidianView ev = app.getActiveEuclidianView();
+			euclideanView ev = app.getActiveeuclideanView();
 
-			if (ev instanceof EuclidianViewW) {
+			if (ev instanceof euclideanViewW) {
 
-				EuclidianViewW evw = (EuclidianViewW) ev;
+				euclideanViewW evw = (euclideanViewW) ev;
 
 				if (sliderLabel == null) {
 					pdf = evw.getExportPDF(scale);

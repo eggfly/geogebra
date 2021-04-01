@@ -10,7 +10,7 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +22,10 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
-import org.geogebra.common.euclidian.Previewable;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.GeneralPathClipped;
+import org.geogebra.common.euclidean.Previewable;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.ConstructionDefaults;
@@ -61,11 +61,11 @@ public class DrawPolygon extends Drawable implements Previewable {
 	 * Creates new DrawPolygon
 	 *
 	 * @param view
-	 *            Euclidian view to be used
+	 *            euclidean view to be used
 	 * @param poly
 	 *            Polygon to be drawn
 	 */
-	public DrawPolygon(EuclidianView view, GeoPolygon poly) {
+	public DrawPolygon(euclideanView view, GeoPolygon poly) {
 		this.view = view;
 		this.poly = poly;
 		geo = poly;
@@ -78,11 +78,11 @@ public class DrawPolygon extends Drawable implements Previewable {
 	 * Creates a new DrawPolygon for preview.
 	 *
 	 * @param view
-	 *            Euclidian view to be used
+	 *            euclidean view to be used
 	 * @param points
 	 *            vertices
 	 */
-	public DrawPolygon(EuclidianView view, ArrayList<GeoPointND> points) {
+	public DrawPolygon(euclideanView view, ArrayList<GeoPointND> points) {
 		this.view = view;
 		this.points = points;
 		geo = view.getKernel().getConstruction().getConstructionDefaults()
@@ -94,7 +94,7 @@ public class DrawPolygon extends Drawable implements Previewable {
 
 	@Override
 	final public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (isVisible) {
 			labelVisible = geo.isLabelVisible();
 			updateStrokes(poly);
@@ -241,7 +241,7 @@ public class DrawPolygon extends Drawable implements Previewable {
 			int my;
 
 			// round angle to nearest 15 degrees if alt pressed
-			if (view.getEuclidianController().isAltDown()) {
+			if (view.geteuclideanController().isAltDown()) {
 
 				GeoPointND p = points.get(points.size() - 1);
 				double px = p.getInhomX();
@@ -314,10 +314,10 @@ public class DrawPolygon extends Drawable implements Previewable {
 
 				endPoint.setX(xRW);
 				endPoint.setY(yRW);
-				view.getEuclidianController().setLineEndPoint(endPoint);
+				view.geteuclideanController().setLineEndPoint(endPoint);
 				gp.lineTo(mx, my);
 			} else {
-				view.getEuclidianController().setLineEndPoint(null);
+				view.geteuclideanController().setLineEndPoint(null);
 			}
 			gp.lineTo(view.toScreenCoordX(xRW), view.toScreenCoordY(yRW));
 		}
@@ -370,7 +370,7 @@ public class DrawPolygon extends Drawable implements Previewable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible()) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible()) {
 			return null;
 		}
 		return gp.getBounds();

@@ -1,13 +1,13 @@
-package org.geogebra.common.geogebra3D.euclidian3D.printer3D;
+package org.geogebra.common.geogebra3D.euclidean3D.printer3D;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3DForExport;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBuffer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBufferIndices;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GeometriesSet;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Geometry;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.ManagerShaders;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D.GeometryForExport;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3DForExport;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBuffer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBufferIndices;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GeometriesSet;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Geometry;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.ManagerShaders;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D.GeometryForExport;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.plugin.Geometry3DGetter;
 import org.geogebra.common.plugin.Geometry3DGetter.GeometryType;
@@ -31,7 +31,7 @@ public class Geometry3DGetterManager {
 	 * @param getter
 	 *            geometry getter
 	 */
-	public Geometry3DGetterManager(EuclidianView3DForExport view, Geometry3DGetter getter) {
+	public Geometry3DGetterManager(euclideanView3DForExport view, Geometry3DGetter getter) {
 		this.getter = getter;
 		geometriesManager = (ManagerShaders) view.getRenderer()
 				.getGeometryManager();

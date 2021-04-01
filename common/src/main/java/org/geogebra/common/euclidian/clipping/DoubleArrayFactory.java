@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.clipping;
+package org.geogebra.common.euclidean.clipping;
 
 /**
  * Dummy implementation for DoubleArrayFactory only caring for known usage For

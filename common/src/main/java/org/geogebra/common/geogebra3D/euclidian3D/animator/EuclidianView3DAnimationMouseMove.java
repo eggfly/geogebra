@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D.animator;
+package org.geogebra.common.geogebra3D.euclidean3D.animator;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.animator.EuclidianView3DAnimator.AnimationType;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.animator.euclideanView3DAnimator.AnimationType;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.kernel.matrix.Coords;
@@ -12,7 +12,7 @@ import org.geogebra.common.util.DoubleUtil;
  * animation for mouse move
  *
  */
-public class EuclidianView3DAnimationMouseMove extends EuclidianView3DAnimation {
+public class euclideanView3DAnimationMouseMove extends euclideanView3DAnimation {
 
 	private int mouseMoveDX;
 	private int mouseMoveDY;
@@ -35,7 +35,7 @@ public class EuclidianView3DAnimationMouseMove extends EuclidianView3DAnimation 
 	 * @param view3D 3D view
 	 * @param animator animator
 	 */
-	EuclidianView3DAnimationMouseMove(EuclidianView3D view3D, EuclidianView3DAnimator animator) {
+	euclideanView3DAnimationMouseMove(euclideanView3D view3D, euclideanView3DAnimator animator) {
 		super(view3D, animator);
 	}
 
@@ -87,12 +87,12 @@ public class EuclidianView3DAnimationMouseMove extends EuclidianView3DAnimation 
 	@Override
 	public void animate() {
 		switch (mouseMoveMode) {
-		case EuclidianController.MOVE_ROTATE_VIEW:
+		case euclideanController.MOVE_ROTATE_VIEW:
 			view3D.setRotXYinDegrees(aOld - mouseMoveDX, bOld + mouseMoveDY);
 			view3D.updateMatrix();
 			view3D.setViewChangedByRotate();
 			break;
-		case EuclidianController.MOVE_VIEW:
+		case euclideanController.MOVE_VIEW:
 			if (view3D.isZoomable()) {
 				boolean changed = false;
 				if (view3D.getCursorOnXOYPlane().getRealMoveMode() == GeoPointND.MOVE_MODE_XY) {

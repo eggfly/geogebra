@@ -4,7 +4,7 @@ import java.net.URL;
 
 import javax.swing.JPanel;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.desktop.geogebra3D.gui.GuiResources3D;
 import org.geogebra.desktop.util.GuiResourcesD;
@@ -46,29 +46,29 @@ public class ResourceAvailability {
 		StringBuilder missing = new StringBuilder();
 
 		for (int i = 0; i < 1000; i++) {
-			String modeText = EuclidianConstants.getModeTextSimple(i);
+			String modeText = euclideanConstants.getModeTextSimple(i);
 
 			if (modeText.isEmpty()) {
 				continue;
 			}
 			switch (i) {
-			case EuclidianConstants.MODE_SELECTION_LISTENER:
-			case EuclidianConstants.MODE_PEN_PANEL:
-			case EuclidianConstants.MODE_TOOLS_PANEL:
-			case EuclidianConstants.MODE_MEDIA_PANEL:
-			case EuclidianConstants.MODE_VIDEO:
-			case EuclidianConstants.MODE_AUDIO:
-			case EuclidianConstants.MODE_GRAPHING:
-			case EuclidianConstants.MODE_EXTENSION:
-			case EuclidianConstants.MODE_TABLE:
-			case EuclidianConstants.MODE_EQUATION:
-			case EuclidianConstants.MODE_CAMERA:
-			case EuclidianConstants.MODE_PDF:
-			case EuclidianConstants.MODE_GRASPABLE_MATH:
-			case EuclidianConstants.MODE_CAS:
-			case EuclidianConstants.MODE_SURFACE_OF_REVOLUTION:
-			case EuclidianConstants.MODE_FREEHAND_FUNCTION:
-			case EuclidianConstants.MODE_MASK:
+			case euclideanConstants.MODE_SELECTION_LISTENER:
+			case euclideanConstants.MODE_PEN_PANEL:
+			case euclideanConstants.MODE_TOOLS_PANEL:
+			case euclideanConstants.MODE_MEDIA_PANEL:
+			case euclideanConstants.MODE_VIDEO:
+			case euclideanConstants.MODE_AUDIO:
+			case euclideanConstants.MODE_GRAPHING:
+			case euclideanConstants.MODE_EXTENSION:
+			case euclideanConstants.MODE_TABLE:
+			case euclideanConstants.MODE_EQUATION:
+			case euclideanConstants.MODE_CAMERA:
+			case euclideanConstants.MODE_PDF:
+			case euclideanConstants.MODE_GRASPABLE_MATH:
+			case euclideanConstants.MODE_CAS:
+			case euclideanConstants.MODE_SURFACE_OF_REVOLUTION:
+			case euclideanConstants.MODE_FREEHAND_FUNCTION:
+			case euclideanConstants.MODE_MASK:
 				continue;
 			default:
 				ImageResourceD res = man.getToolImageResource(modeText);

@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.gui.Editing;
 import org.geogebra.common.gui.Layout;
 import org.geogebra.common.gui.view.consprotocol.ConstructionProtocolNavigation;
@@ -55,11 +55,11 @@ public interface GuiManagerInterface {
 	void updateMenubarSelection();
 
 	void showPopupMenu(ArrayList<GeoElement> selectedGeos,
-					   EuclidianViewInterfaceCommon euclidianViewInterfaceCommon,
+					   euclideanViewInterfaceCommon euclideanViewInterfaceCommon,
 					   GPoint mouseLoc);
 
 	void showPopupChooseGeo(ArrayList<GeoElement> selectedGeos,
-							ArrayList<GeoElement> geos, EuclidianViewInterfaceCommon view,
+							ArrayList<GeoElement> geos, euclideanViewInterfaceCommon view,
 							GPoint p);
 
 	void setMode(int mode, ModeSetter m);
@@ -72,7 +72,7 @@ public interface GuiManagerInterface {
 						 boolean updatePropertiesView);
 
 	void loadImage(GeoPoint loc, Object object, boolean altDown,
-				   EuclidianView view);
+				   euclideanView view);
 
 	/**
 	 * loads the camera dialog
@@ -89,10 +89,10 @@ public interface GuiManagerInterface {
 
 	void getConsProtocolXML(StringBuilder sb);
 
-	void showDrawingPadPopup(EuclidianViewInterfaceCommon view,
+	void showDrawingPadPopup(euclideanViewInterfaceCommon view,
 							 GPoint mouseLoc);
 
-	void showDrawingPadPopup3D(EuclidianViewInterfaceCommon view,
+	void showDrawingPadPopup3D(euclideanViewInterfaceCommon view,
 							   GPoint mouseLoc);
 
 	boolean hasSpreadsheetView();
@@ -205,7 +205,7 @@ public interface GuiManagerInterface {
 	 */
 	void attachView(int viewId);
 
-	EuclidianView getActiveEuclidianView();
+	euclideanView getActiveeuclideanView();
 
 	void showAxesCmd();
 
@@ -258,13 +258,13 @@ public interface GuiManagerInterface {
 	/**
 	 * @param idx
 	 *            index
-	 * @return whether secondary euclidian view with given index is showing
+	 * @return whether secondary euclidean view with given index is showing
 	 */
-	boolean hasEuclidianView2(int idx);
+	boolean haseuclideanView2(int idx);
 
-	EuclidianViewInterfaceCommon getEuclidianView2(int idx);
+	euclideanViewInterfaceCommon geteuclideanView2(int idx);
 
-	boolean hasEuclidianView2EitherShowingOrNot(int idx);
+	boolean haseuclideanView2EitherShowingOrNot(int idx);
 
 	Editing getAlgebraView();
 
@@ -321,7 +321,7 @@ public interface GuiManagerInterface {
 
 	void logout();
 
-	int getEuclidianViewCount();
+	int geteuclideanViewCount();
 
 	void addToToolbarDefinition(int mode);
 
@@ -333,7 +333,7 @@ public interface GuiManagerInterface {
 
 	void getToolImageURL(int mode, GeoImage geoImage, AsyncOperation<String> onload);
 
-	EuclidianViewInterfaceCommon getPlotPanelEuclidanView();
+	euclideanViewInterfaceCommon getPlotPanelEuclidanView();
 
 	/**
 	 * redraw Navigation Bars if necessary (eg step changed)

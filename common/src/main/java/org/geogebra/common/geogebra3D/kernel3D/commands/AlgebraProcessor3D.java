@@ -165,7 +165,7 @@ public class AlgebraProcessor3D extends AlgebraProcessor {
 
 		// check if the equ is forced plane or if the 3D view has the focus
 		if (equ.isForcedQuadric() || kernel.getApplication()
-				.getActiveEuclidianView().isEuclidianView3D()) {
+				.getActiveeuclideanView().iseuclideanView3D()) {
 			return processQuadric(equ, def, info);
 		}
 		return super.processConic(equ, def, info);
@@ -260,8 +260,8 @@ public class AlgebraProcessor3D extends AlgebraProcessor {
 			boolean isIndependent = !equ.isFunctionDependent()
 					&& lhs.isConstant(info) && !equ.hasVariableDegree();
 
-			if (kernel.getApplication().getActiveEuclidianView()
-					.isEuclidianView3D() || equ.isForcedSurface()
+			if (kernel.getApplication().getActiveeuclideanView()
+					.iseuclideanView3D() || equ.isForcedSurface()
 					|| equ.isForcedPlane() || equ.isForcedQuadric()) {
 				GeoElement geo = null;
 				if (isIndependent) {

@@ -52,7 +52,7 @@ public class ShowConditionModel extends OptionsModel {
 
 	@Override
 	public boolean isValidAt(int index) {
-		return getGeoAt(index).isEuclidianShowable();
+		return getGeoAt(index).iseuclideanShowable();
 	}
 
 	/**

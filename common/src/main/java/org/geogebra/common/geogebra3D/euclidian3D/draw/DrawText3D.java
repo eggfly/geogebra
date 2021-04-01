@@ -1,11 +1,11 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import org.geogebra.common.awt.GFont;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hits3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hits3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
 import org.geogebra.common.kernel.geos.GeoText;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.Coords;
@@ -20,7 +20,7 @@ public final class DrawText3D extends Drawable3DCurves {
 	 * @param text
 	 *            text
 	 */
-	public DrawText3D(EuclidianView3D a_view3d, GeoText text) {
+	public DrawText3D(euclideanView3D a_view3d, GeoText text) {
 		super(a_view3d, text);
 		wasLaTeX = text.isLaTeX();
 		((DrawLabel3DForText) label).setGeo(text);
@@ -29,7 +29,7 @@ public final class DrawText3D extends Drawable3DCurves {
 	}
 
 	@Override
-	protected DrawLabel3D newDrawLabel3D(EuclidianView3D view3D) {
+	protected DrawLabel3D newDrawLabel3D(euclideanView3D view3D) {
 		return new DrawLabel3DForText(view3D, this);
 	}
 

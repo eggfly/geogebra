@@ -8,13 +8,13 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
-import org.geogebra.common.euclidian.event.FocusListenerDelegate;
-import org.geogebra.common.euclidian.event.KeyHandler;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
+import org.geogebra.common.euclidean.event.FocusListenerDelegate;
+import org.geogebra.common.euclidean.event.KeyHandler;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.VirtualKeyboardListener;
 import org.geogebra.common.gui.inputfield.AutoComplete;
 import org.geogebra.common.gui.inputfield.AutoCompleteTextField;
@@ -27,7 +27,7 @@ import org.geogebra.common.kernel.geos.properties.HorizontalAlignment;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
 import org.geogebra.common.main.MyError;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.AutoCompleteDictionary;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.common.util.debug.Log;
@@ -355,7 +355,7 @@ public class AutoCompleteTextFieldW extends FlowPanel
 							PointerEventType type) {
 						// unfortunate repetition to make it work in all major
 						// browsers
-						app.getActiveEuclidianView().getViewTextField()
+						app.getActiveeuclideanView().getViewTextField()
 								.setBoxVisible(true);
 						setFocus(true);
 
@@ -367,7 +367,7 @@ public class AutoCompleteTextFieldW extends FlowPanel
 
 						Scheduler.get().scheduleDeferred(
 								() -> {
-									app.getActiveEuclidianView()
+									app.getActiveeuclideanView()
 											.getViewTextField()
 											.setBoxVisible(true);
 									setFocus(true);
@@ -490,7 +490,7 @@ public class AutoCompleteTextFieldW extends FlowPanel
 	 */
 	public void setWidthInEm(int emWidth) {
 		if (showSymbolButton != null
-				&& (emWidth > EuclidianConstants.SHOW_SYMBOLBUTTON_MINLENGTH
+				&& (emWidth > euclideanConstants.SHOW_SYMBOLBUTTON_MINLENGTH
 						|| emWidth == -1)) {
 			prepareShowSymbolButton(true);
 		}
@@ -855,7 +855,7 @@ public class AutoCompleteTextFieldW extends FlowPanel
 		}
 		if (keyCode == GWTKeycodes.KEY_TAB && usedForInputBox()) {
 			e.preventDefault();
-			AutoCompleteTextField tf = app.getActiveEuclidianView()
+			AutoCompleteTextField tf = app.getActiveeuclideanView()
 					.getTextField();
 			if (tf != null) {
 				geoUsedForInputBox.updateLinkedGeo(tf.getText());
@@ -934,7 +934,7 @@ public class AutoCompleteTextFieldW extends FlowPanel
 				textField.hideSuggestions();
 			} else {
 				textField.setFocus(false);
-				app.getActiveEuclidianView().requestFocus();
+				app.getActiveeuclideanView().requestFocus();
 			}
 			break;
 
@@ -946,7 +946,7 @@ public class AutoCompleteTextFieldW extends FlowPanel
 		case GWTKeycodes.KEY_DOWN:
 			handleDownArrow();
 			e.stopPropagation(); // prevent GlobalKeyDispatcherW to move the
-									// euclidian view
+									// euclidean view
 			break;
 
 		case GWTKeycodes.KEY_F9:
@@ -1537,8 +1537,8 @@ public class AutoCompleteTextFieldW extends FlowPanel
 		// TF Rectangle
 		if (drawTextField != null && drawTextField.hasError()) {
 			g2.setPaint(GColor.ERROR_RED);
-			g2.setStroke(EuclidianStatic.getStroke(2,
-					EuclidianStyleConstants.LINE_TYPE_DOTTED, GBasicStroke.JOIN_ROUND));
+			g2.setStroke(euclideanStatic.getStroke(2,
+					euclideanStyleConstants.LINE_TYPE_DOTTED, GBasicStroke.JOIN_ROUND));
 		} else {
 			g2.setPaint(GColor.BLACK);
 		}

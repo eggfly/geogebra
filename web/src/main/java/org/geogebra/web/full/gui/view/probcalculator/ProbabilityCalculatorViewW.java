@@ -15,9 +15,9 @@ import org.geogebra.common.main.settings.ProbabilityCalculatorSettings.Dist;
 import org.geogebra.ggbjdk.java.awt.geom.Dimension;
 import org.geogebra.web.full.css.GuiResources;
 import org.geogebra.web.full.gui.util.MyToggleButtonW;
-import org.geogebra.web.full.gui.view.data.PlotPanelEuclidianViewW;
+import org.geogebra.web.full.gui.view.data.PlotPaneleuclideanViewW;
 import org.geogebra.web.full.javax.swing.GPopupMenuW;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
 import org.geogebra.web.html5.gui.util.AriaMenuBar;
 import org.geogebra.web.html5.gui.util.AriaMenuItem;
 import org.geogebra.web.html5.gui.util.ListBoxApi;
@@ -185,11 +185,11 @@ public class ProbabilityCalculatorViewW extends ProbabilityCalculatorView
 
 	/**
 	 * Action to export all GeoElements that are currently displayed in this
-	 * panel to a EuclidianView. The viewID for the target EuclidianView is
-	 * stored as a property with key "euclidianViewID".
+	 * panel to a euclideanView. The viewID for the target euclideanView is
+	 * stored as a property with key "euclideanViewID".
 	 *
 	 * This action is passed as a parameter to plotPanel where it is used in the
-	 * plotPanel context menu and the EuclidianView transfer handler when the
+	 * plotPanel context menu and the euclideanView transfer handler when the
 	 * plot panel is dragged into an EV.
 	 */
 	private void createExportToEvAction() {
@@ -207,21 +207,21 @@ public class ProbabilityCalculatorViewW extends ProbabilityCalculatorView
 			
 			@Override
 			public void execute() {
-				Integer euclidianViewID = (Integer) this
-						.getValue("euclidianViewID");
+				Integer euclideanViewID = (Integer) this
+						.getValue("euclideanViewID");
 
 				// if null ID then use EV1 unless shift is down, then use EV2
-				if (euclidianViewID == null) {
-					euclidianViewID = GlobalKeyDispatcherW.getShiftDown()
-							? getApp().getEuclidianView2(1).getViewID()
-							: getApp().getEuclidianView1().getViewID();
+				if (euclideanViewID == null) {
+					euclideanViewID = GlobalKeyDispatcherW.getShiftDown()
+							? getApp().geteuclideanView2(1).getViewID()
+							: getApp().geteuclideanView1().getViewID();
 				}
 
 				// do the export
-				exportGeosToEV(euclidianViewID);
+				exportGeosToEV(euclideanViewID);
 
 				// null out the ID property
-				this.putValue("euclidianViewID", null);
+				this.putValue("euclideanViewID", null);
 			}
 		};
 	}
@@ -245,7 +245,7 @@ public class ProbabilityCalculatorViewW extends ProbabilityCalculatorView
 	private void createLayoutPanels() {
 		//control panel
 		createControlPanel();
-		setPlotPanel(new PlotPanelEuclidianViewW(kernel));
+		setPlotPanel(new PlotPaneleuclideanViewW(kernel));
 
 		FlowPanel plotPanelOptions = new FlowPanel();
 		plotPanelOptions.setStyleName("plotPanelOptions");
@@ -428,8 +428,8 @@ public class ProbabilityCalculatorViewW extends ProbabilityCalculatorView
 		boolean isDiscrete = probmanagerIsDiscrete();
 
 		if (probMode == PROB_INTERVAL) {
-			lowPoint.setEuclidianVisible(showProbGeos);
-			highPoint.setEuclidianVisible(showProbGeos);
+			lowPoint.seteuclideanVisible(showProbGeos);
+			highPoint.seteuclideanVisible(showProbGeos);
 			fldLow.setVisible(true);
 			fldHigh.setVisible(true);
 			lblBetween.setText(SpreadsheetViewInterface.X_BETWEEN);
@@ -442,8 +442,8 @@ public class ProbabilityCalculatorViewW extends ProbabilityCalculatorView
 		}
 
 		else if (probMode == PROB_LEFT) {
-			lowPoint.setEuclidianVisible(false);
-			highPoint.setEuclidianVisible(showProbGeos);
+			lowPoint.seteuclideanVisible(false);
+			highPoint.seteuclideanVisible(showProbGeos);
 			fldLow.setVisible(false);
 			fldHigh.setVisible(true);
 			lblBetween.setText(loc.getMenu("XLessThanOrEqual"));
@@ -458,8 +458,8 @@ public class ProbabilityCalculatorViewW extends ProbabilityCalculatorView
 		}
 
 		else if (probMode == PROB_RIGHT) {
-			lowPoint.setEuclidianVisible(showProbGeos);
-			highPoint.setEuclidianVisible(false);
+			lowPoint.seteuclideanVisible(showProbGeos);
+			highPoint.seteuclideanVisible(false);
 			fldLow.setVisible(true);
 			fldHigh.setVisible(false);
 			lblBetween
@@ -578,8 +578,8 @@ public class ProbabilityCalculatorViewW extends ProbabilityCalculatorView
 	}
 
 	@Override
-	public PlotPanelEuclidianViewW getPlotPanel() {
-		return (PlotPanelEuclidianViewW) super.getPlotPanel();
+	public PlotPaneleuclideanViewW getPlotPanel() {
+		return (PlotPaneleuclideanViewW) super.getPlotPanel();
 	}
 
 	@Override
@@ -739,7 +739,7 @@ public class ProbabilityCalculatorViewW extends ProbabilityCalculatorView
 	/**
 	 * @return plot panel view
 	 */
-	public EuclidianViewW getPlotPanelEuclidianView() {
+	public euclideanViewW getPlotPaneleuclideanView() {
 		return getPlotPanel();
 	}
 
@@ -756,9 +756,9 @@ public class ProbabilityCalculatorViewW extends ProbabilityCalculatorView
 		if (width > 0) {
 			getPlotPanel().setPreferredSize(new Dimension(width,
 					Math.min(Math.max(100, height - CONTROL_PANEL_HEIGHT),
-							PlotPanelEuclidianViewW.DEFAULT_HEIGHT)));
+							PlotPaneleuclideanViewW.DEFAULT_HEIGHT)));
 			getPlotPanel().repaintView();
-			getPlotPanel().getEuclidianController().calculateEnvironment();
+			getPlotPanel().geteuclideanController().calculateEnvironment();
 			plotSplitPane.setWidth(width + "px");
 		}
 

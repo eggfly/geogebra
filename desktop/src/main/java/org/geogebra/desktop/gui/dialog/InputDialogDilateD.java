@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JPanel;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.gui.dialog.handler.NumberInputHandler;
 import org.geogebra.common.gui.view.algebra.DialogType;
@@ -25,11 +25,11 @@ public class InputDialogDilateD extends InputDialogD {
 
 	private Kernel kernel;
 
-	private EuclidianController ec;
+	private euclideanController ec;
 
 	public InputDialogDilateD(AppD app, String title, InputHandler handler,
 			GeoPointND[] points, GeoElement[] selGeos, Kernel kernel,
-			EuclidianController ec) {
+			euclideanController ec) {
 		super(app.getFrame(), false, app.getLocalization());
 
 		this.app = app;

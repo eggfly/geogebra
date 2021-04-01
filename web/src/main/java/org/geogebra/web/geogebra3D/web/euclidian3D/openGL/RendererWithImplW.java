@@ -1,14 +1,14 @@
-package org.geogebra.web.geogebra3D.web.euclidian3D.openGL;
+package org.geogebra.web.geogebra3D.web.euclidean3D.openGL;
 
 import org.geogebra.common.awt.GBufferedImage;
-import org.geogebra.common.euclidian.CoordSystemAnimation;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawLabel3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.ColorMask;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Textures;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.TexturesShaders;
-import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianView3DW;
+import org.geogebra.common.euclidean.CoordSystemAnimation;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawLabel3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.ColorMask;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Textures;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.TexturesShaders;
+import org.geogebra.web.geogebra3D.web.euclidean3D.euclideanView3DW;
 import org.geogebra.web.html5.gawt.GBufferedImageW;
 import org.geogebra.web.html5.util.ImageLoadCallback;
 import org.geogebra.web.html5.util.ImageWrapper;
@@ -45,7 +45,7 @@ public class RendererWithImplW extends Renderer implements
 	 * @param c
 	 *            canvas
 	 */
-	public RendererWithImplW(EuclidianView3D view, Canvas c) {
+	public RendererWithImplW(euclideanView3D view, Canvas c) {
 		super(view, RendererType.SHADER);
 
 		webGLCanvas = c;
@@ -263,7 +263,7 @@ public class RendererWithImplW extends Renderer implements
 
 	private void start() {
 
-		((EuclidianView3DW) view3D).setReadyToRender();
+		((euclideanView3DW) view3D).setReadyToRender();
 
 		// use loop timer for e.g. automatic rotation
 		loopTimer = new Timer() {

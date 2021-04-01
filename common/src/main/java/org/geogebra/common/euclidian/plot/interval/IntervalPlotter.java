@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian.plot.interval;
+package org.geogebra.common.euclidean.plot.interval;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.GeneralPathClipped;
 import org.geogebra.common.kernel.geos.GeoFunction;
 import org.geogebra.common.kernel.interval.IntervalFunctionSampler;
 import org.geogebra.common.kernel.interval.IntervalTuple;
@@ -14,7 +14,7 @@ import org.geogebra.common.kernel.interval.IntervalTuple;
  * @author laszlo
  */
 public class IntervalPlotter {
-	private final EuclidianView view;
+	private final euclideanView view;
 	private final IntervalPathPlotter gp;
 	private int numberOfSamples;
 	private boolean enabled;
@@ -25,7 +25,7 @@ public class IntervalPlotter {
 	/**
 	 * Creates a disabled plotter
 	 */
-	public IntervalPlotter(EuclidianView view, GeneralPathClipped gp) {
+	public IntervalPlotter(euclideanView view, GeneralPathClipped gp) {
 		this.view = view;
 		this.gp = new IntervalPathPlotterImpl(gp);
 		this.enabled = false;
@@ -35,7 +35,7 @@ public class IntervalPlotter {
 	/**
 	 * Creates a disabled plotter
 	 */
-	public IntervalPlotter(EuclidianView view, IntervalPathPlotter pathPlotter,
+	public IntervalPlotter(euclideanView view, IntervalPathPlotter pathPlotter,
 			int numberOfSamples) {
 		this.view = view;
 		this.gp = pathPlotter;
@@ -56,7 +56,7 @@ public class IntervalPlotter {
 
 	private void createController() {
 		controller = new IntervalPlotController(model);
-		controller.attachEuclidianController(view.getEuclidianController());
+		controller.attacheuclideanController(view.geteuclideanController());
 	}
 
 	private void createModel(GeoFunction function) {

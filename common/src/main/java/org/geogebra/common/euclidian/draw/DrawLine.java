@@ -16,7 +16,7 @@ the Free Software Foundation.
  * Created on 11. Oktober 2001, 23:59
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -25,10 +25,10 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GLine2D;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
-import org.geogebra.common.euclidian.Previewable;
+import org.geogebra.common.euclidean.GeneralPathClipped;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -119,7 +119,7 @@ public class DrawLine extends SetDrawable implements Previewable {
 	 * @param g
 	 *            line
 	 */
-	public DrawLine(EuclidianView view, GeoLineND g) {
+	public DrawLine(euclideanView view, GeoLineND g) {
 		this.view = view;
 		this.g = g;
 		geo = (GeoElement) g;
@@ -136,7 +136,7 @@ public class DrawLine extends SetDrawable implements Previewable {
 	 * @param previewMode
 	 *            preview mode
 	 */
-	public DrawLine(EuclidianView view, ArrayList<GeoPointND> points,
+	public DrawLine(euclideanView view, ArrayList<GeoPointND> points,
 			PreviewType previewMode) {
 		this.previewMode = previewMode;
 		this.view = view;
@@ -161,7 +161,7 @@ public class DrawLine extends SetDrawable implements Previewable {
 	 * @param parallel
 	 *            true for paralel, false for perpendicular
 	 */
-	public DrawLine(EuclidianView view, ArrayList<GeoPointND> points,
+	public DrawLine(euclideanView view, ArrayList<GeoPointND> points,
 					ArrayList<GeoLineND> lines, ArrayList<GeoFunction> functions,
 					boolean parallel) {
 		if (parallel) {
@@ -192,7 +192,7 @@ public class DrawLine extends SetDrawable implements Previewable {
 	 */
 	public void update(CoordMatrix matrix) {
 		// take line g here, not geo this object may be used for conics too
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (isVisible) {
 			labelVisible = getTopLevelGeo().isLabelVisible();
 			updateStrokes(g);
@@ -255,9 +255,9 @@ public class DrawLine extends SetDrawable implements Previewable {
 			d = view.getYZero() + gz / gy * view.getYscale()
 					- k * view.getXZero();
 
-			x1 = view.getMinXScreen() - EuclidianStatic.CLIP_DISTANCE;
+			x1 = view.getMinXScreen() - euclideanStatic.CLIP_DISTANCE;
 			y1 = k * x1 + d;
-			x2 = view.getMaxXScreen() + EuclidianStatic.CLIP_DISTANCE;
+			x2 = view.getMaxXScreen() + euclideanStatic.CLIP_DISTANCE;
 			y2 = k * x2 + d;
 			p1Pos = LEFT;
 			p2Pos = RIGHT;
@@ -272,9 +272,9 @@ public class DrawLine extends SetDrawable implements Previewable {
 			d = view.getXZero() - gz / gx * view.getXscale()
 					- k * view.getYZero();
 
-			y1 = maxy + EuclidianStatic.CLIP_DISTANCE;
+			y1 = maxy + euclideanStatic.CLIP_DISTANCE;
 			x1 = k * y1 + d;
-			y2 = miny - EuclidianStatic.CLIP_DISTANCE;
+			y2 = miny - euclideanStatic.CLIP_DISTANCE;
 			x2 = k * y2 + d;
 			p1Pos = BOTTOM;
 			p2Pos = TOP;
@@ -292,10 +292,10 @@ public class DrawLine extends SetDrawable implements Previewable {
 	// points (0, y1), (width, y2) -> clip on y=0 and y=height
 	final private void clipTopBottom(double minx, double miny, double maxy) {
 		// calc clip attributes for both points (x1,y1), (x2,y2)
-		attr1[TOP] = y1 < minx - EuclidianStatic.CLIP_DISTANCE;
-		attr1[BOTTOM] = y1 > maxy + EuclidianStatic.CLIP_DISTANCE;
-		attr2[TOP] = y2 < miny - EuclidianStatic.CLIP_DISTANCE;
-		attr2[BOTTOM] = y2 > maxy + EuclidianStatic.CLIP_DISTANCE;
+		attr1[TOP] = y1 < minx - euclideanStatic.CLIP_DISTANCE;
+		attr1[BOTTOM] = y1 > maxy + euclideanStatic.CLIP_DISTANCE;
+		attr2[TOP] = y2 < miny - euclideanStatic.CLIP_DISTANCE;
+		attr2[BOTTOM] = y2 > maxy + euclideanStatic.CLIP_DISTANCE;
 
 		// both points outside (TOP or BOTTOM)
 		if ((attr1[TOP] && attr2[TOP]) || (attr1[BOTTOM] && attr2[BOTTOM])) {
@@ -304,26 +304,26 @@ public class DrawLine extends SetDrawable implements Previewable {
 		// at least one point inside -> clip
 		// point1 TOP -> clip with y=0
 		if (attr1[TOP]) {
-			y1 = miny - EuclidianStatic.CLIP_DISTANCE;
+			y1 = miny - euclideanStatic.CLIP_DISTANCE;
 			x1 = (y1 - d) / k;
 			p1Pos = TOP;
 		}
 		// point1 BOTTOM -> clip with y=height
 		else if (attr1[BOTTOM]) {
-			y1 = maxy + EuclidianStatic.CLIP_DISTANCE;
+			y1 = maxy + euclideanStatic.CLIP_DISTANCE;
 			x1 = (y1 - d) / k;
 			p1Pos = BOTTOM;
 		}
 
 		// point2 TOP -> clip with y=0
 		if (attr2[TOP]) {
-			y2 = miny - EuclidianStatic.CLIP_DISTANCE;
+			y2 = miny - euclideanStatic.CLIP_DISTANCE;
 			x2 = (y2 - d) / k;
 			p2Pos = TOP;
 		}
 		// point2 BOTTOM -> clip with y=height
 		else if (attr2[BOTTOM]) {
-			y2 = maxy + EuclidianStatic.CLIP_DISTANCE;
+			y2 = maxy + euclideanStatic.CLIP_DISTANCE;
 			x2 = (y2 - d) / k;
 			p2Pos = BOTTOM;
 		}
@@ -334,10 +334,10 @@ public class DrawLine extends SetDrawable implements Previewable {
 	// points (x1, 0), (x2, height) -> clip on x=0 and x=width
 	final private void clipLeftRight(double minx, double maxx) {
 		// calc clip attributes for both points (x1,y1), (x2,y2)
-		attr1[LEFT] = x1 < minx - EuclidianStatic.CLIP_DISTANCE;
-		attr1[RIGHT] = x1 > maxx + EuclidianStatic.CLIP_DISTANCE;
-		attr2[LEFT] = x2 < minx - EuclidianStatic.CLIP_DISTANCE;
-		attr2[RIGHT] = x2 > maxx + EuclidianStatic.CLIP_DISTANCE;
+		attr1[LEFT] = x1 < minx - euclideanStatic.CLIP_DISTANCE;
+		attr1[RIGHT] = x1 > maxx + euclideanStatic.CLIP_DISTANCE;
+		attr2[LEFT] = x2 < minx - euclideanStatic.CLIP_DISTANCE;
+		attr2[RIGHT] = x2 > maxx + euclideanStatic.CLIP_DISTANCE;
 
 		// both points outside (LEFT or RIGHT)
 		if ((attr1[LEFT] && attr2[LEFT]) || (attr1[RIGHT] && attr2[RIGHT])) {
@@ -346,26 +346,26 @@ public class DrawLine extends SetDrawable implements Previewable {
 		// at least one point inside -> clip
 		// point1 LEFT -> clip with x=0
 		if (attr1[LEFT]) {
-			x1 = minx - EuclidianStatic.CLIP_DISTANCE;
+			x1 = minx - euclideanStatic.CLIP_DISTANCE;
 			y1 = (x1 - d) / k;
 			p1Pos = LEFT;
 		}
 		// point1 RIGHT -> clip with x=width
 		else if (attr1[RIGHT]) {
-			x1 = maxx + EuclidianStatic.CLIP_DISTANCE;
+			x1 = maxx + euclideanStatic.CLIP_DISTANCE;
 			y1 = (x1 - d) / k;
 			p1Pos = RIGHT;
 		}
 
 		// point2 LEFT -> clip with x=0
 		if (attr2[LEFT]) {
-			x2 = minx - EuclidianStatic.CLIP_DISTANCE;
+			x2 = minx - euclideanStatic.CLIP_DISTANCE;
 			y2 = (x2 - d) / k;
 			p2Pos = LEFT;
 		}
 		// point2 RIGHT -> clip with x=width
 		else if (attr2[RIGHT]) {
-			x2 = maxx + EuclidianStatic.CLIP_DISTANCE;
+			x2 = maxx + euclideanStatic.CLIP_DISTANCE;
 			y2 = (x2 - d) / k;
 			p2Pos = RIGHT;
 		}
@@ -523,7 +523,7 @@ public class DrawLine extends SetDrawable implements Previewable {
 
 				// round angle to nearest 15 degrees if alt pressed
 				if (points.size() == 1
-						&& view.getEuclidianController().isAltDown()) {
+						&& view.geteuclideanController().isAltDown()) {
 					GeoPointND p = points.get(0);
 					double px = p.getInhomX();
 					double py = p.getInhomY();
@@ -540,9 +540,9 @@ public class DrawLine extends SetDrawable implements Previewable {
 
 					endPoint.setX(xRW);
 					endPoint.setY(yRW);
-					view.getEuclidianController().setLineEndPoint(endPoint);
+					view.geteuclideanController().setLineEndPoint(endPoint);
 				} else {
-					view.getEuclidianController().setLineEndPoint(null);
+					view.geteuclideanController().setLineEndPoint(null);
 				}
 
 				// line through first point and mouse position
@@ -797,7 +797,7 @@ public class DrawLine extends SetDrawable implements Previewable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (line == null || !geo.isDefined() || !geo.isEuclidianVisible()) {
+		if (line == null || !geo.isDefined() || !geo.iseuclideanVisible()) {
 			return null;
 		}
 		return AwtFactory.getPrototype().newRectangle(line.getBounds());

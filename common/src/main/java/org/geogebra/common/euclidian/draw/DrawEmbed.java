@@ -1,11 +1,11 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.EmbedManager;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.RemoveNeeded;
+import org.geogebra.common.euclidean.EmbedManager;
+import org.geogebra.common.euclidean.RemoveNeeded;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.geos.GeoEmbed;
 import org.geogebra.common.kernel.geos.GeoWidget;
 import org.geogebra.common.main.App.ExportType;
@@ -26,7 +26,7 @@ public class DrawEmbed extends DrawWidget implements RemoveNeeded {
 	 * @param geo
 	 *            embedded applet
 	 */
-	public DrawEmbed(EuclidianView view, GeoEmbed geo) {
+	public DrawEmbed(euclideanView view, GeoEmbed geo) {
 		super(view, geo, false);
 		this.geoEmbed = geo;
 		embedManager = view.getApplication().getEmbedManager();

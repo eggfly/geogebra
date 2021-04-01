@@ -79,9 +79,9 @@ public class OptionsMenuController {
 		// Point capturing
 		else if (cmd.endsWith("PointCapturing")) {
 			int mode = Integer.parseInt(cmd.substring(0, 1));
-			app.getEuclidianView1().setPointCapturing(mode);
-			if (app.hasEuclidianView2EitherShowingOrNot(1)) {
-				app.getEuclidianView2(1).setPointCapturing(mode);
+			app.geteuclideanView1().setPointCapturing(mode);
+			if (app.haseuclideanView2EitherShowingOrNot(1)) {
+				app.geteuclideanView2(1).setPointCapturing(mode);
 			}
 			app.setUnsaved();
 		}

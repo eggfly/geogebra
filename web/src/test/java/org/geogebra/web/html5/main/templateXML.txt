@@ -1,4 +1,4 @@
-<euclidianView>
+<euclideanView>
 	<viewNumber viewNo="1"/>
 	<coordSystem xZero="0.0" yZero="0.0" scale="50.0" yscale="50.0"/>
 	<evSettings axes="false" grid="false" gridIsBold="false" pointCapturing="3" rightAngleStyle="1" checkboxSize="26" gridType="3"/>
@@ -15,4 +15,4 @@
 	<lineStyle axes="1" grid="0" ruler="0"/>
 	<axis id="0" show="false" label="" unitLabel="" tickStyle="1" showNumbers="true"/>
 	<axis id="1" show="false" label="" unitLabel="" tickStyle="1" showNumbers="true"/>
-</euclidianView>
+</euclideanView>

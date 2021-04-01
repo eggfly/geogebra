@@ -3,7 +3,7 @@ package org.geogebra.web.full.gui.layout.panels;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.util.SelectionTable;
 import org.geogebra.common.gui.view.algebra.AlgebraView.SortMode;
 import org.geogebra.common.kernel.geos.GeoElement;

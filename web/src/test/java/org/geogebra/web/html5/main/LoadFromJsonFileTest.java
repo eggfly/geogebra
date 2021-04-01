@@ -7,7 +7,7 @@ import org.geogebra.common.main.App;
 import org.geogebra.web.full.gui.layout.panels.ToolbarDockPanelW;
 import org.geogebra.web.full.gui.toolbarpanel.ToolbarPanel;
 import org.geogebra.web.full.main.AppWFull;
-import org.geogebra.web.html5.euclidian.EuclidianSimplePanelW;
+import org.geogebra.web.html5.euclidean.euclideanSimplePanelW;
 import org.geogebra.web.html5.util.AppletParameters;
 import org.geogebra.web.test.AppMocker;
 import org.geogebra.web.test.GgbMockitoTestRunner;
@@ -22,7 +22,7 @@ import com.google.gwtmockito.WithClassesToStub;
 import com.himamis.retex.renderer.web.graphics.JLMContext2d;
 
 @RunWith(GgbMockitoTestRunner.class)
-@WithClassesToStub({EuclidianSimplePanelW.class,
+@WithClassesToStub({euclideanSimplePanelW.class,
 		JLMContext2d.class, RootPanel.class, ResizeComposite.class})
 public class LoadFromJsonFileTest {
 	private static final String CLOSED_AV_JSON_PATH =

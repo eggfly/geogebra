@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.util.DoubleUtil;
 
 /**
- * AbstractZoomer is responsible for animated zooming of Euclidian View
+ * AbstractZoomer is responsible for animated zooming of euclidean View
  *
  */
 public abstract class CoordSystemAnimation {
@@ -21,7 +21,7 @@ public abstract class CoordSystemAnimation {
 
 	private static final int MAX_TIME = 400; // millis
 
-	private final EuclidianView view;
+	private final euclideanView view;
 	private CoordSystemInfo coordSystemInfo;
 	private AnimationMode mode;
 
@@ -63,7 +63,7 @@ public abstract class CoordSystemAnimation {
 	 * @param view
 	 *            view
 	 */
-	public CoordSystemAnimation(EuclidianView view) {
+	public CoordSystemAnimation(euclideanView view) {
 		this.view = view;
 		this.coordSystemInfo = view.getCoordSystemInfo();
 	}
@@ -225,7 +225,7 @@ public abstract class CoordSystemAnimation {
 	private synchronized void stopAnimation() {
 		stopTimer();
 		// setDrawMode(DRAW_MODE_BACKGROUND_IMAGE);
-		EuclidianController controller = view.getEuclidianController();
+		euclideanController controller = view.geteuclideanController();
 		switch (mode) {
 		case AXES_X:
 			view.setCoordSystem(view.getXZero(), view.getYZero(), newScale,
@@ -254,7 +254,7 @@ public abstract class CoordSystemAnimation {
 		if (setStandard) {
 			setStandard = false;
 			view.setAnimatedCoordSystem(standardX, standardY, 0,
-					EuclidianView.SCALE_STANDARD, MAX_STEPS, storeUndo);
+					euclideanView.SCALE_STANDARD, MAX_STEPS, storeUndo);
 		}
 		if (storeUndo) {
 			view.getApplication().storeUndoInfo();
@@ -263,7 +263,7 @@ public abstract class CoordSystemAnimation {
 		controller.notifyCoordSystemListeners();
 	}
 
-	private void onAxisZoomEnd(EuclidianController controller) {
+	private void onAxisZoomEnd(euclideanController controller) {
 		coordSystemInfo.setXAxisZoom(false);
 		controller.notifyZoomerStopped();
 	}
@@ -318,7 +318,7 @@ public abstract class CoordSystemAnimation {
 
 		startTime = System.currentTimeMillis();
 		startTimer();
-		view.getEuclidianController().notifyCoordSystemListeners();
+		view.geteuclideanController().notifyCoordSystemListeners();
 	}
 
 	/** stop timer */
@@ -334,7 +334,7 @@ public abstract class CoordSystemAnimation {
 	 * @return true if there is a standard (i.e. no) zoom.
 	 */
 	public boolean isStandardZoom() {
-		return DoubleUtil.checkInteger(newScale) == EuclidianView.SCALE_STANDARD;
+		return DoubleUtil.checkInteger(newScale) == euclideanView.SCALE_STANDARD;
 	}
 
 	/**

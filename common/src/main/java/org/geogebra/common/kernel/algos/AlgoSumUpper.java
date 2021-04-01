@@ -42,7 +42,7 @@ public class AlgoSumUpper extends AlgoFunctionAreaSums {
 	public AlgoSumUpper(Construction cons, String label, GeoFunctionable f,
 			GeoNumberValue a, GeoNumberValue b, GeoNumberValue n) {
 		super(cons, label, f, a, b, n, SumType.UPPERSUM);
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 	}
 
 	private AlgoSumUpper(GeoNumberValue a, GeoNumberValue b, GeoNumberValue n,

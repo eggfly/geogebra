@@ -1,18 +1,18 @@
-package org.geogebra.common.geogebra3D.euclidian3D.openGL;
+package org.geogebra.common.geogebra3D.euclidean3D.openGL;
 
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GBufferedImage;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D.IntersectionCurve;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawLabel3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D;
-import org.geogebra.common.geogebra3D.euclidian3D.xr.XRManagerInterface;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D.IntersectionCurve;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawLabel3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D;
+import org.geogebra.common.geogebra3D.euclidean3D.xr.XRManagerInterface;
 import org.geogebra.common.io.MyXMLio;
 import org.geogebra.common.kernel.geos.AnimationExportSlider;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -71,7 +71,7 @@ public abstract class Renderer {
     public static final int LAYER_FOR_TEXTS = 5;
 
 	/** 3D view */
-	protected EuclidianView3D view3D;
+	protected euclideanView3D view3D;
 
 	/** matrix for drawing */
 	protected CoordMatrix4x4 m_drawingMatrix;
@@ -166,14 +166,14 @@ public abstract class Renderer {
 	}
 
 	/**
-	 * creates a renderer linked to an {@link EuclidianView3D}
+	 * creates a renderer linked to an {@link euclideanView3D}
 	 *
 	 * @param view
-	 *            the {@link EuclidianView3D} linked to
+	 *            the {@link euclideanView3D} linked to
 	 * @param type
 	 *            renderer type
 	 */
-	public Renderer(EuclidianView3D view, RendererType type) {
+	public Renderer(euclideanView3D view, RendererType type) {
 		this.view3D = view;
 		this.type = type;
 		hitting = new Hitting(view3D);
@@ -336,7 +336,7 @@ public abstract class Renderer {
 	public void drawScene() {
 
 		// update 3D controller
-		((EuclidianController3D) view3D.getEuclidianController())
+		((euclideanController3D) view3D.geteuclideanController())
 				.updateInput3D();
 
 		rendererImpl.useShaderProgram();
@@ -353,7 +353,7 @@ public abstract class Renderer {
 		}
 
 		// update 3D controller
-		((EuclidianController3D) view3D.getEuclidianController()).update();
+		((euclideanController3D) view3D.geteuclideanController()).update();
 
 		// long time = System.currentTimeMillis();
 		// update 3D view and drawables
@@ -372,7 +372,7 @@ public abstract class Renderer {
 		// time = System.currentTimeMillis();
 
 		if (view3D
-				.getProjection() == EuclidianView3DInterface.PROJECTION_GLASSES) {
+				.getProjection() == euclideanView3DInterface.PROJECTION_GLASSES) {
 
 			// left eye
 			setDrawLeft();
@@ -1019,7 +1019,7 @@ public abstract class Renderer {
 		GColor c = view3D.getApplyedBackground();
 		float r, g, b;
 		if (view3D
-				.getProjection() == EuclidianView3DInterface.PROJECTION_GLASSES
+				.getProjection() == euclideanView3DInterface.PROJECTION_GLASSES
 				&& !view3D.getCompanion().isStereoBuffered()) { // grayscale for
 																// anaglyph
 																// glasses
@@ -1199,16 +1199,16 @@ public abstract class Renderer {
 		} else {
 			switch (view3D.getProjection()) {
 				default:
-			case EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC:
+			case euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC:
 				rendererImpl.viewOrtho();
 					break;
-			case EuclidianView3DInterface.PROJECTION_PERSPECTIVE:
+			case euclideanView3DInterface.PROJECTION_PERSPECTIVE:
 				rendererImpl.viewPersp();
 					break;
-			case EuclidianView3DInterface.PROJECTION_GLASSES:
+			case euclideanView3DInterface.PROJECTION_GLASSES:
 				rendererImpl.viewGlasses();
 					break;
-			case EuclidianView3DInterface.PROJECTION_OBLIQUE:
+			case euclideanView3DInterface.PROJECTION_OBLIQUE:
 				rendererImpl.viewOblique();
 					break;
 			}
@@ -1279,7 +1279,7 @@ public abstract class Renderer {
 	 */
 	protected void setColorMask() {
 		if (view3D
-				.getProjection() == EuclidianView3DInterface.PROJECTION_GLASSES
+				.getProjection() == euclideanView3DInterface.PROJECTION_GLASSES
 				&& !view3D.getCompanion().isStereoBuffered()) {
 			if (eye == EYE_LEFT) {
 				rendererImpl.setColorMask(ColorMask.RED); // cyan
@@ -1374,19 +1374,19 @@ public abstract class Renderer {
 
 		switch (view3D.getProjection()) {
 		default:
-		case EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC:
+		case euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC:
 			updateOrthoValues();
 			break;
-		case EuclidianView3DInterface.PROJECTION_PERSPECTIVE:
+		case euclideanView3DInterface.PROJECTION_PERSPECTIVE:
 			updatePerspValues();
 			updatePerspEye();
 			break;
-		case EuclidianView3DInterface.PROJECTION_GLASSES:
+		case euclideanView3DInterface.PROJECTION_GLASSES:
 			updatePerspValues();
 			updateGlassesValues();
 			updatePerspEye();
 			break;
-		case EuclidianView3DInterface.PROJECTION_OBLIQUE:
+		case euclideanView3DInterface.PROJECTION_OBLIQUE:
 			updateProjectionObliqueValues();
 			break;
 		}
@@ -1421,9 +1421,9 @@ public abstract class Renderer {
 	 */
 	public double getEyeToScreenDistance() {
 		if (view3D
-				.getProjection() == EuclidianView3DInterface.PROJECTION_PERSPECTIVE
+				.getProjection() == euclideanView3DInterface.PROJECTION_PERSPECTIVE
 				|| view3D
-						.getProjection() == EuclidianView3DInterface.PROJECTION_GLASSES) {
+						.getProjection() == euclideanView3DInterface.PROJECTION_GLASSES) {
 			return eyeToScreenDistance[EYE_LEFT];
 		}
 
@@ -1488,7 +1488,7 @@ public abstract class Renderer {
 		// textures
 		initTextures();
 
-		// reset euclidian view
+		// reset euclidean view
 		view3D.reset();
 
 		// ensure that animation is on (needed when undocking/docking 3D view)
@@ -1530,7 +1530,7 @@ public abstract class Renderer {
 	 *
 	 * @return the 3D view attached
 	 */
-	final public EuclidianView3D getView() {
+	final public euclideanView3D getView() {
 		return view3D;
 	}
 
@@ -1883,8 +1883,8 @@ public abstract class Renderer {
 	 */
 	public void pickIntersectionCurves() {
 
-		ArrayList<IntersectionCurve> curves = ((EuclidianController3D) view3D
-				.getEuclidianController()).getIntersectionCurves();
+		ArrayList<IntersectionCurve> curves = ((euclideanController3D) view3D
+				.geteuclideanController()).getIntersectionCurves();
 
 		// picking objects
 		for (IntersectionCurve intersectionCurve : curves) {

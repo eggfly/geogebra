@@ -15,7 +15,7 @@ import javax.swing.border.MatteBorder;
 
 import org.geogebra.common.kernel.arithmetic.MyDouble;
 import org.geogebra.common.util.DoubleUtil;
-import org.geogebra.desktop.euclidian.EuclidianViewD;
+import org.geogebra.desktop.euclidean.euclideanViewD;
 import org.geogebra.desktop.main.AppD;
 
 class PagePreview extends JPanel {
@@ -102,9 +102,9 @@ class PagePreview extends JPanel {
 
 		try {
 			String scaleStr = null;
-			if (!(target instanceof EuclidianViewD)) {
+			if (!(target instanceof euclideanViewD)) {
 
-				int height = EuclidianViewD.printTitle(g2, scaleStr,
+				int height = euclideanViewD.printTitle(g2, scaleStr,
 						this.format, this.app);
 				g2.setTransform(new AffineTransform());
 				if (!DoubleUtil.isEqual(scale, 1.0)) {

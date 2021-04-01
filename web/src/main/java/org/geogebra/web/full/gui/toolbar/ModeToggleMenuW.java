@@ -3,12 +3,12 @@ package org.geogebra.web.full.gui.toolbar;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.full.gui.app.GGWToolBar;
 import org.geogebra.web.full.gui.images.AppResources;
-import org.geogebra.web.html5.euclidian.IsEuclidianController;
+import org.geogebra.web.html5.euclidean.IseuclideanController;
 import org.geogebra.web.html5.gui.tooltip.ToolTipManagerW;
 import org.geogebra.web.html5.gui.tooltip.ToolTipManagerW.ToolTipLinkType;
 import org.geogebra.web.html5.gui.util.CancelEventTimer;
@@ -210,7 +210,7 @@ public class ModeToggleMenuW extends ListItem
 	 */
 	public boolean selectMode(int mode, ModeSetter m) {
 		String modeText = mode + "";
-		boolean imageDialog = mode == EuclidianConstants.MODE_IMAGE;
+		boolean imageDialog = mode == euclideanConstants.MODE_IMAGE;
 		// If there is only one menuitem, there is no submenu -> set the button
 		// selected, if the mode is the same.
 		if (menu.size() == 1 && !imageDialog) {
@@ -293,7 +293,7 @@ public class ModeToggleMenuW extends ListItem
 		GGWToolBar
 				.getImageResource(Integer.parseInt(miMode), app, buttonImage);
 		buttonImage.addStyleName("toolbar_icon");
-		if (Integer.parseInt(miMode) == EuclidianConstants.MODE_DELETE) {
+		if (Integer.parseInt(miMode) == euclideanConstants.MODE_DELETE) {
 			buttonImage.addStyleName("plusPadding");
 		}
 		tbutton.add(buttonImage);
@@ -387,11 +387,11 @@ public class ModeToggleMenuW extends ListItem
 		}
 		onEnd(event);
 		if (event.getSource() == tbutton) {
-			if (this.app.getActiveEuclidianView() != null
-					&& this.app.getActiveEuclidianView()
-							.getEuclidianController() != null) {
-				((IsEuclidianController) this.app.getActiveEuclidianView()
-						.getEuclidianController()).setActualSticky(event
+			if (this.app.getActiveeuclideanView() != null
+					&& this.app.getActiveeuclideanView()
+							.geteuclideanController() != null) {
+				((IseuclideanController) this.app.getActiveeuclideanView()
+						.geteuclideanController()).setActualSticky(event
 								.getNativeButton() == NativeEvent.BUTTON_RIGHT);
 			}
 		}

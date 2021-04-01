@@ -20,27 +20,27 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.cas.singularws.SingularWebService;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EmbedManager;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianHost;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.MaskWidgetList;
-import org.geogebra.common.euclidian.draw.DrawDropDownList;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian.event.PointerEventType;
-import org.geogebra.common.euclidian.inline.InlineFormulaController;
-import org.geogebra.common.euclidian.inline.InlineTableController;
-import org.geogebra.common.euclidian.inline.InlineTextController;
-import org.geogebra.common.euclidian.smallscreen.AdjustScreen;
-import org.geogebra.common.euclidian.smallscreen.AdjustViews;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
-import org.geogebra.common.euclidian3D.Input3DConstants;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.EmbedManager;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanHost;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.MaskWidgetList;
+import org.geogebra.common.euclidean.draw.DrawDropDownList;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.PointerEventType;
+import org.geogebra.common.euclidean.inline.InlineFormulaController;
+import org.geogebra.common.euclidean.inline.InlineTableController;
+import org.geogebra.common.euclidean.inline.InlineTextController;
+import org.geogebra.common.euclidean.smallscreen.AdjustScreen;
+import org.geogebra.common.euclidean.smallscreen.AdjustViews;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
+import org.geogebra.common.euclidean3D.Input3DConstants;
 import org.geogebra.common.export.pstricks.GeoGebraExport;
 import org.geogebra.common.factories.AwtFactory;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Format;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Format;
 import org.geogebra.common.gui.AccessibilityManagerInterface;
 import org.geogebra.common.gui.AccessibilityManagerNoGui;
 import org.geogebra.common.gui.font.FontCreator;
@@ -99,7 +99,7 @@ import org.geogebra.common.main.exam.ExamEnvironment;
 import org.geogebra.common.main.settings.AbstractSettings;
 import org.geogebra.common.main.settings.ConstructionProtocolSettings;
 import org.geogebra.common.main.settings.DefaultSettings;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.main.settings.LabelVisibility;
 import org.geogebra.common.main.settings.Settings;
 import org.geogebra.common.main.settings.SettingsBuilder;
@@ -111,7 +111,7 @@ import org.geogebra.common.main.settings.updater.SettingsUpdaterBuilder;
 import org.geogebra.common.main.undo.UndoManager;
 import org.geogebra.common.media.VideoManager;
 import org.geogebra.common.move.ggtapi.operations.LogInOperation;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.Event;
 import org.geogebra.common.plugin.EventDispatcher;
 import org.geogebra.common.plugin.EventType;
@@ -137,7 +137,7 @@ import com.himamis.retex.editor.share.util.Unicode;
 /**
  * Represents an application window, gives access to views and system stuff
  */
-public abstract class App implements UpdateSelection, AppInterface, EuclidianHost {
+public abstract class App implements UpdateSelection, AppInterface, euclideanHost {
 	/** Url for wiki article about functions */
 	public static final String WIKI_OPERATORS = "Predefined Functions and Operators";
 	/** Url for main page of manual */
@@ -151,16 +151,16 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	public static final String WIKI_TEXT_TOOL = "Text Tool";
 	/** id for dummy view */
 	public static final int VIEW_NONE = 0;
-	/** id for euclidian view */
-	public static final int VIEW_EUCLIDIAN = 1;
+	/** id for euclidean view */
+	public static final int VIEW_euclidean = 1;
 	/** id for algebra view */
 	public static final int VIEW_ALGEBRA = 2;
 	/** id for Spreadsheet view */
 	public static final int VIEW_SPREADSHEET = 4;
 	/** id for CAS view */
 	public static final int VIEW_CAS = 8;
-	/** id for second euclidian view */
-	public static final int VIEW_EUCLIDIAN2 = 16;
+	/** id for second euclidean view */
+	public static final int VIEW_euclidean2 = 16;
 	/** id for construction protocol view */
 	public static final int VIEW_CONSTRUCTION_PROTOCOL = 32;
 	/** id for probability calculator view */
@@ -172,18 +172,18 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	/** id for function inspector */
 	public static final int VIEW_FUNCTION_INSPECTOR = 128;
 	/** id for 3D view */
-	public static final int VIEW_EUCLIDIAN3D = 512;
+	public static final int VIEW_euclidean3D = 512;
 	/** id for 2nd 3D view */
-	public static final int VIEW_EUCLIDIAN3D_2 = 513;
+	public static final int VIEW_euclidean3D_2 = 513;
 	/** let us break the pattern */
 	public static final int VIEW_EVENT_DISPATCHER = 42;
 	/**
 	 * id for view created from plane; also 1025 to 2047 might be used for this
 	 * purpose
 	 */
-	public static final int VIEW_EUCLIDIAN_FOR_PLANE_START = 1024;
+	public static final int VIEW_euclidean_FOR_PLANE_START = 1024;
 	/** maximal ID of view for plane */
-	public static final int VIEW_EUCLIDIAN_FOR_PLANE_END = 2047;
+	public static final int VIEW_euclidean_FOR_PLANE_END = 2047;
 	/**
 	 * id for plot panels (small EVs eg in regression analysis tool)
 	 */
@@ -267,12 +267,12 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	/**
 	 * right angle style
 	 *
-	 * @see EuclidianStyleConstants#RIGHT_ANGLE_STYLE_SQUARE
-	 * @see EuclidianStyleConstants#RIGHT_ANGLE_STYLE_DOT
-	 * @see EuclidianStyleConstants#RIGHT_ANGLE_STYLE_L
-	 * @see EuclidianStyleConstants#RIGHT_ANGLE_STYLE_NONE
+	 * @see euclideanStyleConstants#RIGHT_ANGLE_STYLE_SQUARE
+	 * @see euclideanStyleConstants#RIGHT_ANGLE_STYLE_DOT
+	 * @see euclideanStyleConstants#RIGHT_ANGLE_STYLE_L
+	 * @see euclideanStyleConstants#RIGHT_ANGLE_STYLE_NONE
 	 */
-	public int rightAngleStyle = EuclidianStyleConstants.RIGHT_ANGLE_STYLE_SQUARE;
+	public int rightAngleStyle = euclideanStyleConstants.RIGHT_ANGLE_STYLE_SQUARE;
 
 	/**
 	 * whether transparent cursor should be used while dragging
@@ -287,7 +287,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	protected boolean isSaved = true;
 	/**
 	 * object is hit if mouse is within this many pixels (more for points, see
-	 * geogebra.common.euclidian.DrawPoint)
+	 * geogebra.common.euclidean.DrawPoint)
 	 */
 	protected int capturingThreshold = DEFAULT_THRESHOLD;
     /** factor mouse to touch events */
@@ -348,10 +348,10 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * file
 	 */
 	protected boolean initing = false;
-	/** Euclidian view */
-	protected EuclidianView euclidianView;
-	/** Euclidian view's controller */
-	protected EuclidianController euclidianController;
+	/** euclidean view */
+	protected euclideanView euclideanView;
+	/** euclidean view's controller */
+	protected euclideanController euclideanController;
 	/** selection listener */
 	protected GeoElementSelectionListener currentSelectionListener;
 	/**
@@ -383,14 +383,14 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	private SpreadsheetTraceManager traceManager;
 	private ExamEnvironment exam;
 
-	// moved to Application from EuclidianView as the same value is used across
+	// moved to Application from euclideanView as the same value is used across
 	// multiple EVs
 	private int maxLayerUsed = 0;
 	/**
 	 * size of checkboxes, default in GeoGebraPreferencesXML.java
 	 * checkboxSize="26"
 	 */
-	private int booleanSize = EuclidianConstants.DEFAULT_CHECKBOX_SIZE;
+	private int booleanSize = euclideanConstants.DEFAULT_CHECKBOX_SIZE;
 	private boolean labelDragsEnabled = true;
 	private boolean undoRedoEnabled = true;
 
@@ -577,7 +577,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 *            view
 	 * @return maximum scale for clipboard images; default 2
 	 */
-	public static double getMaxScaleForClipBoard(EuclidianView ev) {
+	public static double getMaxScaleForClipBoard(euclideanView ev) {
 		double size = ev.getExportWidth() * ev.getExportHeight();
 
 		// Windows XP clipboard has trouble with images larger than this
@@ -596,11 +596,11 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * @return true if id is a 3D view id
 	 */
 	public static final boolean isView3D(int id) {
-		if (id == App.VIEW_EUCLIDIAN3D) {
+		if (id == App.VIEW_euclidean3D) {
 			return true;
 		}
 
-		if (id == App.VIEW_EUCLIDIAN3D_2) {
+		if (id == App.VIEW_euclidean3D_2) {
 			return true;
 		}
 
@@ -1233,8 +1233,8 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 */
 	public void updateMaxLayerUsed(int layer) {
 		int newLayer = layer;
-		if (layer > EuclidianStyleConstants.MAX_LAYERS) {
-			newLayer = EuclidianStyleConstants.MAX_LAYERS;
+		if (layer > euclideanStyleConstants.MAX_LAYERS) {
+			newLayer = euclideanStyleConstants.MAX_LAYERS;
 		}
 		if (layer > maxLayerUsed) {
 			maxLayerUsed = newLayer;
@@ -1274,8 +1274,8 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	public void deleteSelectedObjects(boolean isCut, GPredicate<GeoElement> filter) {
 		if (letDelete()) {
 			// also delete just created geos if possible
-			ArrayList<GeoElement> geos2 = new ArrayList<>(getActiveEuclidianView()
-					.getEuclidianController().getJustCreatedGeos());
+			ArrayList<GeoElement> geos2 = new ArrayList<>(getActiveeuclideanView()
+					.geteuclideanController().getJustCreatedGeos());
 			geos2.addAll(selection.getSelectedGeos());
 			for (GeoElement geo : geos2) {
 				if (filter.test(geo)) {
@@ -1289,9 +1289,9 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 				}
 			}
 
-			getActiveEuclidianView().getEuclidianController()
+			getActiveeuclideanView().geteuclideanController()
 					.clearJustCreatedGeos();
-			getActiveEuclidianView().getEuclidianController()
+			getActiveeuclideanView().geteuclideanController()
 					.clearSelectionAndRectangle();
 			storeUndoInfoAndStateForModeStarting();
 		}
@@ -1301,7 +1301,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * @return recently created geos
 	 */
 	public ArrayList<GeoElement> getJustCreatedGeos() {
-		return getActiveEuclidianView().getEuclidianController()
+		return getActiveeuclideanView().geteuclideanController()
 				.getJustCreatedGeos();
 	}
 
@@ -1347,15 +1347,15 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * @return number of pixels in EV1 between given x coordinates
 	 */
 	public double countPixels(double min, double max) {
-		EuclidianView ev = getEuclidianView1();
+		euclideanView ev = geteuclideanView1();
 		return ev.toScreenCoordXd(max) - ev.toScreenCoordXd(min);
 	}
 
 	/**
 	 * @return EV1
 	 */
-	public EuclidianView getEuclidianView1() {
-		return euclidianView;
+	public euclideanView geteuclideanView1() {
+		return euclideanView;
 	}
 
 	/**
@@ -1369,14 +1369,14 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	/**
 	 * @return whether 3D view was initialized
 	 */
-	public boolean isEuclidianView3Dinited() {
+	public boolean iseuclideanView3Dinited() {
 		return false;
 	}
 
 	/**
 	 * @return 3D view
 	 */
-	public EuclidianView3DInterface getEuclidianView3D() {
+	public euclideanView3DInterface geteuclideanView3D() {
 		return null;
 	}
 
@@ -1471,9 +1471,9 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * @return current mode
 	 */
 	final public int getMode() {
-		EuclidianView view = getActiveEuclidianView();
+		euclideanView view = getActiveeuclideanView();
 		if (view == null) {
-			view = getEuclidianView1();
+			view = geteuclideanView1();
 		}
 		return view.getMode();
 	}
@@ -1628,9 +1628,9 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * Update backgrounds and repaint views.
 	 */
 	public void refreshViews() {
-		getEuclidianView1().updateBackground();
-		if (hasEuclidianView2(1)) {
-			getEuclidianView2(1).updateBackground();
+		geteuclideanView1().updateBackground();
+		if (haseuclideanView2(1)) {
+			geteuclideanView2(1).updateBackground();
 		}
 		kernel.notifyRepaint();
 	}
@@ -1713,9 +1713,9 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 *            secondary EV index, 1 for EV2
 	 * @return whether secondary EV with given index is showing
 	 */
-	public boolean hasEuclidianView2(int idx) {
+	public boolean haseuclideanView2(int idx) {
 		return (getGuiManager() != null)
-				&& getGuiManager().hasEuclidianView2(idx);
+				&& getGuiManager().haseuclideanView2(idx);
 	}
 
 	/**
@@ -1790,10 +1790,10 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 			return getGuiManager().getPlotPanelView(viewID);
 		}
 		switch (viewID) {
-		case VIEW_EUCLIDIAN:
-			return getEuclidianView1();
-		case VIEW_EUCLIDIAN3D:
-			return getEuclidianView3D();
+		case VIEW_euclidean:
+			return geteuclideanView1();
+		case VIEW_euclidean3D:
+			return geteuclideanView3D();
 		case VIEW_ALGEBRA:
 			return getAlgebraView();
 		case VIEW_SPREADSHEET:
@@ -1816,8 +1816,8 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 				return null;
 			}
 			return getGuiManager().getCasView();
-		case VIEW_EUCLIDIAN2:
-			return hasEuclidianView2(1) ? getEuclidianView2(1) : null;
+		case VIEW_euclidean2:
+			return haseuclideanView2(1) ? geteuclideanView2(1) : null;
 		case VIEW_CONSTRUCTION_PROTOCOL:
 			if (!isUsingFullGui()) {
 				return null;
@@ -1864,14 +1864,14 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 		// save gui tag settings
 		sb.append(getGuiXML(asPreference));
 
-		// save euclidianView settings
-		getEuclidianView1().getXML(sb, asPreference);
+		// save euclideanView settings
+		geteuclideanView1().getXML(sb, asPreference);
 
-		// save euclidian view 2 settings
+		// save euclidean view 2 settings
 		// TODO: the EV preferences should be serialized using
 		// app.getSettings(), not the view
-		if (hasEuclidianView2EitherShowingOrNot(1)) {
-			EuclidianView ev2 = getEuclidianView2(1);
+		if (haseuclideanView2EitherShowingOrNot(1)) {
+			euclideanView ev2 = geteuclideanView2(1);
 			if (ev2 != null) {
 				ev2.getXML(sb, asPreference);
 			}
@@ -2086,7 +2086,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 *            view index; 1 for EV2
 	 * @return EV2
 	 */
-	public EuclidianView getEuclidianView2(int idx) {
+	public euclideanView geteuclideanView2(int idx) {
 		return null;
 	}
 
@@ -2190,15 +2190,15 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	}
 
 	/**
-	 * init the EuclidianView
+	 * init the euclideanView
 	 */
-	final public void initEuclidianViews() {
+	final public void initeuclideanViews() {
 
-		euclidianController = newEuclidianController(kernel);
-		euclidianView = newEuclidianView(showAxes, showGrid);
+		euclideanController = neweuclideanController(kernel);
+		euclideanView = neweuclideanView(showAxes, showGrid);
 	}
 
-	abstract protected EuclidianView newEuclidianView(boolean[] showAxes1,
+	abstract protected euclideanView neweuclideanView(boolean[] showAxes1,
 			boolean showGrid1);
 
 	/**
@@ -2284,7 +2284,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * Changes current mode to move mode
 	 */
 	public void setMoveMode(ModeSetter m) {
-		setMode(EuclidianConstants.MODE_MOVE, m);
+		setMode(euclideanConstants.MODE_MOVE, m);
 	}
 
 	/**
@@ -2294,18 +2294,18 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 *            new mode
 	 */
 	public void setMode(int mode, ModeSetter m) {
-		if (mode != EuclidianConstants.MODE_SELECTION_LISTENER) {
+		if (mode != euclideanConstants.MODE_SELECTION_LISTENER) {
 			currentSelectionListener = null;
 		}
-		if (mode != EuclidianConstants.MODE_MOVE) {
-			euclidianController.widgetsToBackground();
+		if (mode != euclideanConstants.MODE_MOVE) {
+			euclideanController.widgetsToBackground();
 		}
 		if (getGuiManager() != null) {
 			setModeFromGuiManager(mode, m);
 			this.updateDynamicStyleBars();
 
-		} else if (euclidianView != null) {
-			euclidianView.setMode(mode, m);
+		} else if (euclideanView != null) {
+			euclideanView.setMode(mode, m);
 		}
 	}
 
@@ -2314,25 +2314,25 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	}
 
 	/**
-	 * Adds geo to Euclidian view (EV1)
+	 * Adds geo to euclidean view (EV1)
 	 *
 	 * @param geo
 	 *            geo
 	 */
-	public void addToEuclidianView(GeoElement geo) {
-		geo.addView(App.VIEW_EUCLIDIAN);
-		getEuclidianView1().add(geo);
+	public void addToeuclideanView(GeoElement geo) {
+		geo.addView(App.VIEW_euclidean);
+		geteuclideanView1().add(geo);
 	}
 
 	/**
-	 * Removes geo from Euclidian view (EV1)
+	 * Removes geo from euclidean view (EV1)
 	 *
 	 * @param geo
 	 *            geo
 	 */
-	public void removeFromEuclidianView(GeoElement geo) {
-		geo.removeView(App.VIEW_EUCLIDIAN);
-		getEuclidianView1().remove(geo);
+	public void removeFromeuclideanView(GeoElement geo) {
+		geo.removeView(App.VIEW_euclidean);
+		geteuclideanView1().remove(geo);
 	}
 
 	/**
@@ -2343,8 +2343,8 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 */
 	public void addToViews3D(GeoElement geo) {
 		geo.addViews3D();
-		if (isEuclidianView3Dinited()) {
-			getEuclidianView3D().add(geo);
+		if (iseuclideanView3Dinited()) {
+			geteuclideanView3D().add(geo);
 		}
 	}
 
@@ -2356,8 +2356,8 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 */
 	public void removeFromViews3D(GeoElement geo) {
 		geo.removeViews3D();
-		if (isEuclidianView3Dinited()) {
-			getEuclidianView3D().remove(geo);
+		if (iseuclideanView3Dinited()) {
+			geteuclideanView3D().remove(geo);
 		}
 	}
 
@@ -2439,7 +2439,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 													// construction
 		currentSelectionListener = sl;
 		if (sl != null) {
-			setMode(EuclidianConstants.MODE_SELECTION_LISTENER);
+			setMode(euclideanConstants.MODE_SELECTION_LISTENER);
 		} else {
 			setMoveMode();
 		}
@@ -2464,10 +2464,10 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 			}
 
 			// if showMenuBar is false, we can still update the style bars
-			if (EuclidianConstants
-					.isMoveOrSelectionMode(getActiveEuclidianView().getMode())
-					|| getActiveEuclidianView()
-							.getMode() == EuclidianConstants.MODE_TRANSLATEVIEW) {
+			if (euclideanConstants
+					.isMoveOrSelectionMode(getActiveeuclideanView().getMode())
+					|| getActiveeuclideanView()
+							.getMode() == euclideanConstants.MODE_TRANSLATEVIEW) {
 				updateStyleBars();
 			}
 
@@ -2759,7 +2759,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	public void setShowResetIcon(boolean flag) {
 		if (flag != showResetIcon) {
 			showResetIcon = flag;
-			euclidianView.updateBackground();
+			euclideanView.updateBackground();
 		}
 	}
 
@@ -2901,9 +2901,9 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 		// macro
 		String ret;
 
-		if (mode >= EuclidianConstants.MACRO_MODE_ID_OFFSET) {
+		if (mode >= euclideanConstants.MACRO_MODE_ID_OFFSET) {
 			// MACRO
-			int macroID = mode - EuclidianConstants.MACRO_MODE_ID_OFFSET;
+			int macroID = mode - euclideanConstants.MACRO_MODE_ID_OFFSET;
 			try {
 				Macro macro1 = kernel.getMacro(macroID);
 				if (toolName) {
@@ -2925,10 +2925,10 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 
 			if (toolName) {
 				// tool name
-				String modeText = EuclidianConstants.getModeText(mode);
+				String modeText = euclideanConstants.getModeText(mode);
 				ret = getLocalization().getMenu(modeText);
 			} else {
-				String modeText = EuclidianConstants.getModeTextSimple(mode);
+				String modeText = euclideanConstants.getModeTextSimple(mode);
 				// tool help
 				ret = getLocalization().getMenu(modeText + ".Help");
 			}
@@ -2991,15 +2991,15 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 		if (kernel.getConstruction() != null) {
 			kernel.getConstruction().setIgnoringNewTypes(true);
 		}
-		getEuclidianView1().resetXYMinMaxObjects();
-		getEuclidianView1().setSelectionRectangle(null);
-		if (hasEuclidianView2EitherShowingOrNot(1)) {
-			getEuclidianView2(1).resetXYMinMaxObjects();
-			getEuclidianView2(1).setSelectionRectangle(null);
+		geteuclideanView1().resetXYMinMaxObjects();
+		geteuclideanView1().setSelectionRectangle(null);
+		if (haseuclideanView2EitherShowingOrNot(1)) {
+			geteuclideanView2(1).resetXYMinMaxObjects();
+			geteuclideanView2(1).setSelectionRectangle(null);
 		}
-		if (isEuclidianView3Dinited()) {
-			getEuclidianView3D().resetXYMinMaxObjects();
-			getEuclidianView3D().setSettingsToStandardView();
+		if (iseuclideanView3Dinited()) {
+			geteuclideanView3D().resetXYMinMaxObjects();
+			geteuclideanView3D().setSettingsToStandardView();
 		}
 		if (kernel.getConstruction() != null) {
 			kernel.getConstruction().setIgnoringNewTypes(false);
@@ -3099,7 +3099,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * Resets active EV to standard
 	 */
 	public final void setStandardView() {
-		getActiveEuclidianView().setStandardView(true);
+		getActiveeuclideanView().setStandardView(true);
 	}
 
 	/**
@@ -3117,7 +3117,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	}
 
 	public final void zoom(double px, double py, double zoomFactor) {
-		getActiveEuclidianView().zoom(px, py, zoomFactor, 15, true);
+		getActiveeuclideanView().zoom(px, py, zoomFactor, 15, true);
 	}
 
 	/**
@@ -3128,7 +3128,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 *            axes scale ratio
 	 */
 	public final void zoomAxesRatio(double axesratio) {
-		getActiveEuclidianView().zoomAxesRatio(axesratio, 1, true);
+		getActiveeuclideanView().zoomAxesRatio(axesratio, 1, true);
 	}
 
 	/**
@@ -3138,7 +3138,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 *            true to keep ratio of axes
 	 */
 	public final void setViewShowAllObjects(boolean keepRatio) {
-		getActiveEuclidianView().setViewShowAllObjects(true, keepRatio);
+		getActiveeuclideanView().setViewShowAllObjects(true, keepRatio);
 	}
 
 	/**
@@ -3363,10 +3363,10 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * Make sure we start a new penstroke.
 	 */
 	public void resetPen() {
-		getEuclidianView1().getEuclidianController().resetPen();
+		geteuclideanView1().geteuclideanController().resetPen();
 
-		if (hasEuclidianView2(1)) {
-			getEuclidianView2(1).getEuclidianController().resetPen();
+		if (haseuclideanView2(1)) {
+			geteuclideanView2(1).geteuclideanController().resetPen();
 		}
 	}
 
@@ -3555,7 +3555,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 			if (!showConsProtNavigation()) {
 				// show navigation bar in active view
 				setShowConstructionProtocolNavigation(true,
-						getActiveEuclidianView().getViewID());
+						getActiveeuclideanView().getViewID());
 				return;
 
 			} else if (!getShowCPNavNeedsUpdate()) {
@@ -3744,11 +3744,11 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 */
 	public boolean isShowingMultipleEVs() {
 		if (getGuiManager() == null
-				|| getGuiManager().getEuclidianViewCount() < 2) {
+				|| getGuiManager().geteuclideanViewCount() < 2) {
 			return false;
 		}
-		for (int i = 1; i < getGuiManager().getEuclidianViewCount(); i++) {
-			if (getGuiManager().hasEuclidianView2(i)) {
+		for (int i = 1; i < getGuiManager().geteuclideanViewCount(); i++) {
+			if (getGuiManager().haseuclideanView2(i)) {
 				return true;
 			}
 		}
@@ -3809,7 +3809,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * @return whether the 3D view is enabled
 	 */
 	public boolean supportsView(int viewID) {
-		if (viewID == App.VIEW_EUCLIDIAN3D) {
+		if (viewID == App.VIEW_euclidean3D) {
 			return is3DViewEnabled();
 		}
 		if (viewID == App.VIEW_CAS) {
@@ -4006,15 +4006,15 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 		return true;
 	}
 
-	final public boolean hasEuclidianViewForPlane() {
-		return companion.hasEuclidianViewForPlane();
+	final public boolean haseuclideanViewForPlane() {
+		return companion.haseuclideanViewForPlane();
 	}
 
-	final public boolean hasEuclidianViewForPlaneVisible() {
-		return companion.hasEuclidianViewForPlaneVisible();
+	final public boolean haseuclideanViewForPlaneVisible() {
+		return companion.haseuclideanViewForPlaneVisible();
 	}
 
-	final public EuclidianView getViewForPlaneVisible() {
+	final public euclideanView getViewForPlaneVisible() {
 		return companion.getViewForPlaneVisible();
 	}
 
@@ -4040,7 +4040,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	}
 
 	private boolean handlePressAnimationButton() {
-		if (!getActiveEuclidianView().isAnimationButtonSelected()) {
+		if (!getActiveeuclideanView().isAnimationButtonSelected()) {
 			return false;
 		}
 
@@ -4050,13 +4050,13 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 		} else {
 			animMgr.startAnimation();
 		}
-		getActiveEuclidianView().repaintView();
+		getActiveeuclideanView().repaintView();
 		ScreenReader.readAnimationState(this);
 		return true;
 	}
 
 	private boolean handleResetButton() {
-		if (!getActiveEuclidianView().isResetIconSelected()) {
+		if (!getActiveeuclideanView().isResetIconSelected()) {
 			return false;
 		}
 		reset();
@@ -4081,10 +4081,10 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 				geoBool.setValue(!geoBool.getBoolean());
 				geoBool.updateRepaint();
 			} else if (geo.isGeoInputBox()) {
-				getActiveEuclidianView()
+				getActiveeuclideanView()
 						.focusAndShowTextField((GeoInputBox) geo);
 			} else if (geo.isGeoList() && ((GeoList) geo).drawAsComboBox()) {
-				Drawable d = (Drawable) getActiveEuclidianView()
+				Drawable d = (Drawable) getActiveeuclideanView()
 						.getDrawableFor(geo);
 				if (d != null) {
 					((DrawDropDownList) d).toggleOptions();
@@ -4099,7 +4099,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 
 					storeUndoInfo();
 					// update play/pause icon at bottom left
-					getActiveEuclidianView().repaint();
+					getActiveeuclideanView().repaint();
 
 					if (num.isAnimating()) {
 						num.getKernel().getAnimatonManager().startAnimation();
@@ -4221,11 +4221,11 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 		if (getGuiManager().showView(App.VIEW_SPREADSHEET)) {
 			c.run(App.VIEW_SPREADSHEET, "Spreadsheet");
 		}
-		if (getGuiManager().showView(App.VIEW_EUCLIDIAN)) {
-			c.run(App.VIEW_EUCLIDIAN, "DrawingPad");
+		if (getGuiManager().showView(App.VIEW_euclidean)) {
+			c.run(App.VIEW_euclidean, "DrawingPad");
 		}
-		if (getGuiManager().showView(App.VIEW_EUCLIDIAN2)) {
-			c.run(App.VIEW_EUCLIDIAN2, "DrawingPad2");
+		if (getGuiManager().showView(App.VIEW_euclidean2)) {
+			c.run(App.VIEW_euclidean2, "DrawingPad2");
 		}
 		if (getGuiManager().showView(App.VIEW_CONSTRUCTION_PROTOCOL)) {
 			c.run(App.VIEW_CONSTRUCTION_PROTOCOL, "ConstructionProtocol");
@@ -4249,7 +4249,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 */
 	public void closePopups(int x, int y) {
 		closePopups();
-		EuclidianView view = getActiveEuclidianView();
+		euclideanView view = getActiveeuclideanView();
 		view.closeDropDowns(x, y);
 	}
 
@@ -4360,7 +4360,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	final public boolean loadXML(ZipFile zipFile) {
 		try {
 			// make sure objects are displayed in the correct View
-			setActiveView(App.VIEW_EUCLIDIAN);
+			setActiveView(App.VIEW_euclidean);
 
 			getXMLio().readZipFromString(zipFile);
 
@@ -4494,14 +4494,14 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 *            max height in px
 	 * @return export image of current EV
 	 */
-	public GBufferedImage getActiveEuclidianViewExportImage(double maxX,
+	public GBufferedImage getActiveeuclideanViewExportImage(double maxX,
 			double maxY) {
-		return getEuclidianViewExportImage(getActiveEuclidianView(), maxX,
+		return geteuclideanViewExportImage(getActiveeuclideanView(), maxX,
 				maxY);
 	}
 
-	protected static GBufferedImage getEuclidianViewExportImage(
-			EuclidianView ev, double maxX, double maxY) {
+	protected static GBufferedImage geteuclideanViewExportImage(
+			euclideanView ev, double maxX, double maxY) {
 
 		double scale = Math.min(maxX / ev.getSelectedWidthInPixels(),
 				maxY / ev.getSelectedHeightInPixels());
@@ -4528,15 +4528,15 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 			return;
 		}
 		if (adjustScreen == null) {
-			adjustScreen = new AdjustScreen(getEuclidianView1());
+			adjustScreen = new AdjustScreen(geteuclideanView1());
 		}
 		if (!reset) {
 			adjustScreen.restartButtons();
 		}
 		adjustScreen.apply(reset);
-		if (this.hasEuclidianView2(1)) {
+		if (this.haseuclideanView2(1)) {
 			if (adjustScreen2 == null) {
-				adjustScreen2 = new AdjustScreen(getEuclidianView2(1));
+				adjustScreen2 = new AdjustScreen(geteuclideanView2(1));
 			}
 			if (!reset) {
 				adjustScreen2.restartButtons();
@@ -4546,7 +4546,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	}
 
 	/**
-	 * Adjusts Algebra and Euclidian View next to or bellow each other
+	 * Adjusts Algebra and euclidean View next to or bellow each other
 	 * (Portrait) according to app size.
 	 *
 	 * @param force
@@ -4613,7 +4613,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * @param evSet
 	 *            view settings
 	 */
-	public void ensureEvSizeSet(EuclidianSettings evSet) {
+	public void ensureEvSizeSet(euclideanSettings evSet) {
 		// only for applets
 	}
 
@@ -4717,8 +4717,8 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 		return mLastCommandsSelectedFromHelp;
 	}
 
-	protected EuclidianController getEuclidianController() {
-		return euclidianController;
+	protected euclideanController geteuclideanController() {
+		return euclideanController;
 	}
 
 	final public boolean useTransparentCursorWhenDragging() {
@@ -4832,7 +4832,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 *            view
 	 * @return true if it's 3D
 	 */
-	public boolean isEuclidianView3D(EuclidianViewInterfaceCommon view) {
+	public boolean iseuclideanView3D(euclideanViewInterfaceCommon view) {
 		return false;
 	}
 
@@ -4852,7 +4852,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 		if (this.specialPointsManager == null) {
 			specialPointsManager = new SpecialPointsManager(kernel);
 			specialPointsManager.registerSpecialPointsListener(kernel);
-			specialPointsManager.registerSpecialPointsListener(euclidianController);
+			specialPointsManager.registerSpecialPointsListener(euclideanController);
 		}
 		return specialPointsManager;
 	}
@@ -4889,8 +4889,8 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 * @return whether 3D commands are enabled
 	 */
 	public boolean areCommands3DEnabled() {
-		return areCommands3DEnabled && (getSettings().getEuclidian(-1) == null
-				|| getSettings().getEuclidian(-1).isEnabled());
+		return areCommands3DEnabled && (getSettings().geteuclidean(-1) == null
+				|| getSettings().geteuclidean(-1).isEnabled());
 	}
 
 	/**
@@ -5197,17 +5197,17 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 	 *
 	 * @return an implementation of the text controller.
 	 */
-	public InlineTextController createInlineTextController(EuclidianView view,
+	public InlineTextController createInlineTextController(euclideanView view,
 		   GeoInlineText geo) {
 		return null;
 	}
 
-	public InlineFormulaController createInlineFormulaController(EuclidianView view,
+	public InlineFormulaController createInlineFormulaController(euclideanView view,
 			GeoFormula geo) {
 		return null;
 	}
 
-	public InlineTableController createTableController(EuclidianView view, GeoInlineTable table) {
+	public InlineTableController createTableController(euclideanView view, GeoInlineTable table) {
 		return null;
 	}
 
@@ -5258,7 +5258,7 @@ public abstract class App implements UpdateSelection, AppInterface, EuclidianHos
 
 		try {
 			// make sure objects are displayed in the correct View
-			setActiveView(App.VIEW_EUCLIDIAN);
+			setActiveView(App.VIEW_euclidean);
 			getXMLio().processXMLString(xml, clearAll, false);
 		} catch (MyError err) {
 			err.printStackTrace();

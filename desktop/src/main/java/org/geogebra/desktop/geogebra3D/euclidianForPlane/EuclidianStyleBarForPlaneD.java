@@ -1,13 +1,13 @@
-package org.geogebra.desktop.geogebra3D.euclidianForPlane;
+package org.geogebra.desktop.geogebra3D.euclideanForPlane;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.geogebra3D.euclidianForPlane.EuclidianViewForPlaneCompanion;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.geogebra3D.euclideanForPlane.euclideanViewForPlaneCompanion;
 import org.geogebra.common.kernel.geos.GeoElement;
-import org.geogebra.desktop.euclidian.EuclidianStyleBarD;
+import org.geogebra.desktop.euclidean.euclideanStyleBarD;
 import org.geogebra.desktop.gui.util.MyToggleButtonD;
 import org.geogebra.desktop.util.GuiResourcesD;
 
@@ -17,7 +17,7 @@ import org.geogebra.desktop.util.GuiResourcesD;
  * @author Mathieu
  *
  */
-public class EuclidianStyleBarForPlaneD extends EuclidianStyleBarD {
+public class euclideanStyleBarForPlaneD extends euclideanStyleBarD {
 
 	/**
 	 * 
@@ -32,7 +32,7 @@ public class EuclidianStyleBarForPlaneD extends EuclidianStyleBarD {
 	 * @param ev
 	 *            view
 	 */
-	public EuclidianStyleBarForPlaneD(EuclidianViewForPlaneD ev) {
+	public euclideanStyleBarForPlaneD(euclideanViewForPlaneD ev) {
 		super(ev);
 	}
 
@@ -59,7 +59,7 @@ public class EuclidianStyleBarForPlaneD extends EuclidianStyleBarD {
 			ArrayList<GeoElement> targetGeos) {
 
 		if (source.equals(btnCenterAndOrientation)) {
-			EuclidianViewForPlaneCompanion companion = (EuclidianViewForPlaneCompanion) ((EuclidianView) ev)
+			euclideanViewForPlaneCompanion companion = (euclideanViewForPlaneCompanion) ((euclideanView) ev)
 					.getCompanion();
 			companion.updateCenterAndOrientationRegardingView();
 			companion.updateScaleRegardingView();
@@ -83,7 +83,7 @@ public class EuclidianStyleBarForPlaneD extends EuclidianStyleBarD {
 			@Override
 			public void update(List<GeoElement> geos) {
 				// always show this button unless in pen mode
-				this.setVisible(mode != EuclidianConstants.MODE_PEN);
+				this.setVisible(mode != euclideanConstants.MODE_PEN);
 			}
 		};
 		btnCenterAndOrientation.addActionListener(this);

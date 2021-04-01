@@ -1,16 +1,16 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D.Type;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D.Type;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoPolyhedronPoints;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoPolyhedronPointsPrism;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoPolyhedronPointsPyramid;
@@ -54,7 +54,7 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
 	 * @param poly
 	 *            polyhedron
 	 */
-	public DrawPolyhedron3D(EuclidianView3D a_view3D, GeoPolyhedron poly) {
+	public DrawPolyhedron3D(euclideanView3D a_view3D, GeoPolyhedron poly) {
 
 		super(a_view3D, poly);
 		boundsMin.setPositiveInfinity();
@@ -73,7 +73,7 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
 	 * @param mode
 	 *            preview mode
 	 */
-	public DrawPolyhedron3D(EuclidianView3D a_view3D,
+	public DrawPolyhedron3D(euclideanView3D a_view3D,
 			ArrayList<GeoPointND> selectedPoints,
 			ArrayList<GeoPolygon> selectedPolygons, int mode) {
 
@@ -216,7 +216,7 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
 
 			for (GeoPolygon p : ((GeoPolyhedron) getGeoElement()).getPolygonsLinked()) {
 				// draw segments for polygons that have no label
-				if (p.isEuclidianVisible() && !p.isLabelSet()) {
+				if (p.iseuclideanVisible() && !p.isLabelSet()) {
 					for (GeoSegmentND seg : p.getSegments()) {
 						drawSegment(brush, seg);
 					}
@@ -236,7 +236,7 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
 	private void drawSegment(PlotterBrush brush, GeoSegmentND seg) {
 
 		// draw only segments that have no label
-		if (!seg.isEuclidianVisible() || seg.isLabelSet()) {
+		if (!seg.iseuclideanVisible() || seg.isLabelSet()) {
 			return;
 		}
 
@@ -252,7 +252,7 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
 	private void drawPolygon(Renderer renderer, GeoPolygon polygon) {
 
 		// draw only polygons that have no label
-		if (!polygon.isEuclidianVisible() || polygon.isLabelSet()) {
+		if (!polygon.iseuclideanVisible() || polygon.isLabelSet()) {
 			return;
 		}
 
@@ -318,11 +318,11 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
 
 			switch (previewMode) {
 				default:
-				case EuclidianConstants.MODE_PYRAMID:
+				case euclideanConstants.MODE_PYRAMID:
 					previewAlgo = new AlgoPolyhedronPointsPyramid(cons, null,
 							selectedPolygons.get(0), getView3D().getCursor3D());
 					break;
-				case EuclidianConstants.MODE_PRISM:
+				case euclideanConstants.MODE_PRISM:
 					previewAlgo = new AlgoPolyhedronPointsPrism(cons, null,
 							selectedPolygons.get(0), getView3D().getCursor3D());
 					break;
@@ -331,11 +331,11 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
 			// set visibilities
 			previewAlgo.removeOutputFromAlgebraView();
 			previewAlgo.removeOutputFromPicking();
-			previewAlgo.setOutputPointsEuclidianVisible(false);
+			previewAlgo.setOutputPointseuclideanVisible(false);
 			previewAlgo.notifyUpdateOutputPoints();
 
 			// ensure correct drawing of visible parts of the previewable
-			previewAlgo.setOutputOtherEuclidianVisible(true);
+			previewAlgo.setOutputOthereuclideanVisible(true);
 			previewAlgo.notifyUpdateOutputOther();
 
 		} else {
@@ -386,11 +386,11 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
 
 		switch (previewMode) {
 			default:
-			case EuclidianConstants.MODE_PYRAMID:
+			case euclideanConstants.MODE_PYRAMID:
 				previewAlgo = new AlgoPolyhedronPointsPyramid(cons, null,
 						points);
 				break;
-			case EuclidianConstants.MODE_PRISM:
+			case euclideanConstants.MODE_PRISM:
 				previewAlgo = new AlgoPolyhedronPointsPrism(cons, null, points);
 				break;
 		}
@@ -398,11 +398,11 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
 		// set visibilities
 		previewAlgo.removeOutputFromAlgebraView();
 		previewAlgo.removeOutputFromPicking();
-		previewAlgo.setOutputPointsEuclidianVisible(false);
+		previewAlgo.setOutputPointseuclideanVisible(false);
 		previewAlgo.notifyUpdateOutputPoints();
 
 		// ensure correct drawing of visible parts of the previewable
-		previewAlgo.setOutputOtherEuclidianVisible(true);
+		previewAlgo.setOutputOthereuclideanVisible(true);
 		previewAlgo.notifyUpdateOutputOther();
 	}
 
@@ -439,7 +439,7 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
 
 	static private double hitPolygon(double currentDistance, Hitting hitting,
 			GeoPolygon polygon, Coords globalCoords, Coords inPlaneCoords) {
-		if (!polygon.isEuclidianVisible() || polygon.isLabelSet()) {
+		if (!polygon.iseuclideanVisible() || polygon.isLabelSet()) {
 			return currentDistance;
 		}
 
@@ -490,7 +490,7 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
 	private void exportToPrinter3D(ExportToPrinter3D exportToPrinter3D,
 			GeoPolygon polygon) {
 		// export only polygons that have no label
-		if (!polygon.isEuclidianVisible() || polygon.isLabelSet()) {
+		if (!polygon.iseuclideanVisible() || polygon.isLabelSet()) {
 			return;
 		}
 
@@ -528,7 +528,7 @@ public class DrawPolyhedron3D extends Drawable3DSurfaces
                 setWaitForUpdateColor();
                 // highlight faces and edges
                 GeoPolyhedron poly = (GeoPolyhedron) getGeoElement();
-                EuclidianView3D view3D = getView3D();
+                euclideanView3D view3D = getView3D();
                 for (GeoPolygon p : poly.getPolygons()) {
                     if (p.isLabelSet()) {
                         view3D.updateHighlight(p);

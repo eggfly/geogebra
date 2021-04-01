@@ -9,7 +9,7 @@ import org.geogebra.common.GeoGebraConstants;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.cas.view.CASTable;
 import org.geogebra.common.cas.view.CASView;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.view.spreadsheet.MyTableInterface;
 import org.geogebra.common.gui.view.spreadsheet.SpreadsheetViewInterface;
@@ -125,7 +125,7 @@ public class ConstructionProtocolView implements ConstructionStepper {
 		if (!"".equals(base64)) {
 
 			String altText = "Icon for mode "
-					+ EuclidianConstants.getModeText(m);
+					+ euclideanConstants.getModeText(m);
 
 			return "<img alt='" + altText + "' height='32' width='32' src=\""
 					+ base64 + "\">";

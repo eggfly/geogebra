@@ -125,7 +125,7 @@ public class HTML5Export {
 			sb.append(",'CV': ");
 			sb.append((gui.hasCasView() ? "1" : "0"));
 			sb.append(",'EV2': ");
-			sb.append((app.hasEuclidianView2(1) ? "1" : "0"));
+			sb.append((app.haseuclideanView2(1) ? "1" : "0"));
 			sb.append(",'CP': ");
 			sb.append(gui.isUsingConstructionProtocol() ? "1" : "0");
 			sb.append(",'PC': ");
@@ -168,7 +168,7 @@ public class HTML5Export {
 	}
 
 	private static Object getPreviewImage(App app) {
-		GBufferedImage preview = app.getActiveEuclidianView().getExportImage(1);
+		GBufferedImage preview = app.getActiveeuclideanView().getExportImage(1);
 		String base64 = null;
 		// eg 3D View in web
 		if (preview != null) {

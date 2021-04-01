@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.layout;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.web.full.cas.view.CASStylebarW;
 import org.geogebra.web.full.css.GuiResources;
 import org.geogebra.web.full.gui.layout.panels.AlgebraStyleBarW;

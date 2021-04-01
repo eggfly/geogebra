@@ -110,7 +110,7 @@ public class RowHeaderWidget extends FlowPanel implements MarbleRenderer {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			cell.toggleTwinGeoEuclidianVisible();
+			cell.toggleTwinGeoeuclideanVisible();
 			CASInputHandler.handleMarble(cell, rowHeaderWidget);
 			event.stopPropagation();
 		}

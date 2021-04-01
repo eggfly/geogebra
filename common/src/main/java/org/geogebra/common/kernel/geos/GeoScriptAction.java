@@ -99,7 +99,7 @@ public class GeoScriptAction extends GeoElement {
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return false;
 	}
 

@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GArc2D;
@@ -7,9 +7,9 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GLine2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
-import org.geogebra.common.euclidian.clipping.ClipShape;
+import org.geogebra.common.euclidean.GeneralPathClipped;
+import org.geogebra.common.euclidean.clipping.ClipShape;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.kernelND.GeoConicND;
 import org.geogebra.common.kernel.kernelND.GeoConicSectionInterface;
@@ -43,7 +43,7 @@ public class DrawConicSection extends DrawConic {
 	 * @param c
 	 *            conic
 	 */
-	public DrawConicSection(EuclidianView view, GeoConicND c) {
+	public DrawConicSection(euclideanView view, GeoConicND c) {
 		super(view, c, false);
 	}
 

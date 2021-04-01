@@ -10,7 +10,7 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.desktop.euclidian;
+package org.geogebra.desktop.euclidean;
 
 import java.awt.BorderLayout;
 import java.awt.Component;

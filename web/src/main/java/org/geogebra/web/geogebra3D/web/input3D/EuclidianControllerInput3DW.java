@@ -1,17 +1,17 @@
 package org.geogebra.web.geogebra3D.web.input3D;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianControllerCompanion;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.geogebra3D.input3D.EuclidianControllerInput3DCompanion;
+import org.geogebra.common.euclidean.euclideanControllerCompanion;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.geogebra3D.input3D.euclideanControllerInput3DCompanion;
 import org.geogebra.common.geogebra3D.input3D.Input3D;
 import org.geogebra.common.kernel.Kernel;
-import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianController3DW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.euclideanController3DW;
 
 /**
  * Controller with 3D input
  */
-public class EuclidianControllerInput3DW extends EuclidianController3DW {
+public class euclideanControllerInput3DW extends euclideanController3DW {
 	/** 3D input */
 	protected Input3D input3D;
 
@@ -21,10 +21,10 @@ public class EuclidianControllerInput3DW extends EuclidianController3DW {
 	 * @param input3D
 	 *            3D input
 	 */
-	public EuclidianControllerInput3DW(Kernel kernel, Input3D input3D) {
+	public euclideanControllerInput3DW(Kernel kernel, Input3D input3D) {
 		super(kernel);
 		this.input3D = input3D;
-		((EuclidianControllerInput3DCompanion) companion).setInput3D(input3D);
+		((euclideanControllerInput3DCompanion) companion).setInput3D(input3D);
 	}
 
 	@Override
@@ -33,8 +33,8 @@ public class EuclidianControllerInput3DW extends EuclidianController3DW {
 	}
 
 	@Override
-	protected EuclidianControllerCompanion newCompanion() {
-		return new EuclidianControllerInput3DCompanion(this);
+	protected euclideanControllerCompanion newCompanion() {
+		return new euclideanControllerInput3DCompanion(this);
 	}
 
 	@Override

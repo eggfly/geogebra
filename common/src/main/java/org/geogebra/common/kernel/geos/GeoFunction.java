@@ -835,7 +835,7 @@ public class GeoFunction extends GeoElement implements VarString, Translateable,
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		if (fun != null && isInequality == null && isBooleanFunction()) {
 			getIneqs();
 		}
@@ -2982,9 +2982,9 @@ public class GeoFunction extends GeoElement implements VarString, Translateable,
 	}
 
 	@Override
-	public void setAllVisualPropertiesExceptEuclidianVisible(GeoElement geo,
+	public void setAllVisualPropertiesExcepteuclideanVisible(GeoElement geo,
 			boolean keepAdvanced, boolean setAuxiliaryProperty) {
-		super.setAllVisualPropertiesExceptEuclidianVisible(geo, keepAdvanced,
+		super.setAllVisualPropertiesExcepteuclideanVisible(geo, keepAdvanced,
 				setAuxiliaryProperty);
 		if (geo instanceof GeoEvaluatable) {
 			TableProperties.transfer(geo, this);

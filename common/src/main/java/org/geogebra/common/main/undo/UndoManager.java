@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
 
-import org.geogebra.common.euclidian.EmbedManager;
+import org.geogebra.common.euclidean.EmbedManager;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.commands.EvalInfo;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -533,7 +533,7 @@ public abstract class UndoManager {
 		app.getCompanion().storeViewCreators();
 		app.getKernel().notifyReset();
 		app.getKernel().clearJustCreatedGeosInViews();
-		app.getActiveEuclidianView().getEuclidianController().clearSelections();
+		app.getActiveeuclideanView().geteuclideanController().clearSelections();
 		VideoManager videoManager = app.getVideoManager();
 		if (videoManager != null) {
 			videoManager.storeVideos();
@@ -542,7 +542,7 @@ public abstract class UndoManager {
 		if (embedManager != null) {
 			embedManager.storeEmbeds();
 		}
-		app.getActiveEuclidianView().resetInlineObjects();
+		app.getActiveeuclideanView().resetInlineObjects();
 	}
 
 	/**
@@ -552,6 +552,6 @@ public abstract class UndoManager {
 		app.getKernel().notifyReset();
 		app.getCompanion().recallViewCreators();
 		app.getSelectionManager().recallSelectedGeosNames(app.getKernel());
-		app.getActiveEuclidianView().restoreDynamicStylebar();
+		app.getActiveeuclideanView().restoreDynamicStylebar();
 	}
 }

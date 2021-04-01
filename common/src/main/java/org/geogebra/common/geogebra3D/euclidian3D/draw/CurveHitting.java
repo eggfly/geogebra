@@ -1,7 +1,7 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
 import org.geogebra.common.kernel.Path;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -11,7 +11,7 @@ public class CurveHitting {
 	private GeoPoint3D hittingPoint;
 	private Coords project;
 	private double[] lineCoords;
-	private EuclidianView3D view;
+	private euclideanView3D view;
 	private HasZPick parent;
 
 	/**
@@ -20,7 +20,7 @@ public class CurveHitting {
 	 * @param view
 	 *            3D view
 	 */
-	public CurveHitting(HasZPick parent, EuclidianView3D view) {
+	public CurveHitting(HasZPick parent, euclideanView3D view) {
 		hittingPoint = new GeoPoint3D(parent.getGeoElement().getConstruction());
 		project = new Coords(4);
 		lineCoords = new double[2];

@@ -30,8 +30,8 @@ public class CmdReadText extends CmdScripting {
 		GeoElement[] args = resArgs(c);
 		if (args[0].isGeoText()) {
 
-			if (app.getActiveEuclidianView() != null) {
-				app.getActiveEuclidianView().getScreenReader()
+			if (app.getActiveeuclideanView() != null) {
+				app.getActiveeuclideanView().getScreenReader()
 						.readDelayed(((GeoText) args[0]).getAuralText());
 			}
 			return args;

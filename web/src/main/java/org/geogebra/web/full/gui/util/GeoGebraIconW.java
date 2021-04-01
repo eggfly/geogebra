@@ -3,7 +3,7 @@ package org.geogebra.web.full.gui.util;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.kernel.geos.properties.FillType;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.web.full.css.GuiResources;
 import org.geogebra.web.full.css.MaterialDesignResources;
 import org.geogebra.web.full.gui.images.StyleBarResources;
@@ -222,13 +222,13 @@ public class GeoGebraIconW {
 		ImageResource url = null;
 
 		switch (id) {
-		case EuclidianStyleConstants.AXES_LINE_TYPE_ARROW:
+		case euclideanStyleConstants.AXES_LINE_TYPE_ARROW:
 			url = StyleBarResources.INSTANCE.axes_2arrows();
 			break;
-		case EuclidianStyleConstants.AXES_LINE_TYPE_TWO_ARROWS:
+		case euclideanStyleConstants.AXES_LINE_TYPE_TWO_ARROWS:
 			url = StyleBarResources.INSTANCE.axes_4arrows();
 			break;
-		case EuclidianStyleConstants.AXES_LINE_TYPE_FULL:
+		case euclideanStyleConstants.AXES_LINE_TYPE_FULL:
 			url = StyleBarResources.INSTANCE.axes();
 			break;
 		default:
@@ -246,16 +246,16 @@ public class GeoGebraIconW {
 	public static ImageOrText createAxesStyleIcon(int id) {
 		ImageResource url = null;
 		switch (id) {
-		case EuclidianStyleConstants.AXES_LINE_TYPE_ARROW:
+		case euclideanStyleConstants.AXES_LINE_TYPE_ARROW:
 			url = GuiResources.INSTANCE.deco_axes_arrow();
 			break;
-		case EuclidianStyleConstants.AXES_LINE_TYPE_TWO_ARROWS:
+		case euclideanStyleConstants.AXES_LINE_TYPE_TWO_ARROWS:
 			url = GuiResources.INSTANCE.deco_axes_arrows();
 			break;
-		case EuclidianStyleConstants.AXES_LINE_TYPE_ARROW_FILLED:
+		case euclideanStyleConstants.AXES_LINE_TYPE_ARROW_FILLED:
 			url = GuiResources.INSTANCE.deco_axes_arrow_filled();
 			break;
-		case EuclidianStyleConstants.AXES_LINE_TYPE_TWO_ARROWS_FILLED:
+		case euclideanStyleConstants.AXES_LINE_TYPE_TWO_ARROWS_FILLED:
 			url = GuiResources.INSTANCE.deco_axes_arrows_filled();
 			break;
 		default:

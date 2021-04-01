@@ -9,9 +9,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.geogebra.common.awt.GPoint2D;
-import org.geogebra.common.euclidian.draw.DrawInlineTable;
-import org.geogebra.common.euclidian.draw.DrawInlineText;
-import org.geogebra.common.euclidian.inline.InlineTableController;
+import org.geogebra.common.euclidean.draw.DrawInlineTable;
+import org.geogebra.common.euclidean.draw.DrawInlineText;
+import org.geogebra.common.euclidean.inline.InlineTableController;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoInlineTable;
@@ -225,7 +225,7 @@ public class InlineFormattingItemsTest {
 	private GeoInlineText createTextInline(String label, InlineTextControllerMock inlineTextControllerMock) {
 		GeoInlineText text = new GeoInlineText(construction, point);
 		text.setLabel(label);
-		DrawInlineText drawInlineText = (DrawInlineText) app.getActiveEuclidianView()
+		DrawInlineText drawInlineText = (DrawInlineText) app.getActiveeuclideanView()
 				.getDrawableFor(text);
 		assertNotNull(drawInlineText);
 		drawInlineText.setTextController(inlineTextControllerMock);
@@ -235,7 +235,7 @@ public class InlineFormattingItemsTest {
 	private GeoInlineTable createTableInline(InlineTableController inlineTextController) {
 		GeoInlineTable table = new GeoInlineTable(construction, point);
 		table.setLabel("table1");
-		DrawInlineTable drawInlineTable = (DrawInlineTable) app.getActiveEuclidianView()
+		DrawInlineTable drawInlineTable = (DrawInlineTable) app.getActiveeuclideanView()
 				.getDrawableFor(table);
 		assertNotNull(drawInlineTable);
 		drawInlineTable.setTextController(inlineTextController);

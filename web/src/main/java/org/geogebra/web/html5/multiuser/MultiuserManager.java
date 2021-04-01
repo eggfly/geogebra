@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.geogebra.common.awt.GBasicStroke;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.main.App;
 
@@ -35,7 +35,7 @@ public final class MultiuserManager {
 				u.removeSelection(label);
 			}
 		}
-		currentUser.addSelection(app.getActiveEuclidianView(), label, newGeo);
+		currentUser.addSelection(app.getActiveeuclideanView(), label, newGeo);
 	}
 
 	/**
@@ -46,17 +46,17 @@ public final class MultiuserManager {
 	public void deselect(App app, String user) {
 		User currentUser = activeInteractions.get(user);
 		if (currentUser != null) {
-			currentUser.deselectAll(app.getActiveEuclidianView());
+			currentUser.deselectAll(app.getActiveeuclideanView());
 		}
 	}
 
 	/**
 	 * Paint the boxes showing which objects were recently changed by
 	 * other users. Also updates the tooltips.
-	 * @param view euclidian view
+	 * @param view euclidean view
 	 * @param graphics canvas to paint on
 	 */
-	public void paintInteractionBoxes(EuclidianView view, GGraphics2D graphics) {
+	public void paintInteractionBoxes(euclideanView view, GGraphics2D graphics) {
 		graphics.setStroke(AwtFactory.getPrototype()
 				.newBasicStroke(6, GBasicStroke.CAP_ROUND, GBasicStroke.JOIN_ROUND));
 		for (User user : activeInteractions.values()) {

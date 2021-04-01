@@ -1,14 +1,14 @@
 package org.geogebra.common.main.settings;
 
 import org.geogebra.common.awt.GFont;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.NumberValue;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.kernel.geos.XMLBuilder;
 import org.geogebra.common.main.App;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 
 /**
@@ -17,14 +17,14 @@ import org.geogebra.common.util.DoubleUtil;
  * @author mathieu
  *
  */
-public class EuclidianSettings3D extends EuclidianSettings {
+public class euclideanSettings3D extends euclideanSettings {
 
 	private double zscale;
 
-	private double zZero = EuclidianView3DInterface.ZZERO_SCENE_STANDARD;
+	private double zZero = euclideanView3DInterface.ZZERO_SCENE_STANDARD;
 
-	private double a = EuclidianView3DInterface.ANGLE_ROT_OZ;
-	private double b = EuclidianView3DInterface.ANGLE_ROT_XOY; // angles (in
+	private double a = euclideanView3DInterface.ANGLE_ROT_OZ;
+	private double b = euclideanView3DInterface.ANGLE_ROT_XOY; // angles (in
 																// degrees)
 
 	private boolean hadSettingChanged = false;
@@ -71,14 +71,14 @@ public class EuclidianSettings3D extends EuclidianSettings {
 	 * @param app
 	 *            application
 	 */
-	public EuclidianSettings3D(App app) {
+	public euclideanSettings3D(App app) {
 		super(app);
 
 		setXscale(50);
 		setYscale(50);
 		setZscale(50);
-		xZero = EuclidianView3DInterface.XZERO_SCENE_STANDARD;
-		yZero = EuclidianView3DInterface.XZERO_SCENE_STANDARD;
+		xZero = euclideanView3DInterface.XZERO_SCENE_STANDARD;
+		yZero = euclideanView3DInterface.XZERO_SCENE_STANDARD;
 		dimension = 3;
 	}
 
@@ -299,7 +299,7 @@ public class EuclidianSettings3D extends EuclidianSettings {
 		this.b = b2;
 	}
 
-	public void updateRotXY(EuclidianView3DInterface view) {
+	public void updateRotXY(euclideanView3DInterface view) {
 		view.setRotXYinDegrees(a, b);
 	}
 
@@ -342,7 +342,7 @@ public class EuclidianSettings3D extends EuclidianSettings {
 	 * @param view
 	 *            view to be updated
 	 */
-	public void updateOrigin(EuclidianView3DInterface view) {
+	public void updateOrigin(euclideanView3DInterface view) {
 		view.setXZero(getXZero());
 		view.setYZero(getYZero());
 		view.setZZero(getZZero());
@@ -548,17 +548,17 @@ public class EuclidianSettings3D extends EuclidianSettings {
 	 * set orientation, position, scaling to standard view
 	 */
 	public void setStandardView() {
-		xZero = EuclidianView3DInterface.XZERO_SCENE_STANDARD;
-		yZero = EuclidianView3DInterface.XZERO_SCENE_STANDARD;
-		zZero = EuclidianView3DInterface.ZZERO_SCENE_STANDARD;
+		xZero = euclideanView3DInterface.XZERO_SCENE_STANDARD;
+		yZero = euclideanView3DInterface.XZERO_SCENE_STANDARD;
+		zZero = euclideanView3DInterface.ZZERO_SCENE_STANDARD;
 
-		a = EuclidianView3DInterface.ANGLE_ROT_OZ;
-		b = EuclidianView3DInterface.ANGLE_ROT_XOY;
+		a = euclideanView3DInterface.ANGLE_ROT_OZ;
+		b = euclideanView3DInterface.ANGLE_ROT_XOY;
 
-		xscale = EuclidianView.SCALE_STANDARD;
-		yscale = EuclidianView.SCALE_STANDARD;
-		zscale = EuclidianView.SCALE_STANDARD;
-		maxScale = EuclidianView.SCALE_STANDARD;
+		xscale = euclideanView.SCALE_STANDARD;
+		yscale = euclideanView.SCALE_STANDARD;
+		zscale = euclideanView.SCALE_STANDARD;
+		maxScale = euclideanView.SCALE_STANDARD;
 
 		yAxisVertical = false;
 	}
@@ -628,7 +628,7 @@ public class EuclidianSettings3D extends EuclidianSettings {
 
 		// if (true) return "";
 
-		sb.append("<euclidianView3D>\n");
+		sb.append("<euclideanView3D>\n");
 
 		// coord system
 		sb.append("\t<coordSystem");
@@ -678,8 +678,8 @@ public class EuclidianSettings3D extends EuclidianSettings {
 
 		// make sure POINT_CAPTURING_STICKY_POINTS isn't written to XML
 		sb.append(
-				getPointCapturingMode() > EuclidianStyleConstants.POINT_CAPTURING_XML_MAX
-						? EuclidianStyleConstants.POINT_CAPTURING_DEFAULT
+				getPointCapturingMode() > euclideanStyleConstants.POINT_CAPTURING_XML_MAX
+						? euclideanStyleConstants.POINT_CAPTURING_DEFAULT
 						: getPointCapturingMode());
 
 		sb.append("\" rightAngleStyle=\"");
@@ -735,12 +735,12 @@ public class EuclidianSettings3D extends EuclidianSettings {
 		sb.append(getProjection());
 		getXMLForStereo(sb);
 		if (!DoubleUtil.isEqual(projectionObliqueAngle,
-				EuclidianSettings3D.PROJECTION_OBLIQUE_ANGLE_DEFAULT)) {
+				euclideanSettings3D.PROJECTION_OBLIQUE_ANGLE_DEFAULT)) {
 			sb.append("\" obliqueAngle=\"");
 			sb.append(projectionObliqueAngle);
 		}
 		if (!DoubleUtil.isEqual(projectionObliqueFactor,
-				EuclidianSettings3D.PROJECTION_OBLIQUE_FACTOR_DEFAULT)) {
+				euclideanSettings3D.PROJECTION_OBLIQUE_FACTOR_DEFAULT)) {
 			sb.append("\" obliqueFactor=\"");
 			sb.append(projectionObliqueFactor);
 		}
@@ -757,18 +757,18 @@ public class EuclidianSettings3D extends EuclidianSettings {
 		}
 
 		// end
-		sb.append("</euclidianView3D>\n");
+		sb.append("</euclideanView3D>\n");
 
 	}
 
 	private void getXMLForStereo(StringBuilder sb) {
 		int eyeDistance = projectionPerspectiveEyeDistance;
-		if (eyeDistance != EuclidianSettings3D.PROJECTION_PERSPECTIVE_EYE_DISTANCE_DEFAULT) {
+		if (eyeDistance != euclideanSettings3D.PROJECTION_PERSPECTIVE_EYE_DISTANCE_DEFAULT) {
 			sb.append("\" distance=\"");
 			sb.append(eyeDistance);
 		}
 		int sep = getEyeSep();
-		if (sep != EuclidianSettings3D.EYE_SEP_DEFAULT) {
+		if (sep != euclideanSettings3D.EYE_SEP_DEFAULT) {
 			sb.append("\" separation=\"");
 			sb.append(sep);
 		}

@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.layout.panels;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.settings.SpreadsheetSettings;
 import org.geogebra.web.full.gui.view.spreadsheet.SpreadsheetStyleBarW;
@@ -80,36 +80,36 @@ public class SpreadsheetDockPanelW extends NavigableDockPanelW {
 
 	private static String getDefaultToolbar() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(EuclidianConstants.MODE_MOVE);
+		sb.append(euclideanConstants.MODE_MOVE);
 		
 		sb.append(" || ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_ONEVARSTATS);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_ONEVARSTATS);
 		sb.append(" , ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_TWOVARSTATS);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_TWOVARSTATS);
 		sb.append(" , ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_MULTIVARSTATS);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_MULTIVARSTATS);
 
 		sb.append(" || ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_CREATE_LIST);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_CREATE_LIST);
 		sb.append(" , ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_CREATE_LISTOFPOINTS);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_CREATE_LISTOFPOINTS);
 		sb.append(" , ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_CREATE_MATRIX);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_CREATE_MATRIX);
 		sb.append(" , ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_CREATE_TABLETEXT);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_CREATE_TABLETEXT);
 		sb.append(" , ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_CREATE_POLYLINE);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_CREATE_POLYLINE);
 
 		sb.append(" || ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_SUM);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_SUM);
 		sb.append(" , ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_AVERAGE);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_AVERAGE);
 		sb.append(" , ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_COUNT);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_COUNT);
 		sb.append(" , ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_MAX);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_MAX);
 		sb.append(" , ");
-		sb.append(EuclidianConstants.MODE_SPREADSHEET_MIN);
+		sb.append(euclideanConstants.MODE_SPREADSHEET_MIN);
 
 		return sb.toString();
 	}

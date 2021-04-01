@@ -1,4 +1,4 @@
-package org.geogebra.web.html5.euclidian.profiler.drawer;
+package org.geogebra.web.html5.euclidean.profiler.drawer;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import javax.annotation.Nullable;
 
 import org.geogebra.common.move.ggtapi.models.json.JSONException;
 import org.geogebra.common.util.debug.GeoGebraProfiler;
-import org.geogebra.web.html5.euclidian.MouseTouchGestureControllerW;
-import org.geogebra.web.html5.euclidian.profiler.coords.Coordinate;
-import org.geogebra.web.html5.euclidian.profiler.coords.CoordinatesParser;
+import org.geogebra.web.html5.euclidean.MouseTouchGestureControllerW;
+import org.geogebra.web.html5.euclidean.profiler.coords.Coordinate;
+import org.geogebra.web.html5.euclidean.profiler.coords.CoordinatesParser;
 import org.geogebra.web.html5.util.file.FileLoader;
 import org.gwtproject.timer.client.Timer;
 

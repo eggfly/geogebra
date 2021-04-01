@@ -10,19 +10,19 @@
 
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.event.FocusListenerDelegate;
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.event.FocusListenerDelegate;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.gui.inputfield.AutoCompleteTextField;
 import org.geogebra.common.gui.inputfield.InputMode;
 import org.geogebra.common.kernel.StringTemplate;
@@ -73,7 +73,7 @@ public class DrawInputBox extends CanvasDrawable {
 	 * @param geo
 	 *            textfield
 	 */
-	public DrawInputBox(EuclidianView view, GeoInputBox geo) {
+	public DrawInputBox(euclideanView view, GeoInputBox geo) {
 		this.view = view;
 		this.geoInputBox = geo;
 		this.geo = geo;
@@ -104,7 +104,7 @@ public class DrawInputBox extends CanvasDrawable {
 				return;
 			}
 
-			getView().getEuclidianController().textfieldHasFocus(true);
+			getView().geteuclideanController().textfieldHasFocus(true);
 			updateGeoInputBox();
 
 			initialText = getTextField().getText();
@@ -116,7 +116,7 @@ public class DrawInputBox extends CanvasDrawable {
 			if (!isSelectedForInput()) {
 				return;
 			}
-			getView().getEuclidianController().textfieldHasFocus(false);
+			getView().geteuclideanController().textfieldHasFocus(false);
 
 			hideWidget();
 
@@ -212,7 +212,7 @@ public class DrawInputBox extends CanvasDrawable {
 	}
 
 	private void update(boolean forView) {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (geoInputBox.isSymbolicMode()) {
 			textRenderer = new LaTeXTextRenderer(this);
 		} else {
@@ -234,7 +234,7 @@ public class DrawInputBox extends CanvasDrawable {
 				view.getViewTextField().setColumns(length);
 			}
 			getTextField().prepareShowSymbolButton(
-					length > EuclidianConstants.SHOW_SYMBOLBUTTON_MINLENGTH);
+					length > euclideanConstants.SHOW_SYMBOLBUTTON_MINLENGTH);
 
 			oldLength = length;
 		}
@@ -507,7 +507,7 @@ public class DrawInputBox extends CanvasDrawable {
 		} else {
 			g2.setPaint(geo.getObjectColor());
 
-			EuclidianStatic.drawIndexedString(view.getApplication(), g2, text,
+			euclideanStatic.drawIndexedString(view.getApplication(), g2, text,
 					xLabel, yLabel + getTextBottom(), false, null, null);
 		}
 	}
@@ -552,7 +552,7 @@ public class DrawInputBox extends CanvasDrawable {
 	 * @param show whether to show the widget
 	 */
 	public void setWidgetVisible(boolean show) {
-		if (geo.isEuclidianVisible() && view.isVisibleInThisView(geo) && show) {
+		if (geo.iseuclideanVisible() && view.isVisibleInThisView(geo) && show) {
 			showWidget();
 		} else {
 			hideWidget();
@@ -570,7 +570,7 @@ public class DrawInputBox extends CanvasDrawable {
 		view.getViewTextField().revalidateBox();
 		view.getViewTextField().setBoxVisible(true);
 		attachTextField();
-		if (!view.getEuclidianController().isTemporaryMode()) {
+		if (!view.geteuclideanController().isTemporaryMode()) {
 			getTextField().requestFocus();
 		}
 	}

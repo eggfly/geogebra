@@ -1,6 +1,6 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoQuadric3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoQuadric3DPart;
 import org.geogebra.common.kernel.geos.FromMeta;
@@ -21,7 +21,7 @@ public class DrawQuadric3DPart extends DrawQuadric3D {
 	 * @param quadric
 	 *            quadric part
 	 */
-	public DrawQuadric3DPart(EuclidianView3D view, GeoQuadric3DPart quadric) {
+	public DrawQuadric3DPart(euclideanView3D view, GeoQuadric3DPart quadric) {
 		super(view, quadric);
 	}
 

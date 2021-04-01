@@ -1,7 +1,7 @@
-package org.geogebra.common.euclidian.plot.interval;
+package org.geogebra.common.euclidean.plot.interval;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.interval.Interval;
 import org.geogebra.common.kernel.interval.IntervalFunctionSampler;
 import org.geogebra.common.kernel.interval.IntervalTuple;
@@ -17,18 +17,18 @@ public class IntervalPlotModel {
 	private final IntervalFunctionSampler sampler;
 	private IntervalTupleList points;
 	private IntervalPath path;
-	private final EuclidianView view;
+	private final euclideanView view;
 	private Interval oldDomain;
 
 	/**
 	 * Constructor
 	 * @param range to plot.
 	 * @param sampler to retrieve function data from.
-	 * @param view {@link EuclidianView}
+	 * @param view {@link euclideanView}
 	 */
 	public IntervalPlotModel(IntervalTuple range,
 			IntervalFunctionSampler sampler,
-			EuclidianView view) {
+			euclideanView view) {
 		this.range = range;
 		this.sampler = sampler;
 		this.view = view;

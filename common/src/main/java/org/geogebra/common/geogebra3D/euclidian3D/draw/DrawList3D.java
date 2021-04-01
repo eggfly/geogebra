@@ -1,7 +1,7 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoList;
 
@@ -23,7 +23,7 @@ public class DrawList3D extends DrawComposite3D {
 	 * @param geo
 	 *            list
 	 */
-	public DrawList3D(EuclidianView3D view3D, GeoList geo) {
+	public DrawList3D(euclideanView3D view3D, GeoList geo) {
 		super(view3D, geo);
 		this.geoList = geo;
 

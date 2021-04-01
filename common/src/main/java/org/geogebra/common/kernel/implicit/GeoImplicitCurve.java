@@ -11,7 +11,7 @@ import org.apache.commons.math3.linear.DecompositionSolver;
 import org.apache.commons.math3.linear.LUDecomposition;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.geogebra.common.kernel.Construction;
-import org.geogebra.common.kernel.EuclidianViewCE;
+import org.geogebra.common.kernel.euclideanViewCE;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.PathMover;
 import org.geogebra.common.kernel.SegmentType;
@@ -61,7 +61,7 @@ import com.himamis.retex.editor.share.util.Unicode;
  * GeoElement representing an implicit curve.
  * 
  */
-public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
+public class GeoImplicitCurve extends GeoElement implements euclideanViewCE,
 		Traceable, Translateable, Dilateable, Mirrorable, ConicMirrorable,
 		Transformable, PointRotateable, GeoImplicit, ReplaceChildrenByValues {
 	/**
@@ -123,7 +123,7 @@ public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
 		locus = new GeoLocus(c);
 		locus.setDefined(true);
 		cons.removeFromConstructionList(locus);
-		c.registerEuclidianViewCE(this);
+		c.registereuclideanViewCE(this);
 		setConstructionDefaults();
 	}
 
@@ -255,7 +255,7 @@ public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
 			}
 		}
 
-		euclidianViewUpdate();
+		euclideanViewUpdate();
 	}
 
 	private boolean checkAbsValue(ExpressionNode leftHandSide,
@@ -669,7 +669,7 @@ public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return true;
 	}
 
@@ -806,10 +806,10 @@ public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
 	}
 
 	/**
-	 * Update euclidian view
+	 * Update euclidean view
 	 */
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 		if (isDefined()) {
 			updatePath();
 			return true;
@@ -1020,7 +1020,7 @@ public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
 			getFactor(factor).translate(v);
 		}
 		updateCoeffFromExpr();
-		euclidianViewUpdate();
+		euclideanViewUpdate();
 	}
 
 	private void updateCoeffFromExpr() {
@@ -1056,7 +1056,7 @@ public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
 			getFactor(factor).dilate(minusOne, Q);
 		}
 		updateCoeffFromExpr();
-		euclidianViewUpdate();
+		euclideanViewUpdate();
 	}
 
 	private FunctionNVar getFactor(int factor) {
@@ -1077,7 +1077,7 @@ public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
 			getFactor(factor).mirror((GeoLine) g);
 		}
 		updateCoeffFromExpr();
-		euclidianViewUpdate();
+		euclideanViewUpdate();
 	}
 
 	@Override
@@ -1087,7 +1087,7 @@ public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
 			getFactor(factor).dilate(r, S);
 		}
 		updateCoeffFromExpr();
-		euclidianViewUpdate();
+		euclideanViewUpdate();
 	}
 
 	@Override
@@ -1097,7 +1097,7 @@ public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
 			getFactor(factor).rotate(phi);
 		}
 		updateCoeffFromExpr();
-		euclidianViewUpdate();
+		euclideanViewUpdate();
 	}
 
 	@Override
@@ -1107,7 +1107,7 @@ public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
 			getFactor(factor).rotate(phi, S.getInhomCoords());
 		}
 		updateCoeffFromExpr();
-		euclidianViewUpdate();
+		euclideanViewUpdate();
 	}
 
 	/* mirror about a circle */
@@ -1177,7 +1177,7 @@ public class GeoImplicitCurve extends GeoElement implements EuclidianViewCE,
 			setDefinition(
 					new Equation(kernel, expr, new MyDouble(kernel, 0)).wrap());
 			// for polynomials pluhIn does that
-			euclidianViewUpdate();
+			euclideanViewUpdate();
 		}
 	}
 

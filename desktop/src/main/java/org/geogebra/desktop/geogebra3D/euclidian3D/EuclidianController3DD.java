@@ -10,7 +10,7 @@
 
  */
 
-package org.geogebra.desktop.geogebra3D.euclidian3D;
+package org.geogebra.desktop.geogebra3D.euclidean3D;
 
 import java.awt.Component;
 import java.awt.event.ComponentEvent;
@@ -19,34 +19,34 @@ import java.awt.event.MouseWheelEvent;
 
 import javax.swing.ToolTipManager;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.Hits;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian.event.PointerEventType;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.Hits;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.PointerEventType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
 import org.geogebra.common.kernel.Kernel;
-import org.geogebra.desktop.euclidian.EuclidianControllerListeners;
-import org.geogebra.desktop.euclidian.event.MouseEventD;
+import org.geogebra.desktop.euclidean.euclideanControllerListeners;
+import org.geogebra.desktop.euclidean.event.MouseEventD;
 import org.geogebra.desktop.main.AppD;
 
 /**
- * EuclidianController.java
+ * euclideanController.java
  * 
  * Created on 16. October 2001, 15:41
  */
-public class EuclidianController3DD extends EuclidianController3D
-		implements EuclidianControllerListeners {
+public class euclideanController3DD extends euclideanController3D
+		implements euclideanControllerListeners {
 
 
 	private int defaultInitialDelay;
 
 	/***********************************************
-	 * Creates new EuclidianController
+	 * Creates new euclideanController
 	 * 
 	 * @param kernel
 	 *            Kernel
 	 **********************************************/
-	public EuclidianController3DD(Kernel kernel) {
+	public euclideanController3DD(Kernel kernel) {
 		super(kernel.getApplication());
 		setKernel(kernel);
 
@@ -61,7 +61,7 @@ public class EuclidianController3DD extends EuclidianController3D
 	}
 
 	@Override
-	public void setView(EuclidianView view) {
+	public void setView(euclideanView view) {
 		super.setView(view);
 		setView3D(view);
 	}

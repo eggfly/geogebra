@@ -1,10 +1,10 @@
-package org.geogebra.common.euclidian.plot;
+package org.geogebra.common.euclidean.plot;
 
 import java.util.ArrayList;
 
 import org.apache.commons.math3.util.Cloner;
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.MyPoint;
 import org.geogebra.common.kernel.SegmentType;
@@ -74,7 +74,7 @@ public class CurvePlotterOriginal {
 	 * @param curve
 	 *            curve to be drawn
 	 * @param view
-	 *            Euclidian view to be used
+	 *            euclidean view to be used
 	 * @param gp
 	 *            generalpath that can be drawn afterwards
 	 * @param calcLabelPos
@@ -85,8 +85,8 @@ public class CurvePlotterOriginal {
 	 * @author Markus Hohenwarter, based on an algorithm by John Gillam
 	 */
 	public static GPoint plotCurve(CurveEvaluable curve, double t1,
-			double t2, EuclidianView view, PathPlotter gp, boolean calcLabelPos,
-			org.geogebra.common.euclidian.plot.Gap moveToAllowed) {
+			double t2, euclideanView view, PathPlotter gp, boolean calcLabelPos,
+			org.geogebra.common.euclidean.plot.Gap moveToAllowed) {
 
 		// ensure MIN_PLOT_POINTS
 		double minSamplePoints = Math.max(MIN_SAMPLE_POINTS, view.getWidth() / 6);
@@ -94,7 +94,7 @@ public class CurvePlotterOriginal {
 		// plot Interval [t1, t2]
 		GPoint labelPoint = plotInterval(curve, t1, t2, 0, max_param_step, view,
 				gp, calcLabelPos, moveToAllowed);
-		if (moveToAllowed == org.geogebra.common.euclidian.plot.Gap.CORNER) {
+		if (moveToAllowed == org.geogebra.common.euclidean.plot.Gap.CORNER) {
 			gp.corner();
 		}
 
@@ -117,8 +117,8 @@ public class CurvePlotterOriginal {
 	 */
 	private static GPoint plotInterval(CurveEvaluable curve, double t1,
 			double t2, int intervalDepth, double max_param_step,
-			EuclidianView view, PathPlotter gp, boolean calcLabelPos,
-			org.geogebra.common.euclidian.plot.Gap moveToAllowed) {
+			euclideanView view, PathPlotter gp, boolean calcLabelPos,
+			org.geogebra.common.euclidean.plot.Gap moveToAllowed) {
 		// plot interval for t in [t1, t2]
 		// If we run into a problem, i.e. an undefined point f(t), we bisect
 		// the interval and plot both intervals [left, (left + right)/2] and
@@ -266,7 +266,7 @@ public class CurvePlotterOriginal {
 			// add point to general path: lineTo or moveTo?
 			boolean lineTo = true;
 			// TODO
-			if (moveToAllowed == org.geogebra.common.euclidian.plot.Gap.MOVE_TO) {
+			if (moveToAllowed == org.geogebra.common.euclidean.plot.Gap.MOVE_TO) {
 				if (segOffScreen) {
 					// don't draw segments that are off screen
 					lineTo = false;
@@ -274,7 +274,7 @@ public class CurvePlotterOriginal {
 					// check for DISCONTINUITY
 					lineTo = isContinuous(curve, left, t, MAX_CONTINUITY_BISECTIONS);
 				}
-			} else if (moveToAllowed == org.geogebra.common.euclidian.plot.Gap.CORNER) {
+			} else if (moveToAllowed == org.geogebra.common.euclidean.plot.Gap.CORNER) {
 				gp.corner(eval1);
 			}
 
@@ -364,8 +364,8 @@ public class CurvePlotterOriginal {
 	 */
 	private static GPoint plotProblemInterval(CurveEvaluable curve, double t1,
 			double t2, int intervalDepth, double max_param_step,
-			EuclidianView view, PathPlotter gp, boolean calcLabelPos,
-			org.geogebra.common.euclidian.plot.Gap moveToAllowed, GPoint labelPoint) {
+			euclideanView view, PathPlotter gp, boolean calcLabelPos,
+			org.geogebra.common.euclidean.plot.Gap moveToAllowed, GPoint labelPoint) {
 		boolean calcLabel = calcLabelPos;
 		// stop recursion for too many intervals
 		if (intervalDepth > MAX_PROBLEM_BISECTIONS || t1 == t2) {
@@ -431,7 +431,7 @@ public class CurvePlotterOriginal {
 	 * Returns whether curve is defined for c(t-eps) and c(t + eps).
 	 */
 	private static boolean isContinuousAround(CurveEvaluable curve, double t,
-			double eps, EuclidianView view, double[] evalT) {
+			double eps, euclideanView view, double[] evalT) {
 		// check if c(t) is undefined
 		double[] eval = curve.newDoubleArray();
 

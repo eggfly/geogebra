@@ -1,8 +1,8 @@
 package org.geogebra.web.full.main;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.geos.GeoConic;
 import org.geogebra.web.full.gui.pagecontrolpanel.PageListController;
 import org.geogebra.web.full.gui.pagecontrolpanel.PagePreviewCard;
@@ -204,9 +204,9 @@ public class NotesUndoTest {
 	}
 
 	private void addPenStroke() {
-		app.setMode(EuclidianConstants.MODE_PEN);
-		app.getEuclidianView1().getEuclidianController().wrapMousePressed(evt(50,50));
-		app.getEuclidianView1().getEuclidianController().wrapMouseReleased(evt(150,150));
+		app.setMode(euclideanConstants.MODE_PEN);
+		app.geteuclideanView1().geteuclideanController().wrapMousePressed(evt(50,50));
+		app.geteuclideanView1().geteuclideanController().wrapMouseReleased(evt(150,150));
 	}
 
 	@Test

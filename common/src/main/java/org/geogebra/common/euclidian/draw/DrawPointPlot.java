@@ -1,12 +1,12 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.GeoList;
 import org.geogebra.common.kernel.geos.GeoNumeric;
@@ -54,7 +54,7 @@ public class DrawPointPlot extends Drawable {
 	 * @param drawType
 	 *            type
 	 */
-	public DrawPointPlot(EuclidianView view, GeoList pointList,
+	public DrawPointPlot(euclideanView view, GeoList pointList,
 			DrawType drawType) {
 		this.view = view;
 		this.drawType = drawType;
@@ -75,7 +75,7 @@ public class DrawPointPlot extends Drawable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible()
+		if (!geo.isDefined() || !geo.iseuclideanVisible()
 				|| drawPoints == null) {
 			return null;
 		}
@@ -145,7 +145,7 @@ public class DrawPointPlot extends Drawable {
 	@Override
 	public void update() {
 
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (!isVisible) {
 			return;
 		}

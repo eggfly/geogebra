@@ -92,7 +92,7 @@ public class MyRendererForAlgebraTree extends DefaultTreeCellRenderer {
 			}
 
 			// ICONS
-			if (geo.isEuclidianVisible()) {
+			if (geo.iseuclideanVisible()) {
 				setIcon(getIconShown());
 			} else {
 				setIcon(getIconHidden());

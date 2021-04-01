@@ -70,12 +70,12 @@ public abstract class CopyPaste {
 		ArrayList<GeoElement> tempSelection
 				= new ArrayList<>(selection.getSelectedGeos());
 
-		app.getActiveEuclidianView().getEuclidianController().splitSelectedStrokes(cut);
+		app.getActiveeuclideanView().geteuclideanController().splitSelectedStrokes(cut);
 		app.getCopyPaste().copyToXML(app, selection.getSelectedGeos());
 		if (cut) {
 			app.deleteSelectedObjects(cut);
 		} else {
-			app.getActiveEuclidianView().getEuclidianController().removeSplitParts();
+			app.getActiveeuclideanView().geteuclideanController().removeSplitParts();
 		}
 		app.updateMenubar();
 
@@ -359,30 +359,30 @@ public abstract class CopyPaste {
 			String ll = labels.get(i);
 			geo = kernel.lookupLabel(ll);
 			if (geo != null) {
-				if (app.getActiveEuclidianView() == app.getEuclidianView1()) {
-					app.addToEuclidianView(geo);
-					if (app.hasEuclidianView2(1)) {
-						geo.removeView(App.VIEW_EUCLIDIAN2);
-						app.getEuclidianView2(1).remove(geo);
+				if (app.getActiveeuclideanView() == app.geteuclideanView1()) {
+					app.addToeuclideanView(geo);
+					if (app.haseuclideanView2(1)) {
+						geo.removeView(App.VIEW_euclidean2);
+						app.geteuclideanView2(1).remove(geo);
 					}
-					if (app.isEuclidianView3Dinited()) {
+					if (app.iseuclideanView3Dinited()) {
 						app.removeFromViews3D(geo);
 					}
-				} else if (app.getActiveEuclidianView()
-						.getViewID() == App.VIEW_EUCLIDIAN3D) {
-					app.removeFromEuclidianView(geo);
-					if (app.isEuclidianView3Dinited()) {
+				} else if (app.getActiveeuclideanView()
+						.getViewID() == App.VIEW_euclidean3D) {
+					app.removeFromeuclideanView(geo);
+					if (app.iseuclideanView3Dinited()) {
 						app.addToViews3D(geo);
 					}
-					if (app.hasEuclidianView2(1)) {
-						geo.removeView(App.VIEW_EUCLIDIAN2);
-						app.getEuclidianView2(1).remove(geo);
+					if (app.haseuclideanView2(1)) {
+						geo.removeView(App.VIEW_euclidean2);
+						app.geteuclideanView2(1).remove(geo);
 					}
 				} else {
-					app.removeFromEuclidianView(geo);
-					geo.addView(App.VIEW_EUCLIDIAN2);
-					app.getEuclidianView2(1).add(geo);
-					if (app.isEuclidianView3Dinited()) {
+					app.removeFromeuclideanView(geo);
+					geo.addView(App.VIEW_euclidean2);
+					app.geteuclideanView2(1).add(geo);
+					if (app.iseuclideanView3Dinited()) {
 						app.removeFromViews3D(geo);
 					}
 				}

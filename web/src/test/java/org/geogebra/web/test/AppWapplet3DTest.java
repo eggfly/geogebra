@@ -1,6 +1,6 @@
 package org.geogebra.web.test;
 
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Format;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Format;
 import org.geogebra.common.geogebra3D.kernel3D.commands.CommandDispatcher3D;
 import org.geogebra.common.geogebra3D.kernel3D.commands.CommandDispatcherCommands3D;
 import org.geogebra.common.kernel.Kernel;

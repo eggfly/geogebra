@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 /** interface for drawables that need to be removed explicitly */
 public interface RemoveNeeded {

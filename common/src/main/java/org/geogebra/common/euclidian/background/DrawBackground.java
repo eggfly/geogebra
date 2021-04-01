@@ -1,11 +1,11 @@
-package org.geogebra.common.euclidian.background;
+package org.geogebra.common.euclidean.background;
 
 import org.geogebra.common.awt.GBasicStroke;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.main.settings.euclideanSettings;
 
 /**
  * Helper class for drawing the background
@@ -21,8 +21,8 @@ public class DrawBackground {
 	private static final double SVG_SCALE = 2;
 	private static final double SVG_BASE_WIDTH = 539;
 	private static final double RULING_BASE_WIDTH = 10.5;
-	private EuclidianView view;
-	private EuclidianSettings settings;
+	private euclideanView view;
+	private euclideanSettings settings;
 	private double gap;
 	private GBasicStroke rulerStroke;
 	private double yScale;
@@ -30,13 +30,13 @@ public class DrawBackground {
 
 	/**
 	 * 
-	 * @param euclidianView
+	 * @param euclideanView
 	 *            view
 	 * @param settings
-	 *            euclidian settings
+	 *            euclidean settings
 	 */
-	public DrawBackground(EuclidianView euclidianView, EuclidianSettings settings) {
-		view = euclidianView;
+	public DrawBackground(euclideanView euclideanView, euclideanSettings settings) {
+		view = euclideanView;
 		this.settings = settings;
 	}
 
@@ -47,7 +47,7 @@ public class DrawBackground {
 	 *            graphics
 	 */
 	public void draw(GGraphics2D g2) {
-		rulerStroke = EuclidianStatic.getStroke(settings.isRulerBold() ? 2f : 1f,
+		rulerStroke = euclideanStatic.getStroke(settings.isRulerBold() ? 2f : 1f,
 				settings.getRulerLineStyle());
 		g2.setStroke(rulerStroke);
 		updateRulerGap();
@@ -81,7 +81,7 @@ public class DrawBackground {
 
 	private void drawSVG(GGraphics2D g2) {
 		MyImage svg = view.getSVGBackground();
-		double scale = (view.getYscale() / EuclidianView.SCALE_STANDARD) * SVG_SCALE;
+		double scale = (view.getYscale() / euclideanView.SCALE_STANDARD) * SVG_SCALE;
 		int h = (int) (svg.getHeight() * scale);
 		int y = (int) (view.getYZero() % h);
 		if (y > 0) {

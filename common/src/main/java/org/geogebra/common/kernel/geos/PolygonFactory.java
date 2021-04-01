@@ -81,7 +81,7 @@ public class PolygonFactory {
 			try {
 				cons.replace((GeoElement) points[i], pp);
 				points[i] = pp;
-				// points[i].setEuclidianVisible(false);
+				// points[i].seteuclideanVisible(false);
 				points[i].update();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -180,7 +180,7 @@ public class PolygonFactory {
 			p[i] = kernel.getAlgebraProcessor().evaluateToPoint(sb.toString(), ErrorHelper.silent(),
 					false);
 			p[i].setLabel(null);
-			p[i].setEuclidianVisible(false);
+			p[i].seteuclideanVisible(false);
 			p[i].update();
 
 		}
@@ -285,7 +285,7 @@ public class PolygonFactory {
 			try {
 				(cons).replace((GeoElement) points[i], (GeoElement) pp);
 				points[i] = pp;
-				points[i].setEuclidianVisible(false);
+				points[i].seteuclideanVisible(false);
 				points[i].update();
 			} catch (Exception e) {
 				e.printStackTrace();

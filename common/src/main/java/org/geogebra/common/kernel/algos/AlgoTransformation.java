@@ -194,7 +194,7 @@ public abstract class AlgoTransformation extends AlgoElement {
 	public abstract double getAreaScaleFactor();
 
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 		compute();
 		return true;
 	}

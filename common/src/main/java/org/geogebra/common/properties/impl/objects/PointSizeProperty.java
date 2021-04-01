@@ -4,7 +4,7 @@ import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoList;
 import org.geogebra.common.kernel.geos.PointProperties;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.properties.impl.AbstractRangeProperty;
 import org.geogebra.common.properties.impl.objects.delegate.GeoElementDelegate;
 import org.geogebra.common.properties.impl.objects.delegate.NotApplicablePropertyException;
@@ -37,7 +37,7 @@ public class PointSizeProperty extends AbstractRangeProperty<Integer> {
 		if (element instanceof PointProperties) {
 			return ((PointProperties) element).getPointSize();
 		}
-		return EuclidianStyleConstants.DEFAULT_POINT_SIZE;
+		return euclideanStyleConstants.DEFAULT_POINT_SIZE;
 	}
 
 	private void setSize(GeoElement element, int size) {

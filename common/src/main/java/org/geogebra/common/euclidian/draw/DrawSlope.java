@@ -14,13 +14,13 @@ the Free Software Foundation.
  * DrawSlope: draws the slope triangle for the slope of a line
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.GeneralPathClipped;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.algos.AlgoSlope;
@@ -57,7 +57,7 @@ public class DrawSlope extends Drawable {
 	 * @param slope
 	 *            slope number
 	 */
-	public DrawSlope(EuclidianView view, GeoNumeric slope) {
+	public DrawSlope(euclideanView view, GeoNumeric slope) {
 		this.view = view;
 		kernel = view.getKernel();
 		this.slope = slope;
@@ -77,7 +77,7 @@ public class DrawSlope extends Drawable {
 
 	@Override
 	final public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (isVisible) {
 			if (!geo.getDrawAlgorithm().equals(geo.getParentAlgorithm())) {
 				init();
@@ -208,7 +208,7 @@ public class DrawSlope extends Drawable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible() || gp == null) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible() || gp == null) {
 			return null;
 		}
 		return gp.getBounds();

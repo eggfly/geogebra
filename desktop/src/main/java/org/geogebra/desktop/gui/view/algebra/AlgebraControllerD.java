@@ -37,9 +37,9 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.desktop.gui.util.GeoGebraIconD;
@@ -69,8 +69,8 @@ public class AlgebraControllerD extends AlgebraTreeController
 	protected boolean checkDoubleClick(GeoElement geo, MouseEvent e) {
 		// check double click
 		int clicks = e.getClickCount();
-		// EuclidianView ev = app.getEuclidianView();
-		EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
+		// euclideanView ev = app.geteuclideanView();
+		euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
 		if (clicks == 2) {
 			selection.clearSelectedGeos(true, false);
 			app.updateSelection(false);
@@ -220,18 +220,18 @@ public class AlgebraControllerD extends AlgebraTreeController
 	}
 
 	@Override
-	protected void euclidianViewClick(EuclidianViewInterfaceCommon ev,
+	protected void euclideanViewClick(euclideanViewInterfaceCommon ev,
 			GeoElement geo, MouseEvent e) {
-		// let euclidianView know about the click
-		AbstractEvent event = org.geogebra.desktop.euclidian.event.MouseEventD
+		// let euclideanView know about the click
+		AbstractEvent event = org.geogebra.desktop.euclidean.event.MouseEventD
 				.wrapEvent(e);
 		ev.clickedGeo(geo, app.isControlDown(event));
 		event.release();
 	}
 
 	@Override
-	protected void highlight(EuclidianViewInterfaceCommon ev, GeoElement geo) {
-		if (EuclidianConstants.isMoveOrSelectionMode(ev.getMode())) {
+	protected void highlight(euclideanViewInterfaceCommon ev, GeoElement geo) {
+		if (euclideanConstants.isMoveOrSelectionMode(ev.getMode())) {
 			super.highlight(ev, geo);
 		} else {
 			ev.mouseMovedOver(geo);
@@ -239,9 +239,9 @@ public class AlgebraControllerD extends AlgebraTreeController
 	}
 
 	@Override
-	protected void highlight(EuclidianViewInterfaceCommon ev,
+	protected void highlight(euclideanViewInterfaceCommon ev,
 			ArrayList<GeoElement> geos) {
-		if (EuclidianConstants.isMoveOrSelectionMode(ev.getMode())) {
+		if (euclideanConstants.isMoveOrSelectionMode(ev.getMode())) {
 			super.highlight(ev, geos);
 		} else {
 			ev.mouseMovedOverList(geos);
@@ -251,10 +251,10 @@ public class AlgebraControllerD extends AlgebraTreeController
 	@Override
 	protected boolean leftPressCanSelectGeo(MouseEvent e, GeoElement geo) {
 
-		int mode = app.getActiveEuclidianView().getMode();
-		if ((mode == EuclidianConstants.MODE_MOVE
-				|| mode == EuclidianConstants.MODE_SELECT
-				|| mode == EuclidianConstants.MODE_SELECTION_LISTENER
+		int mode = app.getActiveeuclideanView().getMode();
+		if ((mode == euclideanConstants.MODE_MOVE
+				|| mode == euclideanConstants.MODE_SELECT
+				|| mode == euclideanConstants.MODE_SELECTION_LISTENER
 				|| geo == null) && !AppD.isControlDown(e) && !e.isShiftDown()) {
 			if (!setSelectedGeo(geo)) {
 				return true;
@@ -267,6 +267,6 @@ public class AlgebraControllerD extends AlgebraTreeController
 
 	@Override
 	protected boolean isSelectionModeForClick(int mode) {
-		return mode == EuclidianConstants.MODE_MOVE || mode == EuclidianConstants.MODE_SELECT;
+		return mode == euclideanConstants.MODE_MOVE || mode == euclideanConstants.MODE_SELECT;
 	}
 }

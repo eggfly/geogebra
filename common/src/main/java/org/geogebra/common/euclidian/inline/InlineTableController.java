@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian.inline;
+package org.geogebra.common.euclidean.inline;
 
 import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.draw.HasTextFormat;
+import org.geogebra.common.euclidean.draw.HasTextFormat;
 import org.geogebra.common.kernel.geos.properties.BorderType;
 import org.geogebra.common.kernel.geos.properties.HorizontalAlignment;
 import org.geogebra.common.kernel.geos.properties.VerticalAlignment;

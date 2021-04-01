@@ -18,7 +18,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.kernel.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.Region;
@@ -209,7 +209,7 @@ public class AlgoMirror extends AlgoTransformation implements
 		transformedPoint = new GeoPoint(cons1);
 		compute();
 		if (inGeo.isGeoFunction()) {
-			cons1.registerEuclidianViewCE(this);
+			cons1.registereuclideanViewCE(this);
 		}
 	}
 
@@ -221,11 +221,11 @@ public class AlgoMirror extends AlgoTransformation implements
 	@Override
 	public int getRelatedModeID() {
 		if (mirror.isGeoLine()) {
-			return EuclidianConstants.MODE_MIRROR_AT_LINE;
+			return euclideanConstants.MODE_MIRROR_AT_LINE;
 		} else if (mirror.isGeoPoint()) {
-			return EuclidianConstants.MODE_MIRROR_AT_POINT;
+			return euclideanConstants.MODE_MIRROR_AT_POINT;
 		} else {
-			return EuclidianConstants.MODE_MIRROR_AT_CIRCLE;
+			return euclideanConstants.MODE_MIRROR_AT_CIRCLE;
 		}
 
 	}

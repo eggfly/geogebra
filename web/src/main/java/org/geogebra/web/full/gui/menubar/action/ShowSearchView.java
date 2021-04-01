@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.menubar.action;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.web.full.gui.MyHeaderPanel;
 import org.geogebra.web.full.gui.menubar.DefaultMenuAction;
 import org.geogebra.web.full.main.AppWFull;
@@ -21,7 +21,7 @@ public class ShowSearchView extends DefaultMenuAction<Void> {
 	}
 
 	private void showBrowser(AppWFull app, MyHeaderPanel bg) {
-		EuclidianController evController = app.getActiveEuclidianView().getEuclidianController();
+		euclideanController evController = app.getActiveeuclideanView().geteuclideanController();
 		if (evController != null) {
 			evController.hideDynamicStylebar();
 		}

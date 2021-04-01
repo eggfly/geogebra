@@ -241,7 +241,7 @@ public abstract class AlgoPolyhedron extends AlgoElement3D {
 							// visible
 				for (int i = 0; i < size && !visible && !labelVisible; i++) {
 					visible = visible
-							|| outputPoints.getElement(i).isEuclidianVisible();
+							|| outputPoints.getElement(i).iseuclideanVisible();
 					labelVisible = labelVisible
 							|| outputPoints.getElement(i).getLabelVisible();
 				}
@@ -250,10 +250,10 @@ public abstract class AlgoPolyhedron extends AlgoElement3D {
 				labelVisible = isFirstInputPointLabelVisible();
 			}
 
-			p.setEuclidianVisible(visible);
+			p.seteuclideanVisible(visible);
 			if (!visible) { // if not visible, we don't want
 							// setParentAlgorithm() to change it
-				p.dontSetEuclidianVisibleBySetParentAlgorithm();
+				p.dontSeteuclideanVisibleBySetParentAlgorithm();
 			}
 			p.setLabelVisible(labelVisible);
 			p.setAuxiliaryObject(Auxiliary.YES_DEFAULT);

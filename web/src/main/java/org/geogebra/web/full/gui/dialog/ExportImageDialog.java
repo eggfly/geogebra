@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.web.html5.Browser;
 import org.geogebra.web.html5.gui.util.NoDragImage;
@@ -65,7 +65,7 @@ public class ExportImageDialog extends ComponentDialog {
 		// with scale 1 unit : 1 cm
 		double scaleCM = 1;
 
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 		double viewWidth = ev.getExportWidth();
 		double xScale = ev.getXscale();
 

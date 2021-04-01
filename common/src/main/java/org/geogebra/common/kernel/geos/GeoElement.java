@@ -34,10 +34,10 @@ import javax.annotation.Nullable;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
-import org.geogebra.common.euclidian.draw.CanvasDrawable;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
+import org.geogebra.common.euclidean.draw.CanvasDrawable;
 import org.geogebra.common.factories.FormatFactory;
 import org.geogebra.common.factories.LaTeXFactory;
 import org.geogebra.common.gui.dialog.options.model.AxisModel.IAxisModelListener;
@@ -95,7 +95,7 @@ import org.geogebra.common.main.AppConfig;
 import org.geogebra.common.main.Localization;
 import org.geogebra.common.main.MyError;
 import org.geogebra.common.main.ScreenReader;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.Event;
 import org.geogebra.common.plugin.EventType;
 import org.geogebra.common.plugin.GeoClass;
@@ -158,8 +158,8 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	private boolean labelSet = false;
 
 	private boolean localVarLabelSet = false;
-	private boolean euclidianVisible = true;
-	private boolean forceEuclidianVisible = false;
+	private boolean euclideanVisible = true;
+	private boolean forceeuclideanVisible = false;
 	private boolean algebraVisible = true;
 	private boolean labelVisible = true;
 	private boolean algebraLabelVisible = true;
@@ -252,11 +252,11 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	/**
 	 * note: line thickness in Drawable is calculated as lineThickness / 2.0f
 	 */
-	private int lineThickness = EuclidianStyleConstants.DEFAULT_LINE_THICKNESS;
-	/** line type (full, dashed, ...) see EuclidianStyleConstants.LINE_TYPE */
-	public int lineType = EuclidianStyleConstants.DEFAULT_LINE_TYPE;
+	private int lineThickness = euclideanStyleConstants.DEFAULT_LINE_THICKNESS;
+	/** line type (full, dashed, ...) see euclideanStyleConstants.LINE_TYPE */
+	public int lineType = euclideanStyleConstants.DEFAULT_LINE_TYPE;
 	/** line type for hidden parts (for 3D) */
-	public int lineTypeHidden = EuclidianStyleConstants.DEFAULT_LINE_TYPE_HIDDEN;
+	public int lineTypeHidden = euclideanStyleConstants.DEFAULT_LINE_TYPE_HIDDEN;
 	/** line opacity */
 	protected int lineOpacity = 255;
 
@@ -355,20 +355,20 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 		appConfig = app.getConfig();
 		graphicsadapter = app.newGeoElementGraphicsAdapter();
         algebraOutputFilter = app.getAlgebraOutputFilter();
-		EuclidianViewInterfaceSlim ev  = app.getActiveEuclidianView();
-		if (ev != null && app.getActiveEuclidianView().getViewID() != App.VIEW_EUCLIDIAN) {
+		euclideanViewInterfaceSlim ev  = app.getActiveeuclideanView();
+		if (ev != null && app.getActiveeuclideanView().getViewID() != App.VIEW_euclidean) {
 			initWith(ev);
 		}
 	}
 
-	private void initWith(@Nonnull EuclidianViewInterfaceSlim ev) {
+	private void initWith(@Nonnull euclideanViewInterfaceSlim ev) {
 		viewFlags = new ArrayList<>();
 		viewFlags.add(ev.getViewID());
 
 		// if ev isn't Graphics or Graphics 2, then also add 1st 2D
-		// euclidian view
+		// euclidean view
 		if (!(ev.isDefault2D())) {
-			viewFlags.add(App.VIEW_EUCLIDIAN);
+			viewFlags.add(App.VIEW_euclidean);
 		}
 	}
 
@@ -780,19 +780,19 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	/**
 	 * Set visual style from defaults
 	 * 
-	 * @param setEuclidianVisible
+	 * @param seteuclideanVisible
 	 *            If eucldianVisible should be set
 	 * @param setAuxiliaryProperty
 	 *            if auxiliary property should be set
 	 */
-	final public void setConstructionDefaults(boolean setEuclidianVisible,
+	final public void setConstructionDefaults(boolean seteuclideanVisible,
 			boolean setAuxiliaryProperty) {
 
 		if (useVisualDefaults) {
 			final ConstructionDefaults consDef = cons.getConstructionDefaults();
 			if (consDef != null) {
 				consDef.setDefaultVisualStyles(this, false,
-						setEuclidianVisible, setAuxiliaryProperty);
+						seteuclideanVisible, setAuxiliaryProperty);
 			}
 		}
 	}
@@ -1023,7 +1023,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	 *         because Show/Hide tool selected
 	 */
 	public boolean isHideShowGeo() {
-		return isSelected() && (app.getMode() == EuclidianConstants.MODE_SHOW_HIDE_OBJECT);
+		return isSelected() && (app.getMode() == euclideanConstants.MODE_SHOW_HIDE_OBJECT);
 	}
 
 	/**
@@ -1048,8 +1048,8 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 
 		int oldLayer = this.layer;
 
-		if (newLayer > EuclidianStyleConstants.MAX_LAYERS) {
-			this.layer = EuclidianStyleConstants.MAX_LAYERS;
+		if (newLayer > euclideanStyleConstants.MAX_LAYERS) {
+			this.layer = euclideanStyleConstants.MAX_LAYERS;
 		} else if (newLayer < 0) {
 			this.layer = 0;
 		} else {
@@ -1144,15 +1144,15 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	final public void setAllVisualProperties(final GeoElement geo,
 			final boolean keepAdvanced, final boolean setAuxiliaryProperty) {
 
-		euclidianVisible = geo.euclidianVisible;
+		euclideanVisible = geo.euclideanVisible;
 		visibleInView3D = geo.visibleInView3D;
 		algebraLabelVisible = geo.algebraLabelVisible;
-		setAllVisualPropertiesExceptEuclidianVisible(geo, keepAdvanced,
+		setAllVisualPropertiesExcepteuclideanVisible(geo, keepAdvanced,
 				setAuxiliaryProperty);
 	}
 
 	/**
-	 * Sets all visual values from given GeoElement, EXCEPT euclidianVisible :
+	 * Sets all visual values from given GeoElement, EXCEPT euclideanVisible :
 	 * needed for apply defaults on slider/angle.
 	 * 
 	 * This will also affect tracing, label location and the location of texts
@@ -1165,7 +1165,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	 * @param setAuxiliaryProperty
 	 *            if sets auxiliary property
 	 */
-	public void setAllVisualPropertiesExceptEuclidianVisible(
+	public void setAllVisualPropertiesExcepteuclideanVisible(
 			final GeoElement geo, final boolean keepAdvanced, boolean setAuxiliaryProperty) {
 		if (keepAdvanced) {
 			setVisualStyle(geo, setAuxiliaryProperty);
@@ -1427,38 +1427,38 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 
 	@Override
 	final public boolean isVisible() {
-		return isEuclidianVisible() || isAlgebraVisible();
+		return iseuclideanVisible() || isAlgebraVisible();
 	}
 
 	@Override
-	final public boolean isEuclidianVisible() {
+	final public boolean iseuclideanVisible() {
 
 		// used by DrawPoint to draw parts of intersection objects near the
 		// point
-		if (forceEuclidianVisible) {
+		if (forceeuclideanVisible) {
 			return true;
 		}
 
-		if (!showInEuclidianView()) {
+		if (!showIneuclideanView()) {
 			return false;
 		}
 
 		if (condShowObject == null) {
-			return euclidianVisible;
+			return euclideanVisible;
 		}
 		return condShowObject.getBoolean();
 	}
 
 	@Override
-	public void setEuclidianVisible(final boolean visible) {
-		euclidianVisible = visible;
+	public void seteuclideanVisible(final boolean visible) {
+		euclideanVisible = visible;
 	}
 
 	@Override
-	public void setEuclidianVisibleIfNoConditionToShowObject(
+	public void seteuclideanVisibleIfNoConditionToShowObject(
 			final boolean visible) {
 		if (condShowObject == null) {
-			setEuclidianVisible(visible);
+			seteuclideanVisible(visible);
 		}
 	}
 
@@ -1468,13 +1468,13 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	 * @param visible
 	 *            true to force drawing this in EV
 	 */
-	public void forceEuclidianVisible(final boolean visible) {
-		forceEuclidianVisible = visible;
+	public void forceeuclideanVisible(final boolean visible) {
+		forceeuclideanVisible = visible;
 	}
 
 	@Override
-	public final boolean isSetEuclidianVisible() {
-		return euclidianVisible;
+	public final boolean isSeteuclideanVisible() {
+		return euclideanVisible;
 	}
 
 	@Override
@@ -1650,7 +1650,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	}
 
 	/**
-	 * Returns whether the label can be shown in Euclidian view.
+	 * Returns whether the label can be shown in euclidean view.
 	 * 
 	 * @return true if label can be shown
 	 */
@@ -1806,7 +1806,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	/**
 	 * @return whether this is shown in EV
 	 */
-	protected abstract boolean showInEuclidianView();
+	protected abstract boolean showIneuclideanView();
 
 	@Override
 	public boolean isAlgebraViewEditable() {
@@ -1814,15 +1814,15 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	}
 
 	@Override
-	final public boolean isEuclidianShowable() {
-		return showInEuclidianView();
+	final public boolean iseuclideanShowable() {
+		return showIneuclideanView();
 	}
 
 	/**
-	 * @return true if user can toggle euclidian visibility
+	 * @return true if user can toggle euclidean visibility
 	 */
-	final public boolean isEuclidianToggleable() {
-		return isEuclidianShowable() && getShowObjectCondition() == null
+	final public boolean iseuclideanToggleable() {
+		return iseuclideanShowable() && getShowObjectCondition() == null
 				&& (!isGeoBoolean() || isIndependent());
 	}
 
@@ -1931,13 +1931,13 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	}
 
 	@Override
-	public boolean isMoveable(final EuclidianViewInterfaceSlim view) {
+	public boolean isMoveable(final euclideanViewInterfaceSlim view) {
 		return view.isMoveable(this);
 	}
 
 	@Override
 	public boolean hasMoveableInputPoints(
-			final EuclidianViewInterfaceSlim view) {
+			final euclideanViewInterfaceSlim view) {
 		// allow only moving of certain object types
 		switch (getGeoClassType()) {
 		case CONIC:
@@ -1994,7 +1994,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 
 	@Override
 	public ArrayList<GeoPointND> getFreeInputPoints(
-			final EuclidianViewInterfaceSlim view) {
+			final euclideanViewInterfaceSlim view) {
 		if (algoParent == null) {
 			return null;
 		}
@@ -2007,7 +2007,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	 * @return whether all input points are free in given view
 	 */
 	final public boolean hasOnlyFreeInputPoints(
-			final EuclidianViewInterfaceSlim view) {
+			final euclideanViewInterfaceSlim view) {
 		if (algoParent == null) {
 			return false;
 		}
@@ -2042,7 +2042,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	}
 
 	/**
-	 * Returns whether this GeoElement can be rotated in Euclidian View. Note:
+	 * Returns whether this GeoElement can be rotated in euclidean View. Note:
 	 * this is needed for images
 	 * 
 	 * @return whether this geo can be rotated
@@ -2934,7 +2934,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 		// remove Listeners
 		AlgoElement algo = getParentAlgorithm();
 		if (algo != null) {
-			cons.unregisterEuclidianViewCE(algo);
+			cons.unregistereuclideanViewCE(algo);
 		}
 
 		if (condShowObject != null) {
@@ -4402,7 +4402,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 		sbNameDescriptionHTML.append(indicesToHTML(label1, addHTMLtag));
 
 		if (this instanceof GeoPointND && getKernel().getApplication()
-				.getSettings().getEuclidian(1).axisShown()) {
+				.getSettings().geteuclidean(1).axisShown()) {
 			sbNameDescriptionHTML
 					.append(toValueString(StringTemplate.defaultTemplate));
 		}
@@ -4927,10 +4927,10 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 			setLineThickness(th);
 		} else {
 			if (th > 0) {
-				setEuclidianVisibleIfNoConditionToShowObject(true);
+				seteuclideanVisibleIfNoConditionToShowObject(true);
 				setLineThickness(th);
 			} else {
-				setEuclidianVisibleIfNoConditionToShowObject(false);
+				seteuclideanVisibleIfNoConditionToShowObject(false);
 			}
 		}
 	}
@@ -5236,7 +5236,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	final public boolean doHighlighting() {
 		return (highlighted || selected)
 				&& (!isLocked() || isSelectionAllowed(null))
-				&& (app.getMode() != EuclidianConstants.MODE_SHOW_HIDE_OBJECT);
+				&& (app.getMode() != euclideanConstants.MODE_SHOW_HIDE_OBJECT);
 	}
 
 	/**
@@ -5887,7 +5887,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	@Override
 	public boolean isVisibleInView(final int viewId) {
 		if (viewFlags == null) {
-			return viewId == App.VIEW_EUCLIDIAN;
+			return viewId == App.VIEW_euclidean;
 		}
 		return viewFlags.contains(viewId);
 	}
@@ -5967,7 +5967,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	 */
 	protected boolean isVisibleInView3DNotSet() {
 		if (hasDrawable3D()) {
-			if (isGeoElement3D() || isVisibleInView(App.VIEW_EUCLIDIAN)) {
+			if (isGeoElement3D() || isVisibleInView(App.VIEW_euclidean)) {
 				// visible: we set it
 				visibleInView3D = ExtendedBoolean.TRUE;
 				return true;
@@ -6055,7 +6055,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	 *            view
 	 * @return true if selection is allowed
 	 */
-	public boolean isSelectionAllowed(EuclidianViewInterfaceSlim ev) {
+	public boolean isSelectionAllowed(euclideanViewInterfaceSlim ev) {
 		return selectionAllowed;
 	}
 
@@ -6368,7 +6368,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	protected GeoText getNameGeo() {
 		AlgoName algo = new AlgoName(cons, this);
 		GeoText ret = algo.getGeoText();
-		ret.setEuclidianVisible(false);
+		ret.seteuclideanVisible(false);
 		return ret;
 	}
 
@@ -6392,7 +6392,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 			ret = algo.getGeoText();
 		}
 
-		ret.setEuclidianVisible(false);
+		ret.seteuclideanVisible(false);
 		return ret;
 	}
 
@@ -7042,10 +7042,10 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 			sb.append(loc.getMenuDefault("PressSpaceToRunScript", "Press space to run script"));
 		}
 
-		if (isEuclidianShowable()) {
+		if (iseuclideanShowable()) {
 			if (app.getGuiManager() != null && app.getGuiManager().hasAlgebraView()
 					&& !isGeoInputBox()) {
-				if (isEuclidianVisible()) {
+				if (iseuclideanVisible()) {
 					sb.append(loc.getMenuDefault("PressSlashToHide", "Press / to hide object"));
 				} else {
 					sb.append(loc.getMenuDefault("PressSlashToShow", "Press / to show object"));
@@ -7084,7 +7084,7 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	 *            view
 	 * @return if geo lies completely in view (could be false for a 3D object)
 	 */
-	public boolean isWhollyIn2DView(EuclidianView ev) {
+	public boolean isWhollyIn2DView(euclideanView ev) {
 		return true;
 	}
 
@@ -7158,16 +7158,16 @@ public abstract class GeoElement extends ConstructionElement implements GeoEleme
 	public boolean isVisibleInEV(int i) {
 		switch (i) {
 		case 1:
-			return isVisibleInView(App.VIEW_EUCLIDIAN)
-					&& app.showView(App.VIEW_EUCLIDIAN);
+			return isVisibleInView(App.VIEW_euclidean)
+					&& app.showView(App.VIEW_euclidean);
 
 		case 2:
-			return isVisibleInView(App.VIEW_EUCLIDIAN2)
-					&& app.hasEuclidianView2(1);
+			return isVisibleInView(App.VIEW_euclidean2)
+					&& app.haseuclideanView2(1);
 
 		case 3:
 			return isVisibleInView3D()
-					&& app.isEuclidianView3Dinited();
+					&& app.iseuclideanView3Dinited();
 		}
 		return false;
 	}

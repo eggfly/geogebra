@@ -2,7 +2,7 @@ package org.geogebra.common.geogebra3D.kernel3D.algos;
 
 import java.util.Collection;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPolygon3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPolyhedron;
@@ -398,7 +398,7 @@ public abstract class AlgoPolyhedronNet extends AlgoElement3D {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_NET;
+		return euclideanConstants.MODE_NET;
 	}
 
 }

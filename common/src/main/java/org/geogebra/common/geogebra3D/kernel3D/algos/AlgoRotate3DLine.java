@@ -18,7 +18,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.geogebra3D.kernel3D.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoCurveCartesian3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoSurfaceCartesian3D;
 import org.geogebra.common.kernel.Construction;
@@ -75,7 +75,7 @@ public class AlgoRotate3DLine extends AlgoRotate3D {
 
 	/*
 	 * @Override public int getRelatedModeID() { return
-	 * EuclidianConstants.MODE_ROTATE_BY_ANGLE; }
+	 * euclideanConstants.MODE_ROTATE_BY_ANGLE; }
 	 */
 
 	// for AlgoElement
@@ -141,7 +141,7 @@ public class AlgoRotate3DLine extends AlgoRotate3D {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_ROTATE_AROUND_LINE;
+		return euclideanConstants.MODE_ROTATE_AROUND_LINE;
 	}
 
 	@Override

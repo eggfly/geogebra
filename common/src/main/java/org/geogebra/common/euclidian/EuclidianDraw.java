@@ -1,44 +1,44 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.draw.DrawAudio;
-import org.geogebra.common.euclidian.draw.DrawBarGraph;
-import org.geogebra.common.euclidian.draw.DrawBoolean;
-import org.geogebra.common.euclidian.draw.DrawBoxPlot;
-import org.geogebra.common.euclidian.draw.DrawButton;
-import org.geogebra.common.euclidian.draw.DrawConic;
-import org.geogebra.common.euclidian.draw.DrawConicPart;
-import org.geogebra.common.euclidian.draw.DrawConicSection;
-import org.geogebra.common.euclidian.draw.DrawDropDownList;
-import org.geogebra.common.euclidian.draw.DrawEmbed;
-import org.geogebra.common.euclidian.draw.DrawFormula;
-import org.geogebra.common.euclidian.draw.DrawImage;
-import org.geogebra.common.euclidian.draw.DrawImageResizable;
-import org.geogebra.common.euclidian.draw.DrawImplicitCurve;
-import org.geogebra.common.euclidian.draw.DrawInequality;
-import org.geogebra.common.euclidian.draw.DrawInlineTable;
-import org.geogebra.common.euclidian.draw.DrawInlineText;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
-import org.geogebra.common.euclidian.draw.DrawIntegral;
-import org.geogebra.common.euclidian.draw.DrawIntegralFunctions;
-import org.geogebra.common.euclidian.draw.DrawLine;
-import org.geogebra.common.euclidian.draw.DrawList;
-import org.geogebra.common.euclidian.draw.DrawLocus;
-import org.geogebra.common.euclidian.draw.DrawPieChart;
-import org.geogebra.common.euclidian.draw.DrawPoint;
-import org.geogebra.common.euclidian.draw.DrawPointPlot;
-import org.geogebra.common.euclidian.draw.DrawPolyLine;
-import org.geogebra.common.euclidian.draw.DrawPolygon;
-import org.geogebra.common.euclidian.draw.DrawRay;
-import org.geogebra.common.euclidian.draw.DrawSegment;
-import org.geogebra.common.euclidian.draw.DrawSlider;
-import org.geogebra.common.euclidian.draw.DrawSlope;
-import org.geogebra.common.euclidian.draw.DrawSurface;
-import org.geogebra.common.euclidian.draw.DrawText;
-import org.geogebra.common.euclidian.draw.DrawTurtle;
-import org.geogebra.common.euclidian.draw.DrawUpperLowerSum;
-import org.geogebra.common.euclidian.draw.DrawVector;
-import org.geogebra.common.euclidian.draw.DrawVideo;
+import org.geogebra.common.euclidean.draw.DrawAudio;
+import org.geogebra.common.euclidean.draw.DrawBarGraph;
+import org.geogebra.common.euclidean.draw.DrawBoolean;
+import org.geogebra.common.euclidean.draw.DrawBoxPlot;
+import org.geogebra.common.euclidean.draw.DrawButton;
+import org.geogebra.common.euclidean.draw.DrawConic;
+import org.geogebra.common.euclidean.draw.DrawConicPart;
+import org.geogebra.common.euclidean.draw.DrawConicSection;
+import org.geogebra.common.euclidean.draw.DrawDropDownList;
+import org.geogebra.common.euclidean.draw.DrawEmbed;
+import org.geogebra.common.euclidean.draw.DrawFormula;
+import org.geogebra.common.euclidean.draw.DrawImage;
+import org.geogebra.common.euclidean.draw.DrawImageResizable;
+import org.geogebra.common.euclidean.draw.DrawImplicitCurve;
+import org.geogebra.common.euclidean.draw.DrawInequality;
+import org.geogebra.common.euclidean.draw.DrawInlineTable;
+import org.geogebra.common.euclidean.draw.DrawInlineText;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
+import org.geogebra.common.euclidean.draw.DrawIntegral;
+import org.geogebra.common.euclidean.draw.DrawIntegralFunctions;
+import org.geogebra.common.euclidean.draw.DrawLine;
+import org.geogebra.common.euclidean.draw.DrawList;
+import org.geogebra.common.euclidean.draw.DrawLocus;
+import org.geogebra.common.euclidean.draw.DrawPieChart;
+import org.geogebra.common.euclidean.draw.DrawPoint;
+import org.geogebra.common.euclidean.draw.DrawPointPlot;
+import org.geogebra.common.euclidean.draw.DrawPolyLine;
+import org.geogebra.common.euclidean.draw.DrawPolygon;
+import org.geogebra.common.euclidean.draw.DrawRay;
+import org.geogebra.common.euclidean.draw.DrawSegment;
+import org.geogebra.common.euclidean.draw.DrawSlider;
+import org.geogebra.common.euclidean.draw.DrawSlope;
+import org.geogebra.common.euclidean.draw.DrawSurface;
+import org.geogebra.common.euclidean.draw.DrawText;
+import org.geogebra.common.euclidean.draw.DrawTurtle;
+import org.geogebra.common.euclidean.draw.DrawUpperLowerSum;
+import org.geogebra.common.euclidean.draw.DrawVector;
+import org.geogebra.common.euclidean.draw.DrawVideo;
 import org.geogebra.common.kernel.AlgoCasCellInterface;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.algos.AlgoBarChart;
@@ -86,24 +86,24 @@ import org.geogebra.common.kernel.kernelND.GeoVectorND;
 import org.geogebra.common.kernel.matrix.CoordSys;
 import org.geogebra.common.kernel.statistics.AlgoDotPlot;
 import org.geogebra.common.kernel.statistics.GeoPieChart;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 /**
  * Factory class for drawables
  *
  */
-public class EuclidianDraw {
+public class euclideanDraw {
 	/**
 	 * adds a GeoElement to ev view
 	 * 
 	 * @param ev
-	 *            euclidian view
+	 *            euclidean view
 	 * 
 	 * @param geo
 	 *            GeoElement to be added
 	 * @return drawable for given GeoElement
 	 */
-	public static DrawableND newDrawable(EuclidianView ev, GeoElementND geo) {
+	public static DrawableND newDrawable(euclideanView ev, GeoElementND geo) {
 		DrawableND d = null;
 		switch (geo.getGeoClassType()) {
 		default:
@@ -171,17 +171,17 @@ public class EuclidianDraw {
 		case ANGLE:
 			if (geo.isIndependent()) {
 				// independent number may be shown as slider
-				if (geo.isEuclidianVisible()) {
+				if (geo.iseuclideanVisible()) {
 					// make sure min/max initialized properly on redefinition
 					// eg f(x)=x^2
 					// f = 1
-					geo.setEuclidianVisible(false);
-					geo.setEuclidianVisible(true);
-					geo.setLineType(EuclidianStyleConstants.LINE_TYPE_FULL);
+					geo.seteuclideanVisible(false);
+					geo.seteuclideanVisible(true);
+					geo.setLineType(euclideanStyleConstants.LINE_TYPE_FULL);
 					if (!geo.isColorSet()) {
 						geo.setLineThickness(
 								GeoNumeric.DEFAULT_SLIDER_THICKNESS);
-						geo.setLineType(EuclidianStyleConstants.LINE_TYPE_FULL);
+						geo.setLineType(euclideanStyleConstants.LINE_TYPE_FULL);
 					}
 				}
 				d = new DrawSlider(ev, (GeoNumeric) geo);
@@ -205,13 +205,13 @@ public class EuclidianDraw {
 			AlgoElement algo = geo.getDrawAlgorithm();
 			if (algo == null) {
 				// independent number may be shown as slider
-				if (geo.isEuclidianVisible()) {
+				if (geo.iseuclideanVisible()) {
 					// make sure min/max initialized properly on redefinition
 					// eg f(x)=x^2
 					// f = 1
-					geo.setEuclidianVisible(false);
-					geo.setEuclidianVisible(true);
-					geo.setLineType(EuclidianStyleConstants.LINE_TYPE_FULL);
+					geo.seteuclideanVisible(false);
+					geo.seteuclideanVisible(true);
+					geo.setLineType(euclideanStyleConstants.LINE_TYPE_FULL);
 				}
 				d = new DrawSlider(ev, (GeoNumeric) geo);
 			} else if (algo instanceof AlgoSlope) {
@@ -254,7 +254,7 @@ public class EuclidianDraw {
 						geo.setObjColor(col);
 						geo.setLineThickness(
 								GeoNumeric.DEFAULT_SLIDER_THICKNESS);
-						geo.setLineType(EuclidianStyleConstants.LINE_TYPE_FULL);
+						geo.setLineType(euclideanStyleConstants.LINE_TYPE_FULL);
 					} else {
 						GColor col = consDef
 								.getDefaultGeo(
@@ -362,7 +362,7 @@ public class EuclidianDraw {
 		return d;
 	}
 
-	private static DrawableND createDrawImage(EuclidianView ev, GeoImage geo) {
+	private static DrawableND createDrawImage(euclideanView ev, GeoImage geo) {
 		DrawableND d;
 		if (ev.getApplication().isWhiteboardActive()) {
 			d = new DrawImageResizable(ev, geo);

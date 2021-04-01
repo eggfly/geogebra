@@ -45,16 +45,16 @@ public class CmdSetActiveView extends CmdScripting {
 				default:
 					// do nothing for now
 					// might be needed when support for more than 2
-					// Euclidian Views added
+					// euclidean Views added
 					break;
 				case 1:
-					app.setActiveView(App.VIEW_EUCLIDIAN);
+					app.setActiveView(App.VIEW_euclidean);
 					break;
 				case 2:
-					app.setActiveView(App.VIEW_EUCLIDIAN2);
+					app.setActiveView(App.VIEW_euclidean2);
 					break;
 				case -1:
-					app.setActiveView(App.VIEW_EUCLIDIAN3D);
+					app.setActiveView(App.VIEW_euclidean3D);
 					break;
 				}
 
@@ -70,13 +70,13 @@ public class CmdSetActiveView extends CmdScripting {
 						// do nothing
 						break;
 					case 'G':
-						app.setActiveView(App.VIEW_EUCLIDIAN);
+						app.setActiveView(App.VIEW_euclidean);
 						break;
 					case 'D':
-						app.setActiveView(App.VIEW_EUCLIDIAN2);
+						app.setActiveView(App.VIEW_euclidean2);
 						break;
 					case 'T':
-						app.setActiveView(App.VIEW_EUCLIDIAN3D);
+						app.setActiveView(App.VIEW_euclidean3D);
 						break;
 					case 'S':
 						app.setActiveView(App.VIEW_SPREADSHEET);

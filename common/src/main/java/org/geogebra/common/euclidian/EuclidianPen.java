@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGeneralPath;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.AbstractEvent;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.MyPoint;
@@ -19,7 +19,7 @@ import org.geogebra.common.kernel.geos.GeoPolyLine;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.main.App;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.EventType;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.GTimer;
@@ -32,7 +32,7 @@ import com.google.j2objc.annotations.WeakOuter;
  * Handles pen and freehand tool
  *
  */
-public class EuclidianPen implements GTimerListener {
+public class euclideanPen implements GTimerListener {
 
 	/**
 	 * app
@@ -42,7 +42,7 @@ public class EuclidianPen implements GTimerListener {
 	/**
 	 * view
 	 */
-	protected EuclidianView view;
+	protected euclideanView view;
 
 	/** Polyline that conects stylebar to pen settings */
 	@WeakOuter
@@ -83,14 +83,14 @@ public class EuclidianPen implements GTimerListener {
 	protected final ArrayList<GPoint> previewPoints = new ArrayList<>();
 
 	/************************************************
-	 * Construct EuclidianPen
+	 * Construct euclideanPen
 	 *
 	 * @param app
 	 *            application
 	 * @param view
 	 *            view
 	 */
-	public EuclidianPen(App app, EuclidianView view) {
+	public euclideanPen(App app, euclideanView view) {
 		this.view = view;
 		this.app = app;
 		this.penPreviewLine = view.newPenPreview();
@@ -136,8 +136,8 @@ public class EuclidianPen implements GTimerListener {
 	 * Set default pen color, line style, thickness, eraser size
 	 */
 	public void setDefaults() {
-		penSize = EuclidianConstants.DEFAULT_PEN_SIZE;
-		penLineStyle = EuclidianStyleConstants.LINE_TYPE_FULL;
+		penSize = euclideanConstants.DEFAULT_PEN_SIZE;
+		penLineStyle = euclideanStyleConstants.LINE_TYPE_FULL;
 		penColor = GColor.BLACK;
 		lineOpacity = 85 * 255 / 100;
 	}
@@ -239,7 +239,7 @@ public class EuclidianPen implements GTimerListener {
 	 */
 	public void handleMouseDraggedForPenMode(AbstractEvent e) {
 		if (isErasingEvent(e)) {
-			view.getEuclidianController().getDeleteMode()
+			view.geteuclideanController().getDeleteMode()
 					.handleMouseDraggedForDelete(e, true);
 			app.getKernel().notifyRepaint();
 		} else {
@@ -280,8 +280,8 @@ public class EuclidianPen implements GTimerListener {
 	public void drawStylePreview(GGraphics2D g2D, GColor color, int thickness,
 			int x, int y, int width) {
 		GGeneralPath gp = AwtFactory.getPrototype().newGeneralPath();
-		g2D.setStroke(EuclidianStatic.getStroke(thickness,
-				EuclidianStyleConstants.LINE_TYPE_FULL));
+		g2D.setStroke(euclideanStatic.getStroke(thickness,
+				euclideanStyleConstants.LINE_TYPE_FULL));
 		g2D.setColor(color);
 		gp.reset();
 		gp.moveTo(x, y);
@@ -525,7 +525,7 @@ public class EuclidianPen implements GTimerListener {
 	 * @param g2 graphics
 	 */
 	public void setStyleAndRepaint(GGraphics2D g2) {
-		g2.setStroke(EuclidianStatic.getStroke(getPenSize(),
+		g2.setStroke(euclideanStatic.getStroke(getPenSize(),
 				getPenLineStyle(), GBasicStroke.JOIN_ROUND));
 		g2.setColor(getPenColor());
 		repaintIfNeeded(g2);

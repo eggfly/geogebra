@@ -1,13 +1,13 @@
 package org.geogebra.common.geogebra3D.kernel3D.scripting;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.Command;
 import org.geogebra.common.kernel.commands.CmdScripting;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoNumberValue;
 import org.geogebra.common.main.MyError;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 
 /**
  * ZoomIn
@@ -32,13 +32,13 @@ public class CmdSetSpinSpeed extends CmdScripting {
 			GeoElement[] arg = resArgs(c);
 			if (arg[0] instanceof GeoNumberValue) {
 				GeoNumberValue v = (GeoNumberValue) arg[0];
-				if (!app.isEuclidianView3Dinited()) {
-					EuclidianSettings3D settings = (EuclidianSettings3D) app
-							.getSettings().getEuclidian(3);
+				if (!app.iseuclideanView3Dinited()) {
+					euclideanSettings3D settings = (euclideanSettings3D) app
+							.getSettings().geteuclidean(3);
 					settings.setRotSpeed(v.getDouble() * 0.01);
 				} else {
-					EuclidianView3D view3D = (EuclidianView3D) app
-							.getEuclidianView3D();
+					euclideanView3D view3D = (euclideanView3D) app
+							.geteuclideanView3D();
 
 					view3D.setRotContinueAnimation(0, v.getDouble() * 0.01);
 				}

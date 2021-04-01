@@ -1,7 +1,7 @@
 package org.geogebra.common.properties.impl.graphics;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
 import org.geogebra.common.properties.ActionsEnumerableProperty;
@@ -13,7 +13,7 @@ import org.geogebra.common.properties.PropertyResource;
 public class GraphicsPositionProperty implements ActionsEnumerableProperty {
 
     private Localization localization;
-    private EuclidianView euclidianView;
+    private euclideanView euclideanView;
     private App app;
 
     private PropertyResource[] icons;
@@ -28,32 +28,32 @@ public class GraphicsPositionProperty implements ActionsEnumerableProperty {
     /**
      * Constructs a GraphicsPositionProperty
      *
-     * @param app for access to localization, the EuclidianView, and the app configuration
+     * @param app for access to localization, the euclideanView, and the app configuration
      */
     public GraphicsPositionProperty(final App app) {
         this.app = app;
         this.localization = app.getLocalization();
-        this.euclidianView = app.getActiveEuclidianView();
+        this.euclideanView = app.getActiveeuclideanView();
     }
 
     @Override
     public Runnable[] getActions() {
-        if (euclidianView.isXREnabled()) {
+        if (euclideanView.isXREnabled()) {
             if (callbacksAR == null) {
                 callbacksAR = new Runnable[]{
                         new Runnable() {
                             @Override
                             public void run() {
                                 // restart AR session
-                                EuclidianView3D euclidianView3D = (EuclidianView3D) euclidianView;
-                                euclidianView3D.getRenderer().setARShouldRestart();
+                                euclideanView3D euclideanView3D = (euclideanView3D) euclideanView;
+                                euclideanView3D.getRenderer().setARShouldRestart();
                             }
                         },
                         new Runnable() {
                             @Override
                             public void run() {
-                                EuclidianView3D euclidianView3D = (EuclidianView3D) euclidianView;
-                                euclidianView3D.getRenderer().fitThicknessInAR();
+                                euclideanView3D euclideanView3D = (euclideanView3D) euclideanView;
+                                euclideanView3D.getRenderer().fitThicknessInAR();
                             }
                         }
                 };
@@ -65,14 +65,14 @@ public class GraphicsPositionProperty implements ActionsEnumerableProperty {
                         new Runnable() {
                             @Override
                             public void run() {
-                                euclidianView.setStandardView(true);
+                                euclideanView.setStandardView(true);
                             }
                         },
                         new Runnable() {
                             @Override
                             public void run() {
-                                boolean keepRatio = app.getConfig().shouldKeepRatioEuclidian();
-                                euclidianView.setViewShowAllObjects(true, keepRatio);
+                                boolean keepRatio = app.getConfig().shouldKeepRatioeuclidean();
+                                euclideanView.setViewShowAllObjects(true, keepRatio);
                             }
                         }
                 };
@@ -83,7 +83,7 @@ public class GraphicsPositionProperty implements ActionsEnumerableProperty {
 
     @Override
     public PropertyResource[] getIcons() {
-        if (euclidianView.isXREnabled()) {
+        if (euclideanView.isXREnabled()) {
             if (iconsAR == null) {
                 iconsAR = new PropertyResource[]{
                         PropertyResource.ICON_RELOAD_AR,
@@ -104,7 +104,7 @@ public class GraphicsPositionProperty implements ActionsEnumerableProperty {
 
     @Override
     public String[] getValues() {
-        if (euclidianView.isXREnabled()) {
+        if (euclideanView.isXREnabled()) {
             if (valuesAR == null) {
                 valuesAR = new String[]{
                         "ar.restart",

@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 
@@ -9,13 +9,13 @@ import org.geogebra.common.awt.GFontRenderContext;
 import org.geogebra.common.awt.GGeneralPath;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.font.GTextLayout;
-import org.geogebra.common.euclidian.draw.CanvasDrawable;
+import org.geogebra.common.euclidean.draw.CanvasDrawable;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.arithmetic.ExpressionNode;
 import org.geogebra.common.kernel.geos.GeoElement;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.MyMath;
 import org.geogebra.common.util.StringUtil;
@@ -29,7 +29,7 @@ public class DrawAxis {
 	private static final int CURRENCY_DOLLAR_BATCH = 1000;
 	private static final int CURRENCY_DOLLAR_MOD = 3;
 	/** view */
-	EuclidianView view;
+	euclideanView view;
 	private GGeneralPath gp;
 
 	// used for deciding if there is a number to close for "0" on the x axis
@@ -40,11 +40,11 @@ public class DrawAxis {
 	private boolean firstCallY = true;
 
 	/**
-	 * @param euclidianView
+	 * @param euclideanView
 	 *            view
 	 */
-	public DrawAxis(EuclidianView euclidianView) {
-		this.view = euclidianView;
+	public DrawAxis(euclideanView euclideanView) {
+		this.view = euclideanView;
 	}
 
 	/**
@@ -76,26 +76,26 @@ public class DrawAxis {
 
 		boolean bold = view.areAxesBold();
 		boolean filled = (view.axesLineType
-				& EuclidianStyleConstants.AXES_FILL_ARROWS) != 0;
+				& euclideanStyleConstants.AXES_FILL_ARROWS) != 0;
 
 		if (filled && gp == null) {
 			gp = AwtFactory.getPrototype().newGeneralPath();
 		}
 
 		boolean drawRightArrow = ((view.axesLineType
-				& EuclidianStyleConstants.AXES_RIGHT_ARROW) != 0)
+				& euclideanStyleConstants.AXES_RIGHT_ARROW) != 0)
 				&& !(view.positiveAxes[0]
 						&& (view.getXmax() < view.axisCross[1]));
 		boolean drawTopArrow = ((view.axesLineType
-				& EuclidianStyleConstants.AXES_RIGHT_ARROW) != 0)
+				& euclideanStyleConstants.AXES_RIGHT_ARROW) != 0)
 				&& !(view.positiveAxes[1]
 						&& (view.getYmax() < view.axisCross[0]));
 
 		boolean drawLeftArrow = ((view.axesLineType
-				& EuclidianStyleConstants.AXES_LEFT_ARROW) != 0)
+				& euclideanStyleConstants.AXES_LEFT_ARROW) != 0)
 				&& !(view.positiveAxes[0]);
 		boolean drawBottomArrow = ((view.axesLineType
-				& EuclidianStyleConstants.AXES_LEFT_ARROW) != 0)
+				& euclideanStyleConstants.AXES_LEFT_ARROW) != 0)
 				&& !(view.positiveAxes[1]);
 
 		// AXES_TICK_STYLE_MAJOR_MINOR = 0;
@@ -109,13 +109,13 @@ public class DrawAxis {
 		GFontRenderContext frc = g2.getFontRenderContext();
 
 		if (bold) {
-			view.axesStroke = EuclidianView.boldAxesStroke;
-			view.tickStroke = EuclidianView.boldAxesStroke;
+			view.axesStroke = euclideanView.boldAxesStroke;
+			view.tickStroke = euclideanView.boldAxesStroke;
 
 			arrowSize += 1;
 		} else {
-			view.axesStroke = EuclidianView.defAxesStroke;
-			view.tickStroke = EuclidianView.defAxesStroke;
+			view.axesStroke = euclideanView.defAxesStroke;
+			view.tickStroke = euclideanView.defAxesStroke;
 		}
 
 		// make sure arrows don't go off screen (eg EMF export)
@@ -271,7 +271,7 @@ public class DrawAxis {
 					(int) (5 + layout.getAscent()));
 		} else {
 			g2.setFont(font);
-			EuclidianStatic.drawIndexedString(view.getApplication(), g2,
+			euclideanStatic.drawIndexedString(view.getApplication(), g2,
 					view.axesLabels[1], x,
 					(int) (5 + layout.getAscent()), false, view,
 					view.axesColor);
@@ -306,7 +306,7 @@ public class DrawAxis {
 					y);
 		} else {
 			g2.setFont(font);
-			EuclidianStatic.drawIndexedString(view.getApplication(), g2,
+			euclideanStatic.drawIndexedString(view.getApplication(), g2,
 					view.axesLabels[0],
 					view.getWidth() - 10 - layout.getAdvance(),
 					y, false, view, view.axesColor);
@@ -419,12 +419,12 @@ public class DrawAxis {
 
 		double tickStep = axesStep / 2;
 
-		double maxHeight = EuclidianView
+		double maxHeight = euclideanView
 				.estimateNumberHeight(view.getFontAxes());
 		int unitsPerLabelY = (int) MyMath.nextPrettyNumber(maxHeight / axesStep,
 				1);
 
-		if (pix > (view.getHeight() - EuclidianView.SCREEN_BORDER)) {
+		if (pix > (view.getHeight() - euclideanView.SCREEN_BORDER)) {
 			// big tick
 			if (drawMajorTicks[1]) {
 				g2.setStroke(view.tickStroke);
@@ -437,7 +437,7 @@ public class DrawAxis {
 
 		// draw all of the remaining ticks and labels
 
-		int maxY = EuclidianView.SCREEN_BORDER;
+		int maxY = euclideanView.SCREEN_BORDER;
 		
 		// yAxisEnd
 
@@ -622,7 +622,7 @@ public class DrawAxis {
 					|| view.positiveAxes[0] && view.positiveAxes[1]
 							&& !view.showAxesNumbers[1]
 					|| !view.showAxes[1]) {
-				x = (int) (xCrossPix - (EuclidianView.estimateTextWidth("0",
+				x = (int) (xCrossPix - (euclideanView.estimateTextWidth("0",
 						view.getFontAxes()) / 2));
 			} else {
 				x = (int) ((xCrossPix + xoffset) - width); // left
@@ -745,12 +745,12 @@ public class DrawAxis {
 
 		double tickStep = axisStep / 2;
 
-		double maxHeight = EuclidianView
+		double maxHeight = euclideanView
 				.estimateNumberHeight(view.getFontAxes());
 		int unitsPerLabelY = (int) MyMath.nextPrettyNumber(maxHeight / axisStep,
 				1);
 
-		if (pix > (view.getHeight() - EuclidianView.SCREEN_BORDER)) {
+		if (pix > (view.getHeight() - euclideanView.SCREEN_BORDER)) {
 			// big tick
 			if (drawMajorTicks[1]) {
 				g2.setStroke(view.tickStroke);
@@ -766,7 +766,7 @@ public class DrawAxis {
 		// draw all of the remaining ticks and labels
 
 		// int maxY = height - view.SCREEN_BORDER;
-		int maxY = EuclidianView.SCREEN_BORDER;
+		int maxY = euclideanView.SCREEN_BORDER;
 
 		// yAxisEnd
 
@@ -896,7 +896,7 @@ public class DrawAxis {
 			smallTickOffset = axesStep;
 			labelno = Math.round(rw / view.axesNumberingDistances[0]);
 		}
-		int maxX = view.getWidth() - EuclidianView.SCREEN_BORDER;
+		int maxX = view.getWidth() - euclideanView.SCREEN_BORDER;
 		double pix = view.getXZero() + (rw * view.getXscale());
 
 		double smallTickPix;
@@ -918,7 +918,7 @@ public class DrawAxis {
 		if (view.areAxesBold()) {
 			ySmall2++;
 		}
-		if (pix < EuclidianView.SCREEN_BORDER) {
+		if (pix < euclideanView.SCREEN_BORDER) {
 			// big tick
 			if (drawMajorTicks[0]) {
 				g2.setStroke(view.tickStroke);
@@ -951,14 +951,14 @@ public class DrawAxis {
 							x = (int) (pix + 6);
 						} else {
 							x = (int) ((pix + 1)
-									- (EuclidianView.estimateTextWidth(
+									- (euclideanView.estimateTextWidth(
 											sb.toString(), view.getFontAxes())
 											/ 2));
 						}
 
 						if (labelno == -unitsPerLabelX) {
 							beforeZeroX = (int) ((pix + 1)
-									+ (EuclidianView.estimateTextWidth(
+									+ (euclideanView.estimateTextWidth(
 											sb.toString(), view.getFontAxes())
 											/ 2));
 						}
@@ -1022,7 +1022,7 @@ public class DrawAxis {
 		// tick, exception is for positive only
 		double smallTickOffset = 0;
 
-		int maxX = view.getWidth() - EuclidianView.SCREEN_BORDER;
+		int maxX = view.getWidth() - euclideanView.SCREEN_BORDER;
 
 		double smallTickPix;
 		// TODO use only pretty numbers when zoomed
@@ -1070,7 +1070,7 @@ public class DrawAxis {
 					if (zero && view.showAxes[1] && !view.positiveAxes[1]) {
 						x = (int) (pix + 6);
 					} else {
-						x = (int) ((pix + 1) - (EuclidianView.estimateTextWidth(
+						x = (int) ((pix + 1) - (euclideanView.estimateTextWidth(
 								sb.toString(), view.getFontAxes()) / 2));
 					}
 
@@ -1112,7 +1112,7 @@ public class DrawAxis {
 
 	}
 
-	private static String tickUnit(EuclidianView view, long labelno, int axis) {
+	private static String tickUnit(euclideanView view, long labelno, int axis) {
 		double num = Math.round(100 * labelno * view.axesNumberingDistances[axis]) / 100.0;
 
 		String strNum0 = "";
@@ -1171,7 +1171,7 @@ public class DrawAxis {
 	 *            axis index
 	 * @return description
 	 */
-	public static String tickDescription(EuclidianView view, long labelno,
+	public static String tickDescription(euclideanView view, long labelno,
 			int axis) {
 		if (view.getAxesDistanceObjects()[axis] != null
 				&& !view.isAutomaticAxesNumberingDistance()[axis]
@@ -1195,7 +1195,7 @@ public class DrawAxis {
 	 *            0 for x,1 for y
 	 * @return description
 	 */
-	public static String tickDescriptionLog(EuclidianView view, double num,
+	public static String tickDescriptionLog(euclideanView view, double num,
 			int axis) {
 		return view.kernel.formatPiE(DoubleUtil.checkDecimalFraction(num),
 				view.axesNumberFormat[axis], StringTemplate.defaultTemplate);

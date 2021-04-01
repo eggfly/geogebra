@@ -169,7 +169,7 @@ public abstract class GeoLocusND<T extends MyPoint> extends GeoElement
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return isDefined();
 	}
 

@@ -1,7 +1,7 @@
-package org.geogebra.common.geogebra3D.euclidian3D.animator;
+package org.geogebra.common.geogebra3D.euclidean3D.animator;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.animator.EuclidianView3DAnimator.AnimationType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.animator.euclideanView3DAnimator.AnimationType;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.util.DoubleUtil;
 
@@ -9,7 +9,7 @@ import org.geogebra.common.util.DoubleUtil;
  * animation for rotation
  *
  */
-public class EuclidianView3DAnimationRotation extends EuclidianView3DAnimation {
+public class euclideanView3DAnimationRotation extends euclideanView3DAnimation {
 
 	private double animatedRotTimeStart;
 	private double aOld;
@@ -27,7 +27,7 @@ public class EuclidianView3DAnimationRotation extends EuclidianView3DAnimation {
 	 * @param checkSameValues if we want to check when new values are equal to current
 	 * @param storeUndo if undo should be stored at the end of animation
 	 */
-	EuclidianView3DAnimationRotation(EuclidianView3D view3D, EuclidianView3DAnimator animator,
+	euclideanView3DAnimationRotation(euclideanView3D view3D, euclideanView3DAnimator animator,
 			double aN, double bN, boolean checkSameValues, boolean storeUndo) {
 
 		super(view3D, animator, storeUndo);

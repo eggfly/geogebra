@@ -12,7 +12,7 @@ public class StepPropertyTest extends BaseUnitTest {
 	@Test
 	public void testConstructorSucceeds() {
 		GeoNumeric slider = addAvInput("1");
-		slider.setEuclidianVisible(true);
+		slider.seteuclideanVisible(true);
 		try {
 			new AnimationStepProperty(getKernel().getAlgebraProcessor(), getLocalization(), slider);
 		} catch (NotApplicablePropertyException e) {

@@ -2,8 +2,8 @@ package org.geogebra.web.full.gui.color;
 
 import java.util.List;
 
-import org.geogebra.common.euclidian.EuclidianStyleBarSelection;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.euclideanStyleBarSelection;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.kernel.geos.GProperty;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoInlineText;
@@ -26,7 +26,7 @@ public class BorderTextPopup extends BgColorPopup {
 	 * @param selection selected geos
 	 */
 	public BorderTextPopup(AppW app, int colorSetType,
-			boolean hasSlider, EuclidianStyleBarSelection selection) {
+			boolean hasSlider, euclideanStyleBarSelection selection) {
 		super(app, colorSetType, hasSlider, selection);
 		getMyPopup().addStyleName("borderColPopup");
 		addClickHandler(noBorder);

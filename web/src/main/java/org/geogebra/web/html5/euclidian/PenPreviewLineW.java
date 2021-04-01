@@ -1,10 +1,10 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
 import java.util.List;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.PenPreviewLine;
+import org.geogebra.common.euclidean.PenPreviewLine;
 import org.geogebra.web.html5.awt.GGraphics2DW;
 
 import com.himamis.retex.renderer.web.graphics.JLMContext2d;

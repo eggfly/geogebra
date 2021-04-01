@@ -3,7 +3,7 @@ package org.geogebra.common.gui.view.data;
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.view.data.DataDisplayModel.PlotType;
 import org.geogebra.common.gui.view.data.DataVariable.GroupType;
 import org.geogebra.common.kernel.Kernel;
@@ -26,9 +26,9 @@ public class DataAnalysisModel {
 	private Kernel kernel;
 	private StatGeo statGeo;
 
-	public static final int MODE_ONEVAR = EuclidianConstants.MODE_SPREADSHEET_ONEVARSTATS;
-	public static final int MODE_REGRESSION = EuclidianConstants.MODE_SPREADSHEET_TWOVARSTATS;
-	public static final int MODE_MULTIVAR = EuclidianConstants.MODE_SPREADSHEET_MULTIVARSTATS;
+	public static final int MODE_ONEVAR = euclideanConstants.MODE_SPREADSHEET_ONEVARSTATS;
+	public static final int MODE_REGRESSION = euclideanConstants.MODE_SPREADSHEET_TWOVARSTATS;
+	public static final int MODE_MULTIVAR = euclideanConstants.MODE_SPREADSHEET_MULTIVARSTATS;
 
 	// colors
 	public static final int TABLE_GRID_COLOR_IDX = 0;

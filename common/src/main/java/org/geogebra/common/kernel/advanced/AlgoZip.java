@@ -353,7 +353,7 @@ public class AlgoZip extends AlgoElement {
 				}
 			}
 			listElement.setDrawAlgorithm(algoCopy);
-			listElement.setEuclidianVisible(true);
+			listElement.seteuclideanVisible(true);
 		}
 
 	}

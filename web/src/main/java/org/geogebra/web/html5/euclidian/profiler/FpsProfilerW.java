@@ -1,4 +1,4 @@
-package org.geogebra.web.html5.euclidian.profiler;
+package org.geogebra.web.html5.euclidean.profiler;
 
 import org.geogebra.common.util.profiler.FpsProfiler;
 

@@ -138,7 +138,7 @@ public class UndoManagerD extends UndoManager {
 			is = new FileInputStream(tempFile);
 
 			// make sure objects are displayed in the correct View
-			app.setActiveView(App.VIEW_EUCLIDIAN);
+			app.setActiveView(App.VIEW_euclidean);
 
 			// needed for GGB-517
 			// keep information form listSelectionModel

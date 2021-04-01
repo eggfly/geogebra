@@ -577,7 +577,7 @@ public abstract class AlgoFunctionAreaSums extends AlgoElement
 	}
 
 	@Override
-	final public boolean euclidianViewUpdate() {
+	final public boolean euclideanViewUpdate() {
 		compute(true);
 		return false;
 	}

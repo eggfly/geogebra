@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.toolbar.mow;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.web.full.main.AppWFull;
 import org.geogebra.web.html5.main.AppW;
@@ -155,7 +155,7 @@ public class ToolbarMow extends FlowPanel
 	 */
 	public void setMode(int mode) {
 		if (((AppWFull) appW).getZoomPanelMow() != null
-				&& mode != EuclidianConstants.MODE_TRANSLATEVIEW) {
+				&& mode != euclideanConstants.MODE_TRANSLATEVIEW) {
 			((AppWFull) appW).getZoomPanelMow().getDragPadBtn()
 					.removeStyleName("selected");
 		}

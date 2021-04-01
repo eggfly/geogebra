@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 
@@ -15,15 +15,15 @@ import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
 import org.geogebra.common.main.App;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.StringUtil;
 
 /**
- * Utility class for Euclidian view
+ * Utility class for euclidean view
  *
  * @author gabor
  */
-public class EuclidianStatic {
+public class euclideanStatic {
 	/**
 	 * need to clip just outside the viewing area when drawing eg vectors as a
 	 * near-horizontal thick vector isn't drawn correctly otherwise
@@ -35,7 +35,7 @@ public class EuclidianStatic {
 			.getPrototype().newMyBasicStroke(1.0f);
 	/** stroke for selected geos */
 	protected static final GBasicStroke selStroke = AwtFactory.getPrototype()
-			.newMyBasicStroke(1.0f + EuclidianStyleConstants.SELECTION_ADD);
+			.newMyBasicStroke(1.0f + euclideanStyleConstants.SELECTION_ADD);
 
 	/**
 	 * @return default stroke
@@ -78,7 +78,7 @@ public class EuclidianStatic {
 	 * @param width
 	 *            stroke width
 	 * @param type
-	 *            stroke type (EuclidianStyleConstants.LINE_TYPE_*)
+	 *            stroke type (euclideanStyleConstants.LINE_TYPE_*)
 	 * @return stroke
 	 */
 	public static GBasicStroke getStroke(double width, int type) {
@@ -92,7 +92,7 @@ public class EuclidianStatic {
 	 * @param width
 	 *            stroke width
 	 * @param type
-	 *            stroke type (EuclidianStyleConstants.LINE_TYPE_*)
+	 *            stroke type (euclideanStyleConstants.LINE_TYPE_*)
 	 * @param join
 	 *            join type, se GBasicStroke constants
 	 * @return stroke
@@ -101,26 +101,26 @@ public class EuclidianStatic {
 		double[] dash;
 
 		switch (type) {
-		case EuclidianStyleConstants.LINE_TYPE_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DOTTED:
 			dash = new double[2];
 			dash[0] = width; // dot
 			dash[1] = 3.0; // space
 			break;
 
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_SHORT:
 			dash = new double[2];
 			dash[0] = 4.0 + width;
 			// short dash
 			dash[1] = 4.0; // space
 			break;
 
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_LONG:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_LONG:
 			dash = new double[2];
 			dash[0] = 8.0 + width; // long dash
 			dash[1] = 8.0; // space
 			break;
 
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_DOTTED:
 			dash = new double[4];
 			dash[0] = 8.0 + width; // dash
 			dash[1] = 4.0; // space before dot
@@ -128,7 +128,7 @@ public class EuclidianStatic {
 			dash[3] = dash[1]; // space after dot
 			break;
 
-		default: // EuclidianStyleConstants.LINE_TYPE_FULL
+		default: // euclideanStyleConstants.LINE_TYPE_FULL
 			dash = null;
 		}
 
@@ -423,7 +423,7 @@ public class EuclidianStatic {
 	 * @return additional pixel needed to draw str (x-offset, y-offset)
 	 */
 	public static GPoint drawIndexedString(App app, GGraphics2D g3, String str,
-			double xPos, double yPos, boolean serif, EuclidianView view,
+			double xPos, double yPos, boolean serif, euclideanView view,
 			GColor col) {
 
 		return drawIndexedString(app, g3, str, xPos, yPos, serif, 
@@ -458,7 +458,7 @@ public class EuclidianStatic {
 	 */
 	public static GPoint drawIndexedString(App app, GGraphics2D g3, String str,
 			double xPos, double yPos, boolean serif,
-			boolean doDraw, EuclidianView view, GColor col) {
+			boolean doDraw, euclideanView view, GColor col) {
 
 		GFont g2font = g3.getFont();
 		g2font = app.getFontCanDisplay(str, serif, g2font.getStyle(),
@@ -569,7 +569,7 @@ public class EuclidianStatic {
 
 	}
 
-	private static void drawString(EuclidianView view, GGraphics2D g3,
+	private static void drawString(euclideanView view, GGraphics2D g3,
 			String tempStr, double x, double y, GColor col) {
 		if (view != null) {
 			view.drawStringWithOutline(g3, tempStr, x, y, col);
@@ -705,7 +705,7 @@ public class EuclidianStatic {
 
 				// iOS (bug?) - bold text needs font setting for each line
 				g2.setFont(textFont);
-				GPoint p = EuclidianStatic.drawIndexedString(
+				GPoint p = euclideanStatic.drawIndexedString(
 						app, g2,
 						labelDesc.substring(lineBegin, i), xLabel,
 						yLabel + lines * lineSpread, serif);
@@ -724,7 +724,7 @@ public class EuclidianStatic {
 
 		// iOS (bug?) - bold text needs font setting for each line
 		g2.setFont(textFont);
-		GPoint p = EuclidianStatic.drawIndexedString(app, g2,
+		GPoint p = euclideanStatic.drawIndexedString(app, g2,
 				labelDesc.substring(lineBegin), xLabel, ypos, serif);
 		if (p.x > xoffset) {
 			xoffset = p.x;

@@ -10,7 +10,7 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -20,18 +20,18 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPathIterator;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
-import org.geogebra.common.euclidian.Previewable;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.GeneralPathClipped;
+import org.geogebra.common.euclidean.Previewable;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.geos.GeoPolyLine;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.debug.Log;
 
@@ -59,7 +59,7 @@ public class DrawPolyLine extends Drawable implements Previewable {
 	 * @param poly
 	 *            polyline
 	 */
-	public DrawPolyLine(EuclidianView view, GeoPolyLine poly) {
+	public DrawPolyLine(euclideanView view, GeoPolyLine poly) {
 		this.view = view;
 		this.poly = poly;
 		geo = poly;
@@ -75,7 +75,7 @@ public class DrawPolyLine extends Drawable implements Previewable {
 	 * @param points
 	 *            preview points
 	 */
-	public DrawPolyLine(EuclidianView view,
+	public DrawPolyLine(euclideanView view,
 			ArrayList<? extends GeoPointND> points) {
 		this.view = view;
 		this.points = points;
@@ -88,7 +88,7 @@ public class DrawPolyLine extends Drawable implements Previewable {
 
 	@Override
 	final public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (isVisible) {
 			labelVisible = geo.isLabelVisible();
 			updateStrokes(poly);
@@ -185,8 +185,8 @@ public class DrawPolyLine extends Drawable implements Previewable {
 					// if point was added as start of segment
 					// then remove it
 					if (!pointList.isEmpty() && startPointAdded && view
-							.getEuclidianController()
-							.getMode() != EuclidianConstants.MODE_ERASER) {
+							.geteuclideanController()
+							.getMode() != euclideanConstants.MODE_ERASER) {
 						pointList.remove(pointList.size() - 1);
 						startPointAdded = false;
 					}
@@ -210,7 +210,7 @@ public class DrawPolyLine extends Drawable implements Previewable {
 		// draw single points
 		for (int i = 0; i < pointList.size(); i++) {
 			GPoint2D v = pointList.get(i);
-			if (poly.getLineType() == EuclidianStyleConstants.LINE_TYPE_FULL) {
+			if (poly.getLineType() == euclideanStyleConstants.LINE_TYPE_FULL) {
 				drawEllipse(g2, v);
 			} else {
 				drawRectangle(g2, v);
@@ -248,7 +248,7 @@ public class DrawPolyLine extends Drawable implements Previewable {
 				.deriveWithAlpha(poly.getLineOpacity());
 		g2D.setPaint(lineDrawingColor);
 		g2D.fill(ellipse);
-		g2D.setStroke(EuclidianStatic.getDefaultStroke());
+		g2D.setStroke(euclideanStatic.getDefaultStroke());
 		g2D.draw(AwtFactory.getPrototype().newArea(ellipse));
 	}
 
@@ -263,7 +263,7 @@ public class DrawPolyLine extends Drawable implements Previewable {
 				.deriveWithAlpha(poly.getLineOpacity());
 		g2D.setPaint(lineDrawingColor);
 		g2D.fill(rectangle);
-		g2D.setStroke(EuclidianStatic.getDefaultStroke());
+		g2D.setStroke(euclideanStatic.getDefaultStroke());
 		g2D.draw(AwtFactory.getPrototype().newArea(rectangle));
 	}
 
@@ -291,7 +291,7 @@ public class DrawPolyLine extends Drawable implements Previewable {
 		double yRW = mouseRWy;
 		if (isVisible) {
 			// round angle to nearest 15 degrees if alt pressed
-			if (view.getEuclidianController().isAltDown()) {
+			if (view.geteuclideanController().isAltDown()) {
 				GeoPointND p = points.get(points.size() - 1);
 				double px = p.getInhomX();
 				double py = p.getInhomY();
@@ -310,10 +310,10 @@ public class DrawPolyLine extends Drawable implements Previewable {
 
 				endPoint.setX(xRW);
 				endPoint.setY(yRW);
-				view.getEuclidianController().setLineEndPoint(endPoint);
+				view.geteuclideanController().setLineEndPoint(endPoint);
 				gp.lineTo(mx, my);
 			} else {
-				view.getEuclidianController().setLineEndPoint(null);
+				view.geteuclideanController().setLineEndPoint(null);
 			}
 			gp.lineTo(view.toScreenCoordX(xRW), view.toScreenCoordY(yRW));
 		}
@@ -455,7 +455,7 @@ public class DrawPolyLine extends Drawable implements Previewable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible() || gp == null) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible() || gp == null) {
 			return null;
 		}
 		return gp.getBounds();

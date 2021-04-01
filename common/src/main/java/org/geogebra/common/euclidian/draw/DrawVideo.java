@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.RemoveNeeded;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.RemoveNeeded;
 import org.geogebra.common.kernel.geos.GeoVideo;
 import org.geogebra.common.kernel.geos.GeoWidget;
 import org.geogebra.common.main.App;
@@ -25,11 +25,11 @@ public class DrawVideo extends DrawWidget implements RemoveNeeded {
 
 	/**
 	 * @param view
-	 *            The euclidian view.
+	 *            The euclidean view.
 	 * @param geo
 	 *            The GeoElement that represents the video content.
 	 */
-	public DrawVideo(EuclidianView view, GeoVideo geo) {
+	public DrawVideo(euclideanView view, GeoVideo geo) {
 		super(view, geo, geo.getFormat() != MediaFormat.VIDEO_YOUTUBE);
 		this.video = geo;
 		this.app = geo.getKernel().getApplication();

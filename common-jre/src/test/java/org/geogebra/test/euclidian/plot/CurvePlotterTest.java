@@ -1,13 +1,13 @@
-package org.geogebra.test.euclidian.plot;
+package org.geogebra.test.euclidean.plot;
 
 import static org.junit.Assert.assertEquals;
 
 import org.geogebra.common.BaseUnitTest;
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.plot.CurvePlotter;
-import org.geogebra.common.euclidian.plot.CurvePlotterOriginal;
-import org.geogebra.common.euclidian.plot.Gap;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.plot.CurvePlotter;
+import org.geogebra.common.euclidean.plot.CurvePlotterOriginal;
+import org.geogebra.common.euclidean.plot.Gap;
 import org.geogebra.common.kernel.kernelND.CurveEvaluable;
 import org.junit.Test;
 
@@ -63,7 +63,7 @@ public class CurvePlotterTest extends BaseUnitTest {
 		PathPlotterMock gp = new PathPlotterMock();
 		PathPlotterMock gpExpected = new PathPlotterMock();
 
-		EuclidianView view = getApp().getActiveEuclidianView();
+		euclideanView view = getApp().getActiveeuclideanView();
 		GPoint pointExpected = CurvePlotterOriginal.plotCurve(f, tMin, tMax, view,
 				gpExpected, true, Gap.MOVE_TO);
 

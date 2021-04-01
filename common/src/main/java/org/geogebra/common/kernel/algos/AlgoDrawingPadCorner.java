@@ -16,7 +16,7 @@ package org.geogebra.common.kernel.algos;
 
 import java.util.ConcurrentModificationException;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceSlim;
+import org.geogebra.common.euclidean.euclideanViewInterfaceSlim;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.commands.Commands;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -49,14 +49,14 @@ public class AlgoDrawingPadCorner extends AlgoElement {
 		corner = newGeoPoint(cons);
 		setInputOutput(); // for AlgoElement
 		compute();
-		corner.setEuclidianVisible(false); // hidden by default
+		corner.seteuclideanVisible(false); // hidden by default
 		corner.setLabel(label);
 
 		registerEV(absCorner);
 	}
 
 	private void registerEV(double absCorner) {
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 		Double d = number.getDouble();
 		if (DoubleUtil.isEqual(d, CORNER_VIEW_DIRECTION)
 				|| DoubleUtil.isEqual(d, CORNER_SCREEN_RIGHT)) {
@@ -87,7 +87,7 @@ public class AlgoDrawingPadCorner extends AlgoElement {
 		corner = newGeoPoint(cons);
 		setInputOutput(); // for AlgoElement
 		compute();
-		corner.setEuclidianVisible(false); // hidden by default
+		corner.seteuclideanVisible(false); // hidden by default
 
 		registerEV(absCorner);
 	}
@@ -152,14 +152,14 @@ public class AlgoDrawingPadCorner extends AlgoElement {
 		// x1 = x1 / invXscale + xZero;
 		// x2 = x2 / invXscale + xZero;
 
-		EuclidianViewInterfaceSlim ev;
+		euclideanViewInterfaceSlim ev;
 
 		App app = cons.getApplication();
 
 		if (evNum == null || evNum.getDouble() == 1.0) {
-			ev = app.getEuclidianView1();
+			ev = app.geteuclideanView1();
 		} else {
-			if (!app.hasEuclidianView2(1)) {
+			if (!app.haseuclideanView2(1)) {
 				try {
 					corner.setUndefined();
 				} catch (ConcurrentModificationException e) {
@@ -167,7 +167,7 @@ public class AlgoDrawingPadCorner extends AlgoElement {
 				}
 				return;
 			}
-			ev = app.getEuclidianView2(1);
+			ev = app.geteuclideanView2(1);
 		}
 
 		double xmax = ev.toRealWorldCoordX((double) (ev.getWidth()) + 1);
@@ -194,7 +194,7 @@ public class AlgoDrawingPadCorner extends AlgoElement {
 		case 6: // return size of Window in pixels
 			// (to help with sizing for export to applet)
 			// doesn't work very well as it receives updates only when
-			// EuclidianView is changed
+			// euclideanView is changed
 			corner.setCoords(app.getWidth(), app.getHeight(), 1.0);
 
 			break;
@@ -205,7 +205,7 @@ public class AlgoDrawingPadCorner extends AlgoElement {
 	}
 
 	@Override
-	public final boolean euclidianViewUpdate() {
+	public final boolean euclideanViewUpdate() {
 		compute();
 
 		// update output:

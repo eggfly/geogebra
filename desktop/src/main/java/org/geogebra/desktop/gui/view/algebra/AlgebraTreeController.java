@@ -10,8 +10,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.gui.view.algebra.AlgebraController;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.GProperty;
@@ -70,7 +70,7 @@ public class AlgebraTreeController extends AlgebraController
 	/**
 	 * 
 	 * @param mode
-	 *            euclidian controller mode
+	 *            euclidean controller mode
 	 * @return true if the mode is a mode for selection
 	 */
 	protected boolean isSelectionModeForClick(int mode) {
@@ -116,7 +116,7 @@ public class AlgebraTreeController extends AlgebraController
 																			// border
 			if (iconClicked) {
 				// icon clicked: toggle show/hide
-				geo.setEuclidianVisible(!geo.isSetEuclidianVisible());
+				geo.seteuclideanVisible(!geo.isSeteuclideanVisible());
 				geo.updateVisualStyle(GProperty.VISIBLE);
 				app.storeUndoInfo();
 				kernel.notifyRepaint();
@@ -133,7 +133,7 @@ public class AlgebraTreeController extends AlgebraController
 			return;
 		}
 
-		EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
+		euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
 		int mode = ev.getMode();
 		if (!skipSelection && isSelectionModeForClick(mode)) {
 			// update selection
@@ -169,8 +169,8 @@ public class AlgebraTreeController extends AlgebraController
 					lastSelectedGeo = geo;
 				}
 			}
-		} else if (mode != EuclidianConstants.MODE_SELECTION_LISTENER) {
-			euclidianViewClick(ev, geo, e);
+		} else if (mode != euclideanConstants.MODE_SELECTION_LISTENER) {
+			euclideanViewClick(ev, geo, e);
 		} else {
 			// tell selection listener about click
 			app.geoElementSelected(geo, false);
@@ -187,16 +187,16 @@ public class AlgebraTreeController extends AlgebraController
 	}
 
 	/**
-	 * let euclidianView know about the click
+	 * let euclideanView know about the click
 	 * 
 	 * @param ev
-	 *            euclidian view
+	 *            euclidean view
 	 * @param geo
 	 *            geo clicked
 	 * @param e
 	 *            mouse event
 	 */
-	protected void euclidianViewClick(EuclidianViewInterfaceCommon ev,
+	protected void euclideanViewClick(euclideanViewInterfaceCommon ev,
 			GeoElement geo, MouseEvent e) {
 		setSelectedGeo(geo);
 	}
@@ -390,7 +390,7 @@ public class AlgebraTreeController extends AlgebraController
 
 	@Override
 	public void mouseExited(MouseEvent p1) {
-		highlight(app.getActiveEuclidianView(), (GeoElement) null);
+		highlight(app.getActiveeuclideanView(), (GeoElement) null);
 	}
 
 	private boolean draggingOccured = false;
@@ -399,7 +399,7 @@ public class AlgebraTreeController extends AlgebraController
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// used for interactive boards
-		if (System.currentTimeMillis() > EuclidianConstants.DRAGGING_DELAY
+		if (System.currentTimeMillis() > euclideanConstants.DRAGGING_DELAY
 				+ lastMousePressedTime) {
 			draggingOccured = true;
 		}
@@ -413,7 +413,7 @@ public class AlgebraTreeController extends AlgebraController
 		return false;
 	}
 
-	// tell EuclidianView
+	// tell euclideanView
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		if (viewIsEditing()) {
@@ -425,9 +425,9 @@ public class AlgebraTreeController extends AlgebraController
 
 		GeoElement geo = AlgebraTree.getGeoElementForLocation(tree, x, y);
 
-		// tell EuclidianView to handle mouse over
-		// EuclidianView ev = app.getEuclidianView();
-		EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
+		// tell euclideanView to handle mouse over
+		// euclideanView ev = app.geteuclideanView();
+		euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
 		// ev.mouseMovedOver(geo,true);
 
 		highlight(ev, geo);
@@ -460,26 +460,26 @@ public class AlgebraTreeController extends AlgebraController
 	}
 
 	/**
-	 * highlight this geo using euclidian view
+	 * highlight this geo using euclidean view
 	 * 
 	 * @param ev
-	 *            euclidian view
+	 *            euclidean view
 	 * @param geo
 	 *            geo
 	 */
-	protected void highlight(EuclidianViewInterfaceCommon ev, GeoElement geo) {
+	protected void highlight(euclideanViewInterfaceCommon ev, GeoElement geo) {
 		ev.highlight(geo);
 	}
 
 	/**
-	 * highlight these geos using euclidian view
+	 * highlight these geos using euclidean view
 	 * 
 	 * @param ev
-	 *            euclidian view
+	 *            euclidean view
 	 * @param geos
 	 *            geos
 	 */
-	protected void highlight(EuclidianViewInterfaceCommon ev,
+	protected void highlight(euclideanViewInterfaceCommon ev,
 			ArrayList<GeoElement> geos) {
 		ev.highlight(geos);
 	}

@@ -19,7 +19,7 @@
  * https://javagraphics.dev.java.net/
  */
 
-package org.geogebra.common.euclidian.clipping;
+package org.geogebra.common.euclidean.clipping;
 
 import java.util.Arrays;
 import java.util.Stack;

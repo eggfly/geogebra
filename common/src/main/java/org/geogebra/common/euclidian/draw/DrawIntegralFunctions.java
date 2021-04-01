@@ -10,15 +10,15 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.plot.CurvePlotter;
-import org.geogebra.common.euclidian.plot.Gap;
-import org.geogebra.common.euclidian.plot.GeneralPathClippedForCurvePlotter;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.plot.CurvePlotter;
+import org.geogebra.common.euclidean.plot.Gap;
+import org.geogebra.common.euclidean.plot.GeneralPathClippedForCurvePlotter;
 import org.geogebra.common.kernel.AlgoCasCellInterface;
 import org.geogebra.common.kernel.arithmetic.Command;
 import org.geogebra.common.kernel.arithmetic.NumberValue;
@@ -55,7 +55,7 @@ public class DrawIntegralFunctions extends DrawFunctionArea {
 	 * @param casObject
 	 *            true if n was created from a GeoCasCell
 	 */
-	public DrawIntegralFunctions(EuclidianView view, GeoNumeric n,
+	public DrawIntegralFunctions(euclideanView view, GeoNumeric n,
 			boolean casObject) {
 		this.view = view;
 		this.n = n;
@@ -95,7 +95,7 @@ public class DrawIntegralFunctions extends DrawFunctionArea {
 
 	@Override
 	final public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (!isVisible) {
 			return;
 		}
@@ -110,10 +110,10 @@ public class DrawIntegralFunctions extends DrawFunctionArea {
 		double aRW = Math.min(a.getDouble(), b.getDouble());
 		double bRW = Math.max(a.getDouble(), b.getDouble());
 
-		double clipX = view.toRealWorldCoordX(EuclidianStatic.CLIP_DISTANCE)
+		double clipX = view.toRealWorldCoordX(euclideanStatic.CLIP_DISTANCE)
 				- view.toRealWorldCoordX(0);
 		// double clipY = view.toRealWorldCoordY(0)
-		// - view.toRealWorldCoordY(EuclidianStatic.CLIP_DISTANCE);
+		// - view.toRealWorldCoordY(euclideanStatic.CLIP_DISTANCE);
 
 		// for DrawParametricCurve.plotCurve to work with special values,
 		// these changes are needed (also filter out out of screen integrals)
@@ -210,7 +210,7 @@ public class DrawIntegralFunctions extends DrawFunctionArea {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible() || gp == null) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible() || gp == null) {
 			return null;
 		}
 		return gp.getBounds();

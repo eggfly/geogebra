@@ -1,37 +1,37 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.kernel.Kernel;
 
 /**
- * Hosts the euclidian views.
+ * Hosts the euclidean views.
  */
-public interface EuclidianHost {
+public interface euclideanHost {
 
 	/**
-	 * @return euclidian view; if not present yet, new one is created
+	 * @return euclidean view; if not present yet, new one is created
 	 */
-	EuclidianView createEuclidianView();
+	euclideanView createeuclideanView();
 
 	/**
-	 * @return active euclidian view (may be EV, EV2 or 3D)
+	 * @return active euclidean view (may be EV, EV2 or 3D)
 	 */
-	EuclidianView getActiveEuclidianView();
+	euclideanView getActiveeuclideanView();
 
 	/**
 	 * @return whether EV2 was initialized
 	 */
-	boolean hasEuclidianView2EitherShowingOrNot(int idx);
+	boolean haseuclideanView2EitherShowingOrNot(int idx);
 
 	/**
 	 * @return whether EV2 is visible
 	 */
-	boolean isShowingEuclidianView2(int idx);
+	boolean isShowingeuclideanView2(int idx);
 
 	/**
 	 * @param kernel kernel
-	 * @return euclidian controller
+	 * @return euclidean controller
 	 */
-	EuclidianController newEuclidianController(Kernel kernel);
+	euclideanController neweuclideanController(Kernel kernel);
 
 	/**
 	 * @return DrawEquation instance

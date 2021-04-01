@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.TreeSet;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.gui.dialog.handler.ColorChangeHandler;
 import org.geogebra.common.gui.dialog.options.model.AbsoluteScreenLocationModel;
 import org.geogebra.common.gui.dialog.options.model.AngleArcSizeModel;
@@ -792,7 +792,7 @@ public class OptionsTab extends FlowPanel {
 
 			thicknessSlider = new SliderPanel(1,
 					app.isWhiteboardActive()
-							? 2 * EuclidianConstants.MAX_PEN_HIGHLIGHTER_SIZE
+							? 2 * euclideanConstants.MAX_PEN_HIGHLIGHTER_SIZE
 							: GeoElement.MAX_LINE_WIDTH);
 			thicknessSlider.setTickSpacing(1);
 			// slider.setSnapToTicks(true);

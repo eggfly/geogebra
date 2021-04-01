@@ -22,7 +22,7 @@ public class GeoTabber implements MayHaveFocus {
 			selected = app.getSelectionManager().selectNextGeo();
 		}
 		if (selected) {
-			app.getActiveEuclidianView().requestFocus();
+			app.getActiveeuclideanView().requestFocus();
 		}
 		return selected;
 	}

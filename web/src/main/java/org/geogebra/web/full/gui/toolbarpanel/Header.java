@@ -1,7 +1,7 @@
 package org.geogebra.web.full.gui.toolbarpanel;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.AccessibilityGroup;
 import org.geogebra.common.io.layout.DockPanelData.TabIds;
 import org.geogebra.common.io.layout.PerspectiveDecoder;
@@ -522,7 +522,7 @@ class Header extends FlowPanel implements KeyDownHandler {
 	 * update position of undo+redo panel
 	 */
 	public void updateUndoRedoPosition() {
-		final EuclidianView ev = app.getActiveEuclidianView();
+		final euclideanView ev = app.getActiveeuclideanView();
 		if (ev != null && undoRedoPanel != null) {
 			double evTop = (ev.getAbsoluteTop() - (int) app.getAbsTop())
 					/ app.getGeoGebraElement().getScaleY();

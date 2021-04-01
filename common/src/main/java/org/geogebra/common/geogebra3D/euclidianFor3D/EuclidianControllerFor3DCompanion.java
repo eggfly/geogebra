@@ -1,7 +1,7 @@
-package org.geogebra.common.geogebra3D.euclidianFor3D;
+package org.geogebra.common.geogebra3D.euclideanFor3D;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianControllerCompanion;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanControllerCompanion;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoJoinPoints3D;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoMidpoint3D;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoPolarLine3D;
@@ -29,14 +29,14 @@ import org.geogebra.common.plugin.GeoClass;
  * 3D controller companion
  *
  */
-public class EuclidianControllerFor3DCompanion
-		extends EuclidianControllerCompanion {
+public class euclideanControllerFor3DCompanion
+		extends euclideanControllerCompanion {
 
 	/**
 	 * @param ec
 	 *            3D controller
 	 */
-	public EuclidianControllerFor3DCompanion(EuclidianController ec) {
+	public euclideanControllerFor3DCompanion(euclideanController ec) {
 		super(ec);
 	}
 

@@ -1,15 +1,15 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D.Type;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Geometry3DGetterManager;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D.Type;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Geometry3DGetterManager;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.CoordMatrixUtil;
@@ -42,7 +42,7 @@ public abstract class DrawJoinPoints extends Drawable3DCurves
 	 * @param geo
 	 *            line
 	 */
-	public DrawJoinPoints(EuclidianView3D a_view3D, GeoElement geo) {
+	public DrawJoinPoints(euclideanView3D a_view3D, GeoElement geo) {
 
 		super(a_view3D, geo);
 	}
@@ -53,7 +53,7 @@ public abstract class DrawJoinPoints extends Drawable3DCurves
 	 * @param a_view3d
 	 *            view
 	 */
-	public DrawJoinPoints(EuclidianView3D a_view3d) {
+	public DrawJoinPoints(euclideanView3D a_view3d) {
 		super(a_view3d);
 	}
 
@@ -250,7 +250,7 @@ public abstract class DrawJoinPoints extends Drawable3DCurves
 	 * @param geo
 	 *            line
 	 */
-	public DrawJoinPoints(EuclidianView3D a_view3D,
+	public DrawJoinPoints(euclideanView3D a_view3D,
 			ArrayList<GeoPointND> selectedPoints,
 			GeoElement geo) {
 
@@ -282,21 +282,21 @@ public abstract class DrawJoinPoints extends Drawable3DCurves
 			GeoPointND firstPoint = selectedPoints.get(0);
 			GeoPointND secondPoint = selectedPoints.get(1);
 			setPreviewableCoords(firstPoint, secondPoint);
-			getGeoElement().setEuclidianVisible(true);
+			getGeoElement().seteuclideanVisible(true);
 			// setWaitForUpdate();
 		} else if (selectedPoints.size() == 1) {
 			GeoPointND firstPoint = selectedPoints.get(0);
 			GeoPointND secondPoint = getView3D().getCursor3D();
 			setPreviewableCoords(firstPoint, secondPoint);
-			getGeoElement().setEuclidianVisible(true);
+			getGeoElement().seteuclideanVisible(true);
 			// setWaitForUpdate();
 		} else {
-			getGeoElement().setEuclidianVisible(false);
+			getGeoElement().seteuclideanVisible(false);
 			// setWaitForUpdate();
 		}
 
 		// Application.debug("selectedPoints : "+selectedPoints+" --
-		// isEuclidianVisible : "+getGeoElement().isEuclidianVisible());
+		// iseuclideanVisible : "+getGeoElement().iseuclideanVisible());
 
 		setWaitForUpdate();
 	}

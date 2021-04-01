@@ -1,9 +1,9 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 /**
  * Cursor types for web and desktop
  */
-public enum EuclidianCursor {
+public enum euclideanCursor {
 	/** Hit (arrow) */
 	HIT,
 	/** Cross */

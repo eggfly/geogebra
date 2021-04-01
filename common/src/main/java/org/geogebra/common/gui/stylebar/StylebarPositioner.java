@@ -8,11 +8,11 @@ import javax.annotation.Nullable;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GRectangle2D;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.draw.DrawLine;
-import org.geogebra.common.euclidian.draw.DrawPoint;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.draw.DrawLine;
+import org.geogebra.common.euclidean.draw.DrawPoint;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoFunction;
@@ -31,10 +31,10 @@ public class StylebarPositioner {
 	@Weak
 	private final App app;
 	/**
-	 * euclidian view
+	 * euclidean view
 	 */
 	@Weak
-	protected final EuclidianView euclidianView;
+	protected final euclideanView euclideanView;
 	@Weak
 	private final SelectionManager selectionManager;
 	private boolean center;
@@ -45,7 +45,7 @@ public class StylebarPositioner {
 	 */
 	public StylebarPositioner(App app) {
 		this.app = app;
-		euclidianView = app.getActiveEuclidianView();
+		euclideanView = app.getActiveeuclideanView();
 		selectionManager = app.getSelectionManager();
 	}
 
@@ -68,7 +68,7 @@ public class StylebarPositioner {
 
 	private boolean hasVisibleGeosInHits(List<GeoElement> geoList) {
 		for (GeoElement geo : geoList) {
-			if (isVisible(geo) && euclidianView.getHits().contains(geo)) {
+			if (isVisible(geo) && euclideanView.getHits().contains(geo)) {
 				return true;
 			}
 		}
@@ -76,15 +76,15 @@ public class StylebarPositioner {
 	}
 
 	private boolean isVisible(GeoElement geo) {
-		return geo.isVisibleInView(euclidianView.getViewID())
-				&& geo.isEuclidianVisible() && !geo.isAxis();
+		return geo.isVisibleInView(euclideanView.getViewID())
+				&& geo.iseuclideanVisible() && !geo.isAxis();
 	}
 
 	private List<GeoElement> createActiveGeoList() {
 		List<GeoElement> selectedGeos = selectionManager.getSelectedGeos();
-		List<GeoElement> justCreatedGeos = euclidianView
-				.getEuclidianController().getJustCreatedGeos();
-		boolean selectedGeosVisible = euclidianView.checkHitForStylebar()
+		List<GeoElement> justCreatedGeos = euclideanView
+				.geteuclideanController().getJustCreatedGeos();
+		boolean selectedGeosVisible = euclideanView.checkHitForStylebar()
 				? hasVisibleGeosInHits(selectedGeos)
 				: hasVisibleGeos(selectedGeos);
 		if (selectedGeosVisible || hasVisibleGeos(justCreatedGeos)) {
@@ -113,7 +113,7 @@ public class StylebarPositioner {
 
 		if (functionOrLine) {
 			GPoint mouseLoc;
-			mouseLoc = euclidianView.getEuclidianController().getMouseLoc();
+			mouseLoc = euclideanView.geteuclideanController().getMouseLoc();
 			if (mouseLoc == null) {
 				return null;
 			}
@@ -143,7 +143,7 @@ public class StylebarPositioner {
 
 		double left;
 		if (functionOrLine) {
-		    left = euclidianView.getEuclidianController().getMouseLoc().x + MARGIN;
+		    left = euclideanView.geteuclideanController().getMouseLoc().x + MARGIN;
 		} else {
 			if (isPoint) {
 				left = center
@@ -161,7 +161,7 @@ public class StylebarPositioner {
 	}
 
 	/**
-	 * Calculates the position of the dynamic stylebar on the EuclidianView
+	 * Calculates the position of the dynamic stylebar on the euclideanView
 	 * 
 	 * @param stylebarHeight
 	 *            The height of the stylebar.
@@ -185,7 +185,7 @@ public class StylebarPositioner {
 	}
 
 	/**
-	 * Calculates the position of the dynamic stylebar on the EuclidianView
+	 * Calculates the position of the dynamic stylebar on the euclideanView
 	 * 
 	 * @param stylebarHeight
 	 *            The height of the stylebar.
@@ -218,16 +218,16 @@ public class StylebarPositioner {
 	}
 
 	/**
-	 * Calculates the position of the dynamic stylebar on the EuclidianView
+	 * Calculates the position of the dynamic stylebar on the euclideanView
 	 * 
 	 * @param stylebarHeight
 	 *            The height of the stylebar.
 	 * @param stylebarWidth
 	 *            The width of the stylebar.
 	 * @param canvasRect
-	 *            The rectangle on the euclidian view where the top-left corner
+	 *            The rectangle on the euclidean view where the top-left corner
 	 *            of the stylebar is allowed to be. If the whole stylebar should
-	 *            be on the euclidian view then the width and the height of the
+	 *            be on the euclidean view then the width and the height of the
 	 *            stylebar should be already subtracted from the rectangle's
 	 *            dimensions.
 	 * @return Returns a GPoint which contains the x and y coordinates for the
@@ -251,7 +251,7 @@ public class StylebarPositioner {
 		}
 
 		GeoElement geo = activeGeoList.get(0);
-		if (geo.isEuclidianVisible()) {
+		if (geo.iseuclideanVisible()) {
 			if (geo instanceof GeoFunction) {
 				return getPositionForFunction(geo, stylebarHeight,
 						stylebarWidth, canvasRect);
@@ -306,7 +306,7 @@ public class StylebarPositioner {
 				.getSelectedPreviewPoints();
 		if (visiblePreviewPoints != null && !visiblePreviewPoints.isEmpty()) {
 			for (GeoElement previewPoint : visiblePreviewPoints) {
-				if (euclidianView.getHits().contains(previewPoint)) {
+				if (euclideanView.getHits().contains(previewPoint)) {
 					return previewPoint;
 				}
 			}
@@ -328,7 +328,7 @@ public class StylebarPositioner {
 	@SuppressWarnings("WeakerAccess")
 	public GPoint getPositionFor(GeoElement geo, int stylebarHeight,
 			int stylebarWidth, GRectangle canvasRect) {
-		DrawableND dr = euclidianView.getDrawableND(geo);
+		DrawableND dr = euclideanView.getDrawableND(geo);
 		if (dr != null) {
 			return getStylebarPositionForDrawable(
 					dr.getBoundsForStylebarPosition(),
@@ -341,7 +341,7 @@ public class StylebarPositioner {
 
 	private GPoint getPositionForFunction(GeoElement geo, int stylebarHeight,
 			int stylebarWidth, GRectangle canvasRect) {
-		if (euclidianView.getHits().contains(geo)) {
+		if (euclideanView.getHits().contains(geo)) {
 			return getStylebarPositionForDrawable(null, true, false,
 					true, stylebarHeight, stylebarWidth, canvasRect);
 		} else {
@@ -349,8 +349,8 @@ public class StylebarPositioner {
 			// function, and then
 			// the user select another geo (e.g. a point). Then we still want to
 			// show style bar.
-			if (app.getMode() == EuclidianConstants.MODE_SELECT) {
-				DrawableND dr = euclidianView.getDrawableND(geo);
+			if (app.getMode() == euclideanConstants.MODE_SELECT) {
+				DrawableND dr = euclideanView.getDrawableND(geo);
 				if (dr != null) {
 					return getStylebarPositionForDrawable(
 							dr.getBoundsForStylebarPosition(),

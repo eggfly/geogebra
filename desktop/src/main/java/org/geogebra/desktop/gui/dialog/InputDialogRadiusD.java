@@ -71,8 +71,8 @@ public abstract class InputDialogRadiusD extends InputDialogD {
 											.getNum());
 							GeoElement[] geos = { circle };
 							app.storeUndoInfoAndStateForModeStarting();
-							kernel.getApplication().getActiveEuclidianView()
-									.getEuclidianController()
+							kernel.getApplication().getActiveeuclideanView()
+									.geteuclideanController()
 									.memorizeJustCreatedGeos(geos);
 						}
 						setVisibleForTools(!ok);

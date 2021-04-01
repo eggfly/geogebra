@@ -76,7 +76,7 @@ public class DataDisplayPanelD extends JPanel implements ActionListener,
 	// display panels
 	private JPanel displayCardPanel;
 	private JPanel metaPlotPanel, plotPanelNorth, plotPanelSouth;
-	private PlotPanelEuclidianViewD plotPanel;
+	private PlotPaneleuclideanViewD plotPanel;
 
 	private JLabel imageContainer;
 
@@ -220,7 +220,7 @@ public class DataDisplayPanelD extends JPanel implements ActionListener,
 					loc.borderEast());
 		}
 
-		plotPanel = new PlotPanelEuclidianViewD(app.getKernel(),
+		plotPanel = new PlotPaneleuclideanViewD(app.getKernel(),
 				exportToEVAction);
 
 		plotPanelNorth = new JPanel();
@@ -661,11 +661,11 @@ public class DataDisplayPanelD extends JPanel implements ActionListener,
 
 	/**
 	 * Action to export all GeoElements that are currently displayed in this
-	 * panel to a EuclidianView. The viewID for the target EuclidianView is
-	 * stored as a property with key "euclidianViewID".
+	 * panel to a euclideanView. The viewID for the target euclideanView is
+	 * stored as a property with key "euclideanViewID".
 	 * 
 	 * This action is passed as a parameter to plotPanel where it is used in the
-	 * plotPanel context menu and the EuclidianView transfer handler when the
+	 * plotPanel context menu and the euclideanView transfer handler when the
 	 * plot panel is dragged into an EV.
 	 */
 	AbstractAction exportToEVAction = new AbstractAction() {
@@ -673,21 +673,21 @@ public class DataDisplayPanelD extends JPanel implements ActionListener,
 
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			Integer euclidianViewID = (Integer) this
-					.getValue("euclidianViewID");
+			Integer euclideanViewID = (Integer) this
+					.getValue("euclideanViewID");
 
 			// if null ID then use EV1 unless shift is down, then use EV2
-			if (euclidianViewID == null) {
-				euclidianViewID = app.getShiftDown()
-						? app.getEuclidianView2(1).getViewID()
-						: app.getEuclidianView1().getViewID();
+			if (euclideanViewID == null) {
+				euclideanViewID = app.getShiftDown()
+						? app.geteuclideanView2(1).getViewID()
+						: app.geteuclideanView1().getViewID();
 			}
 
 			// do the export
-			getModel().exportGeosToEV(euclidianViewID);
+			getModel().exportGeosToEV(euclideanViewID);
 			updateOtherDataDisplay();
 			// null out the ID property
-			this.putValue("euclidianViewID", null);
+			this.putValue("euclideanViewID", null);
 		}
 	};
 
@@ -797,8 +797,8 @@ public class DataDisplayPanelD extends JPanel implements ActionListener,
 	public void geoToPlotPanel(GeoElement listGeo) {
 		listGeo.addView(plotPanel.getViewID());
 		plotPanel.add(listGeo);
-		listGeo.removeView(App.VIEW_EUCLIDIAN);
-		app.getEuclidianView1().remove(listGeo);
+		listGeo.removeView(App.VIEW_euclidean);
+		app.geteuclideanView1().remove(listGeo);
 	}
 
 	public DataDisplayModel getModel() {

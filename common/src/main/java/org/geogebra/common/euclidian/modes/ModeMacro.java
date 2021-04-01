@@ -1,8 +1,8 @@
-package org.geogebra.common.euclidian.modes;
+package org.geogebra.common.euclidean.modes;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.Hits;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.Hits;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.Macro;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -21,7 +21,7 @@ public class ModeMacro {
 	protected Macro macro;
 	protected TestGeo[] macroInput;
 	private int index;
-	private EuclidianController ec;
+	private euclideanController ec;
 	private Kernel kernel;
 	private Localization localization;
 	private SelectionManager selection;
@@ -30,7 +30,7 @@ public class ModeMacro {
 	 * @param ec
 	 *            controller
 	 */
-	public ModeMacro(EuclidianController ec) {
+	public ModeMacro(euclideanController ec) {
 		this.ec = ec;
 		this.kernel = ec.getKernel();
 		this.localization = kernel.getLocalization();
@@ -184,7 +184,7 @@ public class ModeMacro {
 	 *            app mode
 	 */
 	public void setMode(int mode1) {
-		int macroID = mode1 - EuclidianConstants.MACRO_MODE_ID_OFFSET;
+		int macroID = mode1 - euclideanConstants.MACRO_MODE_ID_OFFSET;
 		macro = kernel.getMacro(macroID);
 		macroInput = macro.getInputTypes();
 	}

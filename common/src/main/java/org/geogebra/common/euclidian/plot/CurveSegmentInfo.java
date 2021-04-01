@@ -1,6 +1,6 @@
-package org.geogebra.common.euclidian.plot;
+package org.geogebra.common.euclidean.plot;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Kernel;
 
 /**
@@ -19,7 +19,7 @@ public class CurveSegmentInfo {
 	private static final double MAX_BEND_OFF_SCREEN = Math
 			.tan(MAX_ANGLE_OFF_SCREEN * Kernel.PI_180);
 
-	private final EuclidianView view;
+	private final euclideanView view;
 	private boolean distanceOK;
 	private boolean angleOK;
 	private boolean offScreen;
@@ -27,9 +27,9 @@ public class CurveSegmentInfo {
 	/**
 	 * Constructor
 	 *
-	 * @param view {@link EuclidianView}
+	 * @param view {@link euclideanView}
  	 */
-	public CurveSegmentInfo(EuclidianView view) {
+	public CurveSegmentInfo(euclideanView view) {
 		this.view = view;
 	}
 

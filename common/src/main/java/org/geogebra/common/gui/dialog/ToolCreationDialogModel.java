@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.Macro;
 import org.geogebra.common.kernel.StringTemplate;
@@ -233,9 +233,9 @@ public class ToolCreationDialogModel {
 		// set macro mode
 		if (newTool.isShowInToolBar()) {
 			newTool.setViewId(
-					app.getGuiManager().getActiveEuclidianView().getViewID());
+					app.getGuiManager().getActiveeuclideanView().getViewID());
 			int mode = kernel.getMacroID(newTool)
-					+ EuclidianConstants.MACRO_MODE_ID_OFFSET;
+					+ euclideanConstants.MACRO_MODE_ID_OFFSET;
 			appToSave.getGuiManager().addToToolbarDefinition(mode);
 			appToSave.getGuiManager().updateToolbar();
 			appToSave.setMode(mode);

@@ -1,8 +1,8 @@
 package org.geogebra.web.full.gui.dialog.options;
 
-import org.geogebra.common.euclidian.event.FocusListenerDelegate;
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.event.FocusListenerDelegate;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.gui.dialog.options.model.ObjectNameModel;
 import org.geogebra.common.gui.dialog.options.model.ShowLabelModel;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -13,7 +13,7 @@ import org.geogebra.common.util.AsyncOperation;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.full.gui.properties.OptionPanel;
 import org.geogebra.web.full.gui.view.algebra.InputPanelW;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
 import org.geogebra.web.html5.gui.inputfield.AutoCompleteTextFieldW;
 import org.geogebra.web.html5.gui.util.FormLabel;
 import org.geogebra.web.html5.main.AppW;
@@ -204,7 +204,7 @@ class NamePanel extends OptionPanel
 			autoShowCaption();
 		}
 		model.applyCaptionChange(tfCaption.getText());
-		((EuclidianViewW) app.getActiveEuclidianView()).doRepaint();
+		((euclideanViewW) app.getActiveeuclideanView()).doRepaint();
 	}
 
 	private void autoShowCaption() {

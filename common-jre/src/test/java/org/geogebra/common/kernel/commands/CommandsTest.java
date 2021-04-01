@@ -80,7 +80,7 @@ public class CommandsTest {
 	protected static void testSyntax(String s, List<Matcher<String>> expected,
 			App app1,
 			AlgebraProcessor proc, StringTemplate tpl) {
-		app1.getEuclidianView1().getEuclidianController().clearZoomerAnimationListeners();
+		app1.geteuclideanView1().geteuclideanController().clearZoomerAnimationListeners();
 		if (syntaxes == -1000) {
 			Throwable t = new Throwable();
 			String cmdName = t.getStackTrace()[2].getMethodName().substring(3);
@@ -109,7 +109,7 @@ public class CommandsTest {
 	public void resetSyntaxes() {
 		resetSyntaxCounter();
 		app.getKernel().clearConstruction(true);
-		app.setActiveView(App.VIEW_EUCLIDIAN);
+		app.setActiveView(App.VIEW_euclidean);
 	}
 
 	public static void resetSyntaxCounter() {
@@ -3032,7 +3032,7 @@ public class CommandsTest {
 	public void cmdReadText() {
 		t("SetActiveView(1)");
 		t("ReadText(\"Can anybody hear me?\")");
-		assertTrue(((ScreenReaderAccumulator) app.getActiveEuclidianView()
+		assertTrue(((ScreenReaderAccumulator) app.getActiveeuclideanView()
 				.getScreenReader()).hasRead("Can anybody hear me?"));
 	}
 
@@ -3435,19 +3435,19 @@ public class CommandsTest {
 		t("A=(0,0,1)", "(0, 0, 1)");
 		t("SetBackgroundColor[ \"red\" ]", new String[0]);
 		Assert.assertEquals(
-				app.getActiveEuclidianView().getBackgroundCommon().toString(),
+				app.getActiveeuclideanView().getBackgroundCommon().toString(),
 				GColor.RED.toString());
 		t("SetBackgroundColor[ 1, 1, 1 ]", new String[0]);
 		Assert.assertEquals(
-				app.getActiveEuclidianView().getBackgroundCommon().toString(),
+				app.getActiveeuclideanView().getBackgroundCommon().toString(),
 				GColor.WHITE.toString());
 		t("SetBackgroundColor[ \"orange\"^z(A) ]", new String[0]);
 		Assert.assertEquals(
-				app.getActiveEuclidianView().getBackgroundCommon().toString(),
+				app.getActiveeuclideanView().getBackgroundCommon().toString(),
 				GColor.ORANGE.toString());
 		t("SetBackgroundColor[ x(A), y(A), z(A) ]", new String[0]);
 		Assert.assertEquals(
-				app.getActiveEuclidianView().getBackgroundCommon().toString(),
+				app.getActiveeuclideanView().getBackgroundCommon().toString(),
 				GColor.BLUE.toString());
 		t("SetBackgroundColor[ txt, \"lime\" ]", new String[0]);
 		Assert.assertEquals(GeoGebraColorConstants.LIME.toString(),

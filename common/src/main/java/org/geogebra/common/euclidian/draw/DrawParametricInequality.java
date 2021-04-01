@@ -1,13 +1,13 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GArea;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.plot.CurvePlotter;
-import org.geogebra.common.euclidian.plot.Gap;
-import org.geogebra.common.euclidian.plot.GeneralPathClippedForCurvePlotter;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.plot.CurvePlotter;
+import org.geogebra.common.euclidean.plot.Gap;
+import org.geogebra.common.euclidean.plot.GeneralPathClippedForCurvePlotter;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.arithmetic.Inequality;
 import org.geogebra.common.kernel.arithmetic.Inequality.IneqType;
@@ -32,7 +32,7 @@ class DrawParametricInequality extends SetDrawable {
 	 *            top level element (the function which may consist of several
 	 *            inequalities)
 	 */
-	protected DrawParametricInequality(Inequality ineq, EuclidianView view,
+	protected DrawParametricInequality(Inequality ineq, euclideanView view,
 			GeoElement geo) {
 		this.view = view;
 		this.paramIneq = ineq;

@@ -1,4 +1,4 @@
-package org.geogebra.web.html5.euclidian.profiler.coords;
+package org.geogebra.web.html5.euclidean.profiler.coords;
 
 import java.util.ArrayList;
 import java.util.List;

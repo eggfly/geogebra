@@ -2,8 +2,8 @@ package org.geogebra.common.gui.dialog.options.model;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianStyleBarStatic;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanStyleBarStatic;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.geos.AbsoluteScreenLocateable;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoImage;
@@ -32,21 +32,21 @@ public class AbsoluteScreenLocationModel extends BooleanOptionModel {
 		if (getObjectAt(index) instanceof AbsoluteScreenLocateable) {
 
 			AbsoluteScreenLocateable geo = getAbsoluteScreenLocateable(index);
-			setAbsolute(geo, value, app.getActiveEuclidianView());
+			setAbsolute(geo, value, app.getActiveeuclideanView());
 		} else if (getGeoAt(index).isPinnable()) {
 			ArrayList<GeoElement> al = new ArrayList<>();
 			al.add(getGeoAt(index));
 
 			// geo could be redefined, so need to change geos[i] to
 			// new geo
-			EuclidianStyleBarStatic.applyFixPosition(al, value,
-					app.getActiveEuclidianView());
+			euclideanStyleBarStatic.applyFixPosition(al, value,
+					app.getActiveeuclideanView());
 		}
 		storeUndoInfo();
 	}
 
 	public static void setAbsolute(AbsoluteScreenLocateable geo,
-			boolean value, EuclidianViewInterfaceCommon ev) {
+			boolean value, euclideanViewInterfaceCommon ev) {
 		if (value) {
 			// convert real world to screen coords
 			int x = ev.toScreenCoordX(geo.getRealWorldLocX());

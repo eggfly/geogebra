@@ -1,14 +1,14 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.Hits;
-import org.geogebra.common.euclidian.event.AbstractEvent;
-import org.geogebra.common.euclidian.event.PointerEventType;
-import org.geogebra.common.euclidianForPlane.EuclidianViewForPlaneInterface;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.Hits;
+import org.geogebra.common.euclidean.event.AbstractEvent;
+import org.geogebra.common.euclidean.event.PointerEventType;
+import org.geogebra.common.euclideanForPlane.euclideanViewForPlaneInterface;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.common.kernel.StringTemplate;
@@ -58,15 +58,15 @@ import com.google.gwt.event.dom.client.TouchStartEvent;
 import com.google.gwt.event.dom.client.TouchStartHandler;
 
 /**
- * Web version of Euclidian controller
+ * Web version of euclidean controller
  *
  */
-public class EuclidianControllerW extends EuclidianController implements
+public class euclideanControllerW extends euclideanController implements
         MouseDownHandler, MouseUpHandler, MouseMoveHandler, MouseOutHandler,
         MouseOverHandler, MouseWheelHandler, TouchStartHandler,
         TouchEndHandler, TouchMoveHandler, TouchCancelHandler,
         GestureStartHandler, GestureEndHandler, GestureChangeHandler,
-		IsEuclidianController, DropHandler {
+		IseuclideanController, DropHandler {
 
 	private MouseTouchGestureControllerW mtg;
 
@@ -127,7 +127,7 @@ public class EuclidianControllerW extends EuclidianController implements
 	 * @param kernel
 	 *            kernel
 	 */
-	public EuclidianControllerW(Kernel kernel) {
+	public euclideanControllerW(Kernel kernel) {
 		super(kernel.getApplication());
 		setKernel(kernel);
 	}
@@ -182,14 +182,14 @@ public class EuclidianControllerW extends EuclidianController implements
 		if ((app.getGuiManager() != null) && shouldSetToolbar()) {
 			// Probability calculator plot panel view should not set active
 			// toolbar ID
-			// this is used by DataDisplayPanelW and PlotPanelEuclidianViewW,
+			// this is used by DataDisplayPanelW and PlotPaneleuclideanViewW,
 			// #plotpanelevno
 			// probably both are Okay not changing the toolbar to full Graphics
 			// view toolbar
 			((GuiManagerInterfaceW) app.getGuiManager())
-					.setActivePanelAndToolbar(App.VIEW_EUCLIDIAN);
+					.setActivePanelAndToolbar(App.VIEW_euclidean);
 		} else {
-			setMode(EuclidianConstants.MODE_MOVE, ModeSetter.TOOLBAR);
+			setMode(euclideanConstants.MODE_MOVE, ModeSetter.TOOLBAR);
 		}
 		mtg.onTouchStart(event);
 	}
@@ -250,27 +250,27 @@ public class EuclidianControllerW extends EuclidianController implements
 		if ((app.getGuiManager() != null) && shouldSetToolbar()) {
 			// Probability calculator plot panel view should not set active
 			// toolbar ID
-			// this is used by DataDisplayPanelW and PlotPanelEuclidianViewW,
+			// this is used by DataDisplayPanelW and PlotPaneleuclideanViewW,
 			// #plotpanelevno
 			// probably both are Okay not changing the toolbar to full Graphics
 			// view toolbar
 			((GuiManagerInterfaceW) app.getGuiManager())
-					.setActivePanelAndToolbar(App.VIEW_EUCLIDIAN);
+					.setActivePanelAndToolbar(App.VIEW_euclidean);
 		} else {
-			if (EuclidianConstants.isMoveOrSelectionMode(mode)
-					|| mode == EuclidianConstants.MODE_TRANSLATEVIEW
-					|| mode == EuclidianConstants.MODE_SELECTION_LISTENER) {
+			if (euclideanConstants.isMoveOrSelectionMode(mode)
+					|| mode == euclideanConstants.MODE_TRANSLATEVIEW
+					|| mode == euclideanConstants.MODE_SELECTION_LISTENER) {
 				setMode(mode, ModeSetter.TOOLBAR);
 			}
-			// app.setMode(EuclidianConstants.MODE_MOVE);
+			// app.setMode(euclideanConstants.MODE_MOVE);
 			// app.getGuiManager().updateToolbar();
 		}
 		mtg.onPointerEventStart(event);
 	}
 
 	private boolean shouldSetToolbar() {
-		return (getEvNo() != EuclidianView.EVNO_GENERAL
-				|| (getView() instanceof EuclidianViewForPlaneInterface));
+		return (getEvNo() != euclideanView.EVNO_GENERAL
+				|| (getView() instanceof euclideanViewForPlaneInterface));
 	}
 
 	@Override
@@ -398,7 +398,7 @@ public class EuclidianControllerW extends EuclidianController implements
 		list.add(geo.isLabelSet() ? geo.getLabelSimple() : "\""
 		        + geo.getLaTeXAlgebraDescription(true,
 		                StringTemplate.latexTemplate) + "\"");
-		String text = EuclidianView.getDraggedLabels(list);
+		String text = euclideanView.getDraggedLabels(list);
 
 		GeoElementND[] ret = app.getKernel().getAlgebraProcessor()
 		        .processAlgebraCommand(text, true);

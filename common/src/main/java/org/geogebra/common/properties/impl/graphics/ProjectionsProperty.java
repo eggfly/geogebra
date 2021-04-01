@@ -1,9 +1,9 @@
 package org.geogebra.common.properties.impl.graphics;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 import org.geogebra.common.properties.IconsEnumerableProperty;
 import org.geogebra.common.properties.PropertyResource;
 import org.geogebra.common.properties.impl.AbstractEnumerableProperty;
@@ -14,8 +14,8 @@ import org.geogebra.common.properties.impl.AbstractEnumerableProperty;
 public class ProjectionsProperty extends AbstractEnumerableProperty
 		implements IconsEnumerableProperty {
 
-    private EuclidianView view;
-	private EuclidianSettings3D euclidianSettings;
+    private euclideanView view;
+	private euclideanSettings3D euclideanSettings;
 
 	private PropertyResource[] icons = new PropertyResource[] {
 			PropertyResource.ICON_PROJECTION_PARALLEL,
@@ -30,16 +30,16 @@ public class ProjectionsProperty extends AbstractEnumerableProperty
 	 * @param localization
 	 *            localization for the title
      * @param view
-     * 	          euclidian view.
-	 * @param euclidianSettings
-	 *            euclidian settings.
+     * 	          euclidean view.
+	 * @param euclideanSettings
+	 *            euclidean settings.
 	 */
 	public ProjectionsProperty(Localization localization,
-                               EuclidianView view,
-                               EuclidianSettings3D euclidianSettings) {
+                               euclideanView view,
+                               euclideanSettings3D euclideanSettings) {
 		super(localization, "Projection");
 		this.view = view;
-		this.euclidianSettings = euclidianSettings;
+		this.euclideanSettings = euclideanSettings;
 		setValuesAndLocalize(new String[] {
 		        "stylebar.ParallelProjection",
                 "stylebar.PerspectiveProjection",
@@ -51,14 +51,14 @@ public class ProjectionsProperty extends AbstractEnumerableProperty
 	@Override
 	public int getIndex() {
 	    if (view.isXREnabled()) {
-	        return EuclidianView3DInterface.PROJECTION_PERSPECTIVE;
+	        return euclideanView3DInterface.PROJECTION_PERSPECTIVE;
         }
-		return euclidianSettings.getProjection();
+		return euclideanSettings.getProjection();
 	}
 
 	@Override
 	protected void setValueSafe(String value, int index) {
-		euclidianSettings.setProjection(index);
+		euclideanSettings.setProjection(index);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,14 +9,14 @@ import org.geogebra.common.jre.headless.LocalizationCommon;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.AppCommon3D;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.test.TestEvent;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
 public class BaseControllerTest {
 	private static AppCommon3D app;
-	private static EuclidianController ec;
+	private static euclideanController ec;
 
 	@Before
 	public void clear() {
@@ -30,7 +30,7 @@ public class BaseControllerTest {
 	public static void setup() {
 		app = new AppCommon3D(new LocalizationCommon(3),
 				new AwtFactoryCommon());
-		ec = app.getActiveEuclidianView().getEuclidianController();
+		ec = app.getActiveeuclideanView().geteuclideanController();
 	}
 
 	/**
@@ -89,15 +89,15 @@ public class BaseControllerTest {
 	protected static void reset() {
 		app.getKernel().clearConstruction(true);
 		app.initDialogManager(true);
-		app.getActiveEuclidianView().clearView();
+		app.getActiveeuclideanView().clearView();
 		app.getSettings().beginBatch();
-		app.getActiveEuclidianView().getSettings().reset();
-		app.getActiveEuclidianView().getSettings().setShowAxes(false, false);
+		app.getActiveeuclideanView().getSettings().reset();
+		app.getActiveeuclideanView().getSettings().setShowAxes(false, false);
 
-		app.getActiveEuclidianView().getSettings().setCoordSystem(0, 0, 50, 50,
+		app.getActiveeuclideanView().getSettings().setCoordSystem(0, 0, 50, 50,
 				true);
-		app.getActiveEuclidianView().getSettings()
-				.setPointCapturing(EuclidianStyleConstants.POINT_CAPTURING_OFF);
+		app.getActiveeuclideanView().getSettings()
+				.setPointCapturing(euclideanStyleConstants.POINT_CAPTURING_OFF);
 		app.getSettings().endBatch();
 		ec.setLastMouseUpLoc(null);
 	}
@@ -155,7 +155,7 @@ public class BaseControllerTest {
 		int i = 0;
 		for (String label : app.getGgbApi().getAllObjectNames()) {
 			GeoElement geo = lookup(label);
-			if (geo.isEuclidianVisible() == visible) {
+			if (geo.iseuclideanVisible() == visible) {
 				assertTrue(
 						"Extra element: "
 								+ geo.toString(StringTemplate.editTemplate),

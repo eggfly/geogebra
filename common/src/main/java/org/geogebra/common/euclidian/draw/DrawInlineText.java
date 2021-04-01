@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +8,12 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.BoundingBox;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianBoundingBoxHandler;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.MediaBoundingBox;
-import org.geogebra.common.euclidian.inline.InlineTextController;
+import org.geogebra.common.euclidean.BoundingBox;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.MediaBoundingBox;
+import org.geogebra.common.euclidean.euclideanBoundingBoxHandler;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.inline.InlineTextController;
 import org.geogebra.common.kernel.geos.GeoInlineText;
 
 /**
@@ -34,7 +34,7 @@ public class DrawInlineText extends Drawable implements DrawInline {
 	 * @param view view
 	 * @param text geo element
 	 */
-	public DrawInlineText(EuclidianView view, GeoInlineText text) {
+	public DrawInlineText(euclideanView view, GeoInlineText text) {
 		super(view, text);
 		rectangle = new TransformableRectangle(view, text, false);
 		this.text = text;
@@ -126,7 +126,7 @@ public class DrawInlineText extends Drawable implements DrawInline {
 
 	@Override
 	public void draw(GGraphics2D g2) {
-		if (text.isEuclidianVisible() && textController != null
+		if (text.iseuclideanVisible() && textController != null
 			&& rectangle.getDirectTransform() != null) {
 			textController.draw(g2, rectangle.getDirectTransform());
 		}
@@ -150,7 +150,7 @@ public class DrawInlineText extends Drawable implements DrawInline {
 	}
 
 	@Override
-	public void updateByBoundingBoxResize(GPoint2D point, EuclidianBoundingBoxHandler handler) {
+	public void updateByBoundingBoxResize(GPoint2D point, euclideanBoundingBoxHandler handler) {
 		rectangle.updateByBoundingBoxResize(point, handler);
 	}
 

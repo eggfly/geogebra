@@ -1,9 +1,9 @@
 package org.geogebra.desktop.geogebra3D.input3D.zspace;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.geogebra3D.input3D.Input3D;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 import org.geogebra.desktop.geogebra3D.input3D.Input3DFactory.Input3DException;
 
 
@@ -191,12 +191,12 @@ public class InputZSpace3D extends Input3D {
 	}
 	
 	@Override
-	public boolean hasMouse(EuclidianView3D view3D, Coords mouse3DPosition){
+	public boolean hasMouse(euclideanView3D view3D, Coords mouse3DPosition){
 		return view3D.hasMouse2D();
 	}
 
 	@Override
-	public boolean hasMouse(EuclidianView3D view3D) {
+	public boolean hasMouse(euclideanView3D view3D) {
 		return view3D.hasMouse2D();
 	}
 
@@ -315,12 +315,12 @@ public class InputZSpace3D extends Input3D {
 	}
 
 	@Override
-	public void setSpecificSettings(EuclidianSettings3D settings) {
+	public void setSpecificSettings(euclideanSettings3D settings) {
 		if (!settings.hadSettingChanged()) {
 			settings.beginBatch();
 			settings.setRotXYinDegrees(getDefaultRotationOz(),
 					getDefaultRotationXOY());
-			settings.setProjection(EuclidianView3D.PROJECTION_GLASSES);
+			settings.setProjection(euclideanView3D.PROJECTION_GLASSES);
 			settings.setClippingReduction(0);
 			settings.setShowClippingCube(false);
 			settings.setUseClippingCube(false);

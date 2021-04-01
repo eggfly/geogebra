@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.commons.math3.analysis.UnivariateFunction;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.EquationSolverInterface;
 import org.geogebra.common.kernel.Kernel;
@@ -296,7 +296,7 @@ public class AlgoIntersectPolynomialPolyLine extends AlgoIntersect {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_INTERSECT;
+		return euclideanConstants.MODE_INTERSECT;
 	}
 
 }

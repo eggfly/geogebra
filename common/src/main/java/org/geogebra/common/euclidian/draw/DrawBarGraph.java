@@ -1,18 +1,18 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.GeneralPathClipped;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.algos.AlgoBarChart;
 import org.geogebra.common.kernel.algos.ChartStyle;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.kernel.geos.GeoPoint;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.debug.Log;
 
 /**
@@ -66,7 +66,7 @@ public class DrawBarGraph extends Drawable {
 	 * @param n
 	 *            number (bar chart)
 	 */
-	public DrawBarGraph(EuclidianView view, GeoNumeric n) {
+	public DrawBarGraph(euclideanView view, GeoNumeric n) {
 		this.view = view;
 		chartFilling = new ChartFilling(view.getApplication());
 		sum = n;
@@ -94,7 +94,7 @@ public class DrawBarGraph extends Drawable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible() || gp == null) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible() || gp == null) {
 			return null;
 		}
 
@@ -218,7 +218,7 @@ public class DrawBarGraph extends Drawable {
 	@Override
 	public void update() {
 
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (!isVisible) {
 			return;
 		}
@@ -252,9 +252,9 @@ public class DrawBarGraph extends Drawable {
 		if (algo.hasPoints() && pointType != POINT_NONE) {
 
 			if (pointType == POINT_LEFT || pointType == POINT_LEFT_OPEN_RIGHT) {
-				pointStyle = EuclidianStyleConstants.POINT_STYLE_DOT;
+				pointStyle = euclideanStyleConstants.POINT_STYLE_DOT;
 			} else {
-				pointStyle = EuclidianStyleConstants.POINT_STYLE_CIRCLE;
+				pointStyle = euclideanStyleConstants.POINT_STYLE_CIRCLE;
 			}
 
 			for (int i = 0; i < N; i++) {
@@ -265,7 +265,7 @@ public class DrawBarGraph extends Drawable {
 				pts.get(i).setPointSize(2 + (geo.getLineThickness() + 1) / 3);
 				pts.get(i).setPointStyle(pointStyle);
 				if (pointType == POINT_RIGHT) {
-					pts.get(i).setEuclidianVisible(false);
+					pts.get(i).seteuclideanVisible(false);
 				}
 				drawPoints.get(i).update();
 			}
@@ -275,9 +275,9 @@ public class DrawBarGraph extends Drawable {
 
 				if (pointType == POINT_LEFT
 						|| pointType == POINT_LEFT_OPEN_RIGHT) {
-					pointStyle = EuclidianStyleConstants.POINT_STYLE_CIRCLE;
+					pointStyle = euclideanStyleConstants.POINT_STYLE_CIRCLE;
 				} else {
-					pointStyle = EuclidianStyleConstants.POINT_STYLE_DOT;
+					pointStyle = euclideanStyleConstants.POINT_STYLE_DOT;
 				}
 
 				// step graph right points
@@ -290,7 +290,7 @@ public class DrawBarGraph extends Drawable {
 							.setPointSize(2 + (geo.getLineThickness() + 1) / 3);
 					pts.get(N + i).setPointStyle(pointStyle);
 					if (pointType == POINT_LEFT) {
-						pts.get(N + i).setEuclidianVisible(false);
+						pts.get(N + i).seteuclideanVisible(false);
 					}
 					drawPoints.get(N + i).update();
 				}

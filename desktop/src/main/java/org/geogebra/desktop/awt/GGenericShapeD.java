@@ -6,7 +6,7 @@ import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GPathIterator;
 import org.geogebra.common.awt.GRectangle2D;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.GeneralPathClipped;
+import org.geogebra.common.euclidean.GeneralPathClipped;
 import org.geogebra.common.util.debug.Log;
 
 public class GGenericShapeD implements GShapeD {

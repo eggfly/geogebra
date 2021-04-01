@@ -1,4 +1,4 @@
-package org.geogebra.common.geogebra3D.euclidian3D.printer3D;
+package org.geogebra.common.geogebra3D.euclidean3D.printer3D;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,6 +1,6 @@
-package org.geogebra.desktop.euclidian;
+package org.geogebra.desktop.euclidean;
 
-import org.geogebra.common.euclidian.ScreenReaderAdapter;
+import org.geogebra.common.euclidean.ScreenReaderAdapter;
 import org.geogebra.common.util.debug.Log;
 
 public class ScreenReaderAdapterD implements ScreenReaderAdapter {

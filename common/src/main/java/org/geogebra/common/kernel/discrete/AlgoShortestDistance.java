@@ -47,7 +47,7 @@ public class AlgoShortestDistance extends AlgoElement implements GraphAlgo {
 	 * @param end
 	 *            end point
 	 * @param weighted
-	 *            whether to use Euclidian length
+	 *            whether to use euclidean length
 	 */
 	public AlgoShortestDistance(Construction cons, String label,
 			GeoList inputList, GeoPointND start, GeoPointND end,

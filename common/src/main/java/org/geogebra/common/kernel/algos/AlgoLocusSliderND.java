@@ -16,8 +16,8 @@ import java.util.Iterator;
 import java.util.TreeSet;
 
 import org.geogebra.common.awt.GPoint2D;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Macro;
 import org.geogebra.common.kernel.MacroKernel;
@@ -133,7 +133,7 @@ public abstract class AlgoLocusSliderND<T extends MyPoint> extends AlgoElement
 		updateScreenBorders();
 
 		setInputOutput(); // for AlgoElement
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 		compute();
 
 		// we may have created a starting point for the path now
@@ -160,7 +160,7 @@ public abstract class AlgoLocusSliderND<T extends MyPoint> extends AlgoElement
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_LOCUS;
+		return euclideanConstants.MODE_LOCUS;
 	}
 
 	/**
@@ -706,20 +706,20 @@ public abstract class AlgoLocusSliderND<T extends MyPoint> extends AlgoElement
 			boolean orInsteadOfAnd);
 
 	boolean isVisibleInEV1() {
-		if (!locus.isVisibleInView(App.VIEW_EUCLIDIAN)) {
+		if (!locus.isVisibleInView(App.VIEW_euclidean)) {
 			return false;
 		}
-		if (!kernel.getApplication().getEuclidianView1().isShowing()) {
+		if (!kernel.getApplication().geteuclideanView1().isShowing()) {
 			return false;
 		}
 		return true;
 	}
 
 	boolean isVisibleInEV2() {
-		if (!locus.isVisibleInView(App.VIEW_EUCLIDIAN2)) {
+		if (!locus.isVisibleInView(App.VIEW_euclidean2)) {
 			return false;
 		}
-		if (!kernel.getApplication().hasEuclidianView2(1)) {
+		if (!kernel.getApplication().haseuclideanView2(1)) {
 			return false;
 		}
 		return true;
@@ -772,8 +772,8 @@ public abstract class AlgoLocusSliderND<T extends MyPoint> extends AlgoElement
 			ymin[v] = kernel.getYmin(false, true);
 			break;
 		case 2:
-			EuclidianView3DInterface view3D = kernel.getApplication()
-					.getEuclidianView3D();
+			euclideanView3DInterface view3D = kernel.getApplication()
+					.geteuclideanView3D();
 
 			xmax[v] = view3D.getXmax();
 			xmin[v] = view3D.getXmin();
@@ -812,7 +812,7 @@ public abstract class AlgoLocusSliderND<T extends MyPoint> extends AlgoElement
 	}
 
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 		updateScreenBorders();
 		update();
 		return false;

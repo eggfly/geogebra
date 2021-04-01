@@ -1,6 +1,6 @@
 package org.geogebra.web.html5.util;
 
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
@@ -9,7 +9,7 @@ import org.geogebra.common.main.App.ExportType;
 import org.geogebra.common.main.MyError.Errors;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.debug.Log;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 
 /**
  * Export multiple frames eg to GIF, PDF, WebM
@@ -97,8 +97,8 @@ public class AnimationExporter {
 			break;
 		}
 
-		EuclidianViewWInterface ev = ((EuclidianViewWInterface) app
-				.getActiveEuclidianView());
+		euclideanViewWInterface ev = ((euclideanViewWInterface) app
+				.getActiveeuclideanView());
 
 		final Encoder encoder = getEncoder(timeBetweenFrames, isLoop, filename,
 				frameFormat, ev);
@@ -112,7 +112,7 @@ public class AnimationExporter {
 			}
 
 			@Override
-			public void addFrame(EuclidianViewWInterface view,
+			public void addFrame(euclideanViewWInterface view,
 					double exportScale, ExportType format) {
 				String url = view.getExportImageDataUrl(exportScale, false,
 						format, false);
@@ -140,7 +140,7 @@ public class AnimationExporter {
 
 	private static Encoder getEncoder(int timeBetweenFrames, boolean isLoop,
 			String filename, ExportType frameFormat,
-			EuclidianViewWInterface ev) {
+			euclideanViewWInterface ev) {
 
 		switch (frameFormat) {
 		default:
@@ -161,8 +161,8 @@ public class AnimationExporter {
 		Log.debug("exporting animation");
 		double val = val0;
 		double step = step0;
-		EuclidianViewWInterface ev = ((EuclidianViewWInterface) app
-				.getActiveEuclidianView());
+		euclideanViewWInterface ev = ((euclideanViewWInterface) app
+				.getActiveeuclideanView());
 
 		// Log.debug("using view " + ev.getViewID());
 
@@ -173,10 +173,10 @@ public class AnimationExporter {
 			num.setValue(val);
 			num.updateRepaint();
 
-			if (rotate > 0 && ev instanceof EuclidianView3DInterface) {
-				((EuclidianView3DInterface) ev).setRotAnimation(-i * rotate / n,
+			if (rotate > 0 && ev instanceof euclideanView3DInterface) {
+				((euclideanView3DInterface) ev).setRotAnimation(-i * rotate / n,
 						false, false);
-				((EuclidianView3DInterface) ev).repaintView();
+				((euclideanView3DInterface) ev).repaintView();
 			}
 
 			// String url = ev.getExportImageDataUrl(scale, false, format);

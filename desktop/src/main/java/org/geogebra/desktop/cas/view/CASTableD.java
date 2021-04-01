@@ -205,7 +205,7 @@ public class CASTableD extends JTable implements CASTable {
 			// clicked on the table
 			// for some reason this is not working out of the box as
 			// DockManager.eventDispatched()
-			// sometimes thinks that this click comes from the EuclidianView
+			// sometimes thinks that this click comes from the euclideanView
 			GuiManagerD gui = (GuiManagerD) app.getGuiManager();
 			DockManagerD dockManager = gui.getLayout().getDockManager();
 
@@ -240,7 +240,7 @@ public class CASTableD extends JTable implements CASTable {
 				return;
 			}
 			/*
-			 * set/unset euclidian visibility for CasCells if there is no
+			 * set/unset euclidean visibility for CasCells if there is no
 			 * twinGeo which can be displayed, run the plot method which creates
 			 * a name and a twinGeo for the cell
 			 */

@@ -1,11 +1,11 @@
 package org.geogebra.common.main.settings.updater;
 
-import org.geogebra.common.euclidian.EuclidianHost;
+import org.geogebra.common.euclidean.euclideanHost;
 import org.geogebra.common.gui.view.algebra.AlgebraView;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.main.AppConfig;
 import org.geogebra.common.main.settings.AlgebraStyle;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.main.settings.LabelVisibility;
 import org.geogebra.common.main.settings.Settings;
 
@@ -20,7 +20,7 @@ public class SettingsUpdater {
 
 	@Weak
 	private Kernel kernel;
-	private EuclidianHost euclidianHost;
+	private euclideanHost euclideanHost;
 	private Settings settings;
 	private AppConfig appConfig;
 	private FontSettingsUpdater fontSettingsUpdater;
@@ -45,22 +45,22 @@ public class SettingsUpdater {
 	 */
 	public void resetSettingsAfterClearAll() {
 		setSortModeForCompactOutput();
-		setEuclidianSettings();
+		seteuclideanSettings();
 	}
 
 	private void setSortModeForCompactOutput() {
 		settings.getAlgebra().setTreeMode(AlgebraView.SortMode.ORDER);
 	}
 
-	private void setEuclidianSettings() {
-		EuclidianSettings euclidianSettings = euclidianHost.getActiveEuclidianView().getSettings();
-		euclidianSettings.reset();
-		euclidianSettings.showGrid(appConfig.showGridOnFileNew());
-		euclidianSettings.setShowAxes(appConfig.showAxesOnFileNew());
+	private void seteuclideanSettings() {
+		euclideanSettings euclideanSettings = euclideanHost.getActiveeuclideanView().getSettings();
+		euclideanSettings.reset();
+		euclideanSettings.showGrid(appConfig.showGridOnFileNew());
+		euclideanSettings.setShowAxes(appConfig.showAxesOnFileNew());
 	}
 
-	void setEuclidianHost(EuclidianHost euclidianHost) {
-		this.euclidianHost = euclidianHost;
+	void seteuclideanHost(euclideanHost euclideanHost) {
+		this.euclideanHost = euclideanHost;
 	}
 
 	protected Settings getSettings() {

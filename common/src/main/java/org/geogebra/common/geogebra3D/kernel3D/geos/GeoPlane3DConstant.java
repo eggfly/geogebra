@@ -43,7 +43,7 @@ public class GeoPlane3DConstant extends GeoPlane3D
 			coordsys.addVector(Coords.VY);
 			coordsys.makeOrthoMatrix(false, false);
 			coordsys.setEquationVector(0, 0, 1, 0);
-			// setCoord(EuclidianView3D.o,EuclidianView3D.vx,EuclidianView3D.vy);
+			// setCoord(euclideanView3D.o,euclideanView3D.vx,euclideanView3D.vy);
 			label = "xOyPlane";
 			setLabelSet(true);
 			setObjColor(GColor.GRAY);
@@ -123,7 +123,7 @@ public class GeoPlane3DConstant extends GeoPlane3D
 	/** returns if there is a grid to plot or not */
 	@Override
 	public boolean isGridVisible() {
-		return gridVisible && isEuclidianVisible();
+		return gridVisible && iseuclideanVisible();
 	}
 
 	/**

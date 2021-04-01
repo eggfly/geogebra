@@ -1,8 +1,8 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoRay3D;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.kernelND.GeoLineND;
@@ -28,7 +28,7 @@ public class DrawRay3D extends DrawCoordSys1D {
 	 * @param ray
 	 *            ray
 	 */
-	public DrawRay3D(EuclidianView3D a_view, GeoRayND ray) {
+	public DrawRay3D(euclideanView3D a_view, GeoRayND ray) {
 		super(a_view, (GeoElement) ray);
 	}
 
@@ -117,7 +117,7 @@ public class DrawRay3D extends DrawCoordSys1D {
 	 * @param selectedPoints
 	 *            preview points
 	 */
-	public DrawRay3D(EuclidianView3D a_view3D,
+	public DrawRay3D(euclideanView3D a_view3D,
 			ArrayList<GeoPointND> selectedPoints) {
 
 		super(a_view3D, selectedPoints,

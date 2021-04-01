@@ -423,7 +423,7 @@ public class GeoLine extends GeoVec3D implements Path, Translateable,
 	}
 
 	/**
-	 * Calculates the euclidian distance between this GeoLine and (px, py).
+	 * Calculates the euclidean distance between this GeoLine and (px, py).
 	 */
 	@Override
 	public double distance(GeoPoint p) {
@@ -431,7 +431,7 @@ public class GeoLine extends GeoVec3D implements Path, Translateable,
 	}
 
 	/**
-	 * Calculates the euclidian distance between this GeoLine and (x0, y0).
+	 * Calculates the euclidean distance between this GeoLine and (x0, y0).
 	 * 
 	 * @param x0
 	 *            x coord
@@ -444,7 +444,7 @@ public class GeoLine extends GeoVec3D implements Path, Translateable,
 	}
 
 	/**
-	 * Calculates the euclidian distance between this GeoLine and GeoPoint P.
+	 * Calculates the euclidean distance between this GeoLine and GeoPoint P.
 	 * Here the inhomogenouse coords of p are calculated and p.inhomX, p.inhomY
 	 * are not used.
 	 * 
@@ -461,7 +461,7 @@ public class GeoLine extends GeoVec3D implements Path, Translateable,
 	 * 
 	 * @param p
 	 *            coords to which we compute the distance
-	 * @return the euclidian distance between this GeoLine and 2D point p.
+	 * @return the euclidean distance between this GeoLine and 2D point p.
 	 */
 	final public double distanceHom(Coords p) {
 		return Math.abs((x * p.getX() / p.getZ() + y * p.getY() / p.getZ() + z)
@@ -662,7 +662,7 @@ public class GeoLine extends GeoVec3D implements Path, Translateable,
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		// defined
 		return isDefined();
 	}
@@ -1962,9 +1962,9 @@ public class GeoLine extends GeoVec3D implements Path, Translateable,
 	}
 
 	@Override
-	public void setAllVisualPropertiesExceptEuclidianVisible(GeoElement geo,
+	public void setAllVisualPropertiesExcepteuclideanVisible(GeoElement geo,
 			boolean keepAdvanced, boolean setAuxiliaryProperty) {
-		super.setAllVisualPropertiesExceptEuclidianVisible(geo, keepAdvanced,
+		super.setAllVisualPropertiesExcepteuclideanVisible(geo, keepAdvanced,
 				setAuxiliaryProperty);
 		if (geo instanceof GeoEvaluatable) {
 			TableProperties.transfer(geo, this);

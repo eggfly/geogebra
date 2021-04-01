@@ -19,7 +19,7 @@ import java.util.Vector;
 
 import javax.swing.JToolBar;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.layout.DockPanel;
 import org.geogebra.common.gui.toolbar.ToolBar;
 import org.geogebra.common.gui.toolbar.ToolbarItem;
@@ -113,7 +113,7 @@ public class ToolbarD extends JToolBar {
 	 * Sets toolbar mode. This will change the selected toolbar icon.
 	 * 
 	 * @param newMode
-	 *            see EuclidianConstants for mode numbers
+	 *            see euclideanConstants for mode numbers
 	 * 
 	 * 
 	 * @return actual mode number selected (might be different if it's not
@@ -125,8 +125,8 @@ public class ToolbarD extends JToolBar {
 		// there is no special icon/button for the selection listener mode, use
 		// the
 		// move mode button instead
-		if (tmpMode == EuclidianConstants.MODE_SELECTION_LISTENER) {
-			tmpMode = EuclidianConstants.MODE_MOVE;
+		if (tmpMode == euclideanConstants.MODE_SELECTION_LISTENER) {
+			tmpMode = euclideanConstants.MODE_MOVE;
 		}
 
 		if (modeToggleMenus != null) {
@@ -333,7 +333,7 @@ public class ToolbarD extends JToolBar {
 			for (int i = 0; i < macroNumber; i++) {
 				Macro macro = kernel.getMacro(i);
 				if (macro.isShowInToolBar()) {
-					sb.append(i + EuclidianConstants.MACRO_MODE_ID_OFFSET);
+					sb.append(i + euclideanConstants.MACRO_MODE_ID_OFFSET);
 					sb.append(" ");
 				}
 			}

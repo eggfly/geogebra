@@ -1,14 +1,14 @@
-package org.geogebra.common.geogebra3D.euclidian3D.animator;
+package org.geogebra.common.geogebra3D.euclidean3D.animator;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.animator.EuclidianView3DAnimator.AnimationType;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.animator.euclideanView3DAnimator.AnimationType;
 import org.geogebra.common.kernel.matrix.Coords;
 
 /**
  * animation for centering view
  *
  */
-public class EuclidianView3DAnimationCenter extends EuclidianView3DAnimation {
+public class euclideanView3DAnimationCenter extends euclideanView3DAnimation {
 
 	private double xEnd;
 	private double yEnd;
@@ -21,7 +21,7 @@ public class EuclidianView3DAnimationCenter extends EuclidianView3DAnimation {
 	 * @param p
 	 *            point to center about
 	 */
-	EuclidianView3DAnimationCenter(EuclidianView3D view3D, EuclidianView3DAnimator animator,
+	euclideanView3DAnimationCenter(euclideanView3D view3D, euclideanView3DAnimator animator,
 			Coords p) {
 
 		super(view3D, animator);

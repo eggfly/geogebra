@@ -105,18 +105,18 @@ public abstract class GeoWidget extends GeoElement
 	 */
 	public void zoomIfNeeded() {
 		if (xScale == 0) {
-			xScale = app.getActiveEuclidianView().getXscale();
-			yScale = app.getActiveEuclidianView().getYscale();
+			xScale = app.getActiveeuclideanView().getXscale();
+			yScale = app.getActiveeuclideanView().getYscale();
 			return;
 		}
 
-		if (xScale != app.getActiveEuclidianView().getXscale()) {
-			zoomX(app.getActiveEuclidianView().getXscale() / xScale);
-			xScale = app.getActiveEuclidianView().getXscale();
+		if (xScale != app.getActiveeuclideanView().getXscale()) {
+			zoomX(app.getActiveeuclideanView().getXscale() / xScale);
+			xScale = app.getActiveeuclideanView().getXscale();
 		}
-		if (yScale != app.getActiveEuclidianView().getYscale()) {
-			zoomY(app.getActiveEuclidianView().getYscale() / yScale);
-			yScale = app.getActiveEuclidianView().getYscale();
+		if (yScale != app.getActiveeuclideanView().getYscale()) {
+			zoomY(app.getActiveeuclideanView().getYscale() / yScale);
+			yScale = app.getActiveeuclideanView().getYscale();
 		}
 	}
 
@@ -136,7 +136,7 @@ public abstract class GeoWidget extends GeoElement
 	}
 
 	@Override
-	public boolean showInEuclidianView() {
+	public boolean showIneuclideanView() {
 		return true;
 	}
 

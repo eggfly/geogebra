@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,7 +18,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class EuclidianStyleTest {
+public class euclideanStyleTest {
 	private AppCommon3D app;
 	private ConstructionDefaults cd;
 	private Construction construction;
@@ -47,13 +47,13 @@ public class EuclidianStyleTest {
 
 	@Test
 	public void linePropertiesShouldApplyToNewGeo() {
-		EuclidianController ec = app.getActiveEuclidianView().getEuclidianController();
-		EuclidianStyleBarSelection selection = new EuclidianStyleBarSelection(app, ec);
-		app.setMode(EuclidianConstants.MODE_JOIN);
-		selection.updateDefaultsForMode(EuclidianConstants.MODE_JOIN);
+		euclideanController ec = app.getActiveeuclideanView().geteuclideanController();
+		euclideanStyleBarSelection selection = new euclideanStyleBarSelection(app, ec);
+		app.setMode(euclideanConstants.MODE_JOIN);
+		selection.updateDefaultsForMode(euclideanConstants.MODE_JOIN);
 		ArrayList<GeoElement> geos = selection.getGeos();
-		EuclidianStyleBarStatic.applyColor(GColor.GREEN, 1, app, geos);
-		EuclidianStyleBarStatic.applyLineStyle(1, 5, app, geos);
+		euclideanStyleBarStatic.applyColor(GColor.GREEN, 1, app, geos);
+		euclideanStyleBarStatic.applyLineStyle(1, 5, app, geos);
 		assertEquals(GColor.GREEN, new GeoLine(construction).getObjectColor());
 		assertEquals(5, new GeoLine(construction).getLineThickness());
 	}

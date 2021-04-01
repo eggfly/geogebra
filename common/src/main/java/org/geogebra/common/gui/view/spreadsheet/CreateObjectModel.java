@@ -160,7 +160,7 @@ public class CreateObjectModel {
 					.addToConstructionList(newGeo.getParentAlgorithm(), true);
 		}
 
-		newGeo.setEuclidianVisible(true);
+		newGeo.seteuclideanVisible(true);
 		if (!newGeo.isGeoText()) {
 			newGeo.setAuxiliaryObject(false);
 		}
@@ -168,7 +168,7 @@ public class CreateObjectModel {
 		if (getObjectType() == TYPE_LISTOFPOINTS) {
 			GeoList gl = (GeoList) newGeo;
 			for (int i = 0; i < gl.size(); i++) {
-				gl.get(i).setEuclidianVisible(true);
+				gl.get(i).seteuclideanVisible(true);
 				gl.get(i).setAuxiliaryObject(false);
 			}
 		}
@@ -177,7 +177,7 @@ public class CreateObjectModel {
 			GeoPointND[] pts = ((AlgoPolyLine) newGeo.getParentAlgorithm())
 					.getPoints();
 			for (int i = 0; i < pts.length; i++) {
-				pts[i].setEuclidianVisible(true);
+				pts[i].seteuclideanVisible(true);
 				pts[i].setAuxiliaryObject(false);
 				pts[i].updateRepaint();
 			}
@@ -242,7 +242,7 @@ public class CreateObjectModel {
 				newGeo.setLabel(null);
 				for (int i = 0; i < ((GeoList) newGeo).size(); i++) {
 					((GeoList) newGeo).get(i).setAuxiliaryObject(true);
-					((GeoList) newGeo).get(i).setEuclidianVisible(false);
+					((GeoList) newGeo).get(i).seteuclideanVisible(false);
 				}
 				newGeo.updateRepaint();
 				break;
@@ -255,7 +255,7 @@ public class CreateObjectModel {
 			case TYPE_TABLETEXT:
 				newGeo = cp.createTableText(column1, column2, row1, row2,
 						copyByValue, transpose);
-				newGeo.setEuclidianVisible(false);
+				newGeo.seteuclideanVisible(false);
 				newGeo.updateRepaint();
 				break;
 
@@ -267,7 +267,7 @@ public class CreateObjectModel {
 						.getPoints();
 				for (int i = 0; i < pts.length; i++) {
 					pts[i].setAuxiliaryObject(true);
-					pts[i].setEuclidianVisible(false);
+					pts[i].seteuclideanVisible(false);
 					pts[i].updateRepaint();
 				}
 				newGeo.updateRepaint();
@@ -284,7 +284,7 @@ public class CreateObjectModel {
 			if (!nullGeo) {
 				newGeo.setLabel(name);
 				newGeo.setAuxiliaryObject(true);
-				newGeo.setEuclidianVisible(false);
+				newGeo.seteuclideanVisible(false);
 			}
 
 		} catch (Exception e) {

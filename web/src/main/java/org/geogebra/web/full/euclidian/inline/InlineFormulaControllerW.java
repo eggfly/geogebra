@@ -1,9 +1,9 @@
-package org.geogebra.web.full.euclidian.inline;
+package org.geogebra.web.full.euclidean.inline;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.draw.DrawFormula;
-import org.geogebra.common.euclidian.event.PointerEventType;
-import org.geogebra.common.euclidian.inline.InlineFormulaController;
+import org.geogebra.common.euclidean.draw.DrawFormula;
+import org.geogebra.common.euclidean.event.PointerEventType;
+import org.geogebra.common.euclidean.inline.InlineFormulaController;
 import org.geogebra.common.kernel.geos.GeoFormula;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.web.full.gui.components.MathFieldEditor;
@@ -37,7 +37,7 @@ public class InlineFormulaControllerW implements InlineFormulaController {
 	 * Controller (communicates with MathFieldEditor) for the inline formula editor
 	 * @param formula GeoFormula to be edited
 	 * @param app the application
-	 * @param parent parent panel (generally, the euclidian view)
+	 * @param parent parent panel (generally, the euclidean view)
 	 */
 	public InlineFormulaControllerW(GeoFormula formula, AppW app, Panel parent) {
 		this.formula = formula;

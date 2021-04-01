@@ -1,9 +1,9 @@
 package org.geogebra.web.geogebra3D.web.gui;
 
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.geogebra3D.kernel3D.Kernel3D;
 import org.geogebra.common.main.OptionType;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.full.css.MaterialDesignResources;
 import org.geogebra.web.full.gui.ContextMenuGraphicsWindowW;
@@ -11,7 +11,7 @@ import org.geogebra.web.full.gui.menubar.MainMenu;
 import org.geogebra.web.full.javax.swing.CheckMarkSubMenu;
 import org.geogebra.web.full.javax.swing.GCheckmarkMenuItem;
 import org.geogebra.web.full.javax.swing.GCollapseMenuItem;
-import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianView3DW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.euclideanView3DW;
 import org.geogebra.web.html5.gui.util.AriaMenuItem;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.resources.SVGResource;
@@ -54,7 +54,7 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 		addZoomMenu();
 		addShowAllObjectsViewMenuItem();
 		addStandardViewMenuItem();
-		addMiProperties("GraphicsView3D", OptionType.EUCLIDIAN3D);
+		addMiProperties("GraphicsView3D", OptionType.euclidean3D);
 	}
 
 	private void buildGUI3DUnbundled() {
@@ -64,7 +64,7 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 		addProjectionMenuItem();
 		super.addSnapToGridMenuItem();
 		addShowAllObjectsViewMenuItem();
-		addMiProperties("GraphicsView3D", OptionType.EUCLIDIAN3D);
+		addMiProperties("GraphicsView3D", OptionType.euclidean3D);
 	}
 
 	private void addProjectionMenuItem() {
@@ -113,7 +113,7 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 		AriaMenuItem miStandardView = new AriaMenuItem(
 				MainMenu.getMenuBarHtml(img, loc.getMenu("StandardView")),
 				true,
-				() -> app.getEuclidianView3D().setStandardView(true)
+				() -> app.geteuclideanView3D().setStandardView(true)
 		);
 		wrappedPopup.addItem(miStandardView);
 	}
@@ -131,8 +131,8 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 	@Override
 	protected void zoom(double zoomFactor) {
 		app.zoom(px, py, zoomFactor);
-		if (app.getActiveEuclidianView().isEuclidianView3D()) {
-			((EuclidianView3DW) app.getActiveEuclidianView()).doRepaint();
+		if (app.getActiveeuclideanView().iseuclideanView3D()) {
+			((euclideanView3DW) app.getActiveeuclideanView()).doRepaint();
 		}
 	}
 
@@ -160,22 +160,22 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 
 		private void addOrthographicProjection() {
 			addProjectionMenuItemForType(
-					EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC);
+					euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC);
 		}
 
 		private void addPerspectiveProjection() {
 			addProjectionMenuItemForType(
-					EuclidianView3DInterface.PROJECTION_PERSPECTIVE);
+					euclideanView3DInterface.PROJECTION_PERSPECTIVE);
 		}
 
 		private void addGlassesProjection() {
 			addProjectionMenuItemForType(
-					EuclidianView3DInterface.PROJECTION_GLASSES);
+					euclideanView3DInterface.PROJECTION_GLASSES);
 		}
 
 		private void addObliqueProjection() {
 			addProjectionMenuItemForType(
-					EuclidianView3DInterface.PROJECTION_OBLIQUE);
+					euclideanView3DInterface.PROJECTION_OBLIQUE);
 		}
 
 		/**
@@ -186,20 +186,20 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 			String text = "";
 			SVGResource img = null;
 			switch (projectionType) {
-			case EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC:
+			case euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC:
 				text = "stylebar.OrthographicProjection";
 				img = MaterialDesignResources.INSTANCE
 						.projection_orthographic();
 				break;
-			case EuclidianView3DInterface.PROJECTION_PERSPECTIVE:
+			case euclideanView3DInterface.PROJECTION_PERSPECTIVE:
 				text = "stylebar.PerspectiveProjection";
 				img = MaterialDesignResources.INSTANCE.projection_perspective();
 				break;
-			case EuclidianView3DInterface.PROJECTION_GLASSES:
+			case euclideanView3DInterface.PROJECTION_GLASSES:
 				text = "stylebar.GlassesProjection";
 				img = MaterialDesignResources.INSTANCE.projection_glasses();
 				break;
-			case EuclidianView3DInterface.PROJECTION_OBLIQUE:
+			case euclideanView3DInterface.PROJECTION_OBLIQUE:
 				text = "stylebar.ObliqueProjection";
 				img = MaterialDesignResources.INSTANCE.projection_oblique();
 				break;
@@ -225,8 +225,8 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 		 * @return true if is parameter projection type
 		 */
 		public boolean isProjectionType(int projectionType) {
-			if (app.getActiveEuclidianView().isEuclidianView3D()) {
-				return ((EuclidianView3DW) app.getActiveEuclidianView())
+			if (app.getActiveeuclideanView().iseuclideanView3D()) {
+				return ((euclideanView3DW) app.getActiveeuclideanView())
 						.getProjection() == projectionType;
 			}
 			return false;
@@ -237,14 +237,14 @@ public class ContextMenuGraphicsWindow3DW extends ContextMenuGraphicsWindowW {
 		 *            - type of projection
 		 */
 		public void setProjectionType(int projectionType) {
-			((EuclidianSettings3D) app.getSettings()
-					.getEuclidianForView(app.getActiveEuclidianView(), app))
+			((euclideanSettings3D) app.getSettings()
+					.geteuclideanForView(app.getActiveeuclideanView(), app))
 							.setProjection(projectionType);
-			if (app.getActiveEuclidianView().isEuclidianView3D()) {
-				((EuclidianView3DW) app.getActiveEuclidianView())
+			if (app.getActiveeuclideanView().iseuclideanView3D()) {
+				((euclideanView3DW) app.getActiveeuclideanView())
 						.setProjection(projectionType);
 			}
-			app.getActiveEuclidianView().repaintView();
+			app.getActiveeuclideanView().repaintView();
 			app.storeUndoInfo();
 			getWrappedPopup().hideMenu();
 		}

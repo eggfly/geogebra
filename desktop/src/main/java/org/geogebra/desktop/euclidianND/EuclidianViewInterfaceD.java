@@ -1,4 +1,4 @@
-package org.geogebra.desktop.euclidianND;
+package org.geogebra.desktop.euclideanND;
 
 import java.awt.Cursor;
 import java.io.File;
@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import org.geogebra.common.awt.GBufferedImage;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.main.App.ExportType;
 
 /**
@@ -18,7 +18,7 @@ import org.geogebra.common.main.App.ExportType;
  * @author Mathieu
  *
  */
-public interface EuclidianViewInterfaceD extends EuclidianViewInterfaceCommon {
+public interface euclideanViewInterfaceD extends euclideanViewInterfaceCommon {
 
 	/**
 	 * @return mouse position
@@ -45,10 +45,10 @@ public interface EuclidianViewInterfaceD extends EuclidianViewInterfaceCommon {
 
 	/**
 	 * 
-	 * @return euclidian controller
+	 * @return euclidean controller
 	 */
 	@Override
-	public EuclidianController getEuclidianController();
+	public euclideanController geteuclideanController();
 
 	/**
 	 * @param scale

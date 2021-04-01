@@ -1,12 +1,12 @@
-package org.geogebra.web.full.euclidian.inline;
+package org.geogebra.web.full.euclidean.inline;
 
 import org.geogebra.common.awt.GAffineTransform;
 import org.geogebra.common.awt.GBasicStroke;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.draw.DrawInlineText;
-import org.geogebra.common.euclidian.inline.InlineTextController;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.draw.DrawInlineText;
+import org.geogebra.common.euclidean.inline.InlineTextController;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GProperty;
 import org.geogebra.common.kernel.geos.GeoInlineText;
@@ -14,8 +14,8 @@ import org.geogebra.common.move.ggtapi.models.json.JSONArray;
 import org.geogebra.common.move.ggtapi.models.json.JSONException;
 import org.geogebra.common.move.ggtapi.models.json.JSONObject;
 import org.geogebra.common.util.debug.Log;
-import org.geogebra.web.html5.euclidian.FontLoader;
-import org.geogebra.web.html5.euclidian.GGraphics2DWI;
+import org.geogebra.web.html5.euclidean.FontLoader;
+import org.geogebra.web.html5.euclidean.GGraphics2DWI;
 import org.geogebra.web.html5.util.CopyPasteW;
 import org.geogebra.web.richtext.Editor;
 import org.geogebra.web.richtext.EditorChangeListener;
@@ -48,7 +48,7 @@ public class InlineTextControllerW implements InlineTextController {
 	 * @param parent
 	 *            parent div
 	 */
-	public InlineTextControllerW(GeoInlineText geo, EuclidianView view, Element parent) {
+	public InlineTextControllerW(GeoInlineText geo, euclideanView view, Element parent) {
 		this.geo = geo;
 		this.parent = parent;
 		CarotaUtil.ensureInitialized(view.getFontSize());

@@ -2,7 +2,7 @@ package org.geogebra.common.kernel.scripting;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.gui.view.spreadsheet.CellFormat;
 import org.geogebra.common.gui.view.spreadsheet.CellFormatInterface;
 import org.geogebra.common.kernel.Kernel;
@@ -239,7 +239,7 @@ public class CmdSetColor extends CmdScripting {
 	}
 
 	private void setViewBackground(GColor col) {
-		EuclidianViewInterfaceCommon view = app.getActiveEuclidianView();
+		euclideanViewInterfaceCommon view = app.getActiveeuclideanView();
 		view.getSettings().setBackground(col);
 		view.updateBackground();
 

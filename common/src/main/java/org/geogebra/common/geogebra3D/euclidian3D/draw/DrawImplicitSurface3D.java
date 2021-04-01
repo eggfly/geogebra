@@ -1,12 +1,12 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.ManagerShaders.TypeElement;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterSurface;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.ManagerShaders.TypeElement;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterSurface;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoTriangulatedSurface3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoTriangulatedSurface3D.SurfaceMover;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoTriangulatedSurface3D.Triangle;
@@ -28,11 +28,11 @@ public class DrawImplicitSurface3D extends Drawable3DSurfaces {
 	 * create a new {@link DrawImplicitSurface3D} object
 	 * 
 	 * @param a_view3d
-	 *            {@link EuclidianView3D}
+	 *            {@link euclideanView3D}
 	 * @param a_geo
 	 *            {@link GeoElement}
 	 */
-	public DrawImplicitSurface3D(EuclidianView3D a_view3d,
+	public DrawImplicitSurface3D(euclideanView3D a_view3d,
 			GeoImplicitSurface a_geo) {
 		super(a_view3d, a_geo);
 	}
@@ -65,7 +65,7 @@ public class DrawImplicitSurface3D extends Drawable3DSurfaces {
 	@Override
 	protected boolean updateForItSelf() {
 		GeoImplicitSurface geo = (GeoImplicitSurface) getGeoElement();
-		EuclidianView3D v3d = getView3D();
+		euclideanView3D v3d = getView3D();
 		geo.updateSurface(new double[] { v3d.getXmin(), v3d.getXmax(),
 				v3d.getYmin(), v3d.getYmax(), v3d.getZmin(), v3d.getZmax(),
 				v3d.getXscale(), v3d.getYscale(), v3d.getZscale() });
@@ -116,7 +116,7 @@ public class DrawImplicitSurface3D extends Drawable3DSurfaces {
 		}
 
 		if (getGeoElement()
-				.getAlphaValue() < EuclidianController.MIN_VISIBLE_ALPHA_VALUE) {
+				.getAlphaValue() < euclideanController.MIN_VISIBLE_ALPHA_VALUE) {
 			return false;
 		}
 

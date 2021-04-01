@@ -3,7 +3,7 @@ package org.geogebra.web.full.gui.toolbar.mow;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.AccessibilityGroup;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.toolbar.ToolBar;
@@ -174,7 +174,7 @@ public abstract class SubMenuPanel extends FlowPanel
 	@Override
 	public void onClick(Widget source) {
 		int mode = Integer.parseInt(source.getElement().getAttribute("mode"));
-		if (mode == EuclidianConstants.MODE_IMAGE) {
+		if (mode == euclideanConstants.MODE_IMAGE) {
 			// set css before file picker
 			setMode(mode);
 		}

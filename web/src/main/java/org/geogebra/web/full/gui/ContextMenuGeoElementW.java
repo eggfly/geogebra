@@ -378,11 +378,11 @@ public class ContextMenuGeoElementW extends ContextMenuGeoElement
 	}
 
 	private void addShowObjectItem() {
-		if (!app.isUnbundledOrWhiteboard() && getGeo().isEuclidianToggleable()) {
+		if (!app.isUnbundledOrWhiteboard() && getGeo().iseuclideanToggleable()) {
 			ResourcePrototype img = ToolbarSvgResources.INSTANCE.mode_showhideobject_32();
 			GCheckmarkMenuItem cmItem = new GCheckmarkMenuItem(
 					MainMenu.getMenuBarHtml(img, loc.getMenu("ShowObject")),
-					getGeo().isSetEuclidianVisible(),
+					getGeo().isSeteuclideanVisible(),
 					this::showObjectCmd
 			);
 			wrappedPopup.addItem(cmItem);
@@ -926,8 +926,8 @@ public class ContextMenuGeoElementW extends ContextMenuGeoElement
 	 * update whole popup
 	 */
 	public void update() {
-		initPopup(app.getActiveEuclidianView()
-				.getEuclidianController().getAppSelectedGeos());
+		initPopup(app.getActiveeuclideanView()
+				.geteuclideanController().getAppSelectedGeos());
 		addOtherItems();
 	}
 

@@ -1,8 +1,8 @@
 package org.geogebra.web.full.gui.dialog;
 
 import org.geogebra.common.GeoGebraConstants;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.draw.HasTextFormat;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.draw.HasTextFormat;
 import org.geogebra.common.kernel.ModeSetter;
 import org.geogebra.common.util.StringUtil;
 import org.geogebra.web.html5.main.AppW;
@@ -84,7 +84,7 @@ public class HyperlinkDialog extends ComponentDialog {
 	@Override
 	public void hide() {
 		super.hide();
-		app.getGuiManager().setMode(EuclidianConstants.MODE_SELECT_MOW,
+		app.getGuiManager().setMode(euclideanConstants.MODE_SELECT_MOW,
 				ModeSetter.TOOLBAR);
 	}
 }

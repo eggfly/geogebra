@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactoryCommon;
 import org.geogebra.common.jre.headless.AppCommon;
 import org.geogebra.common.jre.headless.LocalizationCommon;
@@ -151,15 +151,15 @@ public class GgbApiTest {
 		assertTrue(app.showView(App.VIEW_ALGEBRA));
 		api.setPerspective(geometryXML);
 		assertFalse(app.showView(App.VIEW_ALGEBRA));
-		assertTrue(app.showView(App.VIEW_EUCLIDIAN));
+		assertTrue(app.showView(App.VIEW_euclidean));
 	}
 
 	@Test
 	public void viewChanged2DTest() {
 		ScriptManager scriptManager = prepareScriptManager();
 
-		EuclidianView euclidianView = app.getActiveEuclidianView();
-		euclidianView.setCoordSystem(30, 40, 5, 6);
+		euclideanView euclideanView = app.getActiveeuclideanView();
+		euclideanView.setCoordSystem(30, 40, 5, 6);
 
 		ArgumentCaptor<Event> eventCaptor = ArgumentCaptor.forClass(Event.class);
 
@@ -215,7 +215,7 @@ public class GgbApiTest {
 		scriptManager.registerUpdateListener("onUpdateGlobal");
 
 		app.getKernel().getAlgoDispatcher().attach((GeoPointND) lookup("C"),
-				(Path) lookup("l"), app.getActiveEuclidianView(), null);
+				(Path) lookup("l"), app.getActiveeuclideanView(), null);
 		lookup("A").notifyUpdate();
 		Mockito.verify(scriptManager, times(1))
 				.evalJavaScript("onUpdate(\"A\");");
@@ -237,7 +237,7 @@ public class GgbApiTest {
 
 		ScriptManager scriptManager = prepareScriptManager();
 
-		EuclidianController ec = app.getActiveEuclidianView().getEuclidianController();
+		euclideanController ec = app.getActiveeuclideanView().geteuclideanController();
 		ec.wrapMousePressed(new TestEvent(300, 400));
 
 		ArgumentCaptor<Event> eventCaptor = ArgumentCaptor.forClass(Event.class);
@@ -268,7 +268,7 @@ public class GgbApiTest {
 
 		ScriptManager scriptManager = prepareScriptManager();
 
-		EuclidianController ec = app.getActiveEuclidianView().getEuclidianController();
+		euclideanController ec = app.getActiveeuclideanView().geteuclideanController();
 
 		ec.setDraggingDelay(0);
 		ec.wrapMousePressed(new TestEvent(300, 400));

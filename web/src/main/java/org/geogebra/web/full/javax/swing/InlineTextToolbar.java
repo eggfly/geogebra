@@ -2,7 +2,7 @@ package org.geogebra.web.full.javax.swing;
 
 import java.util.List;
 
-import org.geogebra.common.euclidian.draw.HasTextFormat;
+import org.geogebra.common.euclidean.draw.HasTextFormat;
 import org.geogebra.common.main.App;
 import org.geogebra.web.full.css.MaterialDesignResources;
 import org.geogebra.web.full.gui.util.MyToggleButtonW;

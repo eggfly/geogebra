@@ -1,21 +1,21 @@
 package org.geogebra.web.geogebra3D.web.input3D;
 
-import org.geogebra.common.euclidian.EuclidianViewCompanion;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.input3D.EuclidianViewInput3DCompanion;
+import org.geogebra.common.euclidean.euclideanViewCompanion;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.input3D.euclideanViewInput3DCompanion;
 import org.geogebra.common.geogebra3D.input3D.Input3D;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianView3DW;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.web.geogebra3D.web.euclidean3D.euclideanView3DW;
 
 /**
  * 3D graphics with 3D input for Web
  *
  */
-public class EuclidianViewInput3DW extends EuclidianView3DW {
+public class euclideanViewInput3DW extends euclideanView3DW {
 
 	private Input3D input3D;
-	private EuclidianViewInput3DCompanion companionInput3D;
+	private euclideanViewInput3DCompanion companionInput3D;
 
 	/**
 	 * @param ec
@@ -23,25 +23,25 @@ public class EuclidianViewInput3DW extends EuclidianView3DW {
 	 * @param settings
 	 *            settings
 	 */
-	public EuclidianViewInput3DW(EuclidianController3D ec,
-			EuclidianSettings settings) {
+	public euclideanViewInput3DW(euclideanController3D ec,
+			euclideanSettings settings) {
 		super(ec, settings);
 	}
 
 	@Override
-	protected EuclidianViewCompanion newEuclidianViewCompanion() {
-		companionInput3D = new EuclidianViewInput3DCompanion(this);
+	protected euclideanViewCompanion neweuclideanViewCompanion() {
+		companionInput3D = new euclideanViewInput3DCompanion(this);
 		return companionInput3D;
 	}
 
 	@Override
-	public EuclidianViewInput3DCompanion getCompanion() {
+	public euclideanViewInput3DCompanion getCompanion() {
 		return companionInput3D;
 	}
 
 	@Override
 	protected void start() {
-		input3D = ((EuclidianControllerInput3DW) euclidianController).input3D;
+		input3D = ((euclideanControllerInput3DW) euclideanController).input3D;
 		input3D.init(this);
 		getCompanion().setInput3D(input3D);
 		super.start();

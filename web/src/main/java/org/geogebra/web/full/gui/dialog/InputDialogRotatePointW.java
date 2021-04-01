@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoPolygon;
@@ -35,7 +35,7 @@ public class InputDialogRotatePointW extends InputDialogRotateW {
 	 */
 	public InputDialogRotatePointW(AppW app, DialogData data,
 			InputHandler handler, GeoPolygon[] polys, GeoPointND[] points,
-			GeoElement[] selGeos, EuclidianController ec) {
+			GeoElement[] selGeos, euclideanController ec) {
 		super(app, data, handler, polys, selGeos, ec);
 		this.points = points;
 	}

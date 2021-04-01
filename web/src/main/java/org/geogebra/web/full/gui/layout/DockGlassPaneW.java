@@ -2,7 +2,7 @@ package org.geogebra.web.full.gui.layout;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.layout.DockComponent;
 import org.geogebra.common.javax.swing.SwingConstants;
 import org.geogebra.ggbjdk.java.awt.geom.Rectangle;

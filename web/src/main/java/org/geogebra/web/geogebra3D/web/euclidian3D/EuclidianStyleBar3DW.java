@@ -1,18 +1,18 @@
-package org.geogebra.web.geogebra3D.web.euclidian3D;
+package org.geogebra.web.geogebra3D.web.euclidean3D;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianStyleBarStatic3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanStyleBarStatic3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
 import org.geogebra.common.main.OptionType;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
-import org.geogebra.web.full.euclidian.EuclidianStyleBarW;
-import org.geogebra.web.full.euclidian.MyToggleButtonWforEV;
+import org.geogebra.common.main.settings.euclideanSettings3D;
+import org.geogebra.web.full.euclidean.euclideanStyleBarW;
+import org.geogebra.web.full.euclidean.MyToggleButtonWforEV;
 import org.geogebra.web.full.gui.images.StyleBarResources;
 import org.geogebra.web.full.gui.util.MyToggleButtonW;
 import org.geogebra.web.full.gui.util.PopupMenuButtonW;
@@ -27,7 +27,7 @@ import com.google.gwt.resources.client.ImageResource;
  * @author mathieu
  *
  */
-public class EuclidianStyleBar3DW extends EuclidianStyleBarW {
+public class euclideanStyleBar3DW extends euclideanStyleBarW {
 
 	private RotateViewPopup btnRotateView;
 
@@ -43,25 +43,25 @@ public class EuclidianStyleBar3DW extends EuclidianStyleBarW {
 	 * constructor
 	 * 
 	 * @param ev
-	 *            euclidian view
+	 *            euclidean view
 	 */
-	public EuclidianStyleBar3DW(EuclidianView ev) {
-		super(ev, App.VIEW_EUCLIDIAN3D);
+	public euclideanStyleBar3DW(euclideanView ev) {
+		super(ev, App.VIEW_euclidean3D);
 	}
 
 	@Override
 	protected void setOptionType() {
-		optionType = OptionType.EUCLIDIAN3D;
+		optionType = OptionType.euclidean3D;
 	}
 
 	@Override
-	public EuclidianView3D getView() {
-		return (EuclidianView3D) ev;
+	public euclideanView3D getView() {
+		return (euclideanView3D) ev;
 	}
 
 	@Override
 	protected void createDefaultMap() {
-		EuclidianStyleBarStatic3D.addToDefaultMap(selection.getDefaultMap());
+		euclideanStyleBarStatic3D.addToDefaultMap(selection.getDefaultMap());
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class EuclidianStyleBar3DW extends EuclidianStyleBarW {
 
 		super.createButtons();
 
-		getBtnPointStyle().setEuclidian3D(true);
+		getBtnPointStyle().seteuclidean3D(true);
 
 		// ========================================
 		// rotate view button
@@ -112,7 +112,7 @@ public class EuclidianStyleBar3DW extends EuclidianStyleBarW {
 		projectionIcons[3].setUrl(StyleBar3DResources.INSTANCE.viewOblique()
 				.getSafeUri().asString());
 		btnViewProjection = new ProjectionPopup(app, projectionIcons);
-		btnViewProjection.setSelectedIndex(((EuclidianSettings3D) ev
+		btnViewProjection.setSelectedIndex(((euclideanSettings3D) ev
 				.getSettings()).getProjection());
 		btnViewProjection.addPopupHandler(this);
 	}
@@ -158,8 +158,8 @@ public class EuclidianStyleBar3DW extends EuclidianStyleBarW {
 			getView().setViewShowAllObjects(true, false);
 			break;
 		case 2: // standard view orientation
-			getView().setRotAnimation(EuclidianView3DInterface.ANGLE_ROT_OZ,
-					EuclidianView3DInterface.ANGLE_ROT_XOY, false);
+			getView().setRotAnimation(euclideanView3DInterface.ANGLE_ROT_OZ,
+					euclideanView3DInterface.ANGLE_ROT_XOY, false);
 			break;
 
 		// views parallel to axes

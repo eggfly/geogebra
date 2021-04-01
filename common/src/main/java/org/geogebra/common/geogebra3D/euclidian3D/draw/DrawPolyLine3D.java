@@ -1,11 +1,11 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPolyLine3D;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoPolyLine;
@@ -33,7 +33,7 @@ public class DrawPolyLine3D extends Drawable3DCurves implements Previewable {
 	 * @param p
 	 *            polyline
 	 */
-	public DrawPolyLine3D(EuclidianView3D a_view3D, GeoElement p) {
+	public DrawPolyLine3D(euclideanView3D a_view3D, GeoElement p) {
 		super(a_view3D, p);
 	}
 
@@ -45,7 +45,7 @@ public class DrawPolyLine3D extends Drawable3DCurves implements Previewable {
 	 * @param points
 	 *            preview points
 	 */
-	public DrawPolyLine3D(EuclidianView3D a_view3d,
+	public DrawPolyLine3D(euclideanView3D a_view3d,
 			ArrayList<GeoPointND> points) {
 		super(a_view3d);
 		// p.setIsPickable(false);
@@ -156,11 +156,11 @@ public class DrawPolyLine3D extends Drawable3DCurves implements Previewable {
 			points[selectedPoints.size()] = getView3D().getCursor3D();
 			((GeoPolyLine) getGeoElement()).setPoints(points);
 			((GeoPolyLine) getGeoElement()).setDefined();
-			getGeoElement().setEuclidianVisible(true);
+			getGeoElement().seteuclideanVisible(true);
 			getGeoElement().setVisibleInView3D(true);
 			setWaitForUpdate();
 		} else {
-			getGeoElement().setEuclidianVisible(false);
+			getGeoElement().seteuclideanVisible(false);
 		}
 
 	}

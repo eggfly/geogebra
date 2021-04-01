@@ -1,9 +1,9 @@
 package org.geogebra.web.geogebra3D.web.main;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLFactory;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLFactory;
 import org.geogebra.common.geogebra3D.io.OFFHandler;
 import org.geogebra.common.geogebra3D.kernel3D.GeoFactory3D;
 import org.geogebra.common.geogebra3D.kernel3D.Kernel3D;
@@ -13,7 +13,7 @@ import org.geogebra.common.kernel.GeoFactory;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.AppCompanion;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.util.opencsv.CSVException;
 import org.geogebra.web.full.gui.GuiManagerW;
 import org.geogebra.web.full.gui.applet.GeoGebraFrameFull;
@@ -22,17 +22,17 @@ import org.geogebra.web.full.gui.dialog.DialogManagerW;
 import org.geogebra.web.full.gui.laf.GLookAndFeel;
 import org.geogebra.web.full.main.AppWFull;
 import org.geogebra.web.full.main.GDevice;
-import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianController3DW;
-import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianView3DW;
-import org.geogebra.web.geogebra3D.web.euclidian3D.openGL.GLFactoryW;
-import org.geogebra.web.geogebra3D.web.euclidianFor3D.EuclidianControllerFor3DW;
-import org.geogebra.web.geogebra3D.web.euclidianFor3D.EuclidianViewFor3DW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.euclideanController3DW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.euclideanView3DW;
+import org.geogebra.web.geogebra3D.web.euclidean3D.openGL.GLFactoryW;
+import org.geogebra.web.geogebra3D.web.euclideanFor3D.euclideanControllerFor3DW;
+import org.geogebra.web.geogebra3D.web.euclideanFor3D.euclideanViewFor3DW;
 import org.geogebra.web.geogebra3D.web.gui.GuiManager3DW;
 import org.geogebra.web.geogebra3D.web.kernel3D.commands.CommandDispatcher3DW;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.EuclidianControllerW;
-import org.geogebra.web.html5.euclidian.EuclidianPanelWAbstract;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
+import org.geogebra.web.html5.euclidean.euclideanControllerW;
+import org.geogebra.web.html5.euclidean.euclideanPanelWAbstract;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
 import org.geogebra.web.html5.main.GgbFile;
 import org.geogebra.web.html5.util.AppletParameters;
 import org.geogebra.web.html5.util.GeoGebraElement;
@@ -40,8 +40,8 @@ import org.geogebra.web.html5.util.GeoGebraElement;
 /** 3D applet */
 public class AppWapplet3D extends AppWFull {
 
-	private EuclidianView3DW euclidianView3D;
-	private EuclidianController3DW euclidianController3D;
+	private euclideanView3DW euclideanView3D;
+	private euclideanController3DW euclideanController3D;
 
 	/**
 	 * Constructs AppW for applets
@@ -69,14 +69,14 @@ public class AppWapplet3D extends AppWFull {
 	}
 
 	@Override
-	public EuclidianView3DInterface getEuclidianView3D() {
-		// Window.alert("getEuclidianView3D()");
-		if (this.euclidianView3D == null) {
-			euclidianController3D = App3DW.newEuclidianController3DW(kernel);
-			euclidianView3D = App3DW.newEuclidianView3DW(euclidianController3D,
-			        getSettings().getEuclidian(3));
+	public euclideanView3DInterface geteuclideanView3D() {
+		// Window.alert("geteuclideanView3D()");
+		if (this.euclideanView3D == null) {
+			euclideanController3D = App3DW.neweuclideanController3DW(kernel);
+			euclideanView3D = App3DW.neweuclideanView3DW(euclideanController3D,
+			        getSettings().geteuclidean(3));
 		}
-		return euclidianView3D;
+		return euclideanView3D;
 	}
 
 	@Override
@@ -86,9 +86,9 @@ public class AppWapplet3D extends AppWFull {
 
 	@Override
 	public boolean supportsView(int viewID) {
-		if (viewID == App.VIEW_EUCLIDIAN3D) {
+		if (viewID == App.VIEW_euclidean3D) {
 			return Browser.supportsWebGL()
-					&& getSettings().getEuclidian(-1).isEnabled();
+					&& getSettings().geteuclidean(-1).isEnabled();
 		}
 		return super.supportsView(viewID);
 	}
@@ -98,8 +98,8 @@ public class AppWapplet3D extends AppWFull {
 
 		super.recalculateEnvironments();
 
-		if (this.isEuclidianView3Dinited()) {
-			getEuclidianView3D().getEuclidianController()
+		if (this.iseuclideanView3Dinited()) {
+			geteuclideanView3D().geteuclideanController()
 			        .calculateEnvironment();
 		}
 
@@ -118,8 +118,8 @@ public class AppWapplet3D extends AppWFull {
 	@Override
 	public void updateViewSizes() {
 		super.updateViewSizes();
-		if (((GuiManager3DW) getGuiManager()).getEuclidian3DPanel() != null) {
-			((GuiManager3DW) getGuiManager()).getEuclidian3DPanel()
+		if (((GuiManager3DW) getGuiManager()).geteuclidean3DPanel() != null) {
+			((GuiManager3DW) getGuiManager()).geteuclidean3DPanel()
 			        .deferredOnResize();
 		}
 		((App3DCompanionW) companion).updateViewSizes();
@@ -128,29 +128,29 @@ public class AppWapplet3D extends AppWFull {
 	@Override
 	public void updateStyleBars() {
 		super.updateStyleBars();
-		if (showView(App.VIEW_EUCLIDIAN3D)) {
-			getEuclidianView3D().getStyleBar().updateStyleBar();
+		if (showView(App.VIEW_euclidean3D)) {
+			geteuclideanView3D().getStyleBar().updateStyleBar();
 		}
 	}
 
 	@Override
-	public boolean isEuclidianView3Dinited() {
-		return euclidianView3D != null;
+	public boolean iseuclideanView3Dinited() {
+		return euclideanView3D != null;
 	}
 
 	@Override
-	public EuclidianViewW newEuclidianView(EuclidianPanelWAbstract evPanel,
-			EuclidianController ec, boolean[] evShowAxes, boolean evShowGrid,
-	        int id, EuclidianSettings evSettings) {
-		return new EuclidianViewFor3DW(evPanel, ec, id, evSettings);
+	public euclideanViewW neweuclideanView(euclideanPanelWAbstract evPanel,
+			euclideanController ec, boolean[] evShowAxes, boolean evShowGrid,
+	        int id, euclideanSettings evSettings) {
+		return new euclideanViewFor3DW(evPanel, ec, id, evSettings);
 	}
 
 	@Override
-	public EuclidianController newEuclidianController(Kernel kernel1) {
+	public euclideanController neweuclideanController(Kernel kernel1) {
 		if (kernel.getApplication().is3DViewEnabled()) {
-			return new EuclidianControllerFor3DW(kernel);
+			return new euclideanControllerFor3DW(kernel);
 		} else {
-			return new EuclidianControllerW(kernel);
+			return new euclideanControllerW(kernel);
 		}
 	}
 
@@ -171,8 +171,8 @@ public class AppWapplet3D extends AppWFull {
 	@Override
 	public void setCurrentFile(GgbFile file) {
 		super.setCurrentFile(file);
-		if (this.isEuclidianView3Dinited()) {
-			((EuclidianView3DW) getEuclidianView3D())
+		if (this.iseuclideanView3Dinited()) {
+			((euclideanView3DW) geteuclideanView3D())
 					.setCurrentFile(getCurrentFile());
 		}
 	}
@@ -197,12 +197,12 @@ public class AppWapplet3D extends AppWFull {
 		// save super settings
 		sb.append(super.getCompleteUserInterfaceXML(asPreference));
 
-		// save euclidianView3D settings
-		if (isEuclidianView3Dinited()) {
-			euclidianView3D.getXML(sb, asPreference);
+		// save euclideanView3D settings
+		if (iseuclideanView3Dinited()) {
+			euclideanView3D.getXML(sb, asPreference);
 		}
 
-		// save euclidian views for plane settings
+		// save euclidean views for plane settings
 		((App3DCompanion) companion).addCompleteUserInterfaceXMLForPlane(sb,
 		        asPreference);
 
@@ -215,9 +215,9 @@ public class AppWapplet3D extends AppWFull {
 	}
 
 	@Override
-	public boolean isEuclidianView3D(EuclidianViewInterfaceCommon view) {
-		// euclidianView3D might be null
-		return view != null && view == euclidianView3D;
+	public boolean iseuclideanView3D(euclideanViewInterfaceCommon view) {
+		// euclideanView3D might be null
+		return view != null && view == euclideanView3D;
 	}
 
 	@Override

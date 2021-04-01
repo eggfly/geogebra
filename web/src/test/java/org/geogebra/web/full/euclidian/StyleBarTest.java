@@ -1,4 +1,4 @@
-package org.geogebra.web.full.euclidian;
+package org.geogebra.web.full.euclidean;
 
 import org.geogebra.web.full.main.AppWFull;
 import org.geogebra.web.html5.util.AppletParameters;
@@ -20,12 +20,12 @@ public class StyleBarTest {
 	public void updateGraphingStylebar() {
 		AppWFull app = AppMocker
 				.mockApplet(new AppletParameters("graphing"));
-		EuclidianStyleBarW styleBar = new EuclidianStyleBarW(
-				app.getActiveEuclidianView(), 1);
+		euclideanStyleBarW styleBar = new euclideanStyleBarW(
+				app.getActiveeuclideanView(), 1);
 		checkUpdate(styleBar);
 	}
 
-	private static void checkUpdate(EuclidianStyleBarW styleBar) {
+	private static void checkUpdate(euclideanStyleBarW styleBar) {
 		try {
 			styleBar.setOpen(true);
 			styleBar.updateStyleBar();
@@ -40,8 +40,8 @@ public class StyleBarTest {
 	public void updateWhiteboardStylebar() {
 		AppWFull app = AppMocker
 				.mockApplet(new AppletParameters("notes"));
-		EuclidianStyleBarW styleBar = new EuclidianStyleBarW(
-				app.getActiveEuclidianView(), 1);
+		euclideanStyleBarW styleBar = new euclideanStyleBarW(
+				app.getActiveeuclideanView(), 1);
 		checkUpdate(styleBar);
 	}
 

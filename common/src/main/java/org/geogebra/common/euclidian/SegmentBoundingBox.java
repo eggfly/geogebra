@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.awt.GEllipse2DDouble;
 import org.geogebra.common.awt.GGraphics2D;
@@ -39,7 +39,7 @@ public class SegmentBoundingBox extends BoundingBox<GEllipse2DDouble> {
 	}
 
 	@Override
-	public EuclidianCursor getCursor(EuclidianBoundingBoxHandler nrHandler) {
-		return EuclidianCursor.DRAG;
+	public euclideanCursor getCursor(euclideanBoundingBoxHandler nrHandler) {
+		return euclideanCursor.DRAG;
 	}
 }

@@ -105,7 +105,7 @@ public interface View {
 	 * Notify this view about changed mode
 	 * 
 	 * @param mode
-	 *            Euclidian view mode
+	 *            euclidean view mode
 	 * @param m
 	 *            how did the mode change happen
 	 */

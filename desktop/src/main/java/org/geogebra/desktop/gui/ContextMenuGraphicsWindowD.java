@@ -21,7 +21,7 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.main.App;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.desktop.main.AppD;
@@ -59,8 +59,8 @@ public class ContextMenuGraphicsWindowD extends ContextMenuGeoElementD
 		this.px = px;
 		this.py = py;
 
-		EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
-		if (ev.getEuclidianViewNo() == 2) {
+		euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
+		if (ev.geteuclideanViewNo() == 2) {
 			setTitle("<html>" + loc.getMenu("DrawingPad2") + "</html>");
 		} else {
 			setTitle("<html>" + loc.getMenu("DrawingPad") + "</html>");
@@ -102,7 +102,7 @@ public class ContextMenuGraphicsWindowD extends ContextMenuGeoElementD
 
 	}
 
-	protected void addZoomMenu(EuclidianViewInterfaceCommon ev) {
+	protected void addZoomMenu(euclideanViewInterfaceCommon ev) {
 		JMenu zoomMenu = new JMenu(loc.getMenu("Zoom"));
 		zoomMenu.setIcon(iconZoom);
 		zoomMenu.setBackground(wrappedPopup.getBackground());
@@ -128,7 +128,7 @@ public class ContextMenuGraphicsWindowD extends ContextMenuGeoElementD
 		JCheckBoxMenuItem cbShowConstructionStep = new JCheckBoxMenuItem(
 				showConstructionStep);
 		cbShowConstructionStep.setSelected(app.showConsProtNavigation(
-				app.getActiveEuclidianView().getViewID()));
+				app.getActiveeuclideanView().getViewID()));
 		cbShowConstructionStep.setBackground(wrappedPopup.getBackground());
 		wrappedPopup.add(cbShowConstructionStep);
 
@@ -168,7 +168,7 @@ public class ContextMenuGraphicsWindowD extends ContextMenuGeoElementD
 
 	void toggleShowConstructionProtocolNavigation() {
 		((AppD) app).toggleShowConstructionProtocolNavigation(
-				app.getActiveEuclidianView().getViewID());
+				app.getActiveeuclideanView().getViewID());
 	}
 
 	protected void addMiProperties() {
@@ -223,8 +223,8 @@ public class ContextMenuGraphicsWindowD extends ContextMenuGeoElementD
 	protected void showOptionsDialog() {
 		app.getGuiManager().setShowView(true, App.VIEW_PROPERTIES);
 		((GuiManagerD) app.getGuiManager()).setFocusedPanel(
-				app.getActiveEuclidianView().getViewID(), true);
-		// app.getDialogManager().showOptionsDialog(OptionsDialog.TAB_EUCLIDIAN);
+				app.getActiveeuclideanView().getViewID(), true);
+		// app.getDialogManager().showOptionsDialog(OptionsDialog.TAB_euclidean);
 		// app.getGuiManager().showDrawingPadPropertiesDialog();
 	}
 
@@ -277,7 +277,7 @@ public class ContextMenuGraphicsWindowD extends ContextMenuGeoElementD
 		};
 
 		// get current axes ratio
-		double scaleRatio = app.getActiveEuclidianView()
+		double scaleRatio = app.getActiveeuclideanView()
 				.getScaleRatio();
 
 		JMenuItem mi;

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.TreeSet;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.view.data.PlotSettings;
 import org.geogebra.common.kernel.Construction;
@@ -70,7 +70,7 @@ import org.geogebra.common.main.settings.AbstractSettings;
 import org.geogebra.common.main.settings.ProbabilityCalculatorSettings;
 import org.geogebra.common.main.settings.ProbabilityCalculatorSettings.Dist;
 import org.geogebra.common.main.settings.SettingListener;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.Operation;
 import org.geogebra.common.util.debug.Log;
 
@@ -108,7 +108,7 @@ public abstract class ProbabilityCalculatorView
 
 	private static final GColor COLOR_POINT = GColor.BLACK;
 
-	private EuclidianView plotPanel;
+	private euclideanView plotPanel;
 
 	private ProbabilityTable table;
 	/** enable/disable integral ---- use for testing */
@@ -418,7 +418,7 @@ public abstract class ProbabilityCalculatorView
 		lowPoint.setObjColor(COLOR_POINT);
 		lowPoint.setPointSize(4);
 		lowPoint.setPointStyle(
-				EuclidianStyleConstants.POINT_STYLE_TRIANGLE_NORTH);
+				euclideanStyleConstants.POINT_STYLE_TRIANGLE_NORTH);
 		lowPoint.setLayer(5);
 		plotGeoList.add(lowPoint);
 
@@ -432,7 +432,7 @@ public abstract class ProbabilityCalculatorView
 		highPoint.setObjColor(COLOR_POINT);
 		highPoint.setPointSize(4);
 		highPoint.setPointStyle(
-				EuclidianStyleConstants.POINT_STYLE_TRIANGLE_NORTH);
+				euclideanStyleConstants.POINT_STYLE_TRIANGLE_NORTH);
 		highPoint.setLayer(5);
 		plotGeoList.add(highPoint);
 
@@ -488,7 +488,7 @@ public abstract class ProbabilityCalculatorView
 			discreteGraph.setLayer(1);
 			discreteGraph.setFixed(true);
 			discreteGraph.setSelectionAllowed(false);
-			discreteGraph.setEuclidianVisible(true);
+			discreteGraph.seteuclideanVisible(true);
 			plotGeoList.add(discreteGraph);
 
 			// ============================
@@ -583,7 +583,7 @@ public abstract class ProbabilityCalculatorView
 				discreteIntervalGraph.setObjColor(GColor.RED);
 				discreteIntervalGraph.setLineThickness(3);
 				discreteIntervalGraph
-						.setLineType(EuclidianStyleConstants.LINE_TYPE_FULL);
+						.setLineType(euclideanStyleConstants.LINE_TYPE_FULL);
 			} else if (graphType == GRAPH_LINE || graphType == GRAPH_STEP) {
 				discreteIntervalGraph.setObjColor(COLOR_PDF_FILL);
 				discreteIntervalGraph.setLineThickness(thicknessBarChart + 2);
@@ -593,7 +593,7 @@ public abstract class ProbabilityCalculatorView
 				discreteIntervalGraph.setLineThickness(thicknessBarChart);
 			}
 
-			discreteIntervalGraph.setEuclidianVisible(showProbGeos);
+			discreteIntervalGraph.seteuclideanVisible(showProbGeos);
 			discreteIntervalGraph.setLayer(discreteGraph.getLayer() + 1);
 			discreteIntervalGraph.setFixed(true);
 			discreteIntervalGraph.setSelectionAllowed(false);
@@ -603,7 +603,7 @@ public abstract class ProbabilityCalculatorView
 			GeoLine axis = new GeoLine(cons);
 			axis.setCoords(0, 1, 0);
 			axis.setLayer(4);
-			axis.setObjColor(app.getEuclidianView1().getAxesColor());
+			axis.setObjColor(app.geteuclideanView1().getAxesColor());
 			axis.setLineThickness(discreteIntervalGraph.getLineThickness());
 			axis.setFixed(true);
 			axis.setSelectionAllowed(false);
@@ -627,7 +627,7 @@ public abstract class ProbabilityCalculatorView
 			densityCurve.setLineThickness(thicknessCurve);
 			densityCurve.setFixed(true);
 			densityCurve.setSelectionAllowed(false);
-			densityCurve.setEuclidianVisible(true);
+			densityCurve.seteuclideanVisible(true);
 			plotGeoList.add(densityCurve);
 
 			if (hasIntegral) {
@@ -655,7 +655,7 @@ public abstract class ProbabilityCalculatorView
 				integral = algoIntegral.getOutput(0);
 				integral.setObjColor(COLOR_PDF_FILL);
 				integral.setAlphaValue(opacityIntegral);
-				integral.setEuclidianVisible(showProbGeos);
+				integral.seteuclideanVisible(showProbGeos);
 				// make sure doesn't interfere with dragging of point
 				integral.setSelectionAllowed(false);
 				plotGeoList.add(integral);
@@ -706,8 +706,8 @@ public abstract class ProbabilityCalculatorView
 				xSegment.setObjColor(GColor.BLUE);
 				xSegment.setLineThickness(3);
 				xSegment.setLineType(
-						EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT);
-				xSegment.setEuclidianVisible(showProbGeos);
+						euclideanStyleConstants.LINE_TYPE_DASHED_SHORT);
+				xSegment.seteuclideanVisible(showProbGeos);
 				xSegment.setFixed(true);
 				xSegment.setSelectionAllowed(false);
 				plotGeoList.add(xSegment);
@@ -729,8 +729,8 @@ public abstract class ProbabilityCalculatorView
 				ySegment = seg2.getOutput(0);
 				ySegment.setObjColor(GColor.RED);
 				ySegment.setLineThickness(3);
-				ySegment.setLineType(EuclidianStyleConstants.LINE_TYPE_FULL);
-				ySegment.setEuclidianVisible(showProbGeos);
+				ySegment.setLineType(euclideanStyleConstants.LINE_TYPE_FULL);
+				ySegment.seteuclideanVisible(showProbGeos);
 				ySegment.setFixed(true);
 				ySegment.setSelectionAllowed(false);
 				plotGeoList.add(ySegment);
@@ -800,8 +800,8 @@ public abstract class ProbabilityCalculatorView
 		// add the geo to our view and remove it from EV
 		geo.addView(getPlotPanel().getViewID());
 		getPlotPanel().add(geo);
-		geo.removeView(App.VIEW_EUCLIDIAN);
-		app.getEuclidianView1().remove(geo);
+		geo.removeView(App.VIEW_euclidean);
+		app.geteuclideanView1().remove(geo);
 	}
 
 	private void hideToolTips() {
@@ -875,7 +875,7 @@ public abstract class ProbabilityCalculatorView
 
 		geo.setObjColor(COLOR_NORMAL_OVERLAY);
 		geo.setLineThickness(thicknessCurve - 1);
-		geo.setEuclidianVisible(true);
+		geo.seteuclideanVisible(true);
 		geo.setFixed(true);
 		geo.setSelectionAllowed(false);
 		return geo;
@@ -966,14 +966,14 @@ public abstract class ProbabilityCalculatorView
 
 		if (probManager.isDiscrete(selectedDist)) {
 			// discrete axis points should jump from point to point
-			plotSettings.pointCaptureStyle = EuclidianStyleConstants.POINT_CAPTURING_ON_GRID;
+			plotSettings.pointCaptureStyle = euclideanStyleConstants.POINT_CAPTURING_ON_GRID;
 			// TODO --- need an adaptive setting here for when we have too many
 			// intervals
 			plotSettings.gridInterval[0] = 1;
 			plotSettings.gridIntervalAuto = false;
 			plotSettings.xAxesIntervalAuto = true;
 		} else {
-			plotSettings.pointCaptureStyle = EuclidianStyleConstants.POINT_CAPTURING_OFF;
+			plotSettings.pointCaptureStyle = euclideanStyleConstants.POINT_CAPTURING_OFF;
 			plotSettings.xAxesIntervalAuto = true;
 			plotPanelUpdateSettings(plotSettings);
 		}
@@ -1184,7 +1184,7 @@ public abstract class ProbabilityCalculatorView
 		}
 
 		plotGeoList.add(discreteProbList);
-		discreteProbList.setEuclidianVisible(true);
+		discreteProbList.seteuclideanVisible(true);
 		discreteProbList.setAuxiliaryObject(true);
 		discreteProbList.setLabelVisible(false);
 		discreteProbList.setFixed(true);
@@ -1211,12 +1211,12 @@ public abstract class ProbabilityCalculatorView
 
 	/**
 	 * Exports all GeoElements that are currently displayed in this panel to a
-	 * target EuclidianView.
+	 * target euclideanView.
 	 * 
-	 * @param euclidianViewID
-	 *            viewID of the target EuclidianView
+	 * @param euclideanViewID
+	 *            viewID of the target euclideanView
 	 */
-	public void exportGeosToEV(int euclidianViewID) {
+	public void exportGeosToEV(int euclideanViewID) {
 
 		app.setWaitCursor();
 		ArrayList<GeoElementND> newGeoList = new ArrayList<>();
@@ -1357,13 +1357,13 @@ public abstract class ProbabilityCalculatorView
 			// set the EV location and auxiliary = false for all of the new geos
 			for (GeoElementND geo : newGeoList) {
 				geo.setAuxiliaryObject(false);
-				if (euclidianViewID == App.VIEW_EUCLIDIAN) {
-					geo.addView(App.VIEW_EUCLIDIAN);
-					geo.removeView(App.VIEW_EUCLIDIAN2);
+				if (euclideanViewID == App.VIEW_euclidean) {
+					geo.addView(App.VIEW_euclidean);
+					geo.removeView(App.VIEW_euclidean2);
 					geo.update();
-				} else if (euclidianViewID == App.VIEW_EUCLIDIAN2) {
-					geo.addView(App.VIEW_EUCLIDIAN2);
-					geo.removeView(App.VIEW_EUCLIDIAN);
+				} else if (euclideanViewID == App.VIEW_euclidean2) {
+					geo.addView(App.VIEW_euclidean2);
+					geo.removeView(App.VIEW_euclidean);
 					geo.update();
 				}
 			}
@@ -1371,7 +1371,7 @@ public abstract class ProbabilityCalculatorView
 			// set the window dimensions of the target EV to match the prob calc
 			// dimensions
 
-			EuclidianView ev = (EuclidianView) app.getView(euclidianViewID);
+			euclideanView ev = (euclideanView) app.getView(euclideanViewID);
 
 			ev.setRealWorldCoordSystem(plotSettings.xMin, plotSettings.xMax,
 					plotSettings.yMin, plotSettings.yMax);
@@ -2021,11 +2021,11 @@ public abstract class ProbabilityCalculatorView
 
 	public abstract ProbabilityManager getProbManager();
 
-	public EuclidianView getPlotPanel() {
+	public euclideanView getPlotPanel() {
 		return plotPanel;
 	}
 
-	public void setPlotPanel(EuclidianView plotPanel) {
+	public void setPlotPanel(euclideanView plotPanel) {
 		this.plotPanel = plotPanel;
 	}
 

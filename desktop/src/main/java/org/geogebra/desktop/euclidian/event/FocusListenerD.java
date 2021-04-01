@@ -1,10 +1,10 @@
-package org.geogebra.desktop.euclidian.event;
+package org.geogebra.desktop.euclidean.event;
 
 import java.awt.event.FocusEvent;
 
 import javax.annotation.Nonnull;
 
-import org.geogebra.common.euclidian.event.FocusListenerDelegate;
+import org.geogebra.common.euclidean.event.FocusListenerDelegate;
 
 /**
  * @author judit

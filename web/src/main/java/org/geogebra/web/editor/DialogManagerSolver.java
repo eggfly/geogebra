@@ -3,8 +3,8 @@ package org.geogebra.web.editor;
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.dialog.TextInputDialog;
 import org.geogebra.common.kernel.geos.GeoBoolean;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -45,7 +45,7 @@ public class DialogManagerSolver extends DialogManager {
 	@Override
 	public void showNumberInputDialogAngleFixed(String menu,
 			GeoSegmentND[] selectedSegments, GeoPointND[] selectedPoints,
-			GeoElement[] selGeos, EuclidianController ec) {
+			GeoElement[] selGeos, euclideanController ec) {
 		// not needed in solver
 	}
 
@@ -57,20 +57,20 @@ public class DialogManagerSolver extends DialogManager {
 	@Override
 	public void showNumberInputDialogRotate(String menu,
 			GeoPolygon[] selectedPolygons, GeoPointND[] selectedPoints,
-			GeoElement[] selGeos, EuclidianController ec) {
+			GeoElement[] selGeos, euclideanController ec) {
 		// not needed in solver
 	}
 
 	@Override
 	public void showNumberInputDialogDilate(String menu,
 			GeoPolygon[] selectedPolygons, GeoPointND[] selectedPoints,
-			GeoElement[] selGeos, EuclidianController ec) {
+			GeoElement[] selGeos, euclideanController ec) {
 		// not needed in solver
 	}
 
 	@Override
 	public void showNumberInputDialogRegularPolygon(String menu,
-			EuclidianController ec, GeoPointND geoPoint1, GeoPointND geoPoint2,
+			euclideanController ec, GeoPointND geoPoint1, GeoPointND geoPoint2,
 			GeoCoordSys2D direction) {
 		// not needed in solver
 	}
@@ -84,7 +84,7 @@ public class DialogManagerSolver extends DialogManager {
 
 	@Override
 	public void showNumberInputDialogCirclePointRadius(String title,
-			GeoPointND geoPointND, EuclidianView view) {
+			GeoPointND geoPointND, euclideanView view) {
 		// not needed in solver
 
 	}

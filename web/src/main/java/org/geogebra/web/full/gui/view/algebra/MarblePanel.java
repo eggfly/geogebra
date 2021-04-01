@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.view.algebra;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.web.full.css.MaterialDesignResources;
 import org.geogebra.web.html5.css.GuiResourcesSimple;
 import org.geogebra.web.html5.gui.util.AriaHelper;
@@ -51,7 +51,7 @@ public class MarblePanel extends FlowPanel
 		}
 
 		if (item.getGeo() != null) {
-			marble.setChecked(item.geo.isEuclidianVisible());
+			marble.setChecked(item.geo.iseuclideanVisible());
 			add(marble);
 		} else {
 			updateIcons(false);
@@ -65,11 +65,11 @@ public class MarblePanel extends FlowPanel
 	@Override
 	public void update() {
 		marble.setEnabled(shouldShowMarble());
-		marble.setChecked(item.geo != null && item.geo.isEuclidianVisible());
+		marble.setChecked(item.geo != null && item.geo.iseuclideanVisible());
 	}
 
 	private boolean shouldShowMarble() {
-		return item.geo != null && item.geo.isEuclidianShowable()
+		return item.geo != null && item.geo.iseuclideanShowable()
 				&& (!item.getApplication().isExam()
 						|| item.getApplication().enableGraphing());
 	}

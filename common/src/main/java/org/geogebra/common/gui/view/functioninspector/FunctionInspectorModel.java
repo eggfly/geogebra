@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import org.apache.commons.math3.analysis.UnivariateFunction;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.menubar.OptionsMenu;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
@@ -56,7 +56,7 @@ import org.geogebra.common.kernel.optimization.ExtremumFinderI;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.GeoGebraColorConstants;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.Operation;
 import org.geogebra.common.util.DoubleUtil;
 
@@ -66,7 +66,7 @@ public class FunctionInspectorModel {
 	private App app;
 	private Kernel kernel;
 	private Construction cons;
-	private EuclidianView activeEV;
+	private euclideanView activeEV;
 	private IFunctionInspectorListener listener;
 	protected final Localization loc;
 	private OptionsMenu optionsMenu;
@@ -188,7 +188,7 @@ public class FunctionInspectorModel {
 		pointTabGeoList = new ArrayList<>();
 		hiddenGeoList = new ArrayList<>();
 
-		activeEV = app.getActiveEuclidianView();
+		activeEV = app.getActiveeuclideanView();
 
 		// load selected function
 		this.selectedGeo = selectedGeo;
@@ -244,15 +244,15 @@ public class FunctionInspectorModel {
 	public void updatePoints(boolean isTangent, boolean isOscCircle,
 			boolean isXYSegments, boolean isTable) {
 
-		tangentLine.setEuclidianVisible(isTangent);
+		tangentLine.seteuclideanVisible(isTangent);
 		tangentLine.update();
-		oscCircle.setEuclidianVisible(isOscCircle);
+		oscCircle.seteuclideanVisible(isOscCircle);
 		oscCircle.update();
-		xSegment.setEuclidianVisible(isXYSegments);
+		xSegment.seteuclideanVisible(isXYSegments);
 		xSegment.update();
-		ySegment.setEuclidianVisible(isXYSegments);
+		ySegment.seteuclideanVisible(isXYSegments);
 		ySegment.update();
-		pts.setEuclidianVisible(isTable);
+		pts.seteuclideanVisible(isTable);
 		pts.updateRepaint();
 		listener.setStepVisible(isTable);
 		listener.updateXYTable(isTable);
@@ -268,11 +268,11 @@ public class FunctionInspectorModel {
 	 */
 	public void updateGeos(boolean isInterval) {
 		for (GeoElement geo : intervalTabGeoList) {
-			geo.setEuclidianVisible(isInterval);
+			geo.seteuclideanVisible(isInterval);
 			geo.update();
 		}
 		for (GeoElement geo : pointTabGeoList) {
-			geo.setEuclidianVisible(!isInterval);
+			geo.seteuclideanVisible(!isInterval);
 			geo.update();
 		}
 
@@ -349,11 +349,11 @@ public class FunctionInspectorModel {
 		}
 
 		minPoint.setCoords(xMinInt, yMinInt, 1.0);
-		// minPoint.setEuclidianVisible(!(minPoint.isEqual(lowPoint) ||
+		// minPoint.seteuclideanVisible(!(minPoint.isEqual(lowPoint) ||
 		// minPoint.isEqual(highPoint)));
 		minPoint.update();
 		maxPoint.setCoords(xMaxInt, yMaxInt, 1.0);
-		// maxPoint.setEuclidianVisible(!(maxPoint.isEqual(lowPoint) ||
+		// maxPoint.seteuclideanVisible(!(maxPoint.isEqual(lowPoint) ||
 		// maxPoint.isEqual(highPoint)));
 		maxPoint.update();
 
@@ -733,9 +733,9 @@ public class FunctionInspectorModel {
 	// ====================================================
 
 	private double getStartX() {
-		GPoint mouse = activeEV.getEuclidianController().getMouseLoc();
+		GPoint mouse = activeEV.geteuclideanController().getMouseLoc();
 		int mouseX = mouse == null ? activeEV.getWidth() / 2
-				: activeEV.getEuclidianController().getMouseLoc().getX();
+				: activeEV.geteuclideanController().getMouseLoc().getX();
 		return activeEV.toRealWorldCoordX(mouseX);
 	}
 
@@ -756,7 +756,7 @@ public class FunctionInspectorModel {
 		start = getStartX();
 
 		// initial step = EV grid step
-		step = 0.25 * kernel.getApplication().getActiveEuclidianView()
+		step = 0.25 * kernel.getApplication().getActiveeuclideanView()
 				.getGridDistances()[0];
 		listener.setStepText("" + step);
 
@@ -772,7 +772,7 @@ public class FunctionInspectorModel {
 
 		lowPoint.updateCascade();
 		highPoint.updateCascade();
-		activeEV = app.getActiveEuclidianView();
+		activeEV = app.getActiveeuclideanView();
 
 	}
 
@@ -826,8 +826,8 @@ public class FunctionInspectorModel {
 		xSegment.setSelectionAllowed(false);
 		xSegment.setObjColor(listener.getColor(Colors.GEO));
 		xSegment.setLineThickness(3);
-		xSegment.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT);
-		xSegment.setEuclidianVisible(true);
+		xSegment.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT);
+		xSegment.seteuclideanVisible(true);
 		xSegment.setFixed(true);
 		pointTabGeoList.add(xSegment);
 
@@ -851,8 +851,8 @@ public class FunctionInspectorModel {
 		ySegment.setSelectionAllowed(false);
 		ySegment.setObjColor(listener.getColor(Colors.GEO));
 		ySegment.setLineThickness(3);
-		ySegment.setLineType(EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT);
-		ySegment.setEuclidianVisible(true);
+		ySegment.setLineType(euclideanStyleConstants.LINE_TYPE_DASHED_SHORT);
+		ySegment.seteuclideanVisible(true);
 		ySegment.setFixed(true);
 		pointTabGeoList.add(ySegment);
 
@@ -863,7 +863,7 @@ public class FunctionInspectorModel {
 		tangentLine = tangent.getOutput(0);
 		tangentLine.setSelectionAllowed(false);
 		tangentLine.setObjColor(listener.getColor(Colors.GEO));
-		tangentLine.setEuclidianVisible(false);
+		tangentLine.seteuclideanVisible(false);
 		pointTabGeoList.add(tangentLine);
 
 		// osculating circle
@@ -872,7 +872,7 @@ public class FunctionInspectorModel {
 		oscCircle = oc.getOutput(0);
 		oscCircle.setSelectionAllowed(false);
 		oscCircle.setObjColor(listener.getColor(Colors.GEO));
-		oscCircle.setEuclidianVisible(false);
+		oscCircle.seteuclideanVisible(false);
 		pointTabGeoList.add(oscCircle);
 
 		// derivative
@@ -880,7 +880,7 @@ public class FunctionInspectorModel {
 				new EvalInfo(false));
 		cons.removeFromConstructionList(deriv);
 		derivative = (GeoFunction) deriv.getOutput(0);
-		derivative.setEuclidianVisible(false);
+		derivative.seteuclideanVisible(false);
 		hiddenGeoList.add(derivative);
 
 		// 2nd derivative
@@ -888,12 +888,12 @@ public class FunctionInspectorModel {
 				new EvalInfo(false));
 		cons.removeFromConstructionList(deriv2);
 		derivative2 = (GeoFunction) deriv2.getOutput(0);
-		derivative2.setEuclidianVisible(false);
+		derivative2.seteuclideanVisible(false);
 		hiddenGeoList.add(derivative2);
 
 		// point list
 		pts = new GeoList(cons);
-		pts.setEuclidianVisible(true);
+		pts.seteuclideanVisible(true);
 		pts.setObjColor(GeoGebraColorConstants.DARK_GRAY);
 		pts.setPointSize(3);
 		pts.setLayer(f.getLayer() + 1);
@@ -911,7 +911,7 @@ public class FunctionInspectorModel {
 				(2 * activeEV.getXmin() + activeEV.getXmax()) / 3, 0);
 		cons.removeFromConstructionList(pxAlgo);
 		lowPoint = (GeoPoint) pxAlgo.getOutput(0);
-		lowPoint.setEuclidianVisible(false);
+		lowPoint.seteuclideanVisible(false);
 		lowPoint.setPointSize(4);
 		lowPoint.setObjColor(listener.getColor(Colors.GEO));
 		lowPoint.setLayer(f.getLayer() + 1);
@@ -921,7 +921,7 @@ public class FunctionInspectorModel {
 				(activeEV.getXmin() + 2 * activeEV.getXmax()) / 3, 0);
 		cons.removeFromConstructionList(pyAlgo);
 		highPoint = (GeoPoint) pyAlgo.getOutput(0);
-		highPoint.setEuclidianVisible(false);
+		highPoint.seteuclideanVisible(false);
 		highPoint.setPointSize(4);
 		highPoint.setObjColor(listener.getColor(Colors.GEO));
 		highPoint.setLayer(f.getLayer() + 1);
@@ -947,7 +947,7 @@ public class FunctionInspectorModel {
 
 		functionInterval = interval.getOutput(0);
 		functionInterval.setSelectionAllowed(false);
-		functionInterval.setEuclidianVisible(false);
+		functionInterval.seteuclideanVisible(false);
 		functionInterval.setLineThickness(selectedGeo.getLineThickness() + 5);
 		functionInterval.setObjColor(listener.getColor(Colors.GEO));
 		functionInterval.setLayer(f.getLayer() + 1);
@@ -959,7 +959,7 @@ public class FunctionInspectorModel {
 		cons.removeFromConstructionList(inte);
 		integralGeo = inte.getOutput(0);
 		integralGeo.setSelectionAllowed(false);
-		integralGeo.setEuclidianVisible(false);
+		integralGeo.seteuclideanVisible(false);
 		integralGeo.setObjColor(listener.getColor(Colors.GEO));
 		intervalTabGeoList.add(integralGeo);
 
@@ -978,7 +978,7 @@ public class FunctionInspectorModel {
 		cons.removeFromConstructionList(area);
 		areaGeo = area.getOutput(0);
 		areaGeo.setSelectionAllowed(false);
-		areaGeo.setEuclidianVisible(false);
+		areaGeo.seteuclideanVisible(false);
 		intervalTabGeoList.add(areaGeo);
 
 		AlgoLengthFunction len = new AlgoLengthFunction(cons, selectedGeo,
@@ -989,20 +989,20 @@ public class FunctionInspectorModel {
 		hiddenGeoList.add(lengthGeo);
 
 		minPoint = new GeoPoint(cons);
-		minPoint.setEuclidianVisible(false);
+		minPoint.seteuclideanVisible(false);
 		minPoint.setPointSize(4);
 		minPoint.setPointStyle(
-				EuclidianStyleConstants.POINT_STYLE_FILLED_DIAMOND);
+				euclideanStyleConstants.POINT_STYLE_FILLED_DIAMOND);
 		minPoint.setObjColor(listener.getColor(Colors.GEO).darker());
 		minPoint.setLayer(f.getLayer() + 1);
 		minPoint.setFixed(true);
 		intervalTabGeoList.add(minPoint);
 
 		maxPoint = new GeoPoint(cons);
-		maxPoint.setEuclidianVisible(false);
+		maxPoint.seteuclideanVisible(false);
 		maxPoint.setPointSize(4);
 		maxPoint.setPointStyle(
-				EuclidianStyleConstants.POINT_STYLE_FILLED_DIAMOND);
+				euclideanStyleConstants.POINT_STYLE_FILLED_DIAMOND);
 		maxPoint.setObjColor(listener.getColor(Colors.GEO).darker());
 		maxPoint.setLayer(f.getLayer() + 1);
 		maxPoint.setFixed(true);
@@ -1081,14 +1081,14 @@ public class FunctionInspectorModel {
 	 * HIde min/max points, show integral
 	 */
 	public void updateIntervalGeoVisiblity() {
-		minPoint.setEuclidianVisible(false);
+		minPoint.seteuclideanVisible(false);
 		minPoint.update();
-		maxPoint.setEuclidianVisible(false);
+		maxPoint.seteuclideanVisible(false);
 		maxPoint.update();
 
-		areaGeo.setEuclidianVisible(false);
+		areaGeo.seteuclideanVisible(false);
 		areaGeo.update();
-		integralGeo.setEuclidianVisible(true);
+		integralGeo.seteuclideanVisible(true);
 		integralGeo.update();
 		activeEV.repaint();
 	}
@@ -1158,7 +1158,7 @@ public class FunctionInspectorModel {
 
 	private static void processCellGeo(GeoElement geo, int column, int row) {
 		geo.setLabel(GeoElementSpreadsheet.getSpreadsheetCellName(column, row));
-		geo.setEuclidianVisible(false);
+		geo.seteuclideanVisible(false);
 		geo.setAuxiliaryObject(true);
 		geo.update();
 	}

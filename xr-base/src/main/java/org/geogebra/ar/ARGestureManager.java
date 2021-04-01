@@ -1,13 +1,13 @@
 package org.geogebra.ar;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.main.App;
 
 abstract public class ARGestureManager{
 
-    private EuclidianView3D mView;
+    private euclideanView3D mView;
     protected float mScaleFactor = 1.0f;
     private Coords mPos = new Coords(2);
     private boolean isTouched = false;
@@ -19,7 +19,7 @@ abstract public class ARGestureManager{
     protected static float SCALE_MIN_MULTIPLIER = 0.3f;
     protected static float SCALE_MAX_MULTIPLIER = 30.0f;
 
-    public ARGestureManager(EuclidianView3D view) {
+    public ARGestureManager(euclideanView3D view) {
         mView = view;
     }
 
@@ -28,7 +28,7 @@ abstract public class ARGestureManager{
     }
 
     protected void onRotation(double angle) {
-        mView.setCoordSystemFromMouseMove((int) angle, 0, EuclidianController.MOVE_ROTATE_VIEW);
+        mView.setCoordSystemFromMouseMove((int) angle, 0, euclideanController.MOVE_ROTATE_VIEW);
     }
 
     synchronized public float getScaleFactor() {

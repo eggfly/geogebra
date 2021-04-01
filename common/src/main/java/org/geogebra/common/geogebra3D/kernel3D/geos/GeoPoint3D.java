@@ -23,9 +23,9 @@ package org.geogebra.common.geogebra3D.kernel3D.geos;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D;
 import org.geogebra.common.geogebra3D.kernel3D.algos.AlgoDependentPoint3D;
 import org.geogebra.common.geogebra3D.kernel3D.transform.MirrorableAtPlane;
 import org.geogebra.common.kernel.Construction;
@@ -116,7 +116,7 @@ public class GeoPoint3D extends GeoVec4D implements GeoPointND, PathOrPoint,
 	public Coords inhom = Coords.createInhomCoorsInD3();
 	private Coords inhom2D;
 	private double zScale = 1;
-	private boolean setEuclidianVisibleBySetParentAlgorithm = true;
+	private boolean seteuclideanVisibleBySetParentAlgorithm = true;
 
 	// list of Locateables (GeoElements) that this point is start point of
 	// if this point is removed, the Locateables have to be notified
@@ -972,7 +972,7 @@ public class GeoPoint3D extends GeoVec4D implements GeoPointND, PathOrPoint,
 	}
 
 	@Override
-	public boolean showInEuclidianView() {
+	public boolean showIneuclideanView() {
 		return isDefined && !isInfinite;
 	}
 
@@ -1227,9 +1227,9 @@ public class GeoPoint3D extends GeoVec4D implements GeoPointND, PathOrPoint,
 
 	/*
 	 * public boolean isVisibleInView(Object view){ if (view==((Application3D)
-	 * app).getEuclidianView3D()) return true;
+	 * app).geteuclideanView3D()) return true;
 	 * 
-	 * if (view==((Application3D) app).getEuclidianView()) return
+	 * if (view==((Application3D) app).geteuclideanView()) return
 	 * AbstractKernel.isZero(getCoords().getZ());
 	 * 
 	 * return false;
@@ -1260,7 +1260,7 @@ public class GeoPoint3D extends GeoVec4D implements GeoPointND, PathOrPoint,
 			moveMode = MOVE_MODE_XY;
 			break;
 		case MOVE_MODE_TOOL_DEFAULT:
-			if (mode == EuclidianConstants.MODE_MOVE) {
+			if (mode == euclideanConstants.MODE_MOVE) {
 				moveMode = MOVE_MODE_Z;
 			} else {
 				moveMode = MOVE_MODE_XY;
@@ -1359,7 +1359,7 @@ public class GeoPoint3D extends GeoVec4D implements GeoPointND, PathOrPoint,
 		super.setParentAlgorithm(algorithm);
 		if (algorithm != null) {
 			// set colors to dependent colors
-			setConstructionDefaults(setEuclidianVisibleBySetParentAlgorithm,
+			setConstructionDefaults(seteuclideanVisibleBySetParentAlgorithm,
 					false);
 		}
 	}
@@ -1368,8 +1368,8 @@ public class GeoPoint3D extends GeoVec4D implements GeoPointND, PathOrPoint,
 	 * if the point has a parent algorithm, we may don't want its visibility to
 	 * be changed
 	 */
-	public void dontSetEuclidianVisibleBySetParentAlgorithm() {
-		setEuclidianVisibleBySetParentAlgorithm = false;
+	public void dontSeteuclideanVisibleBySetParentAlgorithm() {
+		seteuclideanVisibleBySetParentAlgorithm = false;
 	}
 
 	@Override
@@ -2151,7 +2151,7 @@ public class GeoPoint3D extends GeoVec4D implements GeoPointND, PathOrPoint,
 	}
 
 	@Override
-	public boolean isWhollyIn2DView(EuclidianView ev) {
+	public boolean isWhollyIn2DView(euclideanView ev) {
 		return DoubleUtil.isZero(inhom.getZ());
 	}
 

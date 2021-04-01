@@ -1,23 +1,23 @@
-package org.geogebra.common.geogebra3D.euclidian3D;
+package org.geogebra.common.geogebra3D.euclidean3D;
 
 import org.geogebra.common.awt.GDimension;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
-import org.geogebra.common.euclidian.CoordSystemAnimation;
-import org.geogebra.common.euclidian.EuclidianStyleBar;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawPoint3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.RendererForExport;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Format;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Geometry3DGetterManager;
+import org.geogebra.common.euclidean.CoordSystemAnimation;
+import org.geogebra.common.euclidean.euclideanStyleBar;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawPoint3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.RendererForExport;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Format;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Geometry3DGetterManager;
 import org.geogebra.common.gui.dialog.Export3dDialogInterface;
 import org.geogebra.common.kernel.arithmetic.NumberValue;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoNumeric;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.common.main.settings.EuclidianSettings3D;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.common.main.settings.euclideanSettings3D;
 import org.geogebra.common.plugin.Geometry3DGetter;
 import org.geogebra.common.util.DoubleUtil;
 
@@ -25,7 +25,7 @@ import org.geogebra.common.util.DoubleUtil;
  * 3D view in the background (no display)
  *
  */
-public class EuclidianView3DForExport extends EuclidianView3D {
+public class euclideanView3DForExport extends euclideanView3D {
 
 	final static private double DEFAULT_SCALE = 500;
 	/**
@@ -59,7 +59,7 @@ public class EuclidianView3DForExport extends EuclidianView3D {
 	 * @param settings
 	 *            settings
 	 */
-	public EuclidianView3DForExport(EuclidianController3D ec, EuclidianSettings settings) {
+	public euclideanView3DForExport(euclideanController3D ec, euclideanSettings settings) {
 		super(ec, settings);
 		boundsSet = false;
 		((RendererForExport) renderer).setGeometryManager();
@@ -101,7 +101,7 @@ public class EuclidianView3DForExport extends EuclidianView3D {
 		this.mZmax = zmax;
 		boundsSet = true;
 
-		EuclidianSettings3D settings = getSettings();
+		euclideanSettings3D settings = getSettings();
 		settings.updateOrigin(xmin, ymin, zmin);
 		double xscale = DEFAULT_SCALE / (xmax - xmin);
 		settings.setXscale(xscale);
@@ -119,7 +119,7 @@ public class EuclidianView3DForExport extends EuclidianView3D {
 		setWaitForUpdate();
 	}
 
-	private void setNumberingDistance(EuclidianSettings3D settings, int axis, double distance) {
+	private void setNumberingDistance(euclideanSettings3D settings, int axis, double distance) {
 		if (distance > 0) {
 			settings.setAxisNumberingDistance(axis,
 					new GeoNumeric(app.getKernel().getConstruction(), distance));
@@ -220,10 +220,10 @@ public class EuclidianView3DForExport extends EuclidianView3D {
 											dialog.getCurrentScale(),
 											dialog.wantsFilledSolids());
 									ExportToPrinter3D exportToPrinter = new ExportToPrinter3D(
-											EuclidianView3DForExport.this,
+											euclideanView3DForExport.this,
 											renderer.getGeometryManager());
 									getApplication().getKernel().detach(
-											EuclidianView3DForExport.this);
+											euclideanView3DForExport.this);
 									getApplication().exportStringToFile(
 											format.getExtension(),
 											exportToPrinter.export(format)
@@ -394,17 +394,17 @@ public class EuclidianView3DForExport extends EuclidianView3D {
 	}
 
 	@Override
-	protected EuclidianStyleBar newEuclidianStyleBar() {
+	protected euclideanStyleBar neweuclideanStyleBar() {
 		return null;
 	}
 
 	@Override
-	protected void addDynamicStylebarToEV(EuclidianStyleBar dynamicStylebar) {
+	protected void addDynamicStylebarToEV(euclideanStyleBar dynamicStylebar) {
 		// no need
 	}
 
 	@Override
-	protected EuclidianStyleBar newDynamicStyleBar() {
+	protected euclideanStyleBar newDynamicStyleBar() {
 		return null;
 	}
 

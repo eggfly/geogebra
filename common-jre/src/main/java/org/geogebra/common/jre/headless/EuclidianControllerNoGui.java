@@ -1,11 +1,11 @@
 package org.geogebra.common.jre.headless;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.main.App;
 
-public class EuclidianControllerNoGui extends EuclidianController {
+public class euclideanControllerNoGui extends euclideanController {
 
 	/**
 	 * @param app
@@ -13,7 +13,7 @@ public class EuclidianControllerNoGui extends EuclidianController {
 	 * @param kernel1
 	 *            kernel
 	 */
-	public EuclidianControllerNoGui(App app, Kernel kernel1) {
+	public euclideanControllerNoGui(App app, Kernel kernel1) {
 		super(app);
 		kernel = kernel1;
 	}
@@ -31,7 +31,7 @@ public class EuclidianControllerNoGui extends EuclidianController {
 	}
 
 	@Override
-	public void setView(EuclidianView view) {
+	public void setView(euclideanView view) {
 		super.setView(view);
 
 	}

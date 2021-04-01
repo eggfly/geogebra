@@ -7,7 +7,7 @@ import org.apache.commons.math3.ode.FirstOrderIntegrator;
 import org.apache.commons.math3.ode.nonstiff.ClassicalRungeKuttaIntegrator;
 import org.apache.commons.math3.ode.sampling.StepHandler;
 import org.apache.commons.math3.ode.sampling.StepInterpolator;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.MyPoint;
 import org.geogebra.common.kernel.SegmentType;
@@ -88,7 +88,7 @@ public class AlgoIntegralODE extends AlgoElement {
 		compute();
 		locus.setLabel(label);
 
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class AlgoIntegralODE extends AlgoElement {
 			cons.removeFromAlgorithmList(numAlgo);
 			cons.removeFromAlgorithmList(denAlgo);
 
-			EuclidianView view = kernel.getApplication().getEuclidianView1();
+			euclideanView view = kernel.getApplication().geteuclideanView1();
 
 			if (view.isVisibleInThisView(locus)) {
 				xmax = Math.max(xmax,
@@ -140,9 +140,9 @@ public class AlgoIntegralODE extends AlgoElement {
 
 			}
 
-			if (kernel.getApplication().hasEuclidianView2(1)) {
-				EuclidianView view2 = kernel.getApplication()
-						.getEuclidianView2(1);
+			if (kernel.getApplication().haseuclideanView2(1)) {
+				euclideanView view2 = kernel.getApplication()
+						.geteuclideanView2(1);
 				if (view2.isVisibleInThisView(locus)) {
 					xmax = Math.max(xmax,
 							view2.toRealWorldCoordX((view.getWidth())));

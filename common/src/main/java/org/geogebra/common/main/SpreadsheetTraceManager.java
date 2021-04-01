@@ -882,7 +882,7 @@ public class SpreadsheetTraceManager {
 				cell.setLabelVisible(false);
 
 				if (cell.isGeoText()) {
-					cell.setEuclidianVisible(false);
+					cell.seteuclideanVisible(false);
 				}
 			} else {
 				// just copy - so children are not removed
@@ -954,7 +954,7 @@ public class SpreadsheetTraceManager {
 
 			}
 			cell.setLabel(cellName);
-			cell.setEuclidianVisible(false);
+			cell.seteuclideanVisible(false);
 		}
 
 		cell.setAuxiliaryObject(true);
@@ -975,7 +975,7 @@ public class SpreadsheetTraceManager {
 		try {
 			cell = new GeoList(cons);
 			putCell(cell, column, row);
-			cell.setEuclidianVisible(false);
+			cell.seteuclideanVisible(false);
 			cell.setAuxiliaryObject(true);
 			cell.updateCascade();
 

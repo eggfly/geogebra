@@ -1,6 +1,6 @@
 package org.geogebra.web.full.gui.dialog;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
@@ -26,7 +26,7 @@ public class InputDialogAngleFixedW extends AngleInputDialogW implements KeyPres
 
 	private Kernel kernel;
 	
-	private EuclidianController ec;
+	private euclideanController ec;
 		
 	/**
 	 * @param app
@@ -46,7 +46,7 @@ public class InputDialogAngleFixedW extends AngleInputDialogW implements KeyPres
 	 */
 	public InputDialogAngleFixedW(AppW app, DialogData data, InputHandler handler,
 			GeoSegmentND[] segments, GeoPointND[] points, Kernel kernel,
-			EuclidianController ec) {
+			euclideanController ec) {
 		super(app, app.getLocalization().getMenu("Angle"), data,
 				defaultRotateAngle, handler, false);
 		this.segments = segments;
@@ -88,7 +88,7 @@ public class InputDialogAngleFixedW extends AngleInputDialogW implements KeyPres
 	protected void setVisibleForTools(boolean visible) {
 		if (!visible) {
 			hide();
-			app.getActiveEuclidianView().requestFocusInWindow();
+			app.getActiveeuclideanView().requestFocusInWindow();
 		}
 		getTextComponent().hideTablePopup();
 	}

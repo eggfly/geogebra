@@ -1,4 +1,4 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -9,16 +9,16 @@ import java.util.TreeSet;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianController3D;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hits3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Geometry3DGetterManager;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanController3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hits3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Geometry3DGetterManager;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoElement3D;
 import org.geogebra.common.kernel.geos.GProperty;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -26,7 +26,7 @@ import org.geogebra.common.kernel.geos.Traceable;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.util.DoubleUtil;
 
 /**
@@ -48,7 +48,7 @@ import org.geogebra.common.util.DoubleUtil;
  * <li>Create new constructor
  * <p>
  * <code>
-         public DrawNew3D(EuclidianView3D a_view3d, GeoNew3D a_new3D){ <br> &nbsp;&nbsp;
+         public DrawNew3D(euclideanView3D a_view3d, GeoNew3D a_new3D){ <br> &nbsp;&nbsp;
             super(a_view3d, a_new3D); <br> 
          }
          </code></li>
@@ -65,36 +65,36 @@ import org.geogebra.common.util.DoubleUtil;
  * <li>for {@link Drawable3DCurves} :
  * <p>
  * <code>
-                public void drawGeometry(EuclidianRenderer3D renderer) { <br> &nbsp;&nbsp;
+                public void drawGeometry(euclideanRenderer3D renderer) { <br> &nbsp;&nbsp;
             	       // call the geometry to be drawn <br>
             	}
             	<br>
-            	public void drawGeometryHidden(EuclidianRenderer3D renderer) { <br> &nbsp;&nbsp;
+            	public void drawGeometryHidden(euclideanRenderer3D renderer) { <br> &nbsp;&nbsp;
             	       // for hidden part, let it empty first <br>
             	}
             	<br>
-            	public void drawGeometryPicked(EuclidianRenderer3D renderer) { <br> &nbsp;&nbsp;
+            	public void drawGeometryPicked(euclideanRenderer3D renderer) { <br> &nbsp;&nbsp;
             	       // to show the object is picked, let it empty first <br>
             	}
               </code></li>
  * <li>for {@link Drawable3DSurfaces} :
  * <p>
  * <code>
-            public void drawGeometry(EuclidianRenderer3D renderer) { <br> &nbsp;&nbsp;
+            public void drawGeometry(euclideanRenderer3D renderer) { <br> &nbsp;&nbsp;
                     // call the geometry to be drawn <br>
             }
             <br>
-	        void drawGeometryHiding(EuclidianRenderer3D renderer) { <br> &nbsp;&nbsp;
+	        void drawGeometryHiding(euclideanRenderer3D renderer) { <br> &nbsp;&nbsp;
 	           // call the geometry that hides other objects <br>&nbsp;&nbsp;
                    // first sets it to :  <br>&nbsp;&nbsp;
                    drawGeometry(renderer);      <br>
 	        }
 	        <br>
-	        public void drawGeometryHidden(EuclidianRenderer3D renderer) { <br> &nbsp;&nbsp;
+	        public void drawGeometryHidden(euclideanRenderer3D renderer) { <br> &nbsp;&nbsp;
 	           // for hidden part, let it empty first   <br> 
 	        }
 	        <br>
-	        public void drawGeometryPicked(EuclidianRenderer3D renderer) { <br> &nbsp;&nbsp;
+	        public void drawGeometryPicked(euclideanRenderer3D renderer) { <br> &nbsp;&nbsp;
                    // to show the object is picked, let it empty first <br>
 	        }
 	      </code></li>
@@ -104,7 +104,7 @@ import org.geogebra.common.util.DoubleUtil;
  * 
  * <h3>See</h3>
  * <ul>
- * <li>{@link EuclidianView3D#newDrawable(GeoElementND)} to make the drawable be
+ * <li>{@link euclideanView3D#newDrawable(GeoElementND)} to make the drawable be
  * created when the GeoElement is created</li>
  * </ul>
  * 
@@ -137,7 +137,7 @@ public abstract class Drawable3D extends DrawableND {
 	protected final static double COLOR_SHIFT_NONE = 0;
 
 	/** view3D */
-	private EuclidianView3D m_view3D;
+	private euclideanView3D m_view3D;
 
 	/** says if it has to be updated */
 	private boolean waitForUpdate;
@@ -245,14 +245,14 @@ public abstract class Drawable3D extends DrawableND {
 	 * @param view3D
 	 *            the view linked to this
 	 */
-	public Drawable3D(EuclidianView3D view3D) {
+	public Drawable3D(euclideanView3D view3D) {
 		setView3D(view3D);
 
 		label = newDrawLabel3D(view3D);
         relevantPickingValues = false;
 	}
 
-	protected DrawLabel3D newDrawLabel3D(EuclidianView3D view3D) {
+	protected DrawLabel3D newDrawLabel3D(euclideanView3D view3D) {
 		return new DrawLabel3D(view3D, this);
 	}
 
@@ -260,11 +260,11 @@ public abstract class Drawable3D extends DrawableND {
 	 * Call the {@link #update()} method.
 	 * 
 	 * @param a_view3D
-	 *            the {@link EuclidianView3D} using this Drawable3D
+	 *            the {@link euclideanView3D} using this Drawable3D
 	 * @param a_geo
 	 *            the {@link GeoElement3D} linked to this GeoElement3D
 	 */
-	public Drawable3D(EuclidianView3D a_view3D, GeoElement a_geo) {
+	public Drawable3D(euclideanView3D a_view3D, GeoElement a_geo) {
 		this(a_view3D);
 		init(a_geo);
 
@@ -663,7 +663,7 @@ public abstract class Drawable3D extends DrawableND {
 	 * 
 	 * @return the 3D view
 	 */
-	protected EuclidianView3D getView3D() {
+	protected euclideanView3D getView3D() {
 		return m_view3D;
 	}
 
@@ -673,7 +673,7 @@ public abstract class Drawable3D extends DrawableND {
 	 * @param a_view3D
 	 *            the 3D view
 	 */
-	protected void setView3D(EuclidianView3D a_view3D) {
+	protected void setView3D(euclideanView3D a_view3D) {
 		m_view3D = a_view3D;
 	}
 
@@ -702,7 +702,7 @@ public abstract class Drawable3D extends DrawableND {
 	 */
 	protected boolean hasGeoElementVisible() {
 		return getGeoElement().hasDrawable3D()
-				&& getGeoElement().isEuclidianVisible()
+				&& getGeoElement().iseuclideanVisible()
 				&& getGeoElement().isDefined();
 	}
 
@@ -761,7 +761,7 @@ public abstract class Drawable3D extends DrawableND {
 	 */
 	public void drawHidden(Renderer renderer) {
 		if (isVisible() && getGeoElement()
-				.getLineTypeHidden() != EuclidianStyleConstants.LINE_TYPE_HIDDEN_NONE) {
+				.getLineTypeHidden() != euclideanStyleConstants.LINE_TYPE_HIDDEN_NONE) {
 
 			setHighlightingColor();
 
@@ -805,7 +805,7 @@ public abstract class Drawable3D extends DrawableND {
 	 */
 	protected void setLineTextureHidden(Renderer renderer) {
 		if (getGeoElement()
-				.getLineTypeHidden() == EuclidianStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN) {
+				.getLineTypeHidden() == euclideanStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN) {
 			renderer.getTextures()
 					.setDashFromLineType(getGeoElement().getLineType());
 		} else {
@@ -1028,7 +1028,7 @@ public abstract class Drawable3D extends DrawableND {
 
 		// check if one is transparent and the other not -- ONLY FOR DIFFERENT
 		// PICK ORDERS
-		if (getView3D().getEuclidianController()
+		if (getView3D().geteuclideanController()
 				.checkTransparencyForSortingDrawables()) {
 			if ((!this.isTransparent()) && (d.isTransparent())) {
 				if (checkPickOrder && this.getPickOrder() < d.getPickOrder()) {
@@ -1074,9 +1074,9 @@ public abstract class Drawable3D extends DrawableND {
 			}
 			// check can drag one (only) -- if both points
 			if (geo1.isGeoPoint() && geo2.isGeoPoint()) {
-				boolean thisDraggable = EuclidianController3D.isDraggable(geo1,
+				boolean thisDraggable = euclideanController3D.isDraggable(geo1,
 						getView3D());
-				boolean otherDraggable = EuclidianController3D.isDraggable(geo2,
+				boolean otherDraggable = euclideanController3D.isDraggable(geo2,
 						getView3D());
 				if (thisDraggable && !otherDraggable) {
 					return -1;
@@ -1214,8 +1214,8 @@ public abstract class Drawable3D extends DrawableND {
 	 */
 	public boolean doHighlighting() {
 		// no highlighting if we're moving something
-		if (getView3D().getEuclidianController()
-				.getMoveMode() != EuclidianController.MOVE_NONE) {
+		if (getView3D().geteuclideanController()
+				.getMoveMode() != euclideanController.MOVE_NONE) {
 			return false;
 		}
 
@@ -1324,14 +1324,14 @@ public abstract class Drawable3D extends DrawableND {
 		double distance;
 
 		if (d > LIGHT_COLOR) { // color is closer to white : darken it
-			distance = Math.sqrt(r * r + g * g + b * b); // euclidian distance
+			distance = Math.sqrt(r * r + g * g + b * b); // euclidean distance
 															// to black
 			tmpColor2 = GColor.BLACK;
 		} else { // color is closer to black : lighten it
 			r = 255 - r;
 			g = 255 - g;
 			b = 255 - b;
-			distance = Math.sqrt(r * r + g * g + b * b); // euclidian distance
+			distance = Math.sqrt(r * r + g * g + b * b); // euclidean distance
 															// to white
 			tmpColor2 = GColor.WHITE;
 		}

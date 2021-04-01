@@ -74,7 +74,7 @@ public class CmdCheckbox extends CommandProcessor {
 		if (geo == null) {
 			geo = new GeoBoolean(app.getKernel().getConstruction());
 			((GeoBoolean) geo).setValue(true);
-			geo.setEuclidianVisible(true);
+			geo.seteuclideanVisible(true);
 			geo.setLabel(c.getLabel());
 		}
 

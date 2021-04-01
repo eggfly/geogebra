@@ -9,8 +9,8 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GPathIterator;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.draw.DrawPoint;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.draw.DrawPoint;
 import org.geogebra.common.export.UnicodeTeX;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Kernel;
@@ -58,7 +58,7 @@ import org.geogebra.common.kernel.kernelND.GeoSegmentND;
 import org.geogebra.common.kernel.kernelND.GeoVectorND;
 import org.geogebra.common.kernel.matrix.Coords;
 import org.geogebra.common.main.App;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.Operation;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.MyMath;
@@ -165,9 +165,9 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 			format = FORMAT_LATEX;
 		}
 
-		if (euclidianView.getShowXaxis() || euclidianView.getShowYaxis()) {
+		if (euclideanView.getShowXaxis() || euclideanView.getShowYaxis()) {
 			drawNiceAxesGrid();
-		} else if (euclidianView.getShowGrid()) {
+		} else if (euclideanView.getShowGrid()) {
 			drawGrid();
 		}
 		// Clipping
@@ -200,8 +200,8 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		code.append(codePoint);
 		// Close Environment tikzpicture
 		if (format == GeoGebraToPgf.FORMAT_LATEX) {
-			if (euclidianView.getShowXaxis()
-					|| euclidianView.getShowYaxis()) {
+			if (euclideanView.getShowXaxis()
+					|| euclideanView.getShowYaxis()) {
 				code.append("\\end{axis}\n");
 			}
 
@@ -521,7 +521,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 			f.setInterval(a, b);
 			drawFunction(f, code, true, geo);
 			f.setInterval(af, bf);
-			if (f.isEuclidianVisible()) {
+			if (f.iseuclideanVisible()) {
 				drawFunction(f, code, false, geo);
 			}
 		} else {
@@ -577,7 +577,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 	protected void drawSlope(GeoNumeric geo) {
 		int slopeTriangleSize = geo.getSlopeTriangleSize();
 		double rwHeight = geo.getValue() * slopeTriangleSize;
-		double height = euclidianView.getYscale() * rwHeight;
+		double height = euclideanView.getYscale() * rwHeight;
 		double[] coords = new double[2];
 		if (Math.abs(height) > Float.MAX_VALUE) {
 			return;
@@ -602,8 +602,8 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		codeFilledObject.append(";\n");
 		// draw Label
 		double xLabelHor = (x + xright) / 2;
-		double yLabelHor = y - ((euclidianView.getFont().getSize() + 2)
-				/ euclidianView.getYscale());
+		double yLabelHor = y - ((euclideanView.getFont().getSize() + 2)
+				/ euclideanView.getYscale());
 		GColor geocolor = geo.getObjectColor();
 		codePoint.append("\\draw[color=");
 		colorCode(geocolor, codePoint);
@@ -707,9 +707,9 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 
 		angExt += angSt;
 		int arcSize = geo.getArcSize();
-		double r = arcSize / euclidianView.getXscale();
+		double r = arcSize / euclideanView.getXscale();
 		// if angle=90 and decoration=little square
-		if (drawAngleAs(geo, EuclidianStyleConstants.RIGHT_ANGLE_STYLE_SQUARE)) {
+		if (drawAngleAs(geo, euclideanStyleConstants.RIGHT_ANGLE_STYLE_SQUARE)) {
 			r = r / Math.sqrt(2);
 			double[] x = new double[8];
 			x[0] = m[0] + r * Math.cos(angSt);
@@ -767,10 +767,10 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 			endBeamer(codeFilledObject);
 
 			// draw the dot if angle= 90 and decoration=dot
-			if (drawAngleAs(geo, EuclidianStyleConstants.RIGHT_ANGLE_STYLE_DOT)) {
+			if (drawAngleAs(geo, euclideanStyleConstants.RIGHT_ANGLE_STYLE_DOT)) {
 				double diameter = geo.getLineThickness()
-						/ euclidianView.getXscale();
-				double radius = arcSize / euclidianView.getXscale() / 1.7;
+						/ euclideanView.getXscale();
+				double radius = arcSize / euclideanView.getXscale() / 1.7;
 				double labelAngle = (angSt + angExt) / 2.0;
 				double x1 = m[0] + radius * Math.cos(labelAngle);
 				double x2 = m[1] + radius * Math.sin(labelAngle);
@@ -871,14 +871,14 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		double sin = Math.sin(-angle0);
 		double radius = geo.getArcSize();
 		double diff = 2.5 + geo.getLineThickness() / 4d;
-		double x1 = euclidianView
+		double x1 = euclideanView
 				.toRealWorldCoordX(vertex[0] + (radius - diff) * cos);
-		double x2 = euclidianView
+		double x2 = euclideanView
 				.toRealWorldCoordX(vertex[0] + (radius + diff) * cos);
-		double y1 = euclidianView.toRealWorldCoordY(vertex[1]
-				+ (radius - diff) * sin * euclidianView.getScaleRatio());
-		double y2 = euclidianView.toRealWorldCoordY(vertex[1]
-				+ (radius + diff) * sin * euclidianView.getScaleRatio());
+		double y1 = euclideanView.toRealWorldCoordY(vertex[1]
+				+ (radius - diff) * sin * euclideanView.getScaleRatio());
+		double y2 = euclideanView.toRealWorldCoordY(vertex[1]
+				+ (radius + diff) * sin * euclideanView.getScaleRatio());
 		if (isBeamer) {
 			code.append("  ");
 		}
@@ -904,10 +904,10 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		double y = geo.getSliderY();
 		// start point of horizontal line for slider
 		if (geo.isAbsoluteScreenLocActive()) {
-			x = euclidianView.toRealWorldCoordX(x);
-			y = euclidianView.toRealWorldCoordY(y);
-			width = horizontal ? width / euclidianView.getXscale()
-					: width / euclidianView.getYscale();
+			x = euclideanView.toRealWorldCoordX(x);
+			y = euclideanView.toRealWorldCoordY(y);
+			width = horizontal ? width / euclideanView.getXscale()
+					: width / euclideanView.getYscale();
 		}
 		// create point for slider
 		GeoPoint geoPoint = new GeoPoint(construction);
@@ -923,7 +923,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		} else {
 			geoPoint.setCoords(x, y + width * param, 1.0);
 		}
-		DrawPoint drawPoint = new DrawPoint(euclidianView, geoPoint);
+		DrawPoint drawPoint = new DrawPoint(euclideanView, geoPoint);
 		drawPoint.setGeoElement(geo);
 		if (geo.isLabelVisible()) {
 			if (horizontal) {
@@ -1001,21 +1001,21 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		} else {
 			gp = geo.getStartPoint();
 			if (gp == null) {
-				x = (int) euclidianView.getXZero();
-				y = (int) euclidianView.getYZero();
+				x = (int) euclideanView.getXZero();
+				y = (int) euclideanView.getYZero();
 			} else {
 				if (!gp.isDefined()) {
 					return;
 				}
-				x = euclidianView.toScreenCoordX(gp.getInhomX());
-				y = euclidianView.toScreenCoordY(gp.getInhomY());
+				x = euclideanView.toScreenCoordX(gp.getInhomX());
+				y = euclideanView.toScreenCoordY(gp.getInhomY());
 			}
 			x += geo.labelOffsetX;
 			y += geo.labelOffsetY;
 		}
-		x = euclidianView.toRealWorldCoordX(x);
-		y = euclidianView
-				.toRealWorldCoordY(y - euclidianView.getFont().getSize());
+		x = euclideanView.toRealWorldCoordX(x);
+		y = euclideanView
+				.toRealWorldCoordY(y - euclideanView.getFont().getSize());
 		int id = st.indexOf("\n");
 		// One line
 		if (id == -1 || isLatex) {
@@ -1056,7 +1056,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 			code.append(" node[anchor=north west] {");
 			code.append("\\parbox{");
 			code.append(format(
-					width * (xmax - xmin) * xunit / euclidianView.getWidth()
+					width * (xmax - xmin) * xunit / euclideanView.getWidth()
 							+ 1));
 			code.append(" cm}{");
 			addText(new String(sb), isLatex, style);
@@ -1773,7 +1773,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 	protected void drawGeoConic(GeoConicND geo) {
 		// just need one eigenvector to give angle
 		// assume getZ() is zero (check done earlier)
-		Coords ev0 = euclidianView.getCoordsForView(geo.getEigenvec3D(0));
+		Coords ev0 = euclideanView.getCoordsForView(geo.getEigenvec3D(0));
 		double eigenvecX = ev0.getX();
 		double eigenvecY = ev0.getY();
 		double angle = Math.toDegrees(Math.atan2(eigenvecY, eigenvecX));
@@ -1949,12 +1949,12 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 			int dotstyle = gp.getPointStyle();
 
 			if (dotstyle == -1) { // default
-				dotstyle = EuclidianStyleConstants.POINT_STYLE_DOT;
+				dotstyle = euclideanStyleConstants.POINT_STYLE_DOT;
 			}
 
 			startBeamer(codePoint);
 
-			if (dotstyle == EuclidianStyleConstants.POINT_STYLE_CIRCLE) {
+			if (dotstyle == euclideanStyleConstants.POINT_STYLE_CIRCLE) {
 				codePoint.append("\\draw [color=");
 				colorCode(dotcolor, codePoint);
 				codePoint.append("] ");
@@ -1962,7 +1962,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 				codePoint.append(" circle (");
 				codePoint.append(dotsize / 2);
 				codePoint.append("pt);\n");
-			} else if (dotstyle == EuclidianStyleConstants.POINT_STYLE_CROSS) {
+			} else if (dotstyle == euclideanStyleConstants.POINT_STYLE_CROSS) {
 				codePoint.append("\\draw [color=");
 				colorCode(dotcolor, codePoint);
 				codePoint.append("] ");
@@ -1982,7 +1982,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 				codePoint.append("pt,-");
 				codePoint.append(dotsize);
 				codePoint.append("pt);\n");
-			} else if (dotstyle == EuclidianStyleConstants.POINT_STYLE_EMPTY_DIAMOND) {
+			} else if (dotstyle == euclideanStyleConstants.POINT_STYLE_EMPTY_DIAMOND) {
 				codePoint.append("\\draw [color=");
 				colorCode(dotcolor, codePoint);
 				codePoint.append("] ");
@@ -2009,7 +2009,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 				codePoint.append("pt,");
 				codePoint.append(dotsize / 2);
 				codePoint.append("pt);\n");
-			} else if (dotstyle == EuclidianStyleConstants.POINT_STYLE_FILLED_DIAMOND) {
+			} else if (dotstyle == euclideanStyleConstants.POINT_STYLE_FILLED_DIAMOND) {
 				codePoint.append("\\draw [fill=");
 				colorCode(dotcolor, codePoint);
 				codePoint.append("] ");
@@ -2036,7 +2036,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 				codePoint.append("pt,");
 				codePoint.append(dotsize / 2);
 				codePoint.append("pt);\n");
-			} else if (dotstyle == EuclidianStyleConstants.POINT_STYLE_PLUS) {
+			} else if (dotstyle == euclideanStyleConstants.POINT_STYLE_PLUS) {
 				codePoint.append("\\draw [color=");
 				colorCode(dotcolor, codePoint);
 				codePoint.append("] ");
@@ -2052,7 +2052,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 				codePoint.append("pt) -- ++(0 pt,");
 				codePoint.append(dotsize);
 				codePoint.append("pt);\n");
-			} else if (dotstyle == EuclidianStyleConstants.POINT_STYLE_TRIANGLE_EAST) {
+			} else if (dotstyle == euclideanStyleConstants.POINT_STYLE_TRIANGLE_EAST) {
 				double radius = 3 * dotsize / 4;
 				codePoint.append("\\draw [fill=");
 				colorCode(dotcolor, codePoint);
@@ -2074,7 +2074,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 				codePoint.append("pt,");
 				codePoint.append(3 * radius / 2);
 				codePoint.append("pt);\n");
-			} else if (dotstyle == EuclidianStyleConstants.POINT_STYLE_TRIANGLE_NORTH) {
+			} else if (dotstyle == euclideanStyleConstants.POINT_STYLE_TRIANGLE_NORTH) {
 				double radius = 3 * dotsize / 4;
 				codePoint.append("\\draw [fill=");
 				colorCode(dotcolor, codePoint);
@@ -2096,7 +2096,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 				codePoint.append("pt,");
 				codePoint.append(3 * radius / 2);
 				codePoint.append("pt);\n");
-			} else if (dotstyle == EuclidianStyleConstants.POINT_STYLE_TRIANGLE_SOUTH) {
+			} else if (dotstyle == euclideanStyleConstants.POINT_STYLE_TRIANGLE_SOUTH) {
 				double radius = 3 * dotsize / 4;
 				codePoint.append("\\draw [fill=");
 				colorCode(dotcolor, codePoint);
@@ -2118,7 +2118,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 				codePoint.append("pt,");
 				codePoint.append(3 * radius / 2);
 				codePoint.append("pt);\n");
-			} else if (dotstyle == EuclidianStyleConstants.POINT_STYLE_TRIANGLE_WEST) {
+			} else if (dotstyle == euclideanStyleConstants.POINT_STYLE_TRIANGLE_WEST) {
 				double radius = 3 * dotsize / 4;
 				codePoint.append("\\draw [fill=");
 				colorCode(dotcolor, codePoint);
@@ -2159,14 +2159,14 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 			AlgoElement algo = gp.getParentAlgorithm();
 
 			if (algo instanceof AlgoIntersectAbstract) {
-				double x1 = euclidianView.toScreenCoordXd(gp.getInhomX());
-				double y1 = euclidianView.toScreenCoordYd(gp.getInhomY());
-				double x2 = euclidianView.toScreenCoordXd(gp.getInhomX()) + 30;
-				double y2 = euclidianView.toScreenCoordYd(gp.getInhomY()) + 30;
-				x1 = euclidianView.toRealWorldCoordX(x1);
-				x2 = euclidianView.toRealWorldCoordX(x2);
-				y1 = euclidianView.toRealWorldCoordY(y1);
-				y2 = euclidianView.toRealWorldCoordY(y2);
+				double x1 = euclideanView.toScreenCoordXd(gp.getInhomX());
+				double y1 = euclideanView.toScreenCoordYd(gp.getInhomY());
+				double x2 = euclideanView.toScreenCoordXd(gp.getInhomX()) + 30;
+				double y2 = euclideanView.toScreenCoordYd(gp.getInhomY()) + 30;
+				x1 = euclideanView.toRealWorldCoordX(x1);
+				x2 = euclideanView.toRealWorldCoordX(x2);
+				y1 = euclideanView.toRealWorldCoordY(y1);
+				y2 = euclideanView.toRealWorldCoordY(y2);
 
 				StringBuilder s = new StringBuilder();
 				if (format == GeoGebraToPgf.FORMAT_LATEX) {
@@ -2196,7 +2196,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 				}
 				boolean fill1 = false;
 				GeoElement[] geos = algo.getInput();
-				boolean draw = !geos[0].isEuclidianVisible();
+				boolean draw = !geos[0].iseuclideanVisible();
 				if (draw) {
 					fill1 = geos[0].isFillable()
 							&& geos[0].getAlphaValue() > 0.0f;
@@ -2207,7 +2207,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 					}
 					drawGeoElement(geos[0], false, true);
 				}
-				if (geos.length > 1 && !geos[1].isEuclidianVisible()) {
+				if (geos.length > 1 && !geos[1].iseuclideanVisible()) {
 					boolean fill2 = geos[1].isFillable()
 							&& (geos[1].getAlphaValue() > 0.0f);
 					if (draw) {
@@ -2384,7 +2384,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		double y1 = pointStart.getInhomY();
 
 		Coords equation = geo
-				.getCartesianEquationVector(euclidianView.getMatrix());
+				.getCartesianEquationVector(euclideanView.getMatrix());
 
 		double a = equation.getX();
 		double b = equation.getY();
@@ -2479,30 +2479,30 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 				}
 			}
 			if (null == drawGeo) {
-				drawGeo = euclidianView.getDrawableFor(geo);
+				drawGeo = euclideanView.getDrawableFor(geo);
 			}
 			if (drawGeo == null) {
 				return;
 			}
 			double xLabel = drawGeo.getxLabel();
 			double yLabel = drawGeo.getyLabel();
-			xLabel = euclidianView.toRealWorldCoordX(Math.round(xLabel));
-			yLabel = euclidianView.toRealWorldCoordY(Math.round(yLabel));
+			xLabel = euclideanView.toRealWorldCoordX(Math.round(xLabel));
+			yLabel = euclideanView.toRealWorldCoordY(Math.round(yLabel));
 			GColor geocolor = geo.getObjectColor();
 			startBeamer(codePoint);
 			int width = (int) Math.ceil(StringUtil.getPrototype()
 					.estimateLength(StringUtil
 							.toLaTeXString(geo.getLabelDescription(), true),
-							euclidianView.getFont()));
+							euclideanView.getFont()));
 			int height = (int) Math.ceil(StringUtil.getPrototype()
 					.estimateHeight(StringUtil
 							.toLaTeXString(geo.getLabelDescription(), true),
-							euclidianView.getFont()));
+							euclideanView.getFont()));
 			double[] translation = new double[2];
-			translation[0] = euclidianView.getXZero() + width / 2.0;
-			translation[1] = euclidianView.getYZero() - height / 2.0;
-			translation[0] = euclidianView.toRealWorldCoordX(translation[0]);
-			translation[1] = euclidianView.toRealWorldCoordY(translation[1]);
+			translation[0] = euclideanView.getXZero() + width / 2.0;
+			translation[1] = euclideanView.getYZero() - height / 2.0;
+			translation[0] = euclideanView.toRealWorldCoordX(translation[0]);
+			translation[1] = euclideanView.toRealWorldCoordY(translation[1]);
 			codePoint.append("\\draw[color=");
 			colorCode(geocolor, codePoint);
 			codePoint.append("] ");
@@ -2521,9 +2521,9 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 
 	private void drawGrid() {
 		// resizeFont(codeBeginDoc);
-		GColor gridCol = euclidianView.getGridColor();
-		double[] GridDist = euclidianView.getGridDistances();
-		int gridLine = euclidianView.getGridLineStyle();
+		GColor gridCol = euclideanView.getGridColor();
+		double[] GridDist = euclideanView.getGridDistances();
+		int gridLine = euclideanView.getGridLineStyle();
 		codeBeginDoc.append("\\draw [color=");
 		colorCode(gridCol, codeBeginDoc);
 		codeBeginDoc.append(",");
@@ -2557,18 +2557,18 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		addScale(codeBeginDoc);
 
 		// ignore y-axis setting (assume same as x)
-		String position = euclidianView.getDrawBorderAxes()[0] ? "edge"
+		String position = euclideanView.getDrawBorderAxes()[0] ? "edge"
 				: "middle";
 		codeBeginDoc.append(",\naxis lines=" + position + ",\n");
 
 		// codeBeginDoc.append(",\ngrid=both,\n");
 
-		if (euclidianView
-				.getGridLineStyle() != EuclidianStyleConstants.LINE_TYPE_FULL) {
+		if (euclideanView
+				.getGridLineStyle() != euclideanStyleConstants.LINE_TYPE_FULL) {
 			codeBeginDoc.append("grid style=dashed,\n");
 		}
 
-		if (euclidianView.getShowGrid()) {
+		if (euclideanView.getShowGrid()) {
 			// horizontal grid
 			codeBeginDoc.append("ymajorgrids=true,\n");
 			// vertical grid
@@ -2589,7 +2589,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 
 		// eg xtick={-8,-7,...,8}");
 		codeBeginDoc.append(",\nxtick={");
-		double tickStepX = euclidianView.getGridDistances()[0];
+		double tickStepX = euclideanView.getGridDistances()[0];
 		double startX = MyMath.nextMultiple(xmin, tickStepX);
 		double endX = MyMath.nextMultiple(xmax + Kernel.STANDARD_PRECISION, tickStepX) - tickStepX;
 
@@ -2602,7 +2602,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		// eg ytick={-4,-3,...,4");
 		codeBeginDoc.append("},\nytick={");
 
-		double tickStepY = euclidianView.getGridDistances()[1];
+		double tickStepY = euclideanView.getGridDistances()[1];
 		double startY = MyMath.nextMultiple(ymin, tickStepY);
 		double endY = MyMath.nextMultiple(ymax + Kernel.STANDARD_PRECISION, tickStepY) - tickStepY;
 		codeBeginDoc.append(startY);
@@ -2649,7 +2649,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		boolean coma = false;
 
 		// removed: default is different in GeoGebra vs Tikz
-		// if (linethickness != EuclidianStyleConstants.DEFAULT_LINE_THICKNESS)
+		// if (linethickness != euclideanStyleConstants.DEFAULT_LINE_THICKNESS)
 		// {
 		// coma needed
 		coma = true;
@@ -2658,7 +2658,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		sb.append(format(linethickness / 2.0 * 0.8));
 		sb.append("pt");
 
-		if (linestyle != EuclidianStyleConstants.DEFAULT_LINE_TYPE) {
+		if (linestyle != euclideanStyleConstants.DEFAULT_LINE_TYPE) {
 			if (coma) {
 				sb.append(",");
 			} else {
@@ -2754,10 +2754,10 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 		default:
 			// do nothing
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DOTTED:
 			sb.append("dotted");
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_SHORT:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_SHORT:
 			// sb.append("dash pattern=off 4pt on 4pt");
 			sb.append("dash pattern=on ");
 			int size = resizePt(4);
@@ -2766,7 +2766,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 			sb.append(size);
 			sb.append("pt");
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_LONG:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_LONG:
 			// sb.append("dash pattern=off 8pt on 8pt");
 			sb.append("dash pattern=on ");
 			int size8 = resizePt(8);
@@ -2775,7 +2775,7 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 			sb.append(size8);
 			sb.append("pt");
 			break;
-		case EuclidianStyleConstants.LINE_TYPE_DASHED_DOTTED:
+		case euclideanStyleConstants.LINE_TYPE_DASHED_DOTTED:
 			// sb.append("dash pattern=on 1 pt off 4pt on 8pt off 4 pt");
 			sb.append("dash pattern=on ");
 			int size1 = resizePt(1);
@@ -2940,8 +2940,8 @@ public abstract class GeoGebraToPgf extends GeoGebraExport {
 
 	/*
 	 * @Override protected GGraphics2D createGraphics(FunctionalNVar ef,
-	 * Inequality inequality, EuclidianView euclidianView2){ return new
-	 * MyGraphicsPgf(ef, inequality, euclidianView2); }
+	 * Inequality inequality, euclideanView euclideanView2){ return new
+	 * MyGraphicsPgf(ef, inequality, euclideanView2); }
 	 */
 	@Override
 	protected void drawHistogramOrBarChartBox(double[] y, double[] x,

@@ -1,17 +1,17 @@
-package org.geogebra.web.full.euclidian;
+package org.geogebra.web.full.euclidean;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.SymbolicEditor;
-import org.geogebra.common.euclidian.draw.DrawInputBox;
-import org.geogebra.common.euclidian.draw.LaTeXTextRenderer;
+import org.geogebra.common.euclidean.SymbolicEditor;
+import org.geogebra.common.euclidean.draw.DrawInputBox;
+import org.geogebra.common.euclidean.draw.LaTeXTextRenderer;
 import org.geogebra.common.kernel.geos.GeoInputBox;
 import org.geogebra.common.main.App;
 import org.geogebra.web.full.gui.components.MathFieldEditor;
 import org.geogebra.web.full.main.AppWFull;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
-import org.geogebra.web.html5.euclidian.HasMathKeyboardListener;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
+import org.geogebra.web.html5.euclidean.HasMathKeyboardListener;
 import org.geogebra.web.html5.gui.util.MathKeyboardListener;
 import org.geogebra.web.html5.main.AppW;
 import org.geogebra.web.html5.main.GlobalKeyDispatcherW;
@@ -43,7 +43,7 @@ public class SymbolicEditorW extends SymbolicEditor implements HasMathKeyboardLi
 	 * @param app
 	 *            The application.
 	 */
-	public SymbolicEditorW(App app, EuclidianViewW view) {
+	public SymbolicEditorW(App app, euclideanViewW view) {
 		super(app, view);
 		editor = new MathFieldEditor(app, this);
 		editor.addBlurHandler(this);
@@ -69,7 +69,7 @@ public class SymbolicEditorW extends SymbolicEditor implements HasMathKeyboardLi
 		editor.getMathField().setPixelRatio(((AppW) app).getPixelRatio());
 		editor.setFontType(geoInputBox.isSerifContent() ? TeXFont.SERIF
 				:  TeXFont.SANSSERIF);
-		editor.attach(((EuclidianViewW) view).getAbsolutePanel());
+		editor.attach(((euclideanViewW) view).getAbsolutePanel());
 		((AppWFull) app).setInputBoxType(geoInputBox.getInputBoxType());
 		((AppWFull) app).setInputBoxFunctionVars(geoInputBox.getFunctionVars());
 		// update size and show
@@ -126,7 +126,7 @@ public class SymbolicEditorW extends SymbolicEditor implements HasMathKeyboardLi
 		editor.setVisible(false);
 
 		AnimationScheduler.get()
-				.requestAnimationFrame(timestamp -> ((EuclidianViewW) view).doRepaint2());
+				.requestAnimationFrame(timestamp -> ((euclideanViewW) view).doRepaint2());
 	}
 
 	@Override

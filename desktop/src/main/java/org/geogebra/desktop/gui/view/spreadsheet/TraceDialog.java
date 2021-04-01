@@ -47,7 +47,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.view.spreadsheet.CellRange;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoElement.TraceModesEnum;
@@ -150,7 +150,7 @@ public class TraceDialog extends Dialog
 	 * or just a cell location. In this case the user must be prompted for a geo
 	 * to trace.
 	 * 
-	 * 2) Euclidian or algebra view context menu. This passes either a currently
+	 * 2) euclidean or algebra view context menu. This passes either a currently
 	 * tracing geo, or just a geo. In this case the geo is automatically
 	 * assigned a trace location.
 	 * 
@@ -923,13 +923,13 @@ public class TraceDialog extends Dialog
 	}
 
 	/**
-	 * @param euclidianMode
+	 * @param euclideanMode
 	 *            app mode
 	 */
-	public void toolbarModeChanged(int euclidianMode) {
-		// System.out.println(euclidianMode);
-		if (!EuclidianConstants.isMoveOrSelectionMode(euclidianMode)
-				&& euclidianMode != EuclidianConstants.MODE_SELECTION_LISTENER
+	public void toolbarModeChanged(int euclideanMode) {
+		// System.out.println(euclideanMode);
+		if (!euclideanConstants.isMoveOrSelectionMode(euclideanMode)
+				&& euclideanMode != euclideanConstants.MODE_SELECTION_LISTENER
 				&& (mode == MODE_ADD || mode == MODE_LOCATE)) {
 			setMode(MODE_NORMAL);
 			if (isIniting) {

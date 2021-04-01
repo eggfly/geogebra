@@ -46,7 +46,7 @@ public class AlgoImageCorner extends AlgoElement {
 		compute();
 		corner.setLabel(label);
 
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class AlgoImageCorner extends AlgoElement {
 	}
 
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 
 		// update image to update it's bounding box
 		kernel.notifyUpdate(img);

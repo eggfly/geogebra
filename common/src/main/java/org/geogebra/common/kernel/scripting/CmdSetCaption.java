@@ -36,9 +36,9 @@ public class CmdSetCaption extends CmdScripting {
 				GeoElement geo = arg[0];
 				String txt = ((GeoText) arg[1]).getTextString();
 				if (geo instanceof GeoAxis) {
-					app.getActiveEuclidianView().getSettings()
+					app.getActiveeuclideanView().getSettings()
 							.setAxisLabel(((GeoAxis) geo).getType(), txt);
-					app.getActiveEuclidianView().repaintView();
+					app.getActiveeuclideanView().repaintView();
 				} else {
 					geo.setCaption(txt);
 					geo.setLabelMode(GeoElementND.LABEL_CAPTION);

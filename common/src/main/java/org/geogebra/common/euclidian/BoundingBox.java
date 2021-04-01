@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 
@@ -201,7 +201,7 @@ public abstract class BoundingBox<T extends GShape> {
 	}
 
 	/**
-	 * Does the same as hitHandlers but returns a EuclidianBoundingBoxHandler
+	 * Does the same as hitHandlers but returns a euclideanBoundingBoxHandler
 	 *
 	 * @param x
 	 *            mouse x-coord
@@ -211,31 +211,31 @@ public abstract class BoundingBox<T extends GShape> {
 	 *            - threshold
 	 * @return bounding box handler
 	 */
-	public EuclidianBoundingBoxHandler getHitHandler(int x, int y,
+	public euclideanBoundingBoxHandler getHitHandler(int x, int y,
 			int hitThreshold) {
 		int hit = hitHandlers(x, y, hitThreshold);
 
 		switch (hit) {
 		case 0:
-			return EuclidianBoundingBoxHandler.TOP_LEFT;
+			return euclideanBoundingBoxHandler.TOP_LEFT;
 		case 1:
-			return EuclidianBoundingBoxHandler.BOTTOM_LEFT;
+			return euclideanBoundingBoxHandler.BOTTOM_LEFT;
 		case 2:
-			return EuclidianBoundingBoxHandler.BOTTOM_RIGHT;
+			return euclideanBoundingBoxHandler.BOTTOM_RIGHT;
 		case 3:
-			return EuclidianBoundingBoxHandler.TOP_RIGHT;
+			return euclideanBoundingBoxHandler.TOP_RIGHT;
 		case 4:
-			return EuclidianBoundingBoxHandler.TOP;
+			return euclideanBoundingBoxHandler.TOP;
 		case 5:
-			return EuclidianBoundingBoxHandler.LEFT;
+			return euclideanBoundingBoxHandler.LEFT;
 		case 6:
-			return EuclidianBoundingBoxHandler.BOTTOM;
+			return euclideanBoundingBoxHandler.BOTTOM;
 		case 7:
-			return EuclidianBoundingBoxHandler.RIGHT;
+			return euclideanBoundingBoxHandler.RIGHT;
 		case 8:
-			return EuclidianBoundingBoxHandler.ROTATION;
+			return euclideanBoundingBoxHandler.ROTATION;
 		default:
-			return EuclidianBoundingBoxHandler.UNDEFINED;
+			return euclideanBoundingBoxHandler.UNDEFINED;
 		}
 	}
 
@@ -271,22 +271,22 @@ public abstract class BoundingBox<T extends GShape> {
 	 *            handler
 	 * @return resizing cursor or null
 	 */
-	public EuclidianCursor getCursor(EuclidianBoundingBoxHandler handler) {
+	public euclideanCursor getCursor(euclideanBoundingBoxHandler handler) {
 		switch (handler) {
 		case TOP_LEFT:
 		case BOTTOM_RIGHT:
-			return EuclidianCursor.RESIZE_NWSE;
+			return euclideanCursor.RESIZE_NWSE;
 		case BOTTOM_LEFT:
 		case TOP_RIGHT:
-			return EuclidianCursor.RESIZE_NESW;
+			return euclideanCursor.RESIZE_NESW;
 		case TOP:
 		case BOTTOM:
-			return EuclidianCursor.RESIZE_NS;
+			return euclideanCursor.RESIZE_NS;
 		case LEFT:
 		case RIGHT:
-			return EuclidianCursor.RESIZE_EW;
+			return euclideanCursor.RESIZE_EW;
 		case ROTATION:
-			return EuclidianCursor.ROTATION;
+			return euclideanCursor.ROTATION;
 		default:
 			return null;
 		}

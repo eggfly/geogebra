@@ -10,7 +10,7 @@ the Free Software Foundation.
 
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -21,12 +21,12 @@ import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GRectangle2D;
 import org.geogebra.common.awt.GShape;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.plot.CurvePlotter;
-import org.geogebra.common.euclidian.plot.Gap;
-import org.geogebra.common.euclidian.plot.GeneralPathClippedForCurvePlotter;
-import org.geogebra.common.euclidian.plot.interval.IntervalPlotter;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.plot.CurvePlotter;
+import org.geogebra.common.euclidean.plot.Gap;
+import org.geogebra.common.euclidean.plot.GeneralPathClippedForCurvePlotter;
+import org.geogebra.common.euclidean.plot.interval.IntervalPlotter;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.VarString;
@@ -44,7 +44,7 @@ import org.geogebra.common.kernel.geos.LabelManager;
 import org.geogebra.common.kernel.interval.IntervalFunction;
 import org.geogebra.common.kernel.kernelND.CurveEvaluable;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.geogebra.common.plugin.Operation;
 import org.geogebra.common.util.DoubleUtil;
 import org.geogebra.common.util.MyMath;
@@ -91,11 +91,11 @@ public class DrawParametricCurve extends Drawable {
 	 * Creates graphical representation of the curve
 	 * 
 	 * @param view
-	 *            Euclidian view in which it should be drawn
+	 *            euclidean view in which it should be drawn
 	 * @param curve
 	 *            Curve to be drawn
 	 */
-	public DrawParametricCurve(EuclidianView view, CurveEvaluable curve) {
+	public DrawParametricCurve(euclideanView view, CurveEvaluable curve) {
 		this.view = view;
 		this.curve = curve;
 		geo = curve.toGeoElement();
@@ -118,7 +118,7 @@ public class DrawParametricCurve extends Drawable {
 
 	@Override
 	final public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (!isVisible) {
 			return;
 		}
@@ -184,7 +184,7 @@ public class DrawParametricCurve extends Drawable {
 
 	private void updateParametric() {
 		dataExpression = null;
-		if (geo.getLineType() == EuclidianStyleConstants.LINE_TYPE_POINTWISE
+		if (geo.getLineType() == euclideanStyleConstants.LINE_TYPE_POINTWISE
 				&& (curve instanceof GeoFunction)) {
 			((GeoFunction) curve).getFunctionExpression()
 					.inspect(checkPointwise());
@@ -636,7 +636,7 @@ public class DrawParametricCurve extends Drawable {
 	@Override
 	final public GRectangle getBounds() {
 		if (!geo.isDefined() || !curve.isClosedPath()
-				|| !geo.isEuclidianVisible() || gp == null) {
+				|| !geo.iseuclideanVisible() || gp == null) {
 			return null;
 		}
 		return AwtFactory.getPrototype().newRectangle(gp.getBounds());
@@ -644,7 +644,7 @@ public class DrawParametricCurve extends Drawable {
 
 	@Override
 	public GRectangle2D getBoundsForStylebarPosition() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible()) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible()) {
 			return null;
 		}
 		return AwtFactory.getPrototype().newRectangle(gp.getBounds());

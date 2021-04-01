@@ -1,8 +1,8 @@
 package org.geogebra.common.main;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidianForPlane.EuclidianViewForPlaneCompanionInterface;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.Format;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclideanForPlane.euclideanViewForPlaneCompanionInterface;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.Format;
 import org.geogebra.common.gui.layout.DockPanel;
 import org.geogebra.common.kernel.GeoFactory;
 import org.geogebra.common.kernel.Kernel;
@@ -65,10 +65,10 @@ public class AppCompanion {
 	 * @param asPreference
 	 *            whether we need this for preference XML
 	 */
-	public void getEuclidianViewXML(StringBuilder sb, boolean asPreference) {
-		app.getEuclidianView1().getXML(sb, asPreference);
-		if (app.hasEuclidianView2EitherShowingOrNot(1)) {
-			app.getEuclidianView2(1).getXML(sb, asPreference);
+	public void geteuclideanViewXML(StringBuilder sb, boolean asPreference) {
+		app.geteuclideanView1().getXML(sb, asPreference);
+		if (app.haseuclideanView2EitherShowingOrNot(1)) {
+			app.geteuclideanView2(1).getXML(sb, asPreference);
 		}
 	}
 
@@ -77,9 +77,9 @@ public class AppCompanion {
 	 *            plane creator
 	 * @param panelSettings
 	 *            panel settings
-	 * @return create a new euclidian view for the plane
+	 * @return create a new euclidean view for the plane
 	 */
-	public EuclidianViewForPlaneCompanionInterface createEuclidianViewForPlane(
+	public euclideanViewForPlaneCompanionInterface createeuclideanViewForPlane(
 			ViewCreator plane, boolean panelSettings) {
 		return null;
 	}
@@ -101,7 +101,7 @@ public class AppCompanion {
 	/**
 	 * reset ids for 2D view created by planes, etc. Used in 3D.
 	 */
-	public void resetEuclidianViewForPlaneIds() {
+	public void reseteuclideanViewForPlaneIds() {
 		// used in 3D
 
 	}
@@ -111,9 +111,9 @@ public class AppCompanion {
 	 *            view ID
 	 * @param plane
 	 *            plane label
-	 * @return new EuclidianDockPanelForPlane
+	 * @return new euclideanDockPanelForPlane
 	 */
-	public DockPanel createEuclidianDockPanelForPlane(int id, String plane) {
+	public DockPanel createeuclideanDockPanelForPlane(int id, String plane) {
 		return null;
 	}
 
@@ -131,7 +131,7 @@ public class AppCompanion {
 	 * 
 	 * @return true if some view for plane exists
 	 */
-	public boolean hasEuclidianViewForPlane() {
+	public boolean haseuclideanViewForPlane() {
 		return false;
 	}
 
@@ -139,7 +139,7 @@ public class AppCompanion {
 	 * 
 	 * @return true if some view for plane is visible
 	 */
-	public boolean hasEuclidianViewForPlaneVisible() {
+	public boolean haseuclideanViewForPlaneVisible() {
 		return false;
 	}
 
@@ -147,7 +147,7 @@ public class AppCompanion {
 	 * 
 	 * @return a visible view for plane if one, or null
 	 */
-	public EuclidianView getViewForPlaneVisible() {
+	public euclideanView getViewForPlaneVisible() {
 		return null;
 	}
 

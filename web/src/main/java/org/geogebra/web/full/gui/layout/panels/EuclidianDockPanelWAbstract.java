@@ -2,16 +2,16 @@ package org.geogebra.web.full.gui.layout.panels;
 
 import javax.annotation.CheckForNull;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.GetViewId;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.GetViewId;
 import org.geogebra.common.main.Feature;
 import org.geogebra.web.full.gui.layout.DockManagerW;
 import org.geogebra.web.full.gui.layout.DockPanelW;
 import org.geogebra.web.full.gui.util.ZoomPanelMow;
 import org.geogebra.web.full.gui.view.consprotocol.ConstructionProtocolNavigationW;
 import org.geogebra.web.full.main.AppWFull;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 import org.geogebra.web.html5.gui.util.MathKeyboardListener;
 import org.geogebra.web.html5.gui.voiceInput.SpeechRecognitionPanel;
 import org.geogebra.web.html5.gui.zoompanel.ZoomPanel;
@@ -30,14 +30,14 @@ import elemental2.dom.HTMLCanvasElement;
 import jsinterop.base.Js;
 
 /**
- * Abstract class for all "euclidian" panels.
+ * Abstract class for all "euclidean" panels.
  *
- * Remark: {@link #getEuclidianView()} has to be overridden if
- * {@link #getComponent()} does not return the euclidian view directly
+ * Remark: {@link #geteuclideanView()} has to be overridden if
+ * {@link #getComponent()} does not return the euclidean view directly
  *
- * @author arpad (based on EuclidianDockPanelAbstract by Mathieu)
+ * @author arpad (based on euclideanDockPanelAbstract by Mathieu)
  */
-public abstract class EuclidianDockPanelWAbstract extends DockPanelW
+public abstract class euclideanDockPanelWAbstract extends DockPanelW
 		implements GetViewId {
 
 	private ConstructionProtocolNavigationW consProtNav;
@@ -73,7 +73,7 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 	 * @param shortcut
 	 *            letter for Ctrl+Shift+letter shortcut
 	 */
-	public EuclidianDockPanelWAbstract(int id, String title, String toolbar,
+	public euclideanDockPanelWAbstract(int id, String title, String toolbar,
 			boolean hasStyleBar, boolean hasZoomPanel, int menuOrder,
 			char shortcut) {
 		super(id, title, toolbar, hasStyleBar, menuOrder,
@@ -89,7 +89,7 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 	/**
 	 * @return view in this dock panel
 	 */
-	abstract public EuclidianView getEuclidianView();
+	abstract public euclideanView geteuclideanView();
 
 	@Override
 	public void setVisible(boolean sv) {
@@ -103,10 +103,10 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 		consProtNav = (ConstructionProtocolNavigationW) (app.getGuiManager()
 				.getConstructionProtocolNavigation(id));
 		consProtNav.getImpl().addStyleName("consProtNav");
-		if (getEuclidianPanel() == null) {
+		if (geteuclideanPanel() == null) {
 			loadComponent();
 		}
-		getEuclidianPanel().add(consProtNav.getImpl()); // may be invisible, but
+		geteuclideanPanel().add(consProtNav.getImpl()); // may be invisible, but
 														// made
 													// visible later
 		updateNavigationBar();
@@ -125,7 +125,7 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 		if (consProtNav != null) {
 			consProtNav.update();
 			consProtNav.setVisible(app.showConsProtNavigation(id));
-			getEuclidianPanel().onResize();
+			geteuclideanPanel().onResize();
 		}
 	}
 
@@ -139,15 +139,15 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 	}
 
 	/**
-	 * Wrapper of euclidian view
+	 * Wrapper of euclidean view
 	 */
-	public static class EuclidianPanel extends FlowPanel
+	public static class euclideanPanel extends FlowPanel
 			implements RequiresResize {
 
 		/** dock panel */
-		EuclidianDockPanelWAbstract dockPanel;
+		euclideanDockPanelWAbstract dockPanel;
 		/** panel for positioning furniture */
-		AbsolutePanel absoluteEuclidianPanel;
+		AbsolutePanel absoluteeuclideanPanel;
 		/** current height */
 		int oldHeight = 0;
 		/** current width */
@@ -157,7 +157,7 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 		 * @param dockPanel
 		 *            parent dock panel
 		 */
-		public EuclidianPanel(EuclidianDockPanelWAbstract dockPanel) {
+		public euclideanPanel(euclideanDockPanelWAbstract dockPanel) {
 			this(dockPanel, new AbsolutePanel());
 		}
 
@@ -167,13 +167,13 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 		 * @param absPanel
 		 *            absolute panel (for positioning stuff over canvas)
 		 */
-		public EuclidianPanel(EuclidianDockPanelWAbstract dockPanel,
+		public euclideanPanel(euclideanDockPanelWAbstract dockPanel,
 				AbsolutePanel absPanel) {
 			super();
 			this.dockPanel = dockPanel;
-			add(absoluteEuclidianPanel = absPanel);
-			absoluteEuclidianPanel.addStyleName(EuclidianViewW.ABSOLUTE_PANEL_CLASS);
-			absoluteEuclidianPanel.getElement().getStyle()
+			add(absoluteeuclideanPanel = absPanel);
+			absoluteeuclideanPanel.addStyleName(euclideanViewW.ABSOLUTE_PANEL_CLASS);
+			absoluteeuclideanPanel.getElement().getStyle()
 					.setOverflow(Overflow.HIDDEN);
 			checkFocus();
 			getElement().setAttribute("role", "application");
@@ -209,35 +209,35 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 		private native void checkFocus() /*-{
 			var that = this;
 			var forceResize = function() {
-				that.@org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelWAbstract.EuclidianPanel::forceResize()()
+				that.@org.geogebra.web.full.gui.layout.panels.euclideanDockPanelWAbstract.euclideanPanel::forceResize()()
 			};
 
 			$wnd.visibilityEventMain(forceResize, forceResize);
 		}-*/ ;
 
 		private void forceResize() {
-			EuclidianView view = dockPanel.getEuclidianView();
-			EuclidianViewW.forceResize(view);
+			euclideanView view = dockPanel.geteuclideanView();
+			euclideanViewW.forceResize(view);
 		}
 
 		@Override
 		public boolean remove(Widget w) {
-			return absoluteEuclidianPanel.remove(w) || super.remove(w);
+			return absoluteeuclideanPanel.remove(w) || super.remove(w);
 		}
 
 		/**
 		 * @return absolute panel
 		 */
 		public AbsolutePanel getAbsolutePanel() {
-			return absoluteEuclidianPanel;
+			return absoluteeuclideanPanel;
 		}
 
 	}
 
 	/**
-	 * @return panel wrapping the Euclidian view
+	 * @return panel wrapping the euclidean view
 	 */
-	protected abstract EuclidianPanel getEuclidianPanel();
+	protected abstract euclideanPanel geteuclideanPanel();
 
 	/**
 	 * @return application
@@ -250,7 +250,7 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 	 * @return panel for positioning overlay elements (e.g. input boxes)
 	 */
 	public final @CheckForNull AbsolutePanel getAbsolutePanel() {
-		return getEuclidianPanel() == null ? null : getEuclidianPanel()
+		return geteuclideanPanel() == null ? null : geteuclideanPanel()
 				.getAbsolutePanel();
 	}
 
@@ -284,7 +284,7 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 		}
 		if (allowZoomPanel()) {
 			boolean bottomRight = isBottomRight();
-			zoomPanel = new ZoomPanel(getEuclidianView(), app,
+			zoomPanel = new ZoomPanel(geteuclideanView(), app,
 					bottomRight,
 					this.mayHaveZoomButtons);
 			if (bottomRight) {
@@ -399,7 +399,7 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 	}
 
 	/**
-	 * Checks if zoom panel fit on Euclidian View with given height and
+	 * Checks if zoom panel fit on euclidean View with given height and
 	 * shows/hides it respectively.
 	 *
 	 * @param height
@@ -416,17 +416,17 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 	 * Reset old size
 	 */
 	public final void reset() {
-		if (getEuclidianPanel() != null) {
-			getEuclidianPanel().oldWidth = 0;
-			getEuclidianPanel().oldHeight = 0;
+		if (geteuclideanPanel() != null) {
+			geteuclideanPanel().oldWidth = 0;
+			geteuclideanPanel().oldHeight = 0;
 		}
 	}
 
 	@Override
 	public MathKeyboardListener getKeyboardListener() {
-		EuclidianView ev = getEuclidianView();
-		if (ev instanceof EuclidianViewW) {
-			return ((EuclidianViewW) ev).getKeyboardListener();
+		euclideanView ev = geteuclideanView();
+		if (ev instanceof euclideanViewW) {
+			return ((euclideanViewW) ev).getKeyboardListener();
 		}
 		return null;
 	}
@@ -434,9 +434,9 @@ public abstract class EuclidianDockPanelWAbstract extends DockPanelW
 	@Override
 	public void paintToCanvas(CanvasRenderingContext2D context2d,
 			Runnable callback, int left, int top) {
-		if (getEuclidianView() != null) {
+		if (geteuclideanView() != null) {
 			HTMLCanvasElement evCanvas =
-					Js.uncheckedCast(((EuclidianViewWInterface) getEuclidianView())
+					Js.uncheckedCast(((euclideanViewWInterface) geteuclideanView())
 							.getExportCanvas());
 			double pixelRatio = app.getPixelRatio();
 			context2d.scale(1 / pixelRatio, 1 / pixelRatio);

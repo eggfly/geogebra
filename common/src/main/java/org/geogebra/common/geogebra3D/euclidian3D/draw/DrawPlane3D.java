@@ -1,14 +1,14 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.Hitting;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterSurface;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Textures;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.ExportToPrinter3D.Type;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.Hitting;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterSurface;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Textures;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.ExportToPrinter3D.Type;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPlane3D;
 import org.geogebra.common.kernel.geos.GProperty;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -50,7 +50,7 @@ public class DrawPlane3D extends Drawable3DSurfaces {
 	 * @param a_plane3D
 	 *            plane
 	 */
-	public DrawPlane3D(EuclidianView3D a_view3D, GeoPlane3D a_plane3D) {
+	public DrawPlane3D(euclideanView3D a_view3D, GeoPlane3D a_plane3D) {
 		this(a_view3D, a_plane3D, null);
 	}
 
@@ -71,7 +71,7 @@ public class DrawPlane3D extends Drawable3DSurfaces {
 	 * @param geo2
 	 *            parent geo
 	 */
-	public DrawPlane3D(EuclidianView3D a_view3D, GeoPlane3D a_plane3D,
+	public DrawPlane3D(euclideanView3D a_view3D, GeoPlane3D a_plane3D,
 			GeoElement geo2) {
 
 		super(a_view3D);
@@ -653,7 +653,7 @@ public class DrawPlane3D extends Drawable3DSurfaces {
 		}
 
 		if (getGeoElement()
-				.getAlphaValue() < EuclidianController.MIN_VISIBLE_ALPHA_VALUE) {
+				.getAlphaValue() < euclideanController.MIN_VISIBLE_ALPHA_VALUE) {
 			return false;
 		}
 

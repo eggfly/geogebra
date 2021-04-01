@@ -3,7 +3,7 @@ package org.geogebra.common.jre.openGL;
 import java.nio.Buffer;
 import java.nio.ShortBuffer;
 
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBufferIndices;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBufferIndices;
 
 /**
  * buffers for openGL

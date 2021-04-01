@@ -16,7 +16,7 @@ the Free Software Foundation.
  * Created on 21. 8 . 2003
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -24,13 +24,13 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GLine2D;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianBoundingBoxHandler;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.euclidian.SegmentBoundingBox;
-import org.geogebra.common.euclidian.clipping.ClipLine;
-import org.geogebra.common.euclidian.modes.ModeShape;
+import org.geogebra.common.euclidean.euclideanBoundingBoxHandler;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.euclidean.SegmentBoundingBox;
+import org.geogebra.common.euclidean.clipping.ClipLine;
+import org.geogebra.common.euclidean.modes.ModeShape;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.MyPoint;
@@ -70,11 +70,11 @@ public class DrawSegment extends SetDrawable implements Previewable {
 	 * Creates new DrawSegment
 	 * 
 	 * @param view
-	 *            Euclidian view to be used
+	 *            euclidean view to be used
 	 * @param s
 	 *            Segment to be drawn
 	 */
-	public DrawSegment(EuclidianView view, GeoLineND s) {
+	public DrawSegment(euclideanView view, GeoLineND s) {
 		this.view = view;
 		this.s = s;
 		geo = (GeoElement) s;
@@ -86,11 +86,11 @@ public class DrawSegment extends SetDrawable implements Previewable {
 	 * Creates a new DrawSegment for preview.
 	 * 
 	 * @param view
-	 *            Euclidian view to be used
+	 *            euclidean view to be used
 	 * @param points
 	 *            endpoints of the segment
 	 */
-	public DrawSegment(EuclidianView view, ArrayList<GeoPointND> points) {
+	public DrawSegment(euclideanView view, ArrayList<GeoPointND> points) {
 		this.view = view;
 		this.points = points;
 
@@ -102,7 +102,7 @@ public class DrawSegment extends SetDrawable implements Previewable {
 
 	@Override
 	final public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (!isVisible) {
 			return;
 		}
@@ -165,10 +165,10 @@ public class DrawSegment extends SetDrawable implements Previewable {
 			// A or B off screen
 			// clip at screen, that's important for huge coordinates
 			isVisible = drawClipped(coordsA, coordsB, line,
-					view.getMinXScreen() - EuclidianStatic.CLIP_DISTANCE,
-					view.getMaxXScreen() + EuclidianStatic.CLIP_DISTANCE,
-					view.getMinYScreen() - EuclidianStatic.CLIP_DISTANCE,
-					view.getMaxYScreen() + EuclidianStatic.CLIP_DISTANCE,
+					view.getMinXScreen() - euclideanStatic.CLIP_DISTANCE,
+					view.getMaxXScreen() + euclideanStatic.CLIP_DISTANCE,
+					view.getMinYScreen() - euclideanStatic.CLIP_DISTANCE,
+					view.getMaxYScreen() + euclideanStatic.CLIP_DISTANCE,
 					tmpClipPoints);
 		}
 
@@ -511,7 +511,7 @@ public class DrawSegment extends SetDrawable implements Previewable {
 
 			// round angle to nearest 15 degrees if alt pressed
 			if (points.size() == 1
-					&& view.getEuclidianController().isAltDown()) {
+					&& view.geteuclideanController().isAltDown()) {
 				GeoPointND p = points.get(0);
 				double px = p.getInhomX();
 				double py = p.getInhomY();
@@ -530,9 +530,9 @@ public class DrawSegment extends SetDrawable implements Previewable {
 
 				endPoint.setX(xRW);
 				endPoint.setY(yRW);
-				view.getEuclidianController().setLineEndPoint(endPoint);
+				view.geteuclideanController().setLineEndPoint(endPoint);
 			} else {
-				view.getEuclidianController().setLineEndPoint(null);
+				view.geteuclideanController().setLineEndPoint(null);
 			}
 			line.setLine(coordsA[0], coordsA[1], mx, my);
 		}
@@ -581,7 +581,7 @@ public class DrawSegment extends SetDrawable implements Previewable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (line == null || !geo.isDefined() || !geo.isEuclidianVisible()) {
+		if (line == null || !geo.isDefined() || !geo.iseuclideanVisible()) {
 			return null;
 		}
 		return AwtFactory.getPrototype().newRectangle(line.getBounds());
@@ -606,14 +606,14 @@ public class DrawSegment extends SetDrawable implements Previewable {
 
 	@Override
 	public void updateByBoundingBoxResize(GPoint2D point,
-			EuclidianBoundingBoxHandler handler) {
+			euclideanBoundingBoxHandler handler) {
 		GeoPointND updated;
 		GPoint2D anchor;
 		// start point == 0 == TOP_LEFT
 		// end point == 1 == BOTTOM_LEFT
 		// slightly hacky but more numerically stable than guessing from
 		// distance
-		if (handler == EuclidianBoundingBoxHandler.TOP_LEFT) {
+		if (handler == euclideanBoundingBoxHandler.TOP_LEFT) {
 			anchor = line.getP2();
 			updated = s.getStartPoint();
 		} else {

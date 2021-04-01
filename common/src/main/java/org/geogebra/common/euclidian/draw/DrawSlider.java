@@ -14,7 +14,7 @@ the Free Software Foundation.
  * DrawSlider: draws a slider to change a number continously
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GBasicStroke;
 import org.geogebra.common.awt.GColor;
@@ -22,9 +22,9 @@ import org.geogebra.common.awt.GEllipse2DDouble;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GLine2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.main.App;
@@ -56,7 +56,7 @@ public class DrawSlider extends Drawable {
 	private GEllipse2DDouble circleHighlight = AwtFactory.getPrototype()
 			.newEllipse2DDouble();
 
-	private static final GBasicStroke borderStroke = EuclidianStatic
+	private static final GBasicStroke borderStroke = euclideanStatic
 			.getDefaultStroke();
 
 	private double[] coords = new double[2];
@@ -74,7 +74,7 @@ public class DrawSlider extends Drawable {
 	 * @param number
 	 *            slider
 	 */
-	public DrawSlider(EuclidianView view, GeoNumeric number) {
+	public DrawSlider(euclideanView view, GeoNumeric number) {
 		this.view = view;
 		this.number = number;
 		geo = number;
@@ -91,7 +91,7 @@ public class DrawSlider extends Drawable {
 		// view.getHeight());
 		// }
 
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (isVisible) {
 			double widthRW;
 			double widthScreen;
@@ -292,7 +292,7 @@ public class DrawSlider extends Drawable {
 	@Override
 	final public GRectangle getBounds() {
 		if (!geo.isDefined() || ((GeoNumeric) geo).isAbsoluteScreenLocActive()
-				|| !geo.isEuclidianVisible() || line == null) {
+				|| !geo.iseuclideanVisible() || line == null) {
 			return null;
 		}
 		return line.getBounds();
@@ -300,7 +300,7 @@ public class DrawSlider extends Drawable {
 
 	@Override
 	final public GRectangle getBoundsForStylebarPosition() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible()) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible()) {
 			return null;
 		}
 		return line.getBounds();

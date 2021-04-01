@@ -16,7 +16,7 @@ the Free Software Foundation.
  * Created on 16. Oktober 2001, 15:13
  */
 
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 
@@ -25,11 +25,11 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GLine2D;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.Previewable;
-import org.geogebra.common.euclidian.clipping.ClipLine;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.Previewable;
+import org.geogebra.common.euclidean.clipping.ClipLine;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -71,7 +71,7 @@ public class DrawVector extends Drawable implements Previewable {
 	 * @param v
 	 *            vector
 	 */
-	public DrawVector(EuclidianView view, GeoVectorND v) {
+	public DrawVector(euclideanView view, GeoVectorND v) {
 		this.view = view;
 		this.v = v;
 		geo = (GeoElement) v;
@@ -85,7 +85,7 @@ public class DrawVector extends Drawable implements Previewable {
 	 * @param points
 	 *            start point and end point
 	 */
-	public DrawVector(EuclidianView view, ArrayList<GeoPointND> points) {
+	public DrawVector(euclideanView view, ArrayList<GeoPointND> points) {
 		this.view = view;
 		this.points = points;
 		geo = view.getKernel().getConstruction().getConstructionDefaults()
@@ -95,7 +95,7 @@ public class DrawVector extends Drawable implements Previewable {
 
 	@Override
 	final public void update() {
-		isVisible = geo.isEuclidianVisible();
+		isVisible = geo.iseuclideanVisible();
 		if (!isVisible) {
 			return;
 		}
@@ -216,10 +216,10 @@ public class DrawVector extends Drawable implements Previewable {
 			// check if any of vector is on-screen
 			GPoint2D[] clippedPoints = ClipLine.getClipped(coordsA[0],
 					coordsA[1], coordsB[0], coordsB[1],
-					view.getMinXScreen() - EuclidianStatic.CLIP_DISTANCE,
-					view.getMaxXScreen() + EuclidianStatic.CLIP_DISTANCE,
-					view.getMinYScreen() - EuclidianStatic.CLIP_DISTANCE,
-					view.getMaxYScreen() + EuclidianStatic.CLIP_DISTANCE,
+					view.getMinXScreen() - euclideanStatic.CLIP_DISTANCE,
+					view.getMaxXScreen() + euclideanStatic.CLIP_DISTANCE,
+					view.getMinYScreen() - euclideanStatic.CLIP_DISTANCE,
+					view.getMaxYScreen() + euclideanStatic.CLIP_DISTANCE,
 					tmpClipPoints);
 			if (clippedPoints == null) {
 				isVisible = false;
@@ -229,10 +229,10 @@ public class DrawVector extends Drawable implements Previewable {
 
 				// now re-clip at A and F
 				clippedPoints = ClipLine.getClipped(coordsA[0], coordsA[1],
-						coordsF[0], coordsF[1], -EuclidianStatic.CLIP_DISTANCE,
-						view.getWidth() + EuclidianStatic.CLIP_DISTANCE,
-						-EuclidianStatic.CLIP_DISTANCE,
-						view.getHeight() + EuclidianStatic.CLIP_DISTANCE,
+						coordsF[0], coordsF[1], -euclideanStatic.CLIP_DISTANCE,
+						view.getWidth() + euclideanStatic.CLIP_DISTANCE,
+						-euclideanStatic.CLIP_DISTANCE,
+						view.getHeight() + euclideanStatic.CLIP_DISTANCE,
 						tmpClipPoints);
 				if (clippedPoints != null) {
 					line.setLine(clippedPoints[0].getX(),
@@ -338,7 +338,7 @@ public class DrawVector extends Drawable implements Previewable {
 
 			// round angle to nearest 15 degrees if alt pressed
 			if (points.size() == 1
-					&& view.getEuclidianController().isAltDown()) {
+					&& view.geteuclideanController().isAltDown()) {
 				GeoPointND p = points.get(0);
 				double px = p.getInhomX();
 				double py = p.getInhomY();
@@ -354,9 +354,9 @@ public class DrawVector extends Drawable implements Previewable {
 
 				endPoint.setX(xRW);
 				endPoint.setY(yRW);
-				view.getEuclidianController().setLineEndPoint(endPoint);
+				view.geteuclideanController().setLineEndPoint(endPoint);
 			} else {
-				view.getEuclidianController().setLineEndPoint(null);
+				view.geteuclideanController().setLineEndPoint(null);
 			}
 
 			// set start and end point in real world coords
@@ -416,7 +416,7 @@ public class DrawVector extends Drawable implements Previewable {
 	 */
 	@Override
 	final public GRectangle getBounds() {
-		if (!geo.isDefined() || !geo.isEuclidianVisible() || gp == null) {
+		if (!geo.isDefined() || !geo.iseuclideanVisible() || gp == null) {
 			return null;
 		}
 		GRectangle ret = null;

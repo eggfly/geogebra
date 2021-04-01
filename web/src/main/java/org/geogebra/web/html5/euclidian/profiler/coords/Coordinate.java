@@ -1,4 +1,4 @@
-package org.geogebra.web.html5.euclidian.profiler.coords;
+package org.geogebra.web.html5.euclidean.profiler.coords;
 
 /**
  * POJO to be used for autonomously drawing onto the canvas.

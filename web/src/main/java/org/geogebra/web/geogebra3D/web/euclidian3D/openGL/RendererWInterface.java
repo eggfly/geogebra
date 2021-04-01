@@ -1,4 +1,4 @@
-package org.geogebra.web.geogebra3D.web.euclidian3D.openGL;
+package org.geogebra.web.geogebra3D.web.euclidean3D.openGL;
 
 import com.google.gwt.canvas.client.Canvas;
 

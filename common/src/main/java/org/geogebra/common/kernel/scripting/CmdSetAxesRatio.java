@@ -1,7 +1,7 @@
 package org.geogebra.common.kernel.scripting;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.arithmetic.Command;
 import org.geogebra.common.kernel.commands.CmdScripting;
@@ -38,12 +38,12 @@ public class CmdSetAxesRatio extends CmdScripting {
 
 				GeoNumeric numGeo = (GeoNumeric) arg[0];
 				GeoNumeric numGeo2 = (GeoNumeric) arg[1];
-				EuclidianView ev = app.getActiveEuclidianView();
+				euclideanView ev = app.getActiveeuclideanView();
 				if (ev.isDefault2D()) {
 					ev.zoomAxesRatio(numGeo.getDouble(), numGeo2.getDouble(),
 							true);
-				} else if (ev.isEuclidianView3D()) {
-					((EuclidianView3DInterface) ev).zoomAxesRatio(
+				} else if (ev.iseuclideanView3D()) {
+					((euclideanView3DInterface) ev).zoomAxesRatio(
 							numGeo.getDouble() / numGeo2.getDouble(), 0);
 				}
 
@@ -60,12 +60,12 @@ public class CmdSetAxesRatio extends CmdScripting {
 				GeoNumeric numGeo = (GeoNumeric) arg[0];
 				GeoNumeric numGeo2 = (GeoNumeric) arg[1];
 				GeoNumeric numGeo3 = (GeoNumeric) arg[2];
-				EuclidianView ev = app.getActiveEuclidianView();
+				euclideanView ev = app.getActiveeuclideanView();
 				if (ev.isDefault2D()) {
 					ev.zoomAxesRatio(numGeo.getDouble(), numGeo2.getDouble(),
 							true);
-				} else if (ev.isEuclidianView3D()) {
-					((EuclidianView3DInterface) ev).zoomAxesRatio(
+				} else if (ev.iseuclideanView3D()) {
+					((euclideanView3DInterface) ev).zoomAxesRatio(
 							numGeo.getDouble() / numGeo2.getDouble(),
 							numGeo.getDouble() / numGeo3.getDouble());
 				}

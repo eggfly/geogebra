@@ -1,9 +1,9 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoSegment3D;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
@@ -29,7 +29,7 @@ public class DrawSegment3D extends DrawCoordSys1D {
 	 * @param segment
 	 *            segment
 	 */
-	public DrawSegment3D(EuclidianView3D a_view3D, GeoSegmentND segment) {
+	public DrawSegment3D(euclideanView3D a_view3D, GeoSegmentND segment) {
 
 		super(a_view3D, (GeoElement) segment);
 
@@ -67,7 +67,7 @@ public class DrawSegment3D extends DrawCoordSys1D {
 	 * @param selectedPoints
 	 *            endpoints
 	 */
-	public DrawSegment3D(EuclidianView3D a_view3D,
+	public DrawSegment3D(euclideanView3D a_view3D,
 			ArrayList<GeoPointND> selectedPoints) {
 
 		super(a_view3D, selectedPoints,

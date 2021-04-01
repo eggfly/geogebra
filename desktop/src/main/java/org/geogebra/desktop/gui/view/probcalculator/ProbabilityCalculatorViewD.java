@@ -39,12 +39,12 @@ import org.geogebra.common.kernel.arithmetic.NumberValue;
 import org.geogebra.common.kernel.geos.GeoNumeric;
 import org.geogebra.common.main.settings.ProbabilityCalculatorSettings;
 import org.geogebra.common.main.settings.ProbabilityCalculatorSettings.Dist;
-import org.geogebra.desktop.euclidianND.EuclidianViewInterfaceD;
+import org.geogebra.desktop.euclideanND.euclideanViewInterfaceD;
 import org.geogebra.desktop.gui.GuiManagerD;
 import org.geogebra.desktop.gui.inputfield.MyTextFieldD;
 import org.geogebra.desktop.gui.util.LayoutUtil;
 import org.geogebra.desktop.gui.util.ListSeparatorRenderer;
-import org.geogebra.desktop.gui.view.data.PlotPanelEuclidianViewD;
+import org.geogebra.desktop.gui.view.data.PlotPaneleuclideanViewD;
 import org.geogebra.desktop.main.AppD;
 import org.geogebra.desktop.main.LocalizationD;
 import org.geogebra.desktop.util.GuiResourcesD;
@@ -180,12 +180,12 @@ public class ProbabilityCalculatorViewD extends ProbabilityCalculatorView
 			controlPanel.setBorder(BorderFactory.createEmptyBorder());
 			controlPanel.setMinimumSize(controlPanel.getPreferredSize());
 
-			// plot panel (extension of EuclidianView)
-			setPlotPanel(new PlotPanelEuclidianViewD(app.getKernel(),
+			// plot panel (extension of euclideanView)
+			setPlotPanel(new PlotPaneleuclideanViewD(app.getKernel(),
 					exportToEVAction));
 			getPlotPanel().setMouseEnabled(true, true);
 			getPlotPanel().setMouseMotionEnabled(true);
-			((EuclidianViewInterfaceD) getPlotPanel())
+			((euclideanViewInterfaceD) getPlotPanel())
 					.setBorder(BorderFactory.createEmptyBorder());
 
 			// plot label panel
@@ -196,7 +196,7 @@ public class ProbabilityCalculatorViewD extends ProbabilityCalculatorView
 			plotLabelPanel.setBackground(Color.white);
 			// plot panel with label field below
 			plotPanelPlus = new JPanel(new BorderLayout());
-			plotPanelPlus.add(((EuclidianViewInterfaceD) getPlotPanel()).getJPanel(),
+			plotPanelPlus.add(((euclideanViewInterfaceD) getPlotPanel()).getJPanel(),
 					BorderLayout.CENTER);
 			plotPanelPlus.add(plotLabelPanel, BorderLayout.SOUTH);
 
@@ -652,8 +652,8 @@ public class ProbabilityCalculatorViewD extends ProbabilityCalculatorView
 		this.getPlotDimensions();
 
 		if (probMode == PROB_INTERVAL) {
-			lowPoint.setEuclidianVisible(showProbGeos);
-			highPoint.setEuclidianVisible(showProbGeos);
+			lowPoint.seteuclideanVisible(showProbGeos);
+			highPoint.seteuclideanVisible(showProbGeos);
 			fldLow.setVisible(true);
 			fldHigh.setVisible(true);
 			lblBetween.setText(SpreadsheetViewInterface.X_BETWEEN);
@@ -666,8 +666,8 @@ public class ProbabilityCalculatorViewD extends ProbabilityCalculatorView
 		}
 
 		else if (probMode == PROB_LEFT) {
-			lowPoint.setEuclidianVisible(false);
-			highPoint.setEuclidianVisible(showProbGeos);
+			lowPoint.seteuclideanVisible(false);
+			highPoint.seteuclideanVisible(showProbGeos);
 			fldLow.setVisible(false);
 			fldHigh.setVisible(true);
 			lblBetween.setText(loc.getMenu("XLessThanOrEqual"));
@@ -687,8 +687,8 @@ public class ProbabilityCalculatorViewD extends ProbabilityCalculatorView
 		}
 
 		else if (probMode == PROB_RIGHT) {
-			lowPoint.setEuclidianVisible(showProbGeos);
-			highPoint.setEuclidianVisible(false);
+			lowPoint.seteuclideanVisible(showProbGeos);
+			highPoint.seteuclideanVisible(false);
 			fldLow.setVisible(true);
 			fldHigh.setVisible(false);
 			lblBetween
@@ -891,11 +891,11 @@ public class ProbabilityCalculatorViewD extends ProbabilityCalculatorView
 
 	/**
 	 * Action to export all GeoElements that are currently displayed in this
-	 * panel to a EuclidianView. The viewID for the target EuclidianView is
-	 * stored as a property with key "euclidianViewID".
+	 * panel to a euclideanView. The viewID for the target euclideanView is
+	 * stored as a property with key "euclideanViewID".
 	 * 
 	 * This action is passed as a parameter to plotPanel where it is used in the
-	 * plotPanel context menu and the EuclidianView transfer handler when the
+	 * plotPanel context menu and the euclideanView transfer handler when the
 	 * plot panel is dragged into an EV.
 	 */
 	AbstractAction exportToEVAction = new AbstractAction() {
@@ -903,31 +903,31 @@ public class ProbabilityCalculatorViewD extends ProbabilityCalculatorView
 
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			Integer euclidianViewID = (Integer) this
-					.getValue("euclidianViewID");
+			Integer euclideanViewID = (Integer) this
+					.getValue("euclideanViewID");
 
 			// if null ID then use EV1 unless shift is down, then use EV2
-			if (euclidianViewID == null) {
-				euclidianViewID = idForEvent();
+			if (euclideanViewID == null) {
+				euclideanViewID = idForEvent();
 			}
 
 			// do the export
-			exportGeosToEV(euclidianViewID);
+			exportGeosToEV(euclideanViewID);
 
 			// null out the ID property
-			this.putValue("euclidianViewID", null);
+			this.putValue("euclideanViewID", null);
 		}
 	};
 
 	@Override
-	public PlotPanelEuclidianViewD getPlotPanel() {
-		return (PlotPanelEuclidianViewD) super.getPlotPanel();
+	public PlotPaneleuclideanViewD getPlotPanel() {
+		return (PlotPaneleuclideanViewD) super.getPlotPanel();
 	}
 
 	protected Integer idForEvent() {
 		return ((AppD) app).getShiftDown()
-				? app.getEuclidianView2(1).getViewID()
-				: app.getEuclidianView1().getViewID();
+				? app.geteuclideanView2(1).getViewID()
+				: app.geteuclideanView1().getViewID();
 	}
 
 	/**

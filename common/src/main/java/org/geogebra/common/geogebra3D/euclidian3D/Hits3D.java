@@ -1,14 +1,14 @@
-package org.geogebra.common.geogebra3D.euclidian3D;
+package org.geogebra.common.geogebra3D.euclidean3D;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.Hits;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D.DrawableComparator;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer.PickingType;
+import org.geogebra.common.euclidean.Hits;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D.DrawableComparator;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer.PickingType;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoQuadric3D;
 import org.geogebra.common.kernel.geos.FromMeta;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -147,7 +147,7 @@ public class Hits3D extends Hits {
 	}
 
 	/**
-	 * insert a drawable in the hitSet, called by EuclidianRenderer3D
+	 * insert a drawable in the hitSet, called by euclideanRenderer3D
 	 * 
 	 * @param d
 	 *            the drawable

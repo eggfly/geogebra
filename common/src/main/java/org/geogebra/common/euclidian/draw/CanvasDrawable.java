@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GDimension;
@@ -7,8 +7,8 @@ import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.font.GTextLayout;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianStatic;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanStatic;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoInputBox;
@@ -159,7 +159,7 @@ public abstract class CanvasDrawable extends Drawable {
 			} else {
 				g2.setFont(getLabelFont());
 				setLabelSize(
-						EuclidianStatic.drawIndexedString(view.getApplication(),
+						euclideanStatic.drawIndexedString(view.getApplication(),
 								g2, text, 0, 0, false, false, null, null));
 			}
 			calculateBoxBounds(latex);
@@ -229,7 +229,7 @@ public abstract class CanvasDrawable extends Drawable {
 	 */
 	protected void drawOnCanvas(GGraphics2D g2) {
 		g2.setFont(getLabelFont());
-		g2.setStroke(EuclidianStatic.getDefaultStroke());
+		g2.setStroke(euclideanStatic.getDefaultStroke());
 
 		g2.setPaint(geo.getObjectColor());
 

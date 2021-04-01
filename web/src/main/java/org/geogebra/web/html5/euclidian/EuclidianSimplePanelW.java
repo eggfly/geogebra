@@ -1,6 +1,6 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.main.App;
 import org.geogebra.web.html5.main.AppW;
 
@@ -14,11 +14,11 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RequiresResize;
 
 /**
- * Euclidian panel for WebSimple
+ * euclidean panel for WebSimple
  *
  */
-public class EuclidianSimplePanelW extends AbsolutePanel implements
-        EuclidianPanelWAbstract, RequiresResize {
+public class euclideanSimplePanelW extends AbsolutePanel implements
+        euclideanPanelWAbstract, RequiresResize {
 
 	private AppW app;
 	private int oldHeight = 0;
@@ -32,7 +32,7 @@ public class EuclidianSimplePanelW extends AbsolutePanel implements
 	 * @param application
 	 *            application
 	 */
-	public EuclidianSimplePanelW(AppW application) {
+	public euclideanSimplePanelW(AppW application) {
 		super();
 		loadComponent();
 		app = application;
@@ -58,7 +58,7 @@ public class EuclidianSimplePanelW extends AbsolutePanel implements
 	}
 
 	@Override
-	public Panel getEuclidianPanel() {
+	public Panel geteuclideanPanel() {
 		return this;
 	}
 
@@ -76,9 +76,9 @@ public class EuclidianSimplePanelW extends AbsolutePanel implements
 	}
 
 	@Override
-	public EuclidianView getEuclidianView() {
+	public euclideanView geteuclideanView() {
 		if (app != null) {
-			return app.getEuclidianView1();
+			return app.geteuclideanView1();
 		}
 		return null;
 	}

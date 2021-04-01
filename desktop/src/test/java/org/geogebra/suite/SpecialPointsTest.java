@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.SpecialPointsManager;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -36,6 +36,6 @@ public class SpecialPointsTest extends BaseSuiteTest {
 		assertThat(specialPoints,
 				CoreMatchers.hasItem(
 						Matchers.<GeoElement>hasProperty("pointStyle", is(
-								EuclidianStyleConstants.POINT_STYLE_CIRCLE))));
+								euclideanStyleConstants.POINT_STYLE_CIRCLE))));
 	}
 }

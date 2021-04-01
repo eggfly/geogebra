@@ -41,7 +41,7 @@ public class CreateSlider implements MenuAction<GeoElement>,
 	@Override
 	public void execute(GeoElement element) {
 		GeoSymbolic symbolic = (GeoSymbolic) element;
-		symbolic.setEuclidianVisible(false);
+		symbolic.seteuclideanVisible(false);
 		processor.changeGeoElementNoExceptionHandling(symbolic, symbolic.getDefinition(),
 				new EvalInfo(false).withKeepDefinition(false), false, this, ErrorHelper.silent());
 	}
@@ -50,7 +50,7 @@ public class CreateSlider implements MenuAction<GeoElement>,
 	public void callback(GeoElementND result) {
 		((GeoNumeric) result).createSlider();
 		labelController.ensureHasLabel(result);
-		result.setEuclidianVisible(true);
+		result.seteuclideanVisible(true);
 		result.getKernel().storeUndoInfo();
 		result.updateRepaint();
 	}

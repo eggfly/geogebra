@@ -52,10 +52,10 @@ public class AccessibleGraphicsView implements AccessibleWidget, HasSliders {
 
 	private double getInitialValue(SliderInput slider) {
 		if (slider == SliderInput.ROTATE_Z) {
-			return app.getEuclidianView3D().getAngleA();
+			return app.geteuclideanView3D().getAngleA();
 		}
 		if (slider == SliderInput.TILT) {
-			return app.getEuclidianView3D().getAngleB();
+			return app.geteuclideanView3D().getAngleB();
 		}
 		return 0;
 	}
@@ -85,14 +85,14 @@ public class AccessibleGraphicsView implements AccessibleWidget, HasSliders {
 
 	private void sliderChange(double step, SliderInput input) {
 		if (input == SliderInput.ROTATE_Z) {
-			app.getEuclidianView3D().rememberOrigins();
-			app.getEuclidianView3D().shiftRotAboutZ(step);
-			app.getEuclidianView3D().repaintView();
+			app.geteuclideanView3D().rememberOrigins();
+			app.geteuclideanView3D().shiftRotAboutZ(step);
+			app.geteuclideanView3D().repaintView();
 		}
 		if (input == SliderInput.TILT) {
-			app.getEuclidianView3D().rememberOrigins();
-			app.getEuclidianView3D().shiftRotAboutY(step);
-			app.getEuclidianView3D().repaintView();
+			app.geteuclideanView3D().rememberOrigins();
+			app.geteuclideanView3D().shiftRotAboutY(step);
+			app.geteuclideanView3D().repaintView();
 		}
 	}
 

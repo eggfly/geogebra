@@ -18,7 +18,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.kernel.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.commands.Commands;
 import org.geogebra.common.kernel.geos.GeoNumberValue;
@@ -55,7 +55,7 @@ public class AlgoHyperbolaFociLength extends AlgoConicFociLength {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_HYPERBOLA_THREE_POINTS;
+		return euclideanConstants.MODE_HYPERBOLA_THREE_POINTS;
 	}
 
 	// ///////////////////////////////

@@ -1,9 +1,9 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.euclidian.plot.CurvePlotterUtils;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.euclidean.plot.CurvePlotterUtils;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.kernel.MyPoint;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoLocusND;
@@ -30,7 +30,7 @@ public class DrawLocus3D extends Drawable3DCurves {
 	 * @param transformSys
 	 *            transformation coord sys for implicit curves
 	 */
-	public DrawLocus3D(EuclidianView3D a_view3d, GeoLocusND<? extends MyPoint> locus,
+	public DrawLocus3D(euclideanView3D a_view3d, GeoLocusND<? extends MyPoint> locus,
 			GeoElement geo, CoordSys transformSys) {
 		super(a_view3d, geo);
 		this.locus = locus;
@@ -45,7 +45,7 @@ public class DrawLocus3D extends Drawable3DCurves {
 	@Override
 	protected boolean updateForItSelf() {
 
-		EuclidianView3D view = getView3D();
+		euclideanView3D view = getView3D();
 
 		Renderer renderer = view.getRenderer();
 

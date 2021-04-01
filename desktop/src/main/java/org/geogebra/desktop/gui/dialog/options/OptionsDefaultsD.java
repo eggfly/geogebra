@@ -446,6 +446,6 @@ public class OptionsDefaultsD
 
 	@Override
 	public void setSelected(boolean flag) {
-		// see OptionsEuclidianD for possible implementation
+		// see OptionseuclideanD for possible implementation
 	}
 }

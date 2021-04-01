@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -14,7 +14,7 @@ public class GroupControllerTest extends BaseControllerTest {
 
 	@Test
 	public void clickShouldSelectAllGeosInGroup() {
-		setMode(EuclidianConstants.MODE_SELECT_MOW);
+		setMode(euclideanConstants.MODE_SELECT_MOW);
 		List<GeoElement> polygons = prepareGroupedGeos();
 		click(50, 50);
 		assertTrue(polygons.get(0).isSelected());
@@ -23,7 +23,7 @@ public class GroupControllerTest extends BaseControllerTest {
 
 	@Test
 	public void secondClickShouldMakeFocusedSelection() {
-		setMode(EuclidianConstants.MODE_SELECT_MOW);
+		setMode(euclideanConstants.MODE_SELECT_MOW);
 		List<GeoElement> polygons = prepareGroupedGeos();
 		click(50, 50);
 		click(50, 80);

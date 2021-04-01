@@ -1,7 +1,7 @@
-package org.geogebra.common.geogebra3D.euclidianFor3D;
+package org.geogebra.common.geogebra3D.euclideanFor3D;
 
 import org.apache.commons.math3.analysis.UnivariateFunction;
-import org.geogebra.common.geogebra3D.euclidianForPlane.EuclidianViewForPlaneCompanion;
+import org.geogebra.common.geogebra3D.euclideanForPlane.euclideanViewForPlaneCompanion;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoCurveCartesian3D;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.ParametricCurve;
@@ -20,7 +20,7 @@ public class CurveEvaluableForPlane implements CurveEvaluable {
 	ParametricCurve parent;
 	Coords parentOut;
 	Coords parentOutInView;
-	EuclidianViewForPlaneCompanion companion;
+	euclideanViewForPlaneCompanion companion;
 
 	private FunMustBeZero funZ;
 
@@ -60,7 +60,7 @@ public class CurveEvaluableForPlane implements CurveEvaluable {
 	 *            view for plane companion
 	 */
 	public CurveEvaluableForPlane(ParametricCurve parent,
-			EuclidianViewForPlaneCompanion companion) {
+			euclideanViewForPlaneCompanion companion) {
 		this.parent = parent;
 		this.companion = companion;
 

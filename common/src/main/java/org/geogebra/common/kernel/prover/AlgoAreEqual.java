@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.geogebra.common.cas.GeoGebraCAS;
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.factories.FormatFactory;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
@@ -333,9 +333,9 @@ public class AlgoAreEqual extends AlgoElement
 		if (inputElement1 instanceof GeoNumeric
 				&& inputElement2 instanceof GeoNumeric
 				&& (inputElement1.getParentAlgorithm())
-				.getRelatedModeID() == EuclidianConstants.MODE_AREA
+				.getRelatedModeID() == euclideanConstants.MODE_AREA
 				&& (inputElement2.getParentAlgorithm())
-				.getRelatedModeID() == EuclidianConstants.MODE_AREA) {
+				.getRelatedModeID() == euclideanConstants.MODE_AREA) {
 
 			// get botanaVars of points of first polygon
 			PVariable[] v1 = ((SymbolicParametersBotanaAlgo) inputElement1
@@ -371,9 +371,9 @@ public class AlgoAreEqual extends AlgoElement
 		if (inputElement1 instanceof GeoNumeric
 				&& inputElement2 instanceof GeoNumeric
 				&& (inputElement1.getParentAlgorithm())
-						.getRelatedModeID() == EuclidianConstants.MODE_DISTANCE
+						.getRelatedModeID() == euclideanConstants.MODE_DISTANCE
 				&& (inputElement2.getParentAlgorithm())
-						.getRelatedModeID() == EuclidianConstants.MODE_DISTANCE) {
+						.getRelatedModeID() == euclideanConstants.MODE_DISTANCE) {
 			// We check whether their length are equal.
 			botanaPolynomials = new PPolynomial[1][1];
 

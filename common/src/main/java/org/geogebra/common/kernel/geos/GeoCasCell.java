@@ -2976,7 +2976,7 @@ public class GeoCasCell extends GeoElement
 	}
 
 	@Override
-	protected boolean showInEuclidianView() {
+	protected boolean showIneuclideanView() {
 		return false;
 	}
 
@@ -3246,24 +3246,24 @@ public class GeoCasCell extends GeoElement
 	}
 
 	/**
-	 * toggles the euclidianVisibility of the twinGeo, if there is no twinGeo
-	 * toggleTwinGeoEuclidianVisible tries to create one and set the visibility
+	 * toggles the euclideanVisibility of the twinGeo, if there is no twinGeo
+	 * toggleTwinGeoeuclideanVisible tries to create one and set the visibility
 	 * to true
 	 */
-	public void toggleTwinGeoEuclidianVisible() {
+	public void toggleTwinGeoeuclideanVisible() {
 		boolean visible;
 		if (hasTwinGeo()) {
-			visible = !twinGeo.isEuclidianVisible()
-					&& twinGeo.isEuclidianShowable();
+			visible = !twinGeo.iseuclideanVisible()
+					&& twinGeo.iseuclideanShowable();
 		} else {
 			// creates a new twinGeo, if not possible return
 			if (outputVE == null || !plot()) {
 				return;
 			}
-			visible = hasTwinGeo() && twinGeo.isEuclidianShowable();
+			visible = hasTwinGeo() && twinGeo.iseuclideanShowable();
 		}
 		if (hasTwinGeo()) {
-			twinGeo.setEuclidianVisible(visible);
+			twinGeo.seteuclideanVisible(visible);
 			twinGeo.updateVisualStyle(GProperty.VISIBLE);
 		}
 		kernel.getApplication().storeUndoInfo();
@@ -3298,7 +3298,7 @@ public class GeoCasCell extends GeoElement
 			twinGeo.setLabel(null);
 		}
 		if (twinGeo != null && twinGeo.getLabelSimple() != null
-				&& twinGeo.isEuclidianShowable()) {
+				&& twinGeo.iseuclideanShowable()) {
 			String twinGeoLabelSimple = twinGeo.getLabelSimple();
 			changeAssignmentVar(assignmentVar, twinGeoLabelSimple);
 

@@ -23,8 +23,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.desktop.factories.AwtFactoryD;
 
@@ -48,10 +48,10 @@ public class DashListRenderer extends JPanel implements ListCellRenderer {
 		dashStrokeMap = new HashMap<Integer, BasicStroke>();
 		int type;
 		BasicStroke stroke;
-		for (int i = 0; i < EuclidianView.getLineTypeLength(); i++) {
-			type = EuclidianView.getLineType(i);
+		for (int i = 0; i < euclideanView.getLineTypeLength(); i++) {
+			type = euclideanView.getLineType(i);
 			stroke = ((AwtFactoryD) AwtFactory.getPrototype())
-					.getAwtStroke(EuclidianStatic.getStroke(1.0f, type));
+					.getAwtStroke(euclideanStatic.getStroke(1.0f, type));
 			dashStrokeMap.put(type, stroke);
 		}
 	}

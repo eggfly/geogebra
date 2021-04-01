@@ -2,8 +2,8 @@ package org.geogebra.common.kernel.geos;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.kernel.arithmetic.MyDouble;
 import org.geogebra.common.kernel.arithmetic.NumberValue;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
@@ -11,7 +11,7 @@ import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.kernelND.GeoPolyhedronInterface;
 import org.geogebra.common.kernel.kernelND.GeoSegmentND;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 /**
  * Parent (number+direction) for changing prism, cylinder, etc.
@@ -146,13 +146,13 @@ public class ChangeableParent {
 	 * @param startPoint
 	 *            start point
 	 */
-	final public void record(EuclidianView view, Coords startPoint) {
+	final public void record(euclideanView view, Coords startPoint) {
 		startValue = getValue();
 		if (direction == null) {
 			direction = new Coords(3);
 		}
 		if (forPolyhedronNet) {
-			if (view instanceof EuclidianView3D) {
+			if (view instanceof euclideanView3D) {
 				if (centroid == null) {
 					centroid = new Coords(3);
                 }
@@ -196,7 +196,7 @@ public class ChangeableParent {
 	 */
 	final public boolean move(Coords rwTransVec, Coords endPosition,
 			Coords viewDirection, ArrayList<GeoElement> updateGeos,
-			ArrayList<GeoElement> tempMoveObjectList, EuclidianView view) {
+			ArrayList<GeoElement> tempMoveObjectList, euclideanView view) {
 
 		GeoNumeric var = getNumber();
 
@@ -213,7 +213,7 @@ public class ChangeableParent {
 		}
 
 		if (viewDirection == null) { // may come from 2D view, e.g.
-										// EuclidianController.moveDependent()
+										// euclideanController.moveDependent()
 			// see
 			// https://play.google.com/apps/publish/?dev_acc=05873811091523087820#ErrorClusterDetailsPlace:p=org.geogebra.android&et=CRASH&sh=false&lr=LAST_7_DAYS&ecn=java.lang.NullPointerException:+Attempt+to+invoke+virtual+method+'double+org.geogebra.a.m.a.j.e(org.geogebra.a.m.a.j)'+on+a+null+object+reference&tf=SourceFile&tc=%2509at+org.geogebra.common.kernel.geos.ChangeableCoordParent.move(ChangeableCoordParent.java:202)&tm=a&nid&an&c&s=new_status_desc&ed=1480452507515
 			return false;
@@ -236,16 +236,16 @@ public class ChangeableParent {
 		return true;
 	}
 
-	private static boolean needsSnap(EuclidianView view) {
+	private static boolean needsSnap(euclideanView view) {
 		switch (view.getPointCapturingMode()) {
-		case EuclidianStyleConstants.POINT_CAPTURING_STICKY_POINTS:
+		case euclideanStyleConstants.POINT_CAPTURING_STICKY_POINTS:
 			// TODO
 			return false;
 		default:
-		case EuclidianStyleConstants.POINT_CAPTURING_AUTOMATIC:
+		case euclideanStyleConstants.POINT_CAPTURING_AUTOMATIC:
 			return view.isGridOrAxesShown();
-		case EuclidianStyleConstants.POINT_CAPTURING_ON:
-		case EuclidianStyleConstants.POINT_CAPTURING_ON_GRID:
+		case euclideanStyleConstants.POINT_CAPTURING_ON:
+		case euclideanStyleConstants.POINT_CAPTURING_ON_GRID:
 			return true;
 		}
 	}

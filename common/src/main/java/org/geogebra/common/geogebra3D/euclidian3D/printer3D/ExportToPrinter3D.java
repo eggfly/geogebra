@@ -1,19 +1,19 @@
-package org.geogebra.common.geogebra3D.euclidian3D.printer3D;
+package org.geogebra.common.geogebra3D.euclidean3D.printer3D;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
 
 import org.geogebra.common.awt.GColor;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawQuadric3D;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.DrawSurface3DElements;
-import org.geogebra.common.geogebra3D.euclidian3D.draw.Drawable3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBuffer;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GLBufferIndices;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.GeometriesSet;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Geometry;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Manager;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.ManagerShaders;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawQuadric3D;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.DrawSurface3DElements;
+import org.geogebra.common.geogebra3D.euclidean3D.draw.Drawable3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBuffer;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GLBufferIndices;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.GeometriesSet;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Geometry;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Manager;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.ManagerShaders;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoQuadric3D;
 import org.geogebra.common.kernel.discrete.PolygonTriangulation;
 import org.geogebra.common.kernel.discrete.PolygonTriangulation.Convexity;
@@ -51,7 +51,7 @@ public class ExportToPrinter3D {
 
 	private ManagerShaders manager;
 
-	protected EuclidianView3D view;
+	protected euclideanView3D view;
 
 	private StringBuilder sb;
 
@@ -196,7 +196,7 @@ public class ExportToPrinter3D {
 	 * @param manager
 	 *            geometry manager
 	 */
-	public ExportToPrinter3D(EuclidianView3D view, Manager manager) {
+	public ExportToPrinter3D(euclideanView3D view, Manager manager) {
 		this.view = view;
 		if (manager instanceof ManagerShaders) {
 			this.manager = (ManagerShaders) manager;

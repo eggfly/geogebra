@@ -3,7 +3,7 @@ package org.geogebra.web.full.html5;
 import java.util.Collections;
 import java.util.List;
 
-import org.geogebra.common.euclidian.draw.HasTextFormat;
+import org.geogebra.common.euclidean.draw.HasTextFormat;
 import org.geogebra.common.main.App;
 import org.geogebra.web.full.gui.AriaMenuItemMock;
 import org.geogebra.web.full.javax.swing.InlineTextToolbar;

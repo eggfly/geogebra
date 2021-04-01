@@ -1,14 +1,14 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import org.geogebra.common.awt.GBufferedImage;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.EuclidianStatic;
-import org.geogebra.common.euclidian.draw.DrawText;
+import org.geogebra.common.euclidean.euclideanStatic;
+import org.geogebra.common.euclidean.draw.DrawText;
 import org.geogebra.common.factories.AwtFactory;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.kernel.geos.GeoText;
 import org.geogebra.common.kernel.geos.TextProperties;
 
@@ -23,7 +23,7 @@ public class DrawLabel3DForText extends DrawLabel3D {
 	private int highLightIndex = -1;
 	GRectangle bounds = AwtFactory.getPrototype().newRectangle();
 
-	public DrawLabel3DForText(EuclidianView3D view, Drawable3D drawable) {
+	public DrawLabel3DForText(euclideanView3D view, Drawable3D drawable) {
 		super(view, drawable);
 	}
 
@@ -31,13 +31,13 @@ public class DrawLabel3DForText extends DrawLabel3D {
 	final protected GRectangle getBounds() {
 
 		if (geo.isLaTeX()) {
-			EuclidianStatic.drawMultilineLaTeX(view.getApplication(),
+			euclideanStatic.drawMultilineLaTeX(view.getApplication(),
 					tempGraphics, geo, tempGraphics, font, GColor.BLACK,
 					GColor.WHITE, text, 0, 0,
 					((TextProperties) geo).isSerifFont(), getCallBack(),
 					bounds);
 		} else {
-			EuclidianStatic.drawIndexedMultilineString(view.getApplication(),
+			euclideanStatic.drawIndexedMultilineString(view.getApplication(),
 					text, tempGraphics, bounds, font,
 					((TextProperties) geo).isSerifFont(), 0, 0);
 		}
@@ -51,12 +51,12 @@ public class DrawLabel3DForText extends DrawLabel3D {
 		GGraphics2D g2d = createGraphics2D(bimg);
 
 		if (geo.isLaTeX()) {
-			EuclidianStatic.drawMultilineLaTeX(view.getApplication(),
+			euclideanStatic.drawMultilineLaTeX(view.getApplication(),
 					tempGraphics, geo, g2d, font, GColor.BLACK, GColor.WHITE,
 					text, 0, 0, ((TextProperties) geo).isSerifFont(),
 					getCallBack(), null);
 		} else {
-			EuclidianStatic.drawIndexedMultilineString(view.getApplication(),
+			euclideanStatic.drawIndexedMultilineString(view.getApplication(),
 					text, g2d, AwtFactory.getPrototype().newRectangle(),
 					g2d.getFont(), ((TextProperties) geo).isSerifFont(), 0, 0);
 		}

@@ -1,7 +1,7 @@
 package org.geogebra.common.kernel.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.draw.DrawAngle;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.draw.DrawAngle;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.commands.Commands;
 import org.geogebra.common.kernel.geos.GeoAngle;
@@ -69,7 +69,7 @@ public abstract class AlgoAngle extends AlgoElement {
 
 	@Override
 	final public int getRelatedModeID() {
-		return EuclidianConstants.MODE_ANGLE;
+		return euclideanConstants.MODE_ANGLE;
 	}
 
 	/**

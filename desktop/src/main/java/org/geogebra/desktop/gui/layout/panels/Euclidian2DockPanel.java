@@ -3,15 +3,15 @@ package org.geogebra.desktop.gui.layout.panels;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.main.App;
 import org.geogebra.desktop.main.AppD;
 import org.geogebra.desktop.util.GuiResourcesD;
 
 /**
- * Dock panel for the secondary euclidian view.
+ * Dock panel for the secondary euclidean view.
  */
-public class Euclidian2DockPanel extends EuclidianDockPanelAbstract {
+public class euclidean2DockPanel extends euclideanDockPanelAbstract {
 	private static final long serialVersionUID = 1L;
 	private AppD app;
 	private int idx;
@@ -19,8 +19,8 @@ public class Euclidian2DockPanel extends EuclidianDockPanelAbstract {
 	/**
 	 * @param app
 	 */
-	public Euclidian2DockPanel(AppD app, String toolbar, int idx) {
-		super(App.VIEW_EUCLIDIAN2, // view id
+	public euclidean2DockPanel(AppD app, String toolbar, int idx) {
+		super(App.VIEW_euclidean2, // view id
 				"DrawingPad2", // view title phrase
 				toolbar, // toolbar string
 				true, // style bar?
@@ -32,12 +32,12 @@ public class Euclidian2DockPanel extends EuclidianDockPanelAbstract {
 
 	@Override
 	protected JComponent loadStyleBar() {
-		return (JComponent) app.getEuclidianView2(1).getStyleBar();
+		return (JComponent) app.geteuclideanView2(1).getStyleBar();
 	}
 
 	@Override
-	public EuclidianView getEuclidianView() {
-		return app.getEuclidianView2(this.idx);
+	public euclideanView geteuclideanView() {
+		return app.geteuclideanView2(this.idx);
 	}
 
 	@Override

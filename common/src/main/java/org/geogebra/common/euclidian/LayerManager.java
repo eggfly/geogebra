@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -416,7 +416,7 @@ public class LayerManager {
 			drawingOrder.add(pos, newGeo);
 			updateOrdering();
 			newGeo.getKernel().getApplication()
-					.getActiveEuclidianView().invalidateDrawableList();
+					.getActiveeuclideanView().invalidateDrawableList();
 		}
 	}
 }

@@ -2,7 +2,7 @@ package org.geogebra.common.gui.dialog;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.Kernel;
@@ -24,8 +24,8 @@ import org.geogebra.common.main.MyError;
 /**
  * 
  * Abstract class for displaying a preview of a GeoText while editing. The class
- * requires a GUI panel that encloses an instance of EuclidianView. The preview
- * is drawn as a GeoText element in this EuclidianView.
+ * requires a GUI panel that encloses an instance of euclideanView. The preview
+ * is drawn as a GeoText element in this euclideanView.
  * 
  * The class maintains two hidden geos (previewGeoIndependent and
  * previewGeoDependent) that are used to preview the two possible types of
@@ -37,7 +37,7 @@ import org.geogebra.common.main.MyError;
  */
 public abstract class TextPreviewer {
 
-	protected EuclidianView ev;
+	protected euclideanView ev;
 	protected Kernel kernel;
 	private App app;
 
@@ -56,7 +56,7 @@ public abstract class TextPreviewer {
 
 		this.kernel = kernel;
 		this.cons = kernel.getConstruction();
-		this.ev = getEuclidianView();
+		this.ev = geteuclideanView();
 		this.setApp(kernel.getApplication());
 
 		// set EV display properties
@@ -68,7 +68,7 @@ public abstract class TextPreviewer {
 
 	}
 
-	protected abstract EuclidianView getEuclidianView();
+	protected abstract euclideanView geteuclideanView();
 
 	protected abstract void removeEVMouseListeners();
 
@@ -252,21 +252,21 @@ public abstract class TextPreviewer {
 		}
 
 		// hide/show the preview geos
-		previewGeoIndependent.setEuclidianVisible(isIndependent);
+		previewGeoIndependent.seteuclideanVisible(isIndependent);
 		previewGeoIndependent.updateRepaint();
 		ev.update(previewGeoIndependent);
 		if (previewGeoDependent != null) {
-			previewGeoDependent.setEuclidianVisible(!isIndependent);
+			previewGeoDependent.seteuclideanVisible(!isIndependent);
 			previewGeoDependent.updateRepaint();
 			ev.update(previewGeoDependent);
 		}
 
 		// update the panel size to match the geo
-		if (previewGeoIndependent.isEuclidianVisible()) {
+		if (previewGeoIndependent.iseuclideanVisible()) {
 			updateViewportSize(previewGeoIndependent);
 		}
 		if ((previewGeoDependent != null)
-				&& previewGeoDependent.isEuclidianVisible()) {
+				&& previewGeoDependent.iseuclideanVisible()) {
 			updateViewportSize(previewGeoDependent);
 		}
 

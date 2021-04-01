@@ -1,11 +1,11 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 import org.geogebra.common.kernel.matrix.CoordMatrix4x4;
 import org.geogebra.common.kernel.matrix.Coords;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 /**
  * Class for drawing decorations of points (altitude segment from the point to
@@ -30,7 +30,7 @@ public class DrawPointDecorations extends DrawCoordSys1D {
 	 * @param aView3d
 	 *            view
 	 */
-	public DrawPointDecorations(EuclidianView3D aView3d) {
+	public DrawPointDecorations(euclideanView3D aView3d) {
 		super(aView3d);
 
 		setDrawMinMax(0, 1);
@@ -88,7 +88,7 @@ public class DrawPointDecorations extends DrawCoordSys1D {
 	@Override
 	public void drawHidden(Renderer renderer) {
 		renderer.getTextures().setDashFromLineType(
-				EuclidianStyleConstants.LINE_TYPE_DASHED_LONG);
+				euclideanStyleConstants.LINE_TYPE_DASHED_LONG);
 		drawOutline(renderer);
 	}
 
@@ -176,12 +176,12 @@ public class DrawPointDecorations extends DrawCoordSys1D {
 
 	@Override
 	public int getLineType() {
-		return EuclidianStyleConstants.LINE_TYPE_DASHED_LONG;
+		return euclideanStyleConstants.LINE_TYPE_DASHED_LONG;
 	}
 
 	@Override
 	public int getLineTypeHidden() {
-		return EuclidianStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN;
+		return euclideanStyleConstants.LINE_TYPE_HIDDEN_AS_NOT_HIDDEN;
 	}
 
 	@Override

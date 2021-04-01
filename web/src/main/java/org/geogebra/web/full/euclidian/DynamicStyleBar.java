@@ -1,14 +1,14 @@
-package org.geogebra.web.full.euclidian;
+package org.geogebra.web.full.euclidean;
 
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GPoint;
 import org.geogebra.common.awt.GRectangle;
 import org.geogebra.common.awt.GRectangle2D;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.draw.DrawPoint;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.draw.DrawPoint;
 import org.geogebra.common.kernel.geos.AbsoluteScreenLocateable;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoEmbed;
@@ -25,7 +25,7 @@ import com.google.gwt.dom.client.Style.Unit;
  * @author Judit
  *
  */
-public class DynamicStyleBar extends EuclidianStyleBarW {
+public class DynamicStyleBar extends euclideanStyleBarW {
 
 	private GPoint oldPos = null;
 
@@ -33,7 +33,7 @@ public class DynamicStyleBar extends EuclidianStyleBarW {
 	 * @param ev
 	 *            parent view
 	 */
-	public DynamicStyleBar(EuclidianView ev) {
+	public DynamicStyleBar(euclideanView ev) {
 		super(ev, -1);
 		addStyleName("matDynStyleBar");
 		if (app.isWhiteboardActive()) {
@@ -69,7 +69,7 @@ public class DynamicStyleBar extends EuclidianStyleBarW {
 		double left, top = -1;
 		boolean functionOrLine = isFunction || gRectangle2D == null;
 		if (functionOrLine) {
-			GPoint mouseLoc = this.getView().getEuclidianController()
+			GPoint mouseLoc = this.getView().geteuclideanController()
 					.getMouseLoc();
 			if (mouseLoc == null) {
 				return null;
@@ -86,7 +86,7 @@ public class DynamicStyleBar extends EuclidianStyleBarW {
 			top = gRectangle2D.getMaxY() + 10;
 		}
 
-		int maxtop = app.getActiveEuclidianView().getHeight() - height - 5;
+		int maxtop = app.getActiveeuclideanView().getHeight() - height - 5;
 		if (top > maxtop) {
 			if (isPoint) {
 				// if there is no enough place under the point
@@ -99,7 +99,7 @@ public class DynamicStyleBar extends EuclidianStyleBarW {
 
 		// get left position
 		if (functionOrLine) {
-			left = this.getView().getEuclidianController().getMouseLoc().x + 10;
+			left = this.getView().geteuclideanController().getMouseLoc().x + 10;
 		} else {
 			left = gRectangle2D.getMaxX() - getOffsetWidth();
 			left += getContextMenuButtonWidth();
@@ -112,7 +112,7 @@ public class DynamicStyleBar extends EuclidianStyleBarW {
 		if (left < 0) {
 			left = 0;
 		}
-		int maxLeft = app.getActiveEuclidianView().getWidth()
+		int maxLeft = app.getActiveeuclideanView().getWidth()
 				- this.getOffsetWidth();
 		if (left > maxLeft) {
 			left = maxLeft;
@@ -128,7 +128,7 @@ public class DynamicStyleBar extends EuclidianStyleBarW {
 		}
 
 		// make sure it reflects selected geos
-		setMode(EuclidianConstants.MODE_MOVE);
+		setMode(euclideanConstants.MODE_MOVE);
 		super.updateStyleBar();
 
 		if (activeGeoList == null || activeGeoList.size() == 0) {
@@ -138,8 +138,8 @@ public class DynamicStyleBar extends EuclidianStyleBarW {
 
 		this.getElement().getStyle().setTop(-10000, Unit.PX);
 
-		if (app.getMode() == EuclidianConstants.MODE_SELECT) {
-			GRectangle selectionRectangle = app.getActiveEuclidianView().getSelectionRectangle();
+		if (app.getMode() == euclideanConstants.MODE_SELECT) {
+			GRectangle selectionRectangle = app.getActiveeuclideanView().getSelectionRectangle();
 			if (selectionRectangle != null) {
 				setPosition(
 						calculatePosition(selectionRectangle, false, false));
@@ -154,7 +154,7 @@ public class DynamicStyleBar extends EuclidianStyleBarW {
 			GeoElement geo = activeGeoList.get(i);
 			// it's possible if a non visible geo is in activeGeoList, if we
 			// duplicate a geo, which has descendant.
-			if (geo.isEuclidianVisible()) {
+			if (geo.iseuclideanVisible()) {
 				hasVisibleGeo = true;
 				if (geo instanceof GeoFunction || (geo.isGeoLine()
 						&& !geo.isGeoSegment())) {
@@ -227,7 +227,7 @@ public class DynamicStyleBar extends EuclidianStyleBarW {
 	protected boolean hasVisibleGeos(ArrayList<GeoElement> geoList) {
 		if (ev.checkHitForStylebar()) {
 			for (GeoElement geo : geoList) {
-				if (isVisibleInThisView(geo) && geo.isEuclidianVisible()
+				if (isVisibleInThisView(geo) && geo.iseuclideanVisible()
 						&& !geo.isAxis()
 						&& ev.getHits().contains(geo)) {
 					return true;

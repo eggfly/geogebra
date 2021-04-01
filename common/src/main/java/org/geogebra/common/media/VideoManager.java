@@ -1,6 +1,6 @@
 package org.geogebra.common.media;
 
-import org.geogebra.common.euclidian.draw.DrawVideo;
+import org.geogebra.common.euclidean.draw.DrawVideo;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.geos.GeoVideo;
 

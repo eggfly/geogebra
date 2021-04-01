@@ -1,6 +1,6 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
 import org.geogebra.common.kernel.implicit.GeoImplicit;
 
 /**
@@ -17,7 +17,7 @@ public class DrawImplicitCurve3D extends DrawLocus3D {
 	 * @param curve
 	 *            the curve to draw
 	 */
-	public DrawImplicitCurve3D(EuclidianView3D a_view3d, GeoImplicit curve) {
+	public DrawImplicitCurve3D(euclideanView3D a_view3d, GeoImplicit curve) {
 		super(a_view3d, curve.getLocus(), curve.toGeoElement(),
 				curve.getTransformedCoordSys());
 

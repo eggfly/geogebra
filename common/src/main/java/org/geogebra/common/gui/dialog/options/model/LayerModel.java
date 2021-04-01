@@ -6,7 +6,7 @@ import java.util.List;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.main.App;
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.plugin.EuclidianStyleConstants;
+import org.geogebra.common.plugin.euclideanStyleConstants;
 
 public class LayerModel extends MultipleOptionsModel {
 
@@ -22,7 +22,7 @@ public class LayerModel extends MultipleOptionsModel {
 	@Override
 	public List<String> getChoices(Localization loc) {
 		List<String> choices = new ArrayList<>();
-		for (int layer = 0; layer <= EuclidianStyleConstants.MAX_LAYERS; ++layer) {
+		for (int layer = 0; layer <= euclideanStyleConstants.MAX_LAYERS; ++layer) {
 			choices.add(" " + layer);
 		}
 		return choices;

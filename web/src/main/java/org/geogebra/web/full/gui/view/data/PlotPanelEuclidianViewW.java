@@ -1,13 +1,13 @@
 package org.geogebra.web.full.gui.view.data;
 
-import org.geogebra.common.gui.view.data.PlotPanelEuclidianViewCommon;
-import org.geogebra.common.gui.view.data.PlotPanelEuclidianViewInterface;
+import org.geogebra.common.gui.view.data.PlotPaneleuclideanViewCommon;
+import org.geogebra.common.gui.view.data.PlotPaneleuclideanViewInterface;
 import org.geogebra.common.gui.view.data.PlotSettings;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.ggbjdk.java.awt.geom.Dimension;
 import org.geogebra.web.full.gui.GuiManagerW;
 import org.geogebra.web.full.gui.layout.panels.ProbabilityCalculatorDockPanelW;
-import org.geogebra.web.html5.euclidian.EuclidianViewW;
+import org.geogebra.web.html5.euclidean.euclideanViewW;
 
 import com.google.gwt.user.client.ui.Widget;
 
@@ -16,21 +16,21 @@ import com.google.gwt.user.client.ui.Widget;
  *
  *Plot panel for ProbabilityCalculator
  */
-public class PlotPanelEuclidianViewW extends EuclidianViewW
-		implements PlotPanelEuclidianViewInterface {
+public class PlotPaneleuclideanViewW extends euclideanViewW
+		implements PlotPaneleuclideanViewInterface {
 	
 	/**
-	 * default height ot PlotPanelEuclidianViewW
+	 * default height ot PlotPaneleuclideanViewW
 	 */
 	public static final int DEFAULT_HEIGHT = 300;
 	
-	public PlotPanelEuclidianViewCommon commonFields;
+	public PlotPaneleuclideanViewCommon commonFields;
 	
 	/*************************************************
 	 * Construct the panel
 	 */
-	public PlotPanelEuclidianViewW(Kernel kernel) {
-		super(new PlotPanelEuclidianControllerW(kernel), EVNO_GENERAL, null);
+	public PlotPaneleuclideanViewW(Kernel kernel) {
+		super(new PlotPaneleuclideanControllerW(kernel), EVNO_GENERAL, null);
 		
 		if (commonFields == null) {
 			setCommonFields();
@@ -45,7 +45,7 @@ public class PlotPanelEuclidianViewW extends EuclidianViewW
 	
 	private void setCommonFields() {
 		// set fields
-		commonFields = new PlotPanelEuclidianViewCommon(false);
+		commonFields = new PlotPaneleuclideanViewCommon(false);
 		commonFields.setPlotSettings(new PlotSettings());
 
 		setViewId(kernel);
@@ -54,7 +54,7 @@ public class PlotPanelEuclidianViewW extends EuclidianViewW
 	/*********** End Constructor **********************/
 
 	/**
-	 * Overrides EuclidianView setMode method so that no action is taken on a
+	 * Overrides euclideanView setMode method so that no action is taken on a
 	 * mode change.
 	 */
 	@Override

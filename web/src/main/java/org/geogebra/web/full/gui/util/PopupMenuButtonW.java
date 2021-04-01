@@ -3,12 +3,12 @@ package org.geogebra.web.full.gui.util;
 import java.util.HashMap;
 import java.util.List;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.util.SelectionTable;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.util.debug.Log;
 import org.geogebra.web.full.css.GuiResources;
-import org.geogebra.web.full.euclidian.EuclidianStyleBarW;
+import org.geogebra.web.full.euclidean.euclideanStyleBarW;
 import org.geogebra.web.html5.gui.GPopupPanel;
 import org.geogebra.web.html5.gui.util.ClickStartHandler;
 import org.geogebra.web.html5.gui.util.ImageOrText;
@@ -190,9 +190,9 @@ public class PopupMenuButtonW extends MyCJButton
 			@Override
 			public void hide() {
 				super.hide();
-				if (EuclidianStyleBarW.getCurrentPopup() != null
-						&& EuclidianStyleBarW.getCurrentPopup().equals(this)) {
-					EuclidianStyleBarW.setCurrentPopup(null);
+				if (euclideanStyleBarW.getCurrentPopup() != null
+						&& euclideanStyleBarW.getCurrentPopup().equals(this)) {
+					euclideanStyleBarW.setCurrentPopup(null);
 				}
 			}
 		};
@@ -205,19 +205,19 @@ public class PopupMenuButtonW extends MyCJButton
 	 */
 	void handleClick() {
 		onClickAction();
-		if (EuclidianStyleBarW.getCurrentPopup() != myPopup) {
-			if (EuclidianStyleBarW.getCurrentPopup() != null) {
-				EuclidianStyleBarW.getCurrentPopup().hide();
+		if (euclideanStyleBarW.getCurrentPopup() != myPopup) {
+			if (euclideanStyleBarW.getCurrentPopup() != null) {
+				euclideanStyleBarW.getCurrentPopup().hide();
 			}
-			EuclidianStyleBarW.setCurrentPopup(myPopup);
-			EuclidianStyleBarW.setCurrentPopupButton(this);
+			euclideanStyleBarW.setCurrentPopup(myPopup);
+			euclideanStyleBarW.setCurrentPopupButton(this);
 			app.registerPopup(myPopup);
 			myPopup.showRelativeTo(getWidget());
 			myPopup.getFocusPanel().getElement().focus();
 		} else {
 			myPopup.setVisible(false);
-			EuclidianStyleBarW.setCurrentPopup(null);
-			EuclidianStyleBarW.setCurrentPopupButton(null);
+			euclideanStyleBarW.setCurrentPopup(null);
+			euclideanStyleBarW.setCurrentPopupButton(null);
 		}
 	}
 
@@ -296,7 +296,7 @@ public class PopupMenuButtonW extends MyCJButton
 	 */
 	protected void onClickAction() {
 		// called by click on button
-		// overridden in (e.g.) EuclidianStayleBar3DW
+		// overridden in (e.g.) euclideanStayleBar3DW
 	}
 
 	/**
@@ -404,17 +404,17 @@ public class PopupMenuButtonW extends MyCJButton
 		} else {
 			if (app.isUnbundledOrWhiteboard()) {
 				// needed checking if stylebar exists: don't create EV stylebar
-				if (app.getActiveEuclidianView().hasStyleBar()) {
-					((EuclidianStyleBarW) app.getActiveEuclidianView()
+				if (app.getActiveeuclideanView().hasStyleBar()) {
+					((euclideanStyleBarW) app.getActiveeuclideanView()
 							.getStyleBar()).fireActionPerformed(this);
 				}
-				if (app.getActiveEuclidianView().hasDynamicStyleBar()) {
-					((EuclidianStyleBarW) app.getActiveEuclidianView()
+				if (app.getActiveeuclideanView().hasDynamicStyleBar()) {
+					((euclideanStyleBarW) app.getActiveeuclideanView()
 							.getDynamicStyleBar()).fireActionPerformed(this);
 				}
 
 			} else {
-				((EuclidianStyleBarW) app.getActiveEuclidianView()
+				((euclideanStyleBarW) app.getActiveeuclideanView()
 						.getStyleBar()).fireActionPerformed(this);
 			}
 		}

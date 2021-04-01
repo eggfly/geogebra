@@ -1,18 +1,18 @@
-package org.geogebra.desktop.geogebra3D.euclidianFor3D;
+package org.geogebra.desktop.geogebra3D.euclideanFor3D;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianViewCompanion;
-import org.geogebra.common.geogebra3D.euclidianFor3D.EuclidianViewFor3DCompanion;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.desktop.euclidian.EuclidianViewD;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanViewCompanion;
+import org.geogebra.common.geogebra3D.euclideanFor3D.euclideanViewFor3DCompanion;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.desktop.euclidean.euclideanViewD;
 
 /**
- * Simple extension of EuclidianView to implement handling of 3D objects
+ * Simple extension of euclideanView to implement handling of 3D objects
  * 
  * @author Mathieu
  * 
  */
-public class EuclidianViewFor3DD extends EuclidianViewD {
+public class euclideanViewFor3DD extends euclideanViewD {
 
 	/**
 	 * @param ec
@@ -24,17 +24,17 @@ public class EuclidianViewFor3DD extends EuclidianViewD {
 	 * @param evno
 	 *            dock panel id
 	 * @param settings
-	 *            euclidian settings
+	 *            euclidean settings
 	 */
-	public EuclidianViewFor3DD(EuclidianController ec, boolean[] showAxes,
-			boolean showGrid, int evno, EuclidianSettings settings) {
+	public euclideanViewFor3DD(euclideanController ec, boolean[] showAxes,
+			boolean showGrid, int evno, euclideanSettings settings) {
 		super(ec, showAxes, showGrid, evno, settings);
 
 	}
 
 	@Override
-	protected EuclidianViewCompanion newEuclidianViewCompanion() {
-		return new EuclidianViewFor3DCompanion(this);
+	protected euclideanViewCompanion neweuclideanViewCompanion() {
+		return new euclideanViewFor3DCompanion(this);
 	}
 
 }

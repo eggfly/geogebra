@@ -1,17 +1,17 @@
-package org.geogebra.desktop.euclidian;
+package org.geogebra.desktop.euclidean;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import org.geogebra.common.euclidian.CoordSystemAnimation;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.CoordSystemAnimation;
+import org.geogebra.common.euclidean.euclideanView;
 
 public class MyZoomerD extends CoordSystemAnimation implements ActionListener {
 	protected Timer timer; // for animation
 
-	public MyZoomerD(EuclidianView view) {
+	public MyZoomerD(euclideanView view) {
 		super(view);
 		timer = new Timer(DELAY, this);
 	}

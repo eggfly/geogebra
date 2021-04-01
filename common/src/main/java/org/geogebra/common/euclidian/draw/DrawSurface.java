@@ -1,12 +1,12 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.plot.CurvePlotter;
-import org.geogebra.common.euclidian.plot.Gap;
-import org.geogebra.common.euclidian.plot.GeneralPathClippedForCurvePlotter;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.plot.CurvePlotter;
+import org.geogebra.common.euclidean.plot.Gap;
+import org.geogebra.common.euclidean.plot.GeneralPathClippedForCurvePlotter;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.kernelND.CurveEvaluable;
 import org.geogebra.common.kernel.kernelND.GeoSurfaceCartesian2D;
@@ -27,7 +27,7 @@ public class DrawSurface extends Drawable {
 	 * @param geo
 	 *            surface
 	 */
-	public DrawSurface(EuclidianView ev, GeoSurfaceCartesian2D geo) {
+	public DrawSurface(euclideanView ev, GeoSurfaceCartesian2D geo) {
 		this.view = ev;
 		this.surface = geo;
 		this.geo = geo;
@@ -123,7 +123,7 @@ public class DrawSurface extends Drawable {
 			gp = new GeneralPathClippedForCurvePlotter(view);
 		}
 		gp.resetWithThickness(geo.getLineThickness());
-		if (!geo.isEuclidianVisible() || !geo.isDefined()) {
+		if (!geo.iseuclideanVisible() || !geo.isDefined()) {
 			return;
 		}
 		SurfaceCurve curve = new SurfaceCurve(surface);

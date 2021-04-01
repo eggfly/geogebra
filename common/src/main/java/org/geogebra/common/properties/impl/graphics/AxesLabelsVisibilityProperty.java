@@ -1,7 +1,7 @@
 package org.geogebra.common.properties.impl.graphics;
 
 import org.geogebra.common.main.Localization;
-import org.geogebra.common.main.settings.EuclidianSettings;
+import org.geogebra.common.main.settings.euclideanSettings;
 import org.geogebra.common.properties.BooleanProperty;
 import org.geogebra.common.properties.impl.AbstractProperty;
 
@@ -11,27 +11,27 @@ import org.geogebra.common.properties.impl.AbstractProperty;
 public class AxesLabelsVisibilityProperty extends AbstractProperty
 		implements BooleanProperty {
 
-	private EuclidianSettings euclidianSettings;
+	private euclideanSettings euclideanSettings;
 
 	/**
 	 * Constructs an Axes visibility property.
 	 *
 	 * @param localization
 	 *            localization for the title
-	 * @param euclidianSettings
-	 *            euclidian settings
+	 * @param euclideanSettings
+	 *            euclidean settings
 	 */
 	public AxesLabelsVisibilityProperty(Localization localization,
-			EuclidianSettings euclidianSettings) {
+			euclideanSettings euclideanSettings) {
 		super(localization, "Show");
-		this.euclidianSettings = euclidianSettings;
+		this.euclideanSettings = euclideanSettings;
 	}
 
 	@Override
 	public boolean getValue() {
-		String[] axesLabels = euclidianSettings.getAxesLabels();
+		String[] axesLabels = euclideanSettings.getAxesLabels();
 		boolean value = false;
-		for (int i = 0; i < euclidianSettings.getDimension(); i++) {
+		for (int i = 0; i < euclideanSettings.getDimension(); i++) {
 			value |= axesLabels[i] != null;
 		}
 		return value;
@@ -39,10 +39,10 @@ public class AxesLabelsVisibilityProperty extends AbstractProperty
 
 	@Override
 	public void setValue(boolean value) {
-		int length = euclidianSettings.getDimension();
+		int length = euclideanSettings.getDimension();
 		for (int i = 0; i < length; i++) {
-			euclidianSettings.setAxisLabel(i,
-					value ? EuclidianSettings.getDefaultAxisLabel(i) : null,
+			euclideanSettings.setAxisLabel(i,
+					value ? euclideanSettings.getDefaultAxisLabel(i) : null,
 					i == length - 1);
 		}
 	}

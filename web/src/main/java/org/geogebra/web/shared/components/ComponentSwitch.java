@@ -1,6 +1,6 @@
 package org.geogebra.web.shared.components;
 
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.util.AsyncOperation;
 import org.geogebra.web.html5.gui.util.ClickStartHandler;
 import org.geogebra.web.html5.util.Dom;

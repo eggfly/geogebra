@@ -10,7 +10,7 @@ import org.geogebra.common.util.lang.Language;
 import org.geogebra.web.full.gui.browser.MaterialListElement;
 import org.geogebra.web.full.gui.exam.ExamUtil;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.EuclidianControllerW;
+import org.geogebra.web.html5.euclidean.euclideanControllerW;
 import org.geogebra.web.html5.gui.laf.GLookAndFeelI;
 import org.geogebra.web.html5.gui.util.BrowserStorage;
 import org.geogebra.web.html5.gui.util.Cookies;
@@ -158,7 +158,7 @@ public class GLookAndFeel implements GLookAndFeelI {
 	}
 
 	@Override
-    public boolean registerHandlers(Widget evPanel, EuclidianControllerW euclidiancontroller) {
+    public boolean registerHandlers(Widget evPanel, euclideanControllerW euclideancontroller) {
 	    return false;
     }
 

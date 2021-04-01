@@ -21,8 +21,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.Macro;
@@ -53,7 +53,7 @@ public class CopyPasteD extends CopyPaste {
 
 	protected StringBuilder copiedXMLforSameWindow;
 	protected ArrayList<String> copiedXMLlabelsforSameWindow;
-	protected EuclidianViewInterfaceCommon copySource;
+	protected euclideanViewInterfaceCommon copySource;
 	protected Object copyObject;
 	protected Object copyObject2;
 
@@ -311,8 +311,8 @@ public class CopyPasteD extends CopyPaste {
 
 		for (int j = geostohide.size() - 1; j >= 0; j--) {
 			geo = geostohide.get(j);
-			if (geo.isGeoElement() && ((GeoElement) geo).isEuclidianVisible()) {
-				((GeoElement) geo).setEuclidianVisible(false);
+			if (geo.isGeoElement() && ((GeoElement) geo).iseuclideanVisible()) {
+				((GeoElement) geo).seteuclideanVisible(false);
 			} else {
 				geostohide.remove(geo);
 			}
@@ -359,7 +359,7 @@ public class CopyPasteD extends CopyPaste {
 		for (int j = geostoshow.size() - 1; j >= 0; j--) {
 			geo = geostoshow.get(j);
 			if (geo.isGeoElement()) {
-				((GeoElement) geo).setEuclidianVisible(true);
+				((GeoElement) geo).seteuclideanVisible(true);
 			}
 		}
 	}
@@ -390,7 +390,7 @@ public class CopyPasteD extends CopyPaste {
 		copiedXMLlabels = new ArrayList<>();
 		copiedXMLforSameWindow = new StringBuilder();
 		copiedXMLlabelsforSameWindow = new ArrayList<>();
-		copySource = app.getActiveEuclidianView();
+		copySource = app.getActiveeuclideanView();
 		copyObject = app.getUndoManager().getCurrentUndoInfo();
 		copiedMacros = new HashSet<>();
 
@@ -514,8 +514,8 @@ public class CopyPasteD extends CopyPaste {
 		}
 		// SECOND XML SAVE END
 
-		app.setMode(EuclidianConstants.MODE_MOVE);
-		app.getActiveEuclidianView().setSelectionRectangle(null);
+		app.setMode(euclideanConstants.MODE_MOVE);
+		app.getActiveeuclideanView().setSelectionRectangle(null);
 
 		app.setBlockUpdateScripts(scriptsBlocked);
 	}
@@ -528,7 +528,7 @@ public class CopyPasteD extends CopyPaste {
 	 * @return boolean
 	 */
 	public boolean pasteFast(App app) {
-		if (app.getActiveEuclidianView() != copySource) {
+		if (app.getActiveeuclideanView() != copySource) {
 			return false;
 		}
 		if (copyObject != copyObject2) {
@@ -569,22 +569,22 @@ public class CopyPasteD extends CopyPaste {
 		app.setBlockUpdateScripts(true);
 
 		// don't update selection
-		app.getActiveEuclidianView().getEuclidianController()
+		app.getActiveeuclideanView().geteuclideanController()
 				.clearSelections(true, false);
 		// don't update properties view
 		app.updateSelection(false);
 
 		ArrayList<GeoElement> createdGeos;
 		if (pasteFast(app) && !putdown) {
-			EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
+			euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
 			app.getGgbApi().evalXML(copiedXMLforSameWindow.toString());
 			app.getKernel().getConstruction().updateConstruction(false);
-			if (ev == app.getEuclidianView1()) {
-				app.setActiveView(App.VIEW_EUCLIDIAN);
-			} else if (app.isEuclidianView3D(ev)) {
-				app.setActiveView(App.VIEW_EUCLIDIAN3D);
+			if (ev == app.geteuclideanView1()) {
+				app.setActiveView(App.VIEW_euclidean);
+			} else if (app.iseuclideanView3D(ev)) {
+				app.setActiveView(App.VIEW_euclidean3D);
 			} else {
-				app.setActiveView(App.VIEW_EUCLIDIAN2);
+				app.setActiveView(App.VIEW_euclidean2);
 			}
 			createdGeos = handleLabels(app, copiedXMLlabelsforSameWindow, putdown);
 		} else {
@@ -610,22 +610,22 @@ public class CopyPasteD extends CopyPaste {
 				}
 			}
 
-			EuclidianViewInterfaceCommon ev = app.getActiveEuclidianView();
+			euclideanViewInterfaceCommon ev = app.getActiveeuclideanView();
 			app.getGgbApi().evalXML(copiedXML.toString());
 			app.getKernel().getConstruction().updateConstruction(false);
-			if (ev == app.getEuclidianView1()) {
-				app.setActiveView(App.VIEW_EUCLIDIAN);
-			} else if (app.isEuclidianView3D(ev)) {
-				app.setActiveView(App.VIEW_EUCLIDIAN3D);
+			if (ev == app.geteuclideanView1()) {
+				app.setActiveView(App.VIEW_euclidean);
+			} else if (app.iseuclideanView3D(ev)) {
+				app.setActiveView(App.VIEW_euclidean3D);
 			} else {
-				app.setActiveView(App.VIEW_EUCLIDIAN2);
+				app.setActiveView(App.VIEW_euclidean2);
 			}
 			createdGeos = handleLabels(app, copiedXMLlabels, putdown);
 		}
 
 		app.setBlockUpdateScripts(scriptsBlocked);
 
-		app.setMode(EuclidianConstants.MODE_MOVE);
+		app.setMode(euclideanConstants.MODE_MOVE);
 
 		app.getKernel().notifyPasteComplete(createdGeos);
 	}

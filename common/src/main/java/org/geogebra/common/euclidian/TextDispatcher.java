@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian;
+package org.geogebra.common.euclidean;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint;
@@ -29,7 +29,7 @@ import org.geogebra.common.util.StringUtil;
 public class TextDispatcher {
 	protected Localization loc;
 	protected Kernel kernel;
-	private EuclidianView view;
+	private euclideanView view;
 
 	/**
 	 * @param kernel
@@ -37,7 +37,7 @@ public class TextDispatcher {
 	 * @param view
 	 *            graphics view
 	 */
-	public TextDispatcher(Kernel kernel, EuclidianView view) {
+	public TextDispatcher(Kernel kernel, euclideanView view) {
 		this.kernel = kernel;
 		this.view = view;
 		this.loc = kernel.getLocalization();
@@ -211,7 +211,7 @@ public class TextDispatcher {
 
 			if (P != null) {
 				P.setAuxiliaryObject(true);
-				P.setEuclidianVisible(false);
+				P.seteuclideanVisible(false);
 				P.updateRepaint();
 				try {
 					text.setStartPoint(P);
@@ -255,7 +255,7 @@ public class TextDispatcher {
 			rwx = ((GeoConicND) object).getTranslationVector().getX();
 			rwy = ((GeoConicND) object).getTranslationVector().getY();
 		}
-		return view.getEuclidianController().createNewPoint(
+		return view.geteuclideanController().createNewPoint(
 				removeUnderscoresAndBraces(loc.getMenu("Point")
 						+ object.getLabel(StringTemplate.defaultTemplate)),
 				false, object, rwx, rwy, 0, false, true);
@@ -269,7 +269,7 @@ public class TextDispatcher {
 	 * @return text position
 	 */
 	protected GeoPointND getPointForDynamicText(Path object, GPoint loc0) {
-		return view.getEuclidianController().getCompanion().createNewPoint(
+		return view.geteuclideanController().getCompanion().createNewPoint(
 				removeUnderscoresAndBraces(loc.getMenu("Point")
 						+ object.getLabel(StringTemplate.defaultTemplate)),
 				false, object, view.toRealWorldCoordX(loc0.x),
@@ -538,7 +538,7 @@ public class TextDispatcher {
 	 * point)
 	 */
 	private final GeoPointND midpointForDistance(GeoPointND P, GeoPointND Q) {
-		return (GeoPointND) view.getEuclidianController().getCompanion()
+		return (GeoPointND) view.geteuclideanController().getCompanion()
 				.midpoint(P, Q);
 	}
 

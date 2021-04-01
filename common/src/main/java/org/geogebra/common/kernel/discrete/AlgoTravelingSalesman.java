@@ -13,7 +13,7 @@ import org.geogebra.common.kernel.geos.GeoList;
 import org.geogebra.common.kernel.kernelND.GeoPointND;
 
 /**
- * Traveling Salesman with euclidian metric
+ * Traveling Salesman with euclidean metric
  *
  */
 public class AlgoTravelingSalesman extends AlgoDiscrete {

@@ -1,4 +1,4 @@
-package org.geogebra.common.euclidian.draw;
+package org.geogebra.common.euclidean.draw;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import org.geogebra.common.awt.GPoint2D;
 import org.geogebra.common.awt.GRectangle2D;
 import org.geogebra.common.awt.MyImage;
-import org.geogebra.common.euclidian.EuclidianBoundingBoxHandler;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.MediaBoundingBox;
+import org.geogebra.common.euclidean.MediaBoundingBox;
+import org.geogebra.common.euclidean.euclideanBoundingBoxHandler;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.geos.GeoImage;
 import org.geogebra.common.util.MyMath;
 
@@ -21,7 +21,7 @@ public class DrawImageResizable extends DrawImage {
 	 * @param view view
 	 * @param geoImage image
 	 */
-	public DrawImageResizable(EuclidianView view,
+	public DrawImageResizable(euclideanView view,
 			GeoImage geoImage) {
 		super(view, geoImage);
 		transformableRectangle =
@@ -49,7 +49,7 @@ public class DrawImageResizable extends DrawImage {
 	}
 
 	private void updateImageCrop(GPoint2D p,
-			EuclidianBoundingBoxHandler handler) {
+			euclideanBoundingBoxHandler handler) {
 		double newWidth;
 		double newHeight;
 		MyImage image = geoImage.getFillImage();
@@ -139,7 +139,7 @@ public class DrawImageResizable extends DrawImage {
 
 	@Override
 	public void updateByBoundingBoxResize(GPoint2D point,
-			EuclidianBoundingBoxHandler handler) {
+			euclideanBoundingBoxHandler handler) {
 		if (boundingBox.isCropBox()) {
 			geoImage.setCropped(true);
 			transformableRectangle.updateAspectRatio(geoImage, handler);

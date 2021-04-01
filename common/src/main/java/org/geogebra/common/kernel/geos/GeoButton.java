@@ -15,11 +15,11 @@ package org.geogebra.common.kernel.geos;
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GRectangle;
-import org.geogebra.common.euclidian.Drawable;
-import org.geogebra.common.euclidian.DrawableND;
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.Drawable;
+import org.geogebra.common.euclidean.DrawableND;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.ConstructionDefaults;
 import org.geogebra.common.kernel.Locateable;
@@ -67,7 +67,7 @@ public class GeoButton extends GeoElement implements TextProperties, Locateable,
 		// http://benpryor.com/blog/2008/01/02/dont-call-subclass-methods-from-a-superclass-constructor/
 		setConstructionDefaults(); // init visual settings
 
-		setEuclidianVisible(true);
+		seteuclideanVisible(true);
 		setAuxiliaryObject(true);
 	}
 
@@ -181,7 +181,7 @@ public class GeoButton extends GeoElement implements TextProperties, Locateable,
 		labelOffsetX = x;
 		labelOffsetY = y;
 		if (startPoint != null) {
-			updateRelLocation(kernel.getApplication().getActiveEuclidianView());
+			updateRelLocation(kernel.getApplication().getActiveeuclideanView());
 		}
 		if (!hasScreenLocation()) {
 			setScreenLocation(x, y);
@@ -200,7 +200,7 @@ public class GeoButton extends GeoElement implements TextProperties, Locateable,
 
 	@Override
 	public void setAbsoluteScreenLocActive(boolean flag) {
-		EuclidianView ev = kernel.getApplication().getActiveEuclidianView();
+		euclideanView ev = kernel.getApplication().getActiveeuclideanView();
 		if (flag && startPoint != null) {
 			updateAbsLocation(ev);
 
@@ -218,7 +218,7 @@ public class GeoButton extends GeoElement implements TextProperties, Locateable,
 	 * @param ev
 	 *            view
 	 */
-	public void updateAbsLocation(EuclidianView ev) {
+	public void updateAbsLocation(euclideanView ev) {
 		if (startPoint != null) {
 			labelOffsetX = ev.toScreenCoordX(startPoint.getInhomX());
 			labelOffsetY = ev.toScreenCoordY(startPoint.getInhomY());
@@ -235,16 +235,16 @@ public class GeoButton extends GeoElement implements TextProperties, Locateable,
 	 * @return total screen width, overridden in GeoInputBox
 	 */
 	@Override
-	public int getTotalWidth(EuclidianViewInterfaceCommon ev) {
+	public int getTotalWidth(euclideanViewInterfaceCommon ev) {
 		return getWidth();
 	}
 
 	@Override
-	public int getTotalHeight(EuclidianViewInterfaceCommon ev) {
+	public int getTotalHeight(euclideanViewInterfaceCommon ev) {
 		return getHeight();
 	}
 
-	private void updateRelLocation(EuclidianView ev) {
+	private void updateRelLocation(euclideanView ev) {
 		startPoint.setCoords(ev.toRealWorldCoordX(labelOffsetX),
 				ev.toRealWorldCoordY(labelOffsetY), 1);
 	}
@@ -307,7 +307,7 @@ public class GeoButton extends GeoElement implements TextProperties, Locateable,
 	}
 
 	@Override
-	public boolean showInEuclidianView() {
+	public boolean showIneuclideanView() {
 		return true;
 	}
 
@@ -329,26 +329,26 @@ public class GeoButton extends GeoElement implements TextProperties, Locateable,
 	/**
 	 *
 	 * @param ev
-	 *            the euclidian view.
+	 *            the euclidean view.
 	 * @return x coordinate of screen location.
 	 */
-	public int getScreenLocX(EuclidianViewInterfaceCommon ev) {
+	public int getScreenLocX(euclideanViewInterfaceCommon ev) {
 		return startPoint == null ? labelOffsetX : ev.toScreenCoordX(startPoint.getInhomX());
 	}
 
 	/**
 	 *
 	 * @param ev
-	 *            the euclidian view.
+	 *            the euclidean view.
 	 * @return y coordinate of screen location.
 	 */
-	public int getScreenLocY(EuclidianViewInterfaceCommon ev) {
+	public int getScreenLocY(euclideanViewInterfaceCommon ev) {
 		return startPoint == null ? labelOffsetY : ev.toScreenCoordY(startPoint.getInhomY());
 	}
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_BUTTON_ACTION;
+		return euclideanConstants.MODE_BUTTON_ACTION;
 	}
 
 	@Override
@@ -598,7 +598,7 @@ public class GeoButton extends GeoElement implements TextProperties, Locateable,
 	 */
 	@Override
 	public void calculateCornerPoint(GeoPoint pt, int cornerNumber) {
-		EuclidianView ev = kernel.getApplication().getEuclidianView1();
+		euclideanView ev = kernel.getApplication().geteuclideanView1();
 		DrawableND drawer = ev.getDrawableFor(this);
 
 		if (!(drawer instanceof Drawable)) {

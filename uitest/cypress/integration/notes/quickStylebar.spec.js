@@ -11,7 +11,7 @@ describe('Quick stylebar test', () => {
     it("Quick stylebar should not be visible after pen draw", () => {
         selectors.dynamicStyleBar.get().should('not.be.visible');
 
-        selectors.euclidianView.get()
+        selectors.euclideanView.get()
             .mouseEvent('down', 200, 200)
             .mouseEvent('move', 250, 250)
             .mouseEvent('move', 250, 300)
@@ -25,7 +25,7 @@ describe('Quick stylebar test', () => {
 
         selectors.dynamicStyleBar.get().should('not.be.visible');
 
-        selectors.euclidianView.get()
+        selectors.euclideanView.get()
             .mouseEvent('down', 200, 200)
             .mouseEvent('move', 250, 250)
             .mouseEvent('up');
@@ -38,7 +38,7 @@ describe('Quick stylebar test', () => {
 
         selectors.dynamicStyleBar.get().should('not.be.visible');
 
-        selectors.euclidianView.get()
+        selectors.euclideanView.get()
             .mouseEvent('down', 200, 200)
             .mouseEvent('up');
 

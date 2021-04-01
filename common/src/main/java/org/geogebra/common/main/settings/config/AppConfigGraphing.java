@@ -54,7 +54,7 @@ public class AppConfigGraphing extends AbstractAppConfig {
 	public void adjust(DockPanelData dp) {
 		if (dp.getViewId() == App.VIEW_ALGEBRA) {
 			dp.setLocation("3");
-		} else if (dp.getViewId() == App.VIEW_EUCLIDIAN) {
+		} else if (dp.getViewId() == App.VIEW_euclidean) {
 			dp.makeVisible();
 			dp.setLocation("1");
 		}
@@ -116,7 +116,7 @@ public class AppConfigGraphing extends AbstractAppConfig {
 	}
 
 	@Override
-	public boolean shouldKeepRatioEuclidian() {
+	public boolean shouldKeepRatioeuclidean() {
 		return false;
 	}
 
@@ -126,7 +126,7 @@ public class AppConfigGraphing extends AbstractAppConfig {
 	}
 
 	@Override
-	public boolean hasSingleEuclidianViewWhichIs3D() {
+	public boolean hasSingleeuclideanViewWhichIs3D() {
 		return false;
 	}
 

@@ -2,8 +2,8 @@ package org.geogebra.web.geogebra3D.web.gui.layout.panels;
 
 import org.geogebra.common.gui.toolbar.ToolBar;
 import org.geogebra.common.main.App;
-import org.geogebra.web.full.gui.layout.panels.EuclidianDockPanelWAbstract;
-import org.geogebra.web.geogebra3D.web.euclidian3D.EuclidianView3DW;
+import org.geogebra.web.full.gui.layout.panels.euclideanDockPanelWAbstract;
+import org.geogebra.web.geogebra3D.web.euclidean3D.euclideanView3DW;
 import org.geogebra.web.geogebra3D.web.gui.ContextMenuGraphicsWindow3DW;
 import org.geogebra.web.html5.Browser;
 import org.geogebra.web.html5.main.AppW;
@@ -16,13 +16,13 @@ import com.google.gwt.user.client.ui.Widget;
 /**
  * Dock panel for 3D
  */
-public class EuclidianDockPanel3DW extends EuclidianDockPanelWAbstract {
+public class euclideanDockPanel3DW extends euclideanDockPanelWAbstract {
 	/**
 	 * default width of this panel
 	 */
 	public static final int DEFAULT_WIDTH = 480;
 	/** the inner panel */
-	EuclidianPanel euclidianpanel;
+	euclideanPanel euclideanpanel;
 
 	/**
 	 * constructor
@@ -31,8 +31,8 @@ public class EuclidianDockPanel3DW extends EuclidianDockPanelWAbstract {
 	 *            application
 	 * 
 	 */
-	public EuclidianDockPanel3DW(App app) {
-		super(App.VIEW_EUCLIDIAN3D, // view id
+	public euclideanDockPanel3DW(App app) {
+		super(App.VIEW_euclidean3D, // view id
 				"GraphicsView3D", // view title
 				ToolBar.getAllToolsNoMacros3D(app), // toolbar string
 				true, // style bar?
@@ -47,22 +47,22 @@ public class EuclidianDockPanel3DW extends EuclidianDockPanelWAbstract {
 	@Override
 	protected Widget loadComponent() {
 		// 2D app or exam: just flow panel; 3D app in old browser: EVnoWebGL
-		if (!app.supportsView(App.VIEW_EUCLIDIAN3D)
+		if (!app.supportsView(App.VIEW_euclidean3D)
 				&& Browser.supportsWebGL()) {
 			return new FlowPanel();
 		}
-		EuclidianView3DW view = (EuclidianView3DW) app.getEuclidianView3D();
-		euclidianpanel = new EuclidianPanel(this,
+		euclideanView3DW view = (euclideanView3DW) app.geteuclideanView3D();
+		euclideanpanel = new euclideanPanel(this,
 				(AbsolutePanel) view.getComponent());
-		return euclidianpanel;
+		return euclideanpanel;
 	}
 
 	@Override
 	protected Widget loadStyleBar() {
-		if (getEuclidianView() == null) {
+		if (geteuclideanView() == null) {
 			return super.loadStyleBar();
 		}
-		return (Widget) getEuclidianView().getStyleBar();
+		return (Widget) geteuclideanView().getStyleBar();
 	}
 
 	@Override
@@ -71,23 +71,23 @@ public class EuclidianDockPanel3DW extends EuclidianDockPanelWAbstract {
 	}
 
 	@Override
-	public EuclidianView3DW getEuclidianView() {
+	public euclideanView3DW geteuclideanView() {
 		// do NOT initialize the view if it wasn't done previously
-		if (app != null && app.isEuclidianView3Dinited()) {
-			return (EuclidianView3DW) app.getEuclidianView3D();
+		if (app != null && app.iseuclideanView3Dinited()) {
+			return (euclideanView3DW) app.geteuclideanView3D();
 		}
 		return null;
 	}
 
 	@Override
-	public EuclidianPanel getEuclidianPanel() {
-		return euclidianpanel;
+	public euclideanPanel geteuclideanPanel() {
+		return euclideanpanel;
 	}
 
 	@Override
 	public void calculateEnvironment() {
-		if (app.isEuclidianView3Dinited()) {
-			app.getEuclidianView3D().getEuclidianController()
+		if (app.iseuclideanView3Dinited()) {
+			app.geteuclideanView3D().geteuclideanController()
 					.calculateEnvironment();
 		}
 	}
@@ -99,8 +99,8 @@ public class EuclidianDockPanel3DW extends EuclidianDockPanelWAbstract {
 
 	@Override
 	protected boolean needsResetIcon() {
-		return app.showResetIcon() && !app.showView(App.VIEW_EUCLIDIAN)
-				&& !app.showView(App.VIEW_EUCLIDIAN2);
+		return app.showResetIcon() && !app.showView(App.VIEW_euclidean)
+				&& !app.showView(App.VIEW_euclidean2);
 	}
 
 	@Override

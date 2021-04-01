@@ -3,8 +3,8 @@ package org.geogebra.common.jre.headless;
 import java.util.ArrayList;
 
 import org.geogebra.common.awt.GPoint;
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.dialog.TextInputDialog;
 import org.geogebra.common.gui.dialog.handler.NumberInputHandler;
 import org.geogebra.common.gui.dialog.handler.SegmentHandler;
@@ -76,7 +76,7 @@ public class DialogManagerNoGui extends DialogManager implements ErrorHandler {
 	@Override
 	public void showNumberInputDialogAngleFixed(String menu,
 			GeoSegmentND[] selectedSegments, GeoPointND[] selectedPoints,
-			GeoElement[] selGeos, EuclidianController ec) {
+			GeoElement[] selGeos, euclideanController ec) {
 		DialogManager.createAngleFixed(selectedPoints[0].getKernel(),
 				getInput(),
 				getClockwise(), this, selectedSegments, selectedPoints,
@@ -101,20 +101,20 @@ public class DialogManagerNoGui extends DialogManager implements ErrorHandler {
 	@Override
 	public void showNumberInputDialogRotate(String menu,
 			GeoPolygon[] selectedPolygons, GeoPointND[] selectedPoints,
-			GeoElement[] selGeos, EuclidianController ec) {
+			GeoElement[] selGeos, euclideanController ec) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void showNumberInputDialogDilate(String menu,
 			GeoPolygon[] selectedPolygons, GeoPointND[] selectedPoints,
-			GeoElement[] selGeos, EuclidianController ec) {
+			GeoElement[] selGeos, euclideanController ec) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void showNumberInputDialogRegularPolygon(String menu,
-			EuclidianController ec, GeoPointND geoPoint1, GeoPointND geoPoint2,
+			euclideanController ec, GeoPointND geoPoint1, GeoPointND geoPoint2,
 			GeoCoordSys2D direction) {
 		DialogManager.makeRegularPolygon(app, ec, getInput(), geoPoint1,
 				geoPoint2, direction, this, new AsyncOperation<Boolean>() {
@@ -135,7 +135,7 @@ public class DialogManagerNoGui extends DialogManager implements ErrorHandler {
 
 	@Override
 	public void showNumberInputDialogCirclePointRadius(String title,
-			GeoPointND geoPointND, EuclidianView view) {
+			GeoPointND geoPointND, euclideanView view) {
 		// TODO Auto-generated method stub
 	}
 

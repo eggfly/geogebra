@@ -3,7 +3,7 @@ package org.geogebra.common.jre.plugin;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.io.file.ByteArrayZipFile;
 import org.geogebra.common.jre.io.MyXMLioJre;
 import org.geogebra.common.jre.util.Base64;
@@ -50,7 +50,7 @@ public abstract class GgbAPIJre extends GgbAPI {
 			boolean transparent, double DPI, boolean copyToClipboard,
 			boolean greyscale) {
 		double exportScale = preferredScale;
-		EuclidianView ev = app.getActiveEuclidianView();
+		euclideanView ev = app.getActiveeuclideanView();
 
 		if (copyToClipboard) {
 
@@ -120,7 +120,7 @@ public abstract class GgbAPIJre extends GgbAPI {
 	 *            view
 	 */
 	abstract protected void exportPNGClipboard(boolean transparent, int DPI,
-			double exportScale, EuclidianView ev);
+			double exportScale, euclideanView ev);
 
 	/**
 	 * @param exportScale
@@ -131,7 +131,7 @@ public abstract class GgbAPIJre extends GgbAPI {
 	 *            view
 	 */
 	abstract protected void exportPNGClipboardDPIisNaN(boolean transparent,
-			double exportScale, EuclidianView ev);
+			double exportScale, euclideanView ev);
 
 	/**
 	 * @param exportScale
@@ -145,6 +145,6 @@ public abstract class GgbAPIJre extends GgbAPI {
 	 * @return base64 encoded PNG
 	 */
 	abstract protected String base64encodePNG(boolean transparent, double DPI,
-			double exportScale, EuclidianView ev);
+			double exportScale, euclideanView ev);
 
 }

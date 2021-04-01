@@ -12,9 +12,9 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import org.geogebra.common.export.pstricks.GeoGebraToAsymptote;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.FormatCollada;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.FormatColladaHTML;
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.FormatSTL;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.FormatCollada;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.FormatColladaHTML;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.FormatSTL;
 import org.geogebra.common.move.events.BaseEvent;
 import org.geogebra.common.move.ggtapi.TubeAvailabilityCheckEvent;
 import org.geogebra.common.move.views.EventRenderable;
@@ -53,7 +53,7 @@ class FileMenuD extends BaseMenu implements EventRenderable {
 
 	private AbstractAction drawingPadToClipboardAction;
 
-	private AbstractAction printEuclidianViewAction;
+	private AbstractAction printeuclideanViewAction;
 
 	private AbstractAction exitAction;
 
@@ -172,7 +172,7 @@ class FileMenuD extends BaseMenu implements EventRenderable {
 		}
 		addSeparator();
 
-		mi = add(printEuclidianViewAction);
+		mi = add(printeuclideanViewAction);
 		mi.setText(loc.getMenu("PrintPreview"));
 		mi.setIcon(app.getMenuIcon(GuiResourcesD.DOCUMENT_PRINT_PREVIEW));
 		setMenuShortCutAccelerator(mi, 'P');
@@ -271,7 +271,7 @@ class FileMenuD extends BaseMenu implements EventRenderable {
 			}
 		};
 
-		printEuclidianViewAction = new AbstractAction(
+		printeuclideanViewAction = new AbstractAction(
 				loc.getMenu("DrawingPad") + " ...") {
 			private static final long serialVersionUID = 1L;
 

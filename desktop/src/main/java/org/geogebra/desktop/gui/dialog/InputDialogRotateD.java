@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.text.JTextComponent;
 
-import org.geogebra.common.euclidian.EuclidianController;
+import org.geogebra.common.euclidean.euclideanController;
 import org.geogebra.common.gui.InputHandler;
 import org.geogebra.common.kernel.geos.GeoElement;
 import org.geogebra.common.kernel.geos.GeoPolygon;
@@ -23,13 +23,13 @@ public abstract class InputDialogRotateD extends AngleInputDialogD
 	protected GeoPolygon[] polys;
 	protected GeoElement[] selGeos;
 
-	protected EuclidianController ec; // we need to know which controller called
+	protected euclideanController ec; // we need to know which controller called
 										// for rotate
 
 	private static String defaultRotateAngle = Unicode.FORTY_FIVE_DEGREES_STRING;
 
 	public InputDialogRotateD(AppD app, String title, InputHandler handler,
-			GeoPolygon[] polys, GeoElement[] selGeos, EuclidianController ec) {
+			GeoPolygon[] polys, GeoElement[] selGeos, euclideanController ec) {
 		super(app, app.getLocalization().getMenu("Angle"), title,
 				defaultRotateAngle, false, handler, false);
 

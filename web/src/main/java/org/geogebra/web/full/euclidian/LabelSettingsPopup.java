@@ -1,9 +1,9 @@
-package org.geogebra.web.full.euclidian;
+package org.geogebra.web.full.euclidean;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.dialog.options.model.NameValueModel;
 import org.geogebra.common.gui.dialog.options.model.NameValueModel.INameValueListener;
@@ -142,9 +142,9 @@ public class LabelSettingsPopup extends PopupMenuButtonW
 				MaterialDesignResources.INSTANCE.check_black(),
 				true, nameValueCmd);
 
-		boolean isSelectionMode = app.getActiveEuclidianView()
-				.getEuclidianController()
-				.getMode() == EuclidianConstants.MODE_SELECT;
+		boolean isSelectionMode = app.getActiveeuclideanView()
+				.geteuclideanController()
+				.getMode() == euclideanConstants.MODE_SELECT;
 		if (!isSelectionMode) {
 			namePanel = LayoutUtilW.panelRow(lblName, tfName);
 			main.add(namePanel);

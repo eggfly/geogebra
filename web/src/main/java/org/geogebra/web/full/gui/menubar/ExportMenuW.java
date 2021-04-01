@@ -1,13 +1,13 @@
 package org.geogebra.web.full.gui.menubar;
 
-import org.geogebra.common.geogebra3D.euclidian3D.printer3D.FormatSTL;
+import org.geogebra.common.geogebra3D.euclidean3D.printer3D.FormatSTL;
 import org.geogebra.common.main.HTML5Export;
 import org.geogebra.common.plugin.EventType;
 import org.geogebra.common.util.AsyncOperation;
 import org.geogebra.common.util.FileExtensions;
 import org.geogebra.web.full.gui.dialog.ExportImageDialog;
 import org.geogebra.web.html5.Browser;
-import org.geogebra.web.html5.euclidian.EuclidianViewWInterface;
+import org.geogebra.web.html5.euclidean.euclideanViewWInterface;
 import org.geogebra.web.html5.gui.GPopupPanel;
 import org.geogebra.web.html5.gui.util.AriaMenuBar;
 import org.geogebra.web.html5.main.AppW;
@@ -82,8 +82,8 @@ public class ExportMenuW extends AriaMenuBar implements MenuBarI {
 						app.getSelectionManager().clearSelectedGeos();
 
 						String svg = Browser
-								.encodeSVG(((EuclidianViewWInterface) app
-										.getActiveEuclidianView())
+								.encodeSVG(((euclideanViewWInterface) app
+										.getActiveeuclideanView())
 												.getExportSVG(1, false));
 
 						app.getFileManager().showExportAsPictureDialog(svg,
@@ -126,7 +126,7 @@ public class ExportMenuW extends AriaMenuBar implements MenuBarI {
 
 				@Override
 				public void execute() {
-					app.getActiveEuclidianView().setSelectionRectangle(null);
+					app.getActiveeuclideanView().setSelectionRectangle(null);
 					app.getSelectionManager().clearSelectedGeos();
 
 					menu.hide();
@@ -139,7 +139,7 @@ public class ExportMenuW extends AriaMenuBar implements MenuBarI {
 
 				@Override
 				public void execute() {
-					app.getActiveEuclidianView().getEuclidianController()
+					app.getActiveeuclideanView().geteuclideanController()
 							.clearSelectionAndRectangle();
 					menu.hide();
 					app.getGgbApi().exportPGF(exportCallback("PGF", app));
@@ -177,7 +177,7 @@ public class ExportMenuW extends AriaMenuBar implements MenuBarI {
 
 				@Override
 				public void execute() {
-					app.getActiveEuclidianView().getEuclidianController()
+					app.getActiveeuclideanView().geteuclideanController()
 							.clearSelectionAndRectangle();
 					menu.hide();
 					app.getGgbApi()

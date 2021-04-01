@@ -1,6 +1,6 @@
 package org.geogebra.desktop.gui.view.spreadsheet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.view.spreadsheet.CreateObjectModel;
 import org.geogebra.common.gui.view.spreadsheet.MyTable;
 import org.geogebra.desktop.main.AppD;
@@ -34,7 +34,7 @@ public class SpreadsheetToolbarManager {
 
 		switch (mode) {
 
-		case EuclidianConstants.MODE_SPREADSHEET_CREATE_LIST:
+		case euclideanConstants.MODE_SPREADSHEET_CREATE_LIST:
 
 			// if(!app.getSelectedGeos().isEmpty() && prevMode == mode){
 			if (!table.selectedCellRanges.get(0).isEmpty()) {
@@ -44,7 +44,7 @@ public class SpreadsheetToolbarManager {
 			}
 			break;
 
-		case EuclidianConstants.MODE_SPREADSHEET_CREATE_LISTOFPOINTS:
+		case euclideanConstants.MODE_SPREADSHEET_CREATE_LISTOFPOINTS:
 			if (table.getCellRangeProcessor()
 					.isCreatePointListPossible(table.selectedCellRanges)) {
 				id = new CreateObjectDialog(app, view,
@@ -54,7 +54,7 @@ public class SpreadsheetToolbarManager {
 
 			break;
 
-		case EuclidianConstants.MODE_SPREADSHEET_CREATE_MATRIX:
+		case euclideanConstants.MODE_SPREADSHEET_CREATE_MATRIX:
 			if (table.getCellRangeProcessor()
 					.isCreateMatrixPossible(table.selectedCellRanges)) {
 				id = new CreateObjectDialog(app, view,
@@ -63,7 +63,7 @@ public class SpreadsheetToolbarManager {
 			}
 			break;
 
-		case EuclidianConstants.MODE_SPREADSHEET_CREATE_TABLETEXT:
+		case euclideanConstants.MODE_SPREADSHEET_CREATE_TABLETEXT:
 			if (table.getCellRangeProcessor()
 					.isCreateMatrixPossible(table.selectedCellRanges)) {
 				id = new CreateObjectDialog(app, view,
@@ -72,7 +72,7 @@ public class SpreadsheetToolbarManager {
 			}
 			break;
 
-		case EuclidianConstants.MODE_SPREADSHEET_CREATE_POLYLINE:
+		case euclideanConstants.MODE_SPREADSHEET_CREATE_POLYLINE:
 			if (table.getCellRangeProcessor()
 					.isCreatePointListPossible(table.selectedCellRanges)) {
 				id = new CreateObjectDialog(app, view,
@@ -81,11 +81,11 @@ public class SpreadsheetToolbarManager {
 			}
 			break;
 
-		case EuclidianConstants.MODE_SPREADSHEET_SUM:
-		case EuclidianConstants.MODE_SPREADSHEET_AVERAGE:
-		case EuclidianConstants.MODE_SPREADSHEET_COUNT:
-		case EuclidianConstants.MODE_SPREADSHEET_MIN:
-		case EuclidianConstants.MODE_SPREADSHEET_MAX:
+		case euclideanConstants.MODE_SPREADSHEET_SUM:
+		case euclideanConstants.MODE_SPREADSHEET_AVERAGE:
+		case euclideanConstants.MODE_SPREADSHEET_COUNT:
+		case euclideanConstants.MODE_SPREADSHEET_MIN:
+		case euclideanConstants.MODE_SPREADSHEET_MAX:
 
 			// Handle autofunction modes
 

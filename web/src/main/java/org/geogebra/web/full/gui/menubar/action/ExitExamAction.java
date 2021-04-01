@@ -104,7 +104,7 @@ public class ExitExamAction extends DefaultMenuAction<Void> {
 			buttonText = loc.getMenu("Restart");
 			exam.setHasGraph(true);
 			boolean supportsCAS = app.getSettings().getCasSettings().isEnabled();
-			boolean supports3D = app.getSettings().getEuclidian(-1).isEnabled();
+			boolean supports3D = app.getSettings().geteuclidean(-1).isEnabled();
 			if (!supports3D && supportsCAS) {
 				showFinalLog(loc.getMenu("ExamCAS"), buttonText, handler);
 			} else if (!supports3D) {

@@ -46,7 +46,7 @@ public class AlgoAxisStep extends AlgoElement {
 		num.setLabel(label);
 
 		// ensure we get updates
-		cons.registerEuclidianViewCE(this);
+		cons.registereuclideanViewCE(this);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class AlgoAxisStep extends AlgoElement {
 	}
 
 	@Override
-	public boolean euclidianViewUpdate() {
+	public boolean euclideanViewUpdate() {
 		compute();
 		// update num and all dependent elements
 		num.updateCascade();
@@ -79,7 +79,7 @@ public class AlgoAxisStep extends AlgoElement {
 	// calc the current value of the arithmetic tree
 	@Override
 	public final void compute() {
-		double[] axisSteps = (kernel.getApplication()).getEuclidianView1()
+		double[] axisSteps = (kernel.getApplication()).geteuclideanView1()
 				.getGridDistances();
 		num.setValue(axisSteps[axis]);
 	}

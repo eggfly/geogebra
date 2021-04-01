@@ -2,8 +2,8 @@ package org.geogebra.common.kernel.geos;
 
 import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GPoint2D;
-import org.geogebra.common.euclidian.draw.DrawInlineTable;
-import org.geogebra.common.euclidian.inline.InlineTableController;
+import org.geogebra.common.euclidean.draw.DrawInlineTable;
+import org.geogebra.common.euclidean.inline.InlineTableController;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
 import org.geogebra.common.kernel.kernelND.GeoElementND;
@@ -91,7 +91,7 @@ public class GeoInlineTable extends GeoInline implements TextStyle, HasTextForma
 	@Override
 	public InlineTableController getFormatter() {
 		DrawInlineTable drawable = (DrawInlineTable) kernel.getApplication()
-				.getActiveEuclidianView().getDrawableFor(this);
+				.getActiveeuclideanView().getDrawableFor(this);
 		return drawable == null ? null : drawable.getTableController();
 	}
 

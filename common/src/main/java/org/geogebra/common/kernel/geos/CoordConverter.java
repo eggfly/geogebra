@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.geos;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.matrix.Coords;
 
 /**
@@ -20,7 +20,7 @@ public interface CoordConverter {
 	 * @return new parameter value
 	 */
 	double translationToValue(Coords direction, Coords rwTransVec,
-			double startValue, EuclidianView view);
+			double startValue, euclideanView view);
 
 	/**
 	 * @param parent
@@ -53,6 +53,6 @@ public interface CoordConverter {
 	 *            view
 	 * @return value snapped to closest "nice" value
 	 */
-	double snap(double val, EuclidianView view);
+	double snap(double val, euclideanView view);
 
 }

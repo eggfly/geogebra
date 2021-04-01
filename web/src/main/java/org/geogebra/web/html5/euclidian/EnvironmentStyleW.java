@@ -1,9 +1,9 @@
-package org.geogebra.web.html5.euclidian;
+package org.geogebra.web.html5.euclidean;
 
-import org.geogebra.common.euclidian.EnvironmentStyle;
+import org.geogebra.common.euclidean.EnvironmentStyle;
 
 /**
- * Properties of EuclidianView that affect coordinate transformations
+ * Properties of euclideanView that affect coordinate transformations
  */
 public class EnvironmentStyleW extends EnvironmentStyle {
 

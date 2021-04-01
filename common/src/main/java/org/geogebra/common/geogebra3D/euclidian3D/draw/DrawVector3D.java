@@ -1,9 +1,9 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
 import java.util.ArrayList;
 
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoVector3D;
 import org.geogebra.common.kernel.CircularDefinitionException;
 import org.geogebra.common.kernel.geos.GeoElement;
@@ -32,7 +32,7 @@ public class DrawVector3D extends DrawJoinPoints {
 	 * @param vector
 	 *            vector
 	 */
-	public DrawVector3D(EuclidianView3D view3D, GeoVectorND vector) {
+	public DrawVector3D(euclideanView3D view3D, GeoVectorND vector) {
 
 		super(view3D, (GeoElement) vector);
 
@@ -67,7 +67,7 @@ public class DrawVector3D extends DrawJoinPoints {
 	 * @param selectedPoints
 	 *            endpoints
 	 */
-	public DrawVector3D(EuclidianView3D view3D,
+	public DrawVector3D(euclideanView3D view3D,
 			ArrayList<GeoPointND> selectedPoints) {
 
 		super(view3D, selectedPoints,

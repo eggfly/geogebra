@@ -12,10 +12,10 @@ import java.util.Stack;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
-import org.geogebra.common.euclidian.EuclidianView;
-import org.geogebra.common.euclidian.LayerManager;
-import org.geogebra.common.euclidian.event.PointerEventType;
+import org.geogebra.common.euclidean.euclideanConstants;
+import org.geogebra.common.euclidean.euclideanView;
+import org.geogebra.common.euclidean.LayerManager;
+import org.geogebra.common.euclidean.event.PointerEventType;
 import org.geogebra.common.io.MyXMLio;
 import org.geogebra.common.kernel.algos.AlgoDistancePoints;
 import org.geogebra.common.kernel.algos.AlgoElement;
@@ -131,10 +131,10 @@ public class Construction {
 	/** Table for (label, GeoElement) pairs, contains global variables */
 	protected HashMap<String, GeoElement> geoTable;
 
-	// list of algorithms that need to be updated when EuclidianView changes
-	private ArrayList<EuclidianViewCE> euclidianViewCE;
-	private ArrayList<EuclidianViewCE> corner5Algos;
-	private ArrayList<EuclidianViewCE> corner11Algos;
+	// list of algorithms that need to be updated when euclideanView changes
+	private ArrayList<euclideanViewCE> euclideanViewCE;
+	private ArrayList<euclideanViewCE> corner5Algos;
+	private ArrayList<euclideanViewCE> corner11Algos;
 
 	/** Table for (label, GeoElement) pairs, contains local variables */
 	protected HashMap<String, GeoElement> localVariableTable;
@@ -232,7 +232,7 @@ public class Construction {
 		geoSetWithCasCells = new TreeSet<>();
 		geoSetLabelOrder = new TreeSet<>(new LabelComparator());
 		geoSetsTypeMap = new HashMap<>();
-		euclidianViewCE = new ArrayList<>();
+		euclideanViewCE = new ArrayList<>();
 
 		layerManager = new LayerManager();
 
@@ -1050,30 +1050,30 @@ public class Construction {
 
 	/**
 	 * Registers an algorithm that wants to be notified when
-	 * setEuclidianViewBounds() is called.
+	 * seteuclideanViewBounds() is called.
 	 * 
 	 * @param elem
 	 *            construction element to be registered
 	 */
-	public final void registerEuclidianViewCE(EuclidianViewCE elem) {
-		if (!euclidianViewCE.contains(elem)) {
-			euclidianViewCE.add(elem);
+	public final void registereuclideanViewCE(euclideanViewCE elem) {
+		if (!euclideanViewCE.contains(elem)) {
+			euclideanViewCE.add(elem);
 		}
 	}
 
-	public final boolean isRegisteredEuclidianViewCE(EuclidianViewCE elem) {
-		return euclidianViewCE.contains(elem);
+	public final boolean isRegisteredeuclideanViewCE(euclideanViewCE elem) {
+		return euclideanViewCE.contains(elem);
 	}
 
 	/**
 	 * Unregisters an algorithm that wants to be notified when
-	 * setEuclidianViewBounds() is called.
+	 * seteuclideanViewBounds() is called.
 	 * 
 	 * @param elem
 	 *            construction element to be unregistered
 	 */
-	public final void unregisterEuclidianViewCE(EuclidianViewCE elem) {
-		euclidianViewCE.remove(elem);
+	public final void unregistereuclideanViewCE(euclideanViewCE elem) {
+		euclideanViewCE.remove(elem);
 		if (this.corner5Algos != null) {
 			this.corner5Algos.remove(elem);
 		}
@@ -1083,7 +1083,7 @@ public class Construction {
 	}
 
 	/**
-	 * Calls euclidianViewUpdate on all registered euclidian view construction
+	 * Calls euclideanViewUpdate on all registered euclidean view construction
 	 * elements Those elements which return true, will also get an update of
 	 * their dependent objects.
 	 * 
@@ -1092,12 +1092,12 @@ public class Construction {
 	 * 
 	 * @return true iff there were any elements to update
 	 */
-	public boolean notifyEuclidianViewCE(EVProperty type) {
+	public boolean notifyeuclideanViewCE(EVProperty type) {
 		boolean didUpdate = false;
-		ArrayList<EuclidianViewCE> toUpdate = type == EVProperty.SIZE
+		ArrayList<euclideanViewCE> toUpdate = type == EVProperty.SIZE
 				? this.corner5Algos
 				: (type == EVProperty.ROTATION ? this.corner11Algos
-						: this.euclidianViewCE);
+						: this.euclideanViewCE);
 		if (toUpdate == null || toUpdate.size() == 0) {
 			return false;
 		}
@@ -1106,9 +1106,9 @@ public class Construction {
 		for (int i = 0; i < size; i++) {
 			didUpdate = true;
 
-			EuclidianViewCE elem = toUpdate.get(i);
+			euclideanViewCE elem = toUpdate.get(i);
 
-			boolean needsUpdateCascade = elem.euclidianViewUpdate();
+			boolean needsUpdateCascade = elem.euclideanViewUpdate();
 			if (needsUpdateCascade) {
 				if (updateSet == null) {
 					updateSet = new AlgorithmSet();
@@ -1133,14 +1133,14 @@ public class Construction {
 	}
 
 	/**
-	 * Returns true iff there are any euclidian view construction elements in
+	 * Returns true iff there are any euclidean view construction elements in
 	 * this construction
 	 * 
-	 * @return true iff there are any euclidian view construction elements in
+	 * @return true iff there are any euclidean view construction elements in
 	 *         this construction
 	 */
-	public boolean hasEuclidianViewCE() {
-		return euclidianViewCE.size() > 0;
+	public boolean haseuclideanViewCE() {
+		return euclideanViewCE.size() > 0;
 	}
 
 	/**
@@ -1682,7 +1682,7 @@ public class Construction {
 
 		SelectionManager selection = kernel.getApplication()
 				.getSelectionManager();
-		boolean moveMode = EuclidianConstants.isMoveOrSelectionMode(app.getMode())
+		boolean moveMode = euclideanConstants.isMoveOrSelectionMode(app.getMode())
 				&& selection.getSelectedGeos().size() > 0;
 		String oldSelection = null;
 		if (moveMode) {
@@ -1704,7 +1704,7 @@ public class Construction {
 		if (moveMode) {
 			GeoElement selGeo = kernel.lookupLabel(oldSelection);
 			selection.addSelectedGeo(selGeo, false, true);
-			app.getActiveEuclidianView().getEuclidianController()
+			app.getActiveeuclideanView().geteuclideanController()
 					.handleMovedElement(selGeo, false, PointerEventType.MOUSE);
 		}
 
@@ -1874,9 +1874,9 @@ public class Construction {
 			isGettingXMLForReplace = false;
 
 			// Application.debug("oldGeo: " + oldGeo + ", visible: " +
-			// oldGeo.isEuclidianVisible() + ", algo: " + oldGeoAlgo);
+			// oldGeo.iseuclideanVisible() + ", algo: " + oldGeoAlgo);
 			// Application.debug("newGeo: " + newGeo + ", visible: " +
-			// newGeo.isEuclidianVisible() + ", algo: " + newGeoAlgo);
+			// newGeo.iseuclideanVisible() + ", algo: " + newGeoAlgo);
 		}
 
 		// restore old kernel settings
@@ -3054,7 +3054,7 @@ public class Construction {
 		layerManager.clear();
 
 		geoSetsTypeMap.clear();
-		euclidianViewCE.clear();
+		euclideanViewCE.clear();
 
 		this.corner5Algos = null;
 		this.corner11Algos = null;
@@ -3472,7 +3472,7 @@ public class Construction {
 	 * @param algo
 	 *            algo dependent on view pixel size
 	 */
-	public void registerCorner5(EuclidianViewCE algo) {
+	public void registerCorner5(euclideanViewCE algo) {
 		if (this.corner5Algos == null) {
 			this.corner5Algos = new ArrayList<>();
 		}
@@ -3484,7 +3484,7 @@ public class Construction {
 	 * @param algo
 	 *            algo dependent on rotation of 3D view
 	 */
-	public void registerCorner11(EuclidianViewCE algo) {
+	public void registerCorner11(euclideanViewCE algo) {
 		if (this.corner11Algos == null) {
 			this.corner11Algos = new ArrayList<>();
 		}
@@ -3670,11 +3670,11 @@ public class Construction {
 	 * @param geos - list of geos to be grouped
 	 */
 	public void createGroupFromSelected(ArrayList<GeoElement> geos) {
-		EuclidianView ev = getApplication().getActiveEuclidianView();
+		euclideanView ev = getApplication().getActiveeuclideanView();
 
 		ungroupGroups(geos);
 		unfixAll(geos);
-		ev.getEuclidianController().splitSelectedStrokes(true);
+		ev.geteuclideanController().splitSelectedStrokes(true);
 
 		createGroup(geos);
 		getLayerManager().groupObjects(geos);

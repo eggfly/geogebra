@@ -1,6 +1,6 @@
 package org.geogebra.common.kernel.advanced;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.kernel.Kernel;
 import org.geogebra.common.kernel.algos.AlgoAttachCopyToView;
 import org.geogebra.common.kernel.arithmetic.Command;
@@ -42,14 +42,14 @@ public class CmdAttachCopyToView extends CommandProcessor {
 			if (arg[1] instanceof GeoNumberValue) {
 				GeoPointND corner1, corner3, screenCorner1, screenCorner3;
 				int viewID = (int) arg[1].evaluateDouble();
-				EuclidianView ev = null;
+				euclideanView ev = null;
 				if (viewID == 2) {
 					// #5014
-					if (app.hasEuclidianView2(1)) {
-						ev = app.getEuclidianView2(1);
+					if (app.haseuclideanView2(1)) {
+						ev = app.geteuclideanView2(1);
 					}
 				} else {
-					ev = app.getEuclidianView1();
+					ev = app.geteuclideanView1();
 				}
 				if (n == 2) {
 
@@ -96,11 +96,11 @@ public class CmdAttachCopyToView extends CommandProcessor {
 							corner1, corner3, screenCorner1, screenCorner3);
 
 					ret = new GeoElement[] { algo.getResult() };
-					if (n == 2 && ev != app.getActiveEuclidianView()) {
+					if (n == 2 && ev != app.getActiveeuclideanView()) {
 						ret[0].addView(ev.getViewID());
 						ret[0].removeView(
-								app.getActiveEuclidianView().getViewID());
-						app.getActiveEuclidianView().remove(ret[0]);
+								app.getActiveeuclideanView().getViewID());
+						app.getActiveeuclideanView().remove(ret[0]);
 						ev.add(ret[0]);
 					}
 					return ret;

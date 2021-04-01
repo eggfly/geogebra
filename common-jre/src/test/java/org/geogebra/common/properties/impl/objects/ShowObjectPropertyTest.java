@@ -14,8 +14,8 @@ public class ShowObjectPropertyTest extends BaseUnitTest {
 	@Test
 	public void testSetValue() {
 		GeoNumeric slider = addAvInput("1");
-		slider.setEuclidianVisible(true);
-		slider.setEuclidianVisible(false);
+		slider.seteuclideanVisible(true);
+		slider.seteuclideanVisible(false);
 
 		ShowObjectProperty showObjectProperty = null;
 		MinProperty minProperty = null;

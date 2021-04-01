@@ -1,13 +1,13 @@
-package org.geogebra.desktop.geogebra3D.euclidianForPlane;
+package org.geogebra.desktop.geogebra3D.euclideanForPlane;
 
-import org.geogebra.common.euclidian.EuclidianController;
-import org.geogebra.common.euclidian.EuclidianViewCompanion;
-import org.geogebra.common.euclidianForPlane.EuclidianViewForPlaneInterface;
-import org.geogebra.common.geogebra3D.euclidianForPlane.EuclidianViewForPlaneCompanion;
+import org.geogebra.common.euclidean.euclideanController;
+import org.geogebra.common.euclidean.euclideanViewCompanion;
+import org.geogebra.common.euclideanForPlane.euclideanViewForPlaneInterface;
+import org.geogebra.common.geogebra3D.euclideanForPlane.euclideanViewForPlaneCompanion;
 import org.geogebra.common.kernel.kernelND.ViewCreator;
-import org.geogebra.common.main.settings.EuclidianSettings;
-import org.geogebra.desktop.euclidian.EuclidianStyleBarD;
-import org.geogebra.desktop.euclidian.EuclidianViewD;
+import org.geogebra.common.main.settings.euclideanSettings;
+import org.geogebra.desktop.euclidean.euclideanStyleBarD;
+import org.geogebra.desktop.euclidean.euclideanViewD;
 
 /**
  * 2D view for plane.
@@ -15,8 +15,8 @@ import org.geogebra.desktop.euclidian.EuclidianViewD;
  * @author Mathieu
  *
  */
-public class EuclidianViewForPlaneD extends EuclidianViewD
-		implements EuclidianViewForPlaneInterface {
+public class euclideanViewForPlaneD extends euclideanViewD
+		implements euclideanViewForPlaneInterface {
 
 	/**
 	 * 
@@ -25,31 +25,31 @@ public class EuclidianViewForPlaneD extends EuclidianViewD
 	 * @param plane
 	 *            plane creating this view
 	 * @param settings
-	 *            euclidian settings
+	 *            euclidean settings
 	 */
-	public EuclidianViewForPlaneD(EuclidianController ec, ViewCreator plane,
-			EuclidianSettings settings) {
+	public euclideanViewForPlaneD(euclideanController ec, ViewCreator plane,
+			euclideanSettings settings) {
 		super(ec, new boolean[] { false, false }, false, EVNO_GENERAL,
 				settings); // TODO
-							// euclidian
+							// euclidean
 							// settings
 
-		((EuclidianViewForPlaneCompanion) companion).initView(plane);
+		((euclideanViewForPlaneCompanion) companion).initView(plane);
 	}
 
 	@Override
-	protected EuclidianViewCompanion newEuclidianViewCompanion() {
-		return new EuclidianViewForPlaneCompanion(this);
+	protected euclideanViewCompanion neweuclideanViewCompanion() {
+		return new euclideanViewForPlaneCompanion(this);
 	}
 
 	@Override
-	public EuclidianViewForPlaneCompanion getCompanion() {
-		return (EuclidianViewForPlaneCompanion) super.getCompanion();
+	public euclideanViewForPlaneCompanion getCompanion() {
+		return (euclideanViewForPlaneCompanion) super.getCompanion();
 	}
 
 	@Override
-	protected EuclidianStyleBarD newEuclidianStyleBar() {
-		return new EuclidianStyleBarForPlaneD(this);
+	protected euclideanStyleBarD neweuclideanStyleBar() {
+		return new euclideanStyleBarForPlaneD(this);
 	}
 
 	@Override

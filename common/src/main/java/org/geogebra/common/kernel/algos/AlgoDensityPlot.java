@@ -4,7 +4,7 @@ import org.geogebra.common.awt.GColor;
 import org.geogebra.common.awt.GFont;
 import org.geogebra.common.awt.GGraphics2D;
 import org.geogebra.common.awt.font.GTextLayout;
-import org.geogebra.common.euclidian.EuclidianViewInterfaceCommon;
+import org.geogebra.common.euclidean.euclideanViewInterfaceCommon;
 import org.geogebra.common.factories.AwtFactory;
 import org.geogebra.common.kernel.Construction;
 import org.geogebra.common.kernel.StringTemplate;
@@ -52,7 +52,7 @@ public class AlgoDensityPlot extends AlgoElement {
 	private double scaleX;
 	private double scaleY;
 	private int grade;
-	private EuclidianViewInterfaceCommon view;
+	private euclideanViewInterfaceCommon view;
 	private boolean fixed;
 	private int imagePlusOffset;
 	private double value;
@@ -99,7 +99,7 @@ public class AlgoDensityPlot extends AlgoElement {
 		}
 		function = geoFunctionNVar;
 		f = function.getFunction();
-		view = kernel.getApplication().getActiveEuclidianView();
+		view = kernel.getApplication().getActiveeuclideanView();
 		this.fixed = fixed;
 		minX = -2;
 		minY = -2;
@@ -225,8 +225,8 @@ public class AlgoDensityPlot extends AlgoElement {
 			}
 		}
 		deleteAxes();
-		if (view.getShowAxis(EuclidianViewInterfaceCommon.AXIS_X)
-				|| view.getShowAxis(EuclidianViewInterfaceCommon.AXIS_Y)) {
+		if (view.getShowAxis(euclideanViewInterfaceCommon.AXIS_X)
+				|| view.getShowAxis(euclideanViewInterfaceCommon.AXIS_Y)) {
 			drawAxes();
 		}
 		showGrid();

@@ -155,7 +155,7 @@ public class MyXMLioD extends MyXMLioJre {
 		// process construction
 		if (!isGGTfile && xmlFileBuffer != null) {
 			kernel.getConstruction().setFileLoading(true);
-			app.getCompanion().resetEuclidianViewForPlaneIds();
+			app.getCompanion().reseteuclideanViewForPlaneIds();
 			processXMLBuffer(xmlFileBuffer, !macroXMLfound, isGGTfile);
 			kernel.getConstruction().setFileLoading(false);
 		}

@@ -1,10 +1,10 @@
-package org.geogebra.common.geogebra3D.euclidian3D.draw;
+package org.geogebra.common.geogebra3D.euclidean3D.draw;
 
-import org.geogebra.common.euclidian3D.EuclidianView3DInterface;
-import org.geogebra.common.geogebra3D.euclidian3D.EuclidianView3D;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.PlotterBrush;
-import org.geogebra.common.geogebra3D.euclidian3D.openGL.Renderer;
-import org.geogebra.common.geogebra3D.euclidian3D.xr.XRManagerInterface;
+import org.geogebra.common.euclidean3D.euclideanView3DInterface;
+import org.geogebra.common.geogebra3D.euclidean3D.euclideanView3D;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.PlotterBrush;
+import org.geogebra.common.geogebra3D.euclidean3D.openGL.Renderer;
+import org.geogebra.common.geogebra3D.euclidean3D.xr.XRManagerInterface;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoClippingCube3D;
 import org.geogebra.common.kernel.matrix.Coords;
 
@@ -74,7 +74,7 @@ public class DrawClippingCube3D extends Drawable3DCurves {
 	 * @param clippingCube
 	 *            geo
 	 */
-	public DrawClippingCube3D(EuclidianView3D a_view3D,
+	public DrawClippingCube3D(euclideanView3D a_view3D,
 			GeoClippingCube3D clippingCube) {
 
 		super(a_view3D, clippingCube);
@@ -144,7 +144,7 @@ public class DrawClippingCube3D extends Drawable3DCurves {
 	 */
 	public void doUpdateMinMax() {
 
-        EuclidianView3D view = getView3D();
+        euclideanView3D view = getView3D();
 
         Renderer renderer = view.getRenderer();
 
@@ -251,7 +251,7 @@ public class DrawClippingCube3D extends Drawable3DCurves {
     }
 
     private void standsOnFloorIfAR(double[][] mm) {
-        EuclidianView3D view = getView3D();
+        euclideanView3D view = getView3D();
         if (view.isXREnabled()) {
 			mm[Z][MIN] = view.getARMinZ();
         }
@@ -358,7 +358,7 @@ public class DrawClippingCube3D extends Drawable3DCurves {
 		double h = ymax - ymin;
 		double d = zmax - zmin;
 
-		EuclidianView3D view = getView3D();
+		euclideanView3D view = getView3D();
 		double xscale = view.getXscale();
 		int reductionIndex = ((GeoClippingCube3D) getGeoElement()).getReduction();
 		horizontalDiagonal = w / xscale * Math.sqrt(2);
@@ -391,9 +391,9 @@ public class DrawClippingCube3D extends Drawable3DCurves {
 		Coords eye = getView3D().getEyePosition();
 		int x, y, z;
 		if (getView3D()
-				.getProjection() == EuclidianView3DInterface.PROJECTION_ORTHOGRAPHIC
+				.getProjection() == euclideanView3DInterface.PROJECTION_ORTHOGRAPHIC
 				|| getView3D()
-						.getProjection() == EuclidianView3DInterface.PROJECTION_OBLIQUE) {
+						.getProjection() == euclideanView3DInterface.PROJECTION_OBLIQUE) {
 			x = eye.getX() > 0 ? 0 : 1;
 			y = eye.getY() > 0 ? 0 : 1;
 			z = eye.getZ() > 0 ? 0 : 1;

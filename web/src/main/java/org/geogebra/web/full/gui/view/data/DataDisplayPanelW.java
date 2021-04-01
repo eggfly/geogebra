@@ -3,8 +3,8 @@ package org.geogebra.web.full.gui.view.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geogebra.common.euclidian.event.KeyEvent;
-import org.geogebra.common.euclidian.event.KeyHandler;
+import org.geogebra.common.euclidean.event.KeyEvent;
+import org.geogebra.common.euclidean.event.KeyHandler;
 import org.geogebra.common.gui.view.data.DataAnalysisModel;
 import org.geogebra.common.gui.view.data.DataDisplayModel;
 import org.geogebra.common.gui.view.data.DataDisplayModel.IDataDisplayListener;
@@ -82,7 +82,7 @@ public class DataDisplayPanelW extends FlowPanel implements
 	private FlowPanel metaPlotPanel;
 	private FlowPanel plotPanelNorth;
 	private FlowPanel plotPanelSouth;
-	private PlotPanelEuclidianViewW plotPanel;
+	private PlotPaneleuclideanViewW plotPanel;
 
 	private Canvas latexCanvas;
 	private GeoNumeric sample;
@@ -224,7 +224,7 @@ public class DataDisplayPanelW extends FlowPanel implements
 			controlPanel.add(LayoutUtilW.panelRow(lbDisplayType, controlDecks, buttonPanel));
 		}
 
-		plotPanel = new PlotPanelEuclidianViewW(app.getKernel());
+		plotPanel = new PlotPaneleuclideanViewW(app.getKernel());
 	
 		//		plotPanel.setPreferredSize(PLOTPANEL_WIDTH, PLOTPANEL_HEIGHT);
 		//		plotPanel.updateSize();
@@ -523,12 +523,12 @@ public class DataDisplayPanelW extends FlowPanel implements
 
 	protected void exportToEV() {
 		// use EV1 unless shift is down, then use EV2
-		int euclidianViewID = GlobalKeyDispatcherW.getShiftDown()
-				? app.getEuclidianView2(1).getViewID()
-				: app.getEuclidianView1().getViewID();
+		int euclideanViewID = GlobalKeyDispatcherW.getShiftDown()
+				? app.geteuclideanView2(1).getViewID()
+				: app.geteuclideanView1().getViewID();
 
 		// do the export
-		getModel().exportGeosToEV(euclidianViewID);
+		getModel().exportGeosToEV(euclideanViewID);
 		
 		daView.updateOtherDataDisplay(this);
     }
@@ -737,8 +737,8 @@ public class DataDisplayPanelW extends FlowPanel implements
 	public void geoToPlotPanel(GeoElement listGeo) {
 		listGeo.addView(plotPanel.getViewID());
 		plotPanel.add(listGeo);
-		listGeo.removeView(App.VIEW_EUCLIDIAN);
-		app.getEuclidianView1().remove(listGeo);
+		listGeo.removeView(App.VIEW_euclidean);
+		app.geteuclideanView1().remove(listGeo);
 	}
 
 	public DataDisplayModel getModel() {
@@ -792,7 +792,7 @@ public class DataDisplayPanelW extends FlowPanel implements
 		}
 		plotPanel.updateSize();
 		plotPanel.repaintView();
-		plotPanel.getEuclidianController().calculateEnvironment();
+		plotPanel.geteuclideanController().calculateEnvironment();
 		if (update) {
 			getModel().updatePlot(false);
 		}

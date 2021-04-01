@@ -3,7 +3,7 @@ package org.geogebra.web.full.gui.toolbar;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.gui.layout.DockPanel;
 import org.geogebra.common.gui.toolbar.ToolBar;
 import org.geogebra.common.gui.toolbar.ToolbarItem;
@@ -44,7 +44,7 @@ public class ToolBarW extends FlowPanel
 	private boolean isMouseDown = false;
 	private int mousePosition;
 	private int toolbarPosition;
-	private Integer activeView = App.VIEW_EUCLIDIAN;
+	private Integer activeView = App.VIEW_euclidean;
 	private int maxButtons = 200;
 
 	/**
@@ -144,7 +144,7 @@ public class ToolBarW extends FlowPanel
 	 * Sets toolbar mode. This will change the selected toolbar icon.
 	 * 
 	 * @param newMode
-	 *            see EuclidianConstants for mode numbers
+	 *            see euclideanConstants for mode numbers
 	 * 
 	 * 
 	 * @return actual mode number selected (might be different if it's not
@@ -157,8 +157,8 @@ public class ToolBarW extends FlowPanel
 		// there is no special icon/button for the selection listener mode, use
 		// the
 		// move mode button instead
-		if (tmpMode == EuclidianConstants.MODE_SELECTION_LISTENER) {
-			tmpMode = EuclidianConstants.MODE_MOVE;
+		if (tmpMode == euclideanConstants.MODE_SELECTION_LISTENER) {
+			tmpMode = euclideanConstants.MODE_MOVE;
 		}
 
 		if (modeToggleMenus != null) {

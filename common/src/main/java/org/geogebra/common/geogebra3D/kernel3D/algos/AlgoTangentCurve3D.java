@@ -12,7 +12,7 @@ the Free Software Foundation.
 
 package org.geogebra.common.geogebra3D.kernel3D.algos;
 
-import org.geogebra.common.euclidian.EuclidianConstants;
+import org.geogebra.common.euclidean.euclideanConstants;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoCurveCartesian3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoLine3D;
 import org.geogebra.common.geogebra3D.kernel3D.geos.GeoPoint3D;
@@ -125,7 +125,7 @@ public class AlgoTangentCurve3D extends AlgoLinePoint {
 
 	@Override
 	public int getRelatedModeID() {
-		return EuclidianConstants.MODE_TANGENTS;
+		return euclideanConstants.MODE_TANGENTS;
 	}
 
 	// for AlgoElement

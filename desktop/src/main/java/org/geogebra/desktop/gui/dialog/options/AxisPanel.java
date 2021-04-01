@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.geogebra.common.euclidian.EuclidianView;
+import org.geogebra.common.euclidean.euclideanView;
 import org.geogebra.common.gui.SetLabels;
 import org.geogebra.common.gui.dialog.options.model.AxisModel;
 import org.geogebra.common.gui.dialog.options.model.AxisModel.IAxisModelListener;
@@ -49,7 +49,7 @@ public class AxisPanel extends JPanel implements ActionListener, ItemListener,
 	private JLabel stickToEdge;
 
 	private AppD app;
-	protected EuclidianView view;
+	protected euclideanView view;
 
 	private LocalizationD loc;
 
@@ -58,7 +58,7 @@ public class AxisPanel extends JPanel implements ActionListener, ItemListener,
 	 * @param view
 	 * @param axis
 	 */
-	public AxisPanel(AppD app, EuclidianView view, int axis) {
+	public AxisPanel(AppD app, euclideanView view, int axis) {
 
 		this.app = app;
 		this.loc = app.getLocalization();
@@ -147,7 +147,7 @@ public class AxisPanel extends JPanel implements ActionListener, ItemListener,
 		updatePanel();
 	}
 
-	public void updateView(EuclidianView view) {
+	public void updateView(euclideanView view) {
 		this.view = view;
 		model.setView(view);
 	}
