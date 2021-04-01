@@ -10,8 +10,9 @@ import org.geogebra.common.gui.menu.Icon;
 import org.geogebra.common.gui.menu.MenuItem;
 import org.geogebra.common.gui.menu.MenuItemGroup;
 import org.geogebra.common.gui.menu.impl.DefaultDrawerMenuFactory;
-import org.geogebra.common.gui.menu.impl.ExamDrawerMenuFactory;
 import org.geogebra.common.gui.menu.impl.MebisDrawerMenuFactory;
+import org.geogebra.common.gui.menu.impl.SavingExamDrawerMenuFactory;
+import org.geogebra.common.gui.menu.impl.SimpleExamDrawerMenuFactory;
 import org.geogebra.common.move.events.BaseEvent;
 import org.geogebra.common.move.ggtapi.events.LogOutEvent;
 import org.geogebra.common.move.ggtapi.events.LoginEvent;
@@ -132,7 +133,7 @@ public class MenuViewController implements ResizeHandler, EventRenderable, SetLa
 	private void createDrawerMenuFactories(AppW app) {
 		GeoGebraConstants.Version version = app.getConfig().getVersion();
 		defaultDrawerMenuFactory = createDefaultMenuFactory(app, version);
-		examDrawerMenuFactory = new ExamDrawerMenuFactory(version);
+		examDrawerMenuFactory = createExamMenuFactory(version);
 	}
 
 	/**
@@ -165,6 +166,12 @@ public class MenuViewController implements ResizeHandler, EventRenderable, SetLa
 					app.enableFileFeatures(),
 					addAppSwitcher);
 		}
+	}
+
+	private DrawerMenuFactory createExamMenuFactory(GeoGebraConstants.Version version) {
+		return version.equals(GeoGebraConstants.Version.SCIENTIFIC)
+				? new SimpleExamDrawerMenuFactory(version)
+				: new SavingExamDrawerMenuFactory(version);
 	}
 
 	private void createActionHandlerFactories(AppWFull app) {
