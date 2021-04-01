@@ -7,11 +7,11 @@ import org.geogebra.common.gui.menu.MenuItemGroup;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ExamDrawerMenuFactoryTest {
+public class SavingExamDrawerMenuFactoryTest {
 
 	@Test
 	public void testGraphingExam() {
-		DrawerMenuFactory factory = new ExamDrawerMenuFactory(GeoGebraConstants.Version.GRAPHING);
+		DrawerMenuFactory factory = new SavingExamDrawerMenuFactory(GeoGebraConstants.Version.GRAPHING);
 		DrawerMenu menu = factory.createDrawerMenu();
 		Assert.assertEquals(1, menu.getMenuItemGroups().size());
 		MenuItemGroup group = menu.getMenuItemGroups().get(0);
@@ -21,7 +21,7 @@ public class ExamDrawerMenuFactoryTest {
 	@Test
 	public void testSwitchCalculator() {
 		DrawerMenuFactory factory =
-				new ExamDrawerMenuFactory(GeoGebraConstants.Version.SUITE, true);
+				new SavingExamDrawerMenuFactory(GeoGebraConstants.Version.SUITE, true);
 		DrawerMenu menu = factory.createDrawerMenu();
 		Assert.assertEquals(1, menu.getMenuItemGroups().size());
 		MenuItemGroup group = menu.getMenuItemGroups().get(0);

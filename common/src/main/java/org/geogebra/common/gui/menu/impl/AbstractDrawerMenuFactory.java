@@ -81,4 +81,14 @@ abstract class AbstractDrawerMenuFactory implements DrawerMenuFactory {
 		}
 		return list;
 	}
+
+	static MenuItem exitExamMode() {
+		return new ActionableItemImpl(Icon.HOURGLASS_EMPTY,
+				"exam_menu_exit", Action.EXIT_EXAM_MODE);
+	}
+
+	static MenuItem showExamLog() {
+		return new ActionableItemImpl(Icon.ASSIGNMENT,
+				"exam_log_header", Action.SHOW_EXAM_LOG);
+	}
 }
