@@ -1983,7 +1983,6 @@ public abstract class AppW extends App implements SetLabels, HasLanguage {
 		kernel.setViewsLabels();
 		updateCommandDictionary();
 		setTitle();
-		setAltText();
 		translateHeader();
 	}
 
